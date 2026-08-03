@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ToToZ – Medical Learning Hub</title>
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #f4f7fc; color: #1f2a41; overflow-x: hidden; scroll-behavior: smooth; }
+    #particles-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; background: linear-gradient(145deg, #e4edf5 0%, #d2e1f0 100%); }
+    header { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 5%; background: rgba(255,255,255,0.7); backdrop-filter: blur(12px); box-shadow: 0 8px 32px rgba(0,40,80,0.08); position: sticky; top: 0; z-index: 100; animation: fadeDown 0.8s ease-out; }
+    @keyframes fadeDown { 0% { opacity: 0; transform: translateY(-30px); } 100% { opacity: 1; transform: translateY(0); } }
+    .logo { display: flex; align-items: center; gap: 0.5rem; font-weight: 800; font-size: 1.6rem; color: #0a2b4a; }
+    .logo i { color: #2d7b9e; font-size: 2rem; animation: pulse 3s infinite ease-in-out; }
+    @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+    .nav-wrapper { display: flex; align-items: center; gap: 2rem; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; font-weight: 500; }
+    .nav-links a { color: #1f2a41; text-decoration: none; transition: 0.3s; position: relative; cursor: pointer; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: #2d7b9e; transition: width 0.3s; }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a:hover { color: #2d7b9e; }
+    .hamburger { display: none; font-size: 1.8rem; color: #0a2b4a; cursor: pointer; background: none; border: none; padding: 0.2rem 0.5rem; }
+    .hamburger:hover { color: #2d7b9e; }
+    .btn-signup { background: #2d7b9e; color: white; border: none; padding: 0.5rem 1.5rem; border-radius: 30px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 12px rgba(45,123,158,0.3); white-space: nowrap; }
+    .btn-signup:hover { background: #1f5f7a; transform: translateY(-2px); }
+    .hero { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 5rem 5% 4rem; animation: fadeUp 1s ease-out; }
+    @keyframes fadeUp { 0% { opacity: 0; transform: translateY(40px); } 100% { opacity: 1; transform: translateY(0); } }
+    .hero h1 { font-size: 3.2rem; font-weight: 800; line-height: 1.2; max-width: 800px; background: linear-gradient(135deg, #0a2b4a, #2d7b9e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero p { font-size: 1.2rem; color: #3c4d66; margin: 1.2rem 0 2.5rem; max-width: 600px; }
+    .hero-buttons { display: flex; gap: 1.2rem; flex-wrap: wrap; justify-content: center; }
+    .btn-primary { background: #0a2b4a; color: white; padding: 0.9rem 2.2rem; border-radius: 40px; font-weight: 600; text-decoration: none; transition: 0.3s; box-shadow: 0 6px 18px rgba(10,43,74,0.2); display: inline-flex; align-items: center; gap: 8px; border: none; cursor: pointer; }
+    .btn-primary:hover { background: #1a3e5e; transform: translateY(-3px); }
+    .btn-outline { background: transparent; border: 2px solid #2d7b9e; color: #2d7b9e; padding: 0.9rem 2.2rem; border-radius: 40px; font-weight: 600; text-decoration: none; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; }
+    .btn-outline:hover { background: #2d7b9e; color: white; transform: translateY(-3px); }
+    section { scroll-margin-top: 80px; }
+    .section-title { text-align: center; font-size: 2.2rem; font-weight: 700; margin-bottom: 1rem; color: #0a2b4a; }
+    .section-subtitle { text-align: center; color: #5a6e87; margin-bottom: 3rem; font-size: 1.1rem; }
+    .courses-section { padding: 4rem 5%; }
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+    .card { background: rgba(255,255,255,0.65); backdrop-filter: blur(8px); border-radius: 28px; padding: 2.2rem 1.8rem; box-shadow: 0 20px 40px rgba(0,30,60,0.08); transition: all 0.4s cubic-bezier(0.25,0.8,0.25,1); border: 1px solid rgba(255,255,255,0.5); display: flex; flex-direction: column; pointer-events: none; opacity: 0.6; filter: grayscale(0.3); display: none; }
+    .card.active { pointer-events: auto; opacity: 1; filter: none; display: flex; }
+    .card:hover.active { transform: translateY(-12px) scale(1.01); box-shadow: 0 30px 60px rgba(0,50,90,0.12); background: rgba(255,255,255,0.8); border-color: #b4d2e8; }
+    .card i { font-size: 2.6rem; color: #2d7b9e; margin-bottom: 1.2rem; transition: 0.3s; }
+    .card:hover.active i { transform: rotate(8deg) scale(1.1); color: #0a2b4a; }
+    .card h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.7rem; }
+    .card p { color: #3c4d66; line-height: 1.6; flex: 1; }
+    .card .btn-primary { margin-top: 1.5rem; align-self: flex-start; padding: 0.6rem 1.8rem; font-size: 0.95rem; background: #2d7b9e; box-shadow: 0 4px 12px rgba(45,123,158,0.25); pointer-events: none; opacity: 0.5; }
+    .card.active .btn-primary { pointer-events: auto; opacity: 1; }
+    .card .btn-primary:hover.active { background: #1f5f7a; }
+    .about-section { padding: 4rem 5%; background: rgba(255,255,255,0.4); backdrop-filter: blur(4px); border-radius: 40px 40px 0 0; margin: 0 2%; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; max-width: 1100px; margin: 0 auto; align-items: center; }
+    .about-text { font-size: 1.1rem; line-height: 1.7; color: #1f2a41; }
+    .about-text i { color: #2d7b9e; margin-right: 10px; }
+    .about-image { background: rgba(45,123,158,0.1); border-radius: 40px; padding: 2rem; text-align: center; font-size: 5rem; color: #2d7b9e; border: 1px solid rgba(255,255,255,0.6); }
+    .contact-section { padding: 4rem 5%; max-width: 800px; margin: 0 auto; }
+    .contact-form { background: rgba(255,255,255,0.6); backdrop-filter: blur(8px); padding: 2.5rem; border-radius: 40px; box-shadow: 0 20px 40px rgba(0,30,60,0.06); border: 1px solid rgba(255,255,255,0.6); }
+    .form-group { margin-bottom: 1.5rem; }
+    .form-group label { font-weight: 600; display: block; margin-bottom: 0.4rem; color: #0a2b4a; }
+    .form-group input, .form-group textarea { width: 100%; padding: 0.8rem 1.2rem; border: 1px solid #dce6ef; border-radius: 30px; font-family: 'Inter', sans-serif; background: rgba(255,255,255,0.7); backdrop-filter: blur(4px); transition: 0.3s; font-size: 1rem; }
+    .form-group input:focus, .form-group textarea:focus { outline: none; border-color: #2d7b9e; box-shadow: 0 0 0 4px rgba(45,123,158,0.15); }
+    .form-group textarea { min-height: 120px; resize: vertical; }
+    .stats-section { padding: 3rem 5% 5rem; display: flex; justify-content: center; flex-wrap: wrap; gap: 3rem; }
+    .stat-item { text-align: center; min-width: 180px; }
+    .stat-number { font-size: 3.2rem; font-weight: 800; color: #0a2b4a; line-height: 1; }
+    .stat-label { color: #5a6e87; font-weight: 500; margin-top: 0.4rem; }
+    footer { text-align: center; padding: 2.5rem 5%; background: rgba(10,43,74,0.85); backdrop-filter: blur(8px); color: #d6e4f0; border-top: 1px solid rgba(255,255,255,0.1); }
+    footer a { color: #93c2db; text-decoration: none; }
+    .floating-shapes { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; overflow: hidden; }
+    .shape { position: absolute; border-radius: 50%; background: rgba(45,123,158,0.08); animation: floatAround 18s infinite ease-in-out alternate; }
+    .shape:nth-child(1) { width: 300px; height: 300px; top: -80px; left: -80px; animation-duration: 22s; background: rgba(10,43,74,0.06); }
+    .shape:nth-child(2) { width: 500px; height: 500px; bottom: -150px; right: -100px; animation-duration: 26s; background: rgba(45,123,158,0.05); animation-direction: alternate-reverse; }
+    .shape:nth-child(3) { width: 200px; height: 200px; top: 40%; left: 60%; animation-duration: 20s; background: rgba(255,255,255,0.08); }
+    @keyframes floatAround { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(40px,-30px) scale(1.1); } }
+    @media (max-width: 820px) { .hamburger { display: block; } .nav-links { position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: rgba(255,255,255,0.96); backdrop-filter: blur(14px); padding: 1.8rem 2rem; gap: 1.5rem; box-shadow: 0 20px 40px rgba(0,20,40,0.12); border-radius: 0 0 32px 32px; transform: scaleY(0); transform-origin: top center; opacity: 0; visibility: hidden; transition: transform 0.25s ease, opacity 0.25s ease, visibility 0.25s; pointer-events: none; z-index: 99; } .nav-links.open { transform: scaleY(1); opacity: 1; visibility: visible; pointer-events: auto; } .nav-links li { width: 100%; text-align: center; border-bottom: 1px solid rgba(0,0,0,0.04); padding-bottom: 0.5rem; } .nav-links li:last-child { border-bottom: none; } .nav-links a { font-size: 1.2rem; display: block; padding: 0.4rem 0; } .hero h1 { font-size: 2.4rem; } .about-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 480px) { .hero h1 { font-size: 2rem; } .stat-number { font-size: 2.2rem; } .btn-signup { padding: 0.4rem 1rem; font-size: 0.85rem; } }
+
+    /* drill-down styles */
+    .drill-container { margin-top: 2.5rem; background: rgba(255,255,255,0.6); backdrop-filter: blur(8px); border-radius: 40px; padding: 2rem 1.5rem; border: 1px solid rgba(255,255,255,0.7); box-shadow: 0 12px 40px rgba(0,30,60,0.08); transition: all 0.3s ease; display: none; }
+    .drill-container.visible { display: block; }
+    .drill-level { margin-bottom: 1.5rem; text-align: center; }
+    .drill-level h4 { font-size: 1.6rem; font-weight: 700; color: #0a2b4a; margin-bottom: 1.2rem; display: flex; align-items: center; justify-content: center; gap: 0.8rem; }
+    .drill-level h5 { font-size: 1.3rem; font-weight: 600; color: #1f3a5a; margin: 0.8rem 0 1.2rem; display: flex; align-items: center; justify-content: center; gap: 0.6rem; }
+    .back-btn { background: none; border: none; color: #2d7b9e; font-size: 1.4rem; cursor: pointer; transition: 0.2s; padding: 0 0.5rem; }
+    .back-btn:hover { color: #0a2b4a; transform: scale(1.1); }
+    .term-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.2rem; margin: 0.5rem 0 1rem; }
+    .term-item { background: rgba(255,255,255,0.8); padding: 0.9rem 2.2rem; border-radius: 60px; border: 2px solid #d0dcec; cursor: pointer; transition: 0.25s ease; font-weight: 600; font-size: 1.3rem; color: #0a2b4a; box-shadow: 0 4px 12px rgba(0,0,0,0.03); min-width: 140px; text-align: center; letter-spacing: 0.3px; }
+    .term-item:hover { background: #2d7b9e; color: white; border-color: #2d7b9e; transform: translateY(-4px) scale(1.03); box-shadow: 0 12px 28px rgba(45,123,158,0.25); }
+    .topic-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin: 0.8rem 0; }
+    .topic-item { background: rgba(255,255,255,0.7); padding: 0.6rem 1.8rem; border-radius: 40px; border: 1.5px solid #dce6ef; cursor: pointer; transition: 0.2s; font-weight: 500; font-size: 1.1rem; color: #1f2a41; }
+    .topic-item:hover { background: #2d7b9e; color: white; border-color: #2d7b9e; transform: translateY(-2px); }
+    .topic-actions { display: flex; justify-content: center; gap: 1.2rem; margin-top: 1.2rem; flex-wrap: wrap; }
+    .topic-actions .btn-sm { background: #eef4fa; border: 1px solid #dce6ef; padding: 0.6rem 1.8rem; border-radius: 40px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: 0.2s; color: #0a2b4a; box-shadow: 0 2px 8px rgba(0,0,0,0.02); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+    .topic-actions .btn-sm i { margin-right: 6px; }
+    .topic-actions .btn-sm:hover { background: #2d7b9e; color: white; border-color: #2d7b9e; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(45,123,158,0.2); }
+    .info-text { margin-top: 1.2rem; color: #3c4d66; font-size: 1rem; text-align: center; }
+    .link-section { margin-top: 0.5rem; padding: 0.5rem; background: rgba(255,255,255,0.4); border-radius: 20px; font-size: 0.85rem; color: #5a6e87; word-break: break-all; }
+    .link-section a { color: #2d7b9e; text-decoration: none; }
+    .link-section a:hover { text-decoration: underline; }
+
+    /* ---- SIGNUP OVERLAY ---- */
+    .signup-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; z-index: 1000; }
+    .signup-box { background: white; padding: 2.5rem 3rem; border-radius: 40px; max-width: 420px; width: 90%; box-shadow: 0 30px 60px rgba(0,0,0,0.2); text-align: center; }
+    .signup-box h2 { font-size: 1.8rem; margin-bottom: 0.5rem; color: #0a2b4a; }
+    .signup-box p { color: #5a6e87; margin-bottom: 1.8rem; }
+    .signup-box .form-group { margin-bottom: 1.2rem; text-align: left; }
+    .signup-box .form-group label { display: block; font-weight: 600; margin-bottom: 0.3rem; color: #0a2b4a; }
+    .signup-box .form-group input { width: 100%; padding: 0.8rem 1.2rem; border: 1px solid #dce6ef; border-radius: 30px; font-family: 'Inter', sans-serif; font-size: 1rem; transition: 0.3s; }
+    .signup-box .form-group input:focus { outline: none; border-color: #2d7b9e; box-shadow: 0 0 0 4px rgba(45,123,158,0.15); }
+    .signup-box .btn-primary { width: 100%; justify-content: center; margin-top: 0.5rem; }
+    .signup-box .error-msg { color: #d32f2f; font-size: 0.9rem; margin-top: 0.8rem; min-height: 1.5rem; }
+    .signup-box .hint { font-size: 0.85rem; color: #7a8ca0; margin-top: 1rem; border-top: 1px solid #eef2f7; padding-top: 1rem; }
+    .hidden { display: none !important; }
+
+    /* Site selection overlay */
+    .site-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; z-index: 1001; }
+    .site-overlay.active { display: flex; }
+    .site-box { background: white; padding: 2.5rem 3rem; border-radius: 40px; max-width: 500px; width: 90%; box-shadow: 0 30px 60px rgba(0,0,0,0.2); text-align: center; }
+    .site-box h2 { font-size: 1.8rem; margin-bottom: 0.5rem; color: #0a2b4a; }
+    .site-box p { color: #5a6e87; margin-bottom: 1.5rem; }
+    .site-options { display: flex; flex-direction: column; gap: 0.8rem; }
+    .site-btn { background: #eef4fa; border: 2px solid #dce6ef; padding: 0.8rem; border-radius: 30px; font-weight: 600; font-size: 1.1rem; cursor: pointer; transition: 0.3s; color: #0a2b4a; }
+    .site-btn:hover { background: #2d7b9e; color: white; border-color: #2d7b9e; transform: translateY(-2px); }
+    .site-box .hint { font-size: 0.85rem; color: #7a8ca0; margin-top: 1rem; border-top: 1px solid #eef2f7; padding-top: 1rem; }
+  </style>
+</head>
+<body>
+  <canvas id="particles-canvas"></canvas>
+  <div class="floating-shapes"><div class="shape"></div><div class="shape"></div><div class="shape"></div></div>
+
+  <!-- SIGNUP OVERLAY -->
+  <div class="signup-overlay" id="signupOverlay">
+    <div class="signup-box">
+      <h2><i class="fas fa-user-graduate" style="color:#2d7b9e;"></i> Sign In</h2>
+      <p>Enter your credentials to access your courses</p>
+      <div class="form-group">
+        <label for="usernameInput">Username</label>
+        <input type="text" id="usernameInput" placeholder="Enter username" />
+      </div>
+      <div class="form-group">
+        <label for="passwordInput">Password</label>
+        <input type="password" id="passwordInput" placeholder="Enter password" />
+      </div>
+      <button class="btn-primary" id="signupBtn"><i class="fas fa-sign-in-alt"></i> Sign In</button>
+      <div class="error-msg" id="errorMsg"></div>
+      <div class="hint">
+        <strong>2nd Year:</strong> j2/pass2 · s2/pass2<br>
+        <strong>3rd Year:</strong> m3/pass3 · l3/pass3<br>
+        <strong>4th Year:</strong> a4/pass4 · b4/pass4<br>
+        <strong>6th Year:</strong> c6/pass6 · d6/pass6
+      </div>
+    </div>
+  </div>
+
+  <!-- SITE SELECTION OVERLAY (for 4th & 6th year) -->
+  <div class="site-overlay" id="siteOverlay">
+    <div class="site-box">
+      <h2><i class="fas fa-hospital" style="color:#2d7b9e;"></i> Select Your Rotation Site</h2>
+      <p id="siteUserInfo">Please select the site you are rotating at:</p>
+      <div class="site-options" id="siteOptions">
+        <button class="site-btn" data-site="siteA">Site A - Central Hospital</button>
+        <button class="site-btn" data-site="siteB">Site B - University Medical Center</button>
+        <button class="site-btn" data-site="siteC">Site C - Community Health Network</button>
+      </div>
+      <div class="hint">Your course topics will be tailored to your rotation site.</div>
+    </div>
+  </div>
+
+  <header>
+    <div class="logo"><i class="fas fa-heartbeat"></i><span>ToToZ</span></div>
+    <div class="nav-wrapper">
+      <button class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="btn-signup" id="signupNavBtn"><i class="fas fa-user-plus" style="margin-right:8px;"></i>Sign In</button>
+    </div>
+  </header>
+
+  <section id="home" class="hero">
+    <h1 id="heroTitle">👋 Welcome! <br> Learn Today, Lead Tomorrow</h1>
+    <p id="heroDesc">Sign in to access your year-specific medical courses.</p>
+    <div class="hero-buttons">
+      <a href="#courses" class="btn-primary" id="exploreBtn"><i class="fas fa-graduation-cap"></i> Browse Courses</a>
+      <a href="#" class="btn-outline"><i class="fas fa-play-circle"></i> Watch Intro</a>
+    </div>
+  </section>
+
+  <section id="courses" class="courses-section">
+    <h2 class="section-title" id="coursesTitle">🎓 Course Collection</h2>
+    <p class="section-subtitle" id="coursesSubtitle">Sign in to access your courses.</p>
+    <div class="cards-grid" id="courseGrid"></div>
+    <div id="drillContainer" class="drill-container">
+      <div id="drillContent"></div>
+    </div>
+  </section>
+
+  <section id="about" class="about-section">
+    <h2 class="section-title">About ToToZ</h2>
+    <div class="about-grid">
+      <div class="about-text" id="aboutText">
+        <p><i class="fas fa-quote-left"></i> ToToZ was founded by clinicians and educators who believe that medical education should be accessible, dynamic, and human-centered.</p>
+        <p style="margin-top:1.2rem;"><i class="fas fa-check-circle"></i> 500+ expert-led modules</p>
+        <p><i class="fas fa-check-circle"></i> Virtual labs &amp; 3D anatomy</p>
+        <p><i class="fas fa-check-circle"></i> Global community of 12k+ learners</p>
+        <p style="margin-top:1.2rem;">We combine cutting-edge technology with compassionate teaching to prepare the next generation of healthcare heroes.</p>
+      </div>
+      <div class="about-image"><i class="fas fa-user-md"></i><p style="font-size:1rem;margin-top:1rem;color:#0a2b4a;">Empowering healers worldwide</p></div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-section">
+    <h2 class="section-title">Get in Touch</h2>
+    <p class="section-subtitle" id="contactSubtitle">We'd love to hear from you — reach out for support, partnerships, or just to say hello.</p>
+    <div class="contact-form">
+      <form>
+        <div class="form-group"><label for="name">Full Name</label><input type="text" id="name" placeholder="Your name" /></div>
+        <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" placeholder="you@totoz.org" /></div>
+        <div class="form-group"><label for="message">Message</label><textarea id="message" placeholder="Your questions or feedback..."></textarea></div>
+        <button type="submit" class="btn-primary" style="width:100%;justify-content:center;" id="sendBtn"><i class="fas fa-paper-plane"></i> Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="stats-section" id="stats">
+    <div class="stat-item"><div class="stat-number" data-target="12000">0</div><div class="stat-label">Learners</div></div>
+    <div class="stat-item"><div class="stat-number" data-target="480">0</div><div class="stat-label">Courses</div></div>
+    <div class="stat-item"><div class="stat-number" data-target="95">0</div><div class="stat-label">% Pass Rate</div></div>
+  </section>
+
+  <footer id="footer"><p>&copy; 2026 ToToZ — Education for a healthier world. <a href="#">Privacy</a> · <a href="#">Terms</a></p></footer>
+
+  <script>
+    // ---------- particle system ----------
+    const canvas = document.getElementById('particles-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [], w, h;
+    function resizeCanvas() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    class Particle { constructor() { this.reset(); } reset() { this.x = Math.random() * w; this.y = Math.random() * h; this.size = Math.random() * 3 + 1.2; this.speedX = (Math.random() - 0.5) * 0.35; this.speedY = (Math.random() - 0.5) * 0.35; this.opacity = Math.random() * 0.5 + 0.3; } update() { this.x += this.speedX; this.y += this.speedY; if (this.x < 0 || this.x > w) this.speedX *= -1; if (this.y < 0 || this.y > h) this.speedY *= -1; } draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fillStyle = `rgba(10, 43, 74, ${this.opacity * 0.6})`; ctx.fill(); } }
+    for (let i = 0; i < Math.min(80, Math.floor((w * h) / 15000)); i++) particles.push(new Particle());
+    function connectParticles() { for (let i = 0; i < particles.length; i++) { for (let j = i + 1; j < particles.length; j++) { const dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y, dist = Math.sqrt(dx * dx + dy * dy); if (dist < 130) { ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y); ctx.strokeStyle = `rgba(45, 123, 158, ${0.08 * (1 - dist / 130)})`; ctx.lineWidth = 0.8; ctx.stroke(); } } } }
+    function animateParticles() { ctx.clearRect(0, 0, w, h); particles.forEach(p => { p.update(); p.draw(); }); connectParticles(); requestAnimationFrame(animateParticles); }
+    animateParticles();
+    window.addEventListener('resize', () => particles.forEach(p => p.reset()));
+
+    // counter animation
+    const counters = document.querySelectorAll('.stat-number');
+    let countersAnimated = false;
+    function animateCounters() {
+      if (countersAnimated) return;
+      const scrollY = window.scrollY + window.innerHeight;
+      const statsSection = document.getElementById('stats');
+      if (statsSection.offsetTop + statsSection.offsetHeight / 2 < scrollY) {
+        countersAnimated = true;
+        counters.forEach(counter => {
+          const target = parseInt(counter.getAttribute('data-target'));
+          const suffix = target === 95 ? '%' : '';
+          let current = 0;
+          const step = Math.ceil(target / 60);
+          const interval = setInterval(() => {
+            current += step;
+            if (current >= target) { current = target; clearInterval(interval); }
+            counter.textContent = current + suffix;
+          }, 30);
+        });
+      }
+    }
+    window.addEventListener('scroll', animateCounters);
+    animateCounters();
+
+    // nav smooth scroll
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetEl = document.querySelector(this.getAttribute('href'));
+        if (targetEl) targetEl.scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('navLinks').classList.remove('open');
+        document.getElementById('hamburgerBtn').innerHTML = '<i class="fas fa-bars"></i>';
+      });
+    });
+    // hamburger
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navLinks = document.getElementById('navLinks');
+    hamburgerBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const isOpen = navLinks.classList.toggle('open');
+      this.innerHTML = isOpen ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    });
+    document.addEventListener('click', function(e) {
+      const header = document.querySelector('header');
+      if (!header.contains(e.target) && navLinks.classList.contains('open')) {
+        navLinks.classList.remove('open');
+        hamburgerBtn.innerHTML = '<i class="fas fa-bars"></i>';
+      }
+    });
+
+    // ---------- COURSE DATA ----------
+    const courseData = [
+      // 2nd Year Courses
+      { 
+        id: 'embryology', 
+        name: 'Embryology', 
+        icon: 'fa-dna', 
+        year: 2, 
+        type: 'preclinical', 
+        desc: 'Study gametogenesis, fertilization, early embryonic development, and organogenesis.', 
+        terms: [
+          { 
+            name: 'Term 1', 
+            topics: ['Gametogenesis', 'Fertilization', 'Cleavage & Blastocyst Formation', 'Implantation'] 
+          },
+          { 
+            name: 'Term 2', 
+            topics: ['Gastrulation', 'Neurulation', 'Germ Layer Derivatives', 'Placenta & Fetal Membranes'] 
+          },
+          { 
+            name: 'Term 3', 
+            topics: ['Cardiovascular Development', 'Gastrointestinal & Respiratory Systems', 'Urogenital System', 'Congenital Anomalies'] 
+          }
+        ]
+      },
+      { 
+        id: 'histology', 
+        name: 'Histology', 
+        icon: 'fa-microscope', 
+        year: 2, 
+        type: 'preclinical', 
+        desc: 'Study the microscopic anatomy of cells, tissues, and organ systems.', 
+        terms: [
+          { 
+            name: 'Term 1', 
+            topics: [
+              'Tissue Preparation & Staining', 
+              'Cytology', 
+              'Epithelial Tissue', 
+              'Connective Tissue', 
+              'Cartilage',
+              'Bone Tissue', 
+              'Adipose Tissue', 
+              'Nerve Tissue', 
+              'Muscle Tissue',
+            ] 
+          },
+          { 
+            name: 'Term 2', 
+            topics: [
+              'Respiratory System',
+            ] 
+          },
+          { 
+            name: 'Term 3', 
+            topics: [ 
+              'Cardiovascular System', 
+              'GIT'
+            ] 
+          }
+        ]
+      },
+      { 
+        id: 'biochemistry', 
+        name: 'Biochemistry', 
+        icon: 'fa-dna', 
+        year: 3, 
+        type: 'preclinical', 
+        desc: 'Explore cell biology, genetics, and physiology.', 
+        terms: [
+          { 
+            name: 'Term 1', 
+            topics: [
+              'Overview of metabolism (metabolic pathways)',
+              'Biological Oxidation: ETC & oxidative phosphorylation',
+              'Carbohydrate metabolism: Glycolysis',
+              'Pentose phosphate pathway',
+              'TCA cycle (krebs cycle)',
+              'Carbohydrate metabolism: Galactose and Fructose',
+              'Gluconeogenesis',
+              'Blood glucose homeostasis',
+              'Alcohol metabolism',
+              'Uronic acid pathway',
+              'Glycogen metabolism'
+            ] 
+          },
+          { 
+            name: 'Term 2', 
+            topics: [
+              'Lipid metabolism',
+              'Fatty acid synthesis',
+              'Lipoprotein (transport of fatty acids/triglycerides)',
+              'Synthesis of triglycerides',
+              'Beta Oxidation of fatty acids',
+              'Ketogenesis and ketolysis',
+              'Cholesterol synthesis',
+              'Regulation of cholesterol synthesis',
+              'Synthesis of bile acids and bile salts',
+              'Protein metabolism',
+              'Protein digestion process',
+              'Amino acid metabolism',
+              'Transamination and Deamination',
+              'Urea cycle',
+              'Inborn errors of metabolism',
+              'Effect of ammonia in the system',
+              'PKU (phenylketonuria)',
+              'Alkaptonuria',
+              'DKA (diabetic ketoacidosis)',
+              'Cholithiasis (gall stones)',
+              'Excess glutamine'
+            ] 
+          },
+          { 
+            name: 'Term 3', 
+            topics: [
+              'Nucleotide Metabolism',
+              'Central Dogma of a Cell: DNA Replication',
+              'DNA Damages and DNA Repair Mechanism',
+              'Transcription and RNA Processing',
+              'Translation (Synthesis of Protein)',
+              'Control of Gene Expression in Prokaryotes & Eukaryotes',
+              'Genetic Recombination & Medicine',
+              'Genetic Techniques & Its Uses in Medicine'
+            ] 
+          }
+        ]
+      },
+      { id: 'biology', name: 'Biology', icon: 'fa-dna', year: 2, type: 'preclinical', desc: 'Explore cell biology, genetics, and physiology.', terms: [
+        { name: 'Term 1', topics: ['Cell Structure', 'Membrane Transport', 'Cell Cycle'] },
+        { name: 'Term 2', topics: ['DNA Replication', 'Gene Expression', 'Mutations'] },
+        { name: 'Term 3', topics: ['Nervous System', 'Cardiovascular', 'Respiratory'] }
+      ]},
+      // 3rd Year Courses
+      { id: 'physics', name: 'Physics', icon: 'fa-atom', year: 3, type: 'preclinical', desc: 'Understand mechanics, optics, and thermodynamics.', terms: [
+        { name: 'Mechanics', topics: ['Kinematics', 'Dynamics', 'Work & Energy'] },
+        { name: 'Optics', topics: ['Reflection', 'Refraction', 'Lenses'] },
+        { name: 'Thermodynamics', topics: ['Laws of Thermodynamics', 'Heat Transfer', 'Entropy'] }
+      ]},
+      { id: 'chemistry', name: 'Chemistry', icon: 'fa-flask', year: 3, type: 'preclinical', desc: 'Learn organic, inorganic, and physical chemistry.', terms: [
+        { name: 'Organic Chemistry', topics: ['Hydrocarbons', 'Functional Groups', 'Reactions'] },
+        { name: 'Inorganic Chemistry', topics: ['Periodic Table', 'Bonding', 'Coordination Compounds'] },
+        { name: 'Physical Chemistry', topics: ['Thermochemistry', 'Kinetics', 'Equilibrium'] }
+      ]},
+      // 4th Year Clinical Rotations
+      { id: 'imed4', name: 'Internal Medicine', icon: 'fa-heart', year: 4, type: 'clinical', desc: 'Clinical rotation in Internal Medicine.', terms: [
+        { name: 'Cardiology', topics: ['Heart Failure', 'Arrhythmias', 'Ischemic Heart Disease'] },
+        { name: 'Pulmonology', topics: ['COPD', 'Asthma', 'Pneumonia'] },
+        { name: 'Nephrology', topics: ['AKI', 'CKD', 'Glomerular Diseases'] }
+      ]},
+      { id: 'surgery4', name: 'Surgery', icon: 'fa-scalpel', year: 4, type: 'clinical', desc: 'Clinical rotation in General Surgery.', terms: [
+        { name: 'GI Surgery', topics: ['Appendicitis', 'Cholecystitis', 'Bowel Obstruction'] },
+        { name: 'Vascular Surgery', topics: ['Aneurysm', 'Peripheral Vascular Disease', 'Varicose Veins'] },
+        { name: 'Trauma Surgery', topics: ['Blunt Trauma', 'Penetrating Trauma', 'Burn Management'] }
+      ]},
+      { id: 'peads4', name: 'Pediatrics', icon: 'fa-child', year: 4, type: 'clinical', desc: 'Clinical rotation in Pediatrics.', terms: [
+        { name: 'Neonatology', topics: ['Prematurity', 'Neonatal Jaundice', 'Respiratory Distress'] },
+        { name: 'Infectious Diseases', topics: ['Meningitis', 'Pneumonia', 'Diarrheal Diseases'] },
+        { name: 'Growth & Development', topics: ['Developmental Milestones', 'Nutrition', 'Vaccination'] }
+      ]},
+      { id: 'obgyn4', name: 'OB/GYN', icon: 'fa-female', year: 4, type: 'clinical', desc: 'Clinical rotation in Obstetrics & Gynecology.', terms: [
+        { name: 'Obstetrics', topics: ['Antenatal Care', 'Labor & Delivery', 'Postpartum Care'] },
+        { name: 'Gynecology', topics: ['Menstrual Disorders', 'Fibroids', 'Endometriosis'] },
+        { name: 'Reproductive Health', topics: ['Contraception', 'Infertility', 'Menopause'] }
+      ]},
+      // 6th Year Clinical Rotations (Advanced)
+      { id: 'imed6', name: 'Advanced Internal Medicine', icon: 'fa-heartbeat', year: 6, type: 'clinical', desc: 'Advanced clinical rotation in Internal Medicine.', terms: [
+        { name: 'Critical Care', topics: ['Sepsis', 'ARDS', 'Multiorgan Failure'] },
+        { name: 'Oncology', topics: ['Chemotherapy', 'Palliative Care', 'Tumor Markers'] },
+        { name: 'Rheumatology', topics: ['Lupus', 'Rheumatoid Arthritis', 'Vasculitis'] }
+      ]},
+      { id: 'surgery6', name: 'Advanced Surgery', icon: 'fa-procedures', year: 6, type: 'clinical', desc: 'Advanced clinical rotation in Surgery.', terms: [
+        { name: 'Oncologic Surgery', topics: ['Breast Cancer', 'Colorectal Cancer', 'Gastric Cancer'] },
+        { name: 'Transplant Surgery', topics: ['Kidney Transplant', 'Liver Transplant', 'Immunosuppression'] },
+        { name: 'Minimally Invasive', topics: ['Laparoscopy', 'Robotic Surgery', 'Endoscopy'] }
+      ]},
+      { id: 'peads6', name: 'Advanced Pediatrics', icon: 'fa-baby', year: 6, type: 'clinical', desc: 'Advanced clinical rotation in Pediatrics.', terms: [
+        { name: 'Pediatric ICU', topics: ['Ventilation', 'Shock', 'Trauma'] },
+        { name: 'Pediatric Cardiology', topics: ['CHD', 'Rheumatic Fever', 'Kawasaki Disease'] },
+        { name: 'Pediatric Neurology', topics: ['Seizures', 'Cerebral Palsy', 'Neurodevelopmental'] }
+      ]},
+      { id: 'obgyn6', name: 'Advanced OB/GYN', icon: 'fa-user-md', year: 6, type: 'clinical', desc: 'Advanced clinical rotation in Obstetrics & Gynecology.', terms: [
+        { name: 'High-Risk Obstetrics', topics: ['Preeclampsia', 'Gestational Diabetes', 'Multiple Pregnancy'] },
+        { name: 'Gynecologic Oncology', topics: ['Cervical Cancer', 'Ovarian Cancer', 'Endometrial Cancer'] },
+        { name: 'Urogynecology', topics: ['Pelvic Organ Prolapse', 'Urinary Incontinence', 'Fistula'] }
+      ]}
+    ];
+
+    const courseGrid = document.getElementById('courseGrid');
+    const drillContainer = document.getElementById('drillContainer');
+    const drillContent = document.getElementById('drillContent');
+
+    // ---- USER DATA with year access ----
+    const users = {
+      'j2': { name: 'John', password: 'pass2', year: 2 },
+      's2': { name: 'Sarah', password: 'pass2', year: 2 },
+      'm3': { name: 'Mike', password: 'pass3', year: 3 },
+      'l3': { name: 'Lisa', password: 'pass3', year: 3 },
+      'a4': { name: 'Alice', password: 'pass4', year: 4 },
+      'b4': { name: 'Brian', password: 'pass4', year: 4 },
+      'c6': { name: 'Carol', password: 'pass6', year: 6 },
+      'd6': { name: 'David', password: 'pass6', year: 6 }
+    };
+
+    // Site-specific FULL course data for clinical years (4th and 6th)
+    // Each site has its own complete set of topics for each rotation
+    const siteCourses = {
+      'siteA': {
+        4: {
+          'imed4': {
+            name: 'Internal Medicine',
+            icon: 'fa-heart',
+            desc: 'Clinical rotation in Internal Medicine - Site A',
+            terms: [
+              { name: 'Cardiology', topics: ['Site A: HF Management', 'Site A: ECG Interpretation', 'Site A: Cardiac Rehab'] },
+              { name: 'Pulmonology', topics: ['Site A: COPD Care', 'Site A: Asthma Protocol', 'Site A: Pneumonia Treatment'] },
+              { name: 'Nephrology', topics: ['Site A: AKI Protocol', 'Site A: CKD Management', 'Site A: Dialysis Access'] }
+            ]
+          },
+          'surgery4': {
+            name: 'Surgery',
+            icon: 'fa-scalpel',
+            desc: 'Clinical rotation in Surgery - Site A',
+            terms: [
+              { name: 'GI Surgery', topics: ['Site A: Appendectomy', 'Site A: Cholecystectomy', 'Site A: Bowel Surgery'] },
+              { name: 'Vascular Surgery', topics: ['Site A: Aneurysm Repair', 'Site A: PVD Management', 'Site A: Vein Surgery'] },
+              { name: 'Trauma Surgery', topics: ['Site A: Blunt Trauma Protocol', 'Site A: Penetrating Trauma', 'Site A: Burn Care'] }
+            ]
+          },
+          'peads4': {
+            name: 'Pediatrics',
+            icon: 'fa-child',
+            desc: 'Clinical rotation in Pediatrics - Site A',
+            terms: [
+              { name: 'Neonatology', topics: ['Site A: NICU Protocols', 'Site A: Prematurity Care', 'Site A: Respiratory Support'] },
+              { name: 'Infectious Diseases', topics: ['Site A: Meningitis Protocol', 'Site A: Pneumonia Care', 'Site A: Diarrheal Diseases'] },
+              { name: 'Growth & Development', topics: ['Site A: Milestones', 'Site A: Nutrition Program', 'Site A: Vaccination Schedule'] }
+            ]
+          },
+          'obgyn4': {
+            name: 'OB/GYN',
+            icon: 'fa-female',
+            desc: 'Clinical rotation in OB/GYN - Site A',
+            terms: [
+              { name: 'Obstetrics', topics: ['Site A: Prenatal Care', 'Site A: Labor Management', 'Site A: Postpartum Care'] },
+              { name: 'Gynecology', topics: ['Site A: Menstrual Disorders', 'Site A: Fibroid Management', 'Site A: Endometriosis Care'] },
+              { name: 'Reproductive Health', topics: ['Site A: Contraception', 'Site A: Infertility Treatment', 'Site A: Menopause Care'] }
+            ]
+          }
+        },
+        6: {
+          'imed6': {
+            name: 'Advanced Internal Medicine',
+            icon: 'fa-heartbeat',
+            desc: 'Advanced Internal Medicine - Site A',
+            terms: [
+              { name: 'Critical Care', topics: ['Site A: Sepsis Protocol', 'Site A: ARDS Management', 'Site A: Multiorgan Failure'] },
+              { name: 'Oncology', topics: ['Site A: Chemotherapy Protocol', 'Site A: Palliative Care', 'Site A: Tumor Markers'] },
+              { name: 'Rheumatology', topics: ['Site A: Lupus Care', 'Site A: Rheumatoid Arthritis', 'Site A: Vasculitis'] }
+            ]
+          },
+          'surgery6': {
+            name: 'Advanced Surgery',
+            icon: 'fa-procedures',
+            desc: 'Advanced Surgery - Site A',
+            terms: [
+              { name: 'Oncologic Surgery', topics: ['Site A: Breast Cancer Surgery', 'Site A: Colorectal Surgery', 'Site A: Gastric Surgery'] },
+              { name: 'Transplant Surgery', topics: ['Site A: Kidney Transplant', 'Site A: Liver Transplant', 'Site A: Immunosuppression'] },
+              { name: 'Minimally Invasive', topics: ['Site A: Laparoscopy', 'Site A: Robotic Surgery', 'Site A: Endoscopy'] }
+            ]
+          },
+          'peads6': {
+            name: 'Advanced Pediatrics',
+            icon: 'fa-baby',
+            desc: 'Advanced Pediatrics - Site A',
+            terms: [
+              { name: 'Pediatric ICU', topics: ['Site A: Ventilation Protocol', 'Site A: Shock Management', 'Site A: Trauma Care'] },
+              { name: 'Pediatric Cardiology', topics: ['Site A: CHD Management', 'Site A: Rheumatic Fever', 'Site A: Kawasaki Disease'] },
+              { name: 'Pediatric Neurology', topics: ['Site A: Seizure Management', 'Site A: Cerebral Palsy', 'Site A: Neurodevelopmental'] }
+            ]
+          },
+          'obgyn6': {
+            name: 'Advanced OB/GYN',
+            icon: 'fa-user-md',
+            desc: 'Advanced OB/GYN - Site A',
+            terms: [
+              { name: 'High-Risk Obstetrics', topics: ['Site A: Preeclampsia', 'Site A: Gestational Diabetes', 'Site A: Multiple Pregnancy'] },
+              { name: 'Gynecologic Oncology', topics: ['Site A: Cervical Cancer', 'Site A: Ovarian Cancer', 'Site A: Endometrial Cancer'] },
+              { name: 'Urogynecology', topics: ['Site A: Pelvic Organ Prolapse', 'Site A: Urinary Incontinence', 'Site A: Fistula'] }
+            ]
+          }
+        }
+      },
+      'siteB': {
+        4: {
+          'imed4': {
+            name: 'Internal Medicine',
+            icon: 'fa-heart',
+            desc: 'Clinical rotation in Internal Medicine - Site B',
+            terms: [
+              { name: 'Cardiology', topics: ['Site B: HF Guidelines', 'Site B: EP Studies', 'Site B: Device Therapy'] },
+              { name: 'Pulmonology', topics: ['Site B: COPD Guidelines', 'Site B: Asthma Management', 'Site B: Pneumonia Protocol'] },
+              { name: 'Nephrology', topics: ['Site B: AKI Guidelines', 'Site B: CKD Care', 'Site B: Renal Biopsy'] }
+            ]
+          },
+          'surgery4': {
+            name: 'Surgery',
+            icon: 'fa-scalpel',
+            desc: 'Clinical rotation in Surgery - Site B',
+            terms: [
+              { name: 'GI Surgery', topics: ['Site B: Open Appendectomy', 'Site B: Complicated Cholecystitis', 'Site B: Bowel Obstruction'] },
+              { name: 'Vascular Surgery', topics: ['Site B: Endovascular Repair', 'Site B: PVD Surgery', 'Site B: Vein Stripping'] },
+              { name: 'Trauma Surgery', topics: ['Site B: Trauma Protocol', 'Site B: Penetrating Injury', 'Site B: Burn Care'] }
+            ]
+          },
+          'peads4': {
+            name: 'Pediatrics',
+            icon: 'fa-child',
+            desc: 'Clinical rotation in Pediatrics - Site B',
+            terms: [
+              { name: 'Neonatology', topics: ['Site B: Neonatal Care', 'Site B: Prematurity Support', 'Site B: Respiratory Therapy'] },
+              { name: 'Infectious Diseases', topics: ['Site B: Pediatric Infections', 'Site B: Pneumonia Care', 'Site B: Diarrhea Management'] },
+              { name: 'Growth & Development', topics: ['Site B: Developmental Assessment', 'Site B: Nutrition Guidance', 'Site B: Immunization'] }
+            ]
+          },
+          'obgyn4': {
+            name: 'OB/GYN',
+            icon: 'fa-female',
+            desc: 'Clinical rotation in OB/GYN - Site B',
+            terms: [
+              { name: 'Obstetrics', topics: ['Site B: Antenatal Care', 'Site B: Labor Management', 'Site B: Postpartum Care'] },
+              { name: 'Gynecology', topics: ['Site B: Menstrual Disorders', 'Site B: Fibroid Care', 'Site B: Endometriosis'] },
+              { name: 'Reproductive Health', topics: ['Site B: Contraception', 'Site B: Fertility Treatment', 'Site B: Menopause'] }
+            ]
+          }
+        },
+        6: {
+          'imed6': {
+            name: 'Advanced Internal Medicine',
+            icon: 'fa-heartbeat',
+            desc: 'Advanced Internal Medicine - Site B',
+            terms: [
+              { name: 'Critical Care', topics: ['Site B: Sepsis Management', 'Site B: ARDS Protocol', 'Site B: Organ Failure'] },
+              { name: 'Oncology', topics: ['Site B: Cancer Treatment', 'Site B: Palliative Care', 'Site B: Tumor Markers'] },
+              { name: 'Rheumatology', topics: ['Site B: Lupus Management', 'Site B: Rheumatoid Arthritis', 'Site B: Vasculitis'] }
+            ]
+          },
+          'surgery6': {
+            name: 'Advanced Surgery',
+            icon: 'fa-procedures',
+            desc: 'Advanced Surgery - Site B',
+            terms: [
+              { name: 'Oncologic Surgery', topics: ['Site B: Breast Surgery', 'Site B: Colorectal Surgery', 'Site B: Gastric Surgery'] },
+              { name: 'Transplant Surgery', topics: ['Site B: Kidney Transplant', 'Site B: Liver Transplant', 'Site B: Immunosuppression'] },
+              { name: 'Minimally Invasive', topics: ['Site B: Laparoscopic Surgery', 'Site B: Robotic Surgery', 'Site B: Endoscopy'] }
+            ]
+          },
+          'peads6': {
+            name: 'Advanced Pediatrics',
+            icon: 'fa-baby',
+            desc: 'Advanced Pediatrics - Site B',
+            terms: [
+              { name: 'Pediatric ICU', topics: ['Site B: PICU Protocols', 'Site B: Shock Management', 'Site B: Trauma Care'] },
+              { name: 'Pediatric Cardiology', topics: ['Site B: CHD Management', 'Site B: Rheumatic Heart', 'Site B: Kawasaki'] },
+              { name: 'Pediatric Neurology', topics: ['Site B: Seizure Protocol', 'Site B: Cerebral Palsy', 'Site B: Neurodevelopment'] }
+            ]
+          },
+          'obgyn6': {
+            name: 'Advanced OB/GYN',
+            icon: 'fa-user-md',
+            desc: 'Advanced OB/GYN - Site B',
+            terms: [
+              { name: 'High-Risk Obstetrics', topics: ['Site B: Preeclampsia', 'Site B: Diabetes in Pregnancy', 'Site B: Multiple Pregnancy'] },
+              { name: 'Gynecologic Oncology', topics: ['Site B: Cervical Cancer', 'Site B: Ovarian Cancer', 'Site B: Endometrial Cancer'] },
+              { name: 'Urogynecology', topics: ['Site B: Prolapse', 'Site B: Incontinence', 'Site B: Fistula'] }
+            ]
+          }
+        }
+      },
+      'siteC': {
+        4: {
+          'imed4': {
+            name: 'Internal Medicine',
+            icon: 'fa-heart',
+            desc: 'Clinical rotation in Internal Medicine - Site C',
+            terms: [
+              { name: 'Cardiology', topics: ['Site C: Community HF', 'Site C: Telemedicine', 'Site C: Home Care'] },
+              { name: 'Pulmonology', topics: ['Site C: COPD Care', 'Site C: Asthma Management', 'Site C: Pneumonia Care'] },
+              { name: 'Nephrology', topics: ['Site C: AKI Care', 'Site C: CKD Support', 'Site C: Dialysis'] }
+            ]
+          },
+          'surgery4': {
+            name: 'Surgery',
+            icon: 'fa-scalpel',
+            desc: 'Clinical rotation in Surgery - Site C',
+            terms: [
+              { name: 'GI Surgery', topics: ['Site C: Day Surgery', 'Site C: Cholecystitis Care', 'Site C: Bowel Care'] },
+              { name: 'Vascular Surgery', topics: ['Site C: PVD Care', 'Site C: Vein Care', 'Site C: Wound Care'] },
+              { name: 'Trauma Surgery', topics: ['Site C: Trauma Protocol', 'Site C: Injury Care', 'Site C: Burn Care'] }
+            ]
+          },
+          'peads4': {
+            name: 'Pediatrics',
+            icon: 'fa-child',
+            desc: 'Clinical rotation in Pediatrics - Site C',
+            terms: [
+              { name: 'Neonatology', topics: ['Site C: Community NICU', 'Site C: Prematurity Care', 'Site C: Respiratory Care'] },
+              { name: 'Infectious Diseases', topics: ['Site C: Pediatric Infections', 'Site C: Pneumonia Care', 'Site C: Diarrhea Care'] },
+              { name: 'Growth & Development', topics: ['Site C: Development', 'Site C: Nutrition', 'Site C: Vaccination'] }
+            ]
+          },
+          'obgyn4': {
+            name: 'OB/GYN',
+            icon: 'fa-female',
+            desc: 'Clinical rotation in OB/GYN - Site C',
+            terms: [
+              { name: 'Obstetrics', topics: ['Site C: Community Prenatal', 'Site C: Home Visits', 'Site C: Postpartum'] },
+              { name: 'Gynecology', topics: ['Site C: Women\'s Health', 'Site C: Fibroid Care', 'Site C: Endometriosis'] },
+              { name: 'Reproductive Health', topics: ['Site C: Contraception', 'Site C: Fertility', 'Site C: Menopause'] }
+            ]
+          }
+        },
+        6: {
+          'imed6': {
+            name: 'Advanced Internal Medicine',
+            icon: 'fa-heartbeat',
+            desc: 'Advanced Internal Medicine - Site C',
+            terms: [
+              { name: 'Critical Care', topics: ['Site C: Community Critical Care', 'Site C: Sepsis Care', 'Site C: Organ Support'] },
+              { name: 'Oncology', topics: ['Site C: Cancer Care', 'Site C: Palliative Care', 'Site C: Markers'] },
+              { name: 'Rheumatology', topics: ['Site C: Lupus Care', 'Site C: Arthritis Care', 'Site C: Vasculitis'] }
+            ]
+          },
+          'surgery6': {
+            name: 'Advanced Surgery',
+            icon: 'fa-procedures',
+            desc: 'Advanced Surgery - Site C',
+            terms: [
+              { name: 'Oncologic Surgery', topics: ['Site C: Breast Surgery', 'Site C: Colorectal Care', 'Site C: Gastric Care'] },
+              { name: 'Transplant Surgery', topics: ['Site C: Transplant Care', 'Site C: Immunosuppression', 'Site C: Follow-up'] },
+              { name: 'Minimally Invasive', topics: ['Site C: Laparoscopy', 'Site C: Endoscopy', 'Site C: Day Procedures'] }
+            ]
+          },
+          'peads6': {
+            name: 'Advanced Pediatrics',
+            icon: 'fa-baby',
+            desc: 'Advanced Pediatrics - Site C',
+            terms: [
+              { name: 'Pediatric ICU', topics: ['Site C: PICU Care', 'Site C: Shock Care', 'Site C: Trauma'] },
+              { name: 'Pediatric Cardiology', topics: ['Site C: CHD Care', 'Site C: Rheumatic Care', 'Site C: Kawasaki'] },
+              { name: 'Pediatric Neurology', topics: ['Site C: Seizure Care', 'Site C: Cerebral Palsy', 'Site C: Development'] }
+            ]
+          },
+          'obgyn6': {
+            name: 'Advanced OB/GYN',
+            icon: 'fa-user-md',
+            desc: 'Advanced OB/GYN - Site C',
+            terms: [
+              { name: 'High-Risk Obstetrics', topics: ['Site C: Preeclampsia Care', 'Site C: Diabetes Care', 'Site C: Multiple Pregnancy'] },
+              { name: 'Gynecologic Oncology', topics: ['Site C: Cervical Care', 'Site C: Ovarian Care', 'Site C: Endometrial'] },
+              { name: 'Urogynecology', topics: ['Site C: Prolapse Care', 'Site C: Incontinence Care', 'Site C: Fistula'] }
+            ]
+          }
+        }
+      }
+    };
+
+    // Default topic links for document/video/quiz
+    const defaultLinks = {
+      document: '#doc-default',
+      video: '#video-default',
+      quiz: '#quiz-default'
+    };
+
+    // Replace the getTopicLinks function with this updated version
+    function getTopicLinks(topic, courseId, year, site) {
+        // Define Google Drive and YouTube links for specific topics
+        const topicLinks = {
+            // Preclinical topics
+            'Quadratic Functions': {
+                document: 'https://drive.google.com/file/d/1hZFKioQ_BZPG8ZOFBxDDUooNkJ0XV1nR/view?usp=drive_link',
+                video: 'https://www.youtube.com/watch?v=7VFuP2w6WrE',
+                quiz: '#quiz-quadratic'
+            },
+            'Overview of metabolism (metabolic pathways)': {
+                document: 'https://drive.google.com/file/d/1HcloSLdWYWh4GK5DAogMbXwd83WVh57u/view?usp=drive_link'
+            },
+            'Biological Oxidation: ETC & oxidative phosphorylation': {
+                document: 'https://drive.google.com/file/d/1taK21dzpx2TjsPMqkzwxKWlDadAzTs-Y/view?usp=drive_link'
+            },
+            'Carbohydrate metabolism: Glycolysis': {
+                document: 'https://drive.google.com/file/d/1RggXa79vcXaTO-e28VyKkGwGbdHwiATA/view?usp=drive_link'
+            },
+            'Pentose phosphate pathway': {
+                document: 'https://drive.google.com/file/d/1OBlgCS0venBk5MT1pLg3IWK0saQshn_J/view?usp=drive_link'
+            },
+            'TCA cycle (krebs cycle)': {
+                document: 'https://drive.google.com/file/d/1asqnxeiuH95_onHivPv4nBKXIZKqyEI4/view?usp=drive_link'
+            },
+            'Carbohydrate metabolism: Galactose and Fructose': {
+                document: 'https://drive.google.com/file/d/1b5MVMz_mIKYFiGFrsJgL6U8bInYcO-Uj/view?usp=drive_link'
+            },
+            'Gluconeogenesis': {
+                document: 'https://drive.google.com/file/d/1nSl1EbmwR9DzwnXZPLeWoMqdrAjfr-E1/view?usp=drive_link'
+            },
+            'Blood glucose homeostasis': {
+                document: 'https://drive.google.com/file/d/108PK-h_8badsZuYT5ob1c3i4y_gxh8vp/view?usp=drive_link'
+            },
+            'Alcohol metabolism': {
+                document: 'https://drive.google.com/file/d/1iCfNzkbGq_wF-LEv8p02M-C187Dz6K7N/view?usp=drive_link'
+            },
+            'Uronic acid pathway': {
+                document: 'https://drive.google.com/file/d/189_gy0nORp9HnA1zVRLWRSqmM5EQZLnu/view?usp=drive_link'
+            },
+            'Glycogen metabolism': {
+                document: 'https://drive.google.com/file/d/1U7dIe7q7_08adik3rzaS3oBxERyJxaRI/view?usp=drive_link'
+            },
+            'Nucleotide Metabolism': {
+                document: 'https://drive.google.com/file/d/1hZFKioQ_BZPG8ZOFBxDDUooNkJ0XV1nR/view?usp=drive_link',
+                video: 'https://drive.google.com/drive/folders/1r3FjK2sQRinCqb1M2i94RGmV76_G8J-H?usp=drive_link',
+            },
+            'Central Dogma of a Cell: DNA Replication': {
+                document: 'https://drive.google.com/file/d/1RIKjQp16b3bZLiEHPISX22ezCJZ8ACWR/view?usp=drive_link'
+            },
+            'DNA Damages and DNA Repair Mechanism': {
+                document: 'https://drive.google.com/file/d/1VZzAljINpEneRg3hQj_idLBEL60eG2Zp/view?usp=drive_link'
+            },
+            'Transcription and RNA Processing': {
+                document: 'https://drive.google.com/file/d/1xmNAn2cY0MAY6B9OfxZqwtxoD6WkgdjS/view?usp=drive_link'
+            },
+            'Translation (Synthesis of Protein)': {
+                document: 'https://drive.google.com/file/d/1WBqkcjRAlV6OAbS6xL54-4aXM_3onIFo/view?usp=drive_link'
+            },
+            'Control of Gene Expression in Prokaryotes & Eukaryotes': {
+                document: 'https://drive.google.com/file/d/15eeruBn1E8wmzZBDz0k20D1T70hcPCCw/view?usp=drive_link'
+            },
+            'Genetic Recombination & Medicine': {
+                document: 'https://drive.google.com/file/d/1Cs6LDcvZiO3yBM1FG_nXaRVPUBVXNZUx/view?usp=drive_link'
+            },
+            'Genetic Techniques & Its Uses in Medicine': {
+                document: 'https://drive.google.com/file/d/1Xl4e1A6Zz6qKEbES6e5UB_ChY9jdSr1w/view?usp=drive_link'
+            },
+            'Linear Equations': {
+                document: 'https://drive.google.com/file/d/1ABC123DEF456GHI789JKL/view?usp=sharing',
+                video: 'https://www.youtube.com/watch?v=Z5e7n2v8p9o',
+                quiz: '#quiz-linear'
+            },
+            'Polynomials': {
+                document: 'https://drive.google.com/file/d/1XYZ789UVW012ABC345DEF/view?usp=sharing',
+                video: 'https://www.youtube.com/watch?v=Q4s5t6u7v8w',
+                quiz: '#quiz-polynomials'
+            },
+            'Derivatives': {
+                document: 'https://drive.google.com/file/d/1LMN456OPQ789RST012UVW/view?usp=sharing',
+                video: 'https://www.youtube.com/watch?v=H9i8j7k6l5m',
+                quiz: '#quiz-derivatives'
+            },
+            'Integrals': {
+                document: 'https://drive.google.com/file/d/1EFG123HIJ456KLM789NOP/view?usp=sharing',
+                video: 'https://www.youtube.com/watch?v=W3x4y5z6a7b',
+                quiz: '#quiz-integrals'
+            },
+            'Limits': {
+                document: 'https://drive.google.com/file/d/1QRS456TUV789WXY012ZAB/view?usp=sharing',
+                video: 'https://www.youtube.com/watch?v=M8n9o0p1q2r',
+                quiz: '#quiz-limits'
+            },
+            'Probability': {
+                document: 'https://drive.google.com/file/d/1CDE789FGH012IJK345LMN/view?usp=sharing',
+                video: 'https://www.youtube.com/watch?v=K7l6m5n4o3p',
+                quiz: '#quiz-probability'
+            },
+            'Descriptive Stats': {
+                document: 'https://drive.google.com/file/d/1UVW012XYZ345ABC678DEF/view?usp=sharing',
+                video: 'https://www.youtube.com/watch?v=R4s5t6u7v8w',
+                quiz: '#quiz-descriptive'
+            },
+            'Inferential Stats': {
+                document: 'https://drive.google.com/file/d/1GHI789JKL012MNO345PQR/view?usp=sharing',
+                video: 'https://www.youtube.com/watch?v=B9i8j7k6l5m',
+                quiz: '#quiz-inferential'
+            },
+            // Biology topics
+            'Cell Structure': {
+                document: 'https://drive.google.com/file/d/1STU456VWX789YZA012BCD/view?usp=sharing',
+                video: 'https://www.youtube.com/watch?v=G3x4y5z6a7b',
+                quiz: '#quiz-cell-structure'
+            },
+            'Membrane Transport': {
+                document: 'https://drive.google.com/file/d/1EFG123HIJ456KLM789NOP/view?usp=sharing',
+                video: 'https://www.youtube.com/watch?v=T8n9o0p1q2r',
+                quiz: '#quiz-membrane'
+            },
+            'Cell Cycle': {
+                document: 'https://drive.google.com/file/d/1QRS456TUV789WXY012ZAB/view?usp=sharing',
+                video: 'https://www.youtube.com/watch?v=K7l6m5n4o3p',
+                quiz: '#quiz-cell-cycle'
+            },
+            // Physics topics
+            'Kinematics': {
+                document: 'https://drive.google.com/file/d/1CDE789FGH012IJK345LMN/view?usp=sharing',
+                video: 'https://www.youtube.com/watch?v=R4s5t6u7v8w',
+                quiz: '#quiz-kinematics'
+            },
+            'Dynamics': {
+                document: 'https://drive.google.com/file/d/1UVW012XYZ345ABC678DEF/view?usp=sharing',
+                video: 'https://www.youtube.com/watch?v=B9i8j7k6l5m',
+                quiz: '#quiz-dynamics'
+            },
+            'Work & Energy': {
+                document: 'https://drive.google.com/file/d/1GHI789JKL012MNO345PQR/view?usp=sharing',
+                video: 'https://www.youtube.com/watch?v=G3x4y5z6a7b',
+                quiz: '#quiz-work-energy'
+            },
+            // Chemistry topics
+            'Hydrocarbons': {
+                document: 'https://drive.google.com/file/d/1STU456VWX789YZA012BCD/view?usp=sharing',
+                video: 'https://www.youtube.com/watch?v=T8n9o0p1q2r',
+                quiz: '#quiz-hydrocarbons'
+            },
+            'Functional Groups': {
+                document: 'https://drive.google.com/file/d/1EFG123HIJ456KLM789NOP/view?usp=sharing',
+                video: 'https://www.youtube.com/watch?v=K7l6m5n4o3p',
+                quiz: '#quiz-functional-groups'
+            },
+            'Reactions': {
+                document: 'https://drive.google.com/file/d/1QRS456TUV789WXY012ZAB/view?usp=sharing',
+                video: 'https://www.youtube.com/watch?v=R4s5t6u7v8w',
+                quiz: '#quiz-reactions'
+            },
+            // Site A - Clinical topics (4th Year)
+            'Site A: HF Management': {
+                document: 'https://drive.google.com/file/d/1A1B2C3D4E5F6G7H8I9J0K/view?usp=sharing',
+                video: 'https://www.youtube.com/watch?v=HFManagementA',
+                quiz: '#quiz-siteA-hf'
+            },
+            'Site A: ECG Interpretation': {
+                document: 'https://drive.google.com/file/d/1L2M3N4O5P6Q7R8S9T0U1V/view?usp=sharing',
+                video: 'https://www.youtube.com/watch?v=ECGA',
+                quiz: '#quiz-siteA-ecg'
+            },
+            'Site A: Cardiac Rehab': {
+                document: 'https://drive.google.com/file/d/1W2X3Y4Z5A6B7C8D9E0F1G/view?usp=sharing',
+                video: 'https://www.youtube.com/watch?v=CardiacRehabA',
+                quiz: '#quiz-siteA-rehab'
+            },
+            'Site A: Appendectomy': {
+                document: 'https://drive.google.com/file/d/1H2I3J4K5L6M7N8O9P0Q1R/view?usp=sharing',
+                video: 'https://www.youtube.com/watch?v=AppendectomyA',
+                quiz: '#quiz-siteA-appendectomy'
+            },
+            // Site B - Clinical topics
+            'Site B: HF Guidelines': {
+                document: 'https://drive.google.com/file/d/1S2T3U4V5W6X7Y8Z9A0B1C/view?usp=sharing',
+                video: 'https://www.youtube.com/watch?v=HFGuidelinesB',
+                quiz: '#quiz-siteB-hf'
+            },
+            'Site B: EP Studies': {
+                document: 'https://drive.google.com/file/d/1D2E3F4G5H6I7J8K9L0M1N/view?usp=sharing',
+                video: 'https://www.youtube.com/watch?v=EPStudiesB',
+                quiz: '#quiz-siteB-ep'
+            },
+            'Site B: Open Appendectomy': {
+                document: 'https://drive.google.com/file/d/1O2P3Q4R5S6T7U8V9W0X1Y/view?usp=sharing',
+                video: 'https://www.youtube.com/watch?v=OpenAppendectomyB',
+                quiz: '#quiz-siteB-open'
+            },
+            // Site C - Clinical topics
+            'Site C: Community HF': {
+                document: 'https://drive.google.com/file/d/1Z2A3B4C5D6E7F8G9H0I1J/view?usp=sharing',
+                video: 'https://www.youtube.com/watch?v=CommunityHFC',
+                quiz: '#quiz-siteC-hf'
+            },
+            'Site C: Telemedicine': {
+                document: 'https://drive.google.com/file/d/1K2L3M4N5O6P7Q8R9S0T1U/view?usp=sharing',
+                video: 'https://www.youtube.com/watch?v=TelemedicineC',
+                quiz: '#quiz-siteC-tele'
+            },
+            'Site C: Day Surgery': {
+                document: 'https://drive.google.com/file/d/1V2W3X4Y5Z6A7B8C9D0E1F/view?usp=sharing',
+                video: 'https://www.youtube.com/watch?v=DaySurgeryC',
+                quiz: '#quiz-siteC-day'
+            },
+            // 6th Year - Site A Advanced
+            'Site A: Sepsis Protocol': {
+                document: 'https://drive.google.com/file/d/1G2H3I4J5K6L7M8N9O0P1Q/view?usp=sharing',
+                video: 'https://www.youtube.com/watch?v=SepsisA6',
+                quiz: '#quiz-siteA6-sepsis'
+            },
+            'Site A: ARDS Management': {
+                document: 'https://drive.google.com/file/d/1R2S3T4U5V6W7X8Y9Z0A1B/view?usp=sharing',
+                video: 'https://www.youtube.com/watch?v=ARDS6A',
+                quiz: '#quiz-siteA6-ards'
+            },
+            // 6th Year - Site B Advanced
+            'Site B: Sepsis Management': {
+                document: 'https://drive.google.com/file/d/1C2D3E4F5G6H7I8J9K0L1M/view?usp=sharing',
+                video: 'https://www.youtube.com/watch?v=SepsisB6',
+                quiz: '#quiz-siteB6-sepsis'
+            },
+            'Site B: ARDS Protocol': {
+                document: 'https://drive.google.com/file/d/1N2O3P4Q5R6S7T8U9V0W1X/view?usp=sharing',
+                video: 'https://www.youtube.com/watch?v=ARDS6B',
+                quiz: '#quiz-siteB6-ards'
+            },
+            // 6th Year - Site C Advanced
+            'Site C: Community Critical Care': {
+                document: 'https://drive.google.com/file/d/1Y2Z3A4B5C6D7E8F9G0H1I/view?usp=sharing',
+                video: 'https://www.youtube.com/watch?v=CritCareC6',
+                quiz: '#quiz-siteC6-critical'
+            },
+            'Site C: Sepsis Care': {
+                document: 'https://drive.google.com/file/d/1J2K3L4M5N6O7P8Q9R0S1T/view?usp=sharing',
+                video: 'https://www.youtube.com/watch?v=SepsisC6',
+                quiz: '#quiz-siteC6-sepsis'
+            }
+        };
+
+        // Check if we have specific links for this topic
+        if (topicLinks[topic]) {
+            return topicLinks[topic];
+        }
+
+        // For clinical years with site selection, generate site-specific links
+        if ((year === 4 || year === 6) && site) {
+            const topicSlug = topic.toLowerCase().replace(/ /g, '-').replace(/[^a-z0-9-]/g, '');
+            return {
+                document: `https://drive.google.com/drive/folders/1${site}-${year}-docs?q=${encodeURIComponent(topic)}`,
+                video: `https://www.youtube.com/results?search_query=${encodeURIComponent(topic + ' medical education')}`,
+                quiz: `#quiz-${site}-${year}-${topicSlug}`
+            };
+        }
+
+        // Default fallback for any topic without specific links
+        const topicSlug = topic.toLowerCase().replace(/ /g, '-').replace(/[^a-z0-9-]/g, '');
+        return {
+            document: `https://drive.google.com/drive/folders/1default-docs?q=${encodeURIComponent(topic)}`,
+            video: `https://www.youtube.com/results?search_query=${encodeURIComponent(topic + ' medical lecture')}`,
+            quiz: `#quiz-${topicSlug}`
+        };
+    }
+
+    // state
+    let currentUser = null;
+    let currentUserYear = null;
+    let currentSite = null;
+    let currentCourseId = null;
+    let currentTermIndex = null;
+    let currentTopicIndex = null;
+    let activeCourseData = [];
+
+    // render course cards (initially all hidden)
+    function renderCourses() {
+      courseGrid.innerHTML = '';
+      courseData.forEach(course => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.id = `card-${course.id}`;
+        const yearLabel = course.year === 2 ? '2nd Year' : course.year === 3 ? '3rd Year' : course.year === 4 ? '4th Year' : '6th Year';
+        const typeLabel = course.type === 'clinical' ? '🔄 Clinical' : '📚 Preclinical';
+        card.innerHTML = `
+          <i class="fas ${course.icon}"></i>
+          <h3>${course.name} <span style="font-size:0.7rem;color:#2d7b9e;font-weight:600;">(${yearLabel})</span></h3>
+          <p style="font-size:0.85rem;color:#5a6e87;">${typeLabel}</p>
+          <p>${course.desc}</p>
+          <button class="btn-primary course-btn" data-course-id="${course.id}"><i class="fas fa-arrow-right"></i> Explore ${course.name}</button>
+        `;
+        courseGrid.appendChild(card);
+      });
+    }
+    renderCourses();
+
+    // ---- SIGNUP LOGIC ----
+    function personalizeUI(userName, userYear, site = null) {
+      const yearLabel = userYear === 2 ? '2nd Year' : userYear === 3 ? '3rd Year' : userYear === 4 ? '4th Year' : '6th Year';
+      const siteText = site ? ` (Site: ${site})` : '';
+      document.getElementById('heroTitle').innerHTML = `👋 Welcome, ${userName}! <br> Learn Today, Lead Tomorrow`;
+      document.getElementById('heroDesc').textContent = `${userName} (${yearLabel})${siteText}, you have access to your ${yearLabel} courses. Select a course below to begin.`;
+      document.getElementById('coursesTitle').textContent = `🎓 ${userName}'s ${yearLabel} Courses${siteText}`;
+      document.getElementById('coursesSubtitle').textContent = `${userName}, these are the courses available for your ${yearLabel} curriculum.`;
+      document.getElementById('aboutText').innerHTML = `
+        <p><i class="fas fa-quote-left"></i> ToToZ was founded by clinicians and educators who believe that medical education should be accessible, dynamic, and human-centered — just for you, ${userName}.</p>
+        <p style="margin-top:1.2rem;"><i class="fas fa-check-circle"></i> 500+ expert-led modules</p>
+        <p><i class="fas fa-check-circle"></i> Virtual labs &amp; 3D anatomy</p>
+        <p><i class="fas fa-check-circle"></i> Global community of 12k+ learners, including ${userName}</p>
+        <p style="margin-top:1.2rem;">We combine cutting-edge technology with compassionate teaching to prepare the next generation of healthcare heroes — and ${userName} is one of them.</p>
+      `;
+      document.getElementById('contactSubtitle').textContent = `${userName}, we'd love to hear from you — reach out for support, partnerships, or just to say hello.`;
+      document.getElementById('sendBtn').innerHTML = `<i class="fas fa-paper-plane"></i> Send Message, ${userName}`;
+      document.querySelector('.about-image p').textContent = `Empowering healers worldwide, including ${userName}`;
+      document.querySelector('.stat-item:nth-child(1) .stat-label').textContent = `Learners (including ${userName})`;
+      document.querySelector('.stat-item:nth-child(2) .stat-label').textContent = `Courses for ${userName}`;
+      document.querySelector('.stat-item:nth-child(3) .stat-label').textContent = `% Pass Rate (${userName}'s goal)`;
+      document.getElementById('footer').innerHTML = `<p>&copy; 2026 ToToZ — Education for a healthier world. <a href="#">Privacy</a> · <a href="#">Terms</a> · Made for ${userName}</p>`;
+      document.getElementById('exploreBtn').innerHTML = `<i class="fas fa-graduation-cap"></i> Explore ${userName}'s Courses`;
+      
+      // Activate ONLY courses matching the user's year - hide all others
+      document.querySelectorAll('.card').forEach((card, index) => {
+        const course = courseData[index];
+        if (course && course.year === userYear) {
+          card.classList.add('active');
+          card.style.display = 'flex';
+        } else {
+          card.classList.remove('active');
+          card.style.display = 'none';
+        }
+      });
+      
+      // If clinical year, use site-specific course data
+      if ((userYear === 4 || userYear === 6) && site) {
+        activeCourseData = siteCourses[site]?.[userYear] || {};
+      } else {
+        // For preclinical, use the default course data filtered by year
+        activeCourseData = courseData.filter(c => c.year === userYear);
+      }
+      
+      document.getElementById('signupNavBtn').innerHTML = `<i class="fas fa-user-circle" style="margin-right:8px;"></i>${userName}`;
+      document.getElementById('signupNavBtn').style.background = '#1a5a7a';
+      
+      // Clear any open drill content
+      drillContainer.classList.remove('visible');
+      currentCourseId = null;
+      currentTermIndex = null;
+      currentTopicIndex = null;
+    }
+
+    document.getElementById('signupBtn').addEventListener('click', function() {
+      const username = document.getElementById('usernameInput').value.trim();
+      const password = document.getElementById('passwordInput').value.trim();
+      const errorMsg = document.getElementById('errorMsg');
+
+      if (!username || !password) {
+        errorMsg.textContent = 'Please enter both username and password.';
+        return;
+      }
+
+      const user = users[username];
+      if (user && user.password === password) {
+        errorMsg.textContent = '';
+        currentUser = user.name;
+        currentUserYear = user.year;
+        
+        document.getElementById('signupOverlay').classList.add('hidden');
+        
+        // Check if clinical year (4 or 6) - show site selection
+        if (user.year === 4 || user.year === 6) {
+          document.getElementById('siteUserInfo').textContent = `Welcome ${user.name}! Please select the site you are rotating at:`;
+          document.getElementById('siteOverlay').classList.add('active');
+        } else {
+          // Preclinical years - proceed directly
+          currentSite = null;
+          personalizeUI(currentUser, currentUserYear);
+          enableCourses();
+        }
+      } else {
+        errorMsg.textContent = 'Invalid username or password. Please try again.';
+      }
+    });
+
+    // Site selection handlers
+    document.querySelectorAll('.site-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        currentSite = this.dataset.site;
+        document.getElementById('siteOverlay').classList.remove('active');
+        personalizeUI(currentUser, currentUserYear, currentSite);
+        enableCourses();
+      });
+    });
+
+    function enableCourses() {
+      document.querySelectorAll('.course-btn').forEach(btn => {
+        const courseId = btn.dataset.courseId;
+        // For clinical years, check if course exists in site data
+        if ((currentUserYear === 4 || currentUserYear === 6) && currentSite) {
+          const siteData = siteCourses[currentSite]?.[currentUserYear];
+          if (siteData && siteData[courseId]) {
+            btn.style.pointerEvents = 'auto';
+            btn.style.opacity = '1';
+          } else {
+            btn.style.pointerEvents = 'none';
+            btn.style.opacity = '0.5';
+          }
+        } else {
+          const course = courseData.find(c => c.id === courseId);
+          if (course && course.year === currentUserYear) {
+            btn.style.pointerEvents = 'auto';
+            btn.style.opacity = '1';
+          } else {
+            btn.style.pointerEvents = 'none';
+            btn.style.opacity = '0.5';
+          }
+        }
+      });
+      drillContainer.classList.add('visible');
+    }
+
+    document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') document.getElementById('signupBtn').click();
+    });
+    document.getElementById('usernameInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') document.getElementById('signupBtn').click();
+    });
+
+    document.getElementById('signupNavBtn').addEventListener('click', function() {
+      if (!currentUser) {
+        document.getElementById('signupOverlay').classList.remove('hidden');
+      } else {
+        alert(`You are signed in as ${currentUser} (${currentUserYear === 2 ? '2nd' : currentUserYear === 3 ? '3rd' : currentUserYear === 4 ? '4th' : '6th'} Year). To switch user, refresh the page.`);
+      }
+    });
+
+    // ---------- DRILL-DOWN FUNCTIONS ----------
+    function renderDrill(courseId, termIdx = null, topicIdx = null) {
+      let course;
+      
+      // Get course data based on year and site
+      if ((currentUserYear === 4 || currentUserYear === 6) && currentSite) {
+        const siteData = siteCourses[currentSite]?.[currentUserYear];
+        if (siteData && siteData[courseId]) {
+          course = siteData[courseId];
+        } else {
+          alert('You don\'t have access to this course at your current site.');
+          return;
+        }
+      } else {
+        course = courseData.find(c => c.id === courseId);
+        if (!course || course.year !== currentUserYear) {
+          alert(`You don't have access to this course.`);
+          return;
+        }
+      }
+      
+      currentCourseId = courseId;
+      currentTermIndex = termIdx;
+      currentTopicIndex = topicIdx;
+
+      let html = `<div class="drill-level"><h4><button class="back-btn" onclick="resetDrill()"><i class="fas fa-arrow-left"></i></button> ${course.name}</h4>`;
+
+      if (termIdx === null) {
+        html += `<div class="term-list">`;
+        course.terms.forEach((term, i) => {
+          html += `<span class="term-item" onclick="selectTerm('${courseId}', ${i})">${term.name}</span>`;
+        });
+        html += `</div><p class="info-text">${currentUser}, click a term above to see its topics.</p></div>`;
+      } else if (topicIdx === null) {
+        const term = course.terms[termIdx];
+        html += `<h5><button class="back-btn" onclick="selectTerm('${courseId}', null)"><i class="fas fa-arrow-left"></i></button> ${term.name} – Topics</h5>`;
+        html += `<div class="topic-list">`;
+        term.topics.forEach((topic, j) => {
+          html += `<span class="topic-item" onclick="selectTopic('${courseId}', ${termIdx}, ${j})">${topic}</span>`;
+        });
+        html += `</div><p class="info-text">${currentUser}, click a topic to access its resources.</p></div>`;
+      } else {
+        const term = course.terms[termIdx];
+        const topic = term.topics[topicIdx];
+        const links = getTopicLinks(topic, courseId, currentUserYear, currentSite);
+        
+        html += `<h5><button class="back-btn" onclick="selectTopic('${courseId}', ${termIdx}, null)"><i class="fas fa-arrow-left"></i></button> ${term.name} → ${topic}</h5>`;
+        html += `<div class="topic-actions">`;
+        html += `<a href="${links.document}" target="_blank" class="btn-sm"><i class="fas fa-file-alt"></i> Document</a>`;
+        html += `<a href="${links.video}" target="_blank" class="btn-sm"><i class="fas fa-video"></i> Video</a>`;
+        html += `<a href="${links.quiz}" target="_blank" class="btn-sm"><i class="fas fa-pencil-alt"></i> Quiz</a>`;
+        html += `</div>`;
+        
+        html += `<div class="link-section">`;
+        html += `<div><strong>Document:</strong> <a href="${links.document}" target="_blank">${links.document}</a></div>`;
+        html += `<div><strong>Video:</strong> <a href="${links.video}" target="_blank">${links.video}</a></div>`;
+        html += `<div><strong>Quiz:</strong> <a href="${links.quiz}" target="_blank">${links.quiz}</a></div>`;
+        html += `</div>`;
+        
+        html += `<p class="info-text">${currentUser}, click any button above or use the links below to access the resources.</p></div>`;
+      }
+
+      drillContent.innerHTML = html;
+      drillContainer.classList.add('visible');
+      drillContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    window.selectTerm = function(courseId, termIdx) {
+      if (!currentUser) return;
+      renderDrill(courseId, termIdx, null);
+    };
+    window.selectTopic = function(courseId, termIdx, topicIdx) {
+      if (!currentUser) return;
+      renderDrill(courseId, termIdx, topicIdx);
+    };
+    window.resetDrill = function() {
+      drillContainer.classList.remove('visible');
+      currentCourseId = null;
+      currentTermIndex = null;
+      currentTopicIndex = null;
+    };
+
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('course-btn') && currentUser) {
+        const courseId = e.target.dataset.courseId;
+        const course = courseData.find(c => c.id === courseId);
+        if (course && course.year === currentUserYear) {
+          renderDrill(courseId, null, null);
+        } else if ((currentUserYear === 4 || currentUserYear === 6) && currentSite) {
+          const siteData = siteCourses[currentSite]?.[currentUserYear];
+          if (siteData && siteData[courseId]) {
+            renderDrill(courseId, null, null);
+          } else {
+            alert(`You don't have access to this course at your current site.`);
+          }
+        } else {
+          alert(`You don't have access to ${course ? course.name : 'this course'}.`);
+        }
+      }
+    });
+
+    document.getElementById('exploreBtn')?.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelector('#courses')?.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    console.log('ToToZ — Site-specific content for 4th and 6th year with hidden courses');
+  </script>
+</body>
+</html>
