@@ -133,7 +133,7 @@
   <!-- SIGNUP OVERLAY -->
   <div class="signup-overlay" id="signupOverlay">
     <div class="signup-box">
-      <h2><i class="fas fa-user-graduate" style="color:#2d7b9e;"></i> Sign In</h2>
+      <h2><i class="fas fa-user-graduate" style="color:#2d7b9e;"></i> ToToZ </h2>
       <p>Enter your credentials to access your courses</p>
       <div class="form-group">
         <label for="usernameInput">Username</label>
@@ -145,7 +145,12 @@
       </div>
       <button class="btn-primary" id="signupBtn"><i class="fas fa-sign-in-alt"></i> Sign In</button>
       <div class="error-msg" id="errorMsg"></div>
-      
+      <!-- <div class="hint">
+        <strong>2nd Year:</strong> j2/pass2 · s2/pass2<br>
+        <strong>3rd Year:</strong> m3/pass3 · l3/pass3<br>
+        <strong>4th Year:</strong> a4/pass4 · b4/pass4<br>
+        <strong>6th Year:</strong> c6/pass6 · d6/pass6
+      </div> -->
     </div>
   </div>
 
@@ -155,9 +160,9 @@
       <h2><i class="fas fa-hospital" style="color:#2d7b9e;"></i> Select Your Rotation Site</h2>
       <p id="siteUserInfo">Please select the site you are rotating at:</p>
       <div class="site-options" id="siteOptions">
-        <button class="site-btn" data-site="siteA">Site A - Central Hospital</button>
-        <button class="site-btn" data-site="siteB">Site B - University Medical Center</button>
-        <button class="site-btn" data-site="siteC">Site C - Community Health Network</button>
+        <button class="site-btn" data-site="NTH"> Ndola Teaching Hospital </button>
+        <button class="site-btn" data-site="siteB"> Kitwe Teaching Hospital </button>
+        <button class="site-btn" data-site="siteC"> Solwezi General Hospital </button>
       </div>
       <div class="hint">Your course topics will be tailored to your rotation site.</div>
     </div>
@@ -300,6 +305,71 @@
     const courseData = [
       // 2nd Year Courses
       { 
+        id: 'therapeutics', 
+        name: 'Therapeutics', 
+        icon: 'fa-dna', 
+        year: 2, 
+        type: 'preclinical', 
+        desc: 'Explore cell biology, genetics, and physiology.', 
+        terms: [
+          { 
+            name: 'Term 1', 
+            topics: [
+              'Common',
+              'Biological Oxidation: ETC & oxidative phosphorylation',
+              'Carbohydrate metabolism: Glycolysis',
+              'Pentose phosphate pathway',
+              'TCA cycle (krebs cycle)',
+              'Carbohydrate metabolism: Galactose and Fructose',
+              'Gluconeogenesis',
+              'Blood glucose homeostasis',
+              'Alcohol metabolism',
+              'Uronic acid pathway',
+              'Glycogen metabolism'
+            ] 
+          },
+          { 
+            name: 'Term 2', 
+            topics: [
+              'Lipid metabolism',
+              'Fatty acid synthesis',
+              'Lipoprotein (transport of fatty acids/triglycerides)',
+              'Synthesis of triglycerides',
+              'Beta Oxidation of fatty acids',
+              'Ketogenesis and ketolysis',
+              'Cholesterol synthesis',
+              'Regulation of cholesterol synthesis',
+              'Synthesis of bile acids and bile salts',
+              'Protein metabolism',
+              'Protein digestion process',
+              'Amino acid metabolism',
+              'Transamination and Deamination',
+              'Urea cycle',
+              'Inborn errors of metabolism',
+              'Effect of ammonia in the system',
+              'PKU (phenylketonuria)',
+              'Alkaptonuria',
+              'DKA (diabetic ketoacidosis)',
+              'Cholithiasis (gall stones)',
+              'Excess glutamine'
+            ] 
+          },
+          { 
+            name: 'Term 3', 
+            topics: [
+              'Nucleotide Metabolism',
+              'Central Dogma of a Cell: DNA Replication',
+              'DNA Damages and DNA Repair Mechanism',
+              'Transcription and RNA Processing',
+              'Translation (Synthesis of Protein)',
+              'Control of Gene Expression in Prokaryotes & Eukaryotes',
+              'Genetic Recombination & Medicine',
+              'Genetic Techniques & Its Uses in Medicine'
+            ] 
+          }
+        ]
+      },
+      { 
         id: 'embryology', 
         name: 'Embryology', 
         icon: 'fa-dna', 
@@ -440,6 +510,11 @@
         { name: 'Physical Chemistry', topics: ['Thermochemistry', 'Kinetics', 'Equilibrium'] }
       ]},
       // 4th Year Clinical Rotations
+      { id: 'BS4', name: 'Basic Science', icon: 'fa-heart', year: 4, type: 'clinical', desc: 'Clinical rotation in Internal Medicine.', terms: [
+        { name: 'Cardiology', topics: ['Heart Failure', 'Arrhythmias', 'Ischemic Heart Disease'] },
+        { name: 'Pulmonology', topics: ['COPD', 'Asthma', 'Pneumonia'] },
+        { name: 'Nephrology', topics: ['AKI', 'CKD', 'Glomerular Diseases'] }
+      ]},
       { id: 'imed4', name: 'Internal Medicine', icon: 'fa-heart', year: 4, type: 'clinical', desc: 'Clinical rotation in Internal Medicine.', terms: [
         { name: 'Cardiology', topics: ['Heart Failure', 'Arrhythmias', 'Ischemic Heart Disease'] },
         { name: 'Pulmonology', topics: ['COPD', 'Asthma', 'Pneumonia'] },
@@ -489,21 +564,36 @@
 
     // ---- USER DATA with year access ----
     const users = {
-      'j2': { name: 'John', password: 'pass2', year: 2 },
-      's2': { name: 'Sarah', password: 'pass2', year: 2 },
-      'm3': { name: 'Mike', password: 'pass3', year: 3 },
-      'l3': { name: 'Lisa', password: 'pass3', year: 3 },
-      'a4': { name: 'Alice', password: 'pass4', year: 4 },
-      'b4': { name: 'Brian', password: 'pass4', year: 4 },
-      'c6': { name: 'Carol', password: 'pass6', year: 6 },
+      '2': { name: 'Doc Toto', password: 'p2', year: 2 },
+      'c2': { name: 'Christopher', password: 'pass2', year: 2 },
+      '3': { name: 'Doc Toto', password: 'p3', year: 3 },
+      'b3': { name: 'Blessings', password: 'pass3', year: 3 },
+      '4': { name: 'Doc Toto', password: 'p4', year: 4 },
+      'e4': { name: 'Emma', password: 'pass4', year: 4 },
+      '6': { name: 'Doc Toto', password: '6', year: 6 },
       'd6': { name: 'David', password: 'pass6', year: 6 }
     };
 
     // Site-specific FULL course data for clinical years (4th and 6th)
     // Each site has its own complete set of topics for each rotation
     const siteCourses = {
-      'siteA': {
+      'NTH': {
         4: {
+          'BS4': {
+            name: 'Basic Science',
+            icon: 'fa-heart',
+            desc: 'Clinical rotation in the many branches of the Basic Scicen At NTH',
+            terms: [
+              { name: 'Microbiology', topics: ['Bacterial Classification', 'Bacterial Cell Wall', 'Bacterial Survivial Mechanisms', 'Antibiotic Sensitivity Tests'] },
+              { name: 'Parasitology', topics: ['Notes by Prof Mwanakasale', 'Ultimate Compiled notes'] },
+              { name: 'Clinical Chemistry', topics: ['Mr. Njunju', 'Dr. Kwangu', 'Dr. Balakrishnan'] },
+              { name: 'Radiology', topics: ['Introduction to the Course', 'Introduction & History of Diagnostic Imaging', 'Pattern Recognition in Chest Imaging', 'Extremity Imaging Pattern Recognition', 'Contrast Studies in Medical Imaging', 'Pattern Recognition of the Abdomen', 'Pattern Reognition in the Head', 'Emergency Radiology Presentation'] },
+              { name: 'Public Health', topics: ['Dr. Banda', 'Prof. Siyapila'] },
+              { name: 'Soc Med', topics: ['Biomedical Ethics', 'Prof Code of Ethics', 'Communication in Clinincal Practice', 'Communication Models in Clinical Practice'] },
+              { name: 'Nephrology', topics: ['Site A: AKI Protocol', 'Site A: CKD Management', 'Site A: Dialysis Access'] },
+              { name: 'Past Papers', topics: ['2020 Test', '2021 Sessional', '2022 Sessional Dec', '2022 Sessional April', '2023 Def Sessional', '2023 Test Term 1', '2023 Test Term 2', '2024 Sessional', '2024 Test', '2025 Test Term 1', '2025 Test Term 2', '2025 Test Term 3', 'Compiled Past Papers Part 1', 'Compiled Past Papers Part 2', 'Heamatology Practice Questions', 'Parasitology Practice Questions'] }
+            ]
+          },
           'imed4': {
             name: 'Internal Medicine',
             icon: 'fa-heart',
@@ -519,9 +609,13 @@
             icon: 'fa-scalpel',
             desc: 'Clinical rotation in Surgery - Site A',
             terms: [
-              { name: 'GI Surgery', topics: ['Site A: Appendectomy', 'Site A: Cholecystectomy', 'Site A: Bowel Surgery'] },
-              { name: 'Vascular Surgery', topics: ['Site A: Aneurysm Repair', 'Site A: PVD Management', 'Site A: Vein Surgery'] },
-              { name: 'Trauma Surgery', topics: ['Site A: Blunt Trauma Protocol', 'Site A: Penetrating Trauma', 'Site A: Burn Care'] }
+              { name: 'GIT ', topics: ['PUD, GERD & Gastritis', 'Acute Appendicitis', 'GIT Bleeding', 'Abdominal Trauma', 'Gall Bladder & Billiary Tree', 'Acute Appendicitis', 'Intestinal Obstruction by Dr. Mwila', 'Intestinal Obstruction by Dr. Mulenga', 'Gastric Cancers', 'Esophageal Cancers', 'Anal Pain', 'Pancreatitis', 'Groin Hernia', 'Ventral Hernia'] },
+              { name: 'CVS', topics: ['Venous Diseases', 'Peripheral Vascular Diseases', 'Surviving Sepsis', 'Fluid & Electrolytes'] },
+              { name: 'Skeletal System', topics: ['Septic Arthritis', 'Fractures', 'Surgical Soft Tissue Infection', 'Joint Dislocations', 'Osteomyelytis', ] },
+              { name: 'CNS', topics: ['Neurological  Examination'] },
+              { name: 'Respiratory System', topics: ['Approach to Thoracic Chest Trauma'] },
+              { name: 'Integumentary System', topics: ['Burns', 'Diabetic Foot'] },
+              { name: 'Reproductive & Endocrine & Urinary Sytsem', topics: ['Breast Cancer', 'Thyroid Cancers', 'Testicular Swelling', 'Prostate Cancer', 'Benign Breast Changes', 'BPH', 'UTI & Urethritis'] }
             ]
           },
           'peads4': {
@@ -774,11 +868,109 @@
         // Define Google Drive and YouTube links for specific topics
         const topicLinks = {
             // Preclinical topics
-            'Quadratic Functions': {
-                document: 'https://drive.google.com/file/d/1hZFKioQ_BZPG8ZOFBxDDUooNkJ0XV1nR/view?usp=drive_link',
-                video: 'https://www.youtube.com/watch?v=7VFuP2w6WrE',
-                quiz: '#quiz-quadratic'
-            },
+            // 4th Year Basic SCienc
+            // Microbiology
+            'Bacterial Classification': { document: 'https://drive.google.com/file/d/1TcoLu2ddbkziBvLcdk1hatE39djRzSol/view?usp=drive_link', video: '', quiz: '' },
+            'Bacterial Cell Wall': { document: 'https://drive.google.com/file/d/1F5Qif19tOq6GJBViMLTNJ8bdg3kznED4/view?usp=drive_link', video: '', quiz: '' },
+            'Bacterial Survivial Mechanisms': { document: 'https://drive.google.com/file/d/1nufN84couSpBuhZmtz1hngocqBpPakrB/view?usp=drive_link', video: '', quiz: '' },
+            'Antibiotic Sensitivity Tests': { document: 'https://drive.google.com/file/d/16l6PVjBVjsIXRgwkuvJ8hJPD2KZuLdVN/view?usp=drive_link', video: '', quiz: '' },
+
+            // Parasitology
+            'Notes by Prof Mwanakasale': { document: 'https://drive.google.com/drive/folders/1BXtIhOJNAozUUAldLGYttJU8S3vhf-YZ?usp=drive_link', video: '', quiz: '' },
+            'Ultimate Compiled notes': { document: 'https://drive.google.com/file/d/1KrSrPFXEWEGinR2RjZDfNXjfCxlm36y9/view?usp=drive_link', video: '', quiz: '' },
+
+            // Clinical Chemistry
+            'Mr. Njunju': { document: 'https://drive.google.com/drive/folders/1qRlshubvb9lQ9-w2UBlTfsV29gRNqxhj?usp=drive_link', video: '', quiz: '' },
+            'Dr. Kwangu': { document: '', video: '', quiz: '' },
+            'Dr. Balakrishnan': { document: 'https://drive.google.com/drive/folders/1x98Il5JbUeXQQOOx4MENAG8G9hnEeawx?usp=drive_link', video: '', quiz: '' },
+
+            // Radiology
+            'Introduction to the Course': { document: 'https://drive.google.com/file/d/1xDllbzV7m5IrbFSDg6-4iEpRIbfRnTYZ/view?usp=drive_link', video: '', quiz: '' },
+            'Introduction & History of Diagnostic Imaging': { document: 'https://drive.google.com/file/d/1wkAVnrMR0KUz4g3NSIzG4vnigeGuxNR3/view?usp=drive_link', video: '', quiz: '' },
+            'Pattern Recognition in Chest Imaging': { document: 'https://drive.google.com/file/d/1kxdi0JR9_8NSKtIpBzy1bkTy14mhXrJa/view?usp=drive_link', video: '', quiz: '' },
+            'Extremity Imaging Pattern Recognition': { document: 'https://drive.google.com/file/d/13kYX4NegfvLcwZu70uxteDIkcYUSQmjt/view?usp=drive_link', video: '', quiz: '' },
+            'Contrast Studies in Medical Imaging': { document: 'https://drive.google.com/file/d/1f5TGw4sqxy3fbmqhUCgy9e-p-nYBpeWq/view?usp=drive_link', video: '', quiz: '' },
+            'Pattern Recognition of the Abdomen': { document: 'https://drive.google.com/file/d/1my9dk9l5DUnN-CDL2HWBwZsJtZcBD10D/view?usp=drive_link', video: '', quiz: '' },
+            'Pattern Reognition in the Head': { document: 'https://drive.google.com/file/d/1zBsFlWFBZkVLyQdKsTjiAMRgM6UATLIg/view?usp=drive_link', video: '', quiz: '' },
+            'Emergency Radiology Presentation': { document: 'https://drive.google.com/file/d/1Pz245HD38h-OyqoRRNXp6vgMzRsNgLsv/view?usp=drive_link', video: '', quiz: '' },
+
+            // Public Health
+            'Dr. Banda': { document: 'https://drive.google.com/drive/folders/1bwThDZkFHNO1A3pQaNtscoMpv5h3VAc8?usp=drive_link', video: '', quiz: '' },
+            'Prof. Siyapila': { document: 'https://drive.google.com/drive/folders/1WkEXW_MecIkybS2UjbULeN0SE1jMc5Jz?usp=drive_link', video: '', quiz: '' },
+
+            // Soc Med
+            'Biomedical Ethics': { document: 'https://drive.google.com/file/d/1_A43_2hKCCpINAMqdYExSapaEIgfEgbv/view?usp=drive_link', video: '', quiz: '' },
+            'Prof Code of Ethics': { document: 'https://drive.google.com/file/d/1icErFug7gqb-ejZl-7MUqjL_H4n__2p3/view?usp=drive_link', video: '', quiz: '' },
+            'Communication in Clinincal Practice': { document: 'https://drive.google.com/file/d/1izfFDjtepD5UmXHqJgvJ8oDVGVxW0WwK/view?usp=drive_link', video: '', quiz: '' },
+            'Communication Models in Clinical Practice': { document: 'https://drive.google.com/file/d/1gqB9c7ZL9rixaAwT7F9QrxlwqEOXDcma/view?usp=drive_link', video: '', quiz: '' },
+
+            // Past Papers
+            '2020 Test': { document: 'https://drive.google.com/file/d/1KaKOHuD-BhXyCNnyo_ezk1CdE3EAKkD9/view?usp=drive_link', video: '', quiz: '' },
+            '2021 Sessional': { document: 'https://drive.google.com/file/d/13IO0FNc9OgPFT7RTctGNSrR86BuOcIfC/view?usp=drive_link', video: '', quiz: '' },
+            '2022 Sessional Dec': { document: 'https://drive.google.com/file/d/1gJEiTGMCL3xSsIBNuTla0OpLYOZhqLVW/view?usp=drive_link', video: '', quiz: '' },
+            '2022 Sessional April': { document: 'https://drive.google.com/file/d/1sWLvTXCp6fbHLRKfoEXM_LDrWs_lbqs_/view?usp=drive_link', video: '', quiz: '' },
+            '2023 Def Sessional': { document: 'https://drive.google.com/file/d/1QKt1avFPTWATWHBGNSFCGhoPJ4c8Unlv/view?usp=drive_link', video: '', quiz: '' },
+            '2023 Test Term 1': { document: 'https://drive.google.com/file/d/1429vMxs8cM2x2bGKK0BhUJFxeqcDjJ7z/view?usp=drive_link', video: '', quiz: '' },
+            '2023 Test Term 2': { document: 'https://drive.google.com/file/d/1V7Ax3a0lWTg4HXuCn06CeTZ4A4vLARCF/view?usp=drive_link', video: '', quiz: '' },
+            '2024 Sessional': { document: 'https://drive.google.com/file/d/11km5H24Hibw1Kd6wXVH5wEKdX4GaR8HI/view?usp=drive_link', video: '', quiz: '' },
+            '2024 Test': { document: 'https://drive.google.com/file/d/1-0eXC2wwfHUu1xD1KD_3X7MSmGuDlGHY/view?usp=drive_link', video: '', quiz: '' },
+            '2025 Test Term 1': { document: 'https://drive.google.com/file/d/1GttZft6lUgjdI_qK78h4LvXfcbuiJfxp/view?usp=drive_link', video: '', quiz: '' },
+            '2025 Test Term 2': { document: 'https://drive.google.com/file/d/1V44RKzYqk3MY1DdlsbTUMl10ezdzucZL/view?usp=drive_link', video: '', quiz: '' },
+            '2025 Test Term 3': { document: 'https://drive.google.com/file/d/1cHNrdAQDqoBMtUDJq4GDdEIE2nDjpZOR/view?usp=drive_link', video: '', quiz: '' },
+            'Compiled Past Papers Part 1': { document: 'https://drive.google.com/file/d/1cqM5rFA2QVpK56a9iXbwow62MMflyWxO/view?usp=drive_link', video: '', quiz: '' },
+            'Compiled Past Papers Part 2': { document: 'https://drive.google.com/file/d/1-x7x9Qz1UFbsWYVVSvuNBLXJEdHkybm_/view?usp=drive_link', video: '', quiz: '' },
+            'Heamatology Practice Questions': { document: 'https://drive.google.com/file/d/1ykgKjGbwoLwkBTk1nAcbXqG0x5889V7o/view?usp=drive_link', video: '', quiz: '' },
+            'Parasitology Practice Questions': { document: 'https://drive.google.com/file/d/1aboifmNexlzakZ1WU94EBRiI9IJiKLaO/view?usp=drive_link', video: '', quiz: '' },
+
+          // 4th year surgery 
+          // GIT
+          'PUD, GERD & Gastritis': { document: 'https://drive.google.com/file/d/1l74YuLylEr5HxAQ0tTZ7zZVnqsfyB_w0/view?usp=drive_link', video: '', quiz: '' },
+          'Acute Appendicitis': { document: 'https://drive.google.com/file/d/1H9CcSYaWGOF_zy0x9HYA44AwDZkI6o2O/view?usp=drive_link', video: '', quiz: '' },
+          'GIT Bleeding': { document: 'https://drive.google.com/file/d/1gaKW64HNAW0VS8lBIsiZs4ep_T5_tPKH/view?usp=drive_link', video: '', quiz: '' },
+          'Abdominal Trauma': { document: 'https://drive.google.com/file/d/1utDjoIGnfypWonByQcqXSxslpHxb0Pg8/view?usp=drive_link', video: '', quiz: '' },
+          'Gall Bladder & Billiary Tree': { document: 'https://drive.google.com/file/d/1oudIiw_vVwYHOSzL2GKPwj5xtALqIMiP/view?usp=drive_link', video: '', quiz: '' },
+          'Intestinal Obstruction by Dr. Mwila': { document: 'https://drive.google.com/file/d/1r4Ar9P8FkMpteqy8LB8_KZN3UJK0iuUE/view?usp=drive_link', video: '', quiz: '' },
+          'Intestinal Obstruction by Dr. Mulenga': { document: 'https://drive.google.com/file/d/17mCzF1D94kwIly62NBA90mZQMoKPc6Pl/view?usp=drive_link', video: '', quiz: '' },
+          'Gastric Cancers': { document: 'https://drive.google.com/file/d/1d-PjIXJsIKh_ig_IHSHf1TYMM78hbgyr/view?usp=drive_link', video: '', quiz: '' },
+          'Esophageal Cancers': { document: 'https://drive.google.com/file/d/1oH8dACvDbsMKCG2RzUM_KljXyEG7-4Kh/view?usp=drive_link', video: '', quiz: '' },
+          'Anal Pain': { document: 'https://drive.google.com/file/d/1B4ptHU5dAoKZhnbVxRkoSCXWASlnM-x8/view?usp=drive_link', video: '', quiz: '' },
+          'Pancreatitis': { document: 'https://drive.google.com/file/d/1UtJBdL3okDu4vt1l9Rfrgc44RAQx-awk/view?usp=drive_link', video: '', quiz: '' },
+          'Groin Hernia': { document: 'https://drive.google.com/file/d/19mpex61HqDEdHbpUX-Is2PT3z7yXMMOR/view?usp=drive_link', video: '', quiz: '' },
+          'Ventral Hernia': { document: 'https://drive.google.com/file/d/18fLCHdngPyUwHxOQqwLEDnd9uzVE07Df/view?usp=drive_link', video: '', quiz: '' },
+
+          // CVS
+          'Venous Diseases': { document: 'https://drive.google.com/file/d/11pNATMSqC3B954jEC1ej2Bq_q7qUxpGQ/view?usp=drive_link', video: '', quiz: '' },
+          'Peripheral Vascular Diseases': { document: 'https://drive.google.com/file/d/1YrLeAfCWHlXKjDm6OX2G-tCLBkZNYIql/view?usp=drive_link', video: '', quiz: '' },
+          'Surviving Sepsis': { document: 'https://drive.google.com/file/d/1SBFvFG-xISSMJ70Kfnz9d2S_Ap0qGwMB/view?usp=drive_link', video: '', quiz: '' },
+          'Fluid & Electrolytes': { document: 'https://drive.google.com/file/d/10vFWUwrJzdC8xZOnVuyn1tNT-cDvborB/view?usp=drive_link', video: '', quiz: '' },
+
+          // Skeletal System
+          'Septic Arthritis': { document: 'https://drive.google.com/file/d/1AkttYBWPZS-SmvJgrQPghqZDlDq_r-eV/view?usp=drive_link', video: '', quiz: '' },
+          'Fractures': { document: 'https://drive.google.com/file/d/1TNaIDQje-fjkwr4RKMyw033lX-IbT_ZN/view?usp=drive_link', video: '', quiz: '' },
+          'Surgical Soft Tissue Infection': { document: 'https://drive.google.com/file/d/1tUFZ1deCrhG4rLcZkYY1c4nkxEy86U19/view?usp=drive_link', video: '', quiz: '' },
+          'Joint Dislocations': { document: 'https://drive.google.com/file/d/1UP9_n2uBv-TJ77g-mqw1kR6MbF0xWejZ/view?usp=drive_link', video: '', quiz: '' },
+          'Osteomyelytis': { document: 'https://drive.google.com/file/d/1T74dS746Mc08IrkVuYY4BAFujwHf_B2_/view?usp=drive_link', video: '', quiz: '' },
+
+          // CNS
+          'Neurological Examination': { document: 'https://drive.google.com/file/d/12rqlM7QZ6NS5SC0Xrw6MxftBOc0sg39I/view?usp=drive_link', video: '', quiz: '' },
+
+          // Respiratory System
+          'Approach to Thoracic Chest Trauma': { document: 'https://drive.google.com/file/d/1TyHjyKBMnOHu7edL-M-0mj60wsZmA2AM/view?usp=drive_link', video: '', quiz: '' },
+
+          // Integumentary System
+          'Burns': { document: 'https://drive.google.com/file/d/1E10oxKMRE1TAtsicKl3Gzz6idWuQFY4R/view?usp=drive_link', video: '', quiz: '' },
+          'Diabetic Foot': { document: 'https://drive.google.com/file/d/1WdkhnhW9dkXmi8XhFSvis8y9Pn_9Vois/view?usp=drive_link', video: '', quiz: '' },
+
+          // Reproductive & Endocrine & Urinary Sytsem
+          'Breast Cancer': { document: 'https://drive.google.com/file/d/1KFcceEzCw73YXhdyQ1GbBPVPzwH95Vhj/view?usp=drive_link', video: '', quiz: '' },
+          'Thyroid Cancers': { document: 'https://drive.google.com/file/d/174dOxmSK48KujbMD_4-RuB-W7N7HQjhf/view?usp=drive_link', video: '', quiz: '' },
+          'Testicular Swelling': { document: 'https://drive.google.com/file/d/1LuXX_qa5N702j9V46Vb3lcB6o0e9l0Sh/view?usp=drive_link', video: '', quiz: '' },
+          'Prostate Cancer': { document: 'https://drive.google.com/file/d/1Amo0YgN80AUnfsLPMhOZ4F4mY9tK2k8I/view?usp=drive_link', video: '', quiz: '' },
+          'Benign Breast Changes': { document: 'https://drive.google.com/file/d/1uNkpRgQolEcU2o-Ec2oZA9OqNW63jw0S/view?usp=drive_link', video: '', quiz: '' },
+          'BPH': { document: 'https://drive.google.com/file/d/1QkT8VsrPOE3p-XpQ0IkLl8AIQU27LRmD/view?usp=drive_link', video: '', quiz: '' },
+          'UTI & Urethritis': { document: 'https://drive.google.com/file/d/1oSJdw8geRMIcDQRAWjabJdYOUu33KbKX/view?usp=drive_link', video: '', quiz: '' },
+
+            // 3rd year BIochemistry
             'Overview of metabolism (metabolic pathways)': {
                 document: 'https://drive.google.com/file/d/1HcloSLdWYWh4GK5DAogMbXwd83WVh57u/view?usp=drive_link'
             },
@@ -929,22 +1121,22 @@
             'Site A: HF Management': {
                 document: 'https://drive.google.com/file/d/1A1B2C3D4E5F6G7H8I9J0K/view?usp=sharing',
                 video: 'https://www.youtube.com/watch?v=HFManagementA',
-                quiz: '#quiz-siteA-hf'
+                quiz: '#quiz-NTH-hf'
             },
             'Site A: ECG Interpretation': {
                 document: 'https://drive.google.com/file/d/1L2M3N4O5P6Q7R8S9T0U1V/view?usp=sharing',
                 video: 'https://www.youtube.com/watch?v=ECGA',
-                quiz: '#quiz-siteA-ecg'
+                quiz: '#quiz-NTH-ecg'
             },
             'Site A: Cardiac Rehab': {
                 document: 'https://drive.google.com/file/d/1W2X3Y4Z5A6B7C8D9E0F1G/view?usp=sharing',
                 video: 'https://www.youtube.com/watch?v=CardiacRehabA',
-                quiz: '#quiz-siteA-rehab'
+                quiz: '#quiz-NTH-rehab'
             },
             'Site A: Appendectomy': {
                 document: 'https://drive.google.com/file/d/1H2I3J4K5L6M7N8O9P0Q1R/view?usp=sharing',
                 video: 'https://www.youtube.com/watch?v=AppendectomyA',
-                quiz: '#quiz-siteA-appendectomy'
+                quiz: '#quiz-NTH-appendectomy'
             },
             // Site B - Clinical topics
             'Site B: HF Guidelines': {
@@ -982,12 +1174,12 @@
             'Site A: Sepsis Protocol': {
                 document: 'https://drive.google.com/file/d/1G2H3I4J5K6L7M8N9O0P1Q/view?usp=sharing',
                 video: 'https://www.youtube.com/watch?v=SepsisA6',
-                quiz: '#quiz-siteA6-sepsis'
+                quiz: '#quiz-NTH6-sepsis'
             },
             'Site A: ARDS Management': {
                 document: 'https://drive.google.com/file/d/1R2S3T4U5V6W7X8Y9Z0A1B/view?usp=sharing',
                 video: 'https://www.youtube.com/watch?v=ARDS6A',
-                quiz: '#quiz-siteA6-ards'
+                quiz: '#quiz-NTH6-ards'
             },
             // 6th Year - Site B Advanced
             'Site B: Sepsis Management': {
