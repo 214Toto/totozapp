@@ -1,0 +1,1744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2026 Surgery Past Paper | Full Exam</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        /* ─────────── ROOT & RESET ─────────── */
+        :root {
+            --primary: #2b7a78;
+            --accent: #3aafa9;
+            --dark: #17252a;
+            --light: #f8f9fa;
+            --radius: 12px;
+            --shadow: 0 4px 14px rgba(18, 38, 63, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Roboto, system-ui, sans-serif;
+            background: linear-gradient(180deg, #f5f7fb, #eef6f6);
+            color: var(--dark);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+
+        /* ─────────── HEADER ─────────── */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: #fff;
+            padding: 0.8rem 0;
+            box-shadow: 0 6px 18px rgba(11, 36, 36, 0.18);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            font-size: 1.6rem;
+            color: var(--accent);
+        }
+
+        .logo h1 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 0.25rem 1rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            color: #d4f0ee;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0.3rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-tabs .tab-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: none;
+            color: #d4f0ee;
+            padding: 0.3rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .nav-tabs .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #fff;
+        }
+
+        .nav-tabs .tab-btn.active {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        /* ─────────── CONTAINER ─────────── */
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 1.25rem 2.5rem;
+        }
+
+        /* ─────────── SECTION TITLES ─────────── */
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1.8rem 0 1rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 3px solid rgba(43, 122, 120, 0.20);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .section-title i {
+            font-size: 1.1rem;
+            color: var(--accent);
+        }
+
+        .section-title .count {
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0.05rem 0.7rem;
+        }
+
+        .section-subtitle {
+            color: #5f7a7a;
+            font-size: 0.92rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .section-panel {
+            display: block;
+        }
+
+        .section-panel.hidden {
+            display: none;
+        }
+
+        /* ─────────── MCQ QUESTION CARDS ─────────── */
+        .question {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.2rem 1.2rem 0.2rem 1.2rem;
+            margin-bottom: 1.2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(43, 122, 120, 0.06);
+            transition: box-shadow 0.2s;
+        }
+
+        .question:hover {
+            box-shadow: 0 6px 22px rgba(18, 38, 63, 0.07);
+        }
+
+        .question p {
+            font-weight: 600;
+            font-size: 0.98rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .question .q-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            line-height: 1.6;
+            margin-right: 0.4rem;
+        }
+
+        .question .scenario-tag {
+            display: inline-block;
+            background: #e8f0fe;
+            color: #1a5a8a;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            line-height: 1.6;
+            margin-left: 0.3rem;
+        }
+
+        .options label {
+            display: block;
+            background: #fafcfd;
+            border: 1px solid #e0e8ef;
+            border-radius: 8px;
+            padding: 0.45rem 0.9rem;
+            margin-top: 0.45rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-weight: 450;
+            font-size: 0.94rem;
+        }
+
+        .options label:hover {
+            background: #e8f5f4;
+            border-color: var(--accent);
+        }
+
+        .options input[type="radio"] {
+            margin-right: 0.5rem;
+            accent-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        /* ─────────── FEEDBACK ─────────── */
+        .question-feedback {
+            margin-top: 0.9rem;
+            padding: 0.4rem 0 0.1rem 0;
+            border-top: 1px dashed #dce6ed;
+        }
+
+        .answer-block strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--primary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .answer-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .answer-item {
+            padding: 5px 10px;
+            border-radius: 6px;
+            border: 1px solid #e6eef3;
+            background: #ffffff;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .answer-correct {
+            background: #ecfdf5;
+            border-color: #bbf7d0;
+            color: #065f46;
+        }
+
+        .answer-wrong {
+            background: #fff1f2;
+            border-color: #fca5a5;
+            color: #9f1239;
+        }
+
+        .user-choice {
+            outline: 2px dashed rgba(0, 0, 0, 0.06);
+        }
+
+        .explanation {
+            margin-top: 6px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: #f1f8f6;
+            color: #065f46;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border-left: 4px solid var(--accent);
+        }
+
+        .explanation.wrong {
+            background: #fff5f5;
+            color: #7f1d1d;
+            border-left-color: #f87171;
+        }
+
+        /* ─────────── BUTTONS ─────────── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.6rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(43, 122, 120, 0.22);
+        }
+
+        .btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(43, 122, 120, 0.30);
+        }
+
+        .btn:active {
+            transform: scale(0.96);
+        }
+
+        .btn i {
+            font-size: 0.9rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .btn-sm {
+            padding: 0.35rem 1rem;
+            font-size: 0.85rem;
+        }
+
+        .submit-wrap {
+            text-align: center;
+            margin: 1.5rem 0 2rem;
+        }
+
+        /* ─────────── RESULT BOX ─────────── */
+        .result {
+            margin-top: 1.5rem;
+            padding: 1.5rem 1.5rem 1rem;
+            background: #f1faf9;
+            border-radius: var(--radius);
+            text-align: center;
+            display: none;
+            border: 1px solid #c5e3df;
+        }
+
+        .result h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.2rem;
+        }
+
+        .score {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0.2rem 0 0.4rem;
+        }
+
+        /* ─────────── MATCHING SECTION ─────────── */
+        .matching-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem 1.5rem;
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.2rem 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(43, 122, 120, 0.06);
+            margin-bottom: 1.2rem;
+        }
+
+        .matching-grid .col-header {
+            font-weight: 700;
+            color: var(--dark);
+            padding-bottom: 0.3rem;
+            border-bottom: 2px solid var(--primary);
+            margin-bottom: 0.6rem;
+            font-size: 0.95rem;
+        }
+
+        .match-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.35rem 0;
+            border-bottom: 1px solid #f0f4f8;
+        }
+
+        .match-item .match-label {
+            font-weight: 600;
+            color: var(--dark);
+            min-width: 28px;
+            font-size: 0.9rem;
+        }
+
+        .match-item select {
+            flex: 1;
+            padding: 0.3rem 0.5rem;
+            border-radius: 6px;
+            border: 1px solid #d1dbe0;
+            background: #fafcfd;
+            font-size: 0.9rem;
+            cursor: pointer;
+            font-family: inherit;
+            min-width: 200px;
+        }
+
+        .match-item select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(43, 122, 120, 0.10);
+        }
+
+        .match-item .condition-text {
+            font-size: 0.92rem;
+            color: var(--dark);
+        }
+
+        .group-divider {
+            grid-column: 1 / -1;
+            margin-top: 1.5rem;
+            padding-top: 0.5rem;
+            border-top: 2px dashed var(--primary);
+        }
+
+        .group-divider h4 {
+            color: var(--primary);
+            font-size: 1rem;
+        }
+
+        .matching-feedback {
+            margin-top: 1rem;
+            padding: 0.8rem 1.2rem;
+            background: #f1f8f6;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            display: none;
+        }
+
+        .matching-feedback.visible {
+            display: block;
+        }
+
+        .matching-feedback .match-result {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid #e0ece8;
+            font-size: 0.92rem;
+        }
+
+        .matching-feedback .match-result:last-child {
+            border-bottom: none;
+        }
+
+        .match-correct {
+            color: #065f46;
+        }
+
+        .match-wrong {
+            color: #9f1239;
+        }
+
+        /* ─────────── RESPONSIVE ─────────── */
+        @media (max-width: 700px) {
+            body {
+                padding-top: 72px;
+            }
+            .logo h1 {
+                font-size: 1rem;
+            }
+            .header-inner {
+                padding: 0 1rem;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.3rem;
+            }
+            .badge {
+                align-self: flex-start;
+            }
+            .nav-tabs {
+                justify-content: center;
+            }
+            .nav-tabs .tab-btn {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.7rem;
+            }
+            .question {
+                padding: 1rem 1rem 0.1rem 1rem;
+            }
+            .section-title {
+                font-size: 1.1rem;
+            }
+            .matching-grid {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+            .score {
+                font-size: 2.2rem;
+            }
+            .btn {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.85rem;
+            }
+            .match-item select {
+                min-width: 140px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .logo h1 {
+                font-size: 0.85rem;
+            }
+            .logo i {
+                font-size: 1.2rem;
+            }
+            .options label {
+                font-size: 0.87rem;
+                padding: 0.4rem 0.7rem;
+            }
+            .matching-grid {
+                padding: 0.8rem;
+            }
+            .match-item {
+                flex-wrap: wrap;
+            }
+            .match-item select {
+                min-width: 120px;
+            }
+        }
+
+        /* ─────────── UTILITY ─────────── */
+        .text-muted {
+            color: #5f7a7a;
+            font-size: 0.9rem;
+        }
+        .mt-1 {
+            margin-top: 0.8rem;
+        }
+        .mb-1 {
+            margin-bottom: 0.8rem;
+        }
+        .flex-center {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .gap-1 {
+            gap: 0.5rem;
+        }
+        .hidden {
+            display: none !important;
+        }
+
+        .scroll-target {
+            scroll-margin-top: 90px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════ HEADER ═══════ -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <i class="fas fa-book-medical"></i>
+                <h1>2026 Surgery Past Paper</h1>
+            </div>
+            <span class="badge"><i class="fas fa-pencil-alt"></i> &nbsp;Full Exam</span>
+            <div class="nav-tabs">
+                <button class="tab-btn active" data-section="mcq">MCQs</button>
+                <button class="tab-btn" data-section="scenario">Scenarios</button>
+                <button class="tab-btn" data-section="matching">Matching</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══════ MAIN CONTENT ═══════ -->
+    <main>
+
+        <!-- ──── SECTION 1: STANDARD MCQs ──── -->
+        <section class="container section-panel" id="section-mcq">
+            <div class="section-title scroll-target" id="mcq-top">
+                <i class="fas fa-list-ul"></i> Multiple Choice Questions
+                <span class="count">29</span>
+            </div>
+            <p class="section-subtitle">Select the best answer for each question, then click <strong>Submit All MCQs</strong> at the bottom.</p>
+
+            <form id="quizForm">
+
+                <!-- Questions 1 to 29 (shortened for brevity – same as your original) -->
+                <div class="question">
+                    <p>1. Which of the following is the correct sequence of the phases of healing?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="a"> A. Remodeling, hemostatasis, inflammation, maturation</label>
+                        <label><input type="radio" name="q1" value="b"> B. Hemostasis, inflammation, proliferation, maturation</label>
+                        <label><input type="radio" name="q1" value="c"> C. Proliferation, inflammation, maturation, remodeling</label>
+                        <label><input type="radio" name="q1" value="d"> D. Inflammation, proliferation, remodeling, maturation</label>
+                        <label><input type="radio" name="q1" value="e"> E. Inflammation, hemostasis, proliferation, maturation</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q1"></div>
+                </div>
+
+                <div class="question">
+                    <p>2. Which are the first infiltrating cells to enter the wound?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="a"> A. T-lymphocytes</label>
+                        <label><input type="radio" name="q2" value="b"> B. Macrophages</label>
+                        <label><input type="radio" name="q2" value="c"> C. Neutrophils</label>
+                        <label><input type="radio" name="q2" value="d"> D. Monocytes</label>
+                        <label><input type="radio" name="q2" value="e"> E. Fibroblasts</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q2"></div>
+                </div>
+
+                <div class="question">
+                    <p>3. Steroids impair wound healing by:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="a"> A. Decreasing neutrophil and macrophage migration</label>
+                        <label><input type="radio" name="q3" value="b"> B. Increasing release of lysosomal</label>
+                        <label><input type="radio" name="q3" value="c"> C. Increasing collagen lysis</label>
+                        <label><input type="radio" name="q3" value="d"> D. Decreasing platelet plug integrity</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q3"></div>
+                </div>
+
+                <div class="question">
+                    <p>4. A pressure ulcer that extends through the subcutaneous tissue in which fascia may be visible but is not violated is what stage?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="a"> A. Stage II</label>
+                        <label><input type="radio" name="q4" value="b"> B. Stage IV</label>
+                        <label><input type="radio" name="q4" value="c"> C. Stage III</label>
+                        <label><input type="radio" name="q4" value="d"> D. Stage I</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q4"></div>
+                </div>
+
+                <div class="question">
+                    <p>5. Which of the following individuals is likely to have the greatest total body water?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="a"> A. 43 year old female who has a sedentary office job</label>
+                        <label><input type="radio" name="q5" value="b"> B. 29-year old obese computer programmer</label>
+                        <label><input type="radio" name="q5" value="c"> C. A 94-year old man who is partially dependent in the daily activities.</label>
+                        <label><input type="radio" name="q5" value="d"> D. A 22-year old male university rugby player.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q5"></div>
+                </div>
+
+                <div class="question">
+                    <p>6. On average, which of the following organs produces the smallest volume of fluid in the body?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="a"> A. Ileum</label>
+                        <label><input type="radio" name="q6" value="b"> B. Pancreas</label>
+                        <label><input type="radio" name="q6" value="c"> C. Salivary glands</label>
+                        <label><input type="radio" name="q6" value="d"> D. Stomach</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q6"></div>
+                </div>
+
+                <div class="question">
+                    <p>7. Based on maintenance requirements, how much fluid would you give a 28-kg child in 24 hours?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="a"> A. About 1340ml /day</label>
+                        <label><input type="radio" name="q7" value="b"> B. About 1520ml/day</label>
+                        <label><input type="radio" name="q7" value="c"> C. A 1660ml/day</label>
+                        <label><input type="radio" name="q7" value="d"> D. About 1810ml/day</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q7"></div>
+                </div>
+
+                <div class="question">
+                    <p>8. Which of the following shows the correct order of intravenous fluids from least to greatest intravascular volume expansion?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="a"> A. Dextrose 5% in water in (D5W), 0.45% normal saline, 5% albumin, 0.9% normal saline.</label>
+                        <label><input type="radio" name="q8" value="b"> B. Ringers lactate, 5% albumin, 0.45% normal saline, Dextrose 5% in water in (D5W).</label>
+                        <label><input type="radio" name="q8" value="c"> C. Dextrose 5% in water in (D5W), Ringers lactate, 0.45% normal saline, 0.9% normal saline.</label>
+                        <label><input type="radio" name="q8" value="d"> D. 0.45% normal saline, Ringers lactate, Dextrose 5% in water in (D5W), 5% albumin.</label>
+                        <label><input type="radio" name="q8" value="e"> E. Dextrose 5% in water in (D5W), 0.45% normal saline, Ringers lactate, 5% albumin.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q8"></div>
+                </div>
+
+                <div class="question">
+                    <p>9. Which statement is true regarding crystalloid fluids?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="a"> A. 0.9% normal saline is isotonic whereas Ringers lactate is hypotonic relative to plasma.</label>
+                        <label><input type="radio" name="q9" value="b"> B. 0.9% normal saline contains 145 mEq/L of sodium and 145 mEq/L of Chloride.</label>
+                        <label><input type="radio" name="q9" value="c"> C. Crystalloids are fluids composed of sterile water and some electrolytes, typically sodium and chloride.</label>
+                        <label><input type="radio" name="q9" value="d"> D. The molecules contained in crystalloid fluids are unable to cross the semipermeable vascular membrane under normal circumstances.</label>
+                        <label><input type="radio" name="q9" value="e"> E. Ringers lactate is a crystalloid fluid that contains potassium, calcium and bicarbonate.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q9"></div>
+                </div>
+
+                <div class="question">
+                    <p>10. SIRS is defined clinically by which of the following 4 findings:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="a"> A. Leukocytosis, hypotension, tachycardia, fever</label>
+                        <label><input type="radio" name="q10" value="b"> B. Tachycardia, tachypnea, fever, hypotension</label>
+                        <label><input type="radio" name="q10" value="c"> C. Tachypnea, fever, leukocytosis, hypotension</label>
+                        <label><input type="radio" name="q10" value="d"> D. Tachycardia, tachypnea, fever, leukocytosis</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q10"></div>
+                </div>
+
+                <div class="question">
+                    <p>11. A patient who withdraws from pain, is mumbling inappropriate words, and opens his eyes to pain, has a GCS score of:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q11" value="a"> A. 12</label>
+                        <label><input type="radio" name="q11" value="b"> B. 9</label>
+                        <label><input type="radio" name="q11" value="c"> C. 5</label>
+                        <label><input type="radio" name="q11" value="d"> D. 3</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q11"></div>
+                </div>
+
+                <div class="question">
+                    <p>12. A definitive airway is indicated in patients with: (Select all that apply.)</p>
+                    <div class="options">
+                        <label><input type="checkbox" name="q12" value="a"> A. Oropharyngeal soft tissue swelling</label>
+                        <label><input type="checkbox" name="q12" value="b"> B. GCS &lt; 8</label>
+                        <label><input type="checkbox" name="q12" value="c"> C. Apnea</label>
+                        <label><input type="checkbox" name="q12" value="d"> D. Severe Inhalational burns</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q12"></div>
+                </div>
+
+                <div class="question">
+                    <p>13. A patient who withdraws from pain, is mumbling inappropriate words, and opens his eyes to pain, has a GCS score of:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q13" value="a"> A. 12</label>
+                        <label><input type="radio" name="q13" value="b"> B. 9</label>
+                        <label><input type="radio" name="q13" value="c"> C. 5</label>
+                        <label><input type="radio" name="q13" value="d"> D. 3</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q13"></div>
+                </div>
+
+                <div class="question">
+                    <p>14. Regarding open pneumothorax, which of the following is NOT true:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q14" value="a"> A. Involves full thickness injury to the chest wall</label>
+                        <label><input type="radio" name="q14" value="b"> B. The wound should be temporally covered with a sterile gauze tapered on all four sides</label>
+                        <label><input type="radio" name="q14" value="c"> C. For permanent management, the chest wall defect should be closed, and a tube thoracostomy placed remote from the wound.</label>
+                        <label><input type="radio" name="q14" value="d"> D. Symptoms may include hypoxia and tachypnea</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q14"></div>
+                </div>
+
+                <div class="question">
+                    <p>15. A massive hemothorax is defined as: (Select all that apply.)</p>
+                    <div class="options">
+                        <label><input type="checkbox" name="q15" value="a"> A. A volume of blood &gt; 3L in the pleural space in adults</label>
+                        <label><input type="checkbox" name="q15" value="b"> B. A volume of blood &gt; 1500 Ml IN pleural space in adults</label>
+                        <label><input type="checkbox" name="q15" value="c"> C. Haemothorax visible on ultrasound</label>
+                        <label><input type="checkbox" name="q15" value="d"> D. In paediatric population, &gt; 25% of the patient's blood volume in the pleural space</label>
+                        <label><input type="checkbox" name="q15" value="e"> E. Haemothorax that is visible on radiograph</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q15"></div>
+                </div>
+
+                <div class="question">
+                    <p>16. In trauma patients, altered mental status is the most common indication for</p>
+                    <div class="options">
+                        <label><input type="radio" name="q16" value="a"> A. Tracheostomy</label>
+                        <label><input type="radio" name="q16" value="b"> B. Intubation</label>
+                        <label><input type="radio" name="q16" value="c"> C. Application of a C-collar</label>
+                        <label><input type="radio" name="q16" value="d"> D. Admission to hospital</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q16"></div>
+                </div>
+
+                <div class="question">
+                    <p>17. Which of the following is NOT appropriate to help determine the cause of hemorrhagic shock in a trauma patient?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q17" value="a"> A. CXR</label>
+                        <label><input type="radio" name="q17" value="b"> B. Abdominal CT scan</label>
+                        <label><input type="radio" name="q17" value="c"> C. Pelvic radiograph</label>
+                        <label><input type="radio" name="q17" value="d"> D. FAST</label>
+                        <label><input type="radio" name="q17" value="e"> E. E-FAST</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q17"></div>
+                </div>
+
+                <div class="question">
+                    <p>18. The overall goal of the primary survey is to:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q18" value="a"> A. Identify all traumatic injuries that the patient has</label>
+                        <label><input type="radio" name="q18" value="b"> B. Identify limb threatening injuries</label>
+                        <label><input type="radio" name="q18" value="c"> C. Identify those patients in whom further care is futile</label>
+                        <label><input type="radio" name="q18" value="d"> D. Identify and treat life threatening conditions in trauma</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q18"></div>
+                </div>
+
+                <div class="question">
+                    <p>19. Signs of tension pneumothorax include all of the following EXCEPT</p>
+                    <div class="options">
+                        <label><input type="radio" name="q19" value="a"> A. Decreased mental status</label>
+                        <label><input type="radio" name="q19" value="b"> B. Subcutaneous emphysema</label>
+                        <label><input type="radio" name="q19" value="c"> C. Hypotension</label>
+                        <label><input type="radio" name="q19" value="d"> D. Absent or decreased breath sounds</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q19"></div>
+                </div>
+
+                <div class="question">
+                    <p>20. Which of the following would more appropriately be identified and treated as part of the secondary survey?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q20" value="a"> A. Pericardial tamponade</label>
+                        <label><input type="radio" name="q20" value="b"> B. Pelvic fracture with vaginal laceration</label>
+                        <label><input type="radio" name="q20" value="c"> C. Apnea from severe head injury</label>
+                        <label><input type="radio" name="q20" value="d"> D. Scalp laceration with BP 95/62</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q20"></div>
+                </div>
+
+                <div class="question">
+                    <p>21. A 26-year old female comes to casualty following a high-impact blunt trauma. She is hypotensive with large-volume intraperitoneal fluid on ultrasound (FAST). She has received 2 units of whole blood but remains hypotensive. Which of the following is true regarding a damage control treatment strategy?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q21" value="a"> A. Damage control surgery aims to perform the definitive operation that patient requires as quickly as possible</label>
+                        <label><input type="radio" name="q21" value="b"> B. The patient should remain in casualty until she has been stabilized as this the best place for resuscitation.</label>
+                        <label><input type="radio" name="q21" value="c"> C. Damage control resuscitation attempts to prevent or minimize the progression of the lethal triad and the systemic response to injury.</label>
+                        <label><input type="radio" name="q21" value="d"> D. Damage control resuscitation requires that the patient be hemodynamically stable before surgery is undertaken.</label>
+                        <label><input type="radio" name="q21" value="e"> E. As part part of damage control resuscitation strategy, intentional cooling to hypothermic conditions allows for improved resuscitations</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q21"></div>
+                </div>
+
+                <div class="question">
+                    <p>22. The "lethal triad" of trauma includes:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q22" value="a"> A. Hypothermia, acidosis and coagulopathy</label>
+                        <label><input type="radio" name="q22" value="b"> B. Coagulopathy, acidosis and shock</label>
+                        <label><input type="radio" name="q22" value="c"> C. Coagulopathy, shock and haemorrhage</label>
+                        <label><input type="radio" name="q22" value="d"> D. Acidosis, shock and haemorrhage</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q22"></div>
+                </div>
+
+                <div class="question">
+                    <p>23. A 23-year old man is brought to casualty following a motorcycle collision. His airway and breathing are noted to be intact, but he is hemorrhaging from his left lower extremity, which has suffered a traumatic amputation. While attempting to obtain intravenous access, he is noted to be hypotensive. Which of the following is true?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q23" value="a"> A. He will be coagulopathic due to dilution of clotting factors</label>
+                        <label><input type="radio" name="q23" value="b"> B. He will be hypercoagulable due to consumption of clotting factors.</label>
+                        <label><input type="radio" name="q23" value="c"> C. He will be coagulopathic due to loss of clotting factors</label>
+                        <label><input type="radio" name="q23" value="d"> D. He will be hypercoagulable due to increased hepatic production of clotting factors</label>
+                        <label><input type="radio" name="q23" value="e"> E. He will be coagulopathic due to reduction in the hepatic production of clotting factors.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q23"></div>
+                </div>
+
+                <div class="question">
+                    <p>24. In a patient with blunt trauma who undergoes CT scan, all of the following are "soft signs" of blunt bowel and mesenteric injury EXCEPT:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q24" value="a"> A. Mesenteric haematoma</label>
+                        <label><input type="radio" name="q24" value="b"> B. Free air</label>
+                        <label><input type="radio" name="q24" value="c"> C. Mesenteric fat stranding</label>
+                        <label><input type="radio" name="q24" value="d"> D. Bowel wall thickening</label>
+                        <label><input type="radio" name="q24" value="e"> E. Free fluid in absence of solid organ injury</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q24"></div>
+                </div>
+
+                <div class="question">
+                    <p>25. Recommendations for avoiding secondary brain injury include all of the following EXCEPT:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q25" value="a"> A. Maintain oxygen saturation &gt;90 %</label>
+                        <label><input type="radio" name="q25" value="b"> B. Maintain mild hypernatremia</label>
+                        <label><input type="radio" name="q25" value="c"> C. Maintain head of bed elevation of 30-45 degrees</label>
+                        <label><input type="radio" name="q25" value="d"> D. Maintain normotension</label>
+                        <label><input type="radio" name="q25" value="e"> E. Maintain mild hypercarbia</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q25"></div>
+                </div>
+
+                <div class="question">
+                    <p>26. Patients who undergo splenectomy should be vaccinated against which bacteria?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q26" value="a"> A. Streptococcus pneumoniae, Pseudomonas aeruginosa, Staphylococcus aureus</label>
+                        <label><input type="radio" name="q26" value="b"> B. Streptococcus pyogenes, Neisseria gonorrhea, Haemophilus influnzae type B</label>
+                        <label><input type="radio" name="q26" value="c"> C. Staphylococcus aureus, Streptococcus pneumoniae, and Haemophilus influnzae type B</label>
+                        <label><input type="radio" name="q26" value="d"> D. Staphylococcus aureus, Streptococcus pyogenes and Neisseria meningiditis</label>
+                        <label><input type="radio" name="q26" value="e"> E. Streptococcus pneumoniae, Haemophilus influnzae type B and Neisseria meningiditis</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q26"></div>
+                </div>
+
+                <div class="question">
+                    <p>27. Which of the following is true regarding comparison of ultrasound, DPL, and CT scan in evaluating abdominal trauma?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q27" value="a"> A. CT Scan is the best method of evaluating for abdominal injury in hypotensive patient</label>
+                        <label><input type="radio" name="q27" value="b"> B. CT is the exam for which the results are easiest to interpret</label>
+                        <label><input type="radio" name="q27" value="c"> C. Retroperitoneum is best assessed through DPL</label>
+                        <label><input type="radio" name="q27" value="d"> D. FAST can easily be integrated into the resuscitation process</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q27"></div>
+                </div>
+
+                <div class="question">
+                    <p>28. Which is the least likely structure to be injured in pelvic trauma?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q28" value="a"> A. Vagina</label>
+                        <label><input type="radio" name="q28" value="b"> B. Bladder</label>
+                        <label><input type="radio" name="q28" value="c"> C. Rectum</label>
+                        <label><input type="radio" name="q28" value="d"> D. Ureter</label>
+                        <label><input type="radio" name="q28" value="e"> E. Presacral venous plexus</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q28"></div>
+                </div>
+
+                <div class="question">
+                    <p>29. Which of the following physical exam findings is most sensitive for the diagnosis of extremity compartment syndrome?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q29" value="a"> A. Swelling</label>
+                        <label><input type="radio" name="q29" value="b"> B. Absent distal pulses</label>
+                        <label><input type="radio" name="q29" value="c"> C. Pain on passive range of motion of the extremity</label>
+                        <label><input type="radio" name="q29" value="d"> D. Temperature difference between the affected limb (cold) and the perfused limb (warm)</label>
+                        <label><input type="radio" name="q29" value="e"> E. Presence of extremity paresthesia</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q29"></div>
+                </div>
+
+                <div class="submit-wrap">
+                    <button type="button" class="btn" onclick="submitQuiz()">
+                        <i class="fas fa-check-circle"></i> Submit All MCQs
+                    </button>
+                </div>
+
+            </form>
+
+            <div class="result" id="resultBox">
+                <h3><i class="fas fa-chart-simple"></i> Your Score</h3>
+                <div class="score" id="score">0%</div>
+                <p class="text-muted" style="font-size:0.9rem;">Review the feedback below each question.</p>
+                <div id="answers"></div>
+            </div>
+        </section>
+
+        <!-- ──── SECTION 2: SCENARIO MCQs ──── -->
+        <section class="container section-panel hidden" id="section-scenario">
+            <div class="section-title scroll-target" id="scenario-top">
+                <i class="fas fa-stethoscope"></i> Scenario-Based Questions
+                <span class="count">15</span>
+            </div>
+            <p class="section-subtitle">Read each clinical scenario carefully and select the most appropriate answer.</p>
+
+            <form id="scenarioForm">
+
+                <!-- SECTION B - SCENARIOS (Questions 1 to 15) -->
+                <div class="question">
+                    <p><span class="q-badge">S1</span> <span class="scenario-tag">Scenario</span> 1. A 36-year-old man with a history of abdominal tuberculosis presents to the emergency with 2 days history of increasing abdominal pain. The pain is diffuse, although most intense in the peri-umbilical region. On questioning, he notes that he has not had a bowel movement since the onset of the pain, nor has he vomited. On initial physical examination, his abdomen is very distended and tender to palpation. One hour later, his clinical condition has worsened. Which of the following additional finding would most indicate the need for emergent surgery?</p>
+                    <div class="options">
+                        <label><input type="radio" name="s1" value="a"> A. Absence of bowel sounds</label>
+                        <label><input type="radio" name="s1" value="b"> B. Absence of flatus</label>
+                        <label><input type="radio" name="s1" value="c"> C. Bilious vomiting</label>
+                        <label><input type="radio" name="s1" value="d"> D. Diffuse rebound tenderness</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-s1"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">S2</span> <span class="scenario-tag">Scenario</span> 2. A 42-year-old lady with a prior history of intermittent right upper quadrant (RUQ) abdominal pain following meals, presents to the doctor with a more severe episode of a similar pain. She has also had nausea and vomiting. On physical examination, she is febrile to 38.2°C, obese, and has tenderness to palpation in the RUQ. An abdominal ultrasound reveals some stones in her gallbladder.<br><br>Laboratory tests show:<br>WBC count 13,000/mm3<br>Total bilirubin 3.8mg/dL<br>Aspartate aminotransferase 130 U/L<br>Alanine aminotransferase 150 U/L<br>Alkaline aminotransferase 300 U/L<br>Amylase &lt;30 U/L<br>Lipase 8 U/L<br><br>Which of the following is most likely responsible for her symptoms and laboratory values?</p>
+                    <div class="options">
+                        <label><input type="radio" name="s2" value="a"> A. A stone obstructing her common bile duct</label>
+                        <label><input type="radio" name="s2" value="b"> B. A stone obstructing her cystic duct</label>
+                        <label><input type="radio" name="s2" value="c"> C. A stone obstructing her pancreatic duct/ampulla of Vater</label>
+                        <label><input type="radio" name="s2" value="d"> D. Stones in her gallbladder</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-s2"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">S3</span> <span class="scenario-tag">Scenario</span> 3. [Question text combined with scenario 2 above]</p>
+                    <div class="options">
+                        <label><input type="radio" name="s3" value="a"> A. A stone obstructing her common bile duct</label>
+                        <label><input type="radio" name="s3" value="b"> B. A stone obstructing her cystic duct</label>
+                        <label><input type="radio" name="s3" value="c"> C. A stone obstructing her pancreatic duct/ampulla of Vater</label>
+                        <label><input type="radio" name="s3" value="d"> D. Stones in her gallbladder</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-s3"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">S4</span> <span class="scenario-tag">Scenario</span> 4. An obese 46-year-old, multiparous woman presents to the physician with non-radiating right upper quadrant pain and fever that was preceded by nausea and vomiting. Ultrasonography shows hyperechogenic structures in the right upper quadrant. Laboratory testing reveals a WBC count of 14,500/mm3, an erythrocyte sedimentation rate of 40 mm/hr, and a serum amylase level of 70 U/L. Which of the following is the most likely diagnosis in this patient?</p>
+                    <div class="options">
+                        <label><input type="radio" name="s4" value="a"> A. Acute acalculous cholecystitis</label>
+                        <label><input type="radio" name="s4" value="b"> B. Acute calculous cholecystitis</label>
+                        <label><input type="radio" name="s4" value="c"> C. Acute pancreatitis</label>
+                        <label><input type="radio" name="s4" value="d"> D. Carcinoma of the pancreas</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-s4"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">S5</span> <span class="scenario-tag">Scenario</span> 5. A 34-year-old man develops an enterocutaneous fistula originating in the ileum secondary to abdominal tuberculosis. Which of the following would be the most appropriate fluid for replacement of his enteric losses?</p>
+                    <div class="options">
+                        <label><input type="radio" name="s5" value="a"> A. D5W</label>
+                        <label><input type="radio" name="s5" value="b"> B. 3% normal saline</label>
+                        <label><input type="radio" name="s5" value="c"> C. Ringer's lactate solution</label>
+                        <label><input type="radio" name="s5" value="d"> D. 0.9% sodium chloride</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-s5"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">S6</span> <span class="scenario-tag">Scenario</span> 6. A 45-year-old postmenopausal lady presents with as hard lump measuring 6x4 cms in the left breast, which is fixed to the pectoralis major muscle but free from the skin. She also has fixed axillary nodes on the same side and no clinical evidence of metastasis. What is the TNM stage of the lady's tumour?</p>
+                    <div class="options">
+                        <label><input type="radio" name="s6" value="a"> A. T4N1M0</label>
+                        <label><input type="radio" name="s6" value="b"> B. T4N2M0</label>
+                        <label><input type="radio" name="s6" value="c"> C. T3N1M0</label>
+                        <label><input type="radio" name="s6" value="d"> D. T3N2M0</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-s6"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">S7</span> <span class="scenario-tag">Scenario</span> 7. A 70-kg man with pyloric obstruction secondary to ulcer disease is admitted to the hospital for resuscitation after 1 week of prolonged vomiting. What metabolic disturbance is expected?</p>
+                    <div class="options">
+                        <label><input type="radio" name="s7" value="a"> A. Hypokalemic, hyperchloremic metabolic acidosis</label>
+                        <label><input type="radio" name="s7" value="b"> B. Hyperkalemic, hypochloremic metabolic alkalosis</label>
+                        <label><input type="radio" name="s7" value="c"> C. Hyperkalemic, hyperchloremic metabolic acidosis</label>
+                        <label><input type="radio" name="s7" value="d"> D. Hypokalemic, hypochloremic metabolic alkalosis</label>
+                        <label><input type="radio" name="s7" value="e"> E. None of the above</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-s7"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">S8</span> <span class="scenario-tag">Scenario</span> 8. A 35 year old man presents to the surgical clinic with a suspected direct inguinal hernia. These will pass through Hesselbachs triangle. Which of the following forms the medial edge of this structure?</p>
+                    <div class="options">
+                        <label><input type="radio" name="s8" value="a"> A. External oblique aponeurosis</label>
+                        <label><input type="radio" name="s8" value="b"> B. Inferior epigastric artery</label>
+                        <label><input type="radio" name="s8" value="c"> C. Inferior epigastric vein</label>
+                        <label><input type="radio" name="s8" value="d"> D. Rectus abdominis</label>
+                        <label><input type="radio" name="s8" value="e"> E. Iliohypogastric nerve</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-s8"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">S9</span> <span class="scenario-tag">Scenario</span> 9. A 53 year old man presents with an inguinal hernia. Which of the following surface landmarks may be used to identify the location of the deep inguinal ring?</p>
+                    <div class="options">
+                        <label><input type="radio" name="s9" value="a"> A. 4cm superior to the femoral vein</label>
+                        <label><input type="radio" name="s9" value="b"> B. 4cm inferomedially to the femoral artery</label>
+                        <label><input type="radio" name="s9" value="c"> C. Mid inguinal point</label>
+                        <label><input type="radio" name="s9" value="d"> D. Halfway between the anterior superior iliac spine and the symphysis pubis</label>
+                        <label><input type="radio" name="s9" value="e"> E. Mid point of the inguinal ligament</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-s9"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">S10</span> <span class="scenario-tag">Scenario</span> 10. Which of the following statements regarding Glasgow Coma Scale (GCS) are true?</p>
+                    <div class="options">
+                        <label><input type="radio" name="s10" value="a"> A. The maximum score is 15.</label>
+                        <label><input type="radio" name="s10" value="b"> B. The minimum score is 0.</label>
+                        <label><input type="radio" name="s10" value="c"> C. A GCS of 10 means the patient is in coma.</label>
+                        <label><input type="radio" name="s10" value="d"> D. Eye opening to command/speech is scored as 2.</label>
+                        <label><input type="radio" name="s10" value="e"> E. A GCS of 13 means the patient is in coma.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-s10"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">S11</span> <span class="scenario-tag">Scenario</span> 11. When does primary brain injury occur?</p>
+                    <div class="options">
+                        <label><input type="radio" name="s11" value="a"> A. At the moment of impact</label>
+                        <label><input type="radio" name="s11" value="b"> B. In the first hour after injury</label>
+                        <label><input type="radio" name="s11" value="c"> C. In the first 4 h after injury</label>
+                        <label><input type="radio" name="s11" value="d"> D. Only if the patient is in coma</label>
+                        <label><input type="radio" name="s11" value="e"> E. In the first 24 h after injury.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-s11"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">S12</span> <span class="scenario-tag">Scenario</span> 12. Which of the following can cause secondary brain injury?</p>
+                    <div class="options">
+                        <label><input type="radio" name="s12" value="a"> A. Hypoxia</label>
+                        <label><input type="radio" name="s12" value="b"> B. Hypotension</label>
+                        <label><input type="radio" name="s12" value="c"> C. Raised ICP</label>
+                        <label><input type="radio" name="s12" value="d"> D. Reduced cerebral perfusion</label>
+                        <label><input type="radio" name="s12" value="e"> E. All the above</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-s12"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">S13</span> <span class="scenario-tag">Scenario</span> 13. Which of the following are causes of adynamic intestinal obstruction?</p>
+                    <div class="options">
+                        <label><input type="radio" name="s13" value="a"> A. Paralytic ileus</label>
+                        <label><input type="radio" name="s13" value="b"> B. Hypokalemia</label>
+                        <label><input type="radio" name="s13" value="c"> C. Mesenteric vascular obstruction</label>
+                        <label><input type="radio" name="s13" value="d"> D. Pseudo-obstruction</label>
+                        <label><input type="radio" name="s13" value="e"> E. All of the above</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-s13"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">S14</span> <span class="scenario-tag">Scenario</span> 14. Which of the following does not contribute to dehydration and electrolyte loss in intestinal obstruction?</p>
+                    <div class="options">
+                        <label><input type="radio" name="s14" value="a"> A. Reduced oral intake</label>
+                        <label><input type="radio" name="s14" value="b"> B. Defective intestinal absorption</label>
+                        <label><input type="radio" name="s14" value="c"> C. Vomiting</label>
+                        <label><input type="radio" name="s14" value="d"> D. Diarrhoea</label>
+                        <label><input type="radio" name="s14" value="e"> E. Sequestration in the bowel lumen</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-s14"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">S15</span> <span class="scenario-tag">Scenario</span> 15. Which of the following statements regarding strangulation in intestinal obstruction are true?</p>
+                    <div class="options">
+                        <label><input type="radio" name="s15" value="a"> A. The arterial supply is compromised before the venous return.</label>
+                        <label><input type="radio" name="s15" value="b"> B. Marked translocation and systemic exposure to anaerobic organisms occur.</label>
+                        <label><input type="radio" name="s15" value="c"> C. The morbidity of strangulation due to an external hernia is greater than intraperitoneal strangulation.</label>
+                        <label><input type="radio" name="s15" value="d"> D. The morbidity and mortality in strangulation are independent of patient age</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-s15"></div>
+                </div>
+
+                <div class="submit-wrap">
+                    <button type="button" class="btn" onclick="submitScenario()">
+                        <i class="fas fa-check-circle"></i> Submit All Scenarios
+                    </button>
+                </div>
+
+            </form>
+
+            <div class="result" id="scenarioResultBox">
+                <h3><i class="fas fa-chart-simple"></i> Scenario Score</h3>
+                <div class="score" id="scenarioScore">0%</div>
+                <p class="text-muted" style="font-size:0.9rem;">Review the feedback below each scenario.</p>
+                <div id="scenarioAnswers"></div>
+            </div>
+        </section>
+
+        <!-- ──── SECTION 3: MATCHING ──── -->
+        <section class="container section-panel hidden" id="section-matching">
+            <div class="section-title scroll-target" id="matching-top">
+                <i class="fas fa-link"></i> Matching: Conditions &amp; Presentations
+                <span class="count">12 pairs</span>
+            </div>
+            <p class="section-subtitle">
+                Match each condition with the correct scenario or description. Select the best match from each dropdown.
+            </p>
+
+            <div class="matching-grid" id="matchingGrid">
+                <div class="col-header"><i class="fas fa-diagnoses"></i> Condition / Description</div>
+                <div class="col-header"><i class="fas fa-user-md"></i> Match (choose from dropdown)</div>
+
+                <!-- ===== GROUP 1 (Questions 1–5) ===== -->
+                <div class="group-divider">
+                    <h4><i class="fas fa-list"></i> 1. Match each description in Column B with the correct letter from Column C</h4>
+                </div>
+
+                <!-- Match 1 -->
+                <div class="match-item">
+                    <span class="match-label">1.</span>
+                    <span class="condition-text">Closed loop obstruction</span>
+                </div>
+                <div class="match-item">
+                    <select id="match1">
+                        <option value="">— Select —</option>
+                        <option value="a">A. Obstructing hepatic flexure tumour with a competent ileocaecal valve</option>
+                        <option value="b">B. Chaga's disease</option>
+                        <option value="c">C. Hypokalemia</option>
+                        <option value="d">D. Adhesive bowel disease</option>
+                        <option value="e">E. Abdominal TB</option>
+                        <option value="f">F. Sigmoid volvulus</option>
+                        <option value="g">G. Gall stone ileus</option>
+                        <option value="h">H. Ileosigmoid knotting or compound volvulus</option>
+                    </select>
+                </div>
+
+                <!-- Match 2 -->
+                <div class="match-item">
+                    <span class="match-label">2.</span>
+                    <span class="condition-text">Small bowel obstruction in a patient with no previous abdominal surgery</span>
+                </div>
+                <div class="match-item">
+                    <select id="match2">
+                        <option value="">— Select —</option>
+                        <option value="a">A. Obstructing hepatic flexure tumour with a competent ileocaecal valve</option>
+                        <option value="b">B. Chaga's disease</option>
+                        <option value="c">C. Hypokalemia</option>
+                        <option value="d">D. Adhesive bowel disease</option>
+                        <option value="e">E. Abdominal TB</option>
+                        <option value="f">F. Sigmoid volvulus</option>
+                        <option value="g">G. Gall stone ileus</option>
+                        <option value="h">H. Ileosigmoid knotting or compound volvulus</option>
+                    </select>
+                </div>
+
+                <!-- Match 3 -->
+                <div class="match-item">
+                    <span class="match-label">3.</span>
+                    <span class="condition-text">Sudden onset colicky abdominal pain with early vomiting and obstipation</span>
+                </div>
+                <div class="match-item">
+                    <select id="match3">
+                        <option value="">— Select —</option>
+                        <option value="a">A. Obstructing hepatic flexure tumour with a competent ileocaecal valve</option>
+                        <option value="b">B. Chaga's disease</option>
+                        <option value="c">C. Hypokalemia</option>
+                        <option value="d">D. Adhesive bowel disease</option>
+                        <option value="e">E. Abdominal TB</option>
+                        <option value="f">F. Sigmoid volvulus</option>
+                        <option value="g">G. Gall stone ileus</option>
+                        <option value="h">H. Ileosigmoid knotting or compound volvulus</option>
+                    </select>
+                </div>
+
+                <!-- Match 4 -->
+                <div class="match-item">
+                    <span class="match-label">4.</span>
+                    <span class="condition-text">Risk factor for sigmoid volvulus</span>
+                </div>
+                <div class="match-item">
+                    <select id="match4">
+                        <option value="">— Select —</option>
+                        <option value="a">A. Obstructing hepatic flexure tumour with a competent ileocaecal valve</option>
+                        <option value="b">B. Chaga's disease</option>
+                        <option value="c">C. Hypokalemia</option>
+                        <option value="d">D. Adhesive bowel disease</option>
+                        <option value="e">E. Abdominal TB</option>
+                        <option value="f">F. Sigmoid volvulus</option>
+                        <option value="g">G. Gall stone ileus</option>
+                        <option value="h">H. Ileosigmoid knotting or compound volvulus</option>
+                    </select>
+                </div>
+
+                <!-- Match 5 -->
+                <div class="match-item">
+                    <span class="match-label">5.</span>
+                    <span class="condition-text">Pneumobilia on abdominal x-ray</span>
+                </div>
+                <div class="match-item">
+                    <select id="match5">
+                        <option value="">— Select —</option>
+                        <option value="a">A. Obstructing hepatic flexure tumour with a competent ileocaecal valve</option>
+                        <option value="b">B. Chaga's disease</option>
+                        <option value="c">C. Hypokalemia</option>
+                        <option value="d">D. Adhesive bowel disease</option>
+                        <option value="e">E. Abdominal TB</option>
+                        <option value="f">F. Sigmoid volvulus</option>
+                        <option value="g">G. Gall stone ileus</option>
+                        <option value="h">H. Ileosigmoid knotting or compound volvulus</option>
+                    </select>
+                </div>
+
+                <!-- ===== GROUP 2 (Questions 6–8) ===== -->
+                <div class="group-divider">
+                    <h4><i class="fas fa-head-side-injured"></i> 2. Match each head injury to the correct scenario</h4>
+                </div>
+
+                <!-- Match 6 -->
+                <div class="match-item">
+                    <span class="match-label">6.</span>
+                    <span class="condition-text">A. Extradural haematoma</span>
+                </div>
+                <div class="match-item">
+                    <select id="match6">
+                        <option value="">— Select —</option>
+                        <option value="1">Scenario 1: GCS 7, fixed dilated right pupil</option>
+                        <option value="2">Scenario 2: Battle's sign, CSF leak from ear</option>
+                        <option value="3">Scenario 3: Lucid interval, then deterioration</option>
+                    </select>
+                </div>
+
+                <!-- Match 7 -->
+                <div class="match-item">
+                    <span class="match-label">7.</span>
+                    <span class="condition-text">B. Subdural haematoma</span>
+                </div>
+                <div class="match-item">
+                    <select id="match7">
+                        <option value="">— Select —</option>
+                        <option value="1">Scenario 1: GCS 7, fixed dilated right pupil</option>
+                        <option value="2">Scenario 2: Battle's sign, CSF leak from ear</option>
+                        <option value="3">Scenario 3: Lucid interval, then deterioration</option>
+                    </select>
+                </div>
+
+                <!-- Match 8 -->
+                <div class="match-item">
+                    <span class="match-label">8.</span>
+                    <span class="condition-text">C. Petrous temporal skull fracture</span>
+                </div>
+                <div class="match-item">
+                    <select id="match8">
+                        <option value="">— Select —</option>
+                        <option value="1">Scenario 1: GCS 7, fixed dilated right pupil</option>
+                        <option value="2">Scenario 2: Battle's sign, CSF leak from ear</option>
+                        <option value="3">Scenario 3: Lucid interval, then deterioration</option>
+                    </select>
+                </div>
+
+                <!-- ===== GROUP 3 (Questions 9–12) ===== -->
+                <div class="group-divider">
+                    <h4><i class="fas fa-bowel"></i> 3. Match each cause of obstruction to the correct clinical scenario</h4>
+                </div>
+
+                <!-- Match 9 -->
+                <div class="match-item">
+                    <span class="match-label">9.</span>
+                    <span class="condition-text">A. Adhesions</span>
+                </div>
+                <div class="match-item">
+                    <select id="match9">
+                        <option value="">— Select —</option>
+                        <option value="1">Scenario 1: 70yo, distension, constipation, weight loss</option>
+                        <option value="2">Scenario 2: 42yo with ovarian malignancy, chemo</option>
+                        <option value="3">Scenario 3: 30yo with recurrent pain after appendicectomy</option>
+                        <option value="4">Scenario 4: 86yo with increasing distension</option>
+                    </select>
+                </div>
+
+                <!-- Match 10 -->
+                <div class="match-item">
+                    <span class="match-label">10.</span>
+                    <span class="condition-text">B. Recurrence of malignancy</span>
+                </div>
+                <div class="match-item">
+                    <select id="match10">
+                        <option value="">— Select —</option>
+                        <option value="1">Scenario 1: 70yo, distension, constipation, weight loss</option>
+                        <option value="2">Scenario 2: 42yo with ovarian malignancy, chemo</option>
+                        <option value="3">Scenario 3: 30yo with recurrent pain after appendicectomy</option>
+                        <option value="4">Scenario 4: 86yo with increasing distension</option>
+                    </select>
+                </div>
+
+                <!-- Match 11 -->
+                <div class="match-item">
+                    <span class="match-label">11.</span>
+                    <span class="condition-text">C. Strangulated external hernia</span>
+                </div>
+                <div class="match-item">
+                    <select id="match11">
+                        <option value="">— Select —</option>
+                        <option value="1">Scenario 1: 70yo, distension, constipation, weight loss</option>
+                        <option value="2">Scenario 2: 42yo with ovarian malignancy, chemo</option>
+                        <option value="3">Scenario 3: 30yo with recurrent pain after appendicectomy</option>
+                        <option value="4">Scenario 4: 86yo with increasing distension</option>
+                    </select>
+                </div>
+
+                <!-- Match 12 -->
+                <div class="match-item">
+                    <span class="match-label">12.</span>
+                    <span class="condition-text">D. Primary colonic tumour</span>
+                </div>
+                <div class="match-item">
+                    <select id="match12">
+                        <option value="">— Select —</option>
+                        <option value="1">Scenario 1: 70yo, distension, constipation, weight loss</option>
+                        <option value="2">Scenario 2: 42yo with ovarian malignancy, chemo</option>
+                        <option value="3">Scenario 3: 30yo with recurrent pain after appendicectomy</option>
+                        <option value="4">Scenario 4: 86yo with increasing distension</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="submit-wrap">
+                <button type="button" class="btn" onclick="submitMatching()">
+                    <i class="fas fa-check-circle"></i> Submit Matching
+                </button>
+            </div>
+
+            <div class="matching-feedback" id="matchingFeedback">
+                <h4 style="color:var(--primary);margin-bottom:0.5rem;"><i class="fas fa-list-check"></i> Matching Results</h4>
+                <div id="matchingResults"></div>
+                <p style="margin-top:0.6rem;font-weight:600;" id="matchingScoreDisplay"></p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ═══════ JAVASCRIPT ═══════ -->
+    <script>
+        // ─── TAB NAVIGATION ───
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const section = this.dataset.section;
+                document.querySelectorAll('.section-panel').forEach(p => p.classList.add('hidden'));
+                document.getElementById('section-' + section).classList.remove('hidden');
+                const topEl = document.getElementById(section + '-top');
+                if (topEl) topEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // ─── MCQ CORRECT ANSWERS ───
+        const correctAnswers = {
+            q1: "b",
+            q2: "c",
+            q3: "a",
+            q4: "c",
+            q5: "d",
+            q6: "c",
+            q7: "c",
+            q8: "e",
+            q9: "c",
+            q10: "d",
+            q11: "b",
+            q12: ["a", "b", "c", "d"],
+            q13: "b",
+            q14: "b",
+            q15: ["b", "d"],
+            q16: "b",
+            q17: "b",
+            q18: "d",
+            q19: "b",
+            q20: "b",
+            q21: "c",
+            q22: "a",
+            q23: "c",
+            q24: "b",
+            q25: "e",
+            q26: "e",
+            q27: "d",
+            q28: "d",
+            q29: "c"
+        };
+
+        const answerExplanations = {
+            q1: "Wound healing progresses sequentially through hemostasis, inflammation, proliferation, and maturation (remodeling).",
+            q2: "Neutrophils are the first leukocytes to infiltrate the wound site, typically arriving within the first 24 to 48 hours.",
+            q3: "Corticosteroids impair wound healing mainly by inhibiting the inflammatory response, which includes decreasing neutrophil and macrophage recruitment/migration.",
+            q4: "Stage III pressure ulcers involve full-thickness skin loss extending into subcutaneous fat down to, but not through, the underlying fascia.",
+            q5: "Total body water content is highest in young males with high muscle mass and low body fat percentage, such as an athlete.",
+            q6: "Salivary glands produce approximately 1 to 1.5 L/day, which is generally lower in total daily volume compared to gastric, biliary, pancreatic, and intestinal secretions.",
+            q7: "Using the 100/50/20 rule: 10 kg × 100 mL = 1000 mL; 10 kg × 50 mL = 500 mL; 8 kg × 20 mL = 160 mL; Total = 1660 mL/day.",
+            q8: "D5W distributes across total body water (minimal intravascular retention), 0.45% NS redistributes to ECF, Ringers Lactate stays primarily in ECF, and 5% Albumin remains predominantly in the intravascular space.",
+            q9: "Crystalloids are aqueous solutions consisting of sterile water and dissolved mineral salts/electrolytes like sodium chloride.",
+            q10: "SIRS criteria require two or more of: temperature alterations (fever/hypothermia), tachycardia, tachypnea/hyperventilation, and leukocytosis/leukopenia/bandemia.",
+            q11: "Glasgow Coma Scale: Opens eyes to pain = 2, Inappropriate words = 3, Withdraws from pain = 4. Total score = 9.",
+            q12: "A definitive airway (e.g., endotracheal intubation) is indicated for airway protection (GCS < 8, severe swelling, inhalational burns) and ventilation failure/apnea.",
+            q13: "Glasgow Coma Scale: Opens eyes to pain (2) + Inappropriate words (3) + Withdraws from pain (4) = 9.",
+            q14: "An open pneumothorax (sucking chest wound) should be covered with a three-sided occlusive dressing to act as a one-way valve, NOT sealed on all four sides.",
+            q15: "Massive hemothorax is defined by >1500 mL of blood loss immediately upon chest tube placement in adults or >25% of blood volume in pediatric patients.",
+            q16: "An altered mental status (GCS ≤ 8) in trauma patients is the primary indication for intubation to protect the airway.",
+            q17: "Abdominal CT scan requires transfer out of the resuscitation area and time, making it unsafe/inappropriate for an unstable trauma patient in active hemorrhagic shock.",
+            q18: "The primary survey (ABCDEs) aims to rapidly identify and manage immediate life-threatening conditions.",
+            q19: "Subcutaneous emphysema can accompany chest trauma, but classic diagnostic signs of tension pneumothorax are hypotension, respiratory distress, and absent unilateral breath sounds.",
+            q20: "Pelvic fractures without immediate life-threatening arterial collapse are assessed and managed during the detailed secondary survey.",
+            q21: "Damage control resuscitation focuses on permissive hypotension, avoiding crystalloids, and preventing the lethal triad (hypothermia, acidosis, coagulopathy).",
+            q22: "The trauma lethal triad consists of hypothermia, metabolic acidosis, and coagulopathy.",
+            q23: "Acute traumatic coagulopathy develops rapidly following major tissue trauma and massive hemorrhage due to direct loss and consumption of clotting factors.",
+            q24: "Free intra-abdominal air (pneumoperitoneum) is a direct/hard sign of full-thickness gastrointestinal perforation, whereas wall thickening, fat stranding, and isolated free fluid are soft/indirect signs.",
+            q25: "Mild hypercarbia causes cerebral vasodilation and increased intracranial pressure, which worsens secondary brain injury and must be avoided.",
+            q26: "Post-splenectomy patients require immunization against encapsulated organisms: Streptococcus pneumoniae, Haemophilus influenzae type B, and Neisseria meningitidis.",
+            q27: "FAST (Focused Assessment with Sonography for Trauma) is rapid, non-invasive, repeatable, and easily integrated directly into active trauma resuscitation.",
+            q28: "The ureter is relatively mobile and small, making it significantly less commonly injured in pelvic ring fractures compared to the bladder, rectum, or presacral venous plexus.",
+            q29: "Pain on passive stretch of the involved compartment muscles is the most sensitive early clinical diagnostic sign of acute compartment syndrome."
+        };
+
+        function submitQuiz() {
+            let score = 0;
+            const total = Object.keys(correctAnswers).length;
+            document.querySelectorAll('.question-feedback').forEach(el => el.innerHTML = '');
+
+            for (let key in correctAnswers) {
+                const radios = Array.from(document.querySelectorAll(`input[name="${key}"]`));
+                const selected = radios.find(r => r.checked);
+                const correct = correctAnswers[key];
+                if (selected && selected.value === correct) score++;
+
+                const feedbackEl = document.getElementById(`feedback-${key}`);
+                if (!feedbackEl) continue;
+
+                let html = `<div class="answer-block"><strong>Q${key.replace(/^q/, '')}</strong><div class="answer-list">`;
+                radios.forEach(r => {
+                    const label = r.parentElement;
+                    const text = label ? label.textContent.trim() : r.value;
+                    const classes = ['answer-item'];
+                    if (r.value === correct) classes.push('answer-correct');
+                    if (r.checked && r.value !== correct) classes.push('answer-wrong', 'user-choice');
+                    if (r.checked && r.value === correct) classes.push('user-choice');
+                    html += `<div class="${classes.join(' ')}">${text}${r.checked ? ' ◀' : ''}</div>`;
+                });
+                html += `</div>`;
+
+                const correctRadio = radios.find(rr => rr.value === correct);
+                const correctText = correctRadio && correctRadio.parentElement ? correctRadio.parentElement.textContent
+                    .trim() : correct;
+                const explanationText = answerExplanations[key] || '';
+
+                if (selected) {
+                    if (selected.value === correct) {
+                        html += `<div class="explanation">✅ Correct — ${explanationText}</div>`;
+                    } else {
+                        html +=
+                            `<div class="explanation wrong">❌ Incorrect. Correct answer: <strong>${correctText}</strong>. ${explanationText}</div>`;
+                    }
+                } else {
+                    html +=
+                        `<div class="explanation wrong">No answer selected. Correct answer: <strong>${correctText}</strong>. ${explanationText}</div>`;
+                }
+                html += `</div>`;
+                feedbackEl.innerHTML = html;
+            }
+
+            const percentage = Math.round((score / total) * 100);
+            const resultBox = document.getElementById('resultBox');
+            resultBox.style.display = 'block';
+            document.getElementById('answers').innerHTML = '';
+
+            let start = 0;
+            const timer = setInterval(() => {
+                if (start >= percentage) clearInterval(timer);
+                document.getElementById('score').innerText = start + '%';
+                start++;
+            }, 20);
+
+            document.querySelectorAll('#quizForm input[type="radio"]').forEach(i => i.disabled = true);
+        }
+
+        // ─── SCENARIO CORRECT ANSWERS ───
+        const scenarioCorrect = {
+            s1: "d",
+            s2: "a",
+            s3: "a",
+            s4: "b",
+            s5: "c",
+            s6: "d",
+            s7: "d",
+            s8: "d",
+            s9: "e",
+            s10: "a",
+            s11: "a",
+            s12: "e",
+            s13: "e",
+            s14: "d",
+            s15: "b"
+        };
+
+        const scenarioExplanations = {
+            s1: "Diffuse rebound tenderness indicates peritonitis/perforation or bowel strangulation, requiring immediate emergency laparotomy.",
+            s2: "Fever, elevated total bilirubin (3.8 mg/dL), and markedly elevated ALP (300 U/L) in a patient with gallstones strongly point to choledocholithiasis (stone in the common bile duct).",
+            s3: "Obstructive jaundice with elevated bilirubin and ALP in the setting of gallstones is caused by obstruction of the common bile duct.",
+            s4: "Acute calculous cholecystitis presents with RUQ pain, fever, leukocytosis, and hyperechoic acoustic shadowing structures (gallstones) on ultrasound.",
+            s5: "Ringer's lactate solution (or Hartmann's) is the fluid of choice to replace high-output small bowel/ileal losses due to its electrolyte composition (resembling plasma).",
+            s6: "Tumour >5 cm (6 cm) is T3; involvement of fixed ipsilateral axillary lymph nodes is N2; no distant metastasis is M0. Stage: T3N2M0.",
+            s7: "Severe vomiting causes loss of gastric acid (HCl) and potassium, leading to hypokalemic, hypochloremic metabolic alkalosis.",
+            s8: "Hesselbach's triangle is bounded medially by the lateral border of the rectus abdominis muscle, laterally by the inferior epigastric vessels, and inferiorly by the inguinal ligament.",
+            s9: "The deep (internal) inguinal ring is anatomically located at the midpoint of the inguinal ligament (midway between the ASIS and pubic tubercle).",
+            s10: "The GCS ranges from a maximum score of 15 (fully conscious) to a minimum score of 3.",
+            s11: "Primary brain injury occurs instantaneously at the precise moment of impact/trauma.",
+            s12: "Secondary brain injury results from subsequent systemic or intracranial insults including hypoxia, hypotension, elevated intracranial pressure, and reduced cerebral perfusion.",
+            s13: "Adynamic (neurogenic/functional) ileus can be caused by paralytic ileus, electrolyte imbalances like hypokalemia, mesenteric ischemia, and Ogilvie's syndrome (pseudo-obstruction).",
+            s14: "In complete mechanical intestinal obstruction, fluid is trapped in the lumen and lost via emesis; profuse diarrhea is typically absent.",
+            s15: "Ischemic bowel wall compromise in strangulated obstruction allows bacterial translocation and systemic entry of luminal bacterial toxins and anaerobic pathogens."
+        };
+
+        function submitScenario() {
+            let score = 0;
+            const total = Object.keys(scenarioCorrect).length;
+            document.querySelectorAll('#scenarioForm .question-feedback').forEach(el => el.innerHTML = '');
+
+            for (let key in scenarioCorrect) {
+                const radios = Array.from(document.querySelectorAll(`input[name="${key}"]`));
+                const selected = radios.find(r => r.checked);
+                const correct = scenarioCorrect[key];
+                if (selected && selected.value === correct) score++;
+
+                const feedbackEl = document.getElementById(`feedback-${key}`);
+                if (!feedbackEl) continue;
+
+                let html = `<div class="answer-block"><strong>${key.toUpperCase()}</strong><div class="answer-list">`;
+                radios.forEach(r => {
+                    const label = r.parentElement;
+                    const text = label ? label.textContent.trim() : r.value;
+                    const classes = ['answer-item'];
+                    if (r.value === correct) classes.push('answer-correct');
+                    if (r.checked && r.value !== correct) classes.push('answer-wrong', 'user-choice');
+                    if (r.checked && r.value === correct) classes.push('user-choice');
+                    html += `<div class="${classes.join(' ')}">${text}${r.checked ? ' ◀' : ''}</div>`;
+                });
+                html += `</div>`;
+
+                const correctRadio = radios.find(rr => rr.value === correct);
+                const correctText = correctRadio && correctRadio.parentElement ? correctRadio.parentElement.textContent
+                    .trim() : correct;
+                const explanationText = scenarioExplanations[key] || '';
+
+                if (selected) {
+                    if (selected.value === correct) {
+                        html += `<div class="explanation">✅ Correct — ${explanationText}</div>`;
+                    } else {
+                        html +=
+                            `<div class="explanation wrong">❌ Incorrect. Correct answer: <strong>${correctText}</strong>. ${explanationText}</div>`;
+                    }
+                } else {
+                    html +=
+                        `<div class="explanation wrong">No answer selected. Correct answer: <strong>${correctText}</strong>. ${explanationText}</div>`;
+                }
+                html += `</div>`;
+                feedbackEl.innerHTML = html;
+            }
+
+            const percentage = Math.round((score / total) * 100);
+            const resultBox = document.getElementById('scenarioResultBox');
+            resultBox.style.display = 'block';
+            document.getElementById('scenarioAnswers').innerHTML = '';
+
+            let start = 0;
+            const timer = setInterval(() => {
+                if (start >= percentage) clearInterval(timer);
+                document.getElementById('scenarioScore').innerText = start + '%';
+                start++;
+            }, 20);
+
+            document.querySelectorAll('#scenarioForm input[type="radio"]').forEach(i => i.disabled = true);
+        }
+
+        // ─── MATCHING ───
+        const matchingAnswers = {
+            // Group 1 – letters (user's written answers)
+            match1: "a", // Closed loop obstruction → A
+            match2: "c", // Small bowel obstruction (no surgery) → C (Hypokalemia)
+            match3: "f", // Sudden onset colicky pain → F (Sigmoid volvulus)
+            match4: "b", // Risk factor for sigmoid volvulus → B (Chaga's disease)
+            match5: "g", // Pneumobilia → G (Gall stone ileus)
+
+            // Group 2 – scenario numbers (clinically correct)
+            match6: "3", // Extradural → Scenario 3 (lucid interval)
+            match7: "1", // Subdural → Scenario 1 (GCS 7, fixed pupil)
+            match8: "2", // Petrous temporal → Scenario 2 (Battle's sign)
+
+            // Group 3 – scenario numbers (clinically correct)
+            match9: "3", // Adhesions → Scenario 3 (recurrent pain after appendicectomy)
+            match10: "2", // Recurrence of malignancy → Scenario 2 (ovarian ca, chemo)
+            match11: "4", // Strangulated hernia → Scenario 4 (86yo distension)
+            match12: "1" // Primary colonic tumour → Scenario 1 (70yo, weight loss)
+        };
+
+        const matchLabels = {
+            match1: "1. Closed loop obstruction",
+            match2: "2. Small bowel obstruction (no previous surgery)",
+            match3: "3. Sudden onset colicky pain with early vomiting",
+            match4: "4. Risk factor for sigmoid volvulus",
+            match5: "5. Pneumobilia on abdominal x-ray",
+            match6: "6. Extradural haematoma",
+            match7: "7. Subdural haematoma",
+            match8: "8. Petrous temporal skull fracture",
+            match9: "9. Adhesions",
+            match10: "10. Recurrence of malignancy",
+            match11: "11. Strangulated external hernia",
+            match12: "12. Primary colonic tumour"
+        };
+
+        const presentationLabels = {
+            // Group 1
+            a: "A. Obstructing hepatic flexure tumour with a competent ileocaecal valve",
+            b: "B. Chaga's disease",
+            c: "C. Hypokalemia",
+            d: "D. Adhesive bowel disease",
+            e: "E. Abdominal TB",
+            f: "F. Sigmoid volvulus",
+            g: "G. Gall stone ileus",
+            h: "H. Ileosigmoid knotting or compound volvulus",
+            // Group 2
+            "1": "Scenario 1: GCS 7, fixed dilated right pupil",
+            "2": "Scenario 2: Battle's sign, CSF leak from ear",
+            "3": "Scenario 3: Lucid interval, then deterioration",
+            // Group 3
+            "4": "Scenario 4: 86yo with increasing distension"
+        };
+
+        function submitMatching() {
+            let score = 0;
+            const total = Object.keys(matchingAnswers).length;
+            const results = [];
+
+            for (let key in matchingAnswers) {
+                const select = document.getElementById(key);
+                const userVal = select ? select.value : '';
+                const correct = matchingAnswers[key];
+                const isCorrect = userVal === correct;
+                if (isCorrect) score++;
+
+                results.push({
+                    id: key,
+                    label: matchLabels[key] || key,
+                    user: userVal ? presentationLabels[userVal] || userVal : '(none selected)',
+                    correct: presentationLabels[correct] || correct,
+                    isCorrect: isCorrect && userVal !== ''
+                });
+            }
+
+            const percentage = Math.round((score / total) * 100);
+
+            const feedback = document.getElementById('matchingFeedback');
+            feedback.classList.add('visible');
+
+            let html = '';
+            results.forEach(r => {
+                const status = r.isCorrect ? '✅' : '❌';
+                const cls = r.isCorrect ? 'match-correct' : 'match-wrong';
+                html += `<div class="match-result ${cls}">
+                            <span><strong>${r.label}</strong></span>
+                            <span>${status} Your match: ${r.user}</span>
+                        </div>`;
+            });
+
+            document.getElementById('matchingResults').innerHTML = html;
+            document.getElementById('matchingScoreDisplay').innerHTML =
+                `Score: <strong>${score}/${total}</strong> (${percentage}%)`;
+
+            document.querySelectorAll('#matchingGrid select').forEach(s => s.disabled = true);
+        }
+    </script>
+
+</body>
+</html>

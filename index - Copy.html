@@ -1245,53 +1245,56 @@
         // ---------- COURSE DATA ----------
         const courseData = [
             // 2nd Year Courses
-            {
-                id: 'therapeutics',
-                name: 'Therapeutics',
-                icon: 'fa-dna',
-                year: 2,
-                type: 'preclinical',
-                desc: 'Explore cell biology, genetics, and physiology.',
+            { 
+                id: 'therapeutics', 
+                name: 'Therapeutics', 
+                icon: 'fa-dna', 
+                year: 2, 
+                type: 'preclinical', 
+                desc: 'Explore cell biology, genetics, and physiology.', 
                 terms: [
-                    { name: 'Term 1',
-                        topics: [
-                            'Common Terminologies Used in Pharmacology',
-                            'Membrane Transport and Absoprtion',
-                            'Biovailability First-Pass Elimination',
-                            'Drug Distribution',
-                            'Drug Excretion',
-                            'Drug Metabolism',
-                            'Routes of Administration',
-                            'Therapeutic Drug Monitoring',
-                            'Mechanism of Drug Action',
-                            'Autonomic Pharmacology',
-                            'Neuro-Hormonal Transmision in the ANS',
-                            'ANS Regulation',
-                            'Muscarinic Agonists',
-                            'Muscarinic Antagonists',
-                            'Sympathomimetic Drugs (Adrenergic Agonists)',
-                            'Sympatholitic Drugs (Adrenergic Blockers)'
-                        ]
-                    },
-                    { name: 'Term 2',
-                        topics: [
-                            'Management of Heart Failure',
-                            'Anti-arrhythmis Drugs',
-                            'Drugs used in Angin Treatment',
-                            'Antihypertensive Drugs',
-                            'Drugs used in the treatment of Hyperlipidemia',
-                        ]
-                    },
-                    { name: 'Term 3',
-                        topics: [
-                            'Anti-asthmatic Drugs',
-                            'Drugs used in the Treatment of TB',
-                            'Drugs used to Treat Common Cold',
-                            'Drugs acting on Cough',
-                            'Use of Steroids in Respiratory Disorders',
-                            'Anti-fungal',
-                        ]
-                    }
+                { 
+                    name: 'Term 1', 
+                    topics: [
+                    'Common Terminologies Used in Pharmacology',
+                    'Membrane Transport and Absoprtion',
+                    'Biovailability First-Pass Elimination',
+                    'Drug Distribution',
+                    'Drug Excretion',
+                    'Drug Metabolism',
+                    'Routes of Administration',
+                    'Therapeutic Drug Monitoring',
+                    'Mechanism of Drug Action',
+                    'Autonomic Pharmacology',
+                    'Neuro-Hormonal Transmision in the ANS',
+                    'ANS Regulation',
+                    'Muscarinic Agonists',
+                    'Muscarinic Antagonists',
+                    'Sympathomimetic Drugs (Adrenergic Agonists)',
+                    'Sympatholitic Drugs (Adrenergic Blockers)'
+                    ] 
+                },
+                { 
+                    name: 'Term 2', 
+                    topics: [
+                    'Management of Heart Failure',
+                    'Anti-arrhythmis Drugs',
+                    'Drugs used in Angin Treatment',
+                    'Antihypertensive Drugs',
+                    'Drugs used in the treatment of Hyperlipidemia',
+                    ] 
+                },
+                { 
+                    name: 'Term 3', 
+                    topics: [
+                    'Anti-asthmatic Drugs',
+                    'Drugs used in the Treatment of TB',
+                    'Drugs used to Treat Common Cold',
+                    'Drugs acting on Cough',
+                    'Use of Steroids in Respiratory Disorders',
+                    'Anti-fungal',
+                    ] 
+                }
                 ]
             },
             {
@@ -1439,7 +1442,6 @@
                     }
                 ]
             },
-            // 3rd Year
             {
                 id: 'biochemistry_3',
                 name: 'Biochemistry',
@@ -1557,23 +1559,24 @@
                 ]
             },
             { id: 'biology', name: 'Biology', icon: 'fa-dna', year: 2, type: 'preclinical',
-                desc: 'Explore cell biology, genetics, and physiology.', terms: [
-                    { name: 'Term 1', topics: ['Cell Structure', 'Membrane Transport', 'Cell Cycle'] },
-                    { name: 'Term 2', topics: ['DNA Replication', 'Gene Expression', 'Mutations'] },
-                    { name: 'Term 3', topics: ['Nervous System', 'Cardiovascular', 'Respiratory'] }
-                ] },
+            desc: 'Explore cell biology, genetics, and physiology.', terms: [
+                { name: 'Term 1', topics: ['Cell Structure', 'Membrane Transport', 'Cell Cycle'] },
+                { name: 'Term 2', topics: ['DNA Replication', 'Gene Expression', 'Mutations'] },
+                { name: 'Term 3', topics: ['Nervous System', 'Cardiovascular', 'Respiratory'] }
+            ] },
+            // 3rd Year Courses
             { id: 'physics', name: 'Physics', icon: 'fa-atom', year: 3, type: 'preclinical',
-                desc: 'Understand mechanics, optics, and thermodynamics.', terms: [
-                    { name: 'Mechanics', topics: ['Kinematics', 'Dynamics', 'Work & Energy'] },
-                    { name: 'Optics', topics: ['Reflection', 'Refraction', 'Lenses'] },
-                    { name: 'Thermodynamics', topics: ['Laws of Thermodynamics', 'Heat Transfer', 'Entropy'] }
-                ] },
+            desc: 'Understand mechanics, optics, and thermodynamics.', terms: [
+                { name: 'Mechanics', topics: ['Kinematics', 'Dynamics', 'Work & Energy'] },
+                { name: 'Optics', topics: ['Reflection', 'Refraction', 'Lenses'] },
+                { name: 'Thermodynamics', topics: ['Laws of Thermodynamics', 'Heat Transfer', 'Entropy'] }
+            ] },
             { id: 'chemistry', name: 'Chemistry', icon: 'fa-flask', year: 3, type: 'preclinical',
-                desc: 'Learn organic, inorganic, and physical chemistry.', terms: [
-                    { name: 'Organic Chemistry', topics: ['Hydrocarbons', 'Functional Groups', 'Reactions'] },
-                    { name: 'Inorganic Chemistry', topics: ['Periodic Table', 'Bonding', 'Coordination Compounds'] },
-                    { name: 'Physical Chemistry', topics: ['Thermochemistry', 'Kinetics', 'Equilibrium'] }
-                ] },
+            desc: 'Learn organic, inorganic, and physical chemistry.', terms: [
+                { name: 'Organic Chemistry', topics: ['Hydrocarbons', 'Functional Groups', 'Reactions'] },
+                { name: 'Inorganic Chemistry', topics: ['Periodic Table', 'Bonding', 'Coordination Compounds'] },
+                { name: 'Physical Chemistry', topics: ['Thermochemistry', 'Kinetics', 'Equilibrium'] }
+            ] },
             // 4th Year Clinical Rotations
             {
                 id: 'BS4',
@@ -1584,7 +1587,7 @@
                 desc: 'Clinical rotation in Internal Medicine.',
                 terms: [
                     { name: 'Cardiology',
-                        topics: ['Heart Failure', 'Arrhythmias', 'Ischemic Heart Disease'] },
+                    topics: ['Heart Failure', 'Arrhythmias', 'Ischemic Heart Disease'] },
                     { name: 'Pulmonology', topics: ['COPD', 'Asthma', 'Pneumonia'] },
                     { name: 'Nephrology', topics: ['AKI', 'CKD', 'Glomerular Diseases'] }
                 ]
@@ -1598,7 +1601,7 @@
                 desc: 'Clinical rotation in Internal Medicine.',
                 terms: [
                     { name: 'Cardiology',
-                        topics: ['Heart Failure', 'Arrhythmias', 'Ischemic Heart Disease'] },
+                    topics: ['Heart Failure', 'Arrhythmias', 'Ischemic Heart Disease'] },
                     { name: 'Pulmonology', topics: ['COPD', 'Asthma', 'Pneumonia'] },
                     { name: 'Nephrology', topics: ['AKI', 'CKD', 'Glomerular Diseases'] }
                 ]
@@ -1611,33 +1614,10 @@
                 type: 'clinical',
                 desc: 'Clinical rotation in General Surgery.',
                 terms: [
-                    { name: 'GIT ',
-                        topics: ['PUD, GERD & Gastritis', 'Acute Appendicitis', 'GIT Bleeding',
-                            'Abdominal Trauma', 'Gall Bladder & Billiary Tree', 'Acute Appendicitis',
-                            'Intestinal Obstruction by Dr. Mwila', 'Intestinal Obstruction by Dr. Mulenga',
-                            'Gastric Cancers', 'Esophageal Cancers', 'Anal Pain', 'Pancreatitis',
-                            'Groin Hernia', 'Ventral Hernia'
-                        ] },
-                    { name: 'CVS',
-                        topics: ['Venous Diseases', 'Peripheral Vascular Diseases', 'Surviving Sepsis',
-                            'Fluid & Electrolytes'
-                        ] },
-                    { name: 'Skeletal System',
-                        topics: ['Septic Arthritis', 'Fractures', 'Surgical Soft Tissue Infection',
-                            'Joint Dislocations', 'Osteomyelytis',
-                        ] },
-                    { name: 'CNS', topics: ['Neurological  Examination'] },
-                    { name: 'Respiratory System',
-                        topics: ['Approach to Thoracic Chest Trauma'] },
-                    { name: 'Integumentary System', topics: ['Burns', 'Diabetic Foot'] },
-                    { name: 'Reproductive & Endocrine & Urinary Sytsem',
-                        topics: ['Breast Cancer', 'Thyroid Cancers', 'Testicular Swelling', 'Prostate Cancer',
-                            'Benign Breast Changes', 'BPH', 'UTI & Urethritis'
-                        ] },
-                    { name: 'Surgery Past Papers',
-                        topics: ['2026 Term 2 Surgery', '2025 Test Surgery', '2024 Test Surgery', '2024 Test 2',
-                            '2023 Test 1 Surgery', '2023 Test 2 & 3 Surgery', '2023 Term 4 Surgery', '2023 Test Surgery', '2022 Term 4 Surgery', '2021 Sept Test Surgery'
-                        ] }
+                    { name: 'GI Surgery', topics: ['Appendicitis', 'Cholecystitis', 'Bowel Obstruction'] },
+                    { name: 'Vascular Surgery',
+                    topics: ['Aneurysm', 'Peripheral Vascular Disease', 'Varicose Veins'] },
+                    { name: 'Trauma Surgery', topics: ['Blunt Trauma', 'Penetrating Trauma', 'Burn Management'] }
                 ]
             },
             {
@@ -1649,10 +1629,10 @@
                 desc: 'Clinical rotation in Pediatrics.',
                 terms: [
                     { name: 'Neonatology',
-                        topics: ['Prematurity', 'Neonatal Jaundice', 'Respiratory Distress'] },
+                    topics: ['Prematurity', 'Neonatal Jaundice', 'Respiratory Distress'] },
                     { name: 'Infectious Diseases', topics: ['Meningitis', 'Pneumonia', 'Diarrheal Diseases'] },
                     { name: 'Growth & Development',
-                        topics: ['Developmental Milestones', 'Nutrition', 'Vaccination'] }
+                    topics: ['Developmental Milestones', 'Nutrition', 'Vaccination'] }
                 ]
             },
             {
@@ -1691,9 +1671,9 @@
                 desc: 'Advanced clinical rotation in Surgery.',
                 terms: [
                     { name: 'Oncologic Surgery',
-                        topics: ['Breast Cancer', 'Colorectal Cancer', 'Gastric Cancer'] },
+                    topics: ['Breast Cancer', 'Colorectal Cancer', 'Gastric Cancer'] },
                     { name: 'Transplant Surgery',
-                        topics: ['Kidney Transplant', 'Liver Transplant', 'Immunosuppression'] },
+                    topics: ['Kidney Transplant', 'Liver Transplant', 'Immunosuppression'] },
                     { name: 'Minimally Invasive', topics: ['Laparoscopy', 'Robotic Surgery', 'Endoscopy'] }
                 ]
             },
@@ -1719,11 +1699,11 @@
                 desc: 'Advanced clinical rotation in Obstetrics & Gynecology.',
                 terms: [
                     { name: 'High-Risk Obstetrics',
-                        topics: ['Preeclampsia', 'Gestational Diabetes', 'Multiple Pregnancy'] },
+                    topics: ['Preeclampsia', 'Gestational Diabetes', 'Multiple Pregnancy'] },
                     { name: 'Gynecologic Oncology',
-                        topics: ['Cervical Cancer', 'Ovarian Cancer', 'Endometrial Cancer'] },
+                    topics: ['Cervical Cancer', 'Ovarian Cancer', 'Endometrial Cancer'] },
                     { name: 'Urogynecology',
-                        topics: ['Pelvic Organ Prolapse', 'Urinary Incontinence', 'Fistula'] }
+                    topics: ['Pelvic Organ Prolapse', 'Urinary Incontinence', 'Fistula'] }
                 ]
             }
         ];
@@ -1754,13 +1734,13 @@
                         desc: 'Clinical rotation in the many branches of the Basic Scicen At NTH',
                         terms: [
                             { name: 'Microbiology',
-                                topics: ['Bacterial Classification', 'Bacterial Cell Wall', 'Bacterial Survivial Mechanisms',
+                            topics: ['Bacterial Classification', 'Bacterial Cell Wall', 'Bacterial Survivial Mechanisms',
                                     'Antibiotic Sensitivity Tests'
                                 ] },
                             { name: 'Parasitology',
-                                topics: ['Notes by Prof Mwanakasale', 'Ultimate Compiled notes'] },
+                            topics: ['Notes by Prof Mwanakasale', 'Ultimate Compiled notes'] },
                             { name: 'Clinical Chemistry',
-                                topics: ['Mr. Njunju', 'Dr. Kwangu', 'Dr. Balakrishnan'] },
+                            topics: ['Mr. Njunju', 'Dr. Kwangu', 'Dr. Balakrishnan'] },
                             { name: 'Radiology',
                                 topics: ['Introduction to the Course', 'Introduction & History of Diagnostic Imaging',
                                     'Pattern Recognition in Chest Imaging', 'Extremity Imaging Pattern Recognition',
@@ -1773,7 +1753,7 @@
                                     'Communication Models in Clinical Practice'
                                 ] },
                             { name: 'Nephrology',
-                                topics: ['Site A: AKI Protocol', 'Site A: CKD Management', 'Site A: Dialysis Access'] },
+                            topics: ['Site A: AKI Protocol', 'Site A: CKD Management', 'Site A: Dialysis Access'] },
                             { name: 'Past Papers',
                                 topics: ['2020 Test', '2021 Sessional', '2022 Sessional Dec', '2022 Sessional April',
                                     '2023 Def Sessional', '2023 Test Term 1', '2023 Test Term 2', '2024 Sessional',
@@ -1789,13 +1769,11 @@
                         desc: 'Clinical rotation in Internal Medicine - Site A',
                         terms: [
                             { name: 'Cardiology',
-                                topics: ['Site A: HF Management', 'Site A: ECG Interpretation', 'Site A: Cardiac Rehab'] },
+                            topics: ['Site A: HF Management', 'Site A: ECG Interpretation', 'Site A: Cardiac Rehab'] },
                             { name: 'Pulmonology',
-                                topics: ['Site A: COPD Care', 'Site A: Asthma Protocol', 'Site A: Pneumonia Treatment'] },
+                            topics: ['Site A: COPD Care', 'Site A: Asthma Protocol', 'Site A: Pneumonia Treatment'] },
                             { name: 'Nephrology',
-                                topics: ['Site A: AKI Protocol', 'Site A: CKD Management', 'Site A: Dialysis Access'] }, 
-                            { name: 'IMED Past Papers',
-                                topics: ['2026 Term 1 IMED', '2025 Term 1 IMED', '2024 Term 1 IMED'] }    
+                            topics: ['Site A: AKI Protocol', 'Site A: CKD Management', 'Site A: Dialysis Access'] }
                         ]
                     },
                     'surgery4': {
@@ -1820,15 +1798,11 @@
                                 ] },
                             { name: 'CNS', topics: ['Neurological  Examination'] },
                             { name: 'Respiratory System',
-                                topics: ['Approach to Thoracic Chest Trauma'] },
+                            topics: ['Approach to Thoracic Chest Trauma'] },
                             { name: 'Integumentary System', topics: ['Burns', 'Diabetic Foot'] },
                             { name: 'Reproductive & Endocrine & Urinary Sytsem',
                                 topics: ['Breast Cancer', 'Thyroid Cancers', 'Testicular Swelling', 'Prostate Cancer',
                                     'Benign Breast Changes', 'BPH', 'UTI & Urethritis'
-                                ] },
-                            { name: 'Surgery Past Papers',
-                                topics: ['2026 Term 2 Surgery', '2025 Test Surgery', '2024 Test Surgery', '2024 Test 2 Surgery',
-                                    '2023 Test 1 Surgery', '2023 Test 2 & 3 Surgery', '2023 Term 4 Surgery', '2023 Test Surgery', '2022 Term 4 Surgery', '2021 Sept Test Surgery'
                                 ] }
                         ]
                     },
@@ -1838,11 +1812,11 @@
                         desc: 'Clinical rotation in Pediatrics - Site A',
                         terms: [
                             { name: 'Neonatology',
-                                topics: ['Site A: NICU Protocols', 'Site A: Prematurity Care', 'Site A: Respiratory Support'] },
+                            topics: ['Site A: NICU Protocols', 'Site A: Prematurity Care', 'Site A: Respiratory Support'] },
                             { name: 'Infectious Diseases',
-                                topics: ['Site A: Meningitis Protocol', 'Site A: Pneumonia Care', 'Site A: Diarrheal Diseases'] },
+                            topics: ['Site A: Meningitis Protocol', 'Site A: Pneumonia Care', 'Site A: Diarrheal Diseases'] },
                             { name: 'Growth & Development',
-                                topics: ['Site A: Milestones', 'Site A: Nutrition Program', 'Site A: Vaccination Schedule'] }
+                            topics: ['Site A: Milestones', 'Site A: Nutrition Program', 'Site A: Vaccination Schedule'] }
                         ]
                     },
                     'obgyn4': {
@@ -1851,11 +1825,11 @@
                         desc: 'Clinical rotation in OB/GYN - Site A',
                         terms: [
                             { name: 'Obstetrics',
-                                topics: ['Site A: Prenatal Care', 'Site A: Labor Management', 'Site A: Postpartum Care'] },
+                            topics: ['Site A: Prenatal Care', 'Site A: Labor Management', 'Site A: Postpartum Care'] },
                             { name: 'Gynecology',
-                                topics: ['Site A: Menstrual Disorders', 'Site A: Fibroid Management', 'Site A: Endometriosis Care'] },
+                            topics: ['Site A: Menstrual Disorders', 'Site A: Fibroid Management', 'Site A: Endometriosis Care'] },
                             { name: 'Reproductive Health',
-                                topics: ['Site A: Contraception', 'Site A: Infertility Treatment', 'Site A: Menopause Care'] }
+                            topics: ['Site A: Contraception', 'Site A: Infertility Treatment', 'Site A: Menopause Care'] }
                         ]
                     }
                 },
@@ -1866,11 +1840,11 @@
                         desc: 'Advanced Internal Medicine - Site A',
                         terms: [
                             { name: 'Critical Care',
-                                topics: ['Site A: Sepsis Protocol', 'Site A: ARDS Management', 'Site A: Multiorgan Failure'] },
+                            topics: ['Site A: Sepsis Protocol', 'Site A: ARDS Management', 'Site A: Multiorgan Failure'] },
                             { name: 'Oncology',
-                                topics: ['Site A: Chemotherapy Protocol', 'Site A: Palliative Care', 'Site A: Tumor Markers'] },
+                            topics: ['Site A: Chemotherapy Protocol', 'Site A: Palliative Care', 'Site A: Tumor Markers'] },
                             { name: 'Rheumatology',
-                                topics: ['Site A: Lupus Care', 'Site A: Rheumatoid Arthritis', 'Site A: Vasculitis'] }
+                            topics: ['Site A: Lupus Care', 'Site A: Rheumatoid Arthritis', 'Site A: Vasculitis'] }
                         ]
                     },
                     'surgery6': {
@@ -1879,11 +1853,11 @@
                         desc: 'Advanced Surgery - Site A',
                         terms: [
                             { name: 'Oncologic Surgery',
-                                topics: ['Site A: Breast Cancer Surgery', 'Site A: Colorectal Surgery', 'Site A: Gastric Surgery'] },
+                            topics: ['Site A: Breast Cancer Surgery', 'Site A: Colorectal Surgery', 'Site A: Gastric Surgery'] },
                             { name: 'Transplant Surgery',
-                                topics: ['Site A: Kidney Transplant', 'Site A: Liver Transplant', 'Site A: Immunosuppression'] },
+                            topics: ['Site A: Kidney Transplant', 'Site A: Liver Transplant', 'Site A: Immunosuppression'] },
                             { name: 'Minimally Invasive',
-                                topics: ['Site A: Laparoscopy', 'Site A: Robotic Surgery', 'Site A: Endoscopy'] }
+                            topics: ['Site A: Laparoscopy', 'Site A: Robotic Surgery', 'Site A: Endoscopy'] }
                         ]
                     },
                     'peads6': {
@@ -1892,11 +1866,11 @@
                         desc: 'Advanced Pediatrics - Site A',
                         terms: [
                             { name: 'Pediatric ICU',
-                                topics: ['Site A: Ventilation Protocol', 'Site A: Shock Management', 'Site A: Trauma Care'] },
+                            topics: ['Site A: Ventilation Protocol', 'Site A: Shock Management', 'Site A: Trauma Care'] },
                             { name: 'Pediatric Cardiology',
-                                topics: ['Site A: CHD Management', 'Site A: Rheumatic Fever', 'Site A: Kawasaki Disease'] },
+                            topics: ['Site A: CHD Management', 'Site A: Rheumatic Fever', 'Site A: Kawasaki Disease'] },
                             { name: 'Pediatric Neurology',
-                                topics: ['Site A: Seizure Management', 'Site A: Cerebral Palsy', 'Site A: Neurodevelopmental'] }
+                            topics: ['Site A: Seizure Management', 'Site A: Cerebral Palsy', 'Site A: Neurodevelopmental'] }
                         ]
                     },
                     'obgyn6': {
@@ -1905,11 +1879,11 @@
                         desc: 'Advanced OB/GYN - Site A',
                         terms: [
                             { name: 'High-Risk Obstetrics',
-                                topics: ['Site A: Preeclampsia', 'Site A: Gestational Diabetes', 'Site A: Multiple Pregnancy'] },
+                            topics: ['Site A: Preeclampsia', 'Site A: Gestational Diabetes', 'Site A: Multiple Pregnancy'] },
                             { name: 'Gynecologic Oncology',
-                                topics: ['Site A: Cervical Cancer', 'Site A: Ovarian Cancer', 'Site A: Endometrial Cancer'] },
+                            topics: ['Site A: Cervical Cancer', 'Site A: Ovarian Cancer', 'Site A: Endometrial Cancer'] },
                             { name: 'Urogynecology',
-                                topics: ['Site A: Pelvic Organ Prolapse', 'Site A: Urinary Incontinence', 'Site A: Fistula'] }
+                            topics: ['Site A: Pelvic Organ Prolapse', 'Site A: Urinary Incontinence', 'Site A: Fistula'] }
                         ]
                     }
                 }
@@ -1922,11 +1896,11 @@
                         desc: 'Clinical rotation in Internal Medicine - Site B',
                         terms: [
                             { name: 'Cardiology',
-                                topics: ['Site B: HF Guidelines', 'Site B: EP Studies', 'Site B: Device Therapy'] },
+                            topics: ['Site B: HF Guidelines', 'Site B: EP Studies', 'Site B: Device Therapy'] },
                             { name: 'Pulmonology',
-                                topics: ['Site B: COPD Guidelines', 'Site B: Asthma Management', 'Site B: Pneumonia Protocol'] },
+                            topics: ['Site B: COPD Guidelines', 'Site B: Asthma Management', 'Site B: Pneumonia Protocol'] },
                             { name: 'Nephrology',
-                                topics: ['Site B: AKI Guidelines', 'Site B: CKD Care', 'Site B: Renal Biopsy'] }
+                            topics: ['Site B: AKI Guidelines', 'Site B: CKD Care', 'Site B: Renal Biopsy'] }
                         ]
                     },
                     'surgery4': {
@@ -1935,11 +1909,11 @@
                         desc: 'Clinical rotation in Surgery - Site B',
                         terms: [
                             { name: 'GI Surgery',
-                                topics: ['Site B: Open Appendectomy', 'Site B: Complicated Cholecystitis', 'Site B: Bowel Obstruction'] },
+                            topics: ['Site B: Open Appendectomy', 'Site B: Complicated Cholecystitis', 'Site B: Bowel Obstruction'] },
                             { name: 'Vascular Surgery',
-                                topics: ['Site B: Endovascular Repair', 'Site B: PVD Surgery', 'Site B: Vein Stripping'] },
+                            topics: ['Site B: Endovascular Repair', 'Site B: PVD Surgery', 'Site B: Vein Stripping'] },
                             { name: 'Trauma Surgery',
-                                topics: ['Site B: Trauma Protocol', 'Site B: Penetrating Injury', 'Site B: Burn Care'] }
+                            topics: ['Site B: Trauma Protocol', 'Site B: Penetrating Injury', 'Site B: Burn Care'] }
                         ]
                     },
                     'peads4': {
@@ -1948,11 +1922,11 @@
                         desc: 'Clinical rotation in Pediatrics - Site B',
                         terms: [
                             { name: 'Neonatology',
-                                topics: ['Site B: Neonatal Care', 'Site B: Prematurity Support', 'Site B: Respiratory Therapy'] },
+                            topics: ['Site B: Neonatal Care', 'Site B: Prematurity Support', 'Site B: Respiratory Therapy'] },
                             { name: 'Infectious Diseases',
-                                topics: ['Site B: Pediatric Infections', 'Site B: Pneumonia Care', 'Site B: Diarrhea Management'] },
+                            topics: ['Site B: Pediatric Infections', 'Site B: Pneumonia Care', 'Site B: Diarrhea Management'] },
                             { name: 'Growth & Development',
-                                topics: ['Site B: Developmental Assessment', 'Site B: Nutrition Guidance', 'Site B: Immunization'] }
+                            topics: ['Site B: Developmental Assessment', 'Site B: Nutrition Guidance', 'Site B: Immunization'] }
                         ]
                     },
                     'obgyn4': {
@@ -1961,11 +1935,11 @@
                         desc: 'Clinical rotation in OB/GYN - Site B',
                         terms: [
                             { name: 'Obstetrics',
-                                topics: ['Site B: Antenatal Care', 'Site B: Labor Management', 'Site B: Postpartum Care'] },
+                            topics: ['Site B: Antenatal Care', 'Site B: Labor Management', 'Site B: Postpartum Care'] },
                             { name: 'Gynecology',
-                                topics: ['Site B: Menstrual Disorders', 'Site B: Fibroid Care', 'Site B: Endometriosis'] },
+                            topics: ['Site B: Menstrual Disorders', 'Site B: Fibroid Care', 'Site B: Endometriosis'] },
                             { name: 'Reproductive Health',
-                                topics: ['Site B: Contraception', 'Site B: Fertility Treatment', 'Site B: Menopause'] }
+                            topics: ['Site B: Contraception', 'Site B: Fertility Treatment', 'Site B: Menopause'] }
                         ]
                     }
                 },
@@ -1976,11 +1950,11 @@
                         desc: 'Advanced Internal Medicine - Site B',
                         terms: [
                             { name: 'Critical Care',
-                                topics: ['Site B: Sepsis Management', 'Site B: ARDS Protocol', 'Site B: Organ Failure'] },
+                            topics: ['Site B: Sepsis Management', 'Site B: ARDS Protocol', 'Site B: Organ Failure'] },
                             { name: 'Oncology',
-                                topics: ['Site B: Cancer Treatment', 'Site B: Palliative Care', 'Site B: Tumor Markers'] },
+                            topics: ['Site B: Cancer Treatment', 'Site B: Palliative Care', 'Site B: Tumor Markers'] },
                             { name: 'Rheumatology',
-                                topics: ['Site B: Lupus Management', 'Site B: Rheumatoid Arthritis', 'Site B: Vasculitis'] }
+                            topics: ['Site B: Lupus Management', 'Site B: Rheumatoid Arthritis', 'Site B: Vasculitis'] }
                         ]
                     },
                     'surgery6': {
@@ -1989,11 +1963,11 @@
                         desc: 'Advanced Surgery - Site B',
                         terms: [
                             { name: 'Oncologic Surgery',
-                                topics: ['Site B: Breast Surgery', 'Site B: Colorectal Surgery', 'Site B: Gastric Surgery'] },
+                            topics: ['Site B: Breast Surgery', 'Site B: Colorectal Surgery', 'Site B: Gastric Surgery'] },
                             { name: 'Transplant Surgery',
-                                topics: ['Site B: Kidney Transplant', 'Site B: Liver Transplant', 'Site B: Immunosuppression'] },
+                            topics: ['Site B: Kidney Transplant', 'Site B: Liver Transplant', 'Site B: Immunosuppression'] },
                             { name: 'Minimally Invasive',
-                                topics: ['Site B: Laparoscopic Surgery', 'Site B: Robotic Surgery', 'Site B: Endoscopy'] }
+                            topics: ['Site B: Laparoscopic Surgery', 'Site B: Robotic Surgery', 'Site B: Endoscopy'] }
                         ]
                     },
                     'peads6': {
@@ -2002,11 +1976,11 @@
                         desc: 'Advanced Pediatrics - Site B',
                         terms: [
                             { name: 'Pediatric ICU',
-                                topics: ['Site B: PICU Protocols', 'Site B: Shock Management', 'Site B: Trauma Care'] },
+                            topics: ['Site B: PICU Protocols', 'Site B: Shock Management', 'Site B: Trauma Care'] },
                             { name: 'Pediatric Cardiology',
-                                topics: ['Site B: CHD Management', 'Site B: Rheumatic Heart', 'Site B: Kawasaki'] },
+                            topics: ['Site B: CHD Management', 'Site B: Rheumatic Heart', 'Site B: Kawasaki'] },
                             { name: 'Pediatric Neurology',
-                                topics: ['Site B: Seizure Protocol', 'Site B: Cerebral Palsy', 'Site B: Neurodevelopment'] }
+                            topics: ['Site B: Seizure Protocol', 'Site B: Cerebral Palsy', 'Site B: Neurodevelopment'] }
                         ]
                     },
                     'obgyn6': {
@@ -2015,11 +1989,11 @@
                         desc: 'Advanced OB/GYN - Site B',
                         terms: [
                             { name: 'High-Risk Obstetrics',
-                                topics: ['Site B: Preeclampsia', 'Site B: Diabetes in Pregnancy', 'Site B: Multiple Pregnancy'] },
+                            topics: ['Site B: Preeclampsia', 'Site B: Diabetes in Pregnancy', 'Site B: Multiple Pregnancy'] },
                             { name: 'Gynecologic Oncology',
-                                topics: ['Site B: Cervical Cancer', 'Site B: Ovarian Cancer', 'Site B: Endometrial Cancer'] },
+                            topics: ['Site B: Cervical Cancer', 'Site B: Ovarian Cancer', 'Site B: Endometrial Cancer'] },
                             { name: 'Urogynecology',
-                                topics: ['Site B: Prolapse', 'Site B: Incontinence', 'Site B: Fistula'] }
+                            topics: ['Site B: Prolapse', 'Site B: Incontinence', 'Site B: Fistula'] }
                         ]
                     }
                 }
@@ -2033,7 +2007,7 @@
                         terms: [
                             { name: 'Cardiology', topics: ['Site C: Community HF', 'Site C: Telemedicine', 'Site C: Home Care'] },
                             { name: 'Pulmonology',
-                                topics: ['Site C: COPD Care', 'Site C: Asthma Management', 'Site C: Pneumonia Care'] },
+                            topics: ['Site C: COPD Care', 'Site C: Asthma Management', 'Site C: Pneumonia Care'] },
                             { name: 'Nephrology', topics: ['Site C: AKI Care', 'Site C: CKD Support', 'Site C: Dialysis'] }
                         ]
                     },
@@ -2043,10 +2017,10 @@
                         desc: 'Clinical rotation in Surgery - Site C',
                         terms: [
                             { name: 'GI Surgery',
-                                topics: ['Site C: Day Surgery', 'Site C: Cholecystitis Care', 'Site C: Bowel Care'] },
+                            topics: ['Site C: Day Surgery', 'Site C: Cholecystitis Care', 'Site C: Bowel Care'] },
                             { name: 'Vascular Surgery', topics: ['Site C: PVD Care', 'Site C: Vein Care', 'Site C: Wound Care'] },
                             { name: 'Trauma Surgery',
-                                topics: ['Site C: Trauma Protocol', 'Site C: Injury Care', 'Site C: Burn Care'] }
+                            topics: ['Site C: Trauma Protocol', 'Site C: Injury Care', 'Site C: Burn Care'] }
                         ]
                     },
                     'peads4': {
@@ -2055,11 +2029,11 @@
                         desc: 'Clinical rotation in Pediatrics - Site C',
                         terms: [
                             { name: 'Neonatology',
-                                topics: ['Site C: Community NICU', 'Site C: Prematurity Care', 'Site C: Respiratory Care'] },
+                            topics: ['Site C: Community NICU', 'Site C: Prematurity Care', 'Site C: Respiratory Care'] },
                             { name: 'Infectious Diseases',
-                                topics: ['Site C: Pediatric Infections', 'Site C: Pneumonia Care', 'Site C: Diarrhea Care'] },
+                            topics: ['Site C: Pediatric Infections', 'Site C: Pneumonia Care', 'Site C: Diarrhea Care'] },
                             { name: 'Growth & Development',
-                                topics: ['Site C: Development', 'Site C: Nutrition', 'Site C: Vaccination'] }
+                            topics: ['Site C: Development', 'Site C: Nutrition', 'Site C: Vaccination'] }
                         ]
                     },
                     'obgyn4': {
@@ -2068,10 +2042,10 @@
                         desc: 'Clinical rotation in OB/GYN - Site C',
                         terms: [
                             { name: 'Obstetrics',
-                                topics: ['Site C: Community Prenatal', 'Site C: Home Visits', 'Site C: Postpartum'] },
+                            topics: ['Site C: Community Prenatal', 'Site C: Home Visits', 'Site C: Postpartum'] },
                             { name: 'Gynecology', topics: ['Site C: Women\'s Health', 'Site C: Fibroid Care', 'Site C: Endometriosis'] },
                             { name: 'Reproductive Health',
-                                topics: ['Site C: Contraception', 'Site C: Fertility', 'Site C: Menopause'] }
+                            topics: ['Site C: Contraception', 'Site C: Fertility', 'Site C: Menopause'] }
                         ]
                     }
                 },
@@ -2082,7 +2056,7 @@
                         desc: 'Advanced Internal Medicine - Site C',
                         terms: [
                             { name: 'Critical Care',
-                                topics: ['Site C: Community Critical Care', 'Site C: Sepsis Care', 'Site C: Organ Support'] },
+                            topics: ['Site C: Community Critical Care', 'Site C: Sepsis Care', 'Site C: Organ Support'] },
                             { name: 'Oncology', topics: ['Site C: Cancer Care', 'Site C: Palliative Care', 'Site C: Markers'] },
                             { name: 'Rheumatology', topics: ['Site C: Lupus Care', 'Site C: Arthritis Care', 'Site C: Vasculitis'] }
                         ]
@@ -2093,11 +2067,11 @@
                         desc: 'Advanced Surgery - Site C',
                         terms: [
                             { name: 'Oncologic Surgery',
-                                topics: ['Site C: Breast Surgery', 'Site C: Colorectal Care', 'Site C: Gastric Care'] },
+                            topics: ['Site C: Breast Surgery', 'Site C: Colorectal Care', 'Site C: Gastric Care'] },
                             { name: 'Transplant Surgery',
-                                topics: ['Site C: Transplant Care', 'Site C: Immunosuppression', 'Site C: Follow-up'] },
+                            topics: ['Site C: Transplant Care', 'Site C: Immunosuppression', 'Site C: Follow-up'] },
                             { name: 'Minimally Invasive',
-                                topics: ['Site C: Laparoscopy', 'Site C: Endoscopy', 'Site C: Day Procedures'] }
+                            topics: ['Site C: Laparoscopy', 'Site C: Endoscopy', 'Site C: Day Procedures'] }
                         ]
                     },
                     'peads6': {
@@ -2107,9 +2081,9 @@
                         terms: [
                             { name: 'Pediatric ICU', topics: ['Site C: PICU Care', 'Site C: Shock Care', 'Site C: Trauma'] },
                             { name: 'Pediatric Cardiology',
-                                topics: ['Site C: CHD Care', 'Site C: Rheumatic Care', 'Site C: Kawasaki'] },
+                            topics: ['Site C: CHD Care', 'Site C: Rheumatic Care', 'Site C: Kawasaki'] },
                             { name: 'Pediatric Neurology',
-                                topics: ['Site C: Seizure Care', 'Site C: Cerebral Palsy', 'Site C: Development'] }
+                            topics: ['Site C: Seizure Care', 'Site C: Cerebral Palsy', 'Site C: Development'] }
                         ]
                     },
                     'obgyn6': {
@@ -2118,11 +2092,11 @@
                         desc: 'Advanced OB/GYN - Site C',
                         terms: [
                             { name: 'High-Risk Obstetrics',
-                                topics: ['Site C: Preeclampsia Care', 'Site C: Diabetes Care', 'Site C: Multiple Pregnancy'] },
+                            topics: ['Site C: Preeclampsia Care', 'Site C: Diabetes Care', 'Site C: Multiple Pregnancy'] },
                             { name: 'Gynecologic Oncology',
-                                topics: ['Site C: Cervical Care', 'Site C: Ovarian Care', 'Site C: Endometrial'] },
+                            topics: ['Site C: Cervical Care', 'Site C: Ovarian Care', 'Site C: Endometrial'] },
                             { name: 'Urogynecology',
-                                topics: ['Site C: Prolapse Care', 'Site C: Incontinence Care', 'Site C: Fistula'] }
+                            topics: ['Site C: Prolapse Care', 'Site C: Incontinence Care', 'Site C: Fistula'] }
                         ]
                     }
                 }
@@ -2132,9 +2106,7 @@
         // ---- HTML ANSWERED VERSION LINKS for past papers & quizzes ----
         // Map topic names to their HTML answered version URLs
         const htmlAnsweredLinks = {
-            // ============================================================
-            // BASIC SCIENCE PAST PAPERS (already working)
-            // ============================================================
+            // Past Papers - BS4
             '2020 Test': 'https://drive.google.com/file/d/1KaKOHuD-BhXyCNnyo_ezk1CdE3EAKkD9/view?usp=drive_link',
             '2021 Sessional': 'https://drive.google.com/file/d/13IO0FNc9OgPFT7RTctGNSrR86BuOcIfC/view?usp=drive_link',
             '2022 Sessional Dec': 'https://drive.google.com/file/d/1gJEiTGMCL3xSsIBNuTla0OpLYOZhqLVW/view?usp=drive_link',
@@ -2151,31 +2123,8 @@
             'Compiled Past Papers Part 2': 'https://drive.google.com/file/d/1-x7x9Qz1UFbsWYVVSvuNBLXJEdHkybm_/view?usp=drive_link',
             'Heamatology Practice Questions': 'https://drive.google.com/file/d/1ykgKjGbwoLwkBTk1nAcbXqG0x5889V7o/view?usp=drive_link',
             'Parasitology Practice Questions': 'https://drive.google.com/file/d/1aboifmNexlzakZ1WU94EBRiI9IJiKLaO/view?usp=drive_link',
+            // Public Health Past Papers
             'Public Health Past Papers': 'https://drive.google.com/drive/folders/1yr5nQIUcoqmgtezewhJWTB21awS91X20?usp=drive_link',
-
-            // ============================================================
-            // SURGERY PAST PAPERS — NOW INDIVIDUALLY LINKED TO HTML ANSWERED VERSIONS
-            // ============================================================
-            // Replace the placeholder URLs below with your actual HTML answered version links.
-            // Each past paper now opens with both PDF (document link) and HTML (answered) options.
-            '2026 Term 2 Surgery': 'clinicals/Surgery/surgery-2026-T1.html',
-            '2025 Test Surgery': 'clinicals/Surgery/surgery-2025-T1.html',
-            '2024 Test Surgery': 'https://drive.google.com/file/d/1YOUR_HTML_ANSWERED_2024_TEST_SURGERY/view?usp=drive_link',
-            '2024 Test 2': 'https://drive.google.com/file/d/1YOUR_HTML_ANSWERED_2024_TEST2_SURGERY/view?usp=drive_link',
-            '2023 Test 1 Surgery': 'https://drive.google.com/file/d/1YOUR_HTML_ANSWERED_2023_TEST1_SURGERY/view?usp=drive_link',
-            '2023 Test 2 & 3 Surgery': 'https://drive.google.com/file/d/1YOUR_HTML_ANSWERED_2023_TEST2_3_SURGERY/view?usp=drive_link',
-            '2023 Term 4 Surgery': 'https://drive.google.com/file/d/1YOUR_HTML_ANSWERED_2023_TERM4_SURGERY/view?usp=drive_link',
-            '2023 Test Surgery': 'https://drive.google.com/file/d/1YOUR_HTML_ANSWERED_2023_TEST_SURGERY/view?usp=drive_link',
-            '2022 Term 4 Surgery': 'https://drive.google.com/file/d/1YOUR_HTML_ANSWERED_2022_TERM4_SURGERY/view?usp=drive_link',
-            '2021 Sept Test Surgery': 'https://drive.google.com/file/d/1YOUR_HTML_ANSWERED_2021_SEPT_SURGERY/view?usp=drive_link',
-
-
-
-            '2026 Term 1 IMED': 'https://drive.google.com/file/d/1YOUR_HTML_ANSWERED_2021_SEPT_SURGERY/view?usp=drive_link',
-
-
-
-            
         };
 
         // Default topic links for document/video/quiz
@@ -2188,7 +2137,7 @@
         function getTopicLinks(topic, courseId, year, site) {
             const topicLinks = {
                 // Preclinical topics
-                // 4th Year Basic Science
+                // 4th Year Basic SCienc
                 // Microbiology
                 'Bacterial Classification': {
                     document: 'https://drive.google.com/file/d/1TcoLu2ddbkziBvLcdk1hatE39djRzSol/view?usp=drive_link',
@@ -2235,7 +2184,7 @@
                 },
                 // Radiology
                 'Introduction to the Course': {
-                    document: 'h ttps://drive.google.com/file/d/1xDllbzV7m5IrbFSDg6-4iEpRIbfRnTYZ/view?usp=drive_link',
+                    document: 'https://drive.google.com/file/d/1xDllbzV7m5IrbFSDg6-4iEpRIbfRnTYZ/view?usp=drive_link',
                     video: '',
                     quiz: ''
                 },
@@ -2338,30 +2287,8 @@
                 'Public Health Past Papers': { document: 'https://drive.google.com/drive/folders/1yr5nQIUcoqmgtezewhJWTB21awS91X20?usp=drive_link',
                     video: '', quiz: '' },
 
-
-                '2025 Test Surgery': { document: 'https://drive.google.com/file/d/1NvIi2e8yLT_cjcxCGwV0kOj6RqkxQEAS/view?usp=drive_link',
-                    video: '', quiz: '' },
-                '2024 Test Surgery': { document: 'https://drive.google.com/file/d/1SRsTajXDmz6DQ4-DdDrLK51dWuEL5N-Z/view?usp=drive_link',
-                    video: '', quiz: '' },
-                '2024 Test 2 Surgery': { document: 'https://drive.google.com/file/d/1wlbDbixqNp-Re6D-JhKf0Yh5nCDGZt1N/view?usp=drive_link',
-                    video: '', quiz: '' },
-                '2023 Test 1 Surgery': { document: 'https://drive.google.com/file/d/1_irWaPPbK5n1WO0f1GQsS73EOSVsMVJa/view?usp=drive_link',
-                    video: '', quiz: '' },
-                '2023 Test 2 & 3 Surgery': { document: 'https://drive.google.com/file/d/1duw6k0slM-SXeTBN00ei9-24_Kh15Ihl/view?usp=drive_link',
-                    video: '', quiz: '' },
-                '2023 Term 4 Surgery': { document: 'https://drive.google.com/file/d/1xsgBa0xGnSBaSwrrhilMkXyOQ8L_E2eY/view?usp=drive_link',
-                    video: '', quiz: '' },
-                '2023 Test Surgery': { document: 'https://drive.google.com/file/d/1FWdiBk59Gr8YrBmOd3LVyebXTF-SEmj4/view?usp=drive_link',
-                    video: '', quiz: '' },
-                '2022 Term 4 Surgery': { document: 'https://drive.google.com/file/d/1cQxpsZIyMqLixPvOPxebkol5q2VhC9kK/view?usp=drive_link',
-                    video: '', quiz: '' },
-                '2021 Sept Test Surgery': { document: 'https://drive.google.com/file/d/1Xv0PVYRLdLjKdY5ouyNk0TH2QHb9dQ7s/view?usp=drive_link',
-                    video: '', quiz: '' },
-
-
-                
-
-                // 4th year surgery — GIT
+                // 4th year surgery
+                // GIT
                 'PUD, GERD & Gastritis': {
                     document: 'https://drive.google.com/file/d/1l74YuLylEr5HxAQ0tTZ7zZVnqsfyB_w0/view?usp=drive_link',
                     video: '',
@@ -2534,64 +2461,40 @@
                     quiz: ''
                 },
 
-                // 2nd year therapeutics
-                'Common Terminologies Used in Pharmacology': { document: 'https://drive.google.com/file/d/1coAV92I6Srg24uctUbTtoA8IF68yuIrV/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Introduction to Pharmacokinetics and Pharmacodynamics': { document: 'https://drive.google.com/file/d/1j81eN7oRZ9UpYehPnbvWDp1k7xuMVIY7/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Membrane Transport and Absoprtion': { document: 'https://drive.google.com/file/d/1T2c6mwIO3YaAJ0t7_2-LQnc-qb51uzrr/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Biovailability First-Pass Elimination': { document: 'https://drive.google.com/file/d/1LJtvHJEmaRPnXSzfxIX4OpLSeKIkSI_6/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Drug Distribution': { document: 'https://drive.google.com/file/d/1R6HR_RMh7UAHja6KsrWXvlzGQx1t9DRv/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Drug Excretion': { document: 'https://drive.google.com/file/d/1RXgaCRanwaGzAZ1NJ8bR6UHkS8y7oxKd/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Drug Metabolism': { document: 'https://drive.google.com/file/d/1-BgWTgmOJL5HCM8z5fWVT8f9_K_sc2Dx/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Routes of Administration': { document: 'https://drive.google.com/file/d/1KTA96tE61gPk-eJXxio2Yw3azp88fekE/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Therapeutic Drug Monitoring': { document: 'https://drive.google.com/file/d/1wyEUjy9gm68FAywTy_50K3R3olXoJy3p/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Mechanism of Drug Action': { document: 'https://drive.google.com/file/d/1qoR9OyIiw2zxjWRcIkQczkxH1wqqKMuP/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Autonomic Pharmacology': { document: 'https://drive.google.com/file/d/1PrIoGWDu8l_dMhKhsCt6rdM3mzQEkHxO/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Neuro-Hormonal Transmision in the ANS': { document: 'https://drive.google.com/file/d/131P94kXaUA_QpJwOmCk6JA0jjN1uh9rS/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'ANS Regulation': { document: 'https://drive.google.com/file/d/1iXowQRK3QSv7c7SeA40Wf6e4peeHJ-ME/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Muscarinic Agonists': { document: 'https://drive.google.com/file/d/1ewl6UW1dNvTD3inrwgGaK4P0umcdiuf5/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Muscarinic Antagonists': { document: 'https://drive.google.com/file/d/1nKgvELH5zzl7APQWb7SVu2THchl1HFDs/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Sympathomimetic Drugs (Adrenergic Agonists)': { document: 'https://drive.google.com/file/d/1dIDimZpbB956viIIi1R3ImdQOn9gaPKg/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Sympatholitic Drugs (Adrenergic Blockers)': { document: 'https://drive.google.com/file/d/17rJQ-4xDNHBaS9M1mPzZ1NFfJeKdx4pH/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Management of Heart Failure': { document: 'https://drive.google.com/file/d/1D0nAvId8twAg99ktNUfpls_jCV2RqpnX/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Anti-arrhythmis Drugs': { document: 'https://drive.google.com/file/d/1xnbYzfiwWb-aZyJzLZbAAx1OVM2d0RUr/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Drugs used in Angin Treatment': { document: 'https://drive.google.com/file/d/1dS4I66SBv_Weq-aStvjBdnoc7iSdybXs/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Antihypertensive Drugs': { document: 'https://drive.google.com/file/d/1pEI26LaeXDCICcfvuMZ5NctiuutXqwhH/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Drugs used in the treatment of Hyperlipidemia': { document: 'https://drive.google.com/file/d/1P_-rWcJ84JSMgSK3br0TGgvheHUzHo9W/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Anti-asthmatic Drugs': { document: 'https://drive.google.com/file/d/1RYCu-jf44i5cBzaV0ub7yYxBxeDXM3dw/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Drugs used in the Treatment of TB': { document: 'https://drive.google.com/file/d/1tpXCu-35e17UkwJAdlX-zckvZEcvbAAB/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Drugs used to Treat Common Cold': { document: 'https://drive.google.com/file/d/1Mhs0UJQhg6h6Vn4X3M0RxnW8zgWZfDe9/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Drugs acting on Cough': { document: 'https://drive.google.com/file/d/1OZExkLiV6hJwnkH8H4Pa58KM6Knn6Ml3/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Use of Steroids in Respiratory Disorders': { document: 'https://drive.google.com/file/d/1mlS5xwk82P11CBgvLoAn5RcYBWm4SPIj/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Anti-fungal': { document: '', video: '', quiz: '' },
 
-                // 3rd year Biochemistry
+                // 2nd year therpeutoics
+                'Common Terminologies Used in Pharmacology': { document: 'https://drive.google.com/file/d/1coAV92I6Srg24uctUbTtoA8IF68yuIrV/view?usp=drive_link', video: '', quiz: '' },
+            'Introduction to Pharmacokinetics and Pharmacodynamics': { document: 'https://drive.google.com/file/d/1j81eN7oRZ9UpYehPnbvWDp1k7xuMVIY7/view?usp=drive_link', video: '', quiz: '' },
+            'Membrane Transport and Absoprtion': { document: 'https://drive.google.com/file/d/1T2c6mwIO3YaAJ0t7_2-LQnc-qb51uzrr/view?usp=drive_link', video: '', quiz: '' },
+            'Biovailability First-Pass Elimination': { document: 'https://drive.google.com/file/d/1LJtvHJEmaRPnXSzfxIX4OpLSeKIkSI_6/view?usp=drive_link', video: '', quiz: '' },
+            'Drug Distribution': { document: 'https://drive.google.com/file/d/1R6HR_RMh7UAHja6KsrWXvlzGQx1t9DRv/view?usp=drive_link', video: '', quiz: '' },
+            'Drug Excretion': { document: 'https://drive.google.com/file/d/1RXgaCRanwaGzAZ1NJ8bR6UHkS8y7oxKd/view?usp=drive_link', video: '', quiz: '' },
+            'Drug Metabolism': { document: 'https://drive.google.com/file/d/1-BgWTgmOJL5HCM8z5fWVT8f9_K_sc2Dx/view?usp=drive_link', video: '', quiz: '' },
+            'Routes of Administration': { document: 'https://drive.google.com/file/d/1KTA96tE61gPk-eJXxio2Yw3azp88fekE/view?usp=drive_link', video: '', quiz: '' },
+            'Therapeutic Drug Monitoring': { document: 'https://drive.google.com/file/d/1wyEUjy9gm68FAywTy_50K3R3olXoJy3p/view?usp=drive_link', video: '', quiz: '' },
+            'Mechanism of Drug Action': { document: 'https://drive.google.com/file/d/1qoR9OyIiw2zxjWRcIkQczkxH1wqqKMuP/view?usp=drive_link', video: '', quiz: '' },
+            'Autonomic Pharmacology': { document: 'https://drive.google.com/file/d/1PrIoGWDu8l_dMhKhsCt6rdM3mzQEkHxO/view?usp=drive_link', video: '', quiz: '' },
+            'Neuro-Hormonal Transmision in the ANS': { document: 'https://drive.google.com/file/d/131P94kXaUA_QpJwOmCk6JA0jjN1uh9rS/view?usp=drive_link', video: '', quiz: '' },
+            'ANS Regulation': { document: 'https://drive.google.com/file/d/1iXowQRK3QSv7c7SeA40Wf6e4peeHJ-ME/view?usp=drive_link', video: '', quiz: '' },
+            'Muscarinic Agonists': { document: 'https://drive.google.com/file/d/1ewl6UW1dNvTD3inrwgGaK4P0umcdiuf5/view?usp=drive_link', video: '', quiz: '' },
+            'Muscarinic Antagonists': { document: 'https://drive.google.com/file/d/1nKgvELH5zzl7APQWb7SVu2THchl1HFDs/view?usp=drive_link', video: '', quiz: '' },
+            'Sympathomimetic Drugs (Adrenergic Agonists)': { document: 'https://drive.google.com/file/d/1dIDimZpbB956viIIi1R3ImdQOn9gaPKg/view?usp=drive_link', video: '', quiz: '' },
+            'Sympatholitic Drugs (Adrenergic Blockers)': { document: 'https://drive.google.com/file/d/17rJQ-4xDNHBaS9M1mPzZ1NFfJeKdx4pH/view?usp=drive_link', video: '', quiz: '' },
+
+            'Management of Heart Failure': { document: 'https://drive.google.com/file/d/1D0nAvId8twAg99ktNUfpls_jCV2RqpnX/view?usp=drive_link', video: '', quiz: '' },
+            'Anti-arrhythmis Drugs': { document: 'https://drive.google.com/file/d/1xnbYzfiwWb-aZyJzLZbAAx1OVM2d0RUr/view?usp=drive_link', video: '', quiz: '' },
+            'Drugs used in Angin Treatment': { document: 'https://drive.google.com/file/d/1dS4I66SBv_Weq-aStvjBdnoc7iSdybXs/view?usp=drive_link', video: '', quiz: '' },
+            'Antihypertensive Drugs': { document: 'https://drive.google.com/file/d/1pEI26LaeXDCICcfvuMZ5NctiuutXqwhH/view?usp=drive_link', video: '', quiz: '' },
+            'Drugs used in the treatment of Hyperlipidemia': { document: 'https://drive.google.com/file/d/1P_-rWcJ84JSMgSK3br0TGgvheHUzHo9W/view?usp=drive_link', video: '', quiz: '' },
+
+            'Anti-asthmatic Drugs': { document: 'https://drive.google.com/file/d/1RYCu-jf44i5cBzaV0ub7yYxBxeDXM3dw/view?usp=drive_link', video: '', quiz: '' },
+            'Drugs used in the Treatment of TB': { document: 'https://drive.google.com/file/d/1tpXCu-35e17UkwJAdlX-zckvZEcvbAAB/view?usp=drive_link', video: '', quiz: '' },
+            'Drugs used to Treat Common Cold': { document: 'https://drive.google.com/file/d/1Mhs0UJQhg6h6Vn4X3M0RxnW8zgWZfDe9/view?usp=drive_link', video: '', quiz: '' },
+            'Drugs acting on Cough': { document: 'https://drive.google.com/file/d/1OZExkLiV6hJwnkH8H4Pa58KM6Knn6Ml3/view?usp=drive_link', video: '', quiz: '' },
+            'Use of Steroids in Respiratory Disorders': { document: 'https://drive.google.com/file/d/1mlS5xwk82P11CBgvLoAn5RcYBWm4SPIj/view?usp=drive_link', video: '', quiz: '' },
+            'Anti-fungal': { document: '', video: '', quiz: '' },
+            
+                // 3rd year BIochemistry
                 'Overview of metabolism (metabolic pathways)': {
                     document: 'https://drive.google.com/file/d/1HcloSLdWYWh4GK5DAogMbXwd83WVh57u/view?usp=drive_link'
                 },
@@ -2628,7 +2531,6 @@
                 'Nucleotide Metabolism': {
                     document: 'https://drive.google.com/file/d/1hZFKioQ_BZPG8ZOFBxDDUooNkJ0XV1nR/view?usp=drive_link',
                     video: 'https://drive.google.com/drive/folders/1r3FjK2sQRinCqb1M2i94RGmV76_G8J-H?usp=drive_link',
-                    quiz: 'biochem-3rd-year/nucleotide-quiz.html',
                 },
                 'Central Dogma of a Cell: DNA Replication': {
                     document: 'https://drive.google.com/file/d/1RIKjQp16b3bZLiEHPISX22ezCJZ8ACWR/view?usp=drive_link'
@@ -3114,7 +3016,7 @@
             document.getElementById('heroDesc').textContent =
                 `${userName} (${yearLabel})${siteText}, you have access to your ${yearLabel} courses. Select a course below to begin.`;
             document.getElementById('coursesTitle').textContent =
-                `🎓 ${userName}'s ${yearLabel} Courses${siteText}`;
+            `🎓 ${userName}'s ${yearLabel} Courses${siteText}`;
             document.getElementById('coursesSubtitle').textContent =
                 `${userName}, these are the courses available for your ${yearLabel} curriculum.`;
             document.getElementById('aboutText').innerHTML = `
@@ -3127,9 +3029,9 @@
             document.getElementById('contactSubtitle').textContent =
                 `${userName}, we'd love to hear from you — reach out for support, partnerships, or just to say hello.`;
             document.getElementById('sendBtn').innerHTML =
-                `<i class="fas fa-paper-plane"></i> Send Message, ${userName}`;
+            `<i class="fas fa-paper-plane"></i> Send Message, ${userName}`;
             document.querySelector('.about-image p').textContent =
-                `Empowering healers worldwide, including ${userName}`;
+            `Empowering healers worldwide, including ${userName}`;
             document.querySelector('.stat-item:nth-child(1) .stat-label').textContent =
                 `Learners (including ${userName})`;
             document.querySelector('.stat-item:nth-child(2) .stat-label').textContent =
@@ -3248,7 +3150,7 @@
             } else {
                 alert(
                     `You are signed in as ${currentUser} (${currentUserYear === 2 ? '2nd' : currentUserYear === 3 ? '3rd' : currentUserYear === 4 ? '4th' : '6th'} Year). To switch user, refresh the page.`
-                );
+                    );
             }
         });
 
@@ -3313,11 +3215,11 @@
                     html += `<a href="${htmlAnsweredLinks[topic] || '#'}" target="_blank" class="btn-sm"><i class="fas fa-file-code"></i> HTML Answered</a>`;
                     html += `</div>`;
                     html +=
-                        `<p class="info-text" style="color:#2d7b9e;font-weight:600;"><i class="fas fa-external-link-alt"></i> A popup has opened with both options. Click the buttons above or use the popup.</p>`;
+                    `<p class="info-text" style="color:#2d7b9e;font-weight:600;"><i class="fas fa-external-link-alt"></i> A popup has opened with both options. Click the buttons above or use the popup.</p>`;
                     html += `<div class="link-section">`;
                     html += `<div><strong>PDF:</strong> <a href="${pdfUrl}" target="_blank">${pdfUrl}</a></div>`;
                     html +=
-                        `<div><strong>HTML Answered:</strong> <a href="${htmlAnsweredLinks[topic] || '#'}" target="_blank">${htmlAnsweredLinks[topic] || 'Not available'}</a></div>`;
+                    `<div><strong>HTML Answered:</strong> <a href="${htmlAnsweredLinks[topic] || '#'}" target="_blank">${htmlAnsweredLinks[topic] || 'Not available'}</a></div>`;
                     html += `</div></div>`;
 
                     drillContent.innerHTML = html;
@@ -3335,12 +3237,12 @@
                 html += `</div>`;
                 html += `<div class="link-section">`;
                 html +=
-                    `<div><strong>Document:</strong> <a href="${links.document}" target="_blank">${links.document}</a></div>`;
+                `<div><strong>Document:</strong> <a href="${links.document}" target="_blank">${links.document}</a></div>`;
                 html += `<div><strong>Video:</strong> <a href="${links.video}" target="_blank">${links.video}</a></div>`;
                 html += `<div><strong>Quiz:</strong> <a href="${links.quiz}" target="_blank">${links.quiz}</a></div>`;
                 html += `</div>`;
                 html +=
-                    `<p class="info-text">${currentUser}, click any button above or use the links below to access the resources.</p></div>`;
+                `<p class="info-text">${currentUser}, click any button above or use the links below to access the resources.</p></div>`;
             }
 
             drillContent.innerHTML = html;
@@ -3388,8 +3290,6 @@
         });
 
         console.log('ToToZ — Site-specific content for 4th and 6th year with Past Paper/Quiz popup');
-        console.log('✅ Surgery Past Papers now have individual HTML answered version links!');
-        console.log('📝 Replace the placeholder URLs in htmlAnsweredLinks with your actual HTML answered version links.');
     </script>
 </body>
 </html>

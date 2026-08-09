@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medical Document Viewer | ToToZ Collection</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../nav.css">
+  <style>
+    :root {
+      --primary: #2b7a78;
+      --secondary: #afc4c4;
+      --accent: #3aafa9;
+      --dark: #17252a;
+      --light: #f8f9fa;
+      --muted: #64748b;
+      --card-shadow: 0 10px 30px rgba(18,38,63,0.06);
+      --radius: 12px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
+
+    html, body {
+      background: linear-gradient(180deg, #f5f7fb 0%, #eef6f6 100%);
+      color: #0f1720;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--dark));
+      color: white;
+      padding: 1.1rem 0;
+      box-shadow: 0 6px 18px rgba(11,36,36,0.12);
+    }
+
+    .container {
+      width: 92%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 1.35rem 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo i { font-size: 2.4rem; color: var(--accent); transform: translateY(-2px); }
+    .logo h1 { font-size: 1.45rem; font-weight: 700; color: #fff; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(90deg, var(--accent), #2b7a78);
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 600;
+      border: none;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform .16s ease, box-shadow .16s ease;
+    }
+    .btn:hover { transform: translateY(-4px); box-shadow: 0 14px 34px rgba(43,122,120,0.16); }
+
+    main.container { padding-bottom: 2.5rem; }
+
+    .document-container {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--card-shadow);
+      overflow: hidden;
+      margin-bottom: 1.6rem;
+      border-left: 6px solid rgba(58,175,169,0.12);
+      display: none; /* initially hidden */
+    }
+
+    .document-header {
+      background: linear-gradient(90deg, rgba(43,122,120,0.06), rgba(58,175,169,0.04));
+      color: var(--dark);
+      padding: 1.3rem 1.4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .document-header h2 { font-size: 1.25rem; color: var(--dark); margin: 0; }
+    .document-meta {
+      display: flex;
+      gap: 1.3rem;
+      align-items: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .document-meta i { color: var(--accent); }
+
+    .pdf-viewer-container {
+      height: 72vh;
+      background: linear-gradient(180deg, rgba(10,24,24,0.01), rgba(10,24,24,0.00));
+      padding: 1rem;
+    }
+
+    .pdf-viewer {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 8px 24px rgba(11,36,36,0.06);
+    }
+
+    footer {
+      background-color: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 1.2rem 0;
+      margin-top: 2.2rem;
+      border-top-left-radius: var(--radius);
+      border-top-right-radius: var(--radius);
+    }
+    .download-section {
+            text-align: center;
+            padding: 1.6rem;
+            background: linear-gradient(90deg,var(--secondary), rgba(175,196,196,0.12));
+            border-radius: 12px;
+            margin-top: 1.6rem;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:1rem;
+        }
+
+        .download-section h3 { margin:0; color:var(--dark); font-size:1.05rem; }
+        .download-section .cta { display:flex; gap:10px; align-items:center; justify-content:flex-end; }
+
+        .audio-card {
+            margin-top: 1.8rem;
+            border-radius: 14px;
+            background: linear-gradient(135deg,#ffffff 0%,#f6fbfb 60%);
+            box-shadow: 0 10px 28px rgba(18,38,63,0.06);
+            padding: 16px;
+            display: flex;
+            gap: 18px;
+            align-items: center;
+            flex-direction: column;
+            border: 1px solid rgba(43,122,120,0.06);
+            max-width: 980px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .audio-card .audio-meta { display:flex; gap:14px; align-items:center; width:100%; padding:4px 6px; }
+        .audio-card .audio-icon {
+            background: linear-gradient(180deg,var(--accent), #2b7a78);
+            color:#fff; width:64px; height:64px; border-radius:12px;
+            display:flex; align-items:center; justify-content:center; font-size:26px;
+            box-shadow: 0 6px 18px rgba(43,122,120,0.12); flex-shrink:0;
+        }
+        .audio-card h3 { margin:0; color:var(--dark); font-size:1.05rem; font-weight:700; }
+        .audio-card .muted { margin-top:4px; color:var(--muted); font-size:0.95rem; }
+
+        .audio-player-wrap { width:100%; margin-top:12px; border-radius:10px; overflow:hidden; background:#fff; border:1px solid rgba(15,23,32,0.03); }
+        .audio-player-wrap iframe.audio-iframe { width:100%; height:96px; border:0; display:block; }
+
+        .audio-actions { width:100%; display:flex; gap:12px; justify-content:flex-end; margin-top:12px; }
+        .audio-actions .btn { padding:10px 14px; border-radius:10px; font-weight:700; text-decoration:none; display:inline-flex; gap:10px; align-items:center; }
+        .audio-actions .download-btn { background:linear-gradient(90deg,#10b981,#059669); color:#fff; box-shadow:0 6px 18px rgba(5,150,105,0.10); }
+        .audio-actions .open-btn { background:transparent; color:var(--dark); border:1px solid rgba(15,23,32,0.06); box-shadow:none; }
+
+        /* small tweaks and responsiveness */
+        @media (max-width: 920px) {
+            .document-meta { gap:1rem; font-size:0.9rem; }
+            .download-section { flex-direction:column; align-items:center; text-align:center; padding:1rem; gap:12px; }
+            .audio-actions { justify-content:center; }
+            .audio-player-wrap iframe.audio-iframe { height:84px; }
+        }
+
+        @media (max-width: 520px) {
+            .logo h1 { font-size:1.05rem; }
+            .container { width:95%; padding: 0.8rem 0; }
+            .pdf-viewer-container { height: 56vh; padding: 0.5rem; }
+        }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container" style="display: flex; align-items: center; justify-content: space-between;">
+      <div class="logo">
+        <i class="fas fa-heartbeat"></i>
+        <h1>ToToZ Collection</h1>
+      </div>
+      <div>
+        <button onclick="history.back()" class="btn">
+            <i class="fas fa-arrow-left"></i> Back
+        </button>
+        </div>
+      <!-- <div>
+        <button onclick="window.location.href='../med2.html'" class="btn"><i class="fas fa-arrow-left"></i> Back</button>
+      </div> -->
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Document 1 -->
+<!-- Drugs Used in Fertility and Reproduction -->
+
+
+
+
+        <div id="doc1" class="document-container">
+            <div class="document-header">
+                <h2>Breast Cancer</h2>
+                <div class="document-meta">
+                    <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                    <span><i class="fas fa-user-md"></i> Dr. Mulenga</span>
+                </div>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/1KFcceEzCw73YXhdyQ1GbBPVPzwH95Vhj/preview"></iframe>
+            </div>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=1KFcceEzCw73YXhdyQ1GbBPVPzwH95Vhj" class="btn">Download File 4</a>
+            </div>
+        </div>
+
+        <div id="doc2" class="document-container">
+            <div class="document-header">
+                <h2>PUD, GRED & Gastritis</h2>
+                <div class="document-meta">
+                    <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                    <span><i class="fas fa-user-md"></i> Dr. Besa</span>
+                </div>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/1l74YuLylEr5HxAQ0tTZ7zZVnqsfyB_w0/preview"></iframe>
+            </div>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=1l74YuLylEr5HxAQ0tTZ7zZVnqsfyB_w0" class="btn">Download File 4</a>
+            </div>
+        </div>
+
+        <hr>
+
+        <div id="doc3" class="document-container">
+            <div class="document-header">
+                <h2>Acute Pancreatitis </h2>
+                <div class="document-meta">
+                    <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                    <span><i class="fas fa-user-md"></i> Dr. Nyimbili </span>
+                </div>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/1WiWjv6tDzVJYef3_V4sRipct1azukRSy/preview"></iframe>
+            </div>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=1WiWjv6tDzVJYef3_V4sRipct1azukRSy" class="btn">Download File 4</a>
+            </div>
+        </div>
+
+        <hr>
+
+        <div id="doc4" class="document-container">
+            <div class="document-header">
+                <h2> GIT Bleeding</h2>
+                <div class="document-meta">
+                    <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                    <span><i class="fas fa-user-md"></i> Dr. Something</span>
+                </div>
+            </div>
+           <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/1gaKW64HNAW0VS8lBIsiZs4ep_T5_tPKH/preview"></iframe>
+            </div>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=1gaKW64HNAW0VS8lBIsiZs4ep_T5_tPKH" class="btn">Download File 4</a>
+            </div>
+        </div>
+
+        <div id="doc5" class="document-container">
+            <div class="document-header">
+                <h2> Abdominal Trauma </h2>
+                <div class="document-meta">
+                    <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                    <span><i class="fas fa-user-md"></i> Dr. Nkhata</span>
+                </div>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/1oudIiw_vVwYHOSzL2GKPwj5xtALqIMiP/preview"></iframe>
+            </div>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=1oudIiw_vVwYHOSzL2GKPwj5xtALqIMiP" class="btn">Download File 4</a>
+            </div>
+        </div>
+
+        <div id="doc6" class="document-container">
+            <div class="document-header">
+                <h2>Gall Bladder and Billiary duct Diseases</h2>
+                <div class="document-meta">
+                    <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                    <span><i class="fas fa-user-md"></i> Dr. Something</span>
+                </div>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/1utDjoIGnfypWonByQcqXSxslpHxb0Pg8/preview"></iframe>
+            </div>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=1utDjoIGnfypWonByQcqXSxslpHxb0Pg8" class="btn">Download File 4</a>
+            </div>
+        </div>
+
+        <div id="doc7" class="document-container">
+            <div class="document-header">
+                <h2> Venous Diseases </h2>
+                <div class="document-meta">
+                    <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                    <span><i class="fas fa-user-md"></i> Dr. Ngoma</span>
+                </div>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/11pNATMSqC3B954jEC1ej2Bq_q7qUxpGQ/preview"></iframe>
+            </div>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=11pNATMSqC3B954jEC1ej2Bq_q7qUxpGQ" class="btn">Download File 4</a>
+            </div>
+        </div>
+
+        <div id="doc8" class="document-container">
+            <div class="document-header">
+                <h2> Peripheral Vascular Diseases </h2>
+                <div class="document-meta">
+                    <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                    <span><i class="fas fa-user-md"></i> Dr. Ngoma</span>
+                </div>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/1SBFvFG-xISSMJ70Kfnz9d2S_Ap0qGwMB/preview"></iframe>
+            </div>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=1SBFvFG-xISSMJ70Kfnz9d2S_Ap0qGwMB" class="btn">Download File 4</a>
+            </div>
+        </div>
+
+        <div id="doc9" class="document-container">
+            <div class="document-header">
+                <h2> Surviving Sepsis </h2>
+                <div class="document-meta">
+                    <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                    <span><i class="fas fa-user-md"></i> Surgery</span>
+                </div>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/1YrLeAfCWHlXKjDm6OX2G-tCLBkZNYIql/preview"></iframe>
+            </div>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=1YrLeAfCWHlXKjDm6OX2G-tCLBkZNYIql" class="btn">Download File 4</a>
+            </div>
+        </div>
+
+        <div id="doc10" class="document-container">
+            <div class="document-header">
+                <h2> Neurological Examination </h2>
+                <div class="document-meta">
+                    <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                    <span><i class="fas fa-user-md"></i>  Dr. Musa</span>
+                </div>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/12rqlM7QZ6NS5SC0Xrw6MxftBOc0sg39I/preview"></iframe>
+            </div>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=12rqlM7QZ6NS5SC0Xrw6MxftBOc0sg39I" class="btn">Download File 4</a>
+            </div>
+        </div>
+
+        <div id="doc11" class="document-container">
+            <div class="document-header">
+                <h2> Thyroid Tumors </h2>
+                <div class="document-meta">
+                    <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                    <span><i class="fas fa-user-md"></i> Dr. Nyimbili</span>
+                </div>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/174dOxmSK48KujbMD_4-RuB-W7N7HQjhf/preview"></iframe>
+            </div>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=174dOxmSK48KujbMD_4-RuB-W7N7HQjhf" class="btn">Download File 4</a>
+            </div>
+        </div>
+
+        <div id="doc12" class="document-container">
+            <div class="document-header">
+                <h2> Testicular Swelling</h2>
+                <div class="document-meta">
+                    <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                    <span><i class="fas fa-user-md"></i> Dr. Sinkala</span>
+                </div>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/1LuXX_qa5N702j9V46Vb3lcB6o0e9l0Sh/preview"></iframe>
+            </div>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=1LuXX_qa5N702j9V46Vb3lcB6o0e9l0Sh" class="btn">Download File 4</a>
+            </div>
+        </div>
+
+        <div id="doc13" class="document-container">
+            <div class="document-header">
+                <h2> Septic Arthritis </h2>
+                <div class="document-meta">
+                    <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                    <span><i class="fas fa-user-md"></i> Dr. Banda</span>
+                </div>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/1AkttYBWPZS-SmvJgrQPghqZDlDq_r-eV/preview"></iframe>
+            </div>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=1AkttYBWPZS-SmvJgrQPghqZDlDq_r-eV" class="btn">Download File 4</a>
+            </div>
+        </div>
+
+        <div id="doc14" class="document-container">
+            <div class="document-header">
+                <h2> Prostate Cancer </h2>
+                <div class="document-meta">
+                    <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                    <span><i class="fas fa-user-md"></i> Dr. Mukosai</span>
+                </div>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/1Amo0YgN80AUnfsLPMhOZ4F4mY9tK2k8I/preview"></iframe>
+            </div>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=1Amo0YgN80AUnfsLPMhOZ4F4mY9tK2k8I" class="btn">Download File 4</a>
+            </div>
+        </div>
+
+        <div id="doc15" class="document-container">
+            <div class="document-header">
+                <h2> Acute Appendicitis</h2>
+                <div class="document-meta">
+                    <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                    <span><i class="fas fa-user-md"></i> Dr. Chirengendure</span>
+                </div>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/1H9CcSYaWGOF_zy0x9HYA44AwDZkI6o2O/preview"></iframe>
+            </div>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=1H9CcSYaWGOF_zy0x9HYA44AwDZkI6o2O" class="btn">Download File 4</a>
+            </div>
+        </div>
+
+        <div id="doc16" class="document-container">
+            <div class="document-header">
+                <h2> Benign Breast Changes </h2>
+                <div class="document-meta">
+                    <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                    <span><i class="fas fa-user-md"></i> Dr. Something</span>
+                </div>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/1uNkpRgQolEcU2o-Ec2oZA9OqNW63jw0S/preview"></iframe>
+            </div>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=1uNkpRgQolEcU2o-Ec2oZA9OqNW63jw0S" class="btn">Download File 4</a>
+            </div>
+        </div>
+
+        <div id="doc17" class="document-container">
+            <div class="document-header">
+                <h2> Benign Prostate Hyperplasia (BPH)  </h2>
+                <div class="document-meta">
+                    <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                    <span><i class="fas fa-user-md"></i> Dr. Mukosai</span>
+                </div>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/1QkT8VsrPOE3p-XpQ0IkLl8AIQU27LRmD/preview"></iframe>
+            </div>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=1QkT8VsrPOE3p-XpQ0IkLl8AIQU27LRmD" class="btn">Download File 4</a>
+            </div>
+        </div>
+
+        <div id="doc18" class="document-container">
+            <div class="document-header">
+                <h2>UTI & Urethritis</h2>
+                <div class="document-meta">
+                    <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                    <span><i class="fas fa-user-md"></i> Dr. Munkasu</span>
+                </div>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/1oSJdw8geRMIcDQRAWjabJdYOUu33KbKX/preview"></iframe>
+            </div>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=1oSJdw8geRMIcDQRAWjabJdYOUu33KbKX" class="btn">Download File 4</a>
+            </div>
+        </div>
+
+        <div id="doc19" class="document-container">
+            <div class="document-header">
+                <h2> Intestinal Obstruction </h2>
+                <div class="document-meta">
+                    <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                    <span><i class="fas fa-user-md"></i> Dr. Mwila</span>
+                </div>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/1r4Ar9P8FkMpteqy8LB8_KZN3UJK0iuUE/preview"></iframe>
+            </div>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=1r4Ar9P8FkMpteqy8LB8_KZN3UJK0iuUE" class="btn">Download File 1</a>
+            </div>
+        </div>
+
+        <div id="doc20" class="document-container">
+            <div class="document-header">
+                <h2>Burns </h2>
+                <div class="document-meta">
+                    <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                    <span><i class="fas fa-user-md"></i> Dr. Mwila</span>
+                </div>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/1E10oxKMRE1TAtsicKl3Gzz6idWuQFY4R/preview"></iframe>
+            </div>
+            
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=1E10oxKMRE1TAtsicKl3Gzz6idWuQFY4R" class="btn">Download File 2</a>
+            </div>
+        </div>
+
+        <div id="doc21" class="document-container">
+            <div class="document-header">
+                <h2> Diabetic Foot </h2>
+                <div class="document-meta">
+                    <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                    <span><i class="fas fa-user-md"></i> Dr.Sinkala</span>
+                </div>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/1WdkhnhW9dkXmi8XhFSvis8y9Pn_9Vois/preview"></iframe>
+            </div>
+            
+        </div>
+
+        <div id="doc22" class="document-container">
+            <div class="document-header">
+                <h2> Fluid & Electrolytes </h2>
+                <div class="document-meta">
+                    <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                    <span><i class="fas fa-user-md"></i> Dr. Mulenga</span>
+                </div>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/10vFWUwrJzdC8xZOnVuyn1tNT-cDvborB/preview"></iframe>
+            </div>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=10vFWUwrJzdC8xZOnVuyn1tNT-cDvborB" class="btn">Download File 4</a>
+            </div>
+            
+        </div>
+
+        <div id="doc23" class="document-container">
+            <div class="document-header">
+                <h2> Gastric Cancer </h2>
+                <div class="document-meta">
+                    <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                    <span><i class="fas fa-user-md"></i>  Dr. Musowoya</span>
+                </div>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/1d-PjIXJsIKh_ig_IHSHf1TYMM78hbgyr/preview"></iframe>
+            </div>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=1d-PjIXJsIKh_ig_IHSHf1TYMM78hbgyr" class="btn">Download File 4</a>
+            </div>
+            
+        </div>
+
+        
+
+        <div id="doc24" class="document-container">
+            <div class="document-header">
+                <h2> Fractures </h2>
+                <div class="document-meta">
+                    <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                    <span><i class="fas fa-user-md"></i>  Dr. Banda</span>
+                </div>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/1TNaIDQje-fjkwr4RKMyw033lX-IbT_ZN/preview"></iframe>
+            </div>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=1TNaIDQje-fjkwr4RKMyw033lX-IbT_ZN" class="btn">Download File 4</a>
+            </div>
+            
+        </div>
+
+        <div id="doc25" class="document-container">
+            <div class="document-header">
+                <h2> Esophageal Cancer  </h2>
+                <div class="document-meta">
+                    <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                    <span><i class="fas fa-user-md"></i> Dr. Mulenga</span>
+                </div>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/1oH8dACvDbsMKCG2RzUM_KljXyEG7-4Kh/preview"></iframe>
+            </div>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=1oH8dACvDbsMKCG2RzUM_KljXyEG7-4Kh" class="btn">Download File 4</a>
+            </div>
+        </div>
+
+        <div id="doc26" class="document-container">
+            <div class="document-header">
+                <h2> Anal Pain </h2>
+                <div class="document-meta">
+                    <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                    <span><i class="fas fa-user-md"></i> Dr. Something</span>
+                </div>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/1B4ptHU5dAoKZhnbVxRkoSCXWASlnM-x8/preview"></iframe>
+            </div>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=1B4ptHU5dAoKZhnbVxRkoSCXWASlnM-x8" class="btn">Download File 4</a>
+            </div>
+        </div>
+
+        <div id="doc27" class="document-container">
+            <div class="document-header">
+                <h2>Pancreatitis </h2>
+                <div class="document-meta">
+                    <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                    <span><i class="fas fa-user-md"></i> Dr. Sinkala</span>
+                </div>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/1UtJBdL3okDu4vt1l9Rfrgc44RAQx-awk/preview"></iframe>
+            </div>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=1UtJBdL3okDu4vt1l9Rfrgc44RAQx-awk" class="btn">Download File 4</a>
+            </div>
+        </div>
+
+        <div id="doc28" class="document-container">
+            <div class="document-header">
+                <h2> Surgical Soft Tissue Infection (SSTI) </h2>
+                <div class="document-meta">
+                    <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                    <span><i class="fas fa-user-md"></i> Dr. Nyimbili</span>
+                </div>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/1tUFZ1deCrhG4rLcZkYY1c4nkxEy86U19/preview"></iframe>
+            </div>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=1tUFZ1deCrhG4rLcZkYY1c4nkxEy86U19" class="btn">Download File 4</a>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/17DaXLoGzAGD9tnTia61M7pfuOuSJXavt/preview"></iframe>
+            </div>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=17DaXLoGzAGD9tnTia61M7pfuOuSJXavt" class="btn">Download File 4</a>
+            </div>
+            
+            
+        </div>
+
+        <div id="doc29" class="document-container">
+            <div class="document-header">
+                <h2> Joint Dislocations (Knee/Shoulder/Hip)</h2>
+                <div class="document-meta">
+                    <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                    <span><i class="fas fa-user-md"></i> Dr. Kazadi</span>
+                </div>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/18V95Know9f7CwdInUQyRzzgCJoLCOxav/preview"></iframe>
+            </div>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=18V95Know9f7CwdInUQyRzzgCJoLCOxav" class="btn">Download File 4</a>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/1dKP3BYA5FmEY8u9bFRRVfUBo90ylQoRt/preview"></iframe>
+            </div>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=1dKP3BYA5FmEY8u9bFRRVfUBo90ylQoRt" class="btn">Download File 4</a>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/1UP9_n2uBv-TJ77g-mqw1kR6MbF0xWejZ/preview"></iframe>
+            </div>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=1UP9_n2uBv-TJ77g-mqw1kR6MbF0xWejZ" class="btn">Download File 4</a>
+            </div>
+        </div>
+
+        <div id="doc30" class="document-container">
+            <div class="document-header">
+                <h2> Approach to Thoracic Chest Trauma </h2>
+                <div class="document-meta">
+                    <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                    <span><i class="fas fa-user-md"></i> Dr. Nkhata</span>
+                </div>
+            </div>
+            <div class="pdf-viewer-container">
+    <iframe class="pdf-viewer" src="https://drive.google.com/file/d/1TyHjyKBMnOHu7edL-M-0mj60wsZmA2AM/preview"></iframe>
+</div>
+<div class="download-section">
+    <a href="https://drive.google.com/uc?export=download&id=1TyHjyKBMnOHu7edL-M-0mj60wsZmA2AM" class="btn">Download File 4</a>
+</div>
+        </div>
+
+        <div id="doc31" class="document-container">
+            <div class="document-header">
+                <h2> Osteomyelytis </h2>
+                <div class="document-meta">
+                    <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                    <span><i class="fas fa-user-md"></i> Surgery</span>
+                </div>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/1T74dS746Mc08IrkVuYY4BAFujwHf_B2_/preview"></iframe>
+            </div>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=1T74dS746Mc08IrkVuYY4BAFujwHf_B2_" class="btn">Download File 4</a>
+            </div>
+        </div>
+
+        <div id="doc32" class="document-container">
+            <div class="document-header">
+                <h2> Groin Hernia </h2>
+                <div class="document-meta">
+                    <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                    <span><i class="fas fa-user-md"></i> Dr. Sifa</span>
+                </div>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/19mpex61HqDEdHbpUX-Is2PT3z7yXMMOR/preview"></iframe>
+            </div>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=19mpex61HqDEdHbpUX-Is2PT3z7yXMMOR" class="btn">Download File 4</a>
+            </div>
+        </div>
+
+        <div id="doc33" class="document-container">
+            <div class="document-header">
+                <h2> Ventral Hernia </h2>
+                <div class="document-meta">
+                    <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                    <span><i class="fas fa-user-md"></i> Dr. Chakuti</span>
+                </div>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe class="pdf-viewer" src="https://drive.google.com/file/d/18fLCHdngPyUwHxOQqwLEDnd9uzVE07Df/preview"></iframe>
+            </div>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=18fLCHdngPyUwHxOQqwLEDnd9uzVE07Df" class="btn">Download File 4</a>
+            </div>
+        </div>
+
+        <hr>
+
+
+  </main>
+
+  <footer class="footer">
+        <button id="backBtn" onclick="goBack()">⬅ Back</button>
+        <h1>ToToZ Collection</h1>
+        <button id="forwardBtn" onclick="goForward()">Forward ➡</button>
+    </footer>
+ <script src="../nav.js"></script>
+  <script>
+    // Show only the selected document based on button click in index.html
+    const docToShow = localStorage.getItem("showSurgery");
+    if (docToShow) {
+      const section = document.getElementById("doc" + docToShow);
+      if (section) section.style.display = "block";
+    } else {
+      document.body.insertAdjacentHTML("beforeend", "<p style='text-align:center;margin:2rem;'>No document selected. Go back to index.html.</p>");
+    }
+  </script>
+</body>
+</html>

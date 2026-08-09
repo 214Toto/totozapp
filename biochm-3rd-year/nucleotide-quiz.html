@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nucleotide Quiz | Quiz</title>
+    <link rel="stylesheet" href="../nav.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        /* ─── ROOT & RESET ─── */
+        :root {
+            --primary: #2b7a78;
+            --accent: #3aafa9;
+            --dark: #17252a;
+            --light: #f8f9fa;
+            --radius: 12px;
+            --shadow: 0 4px 14px rgba(18, 38, 63, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Roboto, system-ui, sans-serif;
+            background: linear-gradient(180deg, #f5f7fb, #eef6f6);
+            color: var(--dark);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+
+        /* ─── HEADER ─── */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: #fff;
+            padding: 0.8rem 0;
+            box-shadow: 0 6px 18px rgba(11, 36, 36, 0.18);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            font-size: 1.6rem;
+            color: var(--accent);
+        }
+
+        .logo h1 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 0.25rem 1rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            color: #d4f0ee;
+        }
+
+        .badge i {
+            margin-right: 4px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0.3rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-tabs .tab-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: none;
+            color: #d4f0ee;
+            padding: 0.3rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .nav-tabs .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #fff;
+        }
+
+        .nav-tabs .tab-btn.active {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        /* ─── CONTAINER ─── */
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 1.25rem 2.5rem;
+        }
+
+        /* ─── SECTION TITLES ─── */
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1.8rem 0 1rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 3px solid rgba(43, 122, 120, 0.20);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .section-title i {
+            font-size: 1.1rem;
+            color: rgb(8, 104, 66);
+        }
+
+        .section-title .count {
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0.05rem 0.7rem;
+        }
+
+        .section-subtitle {
+            color: #5f7a7a;
+            font-size: 0.92rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .section-panel {
+            display: block;
+        }
+
+        .section-panel.hidden {
+            display: none !important;
+        }
+
+        /* ─── MCQ CARDS ─── */
+        .question {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.2rem 1.2rem 0.2rem 1.2rem;
+            margin-bottom: 1.2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(43, 122, 120, 0.06);
+            transition: box-shadow 0.2s;
+        }
+
+        .question:hover {
+            box-shadow: 0 6px 22px rgba(18, 38, 63, 0.07);
+        }
+
+        .question p {
+            font-weight: 600;
+            font-size: 0.98rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .question .q-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            line-height: 1.6;
+            margin-right: 0.4rem;
+        }
+
+        .options label {
+            display: block;
+            background: #fafcfd;
+            border: 1px solid #e0e8ef;
+            border-radius: 8px;
+            padding: 0.45rem 0.9rem;
+            margin-top: 0.45rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-weight: 450;
+            font-size: 0.94rem;
+        }
+
+        .options label:hover {
+            background: #e8f5f4;
+            border-color: var(--accent);
+        }
+
+        .options input[type="radio"] {
+            margin-right: 0.5rem;
+            accent-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        /* ─── MCQ FEEDBACK ─── */
+        .question-feedback {
+            margin-top: 0.9rem;
+            padding: 0.4rem 0 0.1rem 0;
+            border-top: 1px dashed #dce6ed;
+        }
+
+        .answer-block strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--primary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .answer-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .answer-item {
+            padding: 5px 10px;
+            border-radius: 6px;
+            border: 1px solid #e6eef3;
+            background: #ffffff;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .answer-correct {
+            background: #ecfdf5;
+            border-color: #bbf7d0;
+            color: #065f46;
+        }
+
+        .answer-wrong {
+            background: #fff1f2;
+            border-color: #fca5a5;
+            color: #9f1239;
+        }
+
+        .user-choice {
+            outline: 2px dashed rgba(0, 0, 0, 0.06);
+        }
+
+        .explanation {
+            margin-top: 6px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: #f1f8f6;
+            color: #065f46;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border-left: 4px solid var(--accent);
+        }
+
+        .explanation.wrong {
+            background: #fff5f5;
+            color: #7f1d1d;
+            border-left-color: #f87171;
+        }
+
+        /* ─── BUTTONS ─── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.6rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(43, 122, 120, 0.22);
+        }
+
+        .btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(43, 122, 120, 0.30);
+        }
+
+        .btn:active {
+            transform: scale(0.96);
+        }
+
+        .btn i {
+            font-size: 0.9rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .btn-sm {
+            padding: 0.35rem 1rem;
+            font-size: 0.85rem;
+        }
+
+        .btn-reveal {
+            background: linear-gradient(90deg, #4a7c7a, var(--primary));
+        }
+
+        .btn-reveal:hover {
+            box-shadow: 0 6px 20px rgba(43, 122, 120, 0.35);
+        }
+
+        .submit-wrap {
+            text-align: center;
+            margin: 1.5rem 0 2rem;
+        }
+
+        /* ─── RESULT BOX ─── */
+        .result {
+            margin-top: 1.5rem;
+            padding: 1.5rem 1.5rem 1rem;
+            background: #f1faf9;
+            border-radius: var(--radius);
+            text-align: center;
+            display: none;
+            border: 1px solid #c5e3df;
+        }
+
+        .result h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.2rem;
+        }
+
+        .score {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0.2rem 0 0.4rem;
+        }
+
+        /* ─── ESSAY SECTION ─── */
+        .essay-card {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.25rem 1.25rem 1rem;
+            margin-bottom: 1.8rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(43, 122, 120, 0.06);
+        }
+
+        .essay-card>h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 0 0 0.4rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .essay-card>h3 .qnum {
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.75rem;
+            line-height: 1.6;
+        }
+
+        .essay-card>p {
+            color: #2d4a4a;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 0.8rem;
+            padding: 0.6rem 0.9rem;
+            background: #f4f9f8;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .essay-card img {
+            margin: 0.2rem 0 0.8rem 0;
+            border-radius: 8px;
+            border: 1px solid #e9edf2;
+            max-height: 340px;
+            object-fit: contain;
+            background: #fafcfd;
+        }
+
+        /* ─── SUB-QUESTION ─── */
+        .sub-question {
+            margin-top: 1.2rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #eef3f6;
+        }
+
+        .sub-question:first-of-type {
+            border-top: none;
+            padding-top: 0;
+            margin-top: 0.5rem;
+        }
+
+        .sub-question .sub-q-label {
+            display: flex;
+            align-items: baseline;
+            gap: 0.3rem;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.95rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .sub-question .sub-q-label .letter {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            text-align: center;
+            line-height: 24px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .sub-question .sub-q-label .marks {
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: #6f8f8f;
+            background: #eef4f4;
+            padding: 0 0.5rem;
+            border-radius: 20px;
+        }
+
+        .sub-question textarea {
+            width: 100%;
+            min-height: 72px;
+            border-radius: 8px;
+            border: 1px solid #d1dbe0;
+            padding: 0.6rem 0.9rem;
+            resize: vertical;
+            font-family: inherit;
+            font-size: 0.94rem;
+            background: #fafcfd;
+            transition: border 0.2s, box-shadow 0.2s;
+            margin-top: 0.3rem;
+        }
+
+        .sub-question textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(43, 122, 120, 0.12);
+        }
+
+        .sub-question .essay-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .sub-question .essay-actions .btn {
+            padding: 0.4rem 1.2rem;
+            font-size: 0.85rem;
+        }
+
+        .sub-question .essay-actions .hint-text {
+            font-size: 0.8rem;
+            color: #7a9797;
+        }
+
+        /* ─── ESSAY REVEAL ANSWER ─── */
+        .essay-answers {
+            display: none;
+            margin-top: 0.8rem;
+            background: #f1f8f6;
+            border-radius: 8px;
+            padding: 1rem 1.2rem;
+            border: 1px solid #cfe6e0;
+            color: var(--dark);
+            animation: fadeSlide 0.3s ease;
+        }
+
+        .essay-answers.visible {
+            display: block;
+        }
+
+        .essay-answers h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: var(--primary);
+            margin: 0 0 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .essay-answers h4 i {
+            color: #2b7a78;
+        }
+
+        .essay-answers p,
+        .essay-answers li {
+            font-size: 0.94rem;
+            line-height: 1.6;
+        }
+
+        .essay-answers ul {
+            padding-left: 1.2rem;
+            margin: 0.3rem 0 0.5rem;
+        }
+
+        .essay-answers ul li {
+            margin-bottom: 0.2rem;
+        }
+
+        .essay-answers b {
+            color: var(--dark);
+        }
+
+        .essay-answers .model-tag {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--dark);
+            font-weight: 700;
+            font-size: 0.65rem;
+            padding: 0.05rem 0.6rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        @keyframes fadeSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 700px) {
+            body {
+                padding-top: 72px;
+            }
+            .logo h1 {
+                font-size: 1rem;
+            }
+            .header-inner {
+                padding: 0 1rem;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.3rem;
+            }
+            .badge {
+                align-self: flex-start;
+            }
+            .nav-tabs {
+                justify-content: center;
+            }
+            .nav-tabs .tab-btn {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.7rem;
+            }
+            .question {
+                padding: 1rem 1rem 0.1rem 1rem;
+            }
+            .section-title {
+                font-size: 1.1rem;
+            }
+            .essay-card {
+                padding: 1rem;
+            }
+            .score {
+                font-size: 2.2rem;
+            }
+            .btn {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.85rem;
+            }
+            .sub-question textarea {
+                min-height: 60px;
+                font-size: 0.88rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .logo h1 {
+                font-size: 0.85rem;
+            }
+            .logo i {
+                font-size: 1.2rem;
+            }
+            .options label {
+                font-size: 0.87rem;
+                padding: 0.4rem 0.7rem;
+            }
+            .essay-card>p {
+                font-size: 0.88rem;
+                padding: 0.5rem 0.7rem;
+            }
+        }
+
+        /* ─── UTILITIES ─── */
+        .text-muted {
+            color: #5f7a7a;
+            font-size: 0.9rem;
+        }
+        .mt-1 {
+            margin-top: 0.8rem;
+        }
+        .mb-1 {
+            margin-bottom: 0.8rem;
+        }
+        .flex-center {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .hidden {
+            display: none !important;
+        }
+        .scroll-target {
+            scroll-margin-top: 90px;
+        }
+        .gap-1 {
+            gap: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══ HEADER ═══ -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <i class="fas fa-book-medical"></i>
+                <h1>Nucleotide Quiz</h1>
+            </div>
+            <span class="badge"><i class="fas fa-pencil-alt"></i> Quiz</span>
+            <div class="nav-tabs">
+                <button class="tab-btn active" data-section="mcq">MCQs</button>
+                <button class="tab-btn" data-section="essay">Essays</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══ MAIN ═══ -->
+    <main>
+
+        <!-- ─── SECTION 1: MCQs ─── -->
+        <section class="container section-panel" id="section-mcq">
+            <div class="section-title scroll-target" id="mcq-top">
+                <i class="fas fa-list-ul"></i> Multiple Choice Questions
+                <span class="count">23</span>
+            </div>
+            <p class="section-subtitle">Select the best answer for each question, then click <strong>Submit All MCQs</strong> at the bottom.</p>
+
+            <form id="quizForm">
+
+                <!-- Q1 -->
+                <div class="question">
+                    <p><span class="q-badge">1</span> A 2-year-old boy exhibits developmental delay, lip/finger biting, and orange "sand" in his diapers. This child has an inability to metabolize which molecule?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="a"> A. Adenine</label>
+                        <label><input type="radio" name="q1" value="b"> B. Uracil</label>
+                        <label><input type="radio" name="q1" value="c"> C. Hypoxanthine</label>
+                        <label><input type="radio" name="q1" value="d"> D. Uric acid</label>
+                        <label><input type="radio" name="q1" value="e"> E. Thymine</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q1"></div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="question">
+                    <p><span class="q-badge">2</span> Which cofactor is directly used in the conversion of d-UMP to d-TMP?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="a"> A. N5-formylfolate</label>
+                        <label><input type="radio" name="q2" value="b"> B. Dihydrofolate</label>
+                        <label><input type="radio" name="q2" value="c"> C. Glutamine</label>
+                        <label><input type="radio" name="q2" value="d"> D. N5,N10-methylene tetrahydrofolate</label>
+                        <label><input type="radio" name="q2" value="e"> E. Iminofolate</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q2"></div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question">
+                    <p><span class="q-badge">3</span> A 10-year-old child with aggression, poor concentration, joint pain, reduced urinary output, and self-mutilation. Which enzyme is likely deficient?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="a"> A. APRTase</label>
+                        <label><input type="radio" name="q3" value="b"> B. Acid maltase</label>
+                        <label><input type="radio" name="q3" value="c"> C. Xanthine oxidase</label>
+                        <label><input type="radio" name="q3" value="d"> D. HGPRTase</label>
+                        <label><input type="radio" name="q3" value="e"> E. Adenosine deaminase</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q3"></div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="question">
+                    <p><span class="q-badge">4</span> A 10-year-old with rashes, self-mutilation, and positive family history. Which investigation is most valuable for diagnosis?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="a"> A. LDH</label>
+                        <label><input type="radio" name="q4" value="b"> B. Uric acid</label>
+                        <label><input type="radio" name="q4" value="c"> C. Urea</label>
+                        <label><input type="radio" name="q4" value="d"> D. Lead</label>
+                        <label><input type="radio" name="q4" value="e"> E. Alkaline phosphatase</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q4"></div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="question">
+                    <p><span class="q-badge">5</span> Increased hypoxanthine and xanthine in blood with hypouricemia. Which enzyme is deficient?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="a"> A. Adenosine deaminase</label>
+                        <label><input type="radio" name="q5" value="b"> B. APRTase</label>
+                        <label><input type="radio" name="q5" value="c"> C. Glucose-6-phosphatase</label>
+                        <label><input type="radio" name="q5" value="d"> D. HGPRTase</label>
+                        <label><input type="radio" name="q5" value="e"> E. Xanthine oxidase</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q5"></div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="question">
+                    <p><span class="q-badge">6</span> In humans, the end product of purine catabolism is:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="a"> A. Uric acid</label>
+                        <label><input type="radio" name="q6" value="b"> B. Urea</label>
+                        <label><input type="radio" name="q6" value="c"> C. Allantoin</label>
+                        <label><input type="radio" name="q6" value="d"> D. Xanthine</label>
+                        <label><input type="radio" name="q6" value="e"> E. Ammonia</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q6"></div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="question">
+                    <p><span class="q-badge">7</span> Gout is a metabolic disorder of catabolism of:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="a"> A. Pyrimidine</label>
+                        <label><input type="radio" name="q7" value="b"> B. Purine</label>
+                        <label><input type="radio" name="q7" value="c"> C. Alanine</label>
+                        <label><input type="radio" name="q7" value="d"> D. Phenylalanine</label>
+                        <label><input type="radio" name="q7" value="e"> E. Glycine</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q7"></div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="question">
+                    <p><span class="q-badge">8</span> Nucleotides for nucleic acid synthesis can be obtained from:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="a"> A. Dietary nucleic acids only</label>
+                        <label><input type="radio" name="q8" value="b"> B. De novo synthesis only</label>
+                        <label><input type="radio" name="q8" value="c"> C. Salvage only</label>
+                        <label><input type="radio" name="q8" value="d"> D. De novo synthesis and salvage</label>
+                        <label><input type="radio" name="q8" value="e"> E. None of these</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q8"></div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="question">
+                    <p><span class="q-badge">9</span> Pyrimethamine inhibits dihydrofolate reductase. This would inhibit:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="a"> A. De novo synthesis of dATP</label>
+                        <label><input type="radio" name="q9" value="b"> B. Conversion of dCTP to dUTP</label>
+                        <label><input type="radio" name="q9" value="c"> C. De novo synthesis of dTMP</label>
+                        <label><input type="radio" name="q9" value="d"> D. De novo synthesis of dUMP</label>
+                        <label><input type="radio" name="q9" value="e"> E. Conversion of dUMP to dTMP</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q9"></div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="question">
+                    <p><span class="q-badge">10</span> Which would NOT be expected to contribute to hyperuricemia?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="a"> A. Xanthine oxidase inhibition by Allopurinol</label>
+                        <label><input type="radio" name="q10" value="b"> B. High breakdown of nucleic acids</label>
+                        <label><input type="radio" name="q10" value="c"> C. High activity of adenosine deaminase</label>
+                        <label><input type="radio" name="q10" value="d"> D. HGPRT deficiency</label>
+                        <label><input type="radio" name="q10" value="e"> E. High PRPP levels</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q10"></div>
+                </div>
+
+                <!-- Q11 -->
+                <div class="question">
+                    <p><span class="q-badge">11</span> If xanthine oxidase is inhibited, which effect is expected?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q11" value="a"> A. Decreased uric acid in urine</label>
+                        <label><input type="radio" name="q11" value="b"> B. Elevated blood xanthine</label>
+                        <label><input type="radio" name="q11" value="c"> C. Elevated blood hypoxanthine</label>
+                        <label><input type="radio" name="q11" value="d"> D. Increased PRPP</label>
+                        <label><input type="radio" name="q11" value="e"> E. Decreased IMP synthesis</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q11"></div>
+                </div>
+
+                <!-- Q12 -->
+                <div class="question">
+                    <p><span class="q-badge">12</span> Which nucleotide serves as a precursor for synthesis of two other pyrimidine derivatives?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q12" value="a"> A. dAMP</label>
+                        <label><input type="radio" name="q12" value="b"> B. UMP</label>
+                        <label><input type="radio" name="q12" value="c"> C. CTP</label>
+                        <label><input type="radio" name="q12" value="d"> D. AMP</label>
+                        <label><input type="radio" name="q12" value="e"> E. dTMP</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q12"></div>
+                </div>
+
+                <!-- Q13 -->
+                <div class="question">
+                    <p><span class="q-badge">13</span> In de novo pyrimidine synthesis, which amino acids build the pyrimidine ring?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q13" value="a"> A. Glutamate and tyrosine</label>
+                        <label><input type="radio" name="q13" value="b"> B. Aspartate and histidine</label>
+                        <label><input type="radio" name="q13" value="c"> C. Tyrosine and histidine</label>
+                        <label><input type="radio" name="q13" value="d"> D. Glutamate and histidine</label>
+                        <label><input type="radio" name="q13" value="e"> E. Aspartate and glutamine</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q13"></div>
+                </div>
+
+                <!-- Q14 -->
+                <div class="question">
+                    <p><span class="q-badge">14</span> Hyperuricemia can result from defects in all of the following EXCEPT:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q14" value="a"> A. Carbamoyl phosphate synthetase II</label>
+                        <label><input type="radio" name="q14" value="b"> B. PRPP glutamyl amidotransferase</label>
+                        <label><input type="radio" name="q14" value="c"> C. PRPP synthetase</label>
+                        <label><input type="radio" name="q14" value="d"> D. Glucose-6-phosphatase</label>
+                        <label><input type="radio" name="q14" value="e"> E. HGPRTase</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q14"></div>
+                </div>
+
+                <!-- Q15 -->
+                <div class="question">
+                    <p><span class="q-badge">15</span> A patient with von Gierke's disease displays gout symptoms due to overproduction of:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q15" value="a"> A. UDP-glucose</label>
+                        <label><input type="radio" name="q15" value="b"> B. Aspartate</label>
+                        <label><input type="radio" name="q15" value="c"> C. PRPP</label>
+                        <label><input type="radio" name="q15" value="d"> D. Glucose</label>
+                        <label><input type="radio" name="q15" value="e"> E. NADPH</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q15"></div>
+                </div>
+
+                <!-- Q16 -->
+                <div class="question">
+                    <p><span class="q-badge">16</span> Which amino acid directly donates atoms to both purine and pyrimidine rings?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q16" value="a"> A. Carbamoyl phosphate</label>
+                        <label><input type="radio" name="q16" value="b"> B. Aspartate</label>
+                        <label><input type="radio" name="q16" value="c"> C. Glutamine</label>
+                        <label><input type="radio" name="q16" value="d"> D. Glycine</label>
+                        <label><input type="radio" name="q16" value="e"> E. CO₂</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q16"></div>
+                </div>
+
+                <!-- Q17 -->
+                <div class="question">
+                    <p><span class="q-badge">17</span> Purine salvage is active in all tissues EXCEPT:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q17" value="a"> A. Polymorphonuclear leukocytes</label>
+                        <label><input type="radio" name="q17" value="b"> B. Erythrocytes</label>
+                        <label><input type="radio" name="q17" value="c"> C. Brain</label>
+                        <label><input type="radio" name="q17" value="d"> D. Liver</label>
+                        <label><input type="radio" name="q17" value="e"> E. Platelets</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q17"></div>
+                </div>
+
+                <!-- Q18 -->
+                <div class="question">
+                    <p><span class="q-badge">18</span> Deficiency of which enzyme causes severe combined immunodeficiency (SCID)?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q18" value="a"> A. CPS II</label>
+                        <label><input type="radio" name="q18" value="b"> B. PRPP synthetase</label>
+                        <label><input type="radio" name="q18" value="c"> C. HGPRTase</label>
+                        <label><input type="radio" name="q18" value="d"> D. Xanthine oxidase</label>
+                        <label><input type="radio" name="q18" value="e"> E. Adenosine deaminase</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q18"></div>
+                </div>
+
+                <!-- Q19 -->
+                <div class="question">
+                    <p><span class="q-badge">19</span> OTC deficiency causes orotic aciduria by:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q19" value="a"> A. Inhibiting the regulated step of pyrimidine synthesis</label>
+                        <label><input type="radio" name="q19" value="b"> B. Bypassing the regulated step of pyrimidine synthesis</label>
+                        <label><input type="radio" name="q19" value="c"> C. Activating the regulated step of pyrimidine synthesis</label>
+                        <label><input type="radio" name="q19" value="d"> D. Activating UMP synthase by carbamoyl phosphate</label>
+                        <label><input type="radio" name="q19" value="e"> E. Activating the CAD complex</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q19"></div>
+                </div>
+
+                <!-- Q20 -->
+                <div class="question">
+                    <p><span class="q-badge">20</span> Lesch-Nyhan syndrome may lead to:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q20" value="a"> A. Self-destructive behavior</label>
+                        <label><input type="radio" name="q20" value="b"> B. Mental retardation</label>
+                        <label><input type="radio" name="q20" value="c"> C. Gout</label>
+                        <label><input type="radio" name="q20" value="d"> D. Elevated PRPP</label>
+                        <label><input type="radio" name="q20" value="e"> E. All of the above</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q20"></div>
+                </div>
+
+                <!-- Q21 -->
+                <div class="question">
+                    <p><span class="q-badge">21</span> Allopurinol inhibits xanthine oxidase. Which compound accumulates instead of uric acid?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q21" value="a"> A. Guanine</label>
+                        <label><input type="radio" name="q21" value="b"> B. Ribose 1-phosphate</label>
+                        <label><input type="radio" name="q21" value="c"> C. Adenine</label>
+                        <label><input type="radio" name="q21" value="d"> D. IMP</label>
+                        <label><input type="radio" name="q21" value="e"> E. Hypoxanthine</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q21"></div>
+                </div>
+
+                <!-- Q22 -->
+                <div class="question">
+                    <p><span class="q-badge">22</span> Glutamine antagonists work as anticancer agents by:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q22" value="a"> A. Blocking AMP formation from IMP</label>
+                        <label><input type="radio" name="q22" value="b"> B. Inhibiting amidotransferases</label>
+                        <label><input type="radio" name="q22" value="c"> C. Blocking purine nucleotide formation</label>
+                        <label><input type="radio" name="q22" value="d"> D. Inhibiting amido transferases</label>
+                        <label><input type="radio" name="q22" value="e"> E. Blocking XMP formation from IMP</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q22"></div>
+                </div>
+
+                <!-- Q23 -->
+                <div class="question">
+                    <p><span class="q-badge">23</span> All are true for hereditary orotic aciduria EXCEPT:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q23" value="a"> A. Anaemia is a symptom</label>
+                        <label><input type="radio" name="q23" value="b"> B. Orotic acid is excreted in urine</label>
+                        <label><input type="radio" name="q23" value="c"> C. Urinary tract obstruction is a symptom</label>
+                        <label><input type="radio" name="q23" value="d"> D. Self-mutilation is a symptom</label>
+                        <label><input type="radio" name="q23" value="e"> E. Growth retardation is seen</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q23"></div>
+                </div>
+
+                <div class="submit-wrap">
+                    <button type="button" class="btn" onclick="submitQuiz()">
+                        <i class="fas fa-check-circle"></i> Submit All MCQs
+                    </button>
+                </div>
+
+            </form>
+
+            <div class="result" id="resultBox">
+                <h3><i class="fas fa-chart-simple"></i> Your Score</h3>
+                <div class="score" id="score">0%</div>
+                <p class="text-muted" style="font-size:0.9rem;">Review the feedback below each question.</p>
+                <div id="answers"></div>
+            </div>
+        </section>
+
+        <!-- ─── SECTION 2: ESSAYS ─── -->
+        <section class="container section-panel hidden" id="section-essay">
+            <div class="section-title scroll-target" id="essay-top">
+                <i class="fas fa-pen-fancy"></i> Short Essay Questions
+                <span class="count">16</span>
+            </div>
+            <p class="section-subtitle">Write your answer in each box, then click <strong>Reveal Answer</strong> to check the model response.</p>
+
+            <!-- ─── ESSAY Q3 ─── -->
+            <div class="essay-card">
+                <h3><span class="qnum">Q1</span> Question 1 </h3>
+                <p>ADA deficiency is an inherited disorder that damages the immune system and causes severe combined immunodeficiency (SCID). Patients lack immune protection against bacteria, viruses, and fungi, and are prone to recurrent opportunistic infections. Affected children also grow slowly and some have developmental delay.</p>
+
+                <!-- 3a -->
+                <div class="sub-question">
+                    <div class="sub-q-label">
+                        <span class="letter">a</span>
+                        <span>What is the normal reaction catalyzed by ADA, and what is the metabolic defect in this condition?</span>
+                        <span class="marks">(1 mark)</span>
+                    </div>
+                    <textarea placeholder="Write your answer here…"></textarea>
+                    <div class="essay-actions">
+                        <button class="btn btn-reveal btn-sm" onclick="toggleEssay('q3a')">
+                            <i class="fas fa-eye"></i> Reveal Answer
+                        </button>
+                        <span class="hint-text">Click to see model answer</span>
+                    </div>
+                    <div class="essay-answers" id="essay-q3a">
+                        <h4><i class="fas fa-check-circle"></i> Model Answer <span class="model-tag">1 mark</span></h4>
+                        <p>ADA catalyzes the deamination of adenosine → inosine and deoxyadenosine → deoxyinosine. The defect is loss of this enzyme activity.</p>
+                    </div>
+                </div>
+
+                <!-- 3b -->
+                <div class="sub-question">
+                    <div class="sub-q-label">
+                        <span class="letter">b</span>
+                        <span>Which metabolites accumulate in ADA deficiency?</span>
+                        <span class="marks">(1 mark)</span>
+                    </div>
+                    <textarea placeholder="Write your answer here…"></textarea>
+                    <div class="essay-actions">
+                        <button class="btn btn-reveal btn-sm" onclick="toggleEssay('q3b')">
+                            <i class="fas fa-eye"></i> Reveal Answer
+                        </button>
+                        <span class="hint-text">Click to see model answer</span>
+                    </div>
+                    <div class="essay-answers" id="essay-q3b">
+                        <h4><i class="fas fa-check-circle"></i> Model Answer <span class="model-tag">1 mark</span></h4>
+                        <p>Adenosine and deoxyadenosine (and consequently dATP) accumulate.</p>
+                    </div>
+                </div>
+
+                <!-- 3c -->
+                <div class="sub-question">
+                    <div class="sub-q-label">
+                        <span class="letter">c</span>
+                        <span>What is the final catabolic product of adenosine in the normal body?</span>
+                        <span class="marks">(1 mark)</span>
+                    </div>
+                    <textarea placeholder="Write your answer here…"></textarea>
+                    <div class="essay-actions">
+                        <button class="btn btn-reveal btn-sm" onclick="toggleEssay('q3c')">
+                            <i class="fas fa-eye"></i> Reveal Answer
+                        </button>
+                        <span class="hint-text">Click to see model answer</span>
+                    </div>
+                    <div class="essay-answers" id="essay-q3c">
+                        <h4><i class="fas fa-check-circle"></i> Model Answer <span class="model-tag">1 mark</span></h4>
+                        <p>Uric acid.</p>
+                    </div>
+                </div>
+
+                <!-- 3d -->
+                <div class="sub-question">
+                    <div class="sub-q-label">
+                        <span class="letter">d</span>
+                        <span>Sketch the outline of adenosine degradation in the body.</span>
+                        <span class="marks">(2 marks)</span>
+                    </div>
+                    <textarea placeholder="Write your answer here…"></textarea>
+                    <div class="essay-actions">
+                        <button class="btn btn-reveal btn-sm" onclick="toggleEssay('q3d')">
+                            <i class="fas fa-eye"></i> Reveal Answer
+                        </button>
+                        <span class="hint-text">Click to see model answer</span>
+                    </div>
+                    <div class="essay-answers" id="essay-q3d">
+                        <h4><i class="fas fa-check-circle"></i> Model Answer <span class="model-tag">2 marks</span></h4>
+                        <p>AMP → Adenosine → (ADA) → Inosine → Hypoxanthine → (Xanthine Oxidase) → Xanthine → (Xanthine Oxidase) → Uric Acid.</p>
+                    </div>
+                </div>
+
+                <!-- 3e -->
+                <div class="sub-question">
+                    <div class="sub-q-label">
+                        <span class="letter">e</span>
+                        <span>Which tissues have the highest ADA activity?</span>
+                        <span class="marks">(1 mark)</span>
+                    </div>
+                    <textarea placeholder="Write your answer here…"></textarea>
+                    <div class="essay-actions">
+                        <button class="btn btn-reveal btn-sm" onclick="toggleEssay('q3e')">
+                            <i class="fas fa-eye"></i> Reveal Answer
+                        </button>
+                        <span class="hint-text">Click to see model answer</span>
+                    </div>
+                    <div class="essay-answers" id="essay-q3e">
+                        <h4><i class="fas fa-check-circle"></i> Model Answer <span class="model-tag">1 mark</span></h4>
+                        <p>Lymphoid tissue (lymphocytes, thymus, spleen).</p>
+                    </div>
+                </div>
+
+                <!-- 3f -->
+                <div class="sub-question">
+                    <div class="sub-q-label">
+                        <span class="letter">f</span>
+                        <span>Explain the biochemical basis of immune system damage in ADA deficiency.</span>
+                        <span class="marks">(1 mark)</span>
+                    </div>
+                    <textarea placeholder="Write your answer here…"></textarea>
+                    <div class="essay-actions">
+                        <button class="btn btn-reveal btn-sm" onclick="toggleEssay('q3f')">
+                            <i class="fas fa-eye"></i> Reveal Answer
+                        </button>
+                        <span class="hint-text">Click to see model answer</span>
+                    </div>
+                    <div class="essay-answers" id="essay-q3f">
+                        <h4><i class="fas fa-check-circle"></i> Model Answer <span class="model-tag">1 mark</span></h4>
+                        <p>Accumulated dATP inhibits ribonucleotide reductase, blocking DNA synthesis/repair and causing lymphotoxicity (killing T and B lymphocytes).</p>
+                    </div>
+                </div>
+
+                <!-- 3g -->
+                <div class="sub-question">
+                    <div class="sub-q-label">
+                        <span class="letter">g</span>
+                        <span>Explain the biochemical basis of developmental delay in ADA deficiency.</span>
+                        <span class="marks">(1 mark)</span>
+                    </div>
+                    <textarea placeholder="Write your answer here…"></textarea>
+                    <div class="essay-actions">
+                        <button class="btn btn-reveal btn-sm" onclick="toggleEssay('q3g')">
+                            <i class="fas fa-eye"></i> Reveal Answer
+                        </button>
+                        <span class="hint-text">Click to see model answer</span>
+                    </div>
+                    <div class="essay-answers" id="essay-q3g">
+                        <h4><i class="fas fa-check-circle"></i> Model Answer <span class="model-tag">1 mark</span></h4>
+                        <p>Systemic toxicity from purine metabolite accumulation, combined with chronic recurrent infections, leads to energy failure and impaired cellular development.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─── ESSAY Q4 ─── -->
+            <div class="essay-card">
+                <h3><span class="qnum">Q2</span> Question 2 </h3>
+                <p>A 56-year-old male presented with intense redness, heat, and pain over his right great toe at the metatarsophalangeal joint. Joint fluid showed birefringent crystals. He was treated with allopurinol and advised to go vegan.</p>
+
+                <!-- 4a -->
+                <div class="sub-question">
+                    <div class="sub-q-label">
+                        <span class="letter">a</span>
+                        <span>What is the most likely diagnosis?</span>
+                        <span class="marks">(1 mark)</span>
+                    </div>
+                    <textarea placeholder="Write your answer here…"></textarea>
+                    <div class="essay-actions">
+                        <button class="btn btn-reveal btn-sm" onclick="toggleEssay('q4a')">
+                            <i class="fas fa-eye"></i> Reveal Answer
+                        </button>
+                        <span class="hint-text">Click to see model answer</span>
+                    </div>
+                    <div class="essay-answers" id="essay-q4a">
+                        <h4><i class="fas fa-check-circle"></i> Model Answer <span class="model-tag">1 mark</span></h4>
+                        <p>Gout.</p>
+                    </div>
+                </div>
+
+                <!-- 4b -->
+                <div class="sub-question">
+                    <div class="sub-q-label">
+                        <span class="letter">b</span>
+                        <span>This disease results from excessive degradation of which class of metabolites?</span>
+                        <span class="marks">(1 mark)</span>
+                    </div>
+                    <textarea placeholder="Write your answer here…"></textarea>
+                    <div class="essay-actions">
+                        <button class="btn btn-reveal btn-sm" onclick="toggleEssay('q4b')">
+                            <i class="fas fa-eye"></i> Reveal Answer
+                        </button>
+                        <span class="hint-text">Click to see model answer</span>
+                    </div>
+                    <div class="essay-answers" id="essay-q4b">
+                        <h4><i class="fas fa-check-circle"></i> Model Answer <span class="model-tag">1 mark</span></h4>
+                        <p>Purines (purine nucleotides).</p>
+                    </div>
+                </div>
+
+                <!-- 4c -->
+                <div class="sub-question">
+                    <div class="sub-q-label">
+                        <span class="letter">c</span>
+                        <span>What metabolite forms the birefringent crystals seen in the joint fluid?</span>
+                        <span class="marks">(1 mark)</span>
+                    </div>
+                    <textarea placeholder="Write your answer here…"></textarea>
+                    <div class="essay-actions">
+                        <button class="btn btn-reveal btn-sm" onclick="toggleEssay('q4c')">
+                            <i class="fas fa-eye"></i> Reveal Answer
+                        </button>
+                        <span class="hint-text">Click to see model answer</span>
+                    </div>
+                    <div class="essay-answers" id="essay-q4c">
+                        <h4><i class="fas fa-check-circle"></i> Model Answer <span class="model-tag">1 mark</span></h4>
+                        <p>Monosodium urate (urate crystals).</p>
+                    </div>
+                </div>
+
+                <!-- 4d -->
+                <div class="sub-question">
+                    <div class="sub-q-label">
+                        <span class="letter">d</span>
+                        <span>What is the normal serum range for this metabolite?</span>
+                        <span class="marks">(1 mark)</span>
+                    </div>
+                    <textarea placeholder="Write your answer here…"></textarea>
+                    <div class="essay-actions">
+                        <button class="btn btn-reveal btn-sm" onclick="toggleEssay('q4d')">
+                            <i class="fas fa-eye"></i> Reveal Answer
+                        </button>
+                        <span class="hint-text">Click to see model answer</span>
+                    </div>
+                    <div class="essay-answers" id="essay-q4d">
+                        <h4><i class="fas fa-check-circle"></i> Model Answer <span class="model-tag">1 mark</span></h4>
+                        <p>3.5 – 7.0 mg/dL (or 4–7 mg/100 mL).</p>
+                    </div>
+                </div>
+
+                <!-- 4e -->
+                <div class="sub-question">
+                    <div class="sub-q-label">
+                        <span class="letter">e</span>
+                        <span>Name two enzyme defects that can cause this condition.</span>
+                        <span class="marks">(1 mark)</span>
+                    </div>
+                    <textarea placeholder="Write your answer here…"></textarea>
+                    <div class="essay-actions">
+                        <button class="btn btn-reveal btn-sm" onclick="toggleEssay('q4e')">
+                            <i class="fas fa-eye"></i> Reveal Answer
+                        </button>
+                        <span class="hint-text">Click to see model answer</span>
+                    </div>
+                    <div class="essay-answers" id="essay-q4e">
+                        <h4><i class="fas fa-check-circle"></i> Model Answer <span class="model-tag">1 mark</span></h4>
+                        <ul>
+                            <li>PRPP synthetase overactivity.</li>
+                            <li>HGPRT deficiency (Lesch-Nyhan syndrome).</li>
+                            <li>Glutamine PRPP amidotransferase overactivity.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 4f -->
+                <div class="sub-question">
+                    <div class="sub-q-label">
+                        <span class="letter">f</span>
+                        <span>Sugary foods worsen gout. Explain the biochemical basis.</span>
+                        <span class="marks">(2 marks)</span>
+                    </div>
+                    <textarea placeholder="Write your answer here…"></textarea>
+                    <div class="essay-actions">
+                        <button class="btn btn-reveal btn-sm" onclick="toggleEssay('q4f')">
+                            <i class="fas fa-eye"></i> Reveal Answer
+                        </button>
+                        <span class="hint-text">Click to see model answer</span>
+                    </div>
+                    <div class="essay-answers" id="essay-q4f">
+                        <h4><i class="fas fa-check-circle"></i> Model Answer <span class="model-tag">2 marks</span></h4>
+                        <p>Fructose phosphorylation by fructokinase rapidly depletes ATP, generating AMP/ADP. This drives purine nucleotide degradation and increases uric acid production.</p>
+                    </div>
+                </div>
+
+                <!-- 4g -->
+                <div class="sub-question">
+                    <div class="sub-q-label">
+                        <span class="letter">g</span>
+                        <span>List two other factors that promote gout.</span>
+                        <span class="marks">(1 mark)</span>
+                    </div>
+                    <textarea placeholder="Write your answer here…"></textarea>
+                    <div class="essay-actions">
+                        <button class="btn btn-reveal btn-sm" onclick="toggleEssay('q4g')">
+                            <i class="fas fa-eye"></i> Reveal Answer
+                        </button>
+                        <span class="hint-text">Click to see model answer</span>
+                    </div>
+                    <div class="essay-answers" id="essay-q4g">
+                        <h4><i class="fas fa-check-circle"></i> Model Answer <span class="model-tag">1 mark</span></h4>
+                        <ul>
+                            <li>Alcohol consumption.</li>
+                            <li>High-purine diet (red meat, seafood).</li>
+                            <li>Dehydration or diuretic use.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 4h -->
+                <div class="sub-question">
+                    <div class="sub-q-label">
+                        <span class="letter">h</span>
+                        <span>What is the mechanism of action of allopurinol?</span>
+                        <span class="marks">(1 mark)</span>
+                    </div>
+                    <textarea placeholder="Write your answer here…"></textarea>
+                    <div class="essay-actions">
+                        <button class="btn btn-reveal btn-sm" onclick="toggleEssay('q4h')">
+                            <i class="fas fa-eye"></i> Reveal Answer
+                        </button>
+                        <span class="hint-text">Click to see model answer</span>
+                    </div>
+                    <div class="essay-answers" id="essay-q4h">
+                        <h4><i class="fas fa-check-circle"></i> Model Answer <span class="model-tag">1 mark</span></h4>
+                        <p>Allopurinol competitively (suicide) inhibits xanthine oxidase, blocking conversion of hypoxanthine and xanthine to uric acid.</p>
+                    </div>
+                </div>
+
+                <!-- 4i -->
+                <div class="sub-question">
+                    <div class="sub-q-label">
+                        <span class="letter">i</span>
+                        <span>Why was the patient advised to go vegan?</span>
+                        <span class="marks">(1 mark)</span>
+                    </div>
+                    <textarea placeholder="Write your answer here…"></textarea>
+                    <div class="essay-actions">
+                        <button class="btn btn-reveal btn-sm" onclick="toggleEssay('q4i')">
+                            <i class="fas fa-eye"></i> Reveal Answer
+                        </button>
+                        <span class="hint-text">Click to see model answer</span>
+                    </div>
+                    <div class="essay-answers" id="essay-q4i">
+                        <h4><i class="fas fa-check-circle"></i> Model Answer <span class="model-tag">1 mark</span></h4>
+                        <p>A plant-based diet reduces exogenous purine intake (avoiding purine-rich meat and seafood), lowering serum uric acid levels.</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <button id="backBtn" onclick="goBack()">⬅ Back</button>
+        <h1>ToToZ Collection</h1>
+        <button id="forwardBtn" onclick="goForward()">Forward ➡</button>
+    </footer>
+
+    <!-- ═══ JAVASCRIPT ═══ -->
+    <script>
+        // ─── TAB NAVIGATION ───
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const section = this.dataset.section;
+                document.querySelectorAll('.section-panel').forEach(p => p.classList.add('hidden'));
+                document.getElementById('section-' + section).classList.remove('hidden');
+                const topEl = document.getElementById(section + '-top');
+                if (topEl) topEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // ─── MCQ CORRECT ANSWERS ───
+        const correctAnswers = {
+            q1: "c",
+            q2: "d",
+            q3: "d",
+            q4: "b",
+            q5: "e",
+            q6: "a",
+            q7: "b",
+            q8: "d",
+            q9: "c",
+            q10: "a",
+            q11: "a",
+            q12: "b",
+            q13: "e",
+            q14: "a",
+            q15: "c",
+            q16: "b",
+            q17: "d",
+            q18: "e",
+            q19: "b",
+            q20: "e",
+            q21: "e",
+            q22: "b",
+            q23: "d"
+        };
+
+        // ─── MCQ EXPLANATIONS ───
+        const answerExplanations = {
+            q1: "Lesch-Nyhan syndrome features developmental delay, self-mutilation, and orange uric acid crystals due to defective hypoxanthine salvage.",
+            q2: "Thymidylate synthase uses N5,N10-methylene tetrahydrofolate as a methyl donor to convert d-UMP to d-TMP.",
+            q3: "HGPRTase deficiency prevents purine salvage, causing hyperuricemia, gouty arthritis, nephropathy, and self-injurious behavior.",
+            q4: "Elevated serum/urinary uric acid is the primary biochemical marker for Lesch-Nyhan syndrome.",
+            q5: "Xanthine oxidase oxidizes hypoxanthine→xanthine and xanthine→uric acid. Deficiency causes hypouricemia with elevated hypoxanthine/xanthine.",
+            q6: "Uric acid is the final purine catabolite in humans due to loss of functional urate oxidase.",
+            q7: "Gout results from altered purine turnover and hyperuricemia.",
+            q8: "Nucleotides come from de novo synthesis and salvage of pre-existing bases/nucleosides.",
+            q9: "DHFR inhibition depletes tetrahydrofolate needed by thymidylate synthase, halting de novo dTMP synthesis.",
+            q10: "Allopurinol lowers uric acid by inhibiting xanthine oxidase, so it prevents hyperuricemia.",
+            q11: "Xanthine oxidase inhibition stops uric acid synthesis, reducing urinary and serum uric acid.",
+            q12: "UMP (uridine monophosphate) is the central precursor for CTP and dTMP.",
+            q13: "Aspartate provides C/N atoms; glutamine donates amide nitrogen in de novo pyrimidine synthesis.",
+            q14: "CPS II is in the pyrimidine pathway; its defects do not cause hyperuricemia.",
+            q15: "G6Pase deficiency drives the pentose phosphate pathway to produce excess PRPP, boosting purine synthesis.",
+            q16: "Aspartate donates N1 to the purine ring and C4,C5,C6,N1 to the pyrimidine ring.",
+            q17: "The liver relies on de novo synthesis and exports purines, showing minimal salvage activity.",
+            q18: "ADA deficiency causes toxic dATP accumulation, impairing DNA synthesis in lymphocytes → SCID.",
+            q19: "In OTC deficiency, carbamoyl phosphate leaks to the cytoplasm, bypassing CPS II and overdriving orotic acid production.",
+            q20: "Lesch-Nyhan syndrome: HGPRT deficiency → PRPP buildup, uric acid overproduction, cognitive impairment, and self-mutilation.",
+            q21: "Allopurinol inhibits xanthine oxidase, blocking hypoxanthine→xanthine→uric acid, causing hypoxanthine accumulation.",
+            q22: "Glutamine analogs competitively inhibit amidotransferases, preventing amide nitrogen transfer for nucleotide synthesis.",
+            q23: "Self-mutilation is characteristic of Lesch-Nyhan syndrome, not hereditary orotic aciduria (which features megaloblastic anemia, growth retardation, and orotic aciduria)."
+        };
+
+        // ─── MCQ SUBMIT ───
+        function submitQuiz() {
+            let score = 0;
+            const total = Object.keys(correctAnswers).length;
+
+            document.querySelectorAll('.question-feedback').forEach(el => el.innerHTML = '');
+
+            for (let key in correctAnswers) {
+                const radios = Array.from(document.querySelectorAll(`input[name="${key}"]`));
+                const selected = radios.find(r => r.checked);
+                const correct = correctAnswers[key];
+
+                if (selected && selected.value === correct) score++;
+
+                const feedbackEl = document.getElementById(`feedback-${key}`);
+                if (!feedbackEl) continue;
+
+                let html = `<div class="answer-block"><strong>Q${key.replace(/^q/, '')}</strong><div class="answer-list">`;
+
+                radios.forEach(r => {
+                    const label = r.parentElement;
+                    const text = label ? label.textContent.trim() : r.value;
+                    const classes = ['answer-item'];
+                    if (r.value === correct) classes.push('answer-correct');
+                    if (r.checked && r.value !== correct) classes.push('answer-wrong', 'user-choice');
+                    if (r.checked && r.value === correct) classes.push('user-choice');
+                    html += `<div class="${classes.join(' ')}">${text}${r.checked ? ' ◀' : ''}</div>`;
+                });
+
+                html += `</div>`;
+
+                const correctRadio = radios.find(rr => rr.value === correct);
+                const correctText = correctRadio && correctRadio.parentElement ? correctRadio.parentElement.textContent
+                    .trim() : correct;
+                const explanationText = answerExplanations[key] || '';
+
+                if (selected) {
+                    if (selected.value === correct) {
+                        html += `<div class="explanation">✅ Correct — ${explanationText}</div>`;
+                    } else {
+                        html +=
+                            `<div class="explanation wrong">❌ Incorrect. Correct answer: <strong>${correctText}</strong>. ${explanationText}</div>`;
+                    }
+                } else {
+                    html +=
+                        `<div class="explanation wrong">No answer selected. Correct answer: <strong>${correctText}</strong>. ${explanationText}</div>`;
+                }
+
+                html += `</div>`;
+                feedbackEl.innerHTML = html;
+            }
+
+            const percentage = Math.round((score / total) * 100);
+            const resultBox = document.getElementById('resultBox');
+            resultBox.style.display = 'block';
+            document.getElementById('answers').innerHTML = '';
+
+            let start = 0;
+            const timer = setInterval(() => {
+                if (start >= percentage) clearInterval(timer);
+                document.getElementById('score').innerText = start + '%';
+                start++;
+            }, 20);
+
+            document.querySelectorAll('#quizForm input[type="radio"]').forEach(i => i.disabled = true);
+        }
+
+        // ─── ESSAY TOGGLE ───
+        function toggleEssay(id) {
+            const el = document.getElementById('essay-' + id);
+            if (!el) return;
+            // Toggle the 'visible' class; CSS handles display
+            el.classList.toggle('visible');
+            // If revealed, scroll to it
+            if (el.classList.contains('visible')) {
+                setTimeout(() => {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
+            }
+        }
+
+        // ─── KEYBOARD ACCESSIBILITY ───
+        document.querySelectorAll('.essay-actions .btn').forEach(btn => {
+            btn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    btn.click();
+                }
+            });
+        });
+
+        // ─── ENTER KEY ON TEXTAREA (optional convenience) ───
+        document.querySelectorAll('.sub-question textarea').forEach(ta => {
+            ta.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && e.shiftKey) {
+                    e.preventDefault();
+                    const btn = ta.closest('.sub-question').querySelector('.essay-actions .btn');
+                    if (btn) btn.click();
+                }
+            });
+        });
+    </script>
+    <script src="../nav.js"></script>
+
+</body>
+</html>

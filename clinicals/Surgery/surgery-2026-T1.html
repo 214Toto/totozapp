@@ -1,0 +1,1763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2026 Surgery Test 1 | Past Paper</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        /* ─────────── ROOT & RESET ─────────── */
+        :root {
+            --primary: #2b7a78;
+            --accent: #3aafa9;
+            --dark: #17252a;
+            --light: #f8f9fa;
+            --radius: 12px;
+            --shadow: 0 4px 14px rgba(18, 38, 63, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Roboto, system-ui, sans-serif;
+            background: linear-gradient(180deg, #f5f7fb, #eef6f6);
+            color: var(--dark);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+
+        /* ─────────── HEADER ─────────── */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: #fff;
+            padding: 0.8rem 0;
+            box-shadow: 0 6px 18px rgba(11, 36, 36, 0.18);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            font-size: 1.6rem;
+            color: var(--accent);
+        }
+
+        .logo h1 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 0.25rem 1rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            color: #d4f0ee;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0.3rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-tabs .tab-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: none;
+            color: #d4f0ee;
+            padding: 0.3rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .nav-tabs .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #fff;
+        }
+
+        .nav-tabs .tab-btn.active {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        /* ─────────── CONTAINER ─────────── */
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 1.25rem 2.5rem;
+        }
+
+        /* ─────────── SECTION TITLES ─────────── */
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1.8rem 0 1rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 3px solid rgba(43, 122, 120, 0.20);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .section-title i {
+            font-size: 1.1rem;
+            color: rgb(8, 104, 66);
+        }
+
+        .section-title .count {
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0.05rem 0.7rem;
+        }
+
+        .section-subtitle {
+            color: #5f7a7a;
+            font-size: 0.92rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .section-panel {
+            display: block;
+        }
+
+        .section-panel.hidden {
+            display: none;
+        }
+
+        /* ─────────── MCQ QUESTION CARDS ─────────── */
+        .question {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.2rem 1.2rem 0.2rem 1.2rem;
+            margin-bottom: 1.2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(43, 122, 120, 0.06);
+            transition: box-shadow 0.2s;
+        }
+
+        .question:hover {
+            box-shadow: 0 6px 22px rgba(18, 38, 63, 0.07);
+        }
+
+        .question p {
+            font-weight: 600;
+            font-size: 0.98rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .question .q-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            line-height: 1.6;
+            margin-right: 0.4rem;
+        }
+
+        .options label {
+            display: block;
+            background: #fafcfd;
+            border: 1px solid #e0e8ef;
+            border-radius: 8px;
+            padding: 0.45rem 0.9rem;
+            margin-top: 0.45rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-weight: 450;
+            font-size: 0.94rem;
+        }
+
+        .options label:hover {
+            background: #e8f5f4;
+            border-color: var(--accent);
+        }
+
+        .options input[type="radio"] {
+            margin-right: 0.5rem;
+            accent-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        /* ─────────── FEEDBACK ─────────── */
+        .question-feedback {
+            margin-top: 0.9rem;
+            padding: 0.4rem 0 0.1rem 0;
+            border-top: 1px dashed #dce6ed;
+        }
+
+        .answer-block strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--primary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .answer-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .answer-item {
+            padding: 5px 10px;
+            border-radius: 6px;
+            border: 1px solid #e6eef3;
+            background: #ffffff;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .answer-correct {
+            background: #ecfdf5;
+            border-color: #bbf7d0;
+            color: #065f46;
+        }
+
+        .answer-wrong {
+            background: #fff1f2;
+            border-color: #fca5a5;
+            color: #9f1239;
+        }
+
+        .user-choice {
+            outline: 2px dashed rgba(0, 0, 0, 0.06);
+        }
+
+        .explanation {
+            margin-top: 6px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: #f1f8f6;
+            color: #065f46;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border-left: 4px solid var(--accent);
+        }
+
+        .explanation.wrong {
+            background: #fff5f5;
+            color: #7f1d1d;
+            border-left-color: #f87171;
+        }
+
+        /* ─────────── BUTTONS ─────────── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.6rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(43, 122, 120, 0.22);
+        }
+
+        .btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(43, 122, 120, 0.30);
+        }
+
+        .btn:active {
+            transform: scale(0.96);
+        }
+
+        .btn i {
+            font-size: 0.9rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .btn-sm {
+            padding: 0.35rem 1rem;
+            font-size: 0.85rem;
+        }
+
+        .submit-wrap {
+            text-align: center;
+            margin: 1.5rem 0 2rem;
+        }
+
+        /* ─────────── RESULT BOX ─────────── */
+        .result {
+            margin-top: 1.5rem;
+            padding: 1.5rem 1.5rem 1rem;
+            background: #f1faf9;
+            border-radius: var(--radius);
+            text-align: center;
+            display: none;
+            border: 1px solid #c5e3df;
+        }
+
+        .result h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.2rem;
+        }
+
+        .score {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0.2rem 0 0.4rem;
+        }
+
+        /* ─────────── ESSAY SECTION ─────────── */
+        .essay-card {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.25rem 1.25rem 1rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(43, 122, 120, 0.06);
+        }
+
+        .essay-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 0 0 0.6rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .essay-card h3 .qnum {
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.75rem;
+            line-height: 1.6;
+        }
+
+        .essay-card img {
+            margin: 0.2rem 0 0.8rem 0;
+            border-radius: 8px;
+            border: 1px solid #e9edf2;
+            max-height: 340px;
+            object-fit: contain;
+            background: #fafcfd;
+        }
+
+        .essay-card textarea {
+            width: 100%;
+            min-height: 80px;
+            border-radius: 8px;
+            border: 1px solid #d1dbe0;
+            padding: 0.7rem 0.9rem;
+            resize: vertical;
+            font-family: inherit;
+            font-size: 0.95rem;
+            background: #fafcfd;
+            transition: border 0.2s;
+        }
+
+        .essay-card textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(43, 122, 120, 0.12);
+        }
+
+        .essay-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 0.7rem;
+            flex-wrap: wrap;
+        }
+
+        .essay-actions .btn {
+            padding: 0.45rem 1.2rem;
+            font-size: 0.9rem;
+        }
+
+        .essay-answers {
+            display: none;
+            margin-top: 1rem;
+            background: #f1f8f6;
+            border-radius: 8px;
+            padding: 1rem 1.2rem;
+            border: 1px solid #cfe6e0;
+            color: var(--dark);
+        }
+
+        .essay-answers.visible {
+            display: block;
+            animation: fadeSlide 0.25s ease;
+        }
+
+        .essay-answers h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: var(--primary);
+            margin: 0 0 0.5rem 0;
+        }
+
+        .essay-answers p,
+        .essay-answers li {
+            font-size: 0.94rem;
+            line-height: 1.6;
+        }
+
+        .essay-answers ul {
+            padding-left: 1.2rem;
+            margin: 0.3rem 0 0.5rem;
+        }
+
+        .essay-answers ul li {
+            margin-bottom: 0.2rem;
+        }
+
+        .essay-answers b {
+            color: var(--dark);
+        }
+
+        @keyframes fadeSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(-6px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ─────────── RESPONSIVE ─────────── */
+        @media (max-width: 700px) {
+            body {
+                padding-top: 72px;
+            }
+            .logo h1 {
+                font-size: 1rem;
+            }
+            .header-inner {
+                padding: 0 1rem;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.3rem;
+            }
+            .badge {
+                align-self: flex-start;
+            }
+            .nav-tabs {
+                justify-content: center;
+            }
+            .nav-tabs .tab-btn {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.7rem;
+            }
+            .question {
+                padding: 1rem 1rem 0.1rem 1rem;
+            }
+            .section-title {
+                font-size: 1.1rem;
+            }
+            .essay-card {
+                padding: 1rem;
+            }
+            .score {
+                font-size: 2.2rem;
+            }
+            .btn {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .logo h1 {
+                font-size: 0.85rem;
+            }
+            .logo i {
+                font-size: 1.2rem;
+            }
+            .options label {
+                font-size: 0.87rem;
+                padding: 0.4rem 0.7rem;
+            }
+        }
+
+        /* ─────────── UTILITY ─────────── */
+        .text-muted {
+            color: #5f7a7a;
+            font-size: 0.9rem;
+        }
+        .mt-1 {
+            margin-top: 0.8rem;
+        }
+        .mb-1 {
+            margin-bottom: 0.8rem;
+        }
+        .flex-center {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .hidden {
+            display: none !important;
+        }
+
+        .scroll-target {
+            scroll-margin-top: 90px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════ HEADER ═══════ -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <i class="fas fa-book-medical"></i>
+                <h1>2026 Surgery Test 1</h1>
+            </div>
+            <span class="badge"><i class="fas fa-pencil-alt"></i> &nbsp;Past Paper</span>
+            <div class="nav-tabs">
+                <button class="tab-btn active" data-section="mcq">MCQs</button>
+                <button class="tab-btn" data-section="essay">Essays</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══════ MAIN CONTENT ═══════ -->
+    <main>
+
+        <!-- ──── SECTION 1: MCQs ──── -->
+        <section class="container section-panel" id="section-mcq">
+            <div class="section-title scroll-target" id="mcq-top">
+                <i class="fas fa-list-ul"></i> Multiple Choice Questions
+                <span class="count">50</span>
+            </div>
+            <p class="section-subtitle">Select the best answer for each question, then click <strong>Submit All MCQs</strong> at the bottom.</p>
+
+            <form id="quizForm">
+
+                <!-- Q1 – Q50 -->
+                <div class="question">
+                    <p><span class="q-badge">1</span> A 24-year-old man presents with an indirect inguinal hernia. During discussion of the pathology, he is informed that the hernia sac enters the inguinal canal through a specific anatomical opening. Which structure forms the entrance to the inguinal canal?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="a"> A. Femoral ring</label>
+                        <label><input type="radio" name="q1" value="b"> B. Superficial inguinal ring</label>
+                        <label><input type="radio" name="q1" value="c"> C. Deep inguinal ring</label>
+                        <label><input type="radio" name="q1" value="d"> D. Obturator canal</label>
+                        <label><input type="radio" name="q1" value="e"> E. Adductor hiatus</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q1"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">2</span> A patient undergoes appendicectomy. The surgeon identifies the base of the appendix by tracing three longitudinal muscle bands on the caecum. These anatomical structures are known as:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="a"> A. Appendices epiploicae</label>
+                        <label><input type="radio" name="q2" value="b"> B. Circular folds</label>
+                        <label><input type="radio" name="q2" value="c"> C. Teniae coli</label>
+                        <label><input type="radio" name="q2" value="d"> D. Semilunar folds</label>
+                        <label><input type="radio" name="q2" value="e"> E. Mesenteric bands</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q2"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">3</span> A 65-year-old man presents with a femoral hernia. Which anatomical relationship best describes the neck of a femoral hernia?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="a"> A. Medial to femoral vein and below inguinal ligament</label>
+                        <label><input type="radio" name="q3" value="b"> B. Lateral to femoral vein and above inguinal ligament</label>
+                        <label><input type="radio" name="q3" value="c"> C. Medial to femoral artery and above inguinal ligament</label>
+                        <label><input type="radio" name="q3" value="d"> D. Lateral to pubic tubercle and above inguinal ligament</label>
+                        <label><input type="radio" name="q3" value="e"> E. Lateral to inferior epigastric vessels</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q3"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">4</span> A patient presents with a thyroid swelling. Which clinical feature suggests that the swelling originates from the thyroid gland?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="a"> A. Enlargement during coughing</label>
+                        <label><input type="radio" name="q4" value="b"> B. Movement with swallowing</label>
+                        <label><input type="radio" name="q4" value="c"> C. Presence of a cough impulse</label>
+                        <label><input type="radio" name="q4" value="d"> D. Reduction when supine</label>
+                        <label><input type="radio" name="q4" value="e"> E. Transillumination</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q4"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">5</span> A young man sustains a fracture of the surgical neck of the humerus. Which nerve is most vulnerable to injury?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="a"> A. Radial nerve</label>
+                        <label><input type="radio" name="q5" value="b"> B. Ulnar nerve</label>
+                        <label><input type="radio" name="q5" value="c"> C. Axillary nerve</label>
+                        <label><input type="radio" name="q5" value="d"> D. Median nerve</label>
+                        <label><input type="radio" name="q5" value="e"> E. Musculocutaneous nerve</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q5"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">6</span> A patient develops hoarseness after thyroid surgery. Injury to which nerve is the most likely explanation?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="a"> A. Glossopharyngeal nerve</label>
+                        <label><input type="radio" name="q6" value="b"> B. Superior laryngeal nerve</label>
+                        <label><input type="radio" name="q6" value="c"> C. Recurrent laryngeal nerve</label>
+                        <label><input type="radio" name="q6" value="d"> D. Hypoglossal nerve</label>
+                        <label><input type="radio" name="q6" value="e"> E. Vagus nerve</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q6"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">7</span> A patient develops pain and numbness affecting the little finger following an elbow injury. Which nerve is most likely affected?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="a"> A. Median nerve</label>
+                        <label><input type="radio" name="q7" value="b"> B. Musculocutaneous nerve</label>
+                        <label><input type="radio" name="q7" value="c"> C. Radial nerve</label>
+                        <label><input type="radio" name="q7" value="d"> D. Ulnar nerve</label>
+                        <label><input type="radio" name="q7" value="e"> E. Axillary nerve</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q7"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">8</span> A patient presents with varicose veins involving the medial aspect of the leg. Which superficial vein is most commonly involved?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="a"> A. Small saphenous vein</label>
+                        <label><input type="radio" name="q8" value="b"> B. Femoral vein</label>
+                        <label><input type="radio" name="q8" value="c"> C. Great saphenous vein</label>
+                        <label><input type="radio" name="q8" value="d"> D. Popliteal vein</label>
+                        <label><input type="radio" name="q8" value="e"> E. Posterior tibial vein</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q8"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">9</span> A patient develops persistent vomiting from gastric outlet obstruction. Which acid-base disturbance is most likely?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="a"> A. Metabolic acidosis</label>
+                        <label><input type="radio" name="q9" value="b"> B. Respiratory alkalosis</label>
+                        <label><input type="radio" name="q9" value="c"> C. Hypochloraemic metabolic alkalosis</label>
+                        <label><input type="radio" name="q9" value="d"> D. Respiratory acidosis</label>
+                        <label><input type="radio" name="q9" value="e"> E. Mixed acidosis</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q9"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">10</span> A patient with severe burns develops oliguria despite fluid therapy. Which physiological process is most likely occurring?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="a"> A. Hypervolaemia</label>
+                        <label><input type="radio" name="q10" value="b"> B. Inadequate tissue perfusion</label>
+                        <label><input type="radio" name="q10" value="c"> C. Increased glomerular filtration</label>
+                        <label><input type="radio" name="q10" value="d"> D. Improved renal function</label>
+                        <label><input type="radio" name="q10" value="e"> E. Resolution of shock</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q10"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">11</span> A patient develops fever, tachycardia and leucocytosis after surgery. These findings are characteristic of:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q11" value="a"> A. Systemic inflammatory response syndrome</label>
+                        <label><input type="radio" name="q11" value="b"> B. Chronic venous insufficiency</label>
+                        <label><input type="radio" name="q11" value="c"> C. Peripheral neuropathy</label>
+                        <label><input type="radio" name="q11" value="d"> D. Obstructive jaundice</label>
+                        <label><input type="radio" name="q11" value="e"> E. Renal colic</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q11"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">12</span> A patient presents with obstructive jaundice. Which enzyme pattern is most useful in supporting the diagnosis?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q12" value="a"> A. Raised uncounteracted bilirubin only</label>
+                        <label><input type="radio" name="q12" value="b"> B. Raised alkaline phosphatase and conjugated bilirubin</label>
+                        <label><input type="radio" name="q12" value="c"> C. Reduced alkaline phosphatase</label>
+                        <label><input type="radio" name="q12" value="d"> D. Low serum bilirubin</label>
+                        <label><input type="radio" name="q12" value="e"> E. Elevated serum amylase alone</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q12"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">13</span> A patient develops severe epigastric pain radiating to the back. Which enzyme is most useful in supporting a diagnosis of acute pancreatitis?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q13" value="a"> A. Alkaline phosphatase</label>
+                        <label><input type="radio" name="q13" value="b"> B. Lipase</label>
+                        <label><input type="radio" name="q13" value="c"> C. Bilirubin</label>
+                        <label><input type="radio" name="q13" value="d"> D. Creatine kinase</label>
+                        <label><input type="radio" name="q13" value="e"> E. Troponin</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q13"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">14</span> A patient presents with chronic gastro-oesophageal reflux. Which complication is associated with long-standing disease?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q14" value="a"> A. Barrett oesophagus</label>
+                        <label><input type="radio" name="q14" value="b"> B. Volvulus</label>
+                        <label><input type="radio" name="q14" value="c"> C. Intussusception</label>
+                        <label><input type="radio" name="q14" value="d"> D. Diverticulitis</label>
+                        <label><input type="radio" name="q14" value="e"> E. Cholelithiasis</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q14"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">15</span> A diabetic patient develops loss of protective sensation in the feet. This increases the risk of:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q15" value="a"> A. Neuropathic ulceration</label>
+                        <label><input type="radio" name="q15" value="b"> B. Varicocele</label>
+                        <label><input type="radio" name="q15" value="c"> C. Hydrocele</label>
+                        <label><input type="radio" name="q15" value="d"> D. Pilonidal sinus</label>
+                        <label><input type="radio" name="q15" value="e"> E. Keloid formation</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q15"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">16</span> A 20-year-old student develops abdominal pain that begins centrally and later localises to the right iliac fossa. Which diagnosis best explains this pattern?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q16" value="a"> A. Acute pancreatitis</label>
+                        <label><input type="radio" name="q16" value="b"> B. Acute appendicitis</label>
+                        <label><input type="radio" name="q16" value="c"> C. Cholecystitis</label>
+                        <label><input type="radio" name="q16" value="d"> D. Renal colic</label>
+                        <label><input type="radio" name="q16" value="e"> E. Peptic ulcer disease</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q16"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">17</span> A patient presents with severe epigastric pain radiating to the back and repeated vomiting. Which diagnosis is most likely?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q17" value="a"> A. Acute pancreatitis</label>
+                        <label><input type="radio" name="q17" value="b"> B. Appendicitis</label>
+                        <label><input type="radio" name="q17" value="c"> C. Cholangitis</label>
+                        <label><input type="radio" name="q17" value="d"> D. Diverticulitis</label>
+                        <label><input type="radio" name="q17" value="e"> E. Intestinal obstruction</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q17"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">18</span> A patient presents with abdominal distension, vomiting and absolute constipation. Which underlying diagnosis should be considered first?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q18" value="a"> A. Hepatitis</label>
+                        <label><input type="radio" name="q18" value="b"> B. Intestinal obstruction</label>
+                        <label><input type="radio" name="q18" value="c"> C. Gastritis</label>
+                        <label><input type="radio" name="q18" value="d"> D. Thyroid disease</label>
+                        <label><input type="radio" name="q18" value="e"> E. Renal failure</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q18"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">19</span> A patient presents with right upper quadrant pain occurring after fatty meals. Which underlying pathology is most likely?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q19" value="a"> A. Gallstone disease</label>
+                        <label><input type="radio" name="q19" value="b"> B. Renal calculi</label>
+                        <label><input type="radio" name="q19" value="c"> C. Appendicitis</label>
+                        <label><input type="radio" name="q19" value="d"> D. Pancreatic cancer</label>
+                        <label><input type="radio" name="q19" value="e"> E. Gastric ulcer</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q19"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">20</span> A patient with perforated peptic ulcer develops sudden severe abdominal pain and guarding. What does the guarding indicate?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q20" value="a"> A. Gastric outlet obstruction</label>
+                        <label><input type="radio" name="q20" value="b"> B. Peritonitis</label>
+                        <label><input type="radio" name="q20" value="c"> C. Portal hypertension</label>
+                        <label><input type="radio" name="q20" value="d"> D. Constipation</label>
+                        <label><input type="radio" name="q20" value="e"> E. Colitis</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q20"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">21</span> A 72-year-old man presents with abdominal distension and a radiographic coffee-bean sign. Which diagnosis is most likely?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q21" value="a"> A. Sigmoid volvulus</label>
+                        <label><input type="radio" name="q21" value="b"> B. Appendicitis</label>
+                        <label><input type="radio" name="q21" value="c"> C. Gastritis</label>
+                        <label><input type="radio" name="q21" value="d"> D. Acute pancreatitis</label>
+                        <label><input type="radio" name="q21" value="e"> E. Cholecystitis</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q21"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">22</span> A patient presents with fever, jaundice and right upper quadrant pain. This combination of findings is known as:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q22" value="a"> A. Courvoisier syndrome</label>
+                        <label><input type="radio" name="q22" value="b"> B. Charcot triad</label>
+                        <label><input type="radio" name="q22" value="c"> C. Murphy syndrome</label>
+                        <label><input type="radio" name="q22" value="d"> D. Cushing triad</label>
+                        <label><input type="radio" name="q22" value="e"> E. Beck triad</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q22"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">23</span> A 23-year-old woman presents with a painless, mobile breast lump measuring 2 cm. Which diagnosis is most likely?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q23" value="a"> A. Fibroadenoma</label>
+                        <label><input type="radio" name="q23" value="b"> B. Breast abscess</label>
+                        <label><input type="radio" name="q23" value="c"> C. Invasive carcinoma</label>
+                        <label><input type="radio" name="q23" value="d"> D. Fat necrosis</label>
+                        <label><input type="radio" name="q23" value="e"> E. Duct ectasia</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q23"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">24</span> A 58-year-old woman presents with a breast lump associated with nipple retraction. Which diagnosis should be considered first?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q24" value="a"> A. Lipoma</label>
+                        <label><input type="radio" name="q24" value="b"> B. Fibroadenoma</label>
+                        <label><input type="radio" name="q24" value="c"> C. Breast carcinoma</label>
+                        <label><input type="radio" name="q24" value="d"> D. Galactocele</label>
+                        <label><input type="radio" name="q24" value="e"> E. Sebaceous cyst</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q24"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">25</span> A patient presents with a diffuse thyroid enlargement in an iodine-deficient region. Which factor most likely contributed to development of the goitre?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q25" value="a"> A. Excess calcium intake</label>
+                        <label><input type="radio" name="q25" value="b"> B. Iodine deficiency</label>
+                        <label><input type="radio" name="q25" value="c"> C. Hyperparathyroidism</label>
+                        <label><input type="radio" name="q25" value="d"> D. Hypercalcaemia</label>
+                        <label><input type="radio" name="q25" value="e"> E. Vitamin A deficiency</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q25"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">26</span> A 25-year-old man is brought to the emergency department following a road traffic accident. He is unconscious and making gurgling sounds. According to the ABC approach, what should be addressed first?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q26" value="a"> A. Circulation and blood pressure</label>
+                        <label><input type="radio" name="q26" value="b"> B. Airway with cervical spine protection</label>
+                        <label><input type="radio" name="q26" value="c"> C. Disability assessment</label>
+                        <label><input type="radio" name="q26" value="d"> D. Exposure and temperature control</label>
+                        <label><input type="radio" name="q26" value="e"> E. Radiological investigation</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q26"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">27</span> A patient sustains a stab wound to the chest and develops severe respiratory distress. Examination reveals absent breath sounds on the right, distended neck veins and tracheal deviation. Which diagnosis best explains these findings?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q27" value="a"> A. Massive haemothorax</label>
+                        <label><input type="radio" name="q27" value="b"> B. Pulmonary contusion</label>
+                        <label><input type="radio" name="q27" value="c"> C. Cardiac tamponade</label>
+                        <label><input type="radio" name="q27" value="d"> D. Tension pneumothorax</label>
+                        <label><input type="radio" name="q27" value="e"> E. Simple pneumothorax</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q27"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">28</span> A trauma patient undergoes a FAST examination. What is the principal purpose of this investigation?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q28" value="a"> A. Detection of long-bone fractures</label>
+                        <label><input type="radio" name="q28" value="b"> B. Assessment of cardiac rhythm</label>
+                        <label><input type="radio" name="q28" value="c"> C. Identification of free fluid within body cavities</label>
+                        <label><input type="radio" name="q28" value="d"> D. Evaluation of bowel obstruction</label>
+                        <label><input type="radio" name="q28" value="e"> E. Confirmation of pneumothorax</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q28"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">29</span> A patient presents with hypotension and tachycardia following major trauma. Which shock should be considered first?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q29" value="a"> A. Septic shock</label>
+                        <label><input type="radio" name="q29" value="b"> B. Neurogenic shock</label>
+                        <label><input type="radio" name="q29" value="c"> C. Hypovolaemic shock</label>
+                        <label><input type="radio" name="q29" value="d"> D. Cardiogenic shock</label>
+                        <label><input type="radio" name="q29" value="e"> E. Obstructive shock</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q29"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">30</span> A patient with a fractured tibia develops severe pain that is disproportionate to examination findings and worsens with passive toe movement. Which complication is most likely?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q30" value="a"> A. Deep vein thrombosis</label>
+                        <label><input type="radio" name="q30" value="b"> B. Cellulitis</label>
+                        <label><input type="radio" name="q30" value="c"> C. Compartment syndrome</label>
+                        <label><input type="radio" name="q30" value="d"> D. Osteomyelitis</label>
+                        <label><input type="radio" name="q30" value="e"> E. Fat embolism</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q30"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">31</span> A patient sustains blunt head trauma. He was briefly unconscious, regained consciousness, then deteriorated several hours later. Which intracranial lesion most commonly presents in this manner?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q31" value="a"> A. Diffuse axonal injury</label>
+                        <label><input type="radio" name="q31" value="b"> B. Subarachnoid haemorrhage</label>
+                        <label><input type="radio" name="q31" value="c"> C. Extradural haematoma</label>
+                        <label><input type="radio" name="q31" value="d"> D. Chronic subdural haematoma</label>
+                        <label><input type="radio" name="q31" value="e"> E. Cerebral oedema</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q31"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">32</span> A 70-year-old man presents with hesitancy, poor urinary stream and nocturia. Digital rectal examination demonstrates a smooth enlarged prostate. What is the most likely diagnosis?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q32" value="a"> A. Carcinoma of the prostate</label>
+                        <label><input type="radio" name="q32" value="b"> B. Acute prostatitis</label>
+                        <label><input type="radio" name="q32" value="c"> C. Benign prostatic hyperplasia</label>
+                        <label><input type="radio" name="q32" value="d"> D. Urethral stricture</label>
+                        <label><input type="radio" name="q32" value="e"> E. Bladder carcinoma</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q32"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">33</span> A patient develops acute urinary retention secondary to benign prostatic enlargement. What is the most appropriate immediate intervention?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q33" value="a"> A. Radical prostatectomy</label>
+                        <label><input type="radio" name="q33" value="b"> B. Alpha-blocker therapy alone</label>
+                        <label><input type="radio" name="q33" value="c"> C. Urethral catheterisation</label>
+                        <label><input type="radio" name="q33" value="d"> D. Pelvic radiotherapy</label>
+                        <label><input type="radio" name="q33" value="e"> E. Observation</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q33"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">34</span> A 19-year-old man develops sudden severe scrotal pain associated with nausea. Examination demonstrates a high-riding testis and absent cremasteric reflex. Which diagnosis is most likely?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q34" value="a"> A. Hydrocele</label>
+                        <label><input type="radio" name="q34" value="b"> B. Epididymitis</label>
+                        <label><input type="radio" name="q34" value="c"> C. Testicular torsion</label>
+                        <label><input type="radio" name="q34" value="d"> D. Varicocele</label>
+                        <label><input type="radio" name="q34" value="e"> E. Inguinal hernia</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q34"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">35</span> A patient presents with a painless scrotal swelling that transilluminates. Which diagnosis is most likely?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q35" value="a"> A. Hydrocele</label>
+                        <label><input type="radio" name="q35" value="b"> B. Testicular tumour</label>
+                        <label><input type="radio" name="q35" value="c"> C. Varicocele</label>
+                        <label><input type="radio" name="q35" value="d"> D. Torsion of the testis</label>
+                        <label><input type="radio" name="q35" value="e"> E. Epididymo-orchitis</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q35"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">36</span> A patient presents with severe flank pain radiating towards the groin and microscopic haematuria. Which diagnosis should be considered first?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q36" value="a"> A. Acute appendicitis</label>
+                        <label><input type="radio" name="q36" value="b"> B. Ureteric calculus</label>
+                        <label><input type="radio" name="q36" value="c"> C. Cholecystitis</label>
+                        <label><input type="radio" name="q36" value="d"> D. Acute pancreatitis</label>
+                        <label><input type="radio" name="q36" value="e"> E. Diverticulitis</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q36"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">37</span> A smoker develops calf pain after walking approximately 100 metres. The pain resolves with rest. What term best describes this symptom?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q37" value="a"> A. Rest pain</label>
+                        <label><input type="radio" name="q37" value="b"> B. Claudication</label>
+                        <label><input type="radio" name="q37" value="c"> C. Paraesthesia</label>
+                        <label><input type="radio" name="q37" value="d"> D. Venous congestion</label>
+                        <label><input type="radio" name="q37" value="e"> E. Neuropathy</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q37"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">38</span> A diabetic patient presents with black, dry toes and absent distal pulses. Which pathological process is most likely?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q38" value="a"> A. Venous thrombosis</label>
+                        <label><input type="radio" name="q38" value="b"> B. Cellulitis</label>
+                        <label><input type="radio" name="q38" value="c"> C. Dry gangrene</label>
+                        <label><input type="radio" name="q38" value="d"> D. Lymphoedema</label>
+                        <label><input type="radio" name="q38" value="e"> E. Abscess formation</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q38"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">39</span> A patient presents with unilateral calf swelling and tenderness. Which investigation is most appropriate initially?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q39" value="a"> A. CT angiography</label>
+                        <label><input type="radio" name="q39" value="b"> B. MRI scan</label>
+                        <label><input type="radio" name="q39" value="c"> C. Venography</label>
+                        <label><input type="radio" name="q39" value="d"> D. Doppler ultrasonography</label>
+                        <label><input type="radio" name="q39" value="e"> E. Plain radiography</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q39"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">40</span> A patient sustains burns involving 30% of the total body surface area. Which factor contributes most to estimation of burn severity?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q40" value="a"> A. Age of patient only</label>
+                        <label><input type="radio" name="q40" value="b"> B. Burn surface area involved</label>
+                        <label><input type="radio" name="q40" value="c"> C. Blood pressure alone</label>
+                        <label><input type="radio" name="q40" value="d"> D. Presence of pain only</label>
+                        <label><input type="radio" name="q40" value="e"> E. Heart rate alone</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q40"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">41</span> Parkland formula is primarily used to estimate:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q41" value="a"> A. Caloric requirements after burns</label>
+                        <label><input type="radio" name="q41" value="b"> B. Fluid requirements during initial burn resuscitation</label>
+                        <label><input type="radio" name="q41" value="c"> C. Antibiotic requirements</label>
+                        <label><input type="radio" name="q41" value="d"> D. Skin graft requirements</label>
+                        <label><input type="radio" name="q41" value="e"> E. Analgesic requirements</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q41"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">42</span> A patient receiving fluid resuscitation for burns develops persistently low urine output. This finding most strongly suggests:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q42" value="a"> A. Adequate resuscitation</label>
+                        <label><input type="radio" name="q42" value="b"> B. Ongoing hypovolaemia</label>
+                        <label><input type="radio" name="q42" value="c"> C. Resolution of shock</label>
+                        <label><input type="radio" name="q42" value="d"> D. Hypercalcaemia</label>
+                        <label><input type="radio" name="q42" value="e"> E. Recovery of renal function</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q42"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">43</span> A diabetic patient develops rapidly spreading erythema, severe pain and systemic toxicity. Which diagnosis is most likely?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q43" value="a"> A. Cellulitis</label>
+                        <label><input type="radio" name="q43" value="b"> B. Necrotising fasciitis</label>
+                        <label><input type="radio" name="q43" value="c"> C. Lipoma</label>
+                        <label><input type="radio" name="q43" value="d"> D. Haematoma</label>
+                        <label><input type="radio" name="q43" value="e"> E. Sebaceous cyst</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q43"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">44</span> A patient presents with severe perianal pain, swelling and fever. Which diagnosis best explains these findings?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q44" value="a"> A. Haemorrhoids</label>
+                        <label><input type="radio" name="q44" value="b"> B. Anal fissure</label>
+                        <label><input type="radio" name="q44" value="c"> C. Perianal abscess</label>
+                        <label><input type="radio" name="q44" value="d"> D. Rectal prolapse</label>
+                        <label><input type="radio" name="q44" value="e"> E. Rectal polyp</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q44"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">45</span> A patient develops redness and purulent discharge from a laparotomy wound five days after surgery. Which complication is most likely?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q45" value="a"> A. Incisional hernia</label>
+                        <label><input type="radio" name="q45" value="b"> B. Surgical site infection</label>
+                        <label><input type="radio" name="q45" value="c"> C. Wound dehiscence</label>
+                        <label><input type="radio" name="q45" value="d"> D. Seroma formation</label>
+                        <label><input type="radio" name="q45" value="e"> E. Keloid formation</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q45"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">46</span> A patient presents with a chronic non-healing ulcer that has recently developed rolled edges and contact bleeding. Which underlying pathology should be suspected?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q46" value="a"> A. Cellulitis</label>
+                        <label><input type="radio" name="q46" value="b"> B. Venous disease</label>
+                        <label><input type="radio" name="q46" value="c"> C. Malignant transformation</label>
+                        <label><input type="radio" name="q46" value="d"> D. Traumatic injury</label>
+                        <label><input type="radio" name="q46" value="e"> E. Fungal infection</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q46"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">47</span> A 60-year-old woman presents with a breast lump. Which investigation is most appropriate to confirm cellular pathology?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q47" value="a"> A. Core needle biopsy</label>
+                        <label><input type="radio" name="q47" value="b"> B. PET scan</label>
+                        <label><input type="radio" name="q47" value="c"> C. Echocardiography</label>
+                        <label><input type="radio" name="q47" value="d"> D. Colonoscopy</label>
+                        <label><input type="radio" name="q47" value="e"> E. CT brain</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q47"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">48</span> A patient presents with progressive dysphagia and significant weight loss. Which investigation is most appropriate initially?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q48" value="a"> A. Colonoscopy</label>
+                        <label><input type="radio" name="q48" value="b"> B. Barium enema</label>
+                        <label><input type="radio" name="q48" value="c"> C. Upper gastrointestinal endoscopy</label>
+                        <label><input type="radio" name="q48" value="d"> D. Abdominal ultrasound</label>
+                        <label><input type="radio" name="q48" value="e"> E. CT brain</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q48"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">49</span> A patient presents with obstructive jaundice. Which investigation is most useful as an initial imaging modality?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q49" value="a"> A. ERCP</label>
+                        <label><input type="radio" name="q49" value="b"> B. Abdominal ultrasound</label>
+                        <label><input type="radio" name="q49" value="c"> C. Colonoscopy</label>
+                        <label><input type="radio" name="q49" value="d"> D. MRI brain</label>
+                        <label><input type="radio" name="q49" value="e"> E. Bone scan</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q49"></div>
+                </div>
+
+                <div class="question">
+                    <p><span class="q-badge">50</span> A patient presents with abdominal pain, guarding and rebound tenderness. Which clinical syndrome do these signs most strongly indicate?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q50" value="a"> A. Irritable bowel syndrome</label>
+                        <label><input type="radio" name="q50" value="b"> B. Peritonitis</label>
+                        <label><input type="radio" name="q50" value="c"> C. Chronic constipation</label>
+                        <label><input type="radio" name="q50" value="d"> D. Gastro-oesophageal reflux disease</label>
+                        <label><input type="radio" name="q50" value="e"> E. Functional dyspepsia</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q50"></div>
+                </div>
+
+                <div class="submit-wrap">
+                    <button type="button" class="btn" onclick="submitQuiz()">
+                        <i class="fas fa-check-circle"></i> Submit All MCQs
+                    </button>
+                </div>
+
+            </form>
+
+            <div class="result" id="resultBox">
+                <h3><i class="fas fa-chart-simple"></i> Your Score</h3>
+                <div class="score" id="score">0%</div>
+                <p class="text-muted" style="font-size:0.9rem;">Review the feedback below each question.</p>
+                <div id="answers"></div>
+            </div>
+        </section>
+
+        <!-- ──── SECTION 2: ESSAYS ──── -->
+        <section class="container section-panel hidden" id="section-essay">
+            <div class="section-title scroll-target" id="essay-top">
+                <i class="fas fa-pen-fancy"></i> Short Essay Questions
+                <span class="count">9</span>
+            </div>
+            <p class="section-subtitle">Write your answer in the box below each image, then click <strong>Submit</strong> to reveal the model answer.</p>
+
+            <!-- Essay Q1 -->
+            <div class="essay-card">
+                <h3><span class="qnum">Q1</span> Image Interpretation &amp; Management</h3>
+                <img src="clinicals-osce/Q1.jpeg" alt="Q1 X-ray" loading="lazy" />
+                <textarea placeholder="Describe the image, list five causes, explain pathophysiology, and outline initial management..."></textarea>
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('q1')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answer</span>
+                </div>
+                <div class="essay-answers" id="essay-q1">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answer</h4>
+                    <p><b>1. Image Description:</b> Erect abdominal plain X-ray showing multiple dilated loops of small bowel with prominent valvulae conniventes. Multiple step-ladder air-fluid levels (white arrows), and a notable absence of gas in the distal colon/rectum — highly indicative of acute mechanical intestinal obstruction.</p>
+                    <p><b>2. Five Causes:</b></p>
+                    <ul>
+                        <li>Post-operative intra-abdominal adhesions (most common).</li>
+                        <li>Obstructed/incarcerated hernias (inguinal, femoral, umbilical).</li>
+                        <li>Malignancy (colorectal carcinoma or small bowel tumours).</li>
+                        <li>Volvulus (sigmoid or cecal).</li>
+                        <li>Intussusception or inflammatory conditions (e.g. Crohn's disease).</li>
+                    </ul>
+                    <p><b>3. Pathophysiology of Air-Fluid Levels:</b> Mechanical obstruction blocks peristalsis. Proximal bowel accumulates swallowed air and GI secretions. Gas separates from liquid, forming horizontal air-fluid levels on erect radiograph.</p>
+                    <p><b>4. Normal Air-Fluid Levels:</b> Up to 2–3 fluid levels in a healthy adult, typically in the stomach and cecum/hepatic flexure.</p>
+                    <p><b>5. Initial Management:</b></p>
+                    <ul>
+                        <li><b>Fluid Resuscitation:</b> Large-bore IV access, isotonic crystalloids.</li>
+                        <li><b>GI Decompression:</b> Nasogastric tube on low intermittent suction.</li>
+                        <li><b>NPO:</b> Strict nil per os.</li>
+                        <li><b>Monitoring:</b> Foley catheter for hourly urine output.</li>
+                        <li><b>Analgesia &amp; Labs:</b> IV analgesics, FBC, U&amp;E, type &amp; screen.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Essay Q2 -->
+            <div class="essay-card">
+                <h3><span class="qnum">Q2</span> Breast Lump &amp; Triple Assessment</h3>
+                <img src="clinicals-osce/Q2.jpeg" alt="Q2 Breast" loading="lazy" />
+                <textarea placeholder="History questions, examination findings, differentials, and next steps..."></textarea>
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('q2')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answer</span>
+                </div>
+                <div class="essay-answers" id="essay-q2">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answer</h4>
+                    <p><b>1. History Questions:</b></p>
+                    <ul>
+                        <li>When did you first notice the lump, and has it changed in size/shape/consistency?</li>
+                        <li>Any localized pain, nipple discharge (bloody/unilateral), or skin changes?</li>
+                        <li>Menstrual history (menarche, menopause) and obstetric history (age at first pregnancy, breastfeeding)?</li>
+                        <li>Personal/family history of breast or ovarian cancer?</li>
+                        <li>Current or past hormonal replacement therapy or oral contraceptives?</li>
+                    </ul>
+                    <p><b>2. Examination Findings:</b></p>
+                    <ul>
+                        <li><b>Inspection:</b> Asymmetry, skin dimpling, nipple retraction/inversion/ulceration, or <i>peau d'orange</i> (right breast).</li>
+                        <li><b>Palpation:</b> Location (quadrant), size, margins, consistency, mobility relative to skin/pectoralis.</li>
+                        <li><b>Lymph nodes:</b> Axillary, supraclavicular, infraclavicular.</li>
+                    </ul>
+                    <p><b>3. Differential Diagnosis:</b></p>
+                    <ul>
+                        <li><b>Breast Carcinoma (Infiltrating Ductal):</b> Primary suspect given age (55, postmenopausal) and <i>peau d'orange</i>.</li>
+                        <li>Fibroadenoma or Phylloides tumour.</li>
+                        <li>Breast abscess or fat necrosis.</li>
+                    </ul>
+                    <p><b>4. Next Steps — Triple Assessment:</b></p>
+                    <ul>
+                        <li><b>Clinical Examination:</b> Detailed documentation.</li>
+                        <li><b>Diagnostic Imaging:</b> Bilateral mammogram + targeted breast ultrasound.</li>
+                        <li><b>Tissue Biopsy:</b> Core Needle Biopsy for histology and receptor status (ER, PR, HER2).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Essay Q3 -->
+            <div class="essay-card">
+                <h3><span class="qnum">Q3</span> Inguinal Hernia Anatomy</h3>
+                <img src="clinicals-osce/Q3.jpeg" alt="Q3 Hernia" loading="lazy" />
+                <textarea placeholder="Spot diagnosis, differentials, canal definition, boundaries, contents..."></textarea>
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('q3')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answer</span>
+                </div>
+                <div class="essay-answers" id="essay-q3">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answer</h4>
+                    <p><b>1. Spot Diagnosis:</b> Right Inguinal Hernia (inguinoscrotal swelling).</p>
+                    <p><b>2. Three Differentials:</b></p>
+                    <ul>
+                        <li>Hydrocele (fluid in tunica vaginalis).</li>
+                        <li>Varicocele ("bag of worms" pampiniform plexus).</li>
+                        <li>Spermatocele / epididymal cyst.</li>
+                    </ul>
+                    <p><b>3. Definition of Inguinal Canal:</b> An oblique, intermuscular tunnel ~4 cm in the lower anterior abdominal wall, running downwards, forwards, and medially, connecting the deep and superficial inguinal rings.</p>
+                    <p><b>4. Anatomical Points:</b></p>
+                    <ul>
+                        <li><b>Mid-Inguinal Point:</b> Midway between ASIS and pubic symphysis; marks deep ring and femoral artery.</li>
+                        <li><b>Midpoint of Inguinal Ligament:</b> Centre between ASIS and pubic tubercle.</li>
+                    </ul>
+                    <p><b>5. Contents in Males:</b> Spermatic cord (vas deferens, testicular artery, pampiniform plexus, cremasteric artery, artery to vas, genital branch of genitofemoral nerve, lymphatics) + ilioinguinal nerve.</p>
+                    <p><b>6. Boundaries:</b></p>
+                    <ul>
+                        <li><b>Anterior:</b> External oblique aponeurosis, reinforced laterally by internal oblique.</li>
+                        <li><b>Posterior:</b> Transversalis fascia, reinforced medially by conjoint tendon.</li>
+                        <li><b>Roof:</b> Arched fibres of internal oblique and transversus abdominis.</li>
+                        <li><b>Floor:</b> Inguinal ligament, reinforced medially by lacunar ligament.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Essay Q4 -->
+            <div class="essay-card">
+                <h3><span class="qnum">Q4</span> Head Injury &amp; GCS</h3>
+                <img src="clinicals-osce/Q4.jpeg" alt="Q4 CT Head" loading="lazy" />
+                <textarea placeholder="Describe CT findings, diagnosis, calculate GCS, secondary injury examples..."></textarea>
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('q4')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answer</span>
+                </div>
+                <div class="essay-answers" id="essay-q4">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answer</h4>
+                    <p><b>1. CT Description:</b> Non-contrast axial brain CT shows a large, hyperdense (acute blood), crescent-shaped/concave extra-axial collection along the left frontoparietal convexity. Significant mass effect, effacement of sulci, compression of the left lateral ventricle, and rightward midline shift.</p>
+                    <p><b>2. Diagnosis:</b> Acute Subdural Haematoma (SDH).</p>
+                    <p><b>3. GCS Calculation:</b></p>
+                    <ul>
+                        <li>Eye Opening: to pain = 2</li>
+                        <li>Verbal: inappropriate = 3</li>
+                        <li>Motor: withdraws to pain = 4</li>
+                        <li><b>Total:</b> 2 + 3 + 4 = <b>9/15</b> → Moderate Head Injury</li>
+                    </ul>
+                    <p><b>4. Secondary Brain Injury Examples:</b></p>
+                    <ul>
+                        <li>Cerebral ischaemia / hypoxia.</li>
+                        <li>Intracranial hypertension.</li>
+                        <li>Cerebral oedema.</li>
+                        <li>Systemic hypotension / hypercapnia.</li>
+                    </ul>
+                    <p><b>5. Vulnerable Area &amp; Vessel:</b> The <b>Pterion</b> (junction of frontal, parietal, temporal, sphenoid). The vessel is the <b>Middle Meningeal Artery</b> (though acute SDH originates from ruptured cortical bridging veins).</p>
+                </div>
+            </div>
+
+            <!-- Essay Q5 -->
+            <div class="essay-card">
+                <h3><span class="qnum">Q5</span> Burns &amp; Resuscitation</h3>
+                <img src="clinicals-osce/Q5.jpeg" alt="Q5 Burns" loading="lazy" />
+                <textarea placeholder="Describe findings, emergency history, assessment, TBSA, admission criteria..."></textarea>
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('q5')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answer</span>
+                </div>
+                <div class="essay-answers" id="essay-q5">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answer</h4>
+                    <p><b>1. Description:</b> Female patient with severe facial oedema, blistering of the lips, extensive partial-to-full thickness burns involving perioral and perinasal regions, and soot/carbonaceous singeing around nose and mouth — suggestive of flash or thermal inhalation injury.</p>
+                    <p><b>2. Emergency History Questions:</b></p>
+                    <ul>
+                        <li>Did the injury occur in an enclosed space or outdoors?</li>
+                        <li>Was there an explosion, toxic exposure, or loss of consciousness?</li>
+                        <li>Time of incident (for fluid resuscitation calculation).</li>
+                        <li>Any difficulty breathing, hoarseness, or sore throat?</li>
+                        <li>Past medical history, medications, tetanus status.</li>
+                    </ul>
+                    <p><b>3. ER Assessment Features:</b></p>
+                    <ul>
+                        <li><b>Airway:</b> Stridor, hoarseness, accessory muscle use, soot in pharynx.</li>
+                        <li><b>Breathing:</b> RR, SpO₂, signs of CO poisoning or inhalation injury.</li>
+                        <li><b>Circulation:</b> Large-bore IV lines, haemodynamic stability.</li>
+                        <li><b>Burn Survey:</b> TBSA calculation and depth assessment.</li>
+                    </ul>
+                    <p><b>4. Burn Percentage:</b> Head and neck = 9% TBSA (anterior face/neck ≈ 4.5%).</p>
+                    <p><b>5. Admission Criteria:</b></p>
+                    <ul>
+                        <li>Partial-thickness burns &gt; 10% TBSA.</li>
+                        <li>Burns to face, hands, feet, genitalia, perineum, or major joints.</li>
+                        <li>Third-degree burns in any age group.</li>
+                        <li>Suspected inhalation injury.</li>
+                        <li>Electrical/chemical burns, comorbidities, or concomitant trauma.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Essay Q6 -->
+            <div class="essay-card">
+                <h3><span class="qnum">Q6</span> Thyroid Goitre</h3>
+                <img src="clinicals-osce/Q6.jpeg" alt="Q6 Thyroid" loading="lazy" />
+                <textarea placeholder="Differentials, investigations, causes, operative complications..."></textarea>
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('q6')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answer</span>
+                </div>
+                <div class="essay-answers" id="essay-q6">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answer</h4>
+                    <p><b>1. Two Differentials:</b></p>
+                    <ul>
+                        <li>Simple Endemic Goitre (Multinodular Goitre).</li>
+                        <li>Thyroid Neoplasm (Benign Adenoma or Carcinoma).</li>
+                    </ul>
+                    <p><b>2. Investigations:</b></p>
+                    <ul>
+                        <li><b>Lab 1:</b> Thyroid Function Tests (T3, T4, TSH).</li>
+                        <li><b>Lab 2:</b> Full Blood Count.</li>
+                        <li><b>Lab 3:</b> Fine Needle Aspiration Cytology (FNAC).</li>
+                        <li><b>Imaging:</b> Thyroid Ultrasound (or non-contrast CT neck for retrosternal extension).</li>
+                    </ul>
+                    <p><b>3. Likely Causes:</b></p>
+                    <ul>
+                        <li>Dietary iodine deficiency (most common globally).</li>
+                        <li>Goitrogen consumption (foods/medications interfering with hormone synthesis).</li>
+                        <li>Genetic biosynthetic defects or autoimmune thyroiditis.</li>
+                    </ul>
+                    <p><b>4. Intra-operative Complications:</b></p>
+                    <ul>
+                        <li>Primary haemorrhage from highly vascular vessels.</li>
+                        <li>Recurrent laryngeal nerve injury (hoarseness).</li>
+                        <li>Tracheomalacia or parathyroid damage.</li>
+                    </ul>
+                    <p><b>5. Long-term Complication:</b> Permanent hypothyroidism requiring life-long levothyroxine.</p>
+                </div>
+            </div>
+
+            <!-- Essay Q7 -->
+            <div class="essay-card">
+                <h3><span class="qnum">Q7</span> Parotid Tumour</h3>
+                <img src="clinicals-osce/Q7.jpeg" alt="Q7 Parotid" loading="lazy" />
+                <textarea placeholder="Diagnosis, depth feature, malignant features, investigation, innervation..."></textarea>
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('q7')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answer</span>
+                </div>
+                <div class="essay-answers" id="essay-q7">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answer</h4>
+                    <p><b>1. Diagnosis:</b> Parotid Gland Tumour (e.g. Pleomorphic Adenoma vs. Parotid Carcinoma).</p>
+                    <p><b>2. Depth Feature:</b> Mobility of the mass during jaw clenching — fixation to deep masseter or mandible indicates deep-lobe invasion.</p>
+                    <p><b>3. Malignant Features:</b></p>
+                    <ul>
+                        <li>Rapid growth.</li>
+                        <li>Ipsilateral Facial Nerve (CN VII) palsy/weakness.</li>
+                        <li>Firm-to-hard consistency with fixation to surrounding tissues/skin.</li>
+                        <li>Palpable cervical lymphadenopathy.</li>
+                    </ul>
+                    <p><b>4. Most Important Investigation:</b> Fine Needle Aspiration Cytology (FNAC).</p>
+                    <p><b>5. Innervation:</b> Postganglionic parasympathetic fibres from the <b>Auriculotemporal Nerve</b> (Otic ganglion / Glossopharyngeal CN IX). Sensory from Auriculotemporal and Great Auricular nerves.</p>
+                </div>
+            </div>
+
+            <!-- Essay Q8 -->
+            <div class="essay-card">
+                <h3><span class="qnum">Q8</span> Ureteric Obstruction</h3>
+                <img src="clinicals-osce/Q8.jpeg" alt="Q8 IVU" loading="lazy" />
+                <textarea placeholder="Describe IVU findings, two abnormalities, next steps, complications..."></textarea>
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('q8')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answer</span>
+                </div>
+                <div class="essay-answers" id="essay-q8">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answer</h4>
+                    <p><b>1. IVU Findings:</b> Severe dilation of the right renal pelvis and calyces (hydronephrosis) with dilation and tortuosity of the right ureter (hydroureter). The left kidney and ureter appear normal. The arrow points to a filling defect or cutoff at the lower right ureter near the vesicoureteral junction.</p>
+                    <p><b>2. Two Abnormalities:</b></p>
+                    <ul>
+                        <li>Unilateral right-sided hydroureteronephrosis.</li>
+                        <li>Delayed/obstructed contrast clearance from the right collecting system.</li>
+                    </ul>
+                    <p><b>3. Next Steps:</b></p>
+                    <ul>
+                        <li>Non-contrast CT Abdomen/Pelvis (CT Urogram) to identify the obstruction (calculus, stricture, or extrinsic compression).</li>
+                        <li>Urgent decompression via retrograde ureteral stenting (Double-J) or percutaneous nephrostomy (PCN) if infection or renal impairment is present.</li>
+                    </ul>
+                    <p><b>4. Possible Complications:</b></p>
+                    <ul>
+                        <li>Pyelonephritis / urosepsis.</li>
+                        <li>Permanent renal atrophy (obstructive nephropathy).</li>
+                        <li>Renal calculus formation from chronic stasis.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Essay Q9 -->
+            <div class="essay-card">
+                <h3><span class="qnum">Q9</span> Urinary Catheterisation</h3>
+                <img src="clinicals-osce/Q9.jpeg" alt="Q9 Catheter" loading="lazy" />
+                <textarea placeholder="Image description, indications, insertion steps, complications, care..."></textarea>
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('q9')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answer</span>
+                </div>
+                <div class="essay-answers" id="essay-q9">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answer</h4>
+                    <p><b>1. Image Description:</b> Multiple soft, sterile latex or silicone indwelling urinary catheters (Foley catheters) with inflating valve ports and retention balloon channels.</p>
+                    <p><b>2. Three Clinical Indications:</b></p>
+                    <ul>
+                        <li>Acute/chronic urinary retention (e.g., BPH).</li>
+                        <li>Accurate hourly urine output monitoring in critically ill patients.</li>
+                        <li>Perioperative bladder decompression during urological/pelvic/general surgery.</li>
+                    </ul>
+                    <p><b>3. Insertion Steps in Males:</b></p>
+                    <ul>
+                        <li>Position supine, perform hand hygiene, open tray, don sterile gloves.</li>
+                        <li>Drape, clean penis/glans with antiseptic, retract prepuce if uncircumcised.</li>
+                        <li>Instil sterile anaesthetic lubricant (2% lidocaine) into urethra, hold meatus closed for efficacy.</li>
+                        <li>Hold penis vertically at 90° to straighten urethra, advance catheter to the hub.</li>
+                        <li>Confirm urine flow, inflate balloon with sterile water, gently pull back, advance slightly, secure, return foreskin.</li>
+                    </ul>
+                    <p><b>4. Three Complications:</b></p>
+                    <ul>
+                        <li>Catheter-Associated Urinary Tract Infection (CAUTI).</li>
+                        <li>Urethral trauma / false passage (bleeding, strictures).</li>
+                        <li>Paraphimosis (failure to return foreskin).</li>
+                    </ul>
+                    <p><b>5. Key Care Points:</b></p>
+                    <ul>
+                        <li>Maintain a closed drainage system; bag below bladder level.</li>
+                        <li>Daily meatal hygiene with soap and water.</li>
+                        <li>Monitor for systemic infection (fever, chills) and inspect urine colour/clarity/volume regularly.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ═══════ JAVASCRIPT ═══════ -->
+    <script>
+        // ─── TAB NAVIGATION ───
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const section = this.dataset.section;
+                document.querySelectorAll('.section-panel').forEach(p => p.classList.add('hidden'));
+                document.getElementById('section-' + section).classList.remove('hidden');
+                const topEl = document.getElementById(section + '-top');
+                if (topEl) topEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // ─── MCQ CORRECT ANSWERS ───
+        const correctAnswers = {
+            q1: "c",
+            q2: "c",
+            q3: "a",
+            q4: "b",
+            q5: "c",
+            q6: "c",
+            q7: "d",
+            q8: "c",
+            q9: "c",
+            q10: "b",
+            q11: "a",
+            q12: "b",
+            q13: "b",
+            q14: "a",
+            q15: "a",
+            q16: "b",
+            q17: "a",
+            q18: "b",
+            q19: "a",
+            q20: "b",
+            q21: "a",
+            q22: "b",
+            q23: "a",
+            q24: "c",
+            q25: "b",
+            q26: "b",
+            q27: "d",
+            q28: "c",
+            q29: "c",
+            q30: "c",
+            q31: "c",
+            q32: "c",
+            q33: "c",
+            q34: "c",
+            q35: "a",
+            q36: "b",
+            q37: "b",
+            q38: "c",
+            q39: "d",
+            q40: "b",
+            q41: "b",
+            q42: "b",
+            q43: "b",
+            q44: "c",
+            q45: "b",
+            q46: "c",
+            q47: "a",
+            q48: "c",
+            q49: "b",
+            q50: "b"
+        };
+
+        // ─── MCQ EXPLANATIONS ───
+        const answerExplanations = {
+            q1: "An indirect inguinal hernia enters the internal inguinal canal through the deep inguinal ring, lateral to the inferior epigastric vessels.",
+            q2: "The teniae coli are three distinct bands of longitudinal smooth muscle that converge at the base of the cecum, acting as a surgical roadmap to locate the appendix.",
+            q3: "The femoral canal is located inferior to the inguinal ligament and medial to the femoral vein within the femoral sheath.",
+            q4: "The thyroid gland is invested by the pretracheal fascia which anchors it to the larynx and trachea, causing it to elevate during deglutition.",
+            q5: "The axillary nerve runs directly posterior to the surgical neck of the humerus, making it susceptible to damage during fractures at this site.",
+            q6: "The recurrent laryngeal nerve supplies the intrinsic muscles of the larynx and loops closely around the inferior thyroid artery, rendering it vulnerable during thyroidectomies.",
+            q7: "The ulnar nerve passes behind the medial epicondyle at the elbow and provides cutaneous sensory innervation to the fifth digit (little finger).",
+            q8: "The great saphenous vein originates on the medial aspect of the foot and ascends medially up the leg and thigh — the most common site for varicosities.",
+            q9: "Loss of hydrochloric acid from persistent gastric vomiting leads to depletion of hydrogen and chloride ions, manifesting as hypochloremic metabolic alkalosis.",
+            q10: "Severe hypovolaemia and fluid shifts during early burn shock lead to renal vasoconstriction and inadequate renal tissue perfusion, causing oliguria.",
+            q11: "The combination of postoperative fever, leukocytosis, and tachycardia satisfies the objective criteria for Systemic Inflammatory Response Syndrome (SIRS).",
+            q12: "Biliary obstruction impedes excretion of conjugated bilirubin and triggers increased synthesis and release of alkaline phosphatase (ALP).",
+            q13: "Serum lipase is highly specific and sensitive for acute autolytic injury to the pancreas.",
+            q14: "Long-standing acid exposure in GERD causes intestinal metaplasia of the distal oesophageal epithelium — Barrett's oesophagus.",
+            q15: "Diabetic peripheral neuropathy compromises sensory nociceptors, predisposing to unnoticed trauma and neuropathic ulcers.",
+            q16: "Early visceral pain from appendiceal distension targets the periumbilical region, later localising to the right iliac fossa due to parietal peritoneal irritation.",
+            q17: "Retroperitoneal location of the pancreas dictates that severe swelling and enzymatic inflammation present as unrelenting epigastric pain radiating to the back.",
+            q18: "The classic triad of obstipation, abdominal distension, and vomiting is diagnostic of mechanical intestinal obstruction.",
+            q19: "Fatty meals stimulate cholecystokinin release, driving gallbladder contraction. In cholelithiasis, transient cystic duct blockage results in biliary colic.",
+            q20: "Chemical peritonitis from spillage of gastroduodenal contents triggers involuntary reflex contraction of the abdominal wall (guarding).",
+            q21: "A sigmoid volvulus yields a pathognomonic 'coffee-bean' sign on plain abdominal films.",
+            q22: "Charcot's triad describes fever/chills, right upper quadrant pain, and jaundice — denoting acute ascending cholangitis.",
+            q23: "Fibroadenomas are benign, estrogen-sensitive fibroepithelial tumours presenting as firm, painless, mobile ('breast mouse') masses in young women.",
+            q24: "Infiltration of malignant cells into Cooper's ligaments causes shortening and tethering, presenting as skin dimpling or nipple retraction.",
+            q25: "Deficient dietary iodine impairs thyroid hormone synthesis, removing negative feedback and causing elevated TSH that drives diffuse thyroid hyperplasia.",
+            q26: "The ATLS primary survey dictates that managing the airway with cervical spine stabilisation overrides all other parameters.",
+            q27: "A one-way valve effect traps air in the pleural space, collapsing the lung (absent breath sounds), shifting the mediastinum (tracheal deviation), and compressing the vena cava (distended neck veins).",
+            q28: "The FAST protocol uses ultrasound to rapidly identify pathological collections of free fluid (blood) within peritoneal and pericardial recesses.",
+            q29: "Acute traumatic hypotension with reflex tachycardia must be managed as haemorrhagic hypovolaemic shock until explicitly disproven.",
+            q30: "Elevated intracompartmental pressure following long-bone trauma presents with unremitting pain out of proportion and extreme pain on passive stretch.",
+            q31: "An arterial tear (typically the middle meningeal artery) produces an expanding extradural haematoma with a lucid interval followed by neurological collapse.",
+            q32: "BPH originates in the transition zone, causing periurethral compression and a symmetrically smooth, rubbery gland on DRE.",
+            q33: "Acute urinary retention requires immediate mechanical relief via transurethral or suprapubic catheterisation.",
+            q34: "Axial twisting of the spermatic cord compromises testicular blood supply, elevating the testis and abolishing the cremasteric reflex.",
+            q35: "A hydrocele is an accumulation of clear, serous fluid within the tunica vaginalis which transilluminates brightly.",
+            q36: "Ureteric colic from a descending calculus presents as sharp, spasmodic flank pain radiating to the groin, with microscopic haematuria.",
+            q37: "Intermittent claudication describes reproducible lower limb muscular pain brought on by exertion and relieved by rest, signifying arterial insufficiency.",
+            q38: "Coagulative necrosis from severe macrovascular ischaemia without superinfection yields cold, dry, shrivelled, blackened tissue — dry gangrene.",
+            q39: "Venous duplex ultrasonography is a non-invasive, highly sensitive modality to confirm thrombus in the deep venous system.",
+            q40: "The Total Body Surface Area (TBSA) of the burn directly guides severity grading, metabolic demands, and fluid calculations.",
+            q41: "The Parkland formula (4 mL × kg × %TBSA) calculates the volume of crystalloid required for the initial 24-hour burn resuscitation.",
+            q42: "Hourly urine output is the most sensitive index of end-organ perfusion; persistent oliguria indicates ongoing hypovolaemia.",
+            q43: "Necrotising fasciitis is a deep, fulminant soft-tissue infection with rapid fascial destruction, systemic toxicity, and pain out of proportion.",
+            q44: "Acute localised collection of purulent material in the perianal spaces presents with intense pain, swelling, and fever.",
+            q45: "Erythema, oedema, and purulent exudate around the 5th postoperative day are classic indicators of surgical site infection.",
+            q46: "Long-standing ulcers that undergo malignant transformation (Marjolin's ulcer) develop rolled edges and friable contact bleeding.",
+            q47: "A core needle biopsy provides intact tissue cylinders, preserving architecture for definitive histological diagnosis.",
+            q48: "Progressive mechanical dysphagia with weight loss points to oesophageal malignancy — upper GI endoscopy for visualisation and biopsy.",
+            q49: "Transabdominal ultrasound is the ideal initial non-invasive modality to confirm biliary dilation and differentiate obstructive causes.",
+            q50: "Involuntary guarding and rebound tenderness (Blumberg's sign) indicate direct parietal peritoneal irritation — acute peritonitis."
+        };
+
+        // ─── MCQ SUBMIT ───
+        function submitQuiz() {
+            let score = 0;
+            const total = Object.keys(correctAnswers).length;
+
+            document.querySelectorAll('.question-feedback').forEach(el => el.innerHTML = '');
+
+            for (let key in correctAnswers) {
+                const radios = Array.from(document.querySelectorAll(`input[name="${key}"]`));
+                const selected = radios.find(r => r.checked);
+                const correct = correctAnswers[key];
+
+                if (selected && selected.value === correct) score++;
+
+                const feedbackEl = document.getElementById(`feedback-${key}`);
+                if (!feedbackEl) continue;
+
+                let html = `<div class="answer-block"><strong>Q${key.replace(/^q/, '')}</strong><div class="answer-list">`;
+
+                radios.forEach(r => {
+                    const label = r.parentElement;
+                    const text = label ? label.textContent.trim() : r.value;
+                    const classes = ['answer-item'];
+                    if (r.value === correct) classes.push('answer-correct');
+                    if (r.checked && r.value !== correct) classes.push('answer-wrong', 'user-choice');
+                    if (r.checked && r.value === correct) classes.push('user-choice');
+                    html += `<div class="${classes.join(' ')}">${text}${r.checked ? ' ◀' : ''}</div>`;
+                });
+
+                html += `</div>`;
+
+                const correctRadio = radios.find(rr => rr.value === correct);
+                const correctText = correctRadio && correctRadio.parentElement ? correctRadio.parentElement.textContent.trim() :
+                    correct;
+                const explanationText = answerExplanations[key] || '';
+
+                if (selected) {
+                    if (selected.value === correct) {
+                        html += `<div class="explanation">✅ Correct — ${explanationText}</div>`;
+                    } else {
+                        html +=
+                            `<div class="explanation wrong">❌ Incorrect. Correct answer: <strong>${correctText}</strong>. ${explanationText}</div>`;
+                    }
+                } else {
+                    html +=
+                        `<div class="explanation wrong">No answer selected. Correct answer: <strong>${correctText}</strong>. ${explanationText}</div>`;
+                }
+
+                html += `</div>`;
+                feedbackEl.innerHTML = html;
+            }
+
+            const percentage = Math.round((score / total) * 100);
+            const resultBox = document.getElementById('resultBox');
+            resultBox.style.display = 'block';
+            document.getElementById('answers').innerHTML = '';
+
+            let start = 0;
+            const timer = setInterval(() => {
+                if (start >= percentage) clearInterval(timer);
+                document.getElementById('score').innerText = start + '%';
+                start++;
+            }, 20);
+
+            document.querySelectorAll('#quizForm input[type="radio"]').forEach(i => i.disabled = true);
+        }
+
+        // ─── ESSAY TOGGLE ───
+        function toggleEssay(id) {
+            const el = document.getElementById('essay-' + id);
+            if (!el) return;
+            const isVisible = el.classList.toggle('visible');
+            el.setAttribute('aria-hidden', !isVisible);
+            if (isVisible) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                const firstP = el.querySelector('p');
+                if (firstP) firstP.focus();
+            }
+        }
+
+        // ─── KEYBOARD ACCESSIBILITY ───
+        document.querySelectorAll('.essay-actions .btn').forEach(btn => {
+            btn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    btn.click();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
+
+
