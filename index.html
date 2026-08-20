@@ -668,6 +668,26 @@
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(45, 123, 158, 0.2);
         }
+        .topic-actions .btn-sm.video-btn {
+            background: #e8f0fe;
+            border-color: #8ab4d6;
+            color: #1a5f7a;
+        }
+        .topic-actions .btn-sm.video-btn:hover {
+            background: #2d7b9e;
+            border-color: #2d7b9e;
+            color: white;
+        }
+        .topic-actions .btn-sm.doc-btn {
+            background: #f0f4e8;
+            border-color: #b8c99a;
+            color: #3a5a1a;
+        }
+        .topic-actions .btn-sm.doc-btn:hover {
+            background: #2d7b9e;
+            border-color: #2d7b9e;
+            color: white;
+        }
         .info-text {
             margin-top: 1.2rem;
             color: #3c4d66;
@@ -986,6 +1006,381 @@
                 font-size: 1.3rem;
             }
         }
+
+        /* ---- VIDEO POPUP STYLES ---- */
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(12px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+            animation: fadeInOverlay 0.3s ease;
+            padding: 1.5rem;
+        }
+        .video-overlay.active {
+            display: flex;
+        }
+        .video-box {
+            background: white;
+            border-radius: 44px;
+            max-width: 640px;
+            width: 100%;
+            max-height: 80vh;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            animation: scaleIn 0.3s ease;
+        }
+        @keyframes scaleIn {
+            0% {
+                transform: scale(0.92);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        .video-box .video-header {
+            padding: 1.5rem 2rem 0.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eef2f7;
+            flex-shrink: 0;
+        }
+        .video-box .video-header h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #0a2b4a;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .video-box .video-header h3 i {
+            color: #2d7b9e;
+        }
+        .video-box .video-header .close-video {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: #8a9bb0;
+            cursor: pointer;
+            transition: 0.2s;
+            padding: 0.2rem 0.5rem;
+            line-height: 1;
+        }
+        .video-box .video-header .close-video:hover {
+            color: #0a2b4a;
+            transform: rotate(90deg);
+        }
+        .video-box .video-topic-badge {
+            padding: 0.2rem 2rem;
+            font-size: 0.85rem;
+            color: #2d7b9e;
+            font-weight: 600;
+            background: #eef4fa;
+            display: inline-block;
+            border-radius: 30px;
+            margin: 0.2rem 2rem 0.8rem 2rem;
+            flex-shrink: 0;
+            text-align: center;
+        }
+        .video-box .video-list {
+            padding: 0.5rem 2rem 2rem 2rem;
+            overflow-y: auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+        .video-box .video-list .video-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.9rem 1.4rem;
+            background: #f8fafc;
+            border-radius: 16px;
+            border: 1px solid #e8edf4;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            color: #1f2a41;
+        }
+        .video-box .video-list .video-item:hover {
+            background: #2d7b9e;
+            border-color: #2d7b9e;
+            color: white;
+            transform: translateX(6px);
+            box-shadow: 0 8px 24px rgba(45, 123, 158, 0.2);
+        }
+        .video-box .video-list .video-item i {
+            font-size: 1.6rem;
+            color: #2d7b9e;
+            transition: 0.2s;
+            flex-shrink: 0;
+            width: 2rem;
+            text-align: center;
+        }
+        .video-box .video-list .video-item:hover i {
+            color: white;
+        }
+        .video-box .video-list .video-item .video-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .video-box .video-list .video-item .video-info .video-title {
+            font-weight: 600;
+            font-size: 1rem;
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .video-box .video-list .video-item .video-info .video-sub {
+            font-size: 0.8rem;
+            color: #7a8ca0;
+            display: block;
+            transition: 0.2s;
+        }
+        .video-box .video-list .video-item:hover .video-info .video-sub {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        .video-box .video-list .video-item .video-play {
+            font-size: 1.2rem;
+            color: #2d7b9e;
+            transition: 0.2s;
+            flex-shrink: 0;
+        }
+        .video-box .video-list .video-item:hover .video-play {
+            color: white;
+        }
+        .video-box .video-empty {
+            padding: 2rem 2rem 2.5rem;
+            text-align: center;
+            color: #7a8ca0;
+        }
+        .video-box .video-empty i {
+            font-size: 3rem;
+            color: #dce6ef;
+            display: block;
+            margin-bottom: 0.8rem;
+        }
+        .video-box .video-footer {
+            padding: 0.8rem 2rem 1.2rem;
+            border-top: 1px solid #eef2f7;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #8a9bb0;
+            flex-shrink: 0;
+        }
+        .video-box .video-footer i {
+            color: #2d7b9e;
+            margin-right: 4px;
+        }
+
+        /* ---- DOCUMENT POPUP STYLES (mirrors video) ---- */
+        .document-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(12px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 3100;
+            animation: fadeInOverlay 0.3s ease;
+            padding: 1.5rem;
+        }
+        .document-overlay.active {
+            display: flex;
+        }
+        .document-box {
+            background: white;
+            border-radius: 44px;
+            max-width: 640px;
+            width: 100%;
+            max-height: 80vh;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            animation: scaleIn 0.3s ease;
+        }
+        .document-box .doc-header {
+            padding: 1.5rem 2rem 0.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eef2f7;
+            flex-shrink: 0;
+        }
+        .document-box .doc-header h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #0a2b4a;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .document-box .doc-header h3 i {
+            color: #2d7b9e;
+        }
+        .document-box .doc-header .close-doc {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: #8a9bb0;
+            cursor: pointer;
+            transition: 0.2s;
+            padding: 0.2rem 0.5rem;
+            line-height: 1;
+        }
+        .document-box .doc-header .close-doc:hover {
+            color: #0a2b4a;
+            transform: rotate(90deg);
+        }
+        .document-box .doc-topic-badge {
+            padding: 0.2rem 2rem;
+            font-size: 0.85rem;
+            color: #2d7b9e;
+            font-weight: 600;
+            background: #eef4fa;
+            display: inline-block;
+            border-radius: 30px;
+            margin: 0.2rem 2rem 0.8rem 2rem;
+            flex-shrink: 0;
+            text-align: center;
+        }
+        .document-box .doc-list {
+            padding: 0.5rem 2rem 2rem 2rem;
+            overflow-y: auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+        .document-box .doc-list .doc-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.9rem 1.4rem;
+            background: #f8fafc;
+            border-radius: 16px;
+            border: 1px solid #e8edf4;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            color: #1f2a41;
+        }
+        .document-box .doc-list .doc-item:hover {
+            background: #2d7b9e;
+            border-color: #2d7b9e;
+            color: white;
+            transform: translateX(6px);
+            box-shadow: 0 8px 24px rgba(45, 123, 158, 0.2);
+        }
+        .document-box .doc-list .doc-item i {
+            font-size: 1.6rem;
+            color: #2d7b9e;
+            transition: 0.2s;
+            flex-shrink: 0;
+            width: 2rem;
+            text-align: center;
+        }
+        .document-box .doc-list .doc-item:hover i {
+            color: white;
+        }
+        .document-box .doc-list .doc-item .doc-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .document-box .doc-list .doc-item .doc-info .doc-title {
+            font-weight: 600;
+            font-size: 1rem;
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .document-box .doc-list .doc-item .doc-info .doc-sub {
+            font-size: 0.8rem;
+            color: #7a8ca0;
+            display: block;
+            transition: 0.2s;
+        }
+        .document-box .doc-list .doc-item:hover .doc-info .doc-sub {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        .document-box .doc-list .doc-item .doc-play {
+            font-size: 1.2rem;
+            color: #2d7b9e;
+            transition: 0.2s;
+            flex-shrink: 0;
+        }
+        .document-box .doc-list .doc-item:hover .doc-play {
+            color: white;
+        }
+        .document-box .doc-empty {
+            padding: 2rem 2rem 2.5rem;
+            text-align: center;
+            color: #7a8ca0;
+        }
+        .document-box .doc-empty i {
+            font-size: 3rem;
+            color: #dce6ef;
+            display: block;
+            margin-bottom: 0.8rem;
+        }
+        .document-box .doc-footer {
+            padding: 0.8rem 2rem 1.2rem;
+            border-top: 1px solid #eef2f7;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #8a9bb0;
+            flex-shrink: 0;
+        }
+        .document-box .doc-footer i {
+            color: #2d7b9e;
+            margin-right: 4px;
+        }
+
+        @media (max-width: 480px) {
+            .video-box, .document-box {
+                max-width: 100%;
+                border-radius: 28px;
+                max-height: 90vh;
+            }
+            .video-box .video-header, .document-box .doc-header {
+                padding: 1rem 1.2rem 0.3rem 1.2rem;
+            }
+            .video-box .video-header h3, .document-box .doc-header h3 {
+                font-size: 1.1rem;
+            }
+            .video-box .video-list, .document-box .doc-list {
+                padding: 0.3rem 1.2rem 1.2rem 1.2rem;
+            }
+            .video-box .video-list .video-item, .document-box .doc-list .doc-item {
+                padding: 0.7rem 1rem;
+            }
+            .video-box .video-topic-badge, .document-box .doc-topic-badge {
+                padding: 0.1rem 1.2rem;
+                font-size: 0.75rem;
+                margin: 0.1rem 1.2rem 0.4rem 1.2rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1050,6 +1445,40 @@
             </div>
             <div class="ppq-footer-note">
                 <i class="fas fa-graduation-cap"></i> ToToZ — Learn with confidence
+            </div>
+        </div>
+    </div>
+
+    <!-- VIDEO POPUP OVERLAY -->
+    <div class="video-overlay" id="videoOverlay">
+        <div class="video-box">
+            <div class="video-header">
+                <h3><i class="fas fa-video"></i> <span id="videoPopupTitle">Videos</span></h3>
+                <button class="close-video" id="closeVideoPopup"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="video-topic-badge" id="videoPopupTopic">Topic</div>
+            <div class="video-list" id="videoListContainer">
+                <!-- dynamically populated -->
+            </div>
+            <div class="video-footer">
+                <i class="fas fa-film"></i> Click any video to open the Google Drive link
+            </div>
+        </div>
+    </div>
+
+    <!-- DOCUMENT POPUP OVERLAY -->
+    <div class="document-overlay" id="documentOverlay">
+        <div class="document-box">
+            <div class="doc-header">
+                <h3><i class="fas fa-file-alt"></i> <span id="docPopupTitle">Documents</span></h3>
+                <button class="close-doc" id="closeDocPopup"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="doc-topic-badge" id="docPopupTopic">Topic</div>
+            <div class="doc-list" id="docListContainer">
+                <!-- dynamically populated -->
+            </div>
+            <div class="doc-footer">
+                <i class="fas fa-file-pdf"></i> Click any document to open the Google Drive link
             </div>
         </div>
     </div>
@@ -1307,7 +1736,7 @@
                     { name: 'Term 2',
                         topics: ['Carbohydrates', 'Complex Carbohydrates', 'Lipids'] },
                     { name: 'Term 3',
-                        topics: ['Minerals and Vitamins', 'Vit A-ToToZ Notes', 'Vit C-ToToZ Notes', 'Vit D-ToToZ Notes'] }
+                        topics: ['Energy Metabolism and Nutrition', 'Micronutrients and Vitamins', 'Fat Soluble Vitamins', 'Mineral Metabolism',] }
                 ]
             },
             {
@@ -1503,6 +1932,44 @@
                 ]
             },
             {
+                id: 'physiology_3',
+                name: 'Physiology',
+                icon: 'fa-dna',
+                year: 3,
+                type: 'preclinical',
+                desc: 'Study gametogenesis, fertilization, early embryonic development, and organogenesis.',
+                terms: [
+                    { name: 'Term 1',
+                        topics: ['Pituitary Gland', 'Thyroid Gland', 'Parathyroid Gland', 'Adrenal Glands']},
+                    { name: 'Term 2',
+                        topics: ['Introduction to the nervous system', 'Sensory Receptors', 'Somatic Sensations', 'Sensory Disturbances', 'Physiology of Pain', 'Ascending Tracts', 'Descending Tracts', 'CNS Lesions', 'Reflexes'] },
+                    { name: 'Term 3',
+                        topics: ['Renal Function, Anatomy and Blood Flow', 'Mechanism of Urine Formation', 'Concentration, Dilution and Acidification'] }
+                ]
+            },
+            {
+                id: 'physiology',
+                name: 'Physiology',
+                icon: 'fa-dna',
+                year: 2,
+                type: 'preclinical',
+                desc: 'Study gametogenesis, fertilization, early embryonic development, and organogenesis.',
+                terms: [
+                    { name: 'Term 1',
+                        topics: ['Introduction to Physiology', 'Cells and its Components', 'Cells and Tissues',
+                            'Membrane Transport', 'Smooth Muscle', 'Skeletal Muscle Tissue', 'Cardiac Muscle',
+                            'Nerve Tissue', 'Synapse', 'Action Potential', 'Muscle Tissue Disorders', 'Body Fluids',
+                            'Pathophysiology of Diarrhoea'
+                        ] },
+                    { name: 'Term 2',
+                        topics: ['Blood Physiology', 'The Cardiovascular System', 'The ECG', 'Cardiac Cycle',
+                            'Blood Flow Regulation', 'BP Regulation', 'Cardiac Output'
+                        ] },
+                    { name: 'Term 3',
+                        topics: ['Introduction to the Respiratory Syst', 'Mechanics of Breathing'] }
+                ]
+            },
+            {
                 id: 'public_health',
                 name: 'Public Health',
                 icon: 'fa-dna',
@@ -1556,11 +2023,15 @@
                     }
                 ]
             },
-            { id: 'biology', name: 'Biology', icon: 'fa-dna', year: 2, type: 'preclinical',
+            { id: 'anatomy3', name: 'Anatomy', icon: 'fa-dna', year: 3, type: 'preclinical',
                 desc: 'Explore cell biology, genetics, and physiology.', terms: [
-                    { name: 'Term 1', topics: ['Cell Structure', 'Membrane Transport', 'Cell Cycle'] },
-                    { name: 'Term 2', topics: ['DNA Replication', 'Gene Expression', 'Mutations'] },
-                    { name: 'Term 3', topics: ['Nervous System', 'Cardiovascular', 'Respiratory'] }
+                    { name: 'Pelvic Region', topics: ['Osteology', 'Musculature', 'Blood Supply', 'Nerve Supply'] },
+                    { name: 'Reproductive System', topics: ['Osteology', 'Musculature', 'Blood Supply', 'Nerve Supply'] },
+                    { name: 'Lower Limb', topics: ['Lower Limb Osteology', 'Lower Limb Musculature', 'Lower Limb Blood Supply', 'Lower Limb Nerve Supply'] },
+                    { name: 'Upper limb', topics: ['Upper limb Osteology', ' Upper limb Musculature', 'Upper limb Blood Supply', 'Upper limb Nerve Supply'] },
+                    { name: 'Head Anatomy', topics: ['Head Osteology', 'Head Musculature', 'Head Blood Supply', 'Head Nerve Supply'] },
+                    { name: 'Neck Anatomy', topics: ['Neck Osteology', 'Neck Musculature', 'Neck Blood Supply', 'Neck Nerve Supply'] },
+                    { name: 'Neuroanatomy', topics: ['Osteology', 'Musculature', 'Blood Supply', 'Nerve Supply'] }
                 ] },
             { id: 'physics', name: 'Physics', icon: 'fa-atom', year: 3, type: 'preclinical',
                 desc: 'Understand mechanics, optics, and thermodynamics.', terms: [
@@ -1736,9 +2207,22 @@
         // ---- USER DATA with year access ----
         const users = {
             '2': { name: 'Doc Toto', password: 'p2', year: 2 },
+            'Ruth': { name: 'Dr. Ndabala', password: '6778', year: 2 },
             'c2': { name: 'Christopher', password: 'pass2', year: 2 },
+            
+            // 3rd year 
             '3': { name: 'Doc Toto', password: 'p3', year: 3 },
-            'b3': { name: 'Blessings', password: 'pass3', year: 3 },
+            'Ben': { name: 'Benny', password: '2801', year: 3 },
+            'Ndaya': { name: 'Blessings', password: '1234', year: 3 },
+            'Hazel': { name: 'Dr. Mumba', password: '7850', year: 3 },
+            'Micheal': { name: 'Dr. Zulu', password: '1223', year: 3 },
+            'Nimo': { name: 'Dr. Nimo', password: '8745', year: 3 },
+            'Peter': { name: 'Peter', password: 'pass3', year: 3 },
+            'Kunda': { name: 'Dr. Kunda', password: 'pass3', year: 3 },
+            'Yvonne': { name: 'Dr. Yvonne', password: '4280', year: 3 },
+            'Chewe': { name: 'Dr. Coco', password: '9001', year: 3 },
+            
+            // 4th year
             '4': { name: 'Doc Toto', password: 'p4', year: 4 },
             'Gift': { name: 'Gift Nakaona📚🤍', password: '11', year: 4 },
             'Amos': { name: 'Dr. Amos', password: 'kalu', year: 4 },
@@ -1760,7 +2244,7 @@
             'Stainley': { name: 'Dr. SÏCHÄMBÄ 🩸', password: '06', year: 4 },
             'Gillien': { name: 'Dr. Gïlliẽn', password: '07', year: 4 },
             'Betty': { name: 'Dr. Betty 🩺', password: '08', year: 4 },
-            
+
             'e4': { name: 'Emma', password: 'pass4', year: 4 },
             '6': { name: 'Doc Toto', password: '6', year: 6 },
             'd6': { name: 'David', password: 'pass6', year: 6 }
@@ -1815,9 +2299,9 @@
                             { name: 'Pulmonology',
                                 topics: ['Site A: COPD Care', 'Site A: Asthma Protocol', 'Site A: Pneumonia Treatment'] },
                             { name: 'Nephrology',
-                                topics: ['Site A: AKI Protocol', 'Site A: CKD Management', 'Site A: Dialysis Access'] }, 
+                                topics: ['Site A: AKI Protocol', 'Site A: CKD Management', 'Site A: Dialysis Access'] },
                             { name: 'IMED Past Papers',
-                                topics: ['2026 Test 1 IMED', '2025 Test 1 IMED', '2024 Test 1 IMED'] }    
+                                topics: ['2026 Test 1 IMED', '2025 Test 1 IMED', '2024 Test 1 IMED'] }
                         ]
                     },
                     'surgery4': {
@@ -1851,7 +2335,7 @@
                             { name: 'Surgery Past Papers',
                                 topics: ['2026 Test 2 Surgery', '2025 Test Surgery', '2024 Test Surgery', '2024 Test 2 Surgery',
                                     '2023 Test 1 Surgery', '2023 Test 2 & 3 Surgery', '2023 Term 4 Surgery', '2023 Test Surgery', '2022 Term 4 Surgery', '2021 Sept Test Surgery'
-                            , 'OSCE Test Surgery', 'Term 2, 3, 4 Test Surgery', 'Term 1 Test Surgery', 'Online Test Revision Surgery'
+                                    , 'OSCE Test Surgery', 'Term 2, 3, 4 Test Surgery', 'Term 1 Test Surgery', 'Online Test Revision Surgery'
                                 ] }
                         ]
                     },
@@ -1873,9 +2357,9 @@
                         icon: 'fa-female',
                         desc: 'Clinical rotation in OB/GYN - Site A',
                         terms: [
-                            { name: 'Obstetrics',
-                                topics: ['Site A: Prenatal Care', 'Site A: Labor Management', 'Site A: Postpartum Care'] },
-                            { name: 'Gynecology',
+                            { name: 'Week 1',
+                                topics: ['Diagnosis of lbou', 'Site A: Labor Management', 'Site A: Postpartum Care'] },
+                            { name: 'Week 2',
                                 topics: ['Site A: Menstrual Disorders', 'Site A: Fibroid Management', 'Site A: Endometriosis Care'] },
                             { name: 'Reproductive Health',
                                 topics: ['Site A: Contraception', 'Site A: Infertility Treatment', 'Site A: Menopause Care'] }
@@ -2153,11 +2637,7 @@
         };
 
         // ---- HTML ANSWERED VERSION LINKS for past papers & quizzes ----
-        // Map topic names to their HTML answered version URLs
         const htmlAnsweredLinks = {
-            // ============================================================
-            // BASIC SCIENCE PAST PAPERS (already working)
-            // ============================================================
             '2020 Test': 'https://drive.google.com/file/d/1KaKOHuD-BhXyCNnyo_ezk1CdE3EAKkD9/view?usp=drive_link',
             '2021 Sessional': 'https://drive.google.com/file/d/13IO0FNc9OgPFT7RTctGNSrR86BuOcIfC/view?usp=drive_link',
             '2022 Sessional Dec': 'https://drive.google.com/file/d/1gJEiTGMCL3xSsIBNuTla0OpLYOZhqLVW/view?usp=drive_link',
@@ -2175,12 +2655,6 @@
             'Heamatology Practice Questions': 'https://drive.google.com/file/d/1ykgKjGbwoLwkBTk1nAcbXqG0x5889V7o/view?usp=drive_link',
             'Parasitology Practice Questions': 'https://drive.google.com/file/d/1aboifmNexlzakZ1WU94EBRiI9IJiKLaO/view?usp=drive_link',
             'Public Health Past Papers': 'https://drive.google.com/drive/folders/1yr5nQIUcoqmgtezewhJWTB21awS91X20?usp=drive_link',
-
-            // ============================================================
-            // SURGERY PAST PAPERS — NOW INDIVIDUALLY LINKED TO HTML ANSWERED VERSIONS
-            // ============================================================
-            // Replace the placeholder URLs below with your actual HTML answered version links.
-            // Each past paper now opens with both PDF (document link) and HTML (answered) options.
             '2026 Test 2 Surgery': 'clinicals/Surgery/surgery-2026-T1.html',
             '2025 Test Surgery': 'clinicals/Surgery/surgery-2025-T1.html',
             '2024 Test Surgery': 'https://drive.google.com/file/d/1YOUR_HTML_ANSWERED_2024_TEST_SURGERY/view?usp=drive_link',
@@ -2195,914 +2669,1243 @@
             'Term 2, 3, 4 Test Surgery': 'https://drive.google.com/file/d/1YOUR_HTML_ANSWERED_2021_SEPT_SURGERY/view?usp=drive_link',
             'Term 1 Test Surgery': 'https://drive.google.com/file/d/1YOUR_HTML_ANSWERED_2021_SEPT_SURGERY/view?usp=drive_link',
             'Online Test Revision Surgery': 'https://drive.google.com/file/d/1YOUR_HTML_ANSWERED_2021_SEPT_SURGERY/view?usp=drive_link',
-
-
-
             '2026 Test 1 IMED': 'https://drive.google.com/file/d/1YOUR_HTML_ANSWERED_2021_SEPT_SURGERY/view?usp=drive_link',
+        };
 
+        // ---- VIDEO DATA: maps topic names to an array of video objects ----
+        const videoData = {
+            // ========== 2nd Year Therapeutics ==========
+            'Common Terminologies Used in Pharmacology': [
+                { title: 'Pharmacology Basics – Key Terms Explained', url: 'https://drive.google.com/file/d/1v1_Pharma_Terms/view?usp=drive_link' },
+                { title: 'Introduction to Pharmacodynamics & Pharmacokinetics', url: 'https://drive.google.com/file/d/1v2_Pharma_Intro/view?usp=drive_link' },
+            ],
+            'Membrane Transport and Absoprtion': [
+                { title: 'Membrane Transport Mechanisms in Drug Absorption', url: 'https://drive.google.com/file/d/1v3_Membrane_Transport/view?usp=drive_link' },
+                { title: 'Passive & Active Transport – Pharmacology', url: 'https://drive.google.com/file/d/1v4_Transport_Pharma/view?usp=drive_link' },
+            ],
+            'Biovailability First-Pass Elimination': [
+                { title: 'Bioavailability and First-Pass Metabolism', url: 'https://drive.google.com/file/d/1v5_Bioavailability/view?usp=drive_link' },
+                { title: 'First-Pass Effect – Clinical Significance', url: 'https://drive.google.com/file/d/1v6_FirstPass/view?usp=drive_link' },
+            ],
+            'Drug Distribution': [
+                { title: 'Drug Distribution – Volume of Distribution', url: 'https://drive.google.com/file/d/1v7_Distribution/view?usp=drive_link' },
+                { title: 'Factors Affecting Drug Distribution', url: 'https://drive.google.com/file/d/1v8_Distribution_Factors/view?usp=drive_link' },
+            ],
+            'Drug Excretion': [
+                { title: 'Drug Excretion – Renal and Biliary Routes', url: 'https://drive.google.com/file/d/1v9_Excretion/view?usp=drive_link' },
+                { title: 'Clearance and Elimination Half-Life', url: 'https://drive.google.com/file/d/1v10_Clearance/view?usp=drive_link' },
+            ],
+            'Drug Metabolism': [
+                { title: 'Phase I and Phase II Drug Metabolism', url: 'https://drive.google.com/file/d/1v11_Metabolism/view?usp=drive_link' },
+                { title: 'Cytochrome P450 Enzyme System', url: 'https://drive.google.com/file/d/1v12_CYP450/view?usp=drive_link' },
+            ],
+            'Routes of Administration': [
+                { title: 'Enteral and Parenteral Routes of Drug Administration', url: 'https://drive.google.com/file/d/1v13_Routes/view?usp=drive_link' },
+                { title: 'Advantages and Disadvantages of Different Routes', url: 'https://drive.google.com/file/d/1v14_Routes_Compare/view?usp=drive_link' },
+            ],
+            'Therapeutic Drug Monitoring': [
+                { title: 'Principles of Therapeutic Drug Monitoring', url: 'https://drive.google.com/file/d/1v15_TDM/view?usp=drive_link' },
+                { title: 'TDM in Clinical Practice – Case Studies', url: 'https://drive.google.com/file/d/1v16_TDM_Cases/view?usp=drive_link' },
+            ],
+            'Mechanism of Drug Action': [
+                { title: 'Receptor Theory and Drug Action', url: 'https://drive.google.com/file/d/1v17_Receptor_Theory/view?usp=drive_link' },
+                { title: 'Enzyme Inhibition and Drug Action', url: 'https://drive.google.com/file/d/1v18_Enzyme_Inhibition/view?usp=drive_link' },
+            ],
+            'Autonomic Pharmacology': [
+                { title: 'Autonomic Nervous System – Overview', url: 'https://drive.google.com/file/d/1v19_ANS_Overview/view?usp=drive_link' },
+                { title: 'Sympathetic and Parasympathetic Pharmacology', url: 'https://drive.google.com/file/d/1v20_ANS_Pharma/view?usp=drive_link' },
+            ],
+            'Neuro-Hormonal Transmision in the ANS': [
+                { title: 'Neurotransmission in the Autonomic Nervous System', url: 'https://drive.google.com/file/d/1v21_Neurotransmission/view?usp=drive_link' },
+                { title: 'Hormonal Regulation of the ANS', url: 'https://drive.google.com/file/d/1v22_ANS_Hormonal/view?usp=drive_link' },
+            ],
+            'ANS Regulation': [
+                { title: 'Regulation of Autonomic Function', url: 'https://drive.google.com/file/d/1v23_ANS_Regulation/view?usp=drive_link' },
+                { title: 'Baroreflex and Autonomic Control', url: 'https://drive.google.com/file/d/1v24_Baroreflex/view?usp=drive_link' },
+            ],
+            'Muscarinic Agonists': [
+                { title: 'Muscarinic Receptor Agonists – Pharmacology', url: 'https://drive.google.com/file/d/1v25_Muscarinic_Agonists/view?usp=drive_link' },
+                { title: 'Clinical Uses of Muscarinic Agonists', url: 'https://drive.google.com/file/d/1v26_Muscarinic_Clinical/view?usp=drive_link' },
+            ],
+            'Muscarinic Antagonists': [
+                { title: 'Muscarinic Receptor Antagonists – Pharmacology', url: 'https://drive.google.com/file/d/1v27_Muscarinic_Antagonists/view?usp=drive_link' },
+                { title: 'Atropine and Other Anticholinergic Drugs', url: 'https://drive.google.com/file/d/1v28_Atropine/view?usp=drive_link' },
+            ],
+            'Sympathomimetic Drugs (Adrenergic Agonists)': [
+                { title: 'Adrenergic Agonists – Mechanism and Clinical Use', url: 'https://drive.google.com/file/d/1v29_Sympathomimetics/view?usp=drive_link' },
+                { title: 'Alpha and Beta Adrenergic Agonists', url: 'https://drive.google.com/file/d/1v30_Adrenergic_Agonists/view?usp=drive_link' },
+            ],
+            'Sympatholitic Drugs (Adrenergic Blockers)': [
+                { title: 'Adrenergic Blockers – Alpha and Beta Antagonists', url: 'https://drive.google.com/file/d/1v31_Sympatholytics/view?usp=drive_link' },
+                { title: 'Clinical Applications of Beta-Blockers', url: 'https://drive.google.com/file/d/1v32_Beta_Blockers/view?usp=drive_link' },
+            ],
+            'Management of Heart Failure': [
+                { title: 'Pharmacological Management of Heart Failure', url: 'https://drive.google.com/file/d/1v33_HF_Management/view?usp=drive_link' },
+                { title: 'Diuretics, ACE Inhibitors, and Beta-Blockers in HF', url: 'https://drive.google.com/file/d/1v34_HF_Drugs/view?usp=drive_link' },
+            ],
+            'Anti-arrhythmis Drugs': [
+                { title: 'Classification of Antiarrhythmic Drugs', url: 'https://drive.google.com/file/d/1v35_Antiarrhythmic/view?usp=drive_link' },
+                { title: 'Mechanism of Action of Antiarrhythmic Agents', url: 'https://drive.google.com/file/d/1v36_Antiarrhythmic_Mechanism/view?usp=drive_link' },
+            ],
+            'Drugs used in Angin Treatment': [
+                { title: 'Anti-Anginal Drugs – Nitrates and Calcium Channel Blockers', url: 'https://drive.google.com/file/d/1v37_Angina_Drugs/view?usp=drive_link' },
+                { title: 'Management of Stable and Unstable Angina', url: 'https://drive.google.com/file/d/1v38_Angina_Management/view?usp=drive_link' },
+            ],
+            'Antihypertensive Drugs': [
+                { title: 'Pharmacological Treatment of Hypertension', url: 'https://drive.google.com/file/d/1v39_Antihypertensives/view?usp=drive_link' },
+                { title: 'ACE Inhibitors, ARBs, and Calcium Channel Blockers', url: 'https://drive.google.com/file/d/1v40_Antihypertensive_Classes/view?usp=drive_link' },
+            ],
+            'Drugs used in the treatment of Hyperlipidemia': [
+                { title: 'Statins and Other Lipid-Lowering Drugs', url: 'https://drive.google.com/file/d/1v41_Lipid_Lowering/view?usp=drive_link' },
+                { title: 'Management of Hyperlipidemia – Clinical Approach', url: 'https://drive.google.com/file/d/1v42_Hyperlipidemia_Management/view?usp=drive_link' },
+            ],
+            'Anti-asthmatic Drugs': [
+                { title: 'Pharmacology of Anti-Asthmatic Drugs', url: 'https://drive.google.com/file/d/1v43_Asthma_Drugs/view?usp=drive_link' },
+                { title: 'Bronchodilators and Anti-Inflammatory Agents in Asthma', url: 'https://drive.google.com/file/d/1v44_Asthma_Agents/view?usp=drive_link' },
+            ],
+            'Drugs used in the Treatment of TB': [
+                { title: 'First-Line Anti-Tubercular Drugs', url: 'https://drive.google.com/file/d/1v45_TB_Drugs/view?usp=drive_link' },
+                { title: 'Management of Tuberculosis – Drug Regimens', url: 'https://drive.google.com/file/d/1v46_TB_Management/view?usp=drive_link' },
+            ],
+            'Drugs used to Treat Common Cold': [
+                { title: 'Over-the-Counter Medications for the Common Cold', url: 'https://drive.google.com/file/d/1v47_Cold_Drugs/view?usp=drive_link' },
+                { title: 'Antihistamines and Decongestants', url: 'https://drive.google.com/file/d/1v48_Cold_Antihistamines/view?usp=drive_link' },
+            ],
+            'Drugs acting on Cough': [
+                { title: 'Antitussives and Expectorants – Pharmacology', url: 'https://drive.google.com/file/d/1v49_Cough_Drugs/view?usp=drive_link' },
+                { title: 'Management of Acute and Chronic Cough', url: 'https://drive.google.com/file/d/1v50_Cough_Management/view?usp=drive_link' },
+            ],
+            'Use of Steroids in Respiratory Disorders': [
+                { title: 'Corticosteroids in Respiratory Medicine', url: 'https://drive.google.com/file/d/1v51_Steroids_Respiratory/view?usp=drive_link' },
+                { title: 'Inhaled vs Systemic Corticosteroids', url: 'https://drive.google.com/file/d/1v52_Steroids_Inhaled/view?usp=drive_link' },
+            ],
+            'Anti-fungal': [
+                { title: 'Antifungal Drugs – Mechanisms and Clinical Use', url: 'https://drive.google.com/file/d/1v53_Antifungals/view?usp=drive_link' },
+                { title: 'Azoles, Echinocandins, and Polyene Antifungals', url: 'https://drive.google.com/file/d/1v54_Antifungal_Classes/view?usp=drive_link' },
+            ],
 
+            // ========== 2nd Year Biochemistry ==========
+            'Amino Acids': [
+                { title: 'Amino Acids – Structure and Classification', url: 'https://drive.google.com/file/d/1v55_Amino_Acids/view?usp=drive_link' },
+                { title: 'Essential and Non-Essential Amino Acids', url: 'https://drive.google.com/file/d/1v56_Amino_Essential/view?usp=drive_link' },
+            ],
+            'Peptides': [
+                { title: 'Peptides – Synthesis and Function', url: 'https://drive.google.com/file/d/1v57_Peptides/view?usp=drive_link' },
+                { title: 'Bioactive Peptides in Medicine', url: 'https://drive.google.com/file/d/1v58_Bioactive_Peptides/view?usp=drive_link' },
+            ],
+            'Plasma Proteins': [
+                { title: 'Plasma Proteins – Albumins, Globulins, and Fibrinogen', url: 'https://drive.google.com/file/d/1v59_Plasma_Proteins/view?usp=drive_link' },
+                { title: 'Clinical Significance of Plasma Protein Levels', url: 'https://drive.google.com/file/d/1v60_Plasma_Clinical/view?usp=drive_link' },
+            ],
+            'Enzymes': [
+                { title: 'Enzyme Structure and Function', url: 'https://drive.google.com/file/d/1v61_Enzymes/view?usp=drive_link' },
+                { title: 'Enzyme Kinetics and Inhibition', url: 'https://drive.google.com/file/d/1v62_Enzyme_Kinetics/view?usp=drive_link' },
+            ],
+            'Heamoglobin': [
+                { title: 'Hemoglobin – Structure and Function', url: 'https://drive.google.com/file/d/1v63_Hemoglobin/view?usp=drive_link' },
+                { title: 'Hemoglobinopathies – Sickle Cell and Thalassemia', url: 'https://drive.google.com/file/d/1v64_Hemoglobinopathies/view?usp=drive_link' },
+            ],
+            'Carbohydrates': [
+                { title: 'Carbohydrates – Classification and Metabolism', url: 'https://drive.google.com/file/d/1v65_Carbohydrates/view?usp=drive_link' },
+                { title: 'Glycolysis and Gluconeogenesis', url: 'https://drive.google.com/file/d/1v66_Glycolysis_Gluconeogenesis/view?usp=drive_link' },
+            ],
+            'Complex Carbohydrates': [
+                { title: 'Complex Carbohydrates – Glycogen and Starch', url: 'https://drive.google.com/file/d/1v67_Complex_Carbohydrates/view?usp=drive_link' },
+                { title: 'Glycogen Metabolism and Regulation', url: 'https://drive.google.com/file/d/1v68_Glycogen_Metabolism/view?usp=drive_link' },
+            ],
+            'Lipids': [
+                { title: 'Lipids – Fatty Acids, Triglycerides, and Phospholipids', url: 'https://drive.google.com/file/d/1v69_Lipids/view?usp=drive_link' },
+                { title: 'Lipid Metabolism and Disorders', url: 'https://drive.google.com/file/d/1v70_Lipid_Metabolism/view?usp=drive_link' },
+            ],
 
+            'Pituitary Gland': [
+                { title: 'Anti-Diuretic Hormone', url: 'https://drive.google.com/file/d/1v69_Lipids/view?usp=drive_link' },
+            ],
+
+            'Thyroid Gland': [
+                { title: 'Thyroid Hormone Synthesis', url: 'https://drive.google.com/file/d/1ASw5f4JDg3_xAXl_UDlL4izypY_lsVRZ/view?usp=drive_link' },
+                { title: 'Action of Thyroid Hormones', url: 'https://drive.google.com/file/d/1DjDVad-3AEDdpPmozeXeTmNtdaDRhU6l/view?usp=drive_link' },
+                { title: 'Thyroid Disorders', url: 'https://drive.google.com/file/d/1KJvqKAcsHZkrZ3Urpk8iIW7N4GOLaFSD/view?usp=drive_link' },
+            ],
             
+            'Renal Function, Anatomy and Blood Flow': [
+                { title: 'Renal Anatomy', url: 'https://drive.google.com/file/d/1Lg-b2ULZ-UZx2-YTI6pBKKHrx-b9iZcN/view?usp=drive_link' },
+            ],
+
+            'Mechanism of Urine Formation': [
+                { title: 'Urine Formation', url: 'https://drive.google.com/file/d/1yaqs7_lyRmMHriEybqO8YpHErdNrUhgj/view?usp=drive_link' },
+            ],
+
+            'Concentration, Dilution and Acidification': [
+                { title: 'Lipids – Fatty Acids, Triglycerides, and Phospholipids', url: 'https://drive.google.com/file/d/1v69_Lipids/view?usp=drive_link' },
+                { title: 'Lipid Metabolism and Disorders', url: 'https://drive.google.com/file/d/1v70_Lipid_Metabolism/view?usp=drive_link' },
+            ],
+            // 'Minerals and Vitamins': [
+            //     { title: 'Minerals and Vitamins – Essential Nutrients', url: 'https://drive.google.com/file/d/1v71_Minerals_Vitamins/view?usp=drive_link' },
+            //     { title: 'Clinical Manifestations of Vitamin Deficiencies', url: 'https://drive.google.com/file/d/1v72_Vitamin_Deficiencies/view?usp=drive_link' },
+            // ],
+            
+            'Energy Metabolism and Nutrition': [
+                { title: 'Protein Sparing Effect', url: 'https://drive.google.com/file/d/1v73_Vitamin_A/view?usp=drive_link' },
+                { title: 'Recom mended Dietary Allowance ', url: 'https://drive.google.com/file/d/1v73_Vitamin_A/view?usp=drive_link' },
+                { title: 'Protein Quality', url: 'https://drive.google.com/file/d/1v73_Vitamin_A/view?usp=drive_link' },
+                { title: 'Total Energy Requirement', url: 'https://drive.google.com/file/d/1v73_Vitamin_A/view?usp=drive_link' },
+                { title: 'Specific Dynamic Action (SDA)', url: 'https://drive.google.com/file/d/1v73_Vitamin_A/view?usp=drive_link' },
+                { title: 'Respiratory Quotient', url: 'https://drive.google.com/file/d/1v73_Vitamin_A/view?usp=drive_link' },
+                { title: 'Overnutrition', url: 'https://drive.google.com/file/d/1v73_Vitamin_A/view?usp=drive_link' },
+            ],
+            'Fat Soluble Vitamins': [
+                { title: 'Vitamin A Part 1', url: 'https://drive.google.com/file/d/12_69ptfpzBJL7AlxAbwW2lvS4ggKLoDw/view?usp=drive_link' },
+                { title: 'Vitamin A Part 2', url: 'https://drive.google.com/file/d/1h7Wsnwg1N3dRCkf6WynkhXk3H5A8Wm6w/view?usp=drive_link' },
+                { title: 'Vitamin A Part 3', url: 'https://drive.google.com/file/d/1_UTXzu5tw_7IWXhXz96Jc5FS8nHMvaKA/view?usp=drive_link' },
+                { title: 'Vitamin A Part 4', url: 'https://drive.google.com/file/d/1NDLX6dB5IxPLGeZfk5SiaJnJxaypwOpO/view?usp=drive_link' },
+                { title: 'Vitamin D', url: 'https://drive.google.com/file/d/1tie9Osx-N-SrKGh_c4K2X0FkG2aV8gsj/view?usp=drive_link' },
+                { title: 'Vitamin E', url: 'https://drive.google.com/file/d/1FFxSUFYawAo80Msq2_x0FMtDX75Mhi_O/view?usp=drive_link' },
+                { title: 'Vitamin K', url: 'https://drive.google.com/file/d/1aZf5huRpD2V7O8gZC03EkOyX_oVOwIhO/view?usp=drive_link' },
+            ],
+            'Micronutrients and Vitamins': [
+                { title: 'Vitamin B1', url: 'https://drive.google.com/file/d/1PFtzoncGE1BnkikWjh1E51IjwFpn72SY/view?usp=drive_link' },
+                { title: 'Vitamin B2', url: 'https://drive.google.com/file/d/11z9Q6t1crfrryHDlVS0rshQX9Hp5psFw/view?usp=drive_link' },
+                { title: 'Vitamin B3', url: 'https://drive.google.com/file/d/14lSt9fJJJNvLdfS4zKaHTqs7jaQTeS3w/view?usp=drive_link' },
+                { title: 'Vitamin B5', url: 'https://drive.google.com/file/d/1D0bkWLMw8YURJbvM0JDk5CxcwmNEkKYQ/view?usp=drive_link' },
+                { title: 'Vitamin B6', url: 'https://drive.google.com/file/d/1Z1XrD72LUbVGFGbGOWVM2TY9HvE7qFrm/view?usp=drive_link' },
+                { title: 'Vitamin B7', url: 'https://drive.google.com/file/d/1OwaMjOZ_mMY-1yYdxOtJqyDbwAk0JLgL/view?usp=drive_link' },
+                { title: 'Vitamin B9', url: 'https://drive.google.com/file/d/1gCJfdNiRqEMQ_8VIMk3MDxb56qFL9ttC/view?usp=drive_link' },
+                { title: 'Vitamin B12', url: 'https://drive.google.com/file/d/1EWc645QKgvARhiZN6NRQGEwRs4T-P-ci/view?usp=drive_link' },
+                { title: 'Vitamin C', url: 'https://drive.google.com/file/d/1HVJbkiAfp4oFBZhQNMFKt38pwkNtqYBF/view?usp=drive_link' },
+            ], 
+
+            // ========== 3rd Year Biochemistry ==========
+            'Overview of metabolism (metabolic pathways)': [
+                { title: 'Metabolic Pathways – An Overview', url: 'https://drive.google.com/file/d/1v76_Metabolism_Overview/view?usp=drive_link' },
+                { title: 'Integration of Metabolic Pathways', url: 'https://drive.google.com/file/d/1v77_Metabolism_Integration/view?usp=drive_link' },
+            ],
+            'Biological Oxidation: ETC & oxidative phosphorylation': [
+                { title: 'Electron Transport Chain and Oxidative Phosphorylation', url: 'https://drive.google.com/file/d/1v78_ETC/view?usp=drive_link' },
+                { title: 'ATP Synthesis and Regulation', url: 'https://drive.google.com/file/d/1v79_ATP_Synthesis/view?usp=drive_link' },
+            ],
+            'Carbohydrate metabolism: Glycolysis': [
+                { title: 'Glycolysis – Steps and Regulation', url: 'https://drive.google.com/file/d/1v80_Glycolysis_Steps/view?usp=drive_link' },
+                { title: 'Clinical Correlates of Glycolysis', url: 'https://drive.google.com/file/d/1v81_Glycolysis_Clinical/view?usp=drive_link' },
+            ],
+            'Pentose phosphate pathway': [
+                { title: 'Pentose Phosphate Pathway – NADPH and Ribose', url: 'https://drive.google.com/file/d/1v82_Pentose_Phosphate/view?usp=drive_link' },
+                { title: 'Clinical Significance of the Pentose Phosphate Pathway', url: 'https://drive.google.com/file/d/1v83_Pentose_Clinical/view?usp=drive_link' },
+            ],
+            'TCA cycle (krebs cycle)': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1v84_TCA_Cycle/view?usp=drive_link' },
+                { title: 'ToToZ Notes', url: 'https://drive.google.com/file/d/1v85_TCA_Anaplerosis/view?usp=drive_link' },
+            ],
+            'Carbohydrate metabolism: Galactose and Fructose': [
+                { title: 'Galactose and Fructose Metabolism', url: 'https://drive.google.com/file/d/1v86_Galactose_Fructose/view?usp=drive_link' },
+                { title: 'Inborn Errors of Galactose and Fructose Metabolism', url: 'https://drive.google.com/file/d/1v87_Inborn_Errors/view?usp=drive_link' },
+            ],
+            'Gluconeogenesis': [
+                { title: 'Gluconeogenesis – Pathway and Regulation', url: 'https://drive.google.com/file/d/1v88_Gluconeogenesis/view?usp=drive_link' },
+                { title: 'Substrates and Hormonal Control of Gluconeogenesis', url: 'https://drive.google.com/file/d/1v89_Gluconeogenesis_Control/view?usp=drive_link' },
+            ],
+            'Blood glucose homeostasis': [
+                { title: 'Blood Glucose Homeostasis – Insulin and Glucagon', url: 'https://drive.google.com/file/d/1v90_Glucose_Homeostasis/view?usp=drive_link' },
+                { title: 'Diabetes Mellitus – Pathophysiology and Management', url: 'https://drive.google.com/file/d/1v91_Diabetes_Mellitus/view?usp=drive_link' },
+            ],
+            'Alcohol metabolism': [
+                { title: 'Alcohol Metabolism – Ethanol to Acetate', url: 'https://drive.google.com/file/d/1v92_Alcohol_Metabolism/view?usp=drive_link' },
+                { title: 'Clinical Consequences of Alcohol Metabolism', url: 'https://drive.google.com/file/d/1v93_Alcohol_Clinical/view?usp=drive_link' },
+            ],
+            'Uronic acid pathway': [
+                { title: 'Uronic Acid Pathway – Glucuronic Acid Synthesis', url: 'https://drive.google.com/file/d/1v94_Uronic_Acid/view?usp=drive_link' },
+                { title: 'Role of Glucuronic Acid in Detoxification', url: 'https://drive.google.com/file/d/1v95_Glucuronic_Detox/view?usp=drive_link' },
+            ],
+            'Glycogen metabolism': [
+                { title: 'Glycogenesis and Glycogenolysis', url: 'https://drive.google.com/file/d/1v96_Glycogen_Metabolism/view?usp=drive_link' },
+                { title: 'Regulation of Glycogen Metabolism', url: 'https://drive.google.com/file/d/1v97_Glycogen_Regulation/view?usp=drive_link' },
+            ],
+
+            // ========== 3rd Year Public Health ==========
+            'Introduction and types of variables': [
+                { title: 'Variables in Public Health Research', url: 'https://drive.google.com/file/d/1v98_Variables/view?usp=drive_link' },
+                { title: 'Categorical vs Continuous Variables', url: 'https://drive.google.com/file/d/1v99_Variables_Types/view?usp=drive_link' },
+            ],
+            'Tables and graphs': [
+                { title: 'Data Presentation – Tables and Graphs', url: 'https://drive.google.com/file/d/1v100_Tables_Graphs/view?usp=drive_link' },
+                { title: 'Effective Data Visualization in Public Health', url: 'https://drive.google.com/file/d/1v101_Data_Visualization/view?usp=drive_link' },
+            ],
+            'Measures of central tendecy': [
+                { title: 'Mean, Median, and Mode in Public Health', url: 'https://drive.google.com/file/d/1v102_Central_Tendency/view?usp=drive_link' },
+                { title: 'Choosing the Right Measure of Central Tendency', url: 'https://drive.google.com/file/d/1v103_Central_Tendency_Choice/view?usp=drive_link' },
+            ],
+            'Measures of spread': [
+                { title: 'Measures of Dispersion – Range, Variance, and Standard Deviation', url: 'https://drive.google.com/file/d/1v104_Spread/view?usp=drive_link' },
+                { title: 'Interpreting Measures of Spread in Public Health Data', url: 'https://drive.google.com/file/d/1v105_Spread_Interp/view?usp=drive_link' },
+            ],
+            'probabilities': [
+                { title: 'Probability Theory in Public Health', url: 'https://drive.google.com/file/d/1v106_Probability/view?usp=drive_link' },
+                { title: 'Conditional Probability and Bayes Theorem', url: 'https://drive.google.com/file/d/1v107_Bayes_Theorem/view?usp=drive_link' },
+            ],
+            'normal distribution': [
+                { title: 'Normal Distribution – Properties and Applications', url: 'https://drive.google.com/file/d/1v108_Normal_Distribution/view?usp=drive_link' },
+                { title: 'Z-Scores and the Standard Normal Distribution', url: 'https://drive.google.com/file/d/1v109_Z_Scores/view?usp=drive_link' },
+            ],
+            'significance testing': [
+                { title: 'Hypothesis Testing and Significance', url: 'https://drive.google.com/file/d/1v110_Significance_Testing/view?usp=drive_link' },
+                { title: 'P-Values and Confidence Intervals', url: 'https://drive.google.com/file/d/1v111_P_Values_CI/view?usp=drive_link' },
+            ],
+            'z test for one population': [
+                { title: 'One-Sample Z-Test in Public Health Research', url: 'https://drive.google.com/file/d/1v112_Z_Test_One_Sample/view?usp=drive_link' },
+            ],
+            'z test for two independent populations': [
+                { title: 'Two-Sample Z-Test – Comparing Means', url: 'https://drive.google.com/file/d/1v113_Z_Test_Two_Sample/view?usp=drive_link' },
+            ],
+            't test for one sample': [
+                { title: 'One-Sample T-Test – When to Use and How to Interpret', url: 'https://drive.google.com/file/d/1v114_T_Test_One_Sample/view?usp=drive_link' },
+            ],
+            't test for two samples': [
+                { title: 'Two-Sample T-Test – Independent and Paired', url: 'https://drive.google.com/file/d/1v115_T_Test_Two_Sample/view?usp=drive_link' },
+            ],
+            'Pearson product moment corraltion coefficinet': [
+                { title: 'Pearson Correlation Coefficient – Theory and Application', url: 'https://drive.google.com/file/d/1v116_Pearson_Correlation/view?usp=drive_link' },
+            ],
+            'simple linear regression': [
+                { title: 'Simple Linear Regression in Public Health', url: 'https://drive.google.com/file/d/1v117_Linear_Regression/view?usp=drive_link' },
+                { title: 'Interpreting Regression Coefficients', url: 'https://drive.google.com/file/d/1v118_Regression_Interp/view?usp=drive_link' },
+            ],
+            'Intorduction to research': [
+                { title: 'Introduction to Research Methodology in Public Health', url: 'https://drive.google.com/file/d/1v119_Research_Intro/view?usp=drive_link' },
+                { title: 'Research Process – From Question to Conclusion', url: 'https://drive.google.com/file/d/1v120_Research_Process/view?usp=drive_link' },
+            ],
+            'Research Objectives': [
+                { title: 'Formulating Research Objectives', url: 'https://drive.google.com/file/d/1v121_Research_Objectives/view?usp=drive_link' },
+                { title: 'SMART Objectives in Public Health Research', url: 'https://drive.google.com/file/d/1v122_SMART_Objectives/view?usp=drive_link' },
+            ],
+            'Literature Review': [
+                { title: 'Conducting a Literature Review', url: 'https://drive.google.com/file/d/1v123_Literature_Review/view?usp=drive_link' },
+                { title: 'Systematic Review vs Narrative Review', url: 'https://drive.google.com/file/d/1v124_Systematic_Review/view?usp=drive_link' },
+            ],
+            'Referencing and citations': [
+                { title: 'Referencing Styles – APA, Vancouver, and Harvard', url: 'https://drive.google.com/file/d/1v125_Referencing/view?usp=drive_link' },
+                { title: 'Avoiding Plagiarism in Academic Writing', url: 'https://drive.google.com/file/d/1v126_Plagiarism/view?usp=drive_link' },
+            ],
+            'Sampling techniques': [
+                { title: 'Sampling Methods in Public Health Research', url: 'https://drive.google.com/file/d/1v127_Sampling/view?usp=drive_link' },
+                { title: 'Sample Size Determination and Sampling Error', url: 'https://drive.google.com/file/d/1v128_Sample_Size/view?usp=drive_link' },
+            ],
+            'Study designs': [
+                { title: 'Study Designs in Epidemiology – Cross-Sectional, Cohort, and Case-Control', url: 'https://drive.google.com/file/d/1v129_Study_Designs/view?usp=drive_link' },
+                { title: 'Choosing the Right Study Design for Your Research', url: 'https://drive.google.com/file/d/1v130_Study_Design_Choice/view?usp=drive_link' },
+            ],
+            'Sample Size Determination': [
+                { title: 'Determining Sample Size for Public Health Studies', url: 'https://drive.google.com/file/d/1v131_Sample_Size_Determination/view?usp=drive_link' },
+                { title: 'Power Analysis and Sample Size Calculation', url: 'https://drive.google.com/file/d/1v132_Power_Analysis/view?usp=drive_link' },
+            ],
+            'Data analysis and ethics': [
+                { title: 'Data Analysis in Public Health – An Overview', url: 'https://drive.google.com/file/d/1v133_Data_Analysis/view?usp=drive_link' },
+                { title: 'Ethical Considerations in Public Health Research', url: 'https://drive.google.com/file/d/1v134_Research_Ethics/view?usp=drive_link' },
+            ],
+            'Using Mendeley Referencing': [
+                { title: 'Mendeley – Reference Management Software', url: 'https://drive.google.com/file/d/1v135_Mendeley/view?usp=drive_link' },
+                { title: 'Mendeley for Citation and Bibliography', url: 'https://drive.google.com/file/d/1v136_Mendeley_Citation/view?usp=drive_link' },
+            ],
+            'Introduction to Epidemiology': [
+                { title: 'Introduction to Epidemiology – History and Core Concepts', url: 'https://drive.google.com/file/d/1v137_Epi_Intro/view?usp=drive_link' },
+                { title: 'Epidemiological Triad and Disease Transmission', url: 'https://drive.google.com/file/d/1v138_Epi_Triad/view?usp=drive_link' },
+            ],
+            'Frequency Measures used in Epidemiology 2023': [
+                { title: 'Frequency Measures – Incidence, Prevalence, and Rates', url: 'https://drive.google.com/file/d/1v139_Frequency_Measures/view?usp=drive_link' },
+                { title: 'Calculating and Interpreting Epidemiology Rates', url: 'https://drive.google.com/file/d/1v140_Rates_Calculation/view?usp=drive_link' },
+            ],
+            'Overview of study designs I': [
+                { title: 'Study Designs in Epidemiology – Descriptive and Analytic', url: 'https://drive.google.com/file/d/1v141_Study_Designs_I/view?usp=drive_link' },
+            ],
+            'Measures of association': [
+                { title: 'Measures of Association – Relative Risk and Odds Ratio', url: 'https://drive.google.com/file/d/1v142_Measures_Association/view?usp=drive_link' },
+                { title: 'Interpreting Measures of Association in Epidemiology', url: 'https://drive.google.com/file/d/1v143_Association_Interp/view?usp=drive_link' },
+            ],
+            'Overview of study designs II': [
+                { title: 'Advanced Study Designs in Epidemiology', url: 'https://drive.google.com/file/d/1v144_Study_Designs_II/view?usp=drive_link' },
+            ],
+            'Concept of cause': [
+                { title: 'Causality in Epidemiology – Bradford Hill Criteria', url: 'https://drive.google.com/file/d/1v145_Causality/view?usp=drive_link' },
+                { title: 'Establishing Causation in Public Health', url: 'https://drive.google.com/file/d/1v146_Causation_Establish/view?usp=drive_link' },
+            ],
+
+            // ========== 4th Year Surgery ==========
+            'PUD, GERD & Gastritis': [
+                { title: 'Peptic Ulcer Disease – Pathophysiology and Management', url: 'https://drive.google.com/file/d/1v147_PUD/view?usp=drive_link' },
+                { title: 'GERD and Gastritis – Clinical Approach', url: 'https://drive.google.com/file/d/1v148_GERD_Gastritis/view?usp=drive_link' },
+            ],
+            'Acute Appendicitis': [
+                { title: 'Acute Appendicitis – Presentation and Diagnosis', url: 'https://drive.google.com/file/d/1v149_Appendicitis/view?usp=drive_link' },
+                { title: 'Management of Appendicitis – Surgical and Medical', url: 'https://drive.google.com/file/d/1v150_Appendicitis_Management/view?usp=drive_link' },
+            ],
+            'GIT Bleeding': [
+                { title: 'Gastrointestinal Bleeding – Causes and Management', url: 'https://drive.google.com/file/d/1v151_GIT_Bleeding/view?usp=drive_link' },
+                { title: 'Upper vs Lower GI Bleeding – Clinical Approach', url: 'https://drive.google.com/file/d/1v152_GI_Bleeding_Approach/view?usp=drive_link' },
+            ],
+            'Abdominal Trauma': [
+                { title: 'Abdominal Trauma – Assessment and Management', url: 'https://drive.google.com/file/d/1v153_Abdominal_Trauma/view?usp=drive_link' },
+                { title: 'Blunt vs Penetrating Abdominal Trauma', url: 'https://drive.google.com/file/d/1v154_Abdominal_Trauma_Types/view?usp=drive_link' },
+            ],
+            'Gall Bladder & Billiary Tree': [
+                { title: 'Gallbladder and Biliary Tree – Anatomy and Pathology', url: 'https://drive.google.com/file/d/1v155_Biliary_Tree/view?usp=drive_link' },
+                { title: 'Cholecystitis and Cholangitis – Clinical Management', url: 'https://drive.google.com/file/d/1v156_Cholecystitis_Cholangitis/view?usp=drive_link' },
+            ],
+            'Intestinal Obstruction by Dr. Mwila': [
+                { title: 'Intestinal Obstruction – Pathophysiology and Diagnosis', url: 'https://drive.google.com/file/d/1v157_Intestinal_Obstruction/view?usp=drive_link' },
+                { title: 'Management of Small and Large Bowel Obstruction', url: 'https://drive.google.com/file/d/1v158_Obstruction_Management/view?usp=drive_link' },
+            ],
+            'Intestinal Obstruction by Dr. Mulenga': [
+                { title: 'Intestinal Obstruction – Surgical Perspectives', url: 'https://drive.google.com/file/d/1v159_Obstruction_Surgical/view?usp=drive_link' },
+                { title: 'Complications and Prognosis of Intestinal Obstruction', url: 'https://drive.google.com/file/d/1v160_Obstruction_Complications/view?usp=drive_link' },
+            ],
+            'Gastric Cancers': [
+                { title: 'Gastric Cancer – Epidemiology and Pathogenesis', url: 'https://drive.google.com/file/d/1v161_Gastric_Cancer/view?usp=drive_link' },
+                { title: 'Surgical Management of Gastric Cancer', url: 'https://drive.google.com/file/d/1v162_Gastric_Cancer_Surgery/view?usp=drive_link' },
+            ],
+            'Esophageal Cancers': [
+                { title: 'Esophageal Cancer – Risk Factors and Diagnosis', url: 'https://drive.google.com/file/d/1v163_Esophageal_Cancer/view?usp=drive_link' },
+                { title: 'Management of Esophageal Cancer – Surgical and Medical', url: 'https://drive.google.com/file/d/1v164_Esophageal_Cancer_Management/view?usp=drive_link' },
+            ],
+            'Anal Pain': [
+                { title: 'Anal Pain – Differential Diagnosis', url: 'https://drive.google.com/file/d/1v165_Anal_Pain/view?usp=drive_link' },
+                { title: 'Hemorrhoids, Fissures, and Abscesses', url: 'https://drive.google.com/file/d/1v166_Anal_Conditions/view?usp=drive_link' },
+            ],
+            'Pancreatitis': [
+                { title: 'Acute Pancreatitis – Pathophysiology and Management', url: 'https://drive.google.com/file/d/1v167_Pancreatitis_Acute/view?usp=drive_link' },
+                { title: 'Chronic Pancreatitis – Complications and Treatment', url: 'https://drive.google.com/file/d/1v168_Pancreatitis_Chronic/view?usp=drive_link' },
+            ],
+            'Groin Hernia': [
+                { title: 'Groin Hernias – Inguinal and Femoral', url: 'https://drive.google.com/file/d/1v169_Groin_Hernia/view?usp=drive_link' },
+                { title: 'Surgical Repair of Groin Hernias', url: 'https://drive.google.com/file/d/1v170_Hernia_Repair/view?usp=drive_link' },
+            ],
+            'Ventral Hernia': [
+                { title: 'Ventral Hernias – Causes and Types', url: 'https://drive.google.com/file/d/1v171_Ventral_Hernia/view?usp=drive_link' },
+                { title: 'Management of Ventral Hernias – Surgical Options', url: 'https://drive.google.com/file/d/1v172_Ventral_Hernia_Surgery/view?usp=drive_link' },
+            ],
+            'Venous Diseases': [
+                { title: 'Venous Diseases – Varicose Veins and Deep Vein Thrombosis', url: 'https://drive.google.com/file/d/1v173_Venous_Diseases/view?usp=drive_link' },
+                { title: 'Management of Venous Insufficiency', url: 'https://drive.google.com/file/d/1v174_Venous_Management/view?usp=drive_link' },
+            ],
+            'Peripheral Vascular Diseases': [
+                { title: 'Peripheral Vascular Disease – Pathophysiology', url: 'https://drive.google.com/file/d/1v175_PVD/view?usp=drive_link' },
+                { title: 'Management of PVD – Medical and Surgical', url: 'https://drive.google.com/file/d/1v176_PVD_Management/view?usp=drive_link' },
+            ],
+            'Surviving Sepsis': [
+                { title: 'Sepsis – Pathophysiology and Early Recognition', url: 'https://drive.google.com/file/d/1v177_Sepsis/view?usp=drive_link' },
+                { title: 'Surviving Sepsis Guidelines – Clinical Approach', url: 'https://drive.google.com/file/d/1v178_Sepsis_Guidelines/view?usp=drive_link' },
+            ],
+            'Fluid & Electrolytes': [
+                { title: 'Fluid and Electrolyte Balance – Physiology', url: 'https://drive.google.com/file/d/1v179_Fluid_Electrolytes/view?usp=drive_link' },
+                { title: 'Management of Electrolyte Imbalances in Surgery', url: 'https://drive.google.com/file/d/1v180_Electrolyte_Management/view?usp=drive_link' },
+            ],
+            'Septic Arthritis': [
+                { title: 'Septic Arthritis – Diagnosis and Management', url: 'https://drive.google.com/file/d/1v181_Septic_Arthritis/view?usp=drive_link' },
+                { title: 'Surgical Drainage and Antibiotic Therapy', url: 'https://drive.google.com/file/d/1v182_Septic_Arthritis_Surgery/view?usp=drive_link' },
+            ],
+            'Fractures': [
+                { title: 'Fractures – Classification and Management', url: 'https://drive.google.com/file/d/1v183_Fractures/view?usp=drive_link' },
+                { title: 'Principles of Fracture Fixation', url: 'https://drive.google.com/file/d/1v184_Fracture_Fixation/view?usp=drive_link' },
+            ],
+            'Surgical Soft Tissue Infection': [
+                { title: 'Surgical Soft Tissue Infections – Classification', url: 'https://drive.google.com/file/d/1v185_Soft_Tissue_Infection/view?usp=drive_link' },
+                { title: 'Necrotizing Fasciitis and Gas Gangrene', url: 'https://drive.google.com/file/d/1v186_Necrotizing_Fasciitis/view?usp=drive_link' },
+            ],
+            'Joint Dislocations': [
+                { title: 'Joint Dislocations – Diagnosis and Management', url: 'https://drive.google.com/file/d/1v187_Dislocations/view?usp=drive_link' },
+                { title: 'Reduction Techniques for Common Dislocations', url: 'https://drive.google.com/file/d/1v188_Dislocation_Reduction/view?usp=drive_link' },
+            ],
+            'Osteomyelytis': [
+                { title: 'Osteomyelitis – Pathophysiology and Diagnosis', url: 'https://drive.google.com/file/d/1v189_Osteomyelitis/view?usp=drive_link' },
+                { title: 'Surgical and Medical Management of Osteomyelitis', url: 'https://drive.google.com/file/d/1v190_Osteomyelitis_Management/view?usp=drive_link' },
+            ],
+            'Neurological  Examination': [
+                { title: 'Neurological Examination – A Systematic Approach', url: 'https://drive.google.com/file/d/1v191_Neuro_Exam/view?usp=drive_link' },
+                { title: 'Neurological Assessment in Surgical Patients', url: 'https://drive.google.com/file/d/1v192_Neuro_Exam_Surgical/view?usp=drive_link' },
+            ],
+            'Approach to Thoracic Chest Trauma': [
+                { title: 'Thoracic Trauma – Assessment and Management', url: 'https://drive.google.com/file/d/1v193_Thoracic_Trauma/view?usp=drive_link' },
+                { title: 'Chest Tube Insertion and Emergency Thoracotomy', url: 'https://drive.google.com/file/d/1v194_Thoracic_Emergencies/view?usp=drive_link' },
+            ],
+            'Burns': [
+                { title: 'Burn Injuries – Assessment and Classification', url: 'https://drive.google.com/file/d/1v195_Burns/view?usp=drive_link' },
+                { title: 'Surgical Management of Burns', url: 'https://drive.google.com/file/d/1v196_Burns_Surgery/view?usp=drive_link' },
+            ],
+            'Diabetic Foot': [
+                { title: 'Diabetic Foot – Pathophysiology and Assessment', url: 'https://drive.google.com/file/d/1v197_Diabetic_Foot/view?usp=drive_link' },
+                { title: 'Surgical Management of Diabetic Foot Complications', url: 'https://drive.google.com/file/d/1v198_Diabetic_Foot_Surgery/view?usp=drive_link' },
+            ],
+            'Breast Cancer': [
+                { title: 'Breast Cancer – Epidemiology and Risk Factors', url: 'https://drive.google.com/file/d/1v199_Breast_Cancer_Epi/view?usp=drive_link' },
+                { title: 'Surgical Management of Breast Cancer', url: 'https://drive.google.com/file/d/1v200_Breast_Cancer_Surgery/view?usp=drive_link' },
+            ],
+            'Thyroid Cancers': [
+                { title: 'Thyroid Cancer – Diagnosis and Management', url: 'https://drive.google.com/file/d/1v201_Thyroid_Cancer/view?usp=drive_link' },
+                { title: 'Surgical Approaches to Thyroid Malignancy', url: 'https://drive.google.com/file/d/1v202_Thyroid_Cancer_Surgery/view?usp=drive_link' },
+            ],
+            'Testicular Swelling': [
+                { title: 'Testicular Swelling – Differential Diagnosis', url: 'https://drive.google.com/file/d/1v203_Testicular_Swelling/view?usp=drive_link' },
+                { title: 'Management of Testicular Tumors and Hydrocele', url: 'https://drive.google.com/file/d/1v204_Testicular_Management/view?usp=drive_link' },
+            ],
+            'Prostate Cancer': [
+                { title: 'Prostate Cancer – Epidemiology and Diagnosis', url: 'https://drive.google.com/file/d/1v205_Prostate_Cancer/view?usp=drive_link' },
+                { title: 'Surgical Management of Prostate Cancer', url: 'https://drive.google.com/file/d/1v206_Prostate_Cancer_Surgery/view?usp=drive_link' },
+            ],
+            'Benign Breast Changes': [
+                { title: 'Benign Breast Conditions – Classification', url: 'https://drive.google.com/file/d/1v207_Benign_Breast/view?usp=drive_link' },
+                { title: 'Fibrocystic Disease and Fibroadenoma', url: 'https://drive.google.com/file/d/1v208_Fibroadenoma/view?usp=drive_link' },
+            ],
+            'BPH': [
+                { title: 'Benign Prostatic Hyperplasia – Pathophysiology', url: 'https://drive.google.com/file/d/1v209_BPH/view?usp=drive_link' },
+                { title: 'Management of BPH – Medical and Surgical', url: 'https://drive.google.com/file/d/1v210_BPH_Management/view?usp=drive_link' },
+            ],
+            'UTI & Urethritis': [
+                { title: 'Urinary Tract Infections and Urethritis', url: 'https://drive.google.com/file/d/1v211_UTI_Urethritis/view?usp=drive_link' },
+                { title: 'Antibiotic Management of UTIs', url: 'https://drive.google.com/file/d/1v212_UTI_Antibiotics/view?usp=drive_link' },
+            ],
+
+            // ========== Site A Clinical Topics ==========
+            'Site A: HF Management': [
+                { title: 'Heart Failure Management at NTH – Protocols', url: 'https://drive.google.com/file/d/1v213_NTH_HF_Management/view?usp=drive_link' },
+                { title: 'Pharmacological and Non-Pharmacological Management of HF', url: 'https://drive.google.com/file/d/1v214_NTH_HF_Approach/view?usp=drive_link' },
+            ],
+            'Site A: ECG Interpretation': [
+                { title: 'ECG Interpretation – A Practical Approach at NTH', url: 'https://drive.google.com/file/d/1v215_NTH_ECG/view?usp=drive_link' },
+                { title: 'Common ECG Patterns in Clinical Practice', url: 'https://drive.google.com/file/d/1v216_NTH_ECG_Patterns/view?usp=drive_link' },
+            ],
+            'Site A: Cardiac Rehab': [
+                { title: 'Cardiac Rehabilitation Programs at NTH', url: 'https://drive.google.com/file/d/1v217_NTH_Cardiac_Rehab/view?usp=drive_link' },
+            ],
+            'Site A: COPD Care': [
+                { title: 'COPD Care and Management at NTH', url: 'https://drive.google.com/file/d/1v218_NTH_COPD/view?usp=drive_link' },
+            ],
+            'Site A: Asthma Protocol': [
+                { title: 'Asthma Management Protocol at NTH', url: 'https://drive.google.com/file/d/1v219_NTH_Asthma/view?usp=drive_link' },
+            ],
+            'Site A: Pneumonia Treatment': [
+                { title: 'Pneumonia Treatment Guidelines at NTH', url: 'https://drive.google.com/file/d/1v220_NTH_Pneumonia/view?usp=drive_link' },
+            ],
+            'Site A: AKI Protocol': [
+                { title: 'AKI Management Protocol at NTH', url: 'https://drive.google.com/file/d/1v221_NTH_AKI/view?usp=drive_link' },
+            ],
+            'Site A: CKD Management': [
+                { title: 'CKD Management at NTH – A Comprehensive Approach', url: 'https://drive.google.com/file/d/1v222_NTH_CKD/view?usp=drive_link' },
+            ],
+            'Site A: Dialysis Access': [
+                { title: 'Dialysis Access – AV Fistula and Catheters at NTH', url: 'https://drive.google.com/file/d/1v223_NTH_Dialysis_Access/view?usp=drive_link' },
+            ],
+
+            // ========== Site B Clinical Topics ==========
+            'Site B: HF Guidelines': [
+                { title: 'Heart Failure Guidelines at Kitwe Teaching Hospital', url: 'https://drive.google.com/file/d/1v224_SiteB_HF/view?usp=drive_link' },
+            ],
+            'Site B: EP Studies': [
+                { title: 'Electrophysiology Studies at Site B', url: 'https://drive.google.com/file/d/1v225_SiteB_EP/view?usp=drive_link' },
+            ],
+            'Site B: Device Therapy': [
+                { title: 'Device Therapy for Heart Failure at Site B', url: 'https://drive.google.com/file/d/1v226_SiteB_Device_Therapy/view?usp=drive_link' },
+            ],
+            'Site B: Open Appendectomy': [
+                { title: 'Open Appendectomy Technique at Site B', url: 'https://drive.google.com/file/d/1v227_SiteB_Appendectomy/view?usp=drive_link' },
+            ],
+            'Site B: Complicated Cholecystitis': [
+                { title: 'Management of Complicated Cholecystitis at Site B', url: 'https://drive.google.com/file/d/1v228_SiteB_Cholecystitis/view?usp=drive_link' },
+            ],
+            'Site B: Bowel Obstruction': [
+                { title: 'Bowel Obstruction Management at Site B', url: 'https://drive.google.com/file/d/1v229_SiteB_Bowel_Obstruction/view?usp=drive_link' },
+            ],
+
+            // ========== Site C Clinical Topics ==========
+            'Site C: Community HF': [
+                { title: 'Community Heart Failure Care at Site C', url: 'https://drive.google.com/file/d/1v230_SiteC_HF/view?usp=drive_link' },
+            ],
+            'Site C: Telemedicine': [
+                { title: 'Telemedicine in Cardiology at Site C', url: 'https://drive.google.com/file/d/1v231_SiteC_Telemedicine/view?usp=drive_link' },
+            ],
+            'Site C: Home Care': [
+                { title: 'Home Care for Heart Failure Patients at Site C', url: 'https://drive.google.com/file/d/1v232_SiteC_Home_Care/view?usp=drive_link' },
+            ],
+            'Site C: Day Surgery': [
+                { title: 'Day Surgery Procedures at Site C', url: 'https://drive.google.com/file/d/1v233_SiteC_Day_Surgery/view?usp=drive_link' },
+            ],
+
+            // ========== 6th Year Advanced Topics ==========
+            'Site A: Sepsis Protocol': [
+                { title: 'Sepsis Management Protocol at NTH – Advanced', url: 'https://drive.google.com/file/d/1v234_NTH6_Sepsis/view?usp=drive_link' },
+            ],
+            'Site A: ARDS Management': [
+                { title: 'ARDS Management at NTH – Advanced Critical Care', url: 'https://drive.google.com/file/d/1v235_NTH6_ARDS/view?usp=drive_link' },
+            ],
+            'Site B: Sepsis Management': [
+                { title: 'Sepsis Management at Kitwe – Advanced', url: 'https://drive.google.com/file/d/1v236_SiteB6_Sepsis/view?usp=drive_link' },
+            ],
+            'Site B: ARDS Protocol': [
+                { title: 'ARDS Protocol at Site B – Advanced', url: 'https://drive.google.com/file/d/1v237_SiteB6_ARDS/view?usp=drive_link' },
+            ],
+            'Site C: Community Critical Care': [
+                { title: 'Community Critical Care at Site C – Advanced', url: 'https://drive.google.com/file/d/1v238_SiteC6_Critical_Care/view?usp=drive_link' },
+            ],
+            'Site C: Sepsis Care': [
+                { title: 'Sepsis Care in Community Settings at Site C', url: 'https://drive.google.com/file/d/1v239_SiteC6_Sepsis_Care/view?usp=drive_link' },
+            ],
+
+            // ========== Additional General Topics ==========
+            'Heart Failure': [
+                { title: 'Heart Failure – Pathophysiology and Treatment', url: 'https://drive.google.com/file/d/1v240_Heart_Failure/view?usp=drive_link' },
+                { title: 'Heart Failure – Clinical Case Discussions', url: 'https://drive.google.com/file/d/1v241_Heart_Failure_Cases/view?usp=drive_link' },
+            ],
+            'Arrhythmias': [
+                { title: 'Arrhythmias – Mechanisms and Management', url: 'https://drive.google.com/file/d/1v242_Arrhythmias/view?usp=drive_link' },
+                { title: 'Atrial Fibrillation – Diagnosis and Treatment', url: 'https://drive.google.com/file/d/1v243_Atrial_Fibrillation/view?usp=drive_link' },
+            ],
+            'Ischemic Heart Disease': [
+                { title: 'Ischemic Heart Disease – Pathophysiology', url: 'https://drive.google.com/file/d/1v244_IHD/view?usp=drive_link' },
+                { title: 'Acute Coronary Syndrome – Management', url: 'https://drive.google.com/file/d/1v245_ACS/view?usp=drive_link' },
+            ],
+            'COPD': [
+                { title: 'COPD – Diagnosis and Management', url: 'https://drive.google.com/file/d/1v246_COPD/view?usp=drive_link' },
+                { title: 'COPD Exacerbations – Management Protocol', url: 'https://drive.google.com/file/d/1v247_COPD_Exacerbations/view?usp=drive_link' },
+            ],
+            'Asthma': [
+                { title: 'Asthma – Pathophysiology and Treatment', url: 'https://drive.google.com/file/d/1v248_Asthma/view?usp=drive_link' },
+                { title: 'Acute Asthma Management – Clinical Approach', url: 'https://drive.google.com/file/d/1v249_Asthma_Acute/view?usp=drive_link' },
+            ],
+            'Pneumonia': [
+                { title: 'Pneumonia – Community-Acquired and Hospital-Acquired', url: 'https://drive.google.com/file/d/1v250_Pneumonia/view?usp=drive_link' },
+                { title: 'Pneumonia Treatment – Antibiotic Guidelines', url: 'https://drive.google.com/file/d/1v251_Pneumonia_Antibiotics/view?usp=drive_link' },
+            ],
+            'AKI': [
+                { title: 'Acute Kidney Injury – Diagnosis and Management', url: 'https://drive.google.com/file/d/1v252_AKI/view?usp=drive_link' },
+                { title: 'AKI – Clinical Case Presentations', url: 'https://drive.google.com/file/d/1v253_AKI_Cases/view?usp=drive_link' },
+            ],
+            'CKD': [
+                { title: 'Chronic Kidney Disease – Staging and Management', url: 'https://drive.google.com/file/d/1v254_CKD/view?usp=drive_link' },
+                { title: 'CKD Complications – Anemia, Bone Disease, and Electrolytes', url: 'https://drive.google.com/file/d/1v255_CKD_Complications/view?usp=drive_link' },
+            ],
+            'Glomerular Diseases': [
+                { title: 'Glomerular Diseases – Pathophysiology and Diagnosis', url: 'https://drive.google.com/file/d/1v256_Glomerular/view?usp=drive_link' },
+                { title: 'Nephrotic vs Nephritic Syndromes', url: 'https://drive.google.com/file/d/1v257_Nephrotic_Nephritic/view?usp=drive_link' },
+            ],
         };
 
-        // Default topic links for document/video/quiz
-        const defaultLinks = {
-            document: '#doc-default',
-            video: '#video-default',
-            quiz: '#quiz-default'
+        // ---- DOCUMENT DATA: maps topic names to an array of document objects ----
+        const docData = {
+            // ========== 2nd Year Therapeutics ==========
+            'Common Terminologies Used in Pharmacology': [
+                { title: 'Pharmacology Terminology – Glossary', url: 'https://drive.google.com/file/d/1d1_Pharma_Terms.pdf/view?usp=drive_link' },
+                { title: 'Introduction to Pharmacology – Lecture Notes', url: 'https://drive.google.com/file/d/1d2_Pharma_Intro.pdf/view?usp=drive_link' },
+                { title: 'Key Definitions in Pharmacology', url: 'https://drive.google.com/file/d/1d3_Pharma_Definitions.pdf/view?usp=drive_link' },
+            ],
+            'Membrane Transport and Absoprtion': [
+                { title: 'Membrane Transport Mechanisms – Detailed Notes', url: 'https://drive.google.com/file/d/1d4_Membrane_Transport.pdf/view?usp=drive_link' },
+                { title: 'Drug Absorption – Factors and Routes', url: 'https://drive.google.com/file/d/1d5_Absorption.pdf/view?usp=drive_link' },
+            ],
+            'Biovailability First-Pass Elimination': [
+                { title: 'Bioavailability and First-Pass Effect – Comprehensive', url: 'https://drive.google.com/file/d/1d6_Bioavailability.pdf/view?usp=drive_link' },
+                { title: 'First-Pass Metabolism – Clinical Implications', url: 'https://drive.google.com/file/d/1d7_FirstPass_Clinical.pdf/view?usp=drive_link' },
+            ],
+            'Drug Distribution': [
+                { title: 'Drug Distribution – Volume and Factors', url: 'https://drive.google.com/file/d/1d8_Distribution.pdf/view?usp=drive_link' },
+                { title: 'Protein Binding and Drug Distribution', url: 'https://drive.google.com/file/d/1d9_Protein_Binding.pdf/view?usp=drive_link' },
+            ],
+            'Drug Excretion': [
+                { title: 'Drug Excretion – Renal and Biliary', url: 'https://drive.google.com/file/d/1d10_Excretion.pdf/view?usp=drive_link' },
+                { title: 'Clearance and Elimination Kinetics', url: 'https://drive.google.com/file/d/1d11_Clearance.pdf/view?usp=drive_link' },
+            ],
+            'Drug Metabolism': [
+                { title: 'Phase I and Phase II Metabolism – Detailed', url: 'https://drive.google.com/file/d/1d12_Metabolism.pdf/view?usp=drive_link' },
+                { title: 'Cytochrome P450 – Enzyme Families', url: 'https://drive.google.com/file/d/1d13_CYP450.pdf/view?usp=drive_link' },
+            ],
+            'Routes of Administration': [
+                { title: 'Routes of Drug Administration – Complete Guide', url: 'https://drive.google.com/file/d/1d14_Routes.pdf/view?usp=drive_link' },
+                { title: 'Comparison of Enteral and Parenteral Routes', url: 'https://drive.google.com/file/d/1d15_Routes_Compare.pdf/view?usp=drive_link' },
+            ],
+            'Therapeutic Drug Monitoring': [
+                { title: 'TDM – Principles and Practice', url: 'https://drive.google.com/file/d/1d16_TDM.pdf/view?usp=drive_link' },
+                { title: 'TDM in Clinical Settings – Case Studies', url: 'https://drive.google.com/file/d/1d17_TDM_Cases.pdf/view?usp=drive_link' },
+            ],
+            'Mechanism of Drug Action': [
+                { title: 'Receptor Theory – Detailed Notes', url: 'https://drive.google.com/file/d/1d18_Receptor_Theory.pdf/view?usp=drive_link' },
+                { title: 'Enzyme Inhibition – Mechanisms and Examples', url: 'https://drive.google.com/file/d/1d19_Enzyme_Inhibition.pdf/view?usp=drive_link' },
+            ],
+            'Autonomic Pharmacology': [
+                { title: 'ANS – Anatomy and Physiology Overview', url: 'https://drive.google.com/file/d/1d20_ANS.pdf/view?usp=drive_link' },
+                { title: 'Pharmacology of the Autonomic Nervous System', url: 'https://drive.google.com/file/d/1d21_ANS_Pharma.pdf/view?usp=drive_link' },
+            ],
+            'Neuro-Hormonal Transmision in the ANS': [
+                { title: 'Neurotransmission in ANS – Detailed', url: 'https://drive.google.com/file/d/1d22_Neurotransmission.pdf/view?usp=drive_link' },
+                { title: 'Hormonal Regulation of ANS Function', url: 'https://drive.google.com/file/d/1d23_ANS_Hormones.pdf/view?usp=drive_link' },
+            ],
+            'ANS Regulation': [
+                { title: 'Regulation of Autonomic Functions', url: 'https://drive.google.com/file/d/1d24_ANS_Regulation.pdf/view?usp=drive_link' },
+                { title: 'Baroreflex and Autonomic Control', url: 'https://drive.google.com/file/d/1d25_Baroreflex.pdf/view?usp=drive_link' },
+            ],
+            'Muscarinic Agonists': [
+                { title: 'Muscarinic Agonists – Pharmacology', url: 'https://drive.google.com/file/d/1d26_Muscarinic_Agonists.pdf/view?usp=drive_link' },
+                { title: 'Clinical Applications of Muscarinic Agonists', url: 'https://drive.google.com/file/d/1d27_Muscarinic_Clinical.pdf/view?usp=drive_link' },
+            ],
+            'Muscarinic Antagonists': [
+                { title: 'Muscarinic Antagonists – Pharmacology', url: 'https://drive.google.com/file/d/1d28_Muscarinic_Antagonists.pdf/view?usp=drive_link' },
+                { title: 'Atropine and Anticholinergic Drugs', url: 'https://drive.google.com/file/d/1d29_Atropine.pdf/view?usp=drive_link' },
+            ],
+            'Sympathomimetic Drugs (Adrenergic Agonists)': [
+                { title: 'Adrenergic Agonists – Mechanism and Uses', url: 'https://drive.google.com/file/d/1d30_Sympathomimetics.pdf/view?usp=drive_link' },
+                { title: 'Alpha and Beta Adrenergic Agonists – Comparison', url: 'https://drive.google.com/file/d/1d31_Adrenergic_Agonists.pdf/view?usp=drive_link' },
+            ],
+            'Sympatholitic Drugs (Adrenergic Blockers)': [
+                { title: 'Adrenergic Blockers – Alpha and Beta Antagonists', url: 'https://drive.google.com/file/d/1d32_Sympatholytics.pdf/view?usp=drive_link' },
+                { title: 'Clinical Pharmacology of Beta-Blockers', url: 'https://drive.google.com/file/d/1d33_Beta_Blockers.pdf/view?usp=drive_link' },
+            ],
+            'Management of Heart Failure': [
+                { title: 'Heart Failure – Pharmacological Management', url: 'https://drive.google.com/file/d/1d34_HF_Management.pdf/view?usp=drive_link' },
+                { title: 'Diuretics, ACE Inhibitors, and Beta-Blockers in HF', url: 'https://drive.google.com/file/d/1d35_HF_Drugs.pdf/view?usp=drive_link' },
+            ],
+            'Anti-arrhythmis Drugs': [
+                { title: 'Antiarrhythmic Drugs – Classification and Mechanisms', url: 'https://drive.google.com/file/d/1d36_Antiarrhythmic.pdf/view?usp=drive_link' },
+                { title: 'Clinical Use of Antiarrhythmic Agents', url: 'https://drive.google.com/file/d/1d37_Antiarrhythmic_Clinical.pdf/view?usp=drive_link' },
+            ],
+            'Drugs used in Angin Treatment': [
+                { title: 'Anti-Anginal Drugs – Nitrates and Calcium Blockers', url: 'https://drive.google.com/file/d/1d38_Angina_Drugs.pdf/view?usp=drive_link' },
+                { title: 'Angina Management – Pharmacological Approach', url: 'https://drive.google.com/file/d/1d39_Angina_Management.pdf/view?usp=drive_link' },
+            ],
+            'Antihypertensive Drugs': [
+                { title: 'Antihypertensive Drugs – Classes and Mechanisms', url: 'https://drive.google.com/file/d/1d40_Antihypertensives.pdf/view?usp=drive_link' },
+                { title: 'ACE Inhibitors, ARBs, and Calcium Channel Blockers', url: 'https://drive.google.com/file/d/1d41_Antihypertensive_Classes.pdf/view?usp=drive_link' },
+            ],
+            'Drugs used in the treatment of Hyperlipidemia': [
+                { title: 'Lipid-Lowering Drugs – Statins and More', url: 'https://drive.google.com/file/d/1d42_Lipid_Lowering.pdf/view?usp=drive_link' },
+                { title: 'Hyperlipidemia Management – Clinical Guidelines', url: 'https://drive.google.com/file/d/1d43_Hyperlipidemia_Management.pdf/view?usp=drive_link' },
+            ],
+            'Anti-asthmatic Drugs': [
+                { title: 'Anti-Asthmatic Drugs – Pharmacology', url: 'https://drive.google.com/file/d/1d44_Asthma_Drugs.pdf/view?usp=drive_link' },
+                { title: 'Bronchodilators and Anti-Inflammatory Agents', url: 'https://drive.google.com/file/d/1d45_Asthma_Agents.pdf/view?usp=drive_link' },
+            ],
+            'Drugs used in the Treatment of TB': [
+                { title: 'Anti-Tubercular Drugs – First-Line Agents', url: 'https://drive.google.com/file/d/1d46_TB_Drugs.pdf/view?usp=drive_link' },
+                { title: 'TB Treatment Regimens and Drug Resistance', url: 'https://drive.google.com/file/d/1d47_TB_Regimens.pdf/view?usp=drive_link' },
+            ],
+            'Drugs used to Treat Common Cold': [
+                { title: 'OTC Cold Medications – Pharmacology', url: 'https://drive.google.com/file/d/1d48_Cold_Drugs.pdf/view?usp=drive_link' },
+                { title: 'Antihistamines and Decongestants – Guide', url: 'https://drive.google.com/file/d/1d49_Cold_Antihistamines.pdf/view?usp=drive_link' },
+            ],
+            'Drugs acting on Cough': [
+                { title: 'Antitussives and Expectorants – Pharmacology', url: 'https://drive.google.com/file/d/1d50_Cough_Drugs.pdf/view?usp=drive_link' },
+                { title: 'Cough Management – Drug Therapy', url: 'https://drive.google.com/file/d/1d51_Cough_Management.pdf/view?usp=drive_link' },
+            ],
+            'Use of Steroids in Respiratory Disorders': [
+                { title: 'Corticosteroids in Respiratory Medicine', url: 'https://drive.google.com/file/d/1d52_Steroids_Respiratory.pdf/view?usp=drive_link' },
+                { title: 'Inhaled vs Systemic Corticosteroids', url: 'https://drive.google.com/file/d/1d53_Steroids_Inhaled.pdf/view?usp=drive_link' },
+            ],
+            'Anti-fungal': [
+                { title: 'Antifungal Drugs – Classification and Mechanisms', url: 'https://drive.google.com/file/d/1d54_Antifungals.pdf/view?usp=drive_link' },
+                { title: 'Azoles, Echinocandins, and Polyene Antifungals', url: 'https://drive.google.com/file/d/1d55_Antifungal_Classes.pdf/view?usp=drive_link' },
+            ],
+
+            // ========== 2nd Year Biochemistry ==========
+            'Amino Acids': [
+                { title: 'Amino Acids – Structure and Properties', url: 'https://drive.google.com/file/d/1d56_Amino_Acids.pdf/view?usp=drive_link' },
+                { title: 'Essential vs Non-Essential Amino Acids', url: 'https://drive.google.com/file/d/1d57_Amino_Essential.pdf/view?usp=drive_link' },
+            ],
+            'Peptides': [
+                { title: 'Peptides – Synthesis and Biological Functions', url: 'https://drive.google.com/file/d/1d58_Peptides.pdf/view?usp=drive_link' },
+                { title: 'Bioactive Peptides in Medicine', url: 'https://drive.google.com/file/d/1d59_Bioactive_Peptides.pdf/view?usp=drive_link' },
+            ],
+            'Plasma Proteins': [
+                { title: 'Plasma Proteins – Albumins, Globulins, Fibrinogen', url: 'https://drive.google.com/file/d/1d60_Plasma_Proteins.pdf/view?usp=drive_link' },
+                { title: 'Clinical Significance of Plasma Proteins', url: 'https://drive.google.com/file/d/1d61_Plasma_Clinical.pdf/view?usp=drive_link' },
+            ],
+            'Enzymes': [
+                { title: 'Enzymes – Structure, Function, and Kinetics', url: 'https://drive.google.com/file/d/1d62_Enzymes.pdf/view?usp=drive_link' },
+                { title: 'Enzyme Inhibition – Competitive and Noncompetitive', url: 'https://drive.google.com/file/d/1d63_Enzyme_Inhibition.pdf/view?usp=drive_link' },
+            ],
+            'Heamoglobin': [
+                { title: 'Hemoglobin – Structure and Oxygen Transport', url: 'https://drive.google.com/file/d/1d64_Hemoglobin.pdf/view?usp=drive_link' },
+                { title: 'Hemoglobinopathies – Sickle Cell and Thalassemia', url: 'https://drive.google.com/file/d/1d65_Hemoglobinopathies.pdf/view?usp=drive_link' },
+            ],
+            'Carbohydrates': [
+                { title: 'Carbohydrates – Classification and Metabolism', url: 'https://drive.google.com/file/d/1d66_Carbohydrates.pdf/view?usp=drive_link' },
+                { title: 'Glycolysis and Gluconeogenesis – Detailed', url: 'https://drive.google.com/file/d/1d67_Glycolysis_Gluconeogenesis.pdf/view?usp=drive_link' },
+            ],
+            'Complex Carbohydrates': [
+                { title: 'Complex Carbohydrates – Glycogen and Starch', url: 'https://drive.google.com/file/d/1d68_Complex_Carbohydrates.pdf/view?usp=drive_link' },
+                { title: 'Glycogen Metabolism – Regulation', url: 'https://drive.google.com/file/d/1d69_Glycogen_Metabolism.pdf/view?usp=drive_link' },
+            ],
+            'Lipids': [
+                { title: 'Lipids – Fatty Acids, Triglycerides, Phospholipids', url: 'https://drive.google.com/file/d/1d70_Lipids.pdf/view?usp=drive_link' },
+                { title: 'Lipid Metabolism – Beta Oxidation and Synthesis', url: 'https://drive.google.com/file/d/1d71_Lipid_Metabolism.pdf/view?usp=drive_link' },
+            ],
+            'Minerals and Vitamins': [
+                { title: 'Minerals and Vitamins – Essential Nutrients', url: 'https://drive.google.com/file/d/1d72_Minerals_Vitamins.pdf/view?usp=drive_link' },
+                { title: 'Vitamin Deficiencies – Clinical Manifestations', url: 'https://drive.google.com/file/d/1d73_Vitamin_Deficiencies.pdf/view?usp=drive_link' },
+            ],
+            'Energy Metabolism and Nutrition': [
+                { title: 'Class Notes ', url: 'https://drive.google.com/file/d/15pML46Ci_7KUBmDW3LdXjyHR0j9fWenU/view?usp=drive_link' },
+                { title: 'ToToZ Notes', url: 'https://drive.google.com/file/d/1d74_Vitamin_A.pdf/view?usp=drive_link' },
+            ],
+            'Micronutrients and Vitamins': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1CORi0lmfajlgnfn7bwkJ3Lk_wg5267Fv/view?usp=drive_link' },
+                { title: 'Vitamin B1 - ToToZ Notes', url: 'https://drive.google.com/file/d/1-syE2dxWbSt-MoOoz6pMuv8Pb-C-Ekfm/view?usp=drive_link' },
+                { title: 'Vitamin B2 - ToToZ Notes', url: 'https://drive.google.com/file/d/1YqeyS8GUdPaD7NlvwMXBABv7iiE-XR_b/view?usp=drive_link' },
+                { title: 'Vitamin B3 - ToToZ Notes', url: 'https://drive.google.com/file/d/17QdEYEHEUDOVPNqp71NEEVVLHRY9ZtOC/view?usp=drive_link' },
+                { title: 'Vitamin B5 - ToToZ Notes', url: 'https://drive.google.com/file/d/1d74_Vitamin_A.pdf/view?usp=drive_link' },
+                { title: 'Vitamin B6 - ToToZ Notes', url: 'https://drive.google.com/file/d/1d74_Vitamin_A.pdf/view?usp=drive_link' },
+                { title: 'Vitamin B7 - ToToZ Notes', url: 'https://drive.google.com/file/d/1d74_Vitamin_A.pdf/view?usp=drive_link' },
+                { title: 'Vitamin B9 - ToToZ Notes', url: 'https://drive.google.com/file/d/1d74_Vitamin_A.pdf/view?usp=drive_link' },
+                { title: 'Vitamin B12 - ToToZ Notes', url: 'https://drive.google.com/file/d/1d74_Vitamin_A.pdf/view?usp=drive_link' },
+                { title: 'Vitamin C - ToToZ Notes', url: 'https://drive.google.com/file/d/1uI2WSHn6rwtphXNWCgaM5Yi6tDyI3Qmh/view?usp=drive_link' },
+            ],
+            'Fat Soluble Vitamins': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1vq4_5ecSti8MrAVxxwy5S7ZXFiD8XlRv/view?usp=drive_link' },
+                { title: 'Vitamin A - ToToZ Notes', url: 'https://drive.google.com/file/d/1Pcp0a2XVFOHsIZso7b2G3ie4uxErkM31/view?usp=drive_link' },
+                { title: 'Vitamin D - ToToZ Notes', url: 'https://drive.google.com/file/d/1WAO_UkQRjUjTN_53i61_JIXYxg0Xl3fE/view?usp=drive_link' },
+                { title: 'Vitamin E - ToToZ Notes', url: 'https://drive.google.com/file/d/1d75_Vitamin_C.pdf/view?usp=drive_link' },
+                { title: 'Vitamin K - ToToZ Notes', url: 'https://drive.google.com/file/d/1d75_Vitamin_C.pdf/view?usp=drive_link' },
+            ],
+            'Mineral Metabolism': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1wlmi2Zahi1kLjPt0R3r8ryZ507PFIeDA/view?usp=sharing' },
+            ],
+
+            // 3rd year [hysiology]
+            'Renal Function, Anatomy and Blood Flow': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1sxjV0lEwXijzJyRy9HLYW72nimNjsf6X/view?usp=sharing' },
+            ],
+            'Mechanism of Urine Formation': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/18KuyoFxsRt0KX9QKele6nCJ18njj8cNK/view?usp=drive_link' },
+            ],
+            'Concentration, Dilution and Acidification': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1pUtNVOTUzyb8HuSMoNWBRC1YAXDGajMu/view?usp=drive_link' },
+            ],
+
+            // ========== 3rd Year Biochemistry ==========
+            'Overview of metabolism (metabolic pathways)': [
+                { title: 'Metabolic Pathways – An Overview', url: 'https://drive.google.com/file/d/1d77_Metabolism_Overview.pdf/view?usp=drive_link' },
+                { title: 'Integration of Metabolic Pathways', url: 'https://drive.google.com/file/d/1d78_Metabolism_Integration.pdf/view?usp=drive_link' },
+            ],
+            'Biological Oxidation: ETC & oxidative phosphorylation': [
+                { title: 'Electron Transport Chain – Detailed', url: 'https://drive.google.com/file/d/1d79_ETC.pdf/view?usp=drive_link' },
+                { title: 'Oxidative Phosphorylation and ATP Synthesis', url: 'https://drive.google.com/file/d/1d80_Oxidative_Phosphorylation.pdf/view?usp=drive_link' },
+            ],
+            'Carbohydrate metabolism: Glycolysis': [
+                { title: 'Glycolysis – Steps and Regulation', url: 'https://drive.google.com/file/d/1d81_Glycolysis_Steps.pdf/view?usp=drive_link' },
+                { title: 'Clinical Correlates of Glycolysis', url: 'https://drive.google.com/file/d/1d82_Glycolysis_Clinical.pdf/view?usp=drive_link' },
+            ],
+            'Pentose phosphate pathway': [
+                { title: 'Pentose Phosphate Pathway – NADPH and Ribose', url: 'https://drive.google.com/file/d/1d83_Pentose_Phosphate.pdf/view?usp=drive_link' },
+                { title: 'Clinical Significance of the Pentose Phosphate Pathway', url: 'https://drive.google.com/file/d/1d84_Pentose_Clinical.pdf/view?usp=drive_link' },
+            ],
+            'TCA cycle (krebs cycle)': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1d85_TCA_Cycle.pdf/view?usp=drive_link' },
+                { title: 'ToToZ Notes', url: 'https://drive.google.com/file/d/1d86_TCA_Anaplerosis.pdf/view?usp=drive_link' },
+            ],
+            'Carbohydrate metabolism: Galactose and Fructose': [
+                { title: 'Galactose and Fructose Metabolism', url: 'https://drive.google.com/file/d/1d87_Galactose_Fructose.pdf/view?usp=drive_link' },
+                { title: 'Inborn Errors of Galactose and Fructose Metabolism', url: 'https://drive.google.com/file/d/1d88_Inborn_Errors.pdf/view?usp=drive_link' },
+            ],
+            'Gluconeogenesis': [
+                { title: 'Gluconeogenesis – Pathway and Regulation', url: 'https://drive.google.com/file/d/1d89_Gluconeogenesis.pdf/view?usp=drive_link' },
+                { title: 'Substrates and Hormonal Control of Gluconeogenesis', url: 'https://drive.google.com/file/d/1d90_Gluconeogenesis_Control.pdf/view?usp=drive_link' },
+            ],
+            'Blood glucose homeostasis': [
+                { title: 'Blood Glucose Homeostasis – Insulin and Glucagon', url: 'https://drive.google.com/file/d/1d91_Glucose_Homeostasis.pdf/view?usp=drive_link' },
+                { title: 'Diabetes Mellitus – Pathophysiology and Management', url: 'https://drive.google.com/file/d/1d92_Diabetes_Mellitus.pdf/view?usp=drive_link' },
+            ],
+            'Alcohol metabolism': [
+                { title: 'Alcohol Metabolism – Ethanol to Acetate', url: 'https://drive.google.com/file/d/1d93_Alcohol_Metabolism.pdf/view?usp=drive_link' },
+                { title: 'Clinical Consequences of Alcohol Metabolism', url: 'https://drive.google.com/file/d/1d94_Alcohol_Clinical.pdf/view?usp=drive_link' },
+            ],
+            'Uronic acid pathway': [
+                { title: 'Uronic Acid Pathway – Glucuronic Acid Synthesis', url: 'https://drive.google.com/file/d/1d95_Uronic_Acid.pdf/view?usp=drive_link' },
+                { title: 'Role of Glucuronic Acid in Detoxification', url: 'https://drive.google.com/file/d/1d96_Glucuronic_Detox.pdf/view?usp=drive_link' },
+            ],
+            'Glycogen metabolism': [
+                { title: 'Glycogenesis and Glycogenolysis', url: 'https://drive.google.com/file/d/1d97_Glycogen_Metabolism.pdf/view?usp=drive_link' },
+                { title: 'Regulation of Glycogen Metabolism', url: 'https://drive.google.com/file/d/1d98_Glycogen_Regulation.pdf/view?usp=drive_link' },
+            ],
+
+            // ========== 3rd Year Public Health ==========
+            'Introduction and types of variables': [
+                { title: 'Variables in Public Health Research', url: 'https://drive.google.com/file/d/1d99_Variables.pdf/view?usp=drive_link' },
+                { title: 'Categorical vs Continuous Variables', url: 'https://drive.google.com/file/d/1d100_Variables_Types.pdf/view?usp=drive_link' },
+            ],
+            'Tables and graphs': [
+                { title: 'Data Presentation – Tables and Graphs', url: 'https://drive.google.com/file/d/1d101_Tables_Graphs.pdf/view?usp=drive_link' },
+                { title: 'Effective Data Visualization in Public Health', url: 'https://drive.google.com/file/d/1d102_Data_Visualization.pdf/view?usp=drive_link' },
+            ],
+            'Measures of central tendecy': [
+                { title: 'Mean, Median, and Mode – Explanation', url: 'https://drive.google.com/file/d/1d103_Central_Tendency.pdf/view?usp=drive_link' },
+                { title: 'Choosing the Right Measure of Central Tendency', url: 'https://drive.google.com/file/d/1d104_Central_Tendency_Choice.pdf/view?usp=drive_link' },
+            ],
+            'Measures of spread': [
+                { title: 'Measures of Dispersion – Range, Variance, SD', url: 'https://drive.google.com/file/d/1d105_Spread.pdf/view?usp=drive_link' },
+                { title: 'Interpreting Measures of Spread', url: 'https://drive.google.com/file/d/1d106_Spread_Interp.pdf/view?usp=drive_link' },
+            ],
+            'probabilities': [
+                { title: 'Probability Theory – Basic Concepts', url: 'https://drive.google.com/file/d/1d107_Probability.pdf/view?usp=drive_link' },
+                { title: 'Conditional Probability and Bayes Theorem', url: 'https://drive.google.com/file/d/1d108_Bayes_Theorem.pdf/view?usp=drive_link' },
+            ],
+            'normal distribution': [
+                { title: 'Normal Distribution – Properties and Applications', url: 'https://drive.google.com/file/d/1d109_Normal_Distribution.pdf/view?usp=drive_link' },
+                { title: 'Z-Scores and the Standard Normal Distribution', url: 'https://drive.google.com/file/d/1d110_Z_Scores.pdf/view?usp=drive_link' },
+            ],
+            'significance testing': [
+                { title: 'Hypothesis Testing and Significance', url: 'https://drive.google.com/file/d/1d111_Significance_Testing.pdf/view?usp=drive_link' },
+                { title: 'P-Values and Confidence Intervals', url: 'https://drive.google.com/file/d/1d112_P_Values_CI.pdf/view?usp=drive_link' },
+            ],
+            'z test for one population': [
+                { title: 'One-Sample Z-Test – Procedure', url: 'https://drive.google.com/file/d/1d113_Z_Test_One_Sample.pdf/view?usp=drive_link' },
+            ],
+            'z test for two independent populations': [
+                { title: 'Two-Sample Z-Test – Comparing Means', url: 'https://drive.google.com/file/d/1d114_Z_Test_Two_Sample.pdf/view?usp=drive_link' },
+            ],
+            't test for one sample': [
+                { title: 'One-Sample T-Test – When and How', url: 'https://drive.google.com/file/d/1d115_T_Test_One_Sample.pdf/view?usp=drive_link' },
+            ],
+            't test for two samples': [
+                { title: 'Two-Sample T-Test – Independent and Paired', url: 'https://drive.google.com/file/d/1d116_T_Test_Two_Sample.pdf/view?usp=drive_link' },
+            ],
+            'Pearson product moment corraltion coefficinet': [
+                { title: 'Pearson Correlation – Theory and Application', url: 'https://drive.google.com/file/d/1d117_Pearson_Correlation.pdf/view?usp=drive_link' },
+            ],
+            'simple linear regression': [
+                { title: 'Simple Linear Regression – Explanation', url: 'https://drive.google.com/file/d/1d118_Linear_Regression.pdf/view?usp=drive_link' },
+                { title: 'Interpreting Regression Coefficients', url: 'https://drive.google.com/file/d/1d119_Regression_Interp.pdf/view?usp=drive_link' },
+            ],
+            'Intorduction to research': [
+                { title: 'Introduction to Research Methodology', url: 'https://drive.google.com/file/d/1d120_Research_Intro.pdf/view?usp=drive_link' },
+                { title: 'Research Process – Steps', url: 'https://drive.google.com/file/d/1d121_Research_Process.pdf/view?usp=drive_link' },
+            ],
+            'Research Objectives': [
+                { title: 'Formulating Research Objectives', url: 'https://drive.google.com/file/d/1d122_Research_Objectives.pdf/view?usp=drive_link' },
+                { title: 'SMART Objectives – Guide', url: 'https://drive.google.com/file/d/1d123_SMART_Objectives.pdf/view?usp=drive_link' },
+            ],
+            'Literature Review': [
+                { title: 'Conducting a Literature Review', url: 'https://drive.google.com/file/d/1d124_Literature_Review.pdf/view?usp=drive_link' },
+                { title: 'Systematic Review vs Narrative Review', url: 'https://drive.google.com/file/d/1d125_Systematic_Review.pdf/view?usp=drive_link' },
+            ],
+            'Referencing and citations': [
+                { title: 'Referencing Styles – APA, Vancouver, Harvard', url: 'https://drive.google.com/file/d/1d126_Referencing.pdf/view?usp=drive_link' },
+                { title: 'Avoiding Plagiarism', url: 'https://drive.google.com/file/d/1d127_Plagiarism.pdf/view?usp=drive_link' },
+            ],
+            'Sampling techniques': [
+                { title: 'Sampling Methods in Public Health', url: 'https://drive.google.com/file/d/1d128_Sampling.pdf/view?usp=drive_link' },
+                { title: 'Sample Size Determination and Sampling Error', url: 'https://drive.google.com/file/d/1d129_Sample_Size.pdf/view?usp=drive_link' },
+            ],
+            'Study designs': [
+                { title: 'Study Designs – Cross-Sectional, Cohort, Case-Control', url: 'https://drive.google.com/file/d/1d130_Study_Designs.pdf/view?usp=drive_link' },
+                { title: 'Choosing the Right Study Design', url: 'https://drive.google.com/file/d/1d131_Study_Design_Choice.pdf/view?usp=drive_link' },
+            ],
+            'Sample Size Determination': [
+                { title: 'Determining Sample Size for Studies', url: 'https://drive.google.com/file/d/1d132_Sample_Size_Determination.pdf/view?usp=drive_link' },
+                { title: 'Power Analysis and Sample Size Calculation', url: 'https://drive.google.com/file/d/1d133_Power_Analysis.pdf/view?usp=drive_link' },
+            ],
+            'Data analysis and ethics': [
+                { title: 'Data Analysis in Public Health – Overview', url: 'https://drive.google.com/file/d/1d134_Data_Analysis.pdf/view?usp=drive_link' },
+                { title: 'Ethical Considerations in Research', url: 'https://drive.google.com/file/d/1d135_Research_Ethics.pdf/view?usp=drive_link' },
+            ],
+            'Using Mendeley Referencing': [
+                { title: 'Mendeley – Reference Management Guide', url: 'https://drive.google.com/file/d/1d136_Mendeley.pdf/view?usp=drive_link' },
+                { title: 'Mendeley for Citation and Bibliography', url: 'https://drive.google.com/file/d/1d137_Mendeley_Citation.pdf/view?usp=drive_link' },
+            ],
+            'Introduction to Epidemiology': [
+                { title: 'Introduction to Epidemiology – Core Concepts', url: 'https://drive.google.com/file/d/1d138_Epi_Intro.pdf/view?usp=drive_link' },
+                { title: 'Epidemiological Triad and Disease Transmission', url: 'https://drive.google.com/file/d/1d139_Epi_Triad.pdf/view?usp=drive_link' },
+            ],
+            'Frequency Measures used in Epidemiology 2023': [
+                { title: 'Frequency Measures – Incidence, Prevalence, Rates', url: 'https://drive.google.com/file/d/1d140_Frequency_Measures.pdf/view?usp=drive_link' },
+                { title: 'Calculating and Interpreting Epidemiology Rates', url: 'https://drive.google.com/file/d/1d141_Rates_Calculation.pdf/view?usp=drive_link' },
+            ],
+            'Overview of study designs I': [
+                { title: 'Study Designs in Epidemiology – Descriptive and Analytic', url: 'https://drive.google.com/file/d/1d142_Study_Designs_I.pdf/view?usp=drive_link' },
+            ],
+            'Measures of association': [
+                { title: 'Measures of Association – Relative Risk and Odds Ratio', url: 'https://drive.google.com/file/d/1d143_Measures_Association.pdf/view?usp=drive_link' },
+                { title: 'Interpreting Measures of Association', url: 'https://drive.google.com/file/d/1d144_Association_Interp.pdf/view?usp=drive_link' },
+            ],
+            'Overview of study designs II': [
+                { title: 'Advanced Study Designs in Epidemiology', url: 'https://drive.google.com/file/d/1d145_Study_Designs_II.pdf/view?usp=drive_link' },
+            ],
+            'Concept of cause': [
+                { title: 'Causality in Epidemiology – Bradford Hill Criteria', url: 'https://drive.google.com/file/d/1d146_Causality.pdf/view?usp=drive_link' },
+                { title: 'Establishing Causation in Public Health', url: 'https://drive.google.com/file/d/1d147_Causation_Establish.pdf/view?usp=drive_link' },
+            ],
+
+            // ========== 4th Year Surgery ==========
+            'PUD, GERD & Gastritis': [
+                { title: 'Peptic Ulcer Disease – Comprehensive Notes', url: 'https://drive.google.com/file/d/1d148_PUD.pdf/view?usp=drive_link' },
+                { title: 'GERD and Gastritis – Clinical Guidelines', url: 'https://drive.google.com/file/d/1d149_GERD_Gastritis.pdf/view?usp=drive_link' },
+            ],
+            'Acute Appendicitis': [
+                { title: 'Acute Appendicitis – Diagnosis and Management', url: 'https://drive.google.com/file/d/1d150_Appendicitis.pdf/view?usp=drive_link' },
+                { title: 'Surgical Approaches to Appendicitis', url: 'https://drive.google.com/file/d/1d151_Appendicitis_Surgery.pdf/view?usp=drive_link' },
+            ],
+            'GIT Bleeding': [
+                { title: 'Gastrointestinal Bleeding – Causes and Management', url: 'https://drive.google.com/file/d/1d152_GIT_Bleeding.pdf/view?usp=drive_link' },
+                { title: 'Upper vs Lower GI Bleeding – Approach', url: 'https://drive.google.com/file/d/1d153_GI_Bleeding_Approach.pdf/view?usp=drive_link' },
+            ],
+            'Abdominal Trauma': [
+                { title: 'Abdominal Trauma – Assessment and Management', url: 'https://drive.google.com/file/d/1d154_Abdominal_Trauma.pdf/view?usp=drive_link' },
+                { title: 'Blunt vs Penetrating Abdominal Trauma', url: 'https://drive.google.com/file/d/1d155_Abdominal_Trauma_Types.pdf/view?usp=drive_link' },
+            ],
+            'Gall Bladder & Billiary Tree': [
+                { title: 'Gallbladder and Biliary Tree – Anatomy and Pathology', url: 'https://drive.google.com/file/d/1d156_Biliary_Tree.pdf/view?usp=drive_link' },
+                { title: 'Cholecystitis and Cholangitis – Management', url: 'https://drive.google.com/file/d/1d157_Cholecystitis_Cholangitis.pdf/view?usp=drive_link' },
+            ],
+            'Intestinal Obstruction by Dr. Mwila': [
+                { title: 'Intestinal Obstruction – Pathophysiology and Diagnosis', url: 'https://drive.google.com/file/d/1d158_Intestinal_Obstruction.pdf/view?usp=drive_link' },
+                { title: 'Management of Bowel Obstruction', url: 'https://drive.google.com/file/d/1d159_Obstruction_Management.pdf/view?usp=drive_link' },
+            ],
+            'Intestinal Obstruction by Dr. Mulenga': [
+                { title: 'Intestinal Obstruction – Surgical Perspectives', url: 'https://drive.google.com/file/d/1d160_Obstruction_Surgical.pdf/view?usp=drive_link' },
+                { title: 'Complications and Prognosis of Obstruction', url: 'https://drive.google.com/file/d/1d161_Obstruction_Complications.pdf/view?usp=drive_link' },
+            ],
+            'Gastric Cancers': [
+                { title: 'Gastric Cancer – Epidemiology and Pathogenesis', url: 'https://drive.google.com/file/d/1d162_Gastric_Cancer.pdf/view?usp=drive_link' },
+                { title: 'Surgical Management of Gastric Cancer', url: 'https://drive.google.com/file/d/1d163_Gastric_Cancer_Surgery.pdf/view?usp=drive_link' },
+            ],
+            'Esophageal Cancers': [
+                { title: 'Esophageal Cancer – Risk Factors and Diagnosis', url: 'https://drive.google.com/file/d/1d164_Esophageal_Cancer.pdf/view?usp=drive_link' },
+                { title: 'Management of Esophageal Cancer', url: 'https://drive.google.com/file/d/1d165_Esophageal_Cancer_Management.pdf/view?usp=drive_link' },
+            ],
+            'Anal Pain': [
+                { title: 'Anal Pain – Differential Diagnosis', url: 'https://drive.google.com/file/d/1d166_Anal_Pain.pdf/view?usp=drive_link' },
+                { title: 'Hemorrhoids, Fissures, and Abscesses', url: 'https://drive.google.com/file/d/1d167_Anal_Conditions.pdf/view?usp=drive_link' },
+            ],
+            'Pancreatitis': [
+                { title: 'Acute Pancreatitis – Pathophysiology and Management', url: 'https://drive.google.com/file/d/1d168_Pancreatitis_Acute.pdf/view?usp=drive_link' },
+                { title: 'Chronic Pancreatitis – Complications and Treatment', url: 'https://drive.google.com/file/d/1d169_Pancreatitis_Chronic.pdf/view?usp=drive_link' },
+            ],
+            'Groin Hernia': [
+                { title: 'Groin Hernias – Inguinal and Femoral', url: 'https://drive.google.com/file/d/1d170_Groin_Hernia.pdf/view?usp=drive_link' },
+                { title: 'Surgical Repair of Groin Hernias', url: 'https://drive.google.com/file/d/1d171_Hernia_Repair.pdf/view?usp=drive_link' },
+            ],
+            'Ventral Hernia': [
+                { title: 'Ventral Hernias – Causes and Types', url: 'https://drive.google.com/file/d/1d172_Ventral_Hernia.pdf/view?usp=drive_link' },
+                { title: 'Management of Ventral Hernias', url: 'https://drive.google.com/file/d/1d173_Ventral_Hernia_Surgery.pdf/view?usp=drive_link' },
+            ],
+            'Venous Diseases': [
+                { title: 'Venous Diseases – Varicose Veins and DVT', url: 'https://drive.google.com/file/d/1d174_Venous_Diseases.pdf/view?usp=drive_link' },
+                { title: 'Management of Venous Insufficiency', url: 'https://drive.google.com/file/d/1d175_Venous_Management.pdf/view?usp=drive_link' },
+            ],
+            'Peripheral Vascular Diseases': [
+                { title: 'Peripheral Vascular Disease – Pathophysiology', url: 'https://drive.google.com/file/d/1d176_PVD.pdf/view?usp=drive_link' },
+                { title: 'Management of PVD – Medical and Surgical', url: 'https://drive.google.com/file/d/1d177_PVD_Management.pdf/view?usp=drive_link' },
+            ],
+            'Surviving Sepsis': [
+                { title: 'Sepsis – Pathophysiology and Early Recognition', url: 'https://drive.google.com/file/d/1d178_Sepsis.pdf/view?usp=drive_link' },
+                { title: 'Surviving Sepsis Guidelines – Clinical Approach', url: 'https://drive.google.com/file/d/1d179_Sepsis_Guidelines.pdf/view?usp=drive_link' },
+            ],
+            'Fluid & Electrolytes': [
+                { title: 'Fluid and Electrolyte Balance – Physiology', url: 'https://drive.google.com/file/d/1d180_Fluid_Electrolytes.pdf/view?usp=drive_link' },
+                { title: 'Management of Electrolyte Imbalances in Surgery', url: 'https://drive.google.com/file/d/1d181_Electrolyte_Management.pdf/view?usp=drive_link' },
+            ],
+            'Septic Arthritis': [
+                { title: 'Septic Arthritis – Diagnosis and Management', url: 'https://drive.google.com/file/d/1d182_Septic_Arthritis.pdf/view?usp=drive_link' },
+                { title: 'Surgical Drainage and Antibiotic Therapy', url: 'https://drive.google.com/file/d/1d183_Septic_Arthritis_Surgery.pdf/view?usp=drive_link' },
+            ],
+            'Fractures': [
+                { title: 'Fractures – Classification and Management', url: 'https://drive.google.com/file/d/1d184_Fractures.pdf/view?usp=drive_link' },
+                { title: 'Principles of Fracture Fixation', url: 'https://drive.google.com/file/d/1d185_Fracture_Fixation.pdf/view?usp=drive_link' },
+            ],
+            'Surgical Soft Tissue Infection': [
+                { title: 'Surgical Soft Tissue Infections – Classification', url: 'https://drive.google.com/file/d/1d186_Soft_Tissue_Infection.pdf/view?usp=drive_link' },
+                { title: 'Necrotizing Fasciitis and Gas Gangrene', url: 'https://drive.google.com/file/d/1d187_Necrotizing_Fasciitis.pdf/view?usp=drive_link' },
+            ],
+            'Joint Dislocations': [
+                { title: 'Joint Dislocations – Diagnosis and Management', url: 'https://drive.google.com/file/d/1d188_Dislocations.pdf/view?usp=drive_link' },
+                { title: 'Reduction Techniques for Common Dislocations', url: 'https://drive.google.com/file/d/1d189_Dislocation_Reduction.pdf/view?usp=drive_link' },
+            ],
+            'Osteomyelytis': [
+                { title: 'Osteomyelitis – Pathophysiology and Diagnosis', url: 'https://drive.google.com/file/d/1d190_Osteomyelitis.pdf/view?usp=drive_link' },
+                { title: 'Surgical and Medical Management of Osteomyelitis', url: 'https://drive.google.com/file/d/1d191_Osteomyelitis_Management.pdf/view?usp=drive_link' },
+            ],
+            'Neurological  Examination': [
+                { title: 'Neurological Examination – A Systematic Approach', url: 'https://drive.google.com/file/d/1d192_Neuro_Exam.pdf/view?usp=drive_link' },
+                { title: 'Neurological Assessment in Surgical Patients', url: 'https://drive.google.com/file/d/1d193_Neuro_Exam_Surgical.pdf/view?usp=drive_link' },
+            ],
+            'Approach to Thoracic Chest Trauma': [
+                { title: 'Thoracic Trauma – Assessment and Management', url: 'https://drive.google.com/file/d/1d194_Thoracic_Trauma.pdf/view?usp=drive_link' },
+                { title: 'Chest Tube Insertion and Emergency Thoracotomy', url: 'https://drive.google.com/file/d/1d195_Thoracic_Emergencies.pdf/view?usp=drive_link' },
+            ],
+            'Burns': [
+                { title: 'Burn Injuries – Assessment and Classification', url: 'https://drive.google.com/file/d/1d196_Burns.pdf/view?usp=drive_link' },
+                { title: 'Surgical Management of Burns', url: 'https://drive.google.com/file/d/1d197_Burns_Surgery.pdf/view?usp=drive_link' },
+            ],
+            'Diabetic Foot': [
+                { title: 'Diabetic Foot – Pathophysiology and Assessment', url: 'https://drive.google.com/file/d/1d198_Diabetic_Foot.pdf/view?usp=drive_link' },
+                { title: 'Surgical Management of Diabetic Foot Complications', url: 'https://drive.google.com/file/d/1d199_Diabetic_Foot_Surgery.pdf/view?usp=drive_link' },
+            ],
+            'Breast Cancer': [
+                { title: 'Breast Cancer – Epidemiology and Risk Factors', url: 'https://drive.google.com/file/d/1d200_Breast_Cancer_Epi.pdf/view?usp=drive_link' },
+                { title: 'Surgical Management of Breast Cancer', url: 'https://drive.google.com/file/d/1d201_Breast_Cancer_Surgery.pdf/view?usp=drive_link' },
+            ],
+            'Thyroid Cancers': [
+                { title: 'Thyroid Cancer – Diagnosis and Management', url: 'https://drive.google.com/file/d/1d202_Thyroid_Cancer.pdf/view?usp=drive_link' },
+                { title: 'Surgical Approaches to Thyroid Malignancy', url: 'https://drive.google.com/file/d/1d203_Thyroid_Cancer_Surgery.pdf/view?usp=drive_link' },
+            ],
+            'Testicular Swelling': [
+                { title: 'Testicular Swelling – Differential Diagnosis', url: 'https://drive.google.com/file/d/1d204_Testicular_Swelling.pdf/view?usp=drive_link' },
+                { title: 'Management of Testicular Tumors and Hydrocele', url: 'https://drive.google.com/file/d/1d205_Testicular_Management.pdf/view?usp=drive_link' },
+            ],
+            'Prostate Cancer': [
+                { title: 'Prostate Cancer – Epidemiology and Diagnosis', url: 'https://drive.google.com/file/d/1d206_Prostate_Cancer.pdf/view?usp=drive_link' },
+                { title: 'Surgical Management of Prostate Cancer', url: 'https://drive.google.com/file/d/1d207_Prostate_Cancer_Surgery.pdf/view?usp=drive_link' },
+            ],
+            'Benign Breast Changes': [
+                { title: 'Benign Breast Conditions – Classification', url: 'https://drive.google.com/file/d/1d208_Benign_Breast.pdf/view?usp=drive_link' },
+                { title: 'Fibrocystic Disease and Fibroadenoma', url: 'https://drive.google.com/file/d/1d209_Fibroadenoma.pdf/view?usp=drive_link' },
+            ],
+            'BPH': [
+                { title: 'Benign Prostatic Hyperplasia – Pathophysiology', url: 'https://drive.google.com/file/d/1d210_BPH.pdf/view?usp=drive_link' },
+                { title: 'Management of BPH – Medical and Surgical', url: 'https://drive.google.com/file/d/1d211_BPH_Management.pdf/view?usp=drive_link' },
+            ],
+            'UTI & Urethritis': [
+                { title: 'Urinary Tract Infections and Urethritis', url: 'https://drive.google.com/file/d/1d212_UTI_Urethritis.pdf/view?usp=drive_link' },
+                { title: 'Antibiotic Management of UTIs', url: 'https://drive.google.com/file/d/1d213_UTI_Antibiotics.pdf/view?usp=drive_link' },
+            ],
+
+            // ========== Site A Clinical Topics ==========
+            'Site A: HF Management': [
+                { title: 'Heart Failure Management at NTH – Protocols', url: 'https://drive.google.com/file/d/1d214_NTH_HF_Management.pdf/view?usp=drive_link' },
+                { title: 'Pharmacological and Non-Pharmacological Management of HF', url: 'https://drive.google.com/file/d/1d215_NTH_HF_Approach.pdf/view?usp=drive_link' },
+            ],
+            'Site A: ECG Interpretation': [
+                { title: 'ECG Interpretation – A Practical Approach at NTH', url: 'https://drive.google.com/file/d/1d216_NTH_ECG.pdf/view?usp=drive_link' },
+                { title: 'Common ECG Patterns in Clinical Practice', url: 'https://drive.google.com/file/d/1d217_NTH_ECG_Patterns.pdf/view?usp=drive_link' },
+            ],
+            'Site A: Cardiac Rehab': [
+                { title: 'Cardiac Rehabilitation Programs at NTH', url: 'https://drive.google.com/file/d/1d218_NTH_Cardiac_Rehab.pdf/view?usp=drive_link' },
+            ],
+            'Site A: COPD Care': [
+                { title: 'COPD Care and Management at NTH', url: 'https://drive.google.com/file/d/1d219_NTH_COPD.pdf/view?usp=drive_link' },
+            ],
+            'Site A: Asthma Protocol': [
+                { title: 'Asthma Management Protocol at NTH', url: 'https://drive.google.com/file/d/1d220_NTH_Asthma.pdf/view?usp=drive_link' },
+            ],
+            'Site A: Pneumonia Treatment': [
+                { title: 'Pneumonia Treatment Guidelines at NTH', url: 'https://drive.google.com/file/d/1d221_NTH_Pneumonia.pdf/view?usp=drive_link' },
+            ],
+            'Site A: AKI Protocol': [
+                { title: 'AKI Management Protocol at NTH', url: 'https://drive.google.com/file/d/1d222_NTH_AKI.pdf/view?usp=drive_link' },
+            ],
+            'Site A: CKD Management': [
+                { title: 'CKD Management at NTH – A Comprehensive Approach', url: 'https://drive.google.com/file/d/1d223_NTH_CKD.pdf/view?usp=drive_link' },
+            ],
+            'Site A: Dialysis Access': [
+                { title: 'Dialysis Access – AV Fistula and Catheters at NTH', url: 'https://drive.google.com/file/d/1d224_NTH_Dialysis_Access.pdf/view?usp=drive_link' },
+            ],
+
+            // ========== Site B Clinical Topics ==========
+            'Site B: HF Guidelines': [
+                { title: 'Heart Failure Guidelines at Kitwe Teaching Hospital', url: 'https://drive.google.com/file/d/1d225_SiteB_HF.pdf/view?usp=drive_link' },
+            ],
+            'Site B: EP Studies': [
+                { title: 'Electrophysiology Studies at Site B', url: 'https://drive.google.com/file/d/1d226_SiteB_EP.pdf/view?usp=drive_link' },
+            ],
+            'Site B: Device Therapy': [
+                { title: 'Device Therapy for Heart Failure at Site B', url: 'https://drive.google.com/file/d/1d227_SiteB_Device_Therapy.pdf/view?usp=drive_link' },
+            ],
+            'Site B: Open Appendectomy': [
+                { title: 'Open Appendectomy Technique at Site B', url: 'https://drive.google.com/file/d/1d228_SiteB_Appendectomy.pdf/view?usp=drive_link' },
+            ],
+            'Site B: Complicated Cholecystitis': [
+                { title: 'Management of Complicated Cholecystitis at Site B', url: 'https://drive.google.com/file/d/1d229_SiteB_Cholecystitis.pdf/view?usp=drive_link' },
+            ],
+            'Site B: Bowel Obstruction': [
+                { title: 'Bowel Obstruction Management at Site B', url: 'https://drive.google.com/file/d/1d230_SiteB_Bowel_Obstruction.pdf/view?usp=drive_link' },
+            ],
+
+            // ========== Site C Clinical Topics ==========
+            'Site C: Community HF': [
+                { title: 'Community Heart Failure Care at Site C', url: 'https://drive.google.com/file/d/1d231_SiteC_HF.pdf/view?usp=drive_link' },
+            ],
+            'Site C: Telemedicine': [
+                { title: 'Telemedicine in Cardiology at Site C', url: 'https://drive.google.com/file/d/1d232_SiteC_Telemedicine.pdf/view?usp=drive_link' },
+            ],
+            'Site C: Home Care': [
+                { title: 'Home Care for Heart Failure Patients at Site C', url: 'https://drive.google.com/file/d/1d233_SiteC_Home_Care.pdf/view?usp=drive_link' },
+            ],
+            'Site C: Day Surgery': [
+                { title: 'Day Surgery Procedures at Site C', url: 'https://drive.google.com/file/d/1d234_SiteC_Day_Surgery.pdf/view?usp=drive_link' },
+            ],
+
+            // ========== 6th Year Advanced Topics ==========
+            'Site A: Sepsis Protocol': [
+                { title: 'Sepsis Management Protocol at NTH – Advanced', url: 'https://drive.google.com/file/d/1d235_NTH6_Sepsis.pdf/view?usp=drive_link' },
+            ],
+            'Site A: ARDS Management': [
+                { title: 'ARDS Management at NTH – Advanced Critical Care', url: 'https://drive.google.com/file/d/1d236_NTH6_ARDS.pdf/view?usp=drive_link' },
+            ],
+            'Site B: Sepsis Management': [
+                { title: 'Sepsis Management at Kitwe – Advanced', url: 'https://drive.google.com/file/d/1d237_SiteB6_Sepsis.pdf/view?usp=drive_link' },
+            ],
+            'Site B: ARDS Protocol': [
+                { title: 'ARDS Protocol at Site B – Advanced', url: 'https://drive.google.com/file/d/1d238_SiteB6_ARDS.pdf/view?usp=drive_link' },
+            ],
+            'Site C: Community Critical Care': [
+                { title: 'Community Critical Care at Site C – Advanced', url: 'https://drive.google.com/file/d/1d239_SiteC6_Critical_Care.pdf/view?usp=drive_link' },
+            ],
+            'Site C: Sepsis Care': [
+                { title: 'Sepsis Care in Community Settings at Site C', url: 'https://drive.google.com/file/d/1d240_SiteC6_Sepsis_Care.pdf/view?usp=drive_link' },
+            ],
+
+            // ========== Additional General Topics ==========
+            'Heart Failure': [
+                { title: 'Heart Failure – Pathophysiology and Treatment', url: 'https://drive.google.com/file/d/1d241_Heart_Failure.pdf/view?usp=drive_link' },
+                { title: 'Heart Failure – Clinical Case Discussions', url: 'https://drive.google.com/file/d/1d242_Heart_Failure_Cases.pdf/view?usp=drive_link' },
+            ],
+            'Arrhythmias': [
+                { title: 'Arrhythmias – Mechanisms and Management', url: 'https://drive.google.com/file/d/1d243_Arrhythmias.pdf/view?usp=drive_link' },
+                { title: 'Atrial Fibrillation – Diagnosis and Treatment', url: 'https://drive.google.com/file/d/1d244_Atrial_Fibrillation.pdf/view?usp=drive_link' },
+            ],
+            'Ischemic Heart Disease': [
+                { title: 'Ischemic Heart Disease – Pathophysiology', url: 'https://drive.google.com/file/d/1d245_IHD.pdf/view?usp=drive_link' },
+                { title: 'Acute Coronary Syndrome – Management', url: 'https://drive.google.com/file/d/1d246_ACS.pdf/view?usp=drive_link' },
+            ],
+            'COPD': [
+                { title: 'COPD – Diagnosis and Management', url: 'https://drive.google.com/file/d/1d247_COPD.pdf/view?usp=drive_link' },
+                { title: 'COPD Exacerbations – Management Protocol', url: 'https://drive.google.com/file/d/1d248_COPD_Exacerbations.pdf/view?usp=drive_link' },
+            ],
+            'Asthma': [
+                { title: 'Asthma – Pathophysiology and Treatment', url: 'https://drive.google.com/file/d/1d249_Asthma.pdf/view?usp=drive_link' },
+                { title: 'Acute Asthma Management – Clinical Approach', url: 'https://drive.google.com/file/d/1d250_Asthma_Acute.pdf/view?usp=drive_link' },
+            ],
+            'Pneumonia': [
+                { title: 'Pneumonia – Community-Acquired and Hospital-Acquired', url: 'https://drive.google.com/file/d/1d251_Pneumonia.pdf/view?usp=drive_link' },
+                { title: 'Pneumonia Treatment – Antibiotic Guidelines', url: 'https://drive.google.com/file/d/1d252_Pneumonia_Antibiotics.pdf/view?usp=drive_link' },
+            ],
+            'AKI': [
+                { title: 'Acute Kidney Injury – Diagnosis and Management', url: 'https://drive.google.com/file/d/1d253_AKI.pdf/view?usp=drive_link' },
+                { title: 'AKI – Clinical Case Presentations', url: 'https://drive.google.com/file/d/1d254_AKI_Cases.pdf/view?usp=drive_link' },
+            ],
+            'CKD': [
+                { title: 'Chronic Kidney Disease – Staging and Management', url: 'https://drive.google.com/file/d/1d255_CKD.pdf/view?usp=drive_link' },
+                { title: 'CKD Complications – Anemia, Bone Disease, and Electrolytes', url: 'https://drive.google.com/file/d/1d256_CKD_Complications.pdf/view?usp=drive_link' },
+            ],
+            'Glomerular Diseases': [
+                { title: 'Glomerular Diseases – Pathophysiology and Diagnosis', url: 'https://drive.google.com/file/d/1d257_Glomerular.pdf/view?usp=drive_link' },
+                { title: 'Nephrotic vs Nephritic Syndromes', url: 'https://drive.google.com/file/d/1d258_Nephrotic_Nephritic.pdf/view?usp=drive_link' },
+            ],
         };
 
+        // ---- Default document list for topics without specific data ----
+        function getDefaultDocs(topic) {
+            const searchSlug = encodeURIComponent(topic + ' notes');
+            return [
+                { title: `${topic} – Detailed Notes`, url: `https://drive.google.com/drive/folders/1default-docs?q=${searchSlug}` },
+                { title: `${topic} – Summary`, url: `https://drive.google.com/drive/folders/1default-docs?q=${searchSlug}` },
+            ];
+        }
+
+        // ---- Default topic links for document/video/quiz ----
         function getTopicLinks(topic, courseId, year, site) {
-            const topicLinks = {
-                // Preclinical topics
-                // 4th Year Basic Science
-                // Microbiology
-                'Bacterial Classification': {
-                    document: 'https://drive.google.com/file/d/1TcoLu2ddbkziBvLcdk1hatE39djRzSol/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Bacterial Cell Wall': {
-                    document: 'https://drive.google.com/file/d/1F5Qif19tOq6GJBViMLTNJ8bdg3kznED4/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Bacterial Survivial Mechanisms': {
-                    document: 'https://drive.google.com/file/d/1nufN84couSpBuhZmtz1hngocqBpPakrB/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Antibiotic Sensitivity Tests': {
-                    document: 'https://drive.google.com/file/d/16l6PVjBVjsIXRgwkuvJ8hJPD2KZuLdVN/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                // Parasitology
-                'Notes by Prof Mwanakasale': {
-                    document: 'https://drive.google.com/drive/folders/1BXtIhOJNAozUUAldLGYttJU8S3vhf-YZ?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Ultimate Compiled notes': {
-                    document: 'https://drive.google.com/file/d/1KrSrPFXEWEGinR2RjZDfNXjfCxlm36y9/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                // Clinical Chemistry
-                'Mr. Njunju': {
-                    document: 'https://drive.google.com/drive/folders/1qRlshubvb9lQ9-w2UBlTfsV29gRNqxhj?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Dr. Kwangu': { document: '', video: '', quiz: '' },
-                'Dr. Balakrishnan': {
-                    document: 'https://drive.google.com/drive/folders/1x98Il5JbUeXQQOOx4MENAG8G9hnEeawx?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                // Radiology
-                'Introduction to the Course': {
-                    document: 'h ttps://drive.google.com/file/d/1xDllbzV7m5IrbFSDg6-4iEpRIbfRnTYZ/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Introduction & History of Diagnostic Imaging': {
-                    document: 'https://drive.google.com/file/d/1wkAVnrMR0KUz4g3NSIzG4vnigeGuxNR3/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Pattern Recognition in Chest Imaging': {
-                    document: 'https://drive.google.com/file/d/1kxdi0JR9_8NSKtIpBzy1bkTy14mhXrJa/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Extremity Imaging Pattern Recognition': {
-                    document: 'https://drive.google.com/file/d/13kYX4NegfvLcwZu70uxteDIkcYUSQmjt/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Contrast Studies in Medical Imaging': {
-                    document: 'https://drive.google.com/file/d/1f5TGw4sqxy3fbmqhUCgy9e-p-nYBpeWq/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Pattern Recognition of the Abdomen': {
-                    document: 'https://drive.google.com/file/d/1my9dk9l5DUnN-CDL2HWBwZsJtZcBD10D/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Pattern Reognition in the Head': {
-                    document: 'https://drive.google.com/file/d/1zBsFlWFBZkVLyQdKsTjiAMRgM6UATLIg/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Emergency Radiology Presentation': {
-                    document: 'https://drive.google.com/file/d/1Pz245HD38h-OyqoRRNXp6vgMzRsNgLsv/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                // Public Health
-                'Dr. Banda': { document: 'ht', video: '', quiz: '' },
-                'Prof. Siyapila': {
-                    document: 'https://drive.google.com/drive/folders/1WkEXW_MecIkybS2UjbULeN0SE1jMc5Jz?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                // Soc Med
-                'Biomedical Ethics': {
-                    document: 'https://drive.google.com/file/d/1_A43_2hKCCpINAMqdYExSapaEIgfEgbv/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Prof Code of Ethics': {
-                    document: 'https://drive.google.com/file/d/1icErFug7gqb-ejZl-7MUqjL_H4n__2p3/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Communication in Clinincal Practice': {
-                    document: 'https://drive.google.com/file/d/1izfFDjtepD5UmXHqJgvJ8oDVGVxW0WwK/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Communication Models in Clinical Practice': {
-                    document: 'https://drive.google.com/file/d/1gqB9c7ZL9rixaAwT7F9QrxlwqEOXDcma/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                // Past Papers - these are handled by the popup
-                '2020 Test': { document: 'https://drive.google.com/file/d/1KaKOHuD-BhXyCNnyo_ezk1CdE3EAKkD9/view?usp=drive_link',
-                    video: '', quiz: '' },
-                '2021 Sessional': { document: 'https://drive.google.com/file/d/13IO0FNc9OgPFT7RTctGNSrR86BuOcIfC/view?usp=drive_link',
-                    video: '', quiz: '' },
-                '2022 Sessional Dec': { document: 'https://drive.google.com/file/d/1gJEiTGMCL3xSsIBNuTla0OpLYOZhqLVW/view?usp=drive_link',
-                    video: '', quiz: '' },
-                '2022 Sessional April': { document: 'https://drive.google.com/file/d/1sWLvTXCp6fbHLRKfoEXM_LDrWs_lbqs_/view?usp=drive_link',
-                    video: '', quiz: '' },
-                '2023 Def Sessional': { document: 'https://drive.google.com/file/d/1QKt1avFPTWATWHBGNSFCGhoPJ4c8Unlv/view?usp=drive_link',
-                    video: '', quiz: '' },
-                '2023 Test Term 1': { document: 'https://drive.google.com/file/d/1429vMxs8cM2x2bGKK0BhUJFxeqcDjJ7z/view?usp=drive_link',
-                    video: '', quiz: '' },
-                '2023 Test Term 2': { document: 'https://drive.google.com/file/d/1V7Ax3a0lWTg4HXuCn06CeTZ4A4vLARCF/view?usp=drive_link',
-                    video: '', quiz: '' },
-                '2024 Sessional': { document: 'https://drive.google.com/file/d/11km5H24Hibw1Kd6wXVH5wEKdX4GaR8HI/view?usp=drive_link',
-                    video: '', quiz: '' },
-                '2024 Test': { document: 'https://drive.google.com/file/d/1-0eXC2wwfHUu1xD1KD_3X7MSmGuDlGHY/view?usp=drive_link',
-                    video: '', quiz: '' },
-                '2025 Test Term 1': { document: 'https://drive.google.com/file/d/1GttZft6lUgjdI_qK78h4LvXfcbuiJfxp/view?usp=drive_link',
-                    video: '', quiz: '' },
-                '2025 Test Term 2': { document: 'https://drive.google.com/file/d/1V44RKzYqk3MY1DdlsbTUMl10ezdzucZL/view?usp=drive_link',
-                    video: '', quiz: '' },
-                '2025 Test Term 3': { document: 'https://drive.google.com/file/d/1cHNrdAQDqoBMtUDJq4GDdEIE2nDjpZOR/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Compiled Past Papers Part 1': { document: 'https://drive.google.com/file/d/1cqM5rFA2QVpK56a9iXbwow62MMflyWxO/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Compiled Past Papers Part 2': { document: 'https://drive.google.com/file/d/1-x7x9Qz1UFbsWYVVSvuNBLXJEdHkybm_/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Heamatology Practice Questions': { document: 'https://drive.google.com/file/d/1ykgKjGbwoLwkBTk1nAcbXqG0x5889V7o/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Parasitology Practice Questions': { document: 'https://drive.google.com/file/d/1aboifmNexlzakZ1WU94EBRiI9IJiKLaO/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Public Health Past Papers': { document: 'https://drive.google.com/drive/folders/1yr5nQIUcoqmgtezewhJWTB21awS91X20?usp=drive_link',
-                    video: '', quiz: '' },
+            // Return links with placeholders for video and document popups
+            const docLink = `https://drive.google.com/drive/folders/1default-docs?q=${encodeURIComponent(topic)}`;
+            const quizLink = `#quiz-${topic.toLowerCase().replace(/ /g, '-')}`;
 
-
-                '2025 Test Surgery': { document: 'https://drive.google.com/file/d/1NvIi2e8yLT_cjcxCGwV0kOj6RqkxQEAS/view?usp=drive_link',
-                    video: '', quiz: '' },
-                '2024 Test Surgery': { document: 'https://drive.google.com/file/d/1SRsTajXDmz6DQ4-DdDrLK51dWuEL5N-Z/view?usp=drive_link',
-                    video: '', quiz: '' },
-                '2024 Test 2 Surgery': { document: 'https://drive.google.com/file/d/1wlbDbixqNp-Re6D-JhKf0Yh5nCDGZt1N/view?usp=drive_link',
-                    video: '', quiz: '' },
-                '2023 Test 1 Surgery': { document: 'https://drive.google.com/file/d/1_irWaPPbK5n1WO0f1GQsS73EOSVsMVJa/view?usp=drive_link',
-                    video: '', quiz: '' },
-                '2023 Test 2 & 3 Surgery': { document: 'https://drive.google.com/file/d/1duw6k0slM-SXeTBN00ei9-24_Kh15Ihl/view?usp=drive_link',
-                    video: '', quiz: '' },
-                '2023 Term 4 Surgery': { document: 'https://drive.google.com/file/d/1xsgBa0xGnSBaSwrrhilMkXyOQ8L_E2eY/view?usp=drive_link',
-                    video: '', quiz: '' },
-                '2023 Test Surgery': { document: 'https://drive.google.com/file/d/1FWdiBk59Gr8YrBmOd3LVyebXTF-SEmj4/view?usp=drive_link',
-                    video: '', quiz: '' },
-                '2022 Term 4 Surgery': { document: 'https://drive.google.com/file/d/1cQxpsZIyMqLixPvOPxebkol5q2VhC9kK/view?usp=drive_link',
-                    video: '', quiz: '' },
-                '2021 Sept Test Surgery': { document: 'https://drive.google.com/file/d/1Xv0PVYRLdLjKdY5ouyNk0TH2QHb9dQ7s/view?usp=drive_link', video: '', quiz: '' },
-                'OSCE Test Surgery': { document: 'https://drive.google.com/file/d/1aHEXKk_7rqhk_KV0r4xm9eOWG6abYwml/view?usp=drive_link', video: '', quiz: '' },
-                'Term 2, 3, 4 Test Surgery': { document: 'https://drive.google.com/file/d/1etzIJ58RKWy_UcWCTcGVHGBr_DiGa4F8/view?usp=drive_link', video: '', quiz: '' },
-                'Term 1 Test Surgery': { document: 'https://drive.google.com/file/d/17-POlkxb2pV68RPWuVeYnnwUEAKYPsBC/view?usp=drive_link', video: '', quiz: '' },
-                'Online Test Revision Surgery': { document: 'https://drive.google.com/file/d/10VMjv91otcHDJ41kt-431tQhtH3fEvIk/view?usp=drive_link', video: '', quiz: '' },
-
-
-                
-
-                // 4th year surgery — GIT
-                'PUD, GERD & Gastritis': {
-                    document: 'https://drive.google.com/file/d/1l74YuLylEr5HxAQ0tTZ7zZVnqsfyB_w0/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Acute Appendicitis': {
-                    document: 'https://drive.google.com/file/d/1H9CcSYaWGOF_zy0x9HYA44AwDZkI6o2O/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'GIT Bleeding': {
-                    document: 'https://drive.google.com/file/d/1gaKW64HNAW0VS8lBIsiZs4ep_T5_tPKH/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Abdominal Trauma': {
-                    document: 'https://drive.google.com/file/d/1utDjoIGnfypWonByQcqXSxslpHxb0Pg8/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Gall Bladder & Billiary Tree': {
-                    document: 'https://drive.google.com/file/d/1oudIiw_vVwYHOSzL2GKPwj5xtALqIMiP/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Intestinal Obstruction by Dr. Mwila': {
-                    document: 'https://drive.google.com/file/d/1r4Ar9P8FkMpteqy8LB8_KZN3UJK0iuUE/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Intestinal Obstruction by Dr. Mulenga': {
-                    document: 'https://drive.google.com/file/d/17mCzF1D94kwIly62NBA90mZQMoKPc6Pl/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Gastric Cancers': {
-                    document: 'https://drive.google.com/file/d/1d-PjIXJsIKh_ig_IHSHf1TYMM78hbgyr/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Esophageal Cancers': {
-                    document: 'https://drive.google.com/file/d/1oH8dACvDbsMKCG2RzUM_KljXyEG7-4Kh/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Anal Pain': {
-                    document: 'https://drive.google.com/file/d/1B4ptHU5dAoKZhnbVxRkoSCXWASlnM-x8/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Pancreatitis': {
-                    document: 'https://drive.google.com/file/d/1UtJBdL3okDu4vt1l9Rfrgc44RAQx-awk/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Groin Hernia': {
-                    document: 'https://drive.google.com/file/d/19mpex61HqDEdHbpUX-Is2PT3z7yXMMOR/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Ventral Hernia': {
-                    document: 'https://drive.google.com/file/d/18fLCHdngPyUwHxOQqwLEDnd9uzVE07Df/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                // CVS
-                'Venous Diseases': {
-                    document: 'https://drive.google.com/file/d/11pNATMSqC3B954jEC1ej2Bq_q7qUxpGQ/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Peripheral Vascular Diseases': {
-                    document: 'https://drive.google.com/file/d/1YrLeAfCWHlXKjDm6OX2G-tCLBkZNYIql/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Surviving Sepsis': {
-                    document: 'https://drive.google.com/file/d/1SBFvFG-xISSMJ70Kfnz9d2S_Ap0qGwMB/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Fluid & Electrolytes': {
-                    document: 'https://drive.google.com/file/d/10vFWUwrJzdC8xZOnVuyn1tNT-cDvborB/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                // Skeletal System
-                'Septic Arthritis': {
-                    document: 'https://drive.google.com/file/d/1AkttYBWPZS-SmvJgrQPghqZDlDq_r-eV/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Fractures': {
-                    document: 'https://drive.google.com/file/d/1TNaIDQje-fjkwr4RKMyw033lX-IbT_ZN/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Surgical Soft Tissue Infection': {
-                    document: 'https://drive.google.com/file/d/1tUFZ1deCrhG4rLcZkYY1c4nkxEy86U19/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Joint Dislocations': {
-                    document: 'https://drive.google.com/file/d/1UP9_n2uBv-TJ77g-mqw1kR6MbF0xWejZ/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Osteomyelytis': {
-                    document: 'https://drive.google.com/file/d/1T74dS746Mc08IrkVuYY4BAFujwHf_B2_/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                // CNS
-                'Neurological Examination': {
-                    document: 'https://drive.google.com/file/d/12rqlM7QZ6NS5SC0Xrw6MxftBOc0sg39I/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                // Respiratory System
-                'Approach to Thoracic Chest Trauma': {
-                    document: 'https://drive.google.com/file/d/1TyHjyKBMnOHu7edL-M-0mj60wsZmA2AM/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                // Integumentary System
-                'Burns': {
-                    document: 'https://drive.google.com/file/d/1E10oxKMRE1TAtsicKl3Gzz6idWuQFY4R/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Diabetic Foot': {
-                    document: 'https://drive.google.com/file/d/1WdkhnhW9dkXmi8XhFSvis8y9Pn_9Vois/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                // Reproductive & Endocrine & Urinary Sytsem
-                'Breast Cancer': {
-                    document: 'https://drive.google.com/file/d/1KFcceEzCw73YXhdyQ1GbBPVPzwH95Vhj/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Thyroid Cancers': {
-                    document: 'https://drive.google.com/file/d/174dOxmSK48KujbMD_4-RuB-W7N7HQjhf/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Testicular Swelling': {
-                    document: 'https://drive.google.com/file/d/1LuXX_qa5N702j9V46Vb3lcB6o0e9l0Sh/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Prostate Cancer': {
-                    document: 'https://drive.google.com/file/d/1Amo0YgN80AUnfsLPMhOZ4F4mY9tK2k8I/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Benign Breast Changes': {
-                    document: 'https://drive.google.com/file/d/1uNkpRgQolEcU2o-Ec2oZA9OqNW63jw0S/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'BPH': {
-                    document: 'https://drive.google.com/file/d/1QkT8VsrPOE3p-XpQ0IkLl8AIQU27LRmD/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'UTI & Urethritis': {
-                    document: 'https://drive.google.com/file/d/1oSJdw8geRMIcDQRAWjabJdYOUu33KbKX/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-
-                // 2nd year therapeutics
-                'Common Terminologies Used in Pharmacology': { document: 'https://drive.google.com/file/d/1coAV92I6Srg24uctUbTtoA8IF68yuIrV/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Introduction to Pharmacokinetics and Pharmacodynamics': { document: 'https://drive.google.com/file/d/1j81eN7oRZ9UpYehPnbvWDp1k7xuMVIY7/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Membrane Transport and Absoprtion': { document: 'https://drive.google.com/file/d/1T2c6mwIO3YaAJ0t7_2-LQnc-qb51uzrr/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Biovailability First-Pass Elimination': { document: 'https://drive.google.com/file/d/1LJtvHJEmaRPnXSzfxIX4OpLSeKIkSI_6/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Drug Distribution': { document: 'https://drive.google.com/file/d/1R6HR_RMh7UAHja6KsrWXvlzGQx1t9DRv/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Drug Excretion': { document: 'https://drive.google.com/file/d/1RXgaCRanwaGzAZ1NJ8bR6UHkS8y7oxKd/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Drug Metabolism': { document: 'https://drive.google.com/file/d/1-BgWTgmOJL5HCM8z5fWVT8f9_K_sc2Dx/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Routes of Administration': { document: 'https://drive.google.com/file/d/1KTA96tE61gPk-eJXxio2Yw3azp88fekE/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Therapeutic Drug Monitoring': { document: 'https://drive.google.com/file/d/1wyEUjy9gm68FAywTy_50K3R3olXoJy3p/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Mechanism of Drug Action': { document: 'https://drive.google.com/file/d/1qoR9OyIiw2zxjWRcIkQczkxH1wqqKMuP/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Autonomic Pharmacology': { document: 'https://drive.google.com/file/d/1PrIoGWDu8l_dMhKhsCt6rdM3mzQEkHxO/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Neuro-Hormonal Transmision in the ANS': { document: 'https://drive.google.com/file/d/131P94kXaUA_QpJwOmCk6JA0jjN1uh9rS/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'ANS Regulation': { document: 'https://drive.google.com/file/d/1iXowQRK3QSv7c7SeA40Wf6e4peeHJ-ME/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Muscarinic Agonists': { document: 'https://drive.google.com/file/d/1ewl6UW1dNvTD3inrwgGaK4P0umcdiuf5/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Muscarinic Antagonists': { document: 'https://drive.google.com/file/d/1nKgvELH5zzl7APQWb7SVu2THchl1HFDs/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Sympathomimetic Drugs (Adrenergic Agonists)': { document: 'https://drive.google.com/file/d/1dIDimZpbB956viIIi1R3ImdQOn9gaPKg/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Sympatholitic Drugs (Adrenergic Blockers)': { document: 'https://drive.google.com/file/d/17rJQ-4xDNHBaS9M1mPzZ1NFfJeKdx4pH/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Management of Heart Failure': { document: 'https://drive.google.com/file/d/1D0nAvId8twAg99ktNUfpls_jCV2RqpnX/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Anti-arrhythmis Drugs': { document: 'https://drive.google.com/file/d/1xnbYzfiwWb-aZyJzLZbAAx1OVM2d0RUr/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Drugs used in Angin Treatment': { document: 'https://drive.google.com/file/d/1dS4I66SBv_Weq-aStvjBdnoc7iSdybXs/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Antihypertensive Drugs': { document: 'https://drive.google.com/file/d/1pEI26LaeXDCICcfvuMZ5NctiuutXqwhH/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Drugs used in the treatment of Hyperlipidemia': { document: 'https://drive.google.com/file/d/1P_-rWcJ84JSMgSK3br0TGgvheHUzHo9W/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Anti-asthmatic Drugs': { document: 'https://drive.google.com/file/d/1RYCu-jf44i5cBzaV0ub7yYxBxeDXM3dw/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Drugs used in the Treatment of TB': { document: 'https://drive.google.com/file/d/1tpXCu-35e17UkwJAdlX-zckvZEcvbAAB/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Drugs used to Treat Common Cold': { document: 'https://drive.google.com/file/d/1Mhs0UJQhg6h6Vn4X3M0RxnW8zgWZfDe9/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Drugs acting on Cough': { document: 'https://drive.google.com/file/d/1OZExkLiV6hJwnkH8H4Pa58KM6Knn6Ml3/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Use of Steroids in Respiratory Disorders': { document: 'https://drive.google.com/file/d/1mlS5xwk82P11CBgvLoAn5RcYBWm4SPIj/view?usp=drive_link',
-                    video: '', quiz: '' },
-                'Anti-fungal': { document: '', video: '', quiz: '' },
-
-                // 3rd year Biochemistry
-                'Overview of metabolism (metabolic pathways)': {
-                    document: 'https://drive.google.com/file/d/1HcloSLdWYWh4GK5DAogMbXwd83WVh57u/view?usp=drive_link'
-                },
-                'Biological Oxidation: ETC & oxidative phosphorylation': {
-                    document: 'https://drive.google.com/file/d/1taK21dzpx2TjsPMqkzwxKWlDadAzTs-Y/view?usp=drive_link'
-                },
-                'Carbohydrate metabolism: Glycolysis': {
-                    document: 'https://drive.google.com/file/d/1RggXa79vcXaTO-e28VyKkGwGbdHwiATA/view?usp=drive_link'
-                },
-                'Pentose phosphate pathway': {
-                    document: 'https://drive.google.com/file/d/1OBlgCS0venBk5MT1pLg3IWK0saQshn_J/view?usp=drive_link'
-                },
-                'TCA cycle (krebs cycle)': {
-                    document: 'https://drive.google.com/file/d/1asqnxeiuH95_onHivPv4nBKXIZKqyEI4/view?usp=drive_link'
-                },
-                'Carbohydrate metabolism: Galactose and Fructose': {
-                    document: 'https://drive.google.com/file/d/1b5MVMz_mIKYFiGFrsJgL6U8bInYcO-Uj/view?usp=drive_link'
-                },
-                'Gluconeogenesis': {
-                    document: 'https://drive.google.com/file/d/1nSl1EbmwR9DzwnXZPLeWoMqdrAjfr-E1/view?usp=drive_link'
-                },
-                'Blood glucose homeostasis': {
-                    document: 'https://drive.google.com/file/d/108PK-h_8badsZuYT5ob1c3i4y_gxh8vp/view?usp=drive_link'
-                },
-                'Alcohol metabolism': {
-                    document: 'https://drive.google.com/file/d/1iCfNzkbGq_wF-LEv8p02M-C187Dz6K7N/view?usp=drive_link'
-                },
-                'Uronic acid pathway': {
-                    document: 'https://drive.google.com/file/d/189_gy0nORp9HnA1zVRLWRSqmM5EQZLnu/view?usp=drive_link'
-                },
-                'Glycogen metabolism': {
-                    document: 'https://drive.google.com/file/d/1U7dIe7q7_08adik3rzaS3oBxERyJxaRI/view?usp=drive_link'
-                },
-                'Nucleotide Metabolism': {
-                    document: 'https://drive.google.com/file/d/1hZFKioQ_BZPG8ZOFBxDDUooNkJ0XV1nR/view?usp=drive_link',
-                    video: 'https://drive.google.com/drive/folders/1r3FjK2sQRinCqb1M2i94RGmV76_G8J-H?usp=drive_link',
-                    quiz: 'biochem-3rd-year/nucleotide-quiz.html',
-                },
-                'Central Dogma of a Cell: DNA Replication': {
-                    document: 'https://drive.google.com/file/d/1RIKjQp16b3bZLiEHPISX22ezCJZ8ACWR/view?usp=drive_link'
-                },
-                'DNA Damages and DNA Repair Mechanism': {
-                    document: 'https://drive.google.com/file/d/1VZzAljINpEneRg3hQj_idLBEL60eG2Zp/view?usp=drive_link'
-                },
-                'Transcription and RNA Processing': {
-                    document: 'https://drive.google.com/file/d/1xmNAn2cY0MAY6B9OfxZqwtxoD6WkgdjS/view?usp=drive_link'
-                },
-                'Translation (Synthesis of Protein)': {
-                    document: 'https://drive.google.com/file/d/1WBqkcjRAlV6OAbS6xL54-4aXM_3onIFo/view?usp=drive_link'
-                },
-                'Control of Gene Expression in Prokaryotes & Eukaryotes': {
-                    document: 'https://drive.google.com/file/d/15eeruBn1E8wmzZBDz0k20D1T70hcPCCw/view?usp=drive_link'
-                },
-                'Genetic Recombination & Medicine': {
-                    document: 'https://drive.google.com/file/d/1Cs6LDcvZiO3yBM1FG_nXaRVPUBVXNZUx/view?usp=drive_link'
-                },
-                'Genetic Techniques & Its Uses in Medicine': {
-                    document: 'https://drive.google.com/file/d/1Xl4e1A6Zz6qKEbES6e5UB_ChY9jdSr1w/view?usp=drive_link'
-                },
-                // 3rd year PH
-                'Introduction and types of variables': {
-                    document: 'https://drive.google.com/file/d/1-OhjNaahgG6HIRh_g-qPkWDrjJnoAL3a/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Tables and graphs': {
-                    document: 'https://drive.google.com/file/d/1JZ2W50TNNzOW-Hghkwr0Y-s8G1IblNmP/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Measures of central tendecy': {
-                    document: 'https://drive.google.com/file/d/16NmHLjz2rEnGzP6ICLfIPuBGx76mTdNm/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Measures of spread': {
-                    document: 'https://drive.google.com/file/d/1sIWRz-6NtciAPhdem5EpkUF3Gymqseyf/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'probabilities': {
-                    document: 'https://drive.google.com/file/d/1-9VdUX4ggVHLUPD2R1FU36e7pSxZW5Yb/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'normal distribution': {
-                    document: 'https://drive.google.com/file/d/1y-XIF_Ddoo41AghPTkwsVEmka7gIl_x8/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'significance testing': {
-                    document: 'https://drive.google.com/file/d/1ubMJG0zJELq4tmfGHOrSPuj81iZZVlaP/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'z test for one population': {
-                    document: 'https://drive.google.com/file/d/1OGjSwPo_d-yzs8e43iOzeLlOAhS1lL2O/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'z test for two independent populations': {
-                    document: 'https://drive.google.com/file/d/1XeJMeMEs-a60cMavLDZ6h5OJp0s_9cW3/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                't test for one sample': {
-                    document: 'https://drive.google.com/file/d/10SATGRNLk3Zg58Vcpo39fNbeNJkJewTu/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                't test for two samples': {
-                    document: 'https://drive.google.com/file/d/1kXpZPhUzOHNEHMIGWkrI4nO9zfxrfhXv/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Pearson product moment corraltion coefficinet': {
-                    document: 'https://drive.google.com/file/d/1hBedG8yc177iSNY3UdA4kOs0fVMkdCNz/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'simple linear regression': {
-                    document: 'https://drive.google.com/file/d/1rRNMNpyjTJF62QiQO1INzT5pSS-1XPFQ/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Public Health Past Papers': {
-                    document: 'https://drive.google.com/drive/folders/1yr5nQIUcoqmgtezewhJWTB21awS91X20?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Intorduction to research': {
-                    document: 'https://drive.google.com/file/d/1gC-LS5n_OCPdODsWMR0PHP5m6sX9Zf0a/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Research Objectives': {
-                    document: 'https://drive.google.com/file/d/1_S2nFfpPdDS2zpuc4ClzixkQIQInOd9z/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Literature Review': {
-                    document: 'https://drive.google.com/file/d/1FHByhpo55c5e_HoQce0O4z6z0Jz212FV/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Referencing and citations': {
-                    document: 'https://drive.google.com/file/d/1lek_ffHz0aC4rzN4XUbcGUgiB92jHZOT/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Sampling techniques': {
-                    document: 'https://drive.google.com/file/d/1njnvO-cWiCSs63-A8JPAvCcg_lrOndeo/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Study designs': {
-                    document: 'https://drive.google.com/file/d/10SsY4pao2e9r_-inX_c9mOpnOMK86ikE/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Sample Size Determination': {
-                    document: 'https://drive.google.com/file/d/1j3g8E65AZXUfapj6mJhhqvtYPMPcLPw2/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Data analysis and ethics': {
-                    document: 'https://drive.google.com/file/d/1oi2DaQwMC7_VPxhz7jINfCA3CCb5J0v5/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Using Mendeley Referencing': {
-                    document: 'https://drive.google.com/file/d/1dVqi_12JcYtZQkLXReBLEZGNjNTJBzfV/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Introduction to Epidemiology': {
-                    document: 'https://drive.google.com/file/d/13RkIoqe5jIVikI1GjXy8nYJyLHC183VH/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Frequency Measures used in Epidemiology 2023': {
-                    document: 'https://drive.google.com/file/d/1cMDjkML2xCTA_-QzPbYzkyjO5stEQrpO/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Overview of study designs I': {
-                    document: 'https://drive.google.com/file/d/1WjDZvBt6d3xY667xAcncBQmZda4nYSX-/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Measures of association': {
-                    document: 'https://drive.google.com/file/d/1_1P8bjFfeO_NuXTUwLzFMTpEakropK9q/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Overview of study designs II': {
-                    document: 'https://drive.google.com/file/d/1HrY1fHZA96V_eMCnY-FaXJb0ObyQbVFT/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Concept of cause': {
-                    document: 'https://drive.google.com/file/d/1ISZgsOJYMpj0BFV1AQQttCxJEHt7f9hA/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Principles_Terms_and_Concerpts_of_Infectious_Diseases_Epidemiology': {
-                    document: 'https://drive.google.com/file/d/1T2rXJAtBMZxtAif6c-5LqqUu4X9ilTFl/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Natural_History_of_Disease_&_Concerpts_of_Disease_Prevention': {
-                    document: 'https://drive.google.com/file/d/1c_p-9sKfOoVkz1bj-_moyLcrZBdGo_KV/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Immunisation & Vaccination': {
-                    document: 'https://drive.google.com/file/d/1Br6W2B2FCvZd1wCEASEs4n3H9ZOQ8-mQ/view?usp=drive_link',
-                    video: '',
-                    quiz: ''
-                },
-                'Linear Equations': {
-                    document: 'https://drive.google.com/file/d/1ABC123DEF456GHI789JKL/view?usp=sharing',
-                    video: 'https://www.youtube.com/watch?v=Z5e7n2v8p9o',
-                    quiz: '#quiz-linear'
-                },
-                'Polynomials': {
-                    document: 'https://drive.google.com/file/d/1XYZ789UVW012ABC345DEF/view?usp=sharing',
-                    video: 'https://www.youtube.com/watch?v=Q4s5t6u7v8w',
-                    quiz: '#quiz-polynomials'
-                },
-                'Derivatives': {
-                    document: 'https://drive.google.com/file/d/1LMN456OPQ789RST012UVW/view?usp=sharing',
-                    video: 'https://www.youtube.com/watch?v=H9i8j7k6l5m',
-                    quiz: '#quiz-derivatives'
-                },
-                'Integrals': {
-                    document: 'https://drive.google.com/file/d/1EFG123HIJ456KLM789NOP/view?usp=sharing',
-                    video: 'https://www.youtube.com/watch?v=W3x4y5z6a7b',
-                    quiz: '#quiz-integrals'
-                },
-                'Limits': {
-                    document: 'https://drive.google.com/file/d/1QRS456TUV789WXY012ZAB/view?usp=sharing',
-                    video: 'https://www.youtube.com/watch?v=M8n9o0p1q2r',
-                    quiz: '#quiz-limits'
-                },
-                'Probability': {
-                    document: 'https://drive.google.com/file/d/1CDE789FGH012IJK345LMN/view?usp=sharing',
-                    video: 'https://www.youtube.com/watch?v=K7l6m5n4o3p',
-                    quiz: '#quiz-probability'
-                },
-                'Descriptive Stats': {
-                    document: 'https://drive.google.com/file/d/1UVW012XYZ345ABC678DEF/view?usp=sharing',
-                    video: 'https://www.youtube.com/watch?v=R4s5t6u7v8w',
-                    quiz: '#quiz-descriptive'
-                },
-                'Inferential Stats': {
-                    document: 'https://drive.google.com/file/d/1GHI789JKL012MNO345PQR/view?usp=sharing',
-                    video: 'https://www.youtube.com/watch?v=B9i8j7k6l5m',
-                    quiz: '#quiz-inferential'
-                },
-                // Biology topics
-                'Cell Structure': {
-                    document: 'https://drive.google.com/file/d/1STU456VWX789YZA012BCD/view?usp=sharing',
-                    video: 'https://www.youtube.com/watch?v=G3x4y5z6a7b',
-                    quiz: '#quiz-cell-structure'
-                },
-                'Membrane Transport': {
-                    document: 'https://drive.google.com/file/d/1EFG123HIJ456KLM789NOP/view?usp=sharing',
-                    video: 'https://www.youtube.com/watch?v=T8n9o0p1q2r',
-                    quiz: '#quiz-membrane'
-                },
-                'Cell Cycle': {
-                    document: 'https://drive.google.com/file/d/1QRS456TUV789WXY012ZAB/view?usp=sharing',
-                    video: 'https://www.youtube.com/watch?v=K7l6m5n4o3p',
-                    quiz: '#quiz-cell-cycle'
-                },
-                // Physics topics
-                'Kinematics': {
-                    document: 'https://drive.google.com/file/d/1CDE789FGH012IJK345LMN/view?usp=sharing',
-                    video: 'https://www.youtube.com/watch?v=R4s5t6u7v8w',
-                    quiz: '#quiz-kinematics'
-                },
-                'Dynamics': {
-                    document: 'https://drive.google.com/file/d/1UVW012XYZ345ABC678DEF/view?usp=sharing',
-                    video: 'https://www.youtube.com/watch?v=B9i8j7k6l5m',
-                    quiz: '#quiz-dynamics'
-                },
-                'Work & Energy': {
-                    document: 'https://drive.google.com/file/d/1GHI789JKL012MNO345PQR/view?usp=sharing',
-                    video: 'https://www.youtube.com/watch?v=G3x4y5z6a7b',
-                    quiz: '#quiz-work-energy'
-                },
-                // Chemistry topics
-                'Hydrocarbons': {
-                    document: 'https://drive.google.com/file/d/1STU456VWX789YZA012BCD/view?usp=sharing',
-                    video: 'https://www.youtube.com/watch?v=T8n9o0p1q2r',
-                    quiz: '#quiz-hydrocarbons'
-                },
-                'Functional Groups': {
-                    document: 'https://drive.google.com/file/d/1EFG123HIJ456KLM789NOP/view?usp=sharing',
-                    video: 'https://www.youtube.com/watch?v=K7l6m5n4o3p',
-                    quiz: '#quiz-functional-groups'
-                },
-                'Reactions': {
-                    document: 'https://drive.google.com/file/d/1QRS456TUV789WXY012ZAB/view?usp=sharing',
-                    video: 'https://www.youtube.com/watch?v=R4s5t6u7v8w',
-                    quiz: '#quiz-reactions'
-                },
-                // Site A - Clinical topics (4th Year)
-                'Site A: HF Management': {
-                    document: 'https://drive.google.com/file/d/1A1B2C3D4E5F6G7H8I9J0K/view?usp=sharing',
-                    video: 'https://www.youtube.com/watch?v=HFManagementA',
-                    quiz: '#quiz-NTH-hf'
-                },
-                'Site A: ECG Interpretation': {
-                    document: 'https://drive.google.com/file/d/1L2M3N4O5P6Q7R8S9T0U1V/view?usp=sharing',
-                    video: 'https://www.youtube.com/watch?v=ECGA',
-                    quiz: '#quiz-NTH-ecg'
-                },
-                'Site A: Cardiac Rehab': {
-                    document: 'https://drive.google.com/file/d/1W2X3Y4Z5A6B7C8D9E0F1G/view?usp=sharing',
-                    video: 'https://www.youtube.com/watch?v=CardiacRehabA',
-                    quiz: '#quiz-NTH-rehab'
-                },
-                'Site A: Appendectomy': {
-                    document: 'https://drive.google.com/file/d/1H2I3J4K5L6M7N8O9P0Q1R/view?usp=sharing',
-                    video: 'https://www.youtube.com/watch?v=AppendectomyA',
-                    quiz: '#quiz-NTH-appendectomy'
-                },
-                // Site B - Clinical topics
-                'Site B: HF Guidelines': {
-                    document: 'https://drive.google.com/file/d/1S2T3U4V5W6X7Y8Z9A0B1C/view?usp=sharing',
-                    video: 'https://www.youtube.com/watch?v=HFGuidelinesB',
-                    quiz: '#quiz-siteB-hf'
-                },
-                'Site B: EP Studies': {
-                    document: 'https://drive.google.com/file/d/1D2E3F4G5H6I7J8K9L0M1N/view?usp=sharing',
-                    video: 'https://www.youtube.com/watch?v=EPStudiesB',
-                    quiz: '#quiz-siteB-ep'
-                },
-                'Site B: Open Appendectomy': {
-                    document: 'https://drive.google.com/file/d/1O2P3Q4R5S6T7U8V9W0X1Y/view?usp=sharing',
-                    video: 'https://www.youtube.com/watch?v=OpenAppendectomyB',
-                    quiz: '#quiz-siteB-open'
-                },
-                // Site C - Clinical topics
-                'Site C: Community HF': {
-                    document: 'https://drive.google.com/file/d/1Z2A3B4C5D6E7F8G9H0I1J/view?usp=sharing',
-                    video: 'https://www.youtube.com/watch?v=CommunityHFC',
-                    quiz: '#quiz-siteC-hf'
-                },
-                'Site C: Telemedicine': {
-                    document: 'https://drive.google.com/file/d/1K2L3M4N5O6P7Q8R9S0T1U/view?usp=sharing',
-                    video: 'https://www.youtube.com/watch?v=TelemedicineC',
-                    quiz: '#quiz-siteC-tele'
-                },
-                'Site C: Day Surgery': {
-                    document: 'https://drive.google.com/file/d/1V2W3X4Y5Z6A7B8C9D0E1F/view?usp=sharing',
-                    video: 'https://www.youtube.com/watch?v=DaySurgeryC',
-                    quiz: '#quiz-siteC-day'
-                },
-                // 6th Year - Site A Advanced
-                'Site A: Sepsis Protocol': {
-                    document: 'https://drive.google.com/file/d/1G2H3I4J5K6L7M8N9O0P1Q/view?usp=sharing',
-                    video: 'https://www.youtube.com/watch?v=SepsisA6',
-                    quiz: '#quiz-NTH6-sepsis'
-                },
-                'Site A: ARDS Management': {
-                    document: 'https://drive.google.com/file/d/1R2S3T4U5V6W7X8Y9Z0A1B/view?usp=sharing',
-                    video: 'https://www.youtube.com/watch?v=ARDS6A',
-                    quiz: '#quiz-NTH6-ards'
-                },
-                // 6th Year - Site B Advanced
-                'Site B: Sepsis Management': {
-                    document: 'https://drive.google.com/file/d/1C2D3E4F5G6H7I8J9K0L1M/view?usp=sharing',
-                    video: 'https://www.youtube.com/watch?v=SepsisB6',
-                    quiz: '#quiz-siteB6-sepsis'
-                },
-                'Site B: ARDS Protocol': {
-                    document: 'https://drive.google.com/file/d/1N2O3P4Q5R6S7T8U9V0W1X/view?usp=sharing',
-                    video: 'https://www.youtube.com/watch?v=ARDS6B',
-                    quiz: '#quiz-siteB6-ards'
-                },
-                // 6th Year - Site C Advanced
-                'Site C: Community Critical Care': {
-                    document: 'https://drive.google.com/file/d/1Y2Z3A4B5C6D7E8F9G0H1I/view?usp=sharing',
-                    video: 'https://www.youtube.com/watch?v=CritCareC6',
-                    quiz: '#quiz-siteC6-critical'
-                },
-                'Site C: Sepsis Care': {
-                    document: 'https://drive.google.com/file/d/1J2K3L4M5N6O7P8Q9R0S1T/view?usp=sharing',
-                    video: 'https://www.youtube.com/watch?v=SepsisC6',
-                    quiz: '#quiz-siteC6-sepsis'
-                }
-            };
-
-            if (topicLinks[topic]) {
-                return topicLinks[topic];
-            }
-
-            // For clinical years with site selection, generate site-specific links
-            if ((year === 4 || year === 6) && site) {
-                const topicSlug = topic.toLowerCase().replace(/ /g, '-').replace(/[^a-z0-9-]/g, '');
-                return {
-                    document: `https://drive.google.com/drive/folders/1${site}-${year}-docs?q=${encodeURIComponent(topic)}`,
-                    video: `https://www.youtube.com/results?search_query=${encodeURIComponent(topic + ' medical education')}`,
-                    quiz: `#quiz-${site}-${year}-${topicSlug}`
-                };
-            }
-
-            const topicSlug = topic.toLowerCase().replace(/ /g, '-').replace(/[^a-z0-9-]/g, '');
             return {
-                document: `https://drive.google.com/drive/folders/1default-docs?q=${encodeURIComponent(topic)}`,
-                video: `https://www.youtube.com/results?search_query=${encodeURIComponent(topic + ' medical lecture')}`,
-                quiz: `#quiz-${topicSlug}`
+                document: docLink, // This will be used as fallback in the link section
+                video: `#video-popup-${encodeURIComponent(topic)}`, // Special marker for video popup
+                quiz: quizLink
             };
         }
-
-        // ---- PAST PAPER / QUIZ POPUP LOGIC ----
-        const ppqOverlay = document.getElementById('ppqOverlay');
-        const closePpq = document.getElementById('closePpq');
-        const ppqTitle = document.getElementById('ppqTitle');
-        const ppqTopicName = document.getElementById('ppqTopicName');
-        const ppqDesc = document.getElementById('ppqDesc');
-        const ppqPdfBtn = document.getElementById('ppqPdfBtn');
-        const ppqHtmlBtn = document.getElementById('ppqHtmlBtn');
-
-        function showPpqPopup(topic, pdfUrl, htmlUrl) {
-            // Determine if it's a past paper or quiz
-            const isPastPaper = /past paper|test|sessional|practice question/i.test(topic);
-            const isQuiz = /quiz/i.test(topic);
-
-            let typeLabel = 'Resource';
-            let icon = 'fa-file-alt';
-            let desc = 'Choose how you want to access this resource.';
-
-            if (isPastPaper) {
-                typeLabel = 'Past Paper';
-                icon = 'fa-file-pdf';
-                desc = 'Access the original past paper or the ToToZ answered version.';
-            } else if (isQuiz) {
-                typeLabel = 'Quiz';
-                icon = 'fa-pencil-alt';
-                desc = 'Access the quiz or the ToToZ answered version.';
-            }
-
-            ppqTitle.textContent = typeLabel;
-            ppqTopicName.textContent = topic;
-            ppqDesc.textContent = desc;
-            document.querySelector('.ppq-icon i').className = `fas ${icon}`;
-
-            // Set buttons
-            ppqPdfBtn.href = pdfUrl || '#';
-            ppqPdfBtn.target = '_blank';
-
-            // HTML answered version - use the provided htmlUrl or fallback to a search
-            if (htmlUrl && htmlUrl !== '#') {
-                ppqHtmlBtn.href = htmlUrl;
-            } else {
-                // Fallback: search for the topic + "answered"
-                const searchQuery = encodeURIComponent(topic + ' answered ToToZ');
-                ppqHtmlBtn.href = `https://drive.google.com/drive/folders/1default-answered?q=${searchQuery}`;
-            }
-            ppqHtmlBtn.target = '_blank';
-
-            ppqOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closePpqPopup() {
-            ppqOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        closePpq.addEventListener('click', closePpqPopup);
-        ppqOverlay.addEventListener('click', function(e) {
-            if (e.target === ppqOverlay) closePpqPopup();
-        });
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closePpqPopup();
-        });
 
         // ---- state ----
         let currentUser = null;
@@ -3282,6 +4085,134 @@
             }
         });
 
+        // ===== VIDEO POPUP FUNCTIONS =====
+        const videoOverlay = document.getElementById('videoOverlay');
+        const videoListContainer = document.getElementById('videoListContainer');
+        const videoPopupTitle = document.getElementById('videoPopupTitle');
+        const videoPopupTopic = document.getElementById('videoPopupTopic');
+        const closeVideoBtn = document.getElementById('closeVideoPopup');
+
+        function openVideoPopup(topic) {
+            let videos = videoData[topic];
+            if (!videos || videos.length === 0) {
+                videos = getDefaultDocs(topic); // Use default docs as fallback for videos too
+                // but better to have a separate default for videos? We'll use same for simplicity.
+                // Actually we want videos to show video content, but we can reuse the default docs.
+                // But to distinguish, we'll create a separate default for videos:
+                const searchSlug = encodeURIComponent(topic + ' video lecture');
+                videos = [
+                    { title: `${topic} – Lecture Video 1`, url: `https://drive.google.com/drive/folders/1default-videos?q=${searchSlug}` },
+                    { title: `${topic} – Lecture Video 2`, url: `https://drive.google.com/drive/folders/1default-videos?q=${searchSlug}` },
+                ];
+            }
+
+            videoPopupTitle.textContent = 'Videos';
+            videoPopupTopic.textContent = topic;
+
+            let html = '';
+            if (videos && videos.length > 0) {
+                videos.forEach((video, index) => {
+                    const url = video.url || '#';
+                    html += `
+                <a href="${url}" target="_blank" class="video-item" data-index="${index}">
+                  <i class="fas fa-play-circle"></i>
+                  <div class="video-info">
+                    <span class="video-title">${video.title}</span>
+                    <span class="video-sub">Click to open in Google Drive</span>
+                  </div>
+                  <span class="video-play"><i class="fas fa-arrow-right"></i></span>
+                </a>
+              `;
+                });
+            } else {
+                html = `
+              <div class="video-empty">
+                <i class="fas fa-video-slash"></i>
+                <p>No videos available for this topic yet.</p>
+                <p style="font-size:0.85rem;margin-top:0.3rem;">Check back later for updates.</p>
+              </div>
+            `;
+            }
+
+            videoListContainer.innerHTML = html;
+            videoOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            videoListContainer.scrollTop = 0;
+        }
+
+        function closeVideoPopup() {
+            videoOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        closeVideoBtn.addEventListener('click', closeVideoPopup);
+        videoOverlay.addEventListener('click', function(e) {
+            if (e.target === videoOverlay) closeVideoPopup();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && videoOverlay.classList.contains('active')) closeVideoPopup();
+        });
+
+        // ===== DOCUMENT POPUP FUNCTIONS =====
+        const documentOverlay = document.getElementById('documentOverlay');
+        const docListContainer = document.getElementById('docListContainer');
+        const docPopupTitle = document.getElementById('docPopupTitle');
+        const docPopupTopic = document.getElementById('docPopupTopic');
+        const closeDocBtn = document.getElementById('closeDocPopup');
+
+        function openDocumentPopup(topic) {
+            let docs = docData[topic];
+            if (!docs || docs.length === 0) {
+                docs = getDefaultDocs(topic);
+            }
+
+            docPopupTitle.textContent = 'Documents';
+            docPopupTopic.textContent = topic;
+
+            let html = '';
+            if (docs && docs.length > 0) {
+                docs.forEach((doc, index) => {
+                    const url = doc.url || '#';
+                    html += `
+                <a href="${url}" target="_blank" class="doc-item" data-index="${index}">
+                  <i class="fas fa-file-alt"></i>
+                  <div class="doc-info">
+                    <span class="doc-title">${doc.title}</span>
+                    <span class="doc-sub">Click to open in Google Drive</span>
+                  </div>
+                  <span class="doc-play"><i class="fas fa-arrow-right"></i></span>
+                </a>
+              `;
+                });
+            } else {
+                html = `
+              <div class="doc-empty">
+                <i class="fas fa-file-alt"></i>
+                <p>No documents available for this topic yet.</p>
+                <p style="font-size:0.85rem;margin-top:0.3rem;">Check back later for updates.</p>
+              </div>
+            `;
+            }
+
+            docListContainer.innerHTML = html;
+            documentOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            docListContainer.scrollTop = 0;
+        }
+
+        function closeDocumentPopup() {
+            documentOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        closeDocBtn.addEventListener('click', closeDocumentPopup);
+        documentOverlay.addEventListener('click', function(e) {
+            if (e.target === documentOverlay) closeDocumentPopup();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && documentOverlay.classList.contains('active')) closeDocumentPopup();
+        });
+
         // ---------- DRILL-DOWN FUNCTIONS ----------
         function renderDrill(courseId, termIdx = null, topicIdx = null) {
             let course;
@@ -3332,11 +4263,10 @@
                 const isQuiz = /quiz/i.test(topic);
 
                 if (isPastPaper || isQuiz) {
-                    // Show the popup instead of the regular drill content
                     const pdfUrl = links.document || '#';
                     const htmlUrl = htmlAnsweredLinks[topic] || '#';
                     showPpqPopup(topic, pdfUrl, htmlUrl);
-                    // Still render the drill content but with a note
+
                     html += `<h5><button class="back-btn" onclick="selectTopic('${courseId}', ${termIdx}, null)"><i class="fas fa-arrow-left"></i></button> ${term.name} → ${topic}</h5>`;
                     html += `<div class="topic-actions">`;
                     html += `<a href="${pdfUrl}" target="_blank" class="btn-sm"><i class="fas fa-file-pdf"></i> PDF Document</a>`;
@@ -3356,21 +4286,43 @@
                     return;
                 }
 
-                // Regular topic display (non-past-paper)
+                // ---- Regular topic display ----
+                const hasVideos = videoData[topic] && videoData[topic].length > 0;
+                const hasDocs = docData[topic] && docData[topic].length > 0;
+
                 html += `<h5><button class="back-btn" onclick="selectTopic('${courseId}', ${termIdx}, null)"><i class="fas fa-arrow-left"></i></button> ${term.name} → ${topic}</h5>`;
                 html += `<div class="topic-actions">`;
-                html += `<a href="${links.document}" target="_blank" class="btn-sm"><i class="fas fa-file-alt"></i> Document</a>`;
-                html += `<a href="${links.video}" target="_blank" class="btn-sm"><i class="fas fa-video"></i> Video</a>`;
+
+                // Document button - opens popup
+                const docClickHandler = `openDocumentPopup('${topic.replace(/'/g, "\\'")}')`;
+                html += `<button class="btn-sm doc-btn" onclick="${docClickHandler}"><i class="fas fa-file-alt"></i> Documents ${hasDocs ? '(' + docData[topic].length + ')' : ''}</button>`;
+
+                // Video button - opens popup
+                const videoClickHandler = `openVideoPopup('${topic.replace(/'/g, "\\'")}')`;
+                html += `<button class="btn-sm video-btn" onclick="${videoClickHandler}"><i class="fas fa-video"></i> Videos ${hasVideos ? '(' + videoData[topic].length + ')' : ''}</button>`;
+
+                // Quiz button - direct link
                 html += `<a href="${links.quiz}" target="_blank" class="btn-sm"><i class="fas fa-pencil-alt"></i> Quiz</a>`;
                 html += `</div>`;
+
+                // Show info counts
+                let infoParts = [];
+                if (hasDocs) infoParts.push(`📄 ${docData[topic].length} document(s)`);
+                if (hasVideos) infoParts.push(`🎬 ${videoData[topic].length} video(s)`);
+                if (infoParts.length) {
+                    html += `<p class="info-text" style="color:#2d7b9e;"><i class="fas fa-info-circle"></i> ${infoParts.join(' · ')}. Click the buttons above to browse.</p>`;
+                } else {
+                    html += `<p class="info-text" style="color:#7a8ca0;"><i class="fas fa-info-circle"></i> No specific documents or videos for this topic yet. Use the default links below.</p>`;
+                }
+
+                // Link section with fallback direct links
                 html += `<div class="link-section">`;
                 html +=
-                    `<div><strong>Document:</strong> <a href="${links.document}" target="_blank">${links.document}</a></div>`;
-                html += `<div><strong>Video:</strong> <a href="${links.video}" target="_blank">${links.video}</a></div>`;
+                    `<div><strong>Document (fallback):</strong> <a href="${links.document}" target="_blank">${links.document}</a></div>`;
                 html += `<div><strong>Quiz:</strong> <a href="${links.quiz}" target="_blank">${links.quiz}</a></div>`;
                 html += `</div>`;
                 html +=
-                    `<p class="info-text">${currentUser}, click any button above or use the links below to access the resources.</p></div>`;
+                    `<p class="info-text">${currentUser}, click any button above to access the resources.</p></div>`;
             }
 
             drillContent.innerHTML = html;
@@ -3417,9 +4369,70 @@
             document.querySelector('#courses')?.scrollIntoView({ behavior: 'smooth' });
         });
 
-        console.log('ToToZ — Site-specific content for 4th and 6th year with Past Paper/Quiz popup');
-        console.log('✅ Surgery Past Papers now have individual HTML answered version links!');
-        console.log('📝 Replace the placeholder URLs in htmlAnsweredLinks with your actual HTML answered version links.');
+        // ---- PAST PAPER / QUIZ POPUP LOGIC (unchanged) ----
+        const ppqOverlay = document.getElementById('ppqOverlay');
+        const closePpq = document.getElementById('closePpq');
+        const ppqTitle = document.getElementById('ppqTitle');
+        const ppqTopicName = document.getElementById('ppqTopicName');
+        const ppqDesc = document.getElementById('ppqDesc');
+        const ppqPdfBtn = document.getElementById('ppqPdfBtn');
+        const ppqHtmlBtn = document.getElementById('ppqHtmlBtn');
+
+        function showPpqPopup(topic, pdfUrl, htmlUrl) {
+            const isPastPaper = /past paper|test|sessional|practice question/i.test(topic);
+            const isQuiz = /quiz/i.test(topic);
+
+            let typeLabel = 'Resource';
+            let icon = 'fa-file-alt';
+            let desc = 'Choose how you want to access this resource.';
+
+            if (isPastPaper) {
+                typeLabel = 'Past Paper';
+                icon = 'fa-file-pdf';
+                desc = 'Access the original past paper or the ToToZ answered version.';
+            } else if (isQuiz) {
+                typeLabel = 'Quiz';
+                icon = 'fa-pencil-alt';
+                desc = 'Access the quiz or the ToToZ answered version.';
+            }
+
+            ppqTitle.textContent = typeLabel;
+            ppqTopicName.textContent = topic;
+            ppqDesc.textContent = desc;
+            document.querySelector('.ppq-icon i').className = `fas ${icon}`;
+
+            ppqPdfBtn.href = pdfUrl || '#';
+            ppqPdfBtn.target = '_blank';
+
+            if (htmlUrl && htmlUrl !== '#') {
+                ppqHtmlBtn.href = htmlUrl;
+            } else {
+                const searchQuery = encodeURIComponent(topic + ' answered ToToZ');
+                ppqHtmlBtn.href = `https://drive.google.com/drive/folders/1default-answered?q=${searchQuery}`;
+            }
+            ppqHtmlBtn.target = '_blank';
+
+            ppqOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePpqPopup() {
+            ppqOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        closePpq.addEventListener('click', closePpqPopup);
+        ppqOverlay.addEventListener('click', function(e) {
+            if (e.target === ppqOverlay) closePpqPopup();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closePpqPopup();
+        });
+
+        console.log('✅ ToToZ — Document and Video popups loaded!');
+        console.log('📄 Click the "Documents" button to see a list of documents for each topic.');
+        console.log('🎬 Click the "Videos" button to see a list of videos for each topic.');
+        console.log('📝 Add more entries to docData and videoData objects as needed.');
     </script>
 </body>
 </html>
