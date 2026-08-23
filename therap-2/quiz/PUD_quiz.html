@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PUD Drug Management | 20 MCQs + 4 Scenarios</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        /* ─────────── ROOT & RESET ─────────── */
+        :root {
+            --primary: #2b7a78;
+            --accent: #3aafa9;
+            --dark: #17252a;
+            --light: #f8f9fa;
+            --radius: 12px;
+            --shadow: 0 4px 14px rgba(18, 38, 63, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Roboto, system-ui, sans-serif;
+            background: linear-gradient(180deg, #f5f7fb, #eef6f6);
+            color: var(--dark);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+
+        /* ─────────── HEADER ─────────── */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: #fff;
+            padding: 0.8rem 0;
+            box-shadow: 0 6px 18px rgba(11, 36, 36, 0.18);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            font-size: 1.6rem;
+            color: var(--accent);
+        }
+
+        .logo h1 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 0.25rem 1rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            color: #d4f0ee;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0.3rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-tabs .tab-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: none;
+            color: #d4f0ee;
+            padding: 0.3rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .nav-tabs .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #fff;
+        }
+
+        .nav-tabs .tab-btn.active {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        /* ─────────── CONTAINER ─────────── */
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 1.25rem 2.5rem;
+        }
+
+        /* ─────────── SECTION TITLES ─────────── */
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1.8rem 0 1rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 3px solid rgba(43, 122, 120, 0.20);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .section-title i {
+            font-size: 1.1rem;
+            color: rgb(8, 104, 66);
+        }
+
+        .section-title .count {
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0.05rem 0.7rem;
+        }
+
+        .section-subtitle {
+            color: #5f7a7a;
+            font-size: 0.92rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .section-panel {
+            display: block;
+        }
+
+        .section-panel.hidden {
+            display: none;
+        }
+
+        /* ─────────── MCQ QUESTION CARDS ─────────── */
+        .question {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.2rem 1.2rem 0.2rem 1.2rem;
+            margin-bottom: 1.2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(43, 122, 120, 0.06);
+            transition: box-shadow 0.2s;
+        }
+
+        .question:hover {
+            box-shadow: 0 6px 22px rgba(18, 38, 63, 0.07);
+        }
+
+        .question p {
+            font-weight: 600;
+            font-size: 0.98rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .question .q-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            line-height: 1.6;
+            margin-right: 0.4rem;
+        }
+
+        .options label {
+            display: block;
+            background: #fafcfd;
+            border: 1px solid #e0e8ef;
+            border-radius: 8px;
+            padding: 0.45rem 0.9rem;
+            margin-top: 0.45rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-weight: 450;
+            font-size: 0.94rem;
+        }
+
+        .options label:hover {
+            background: #e8f5f4;
+            border-color: var(--accent);
+        }
+
+        .options input[type="radio"] {
+            margin-right: 0.5rem;
+            accent-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        /* ─────────── FEEDBACK ─────────── */
+        .question-feedback {
+            margin-top: 0.9rem;
+            padding: 0.4rem 0 0.1rem 0;
+            border-top: 1px dashed #dce6ed;
+        }
+
+        .answer-block strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--primary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .answer-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .answer-item {
+            padding: 5px 10px;
+            border-radius: 6px;
+            border: 1px solid #e6eef3;
+            background: #ffffff;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .answer-correct {
+            background: #ecfdf5;
+            border-color: #bbf7d0;
+            color: #065f46;
+        }
+
+        .answer-wrong {
+            background: #fff1f2;
+            border-color: #fca5a5;
+            color: #9f1239;
+        }
+
+        .user-choice {
+            outline: 2px dashed rgba(0, 0, 0, 0.06);
+        }
+
+        .explanation {
+            margin-top: 6px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: #f1f8f6;
+            color: #065f46;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border-left: 4px solid var(--accent);
+        }
+
+        .explanation.wrong {
+            background: #fff5f5;
+            color: #7f1d1d;
+            border-left-color: #f87171;
+        }
+
+        /* ─────────── BUTTONS ─────────── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.6rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(43, 122, 120, 0.22);
+        }
+
+        .btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(43, 122, 120, 0.30);
+        }
+
+        .btn:active {
+            transform: scale(0.96);
+        }
+
+        .btn i {
+            font-size: 0.9rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .btn-sm {
+            padding: 0.35rem 1rem;
+            font-size: 0.85rem;
+        }
+
+        .submit-wrap {
+            text-align: center;
+            margin: 1.5rem 0 2rem;
+        }
+
+        /* ─────────── RESULT BOX ─────────── */
+        .result {
+            margin-top: 1.5rem;
+            padding: 1.5rem 1.5rem 1rem;
+            background: #f1faf9;
+            border-radius: var(--radius);
+            text-align: center;
+            display: none;
+            border: 1px solid #c5e3df;
+        }
+
+        .result h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.2rem;
+        }
+
+        .score {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0.2rem 0 0.4rem;
+        }
+
+        /* ─────────── SCENARIO / ESSAY SECTION ─────────── */
+        .essay-card {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.25rem 1.25rem 1rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(43, 122, 120, 0.06);
+        }
+
+        .essay-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 0 0 0.6rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .essay-card h3 .qnum {
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.75rem;
+            line-height: 1.6;
+        }
+
+        .essay-card .scenario-prompt {
+            background: #f4f8fa;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            margin: 0.2rem 0 0.8rem 0;
+            font-size: 0.94rem;
+            line-height: 1.6;
+        }
+
+        .essay-card .sub-q {
+            background: #fafcfd;
+            padding: 0.6rem 0.9rem;
+            margin-top: 0.5rem;
+            border-radius: 6px;
+            border: 1px solid #e9edf2;
+            font-size: 0.92rem;
+            font-weight: 500;
+        }
+
+        .essay-card .sub-q i {
+            color: var(--primary);
+            margin-right: 0.3rem;
+        }
+
+        .essay-card textarea {
+            width: 100%;
+            min-height: 60px;
+            border-radius: 8px;
+            border: 1px solid #d1dbe0;
+            padding: 0.7rem 0.9rem;
+            resize: vertical;
+            font-family: inherit;
+            font-size: 0.95rem;
+            background: #fafcfd;
+            transition: border 0.2s;
+            margin-top: 0.3rem;
+        }
+
+        .essay-card textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(43, 122, 120, 0.12);
+        }
+
+        .essay-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 0.7rem;
+            flex-wrap: wrap;
+        }
+
+        .essay-actions .btn {
+            padding: 0.45rem 1.2rem;
+            font-size: 0.9rem;
+        }
+
+        .essay-answers {
+            display: none;
+            margin-top: 1rem;
+            background: #f1f8f6;
+            border-radius: 8px;
+            padding: 1rem 1.2rem;
+            border: 1px solid #cfe6e0;
+            color: var(--dark);
+        }
+
+        .essay-answers.visible {
+            display: block;
+            animation: fadeSlide 0.25s ease;
+        }
+
+        .essay-answers h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: var(--primary);
+            margin: 0 0 0.5rem 0;
+        }
+
+        .essay-answers p,
+        .essay-answers li {
+            font-size: 0.94rem;
+            line-height: 1.6;
+        }
+
+        .essay-answers ul {
+            padding-left: 1.2rem;
+            margin: 0.3rem 0 0.5rem;
+        }
+
+        .essay-answers ul li {
+            margin-bottom: 0.2rem;
+        }
+
+        .essay-answers b {
+            color: var(--dark);
+        }
+
+        .essay-answers .sub-answer {
+            margin-top: 0.6rem;
+            padding-top: 0.5rem;
+            border-top: 1px dashed #d0e2dc;
+        }
+
+        .essay-answers .sub-answer:first-of-type {
+            border-top: none;
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        @keyframes fadeSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(-6px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ─────────── RESPONSIVE ─────────── */
+        @media (max-width: 700px) {
+            body {
+                padding-top: 72px;
+            }
+            .logo h1 {
+                font-size: 1rem;
+            }
+            .header-inner {
+                padding: 0 1rem;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.3rem;
+            }
+            .badge {
+                align-self: flex-start;
+            }
+            .nav-tabs {
+                justify-content: center;
+            }
+            .nav-tabs .tab-btn {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.7rem;
+            }
+            .question {
+                padding: 1rem 1rem 0.1rem 1rem;
+            }
+            .section-title {
+                font-size: 1.1rem;
+            }
+            .essay-card {
+                padding: 1rem;
+            }
+            .score {
+                font-size: 2.2rem;
+            }
+            .btn {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .logo h1 {
+                font-size: 0.85rem;
+            }
+            .logo i {
+                font-size: 1.2rem;
+            }
+            .options label {
+                font-size: 0.87rem;
+                padding: 0.4rem 0.7rem;
+            }
+        }
+
+        /* ─────────── UTILITY ─────────── */
+        .text-muted {
+            color: #5f7a7a;
+            font-size: 0.9rem;
+        }
+        .mt-1 {
+            margin-top: 0.8rem;
+        }
+        .mb-1 {
+            margin-bottom: 0.8rem;
+        }
+        .flex-center {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .hidden {
+            display: none !important;
+        }
+
+        .scroll-target {
+            scroll-margin-top: 90px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════ HEADER ═══════ -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <i class="fas fa-stomach"></i>
+                <h1>PUD Drug Management</h1>
+            </div>
+            <span class="badge"><i class="fas fa-pencil-alt"></i> &nbsp;20 MCQs + 4 Scenarios</span>
+            <div class="nav-tabs">
+                <button class="tab-btn active" data-section="mcq">MCQs</button>
+                <button class="tab-btn" data-section="essay">Scenarios</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══════ MAIN CONTENT ═══════ -->
+    <main>
+
+        <!-- ──── SECTION 1: MCQs ──── -->
+        <section class="container section-panel" id="section-mcq">
+            <div class="section-title scroll-target" id="mcq-top">
+                <i class="fas fa-list-ul"></i> Multiple Choice Questions
+                <span class="count">20</span>
+            </div>
+            <p class="section-subtitle">Select the best answer for each question, then click <strong>Submit All MCQs</strong> at the bottom.</p>
+
+            <form id="quizForm">
+
+                <!-- Q1 -->
+                <div class="question">
+                    <p><span class="q-badge">1</span> A patient is prescribed Omeprazole for severe gastro-esophageal reflux disease (GERD). Which of the following best describes the precise mechanism of action of this drug?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="a"> A. Competitively blocks histamine H<sub>2</sub> receptors on the basolateral membrane of parietal cells.</label>
+                        <label><input type="radio" name="q1" value="b"> B. Neutralizes existing gastric acid within the stomach lumen to raise intragastric pH.</label>
+                        <label><input type="radio" name="q1" value="c"> C. Irreversibly inhibits the H<sup>+</sup>/K<sup>+</sup> ATPase pump on the luminal surface of parietal cells.</label>
+                        <label><input type="radio" name="q1" value="d"> D. Stimulates PGE<sub>2</sub> production to enhance mucosal blood flow and mucus secretion.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q1"></div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="question">
+                    <p><span class="q-badge">2</span> Why should Proton Pump Inhibitors (PPIs) not be administered simultaneously with antacids?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="a"> A. Antacids chelate PPIs in the intestinal lumen, preventing their absorption.</label>
+                        <label><input type="radio" name="q2" value="b"> B. PPIs require an acidic environment (low pH) for activation, which antacids neutralize.</label>
+                        <label><input type="radio" name="q2" value="c"> C. Concurrent administration triggers severe osmotic diarrhea.</label>
+                        <label><input type="radio" name="q2" value="d"> D. Antacids induce CYP450 enzymes that rapidly degrade PPIs.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q2"></div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question">
+                    <p><span class="q-badge">3</span> A patient on long-term daily Omeprazole therapy for Zollinger-Ellison syndrome should be monitored for which potential long-term adverse effect noted in the literature?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="a"> A. Antral D-cell hyperplasia</label>
+                        <label><input type="radio" name="q3" value="b"> B. Gastric mucosal atrophy</label>
+                        <label><input type="radio" name="q3" value="c"> C. Anti-androgenic gynecomastia</label>
+                        <label><input type="radio" name="q3" value="d"> D. Ulceration of the pyloric sphincter</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q3"></div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="question">
+                    <p><span class="q-badge">4</span> Which secretagogue pathway stimulates gastric acid secretion directly via its primary receptor and indirectly by stimulating histamine release from enterochromaffin cells?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="a"> A. Prostaglandin E<sub>2</sub></label>
+                        <label><input type="radio" name="q4" value="b"> B. Somatostatin</label>
+                        <label><input type="radio" name="q4" value="c"> C. Acetylcholine (M<sub>1</sub> receptors)</label>
+                        <label><input type="radio" name="q4" value="d"> D. Histamine (H<sub>2</sub> receptors)</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q4"></div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="question">
+                    <p><span class="q-badge">5</span> A 54-year-old male with a history of deep vein thrombosis treated with Warfarin presents with recurrent peptic ulcer disease. Which H<sub>2</sub> receptor antagonist is LEAST suitable due to the risk of significant drug-drug interactions?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="a"> A. Famotidine</label>
+                        <label><input type="radio" name="q5" value="b"> B. Cimetidine</label>
+                        <label><input type="radio" name="q5" value="c"> C. Ranitidine</label>
+                        <label><input type="radio" name="q5" value="d"> D. Nizatidine</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q5"></div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="question">
+                    <p><span class="q-badge">6</span> Which of the following adverse effects is uniquely associated with Cimetidine due to its pharmacological profile, but not typically seen with other H<sub>2</sub> blockers?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="a"> A. Black discoloration of stools</label>
+                        <label><input type="radio" name="q6" value="b"> B. Severe constipation</label>
+                        <label><input type="radio" name="q6" value="c"> C. Anti-androgen effects</label>
+                        <label><input type="radio" name="q6" value="d"> D. Systemic metabolic alkalosis</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q6"></div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="question">
+                    <p><span class="q-badge">7</span> A patient with rheumatoid arthritis requiring high-dose aspirin therapy develops a gastric ulcer. Which agent acts specifically as a synthetic prostaglandin E<sub>1</sub> analogue to prevent NSAID-induced ulcers?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="a"> A. Sucralfate</label>
+                        <label><input type="radio" name="q7" value="b"> B. Misoprostol</label>
+                        <label><input type="radio" name="q7" value="c"> C. Bismuth chelate</label>
+                        <label><input type="radio" name="q7" value="d"> D. Pirenzepine</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q7"></div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="question">
+                    <p><span class="q-badge">8</span> What is the primary mechanism through which Misoprostol exerts its therapeutic action in PUD?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="a"> A. Forming a physical gel polymer over the ulcer base.</label>
+                        <label><input type="radio" name="q8" value="b"> B. Neutralizing luminal hydrochloric acid directly.</label>
+                        <label><input type="radio" name="q8" value="c"> C. Increasing mucosal blood flow and stimulating mucus and bicarbonate secretion.</label>
+                        <label><input type="radio" name="q8" value="d"> D. Irreversibly blocking the proton pump in parietal cells.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q8"></div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="question">
+                    <p><span class="q-badge">9</span> A patient taking an over-the-counter medication for ulcer disease notices that their stools have turned dark black, causing alarm. Which drug is the most likely cause of this harmless side effect?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="a"> A. Aluminium hydroxide</label>
+                        <label><input type="radio" name="q9" value="b"> B. Cimetidine</label>
+                        <label><input type="radio" name="q9" value="c"> C. Bismuth compound</label>
+                        <label><input type="radio" name="q9" value="d"> D. Misoprostol</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q9"></div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="question">
+                    <p><span class="q-badge">10</span> A patient prescribed Sucralfate for a duodenal ulcer is also taking Tetracycline for an infection. How does Sucralfate interfere with Tetracycline therapy?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="a"> A. It inhibits hepatic enzymes that metabolize Tetracycline.</label>
+                        <label><input type="radio" name="q10" value="b"> B. It interferes with the gastrointestinal absorption of Tetracycline.</label>
+                        <label><input type="radio" name="q10" value="c"> C. It increases renal clearance of Tetracycline.</label>
+                        <label><input type="radio" name="q10" value="d"> D. It neutralizes stomach acid required to dissolve Tetracycline capsule shells.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q10"></div>
+                </div>
+
+                <!-- Q11 -->
+                <div class="question">
+                    <p><span class="q-badge">11</span> An individual takes an antacid blend containing both Aluminium Hydroxide and Magnesium Hydroxide. What is the clinical rationale for combining these two specific salts?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q11" value="a"> A. Aluminium causes diarrhea, while Magnesium causes constipation; combined, they cancel out.</label>
+                        <label><input type="radio" name="q11" value="b"> B. Aluminium causes constipation, while Magnesium causes diarrhea; combined, they balance bowel motility.</label>
+                        <label><input type="radio" name="q11" value="c"> C. Both salts act synergistically to irreversibly inhibit the H<sup>+</sup>/K<sup>+</sup> ATPase pump.</label>
+                        <label><input type="radio" name="q11" value="d"> D. Magnesium inhibits H<sub>2</sub> receptors, while Aluminium neutralizes luminal acid.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q11"></div>
+                </div>
+
+                <!-- Q12 -->
+                <div class="question">
+                    <p><span class="q-badge">12</span> What is the primary mechanism by which antacids provide symptomatic relief in peptic ulcer disease?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q12" value="a"> A. Raising gastric luminal pH and inactivating pepsin.</label>
+                        <label><input type="radio" name="q12" value="b"> B. Coating the ulcer base to prevent gastric erosion.</label>
+                        <label><input type="radio" name="q12" value="c"> C. Eradicating underlying H. pylori colonization.</label>
+                        <label><input type="radio" name="q12" value="d"> D. Inhibiting histamine release from enterochromaffin-like cells.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q12"></div>
+                </div>
+
+                <!-- Q13 -->
+                <div class="question">
+                    <p><span class="q-badge">13</span> Which statement best describes the purpose of incorporating a Proton Pump Inhibitor into an H. pylori triple-therapy eradication regimen?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q13" value="a"> A. It directly hydrolyzes the outer bacterial membrane of H. pylori.</label>
+                        <label><input type="radio" name="q13" value="b"> B. It increases mucosal blood flow to clear bacterial enterotoxins.</label>
+                        <label><input type="radio" name="q13" value="c"> C. It raises gastric pH, which enhances the stability and efficacy of co-administered antibiotics.</label>
+                        <label><input type="radio" name="q13" value="d"> D. It prevents antibiotic-induced diarrhea by binding excess luminal fluid.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q13"></div>
+                </div>
+
+                <!-- Q14 -->
+                <div class="question">
+                    <p><span class="q-badge">14</span> In an H. pylori triple-therapy regimen, which combination of drugs constitutes a standard 1- to 2-week treatment plan?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q14" value="a"> A. Misoprostol + Aluminium Hydroxide + Cimetidine</label>
+                        <label><input type="radio" name="q14" value="b"> B. PPI + Tinidazole (or Metronidazole) + Clarithromycin (or Amoxicillin)</label>
+                        <label><input type="radio" name="q14" value="c"> C. Sucralfate + Bismuth Chelate + Ranitidine</label>
+                        <label><input type="radio" name="q14" value="d"> D. Pirenzepine + Magnesium Hydroxide + Tetracycline</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q14"></div>
+                </div>
+
+                <!-- Q15 -->
+                <div class="question">
+                    <p><span class="q-badge">15</span> Eradication of H. pylori in patients with duodenal ulcers reduces the ulcer recurrence rate to approximately what level?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q15" value="a"> A. Less than 50%</label>
+                        <label><input type="radio" name="q15" value="b"> B. Less than 25%</label>
+                        <label><input type="radio" name="q15" value="c"> C. Less than 15%</label>
+                        <label><input type="radio" name="q15" value="d"> D. Less than 5%</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q15"></div>
+                </div>
+
+                <!-- Q16 -->
+                <div class="question">
+                    <p><span class="q-badge">16</span> Which selective muscarinic receptor antagonist can be used to reduce gastric acid secretion by blocking acetylcholine signaling on parietal cells?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q16" value="a"> A. Atropine</label>
+                        <label><input type="radio" name="q16" value="b"> B. Pirenzepine</label>
+                        <label><input type="radio" name="q16" value="c"> C. Metoclopramide</label>
+                        <label><input type="radio" name="q16" value="d"> D. Scopolamine</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q16"></div>
+                </div>
+
+                <!-- Q17 -->
+                <div class="question">
+                    <p><span class="q-badge">17</span> Which endogenous mucosal defense factor promotes mucus and bicarbonate secretion, causes local vasodilation, and inhibits parietal gastric acid secretion?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q17" value="a"> A. Histamine</label>
+                        <label><input type="radio" name="q17" value="b"> B. Gastrin</label>
+                        <label><input type="radio" name="q17" value="c"> C. Endogenous Prostaglandins (PGE<sub>2</sub> and PGI<sub>2</sub>)</label>
+                        <label><input type="radio" name="q17" value="d"> D. Acetylcholine</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q17"></div>
+                </div>
+
+                <!-- Q18 -->
+                <div class="question">
+                    <p><span class="q-badge">18</span> A patient taking Phenytoin for seizure control is prescribed Sucralfate. What clinical outcome should be anticipated if these drugs are administered concurrently?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q18" value="a"> A. Increased Phenytoin plasma levels leading to toxicity.</label>
+                        <label><input type="radio" name="q18" value="b"> B. Reduced absorption and decreased efficacy of Phenytoin.</label>
+                        <label><input type="radio" name="q18" value="c"> C. Severe hypomagnesemia.</label>
+                        <label><input type="radio" name="q18" value="d"> D. Direct mucosal ulceration in the stomach.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q18"></div>
+                </div>
+
+                <!-- Q19 -->
+                <div class="question">
+                    <p><span class="q-badge">19</span> What is the primary role of Bismuth compounds and Sucralfate in peptic ulcer management?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q19" value="a"> A. Systemic suppression of gastrin release from G-cells.</label>
+                        <label><input type="radio" name="q19" value="b"> B. Direct neutralization of hydrochloric acid to a pH above 7.0.</label>
+                        <label><input type="radio" name="q19" value="c"> C. Forming a protective coating over the ulcer base to shield it from acid-pepsin erosion.</label>
+                        <label><input type="radio" name="q19" value="d"> D. Irreversible competitive binding to H<sub>2</sub> histamine receptors.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q19"></div>
+                </div>
+
+                <!-- Q20 -->
+                <div class="question">
+                    <p><span class="q-badge">20</span> Which of the following factors is considered an endogenous aggressive factor involved in the pathogenesis of peptic ulcer disease?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q20" value="a"> A. Bicarbonate layer</label>
+                        <label><input type="radio" name="q20" value="b"> B. Acid-pepsin secretion</label>
+                        <label><input type="radio" name="q20" value="c"> C. Prostaglandin I<sub>2</sub></label>
+                        <label><input type="radio" name="q20" value="d"> D. Mucosal blood flow</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q20"></div>
+                </div>
+
+                <div class="submit-wrap">
+                    <button type="button" class="btn" onclick="submitQuiz()">
+                        <i class="fas fa-check-circle"></i> Submit All MCQs
+                    </button>
+                </div>
+
+            </form>
+
+            <div class="result" id="resultBox">
+                <h3><i class="fas fa-chart-simple"></i> Your Score</h3>
+                <div class="score" id="score">0%</div>
+                <p class="text-muted" style="font-size:0.9rem;">Review the feedback below each question.</p>
+                <div id="answers"></div>
+            </div>
+        </section>
+
+        <!-- ──── SECTION 2: SCENARIOS ──── -->
+        <section class="container section-panel hidden" id="section-essay">
+            <div class="section-title scroll-target" id="essay-top">
+                <i class="fas fa-pen-fancy"></i> Clinical Scenarios
+                <span class="count">4</span>
+            </div>
+            <p class="section-subtitle">Read each scenario and write your answers in the boxes. Click <strong>Submit</strong> to reveal the model answers.</p>
+
+            <!-- ─── SCENARIO A ─── -->
+            <div class="essay-card">
+                <h3><span class="qnum">Scenario A</span> NSAID-Induced Peptic Ulceration</h3>
+                <div class="scenario-prompt">
+                    A 62-year-old female with osteoarthritis has been taking high-dose Ibuprofen daily for 6 months. She presents with severe epigastric burning pain. Endoscopy reveals gastric mucosal erosions. She is diagnosed with NSAID-induced peptic ulceration and started on Misoprostol.
+                </div>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> A1. Describe the precise physiological defect caused by chronic NSAID use that Misoprostol is designed to counteract.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> A2. What are the two most common gastrointestinal side effects associated with Misoprostol therapy?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> A3. Why is Misoprostol strictly contraindicated in pregnant women?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> A4. If the patient was instead treated with Sucralfate alongside her routine medications, which co-administered anti-epileptic or cardiac drugs could suffer from impaired absorption?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> A5. Contrast the primary mode of action of Misoprostol with that of Sucralfate.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('sA')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answers</span>
+                </div>
+
+                <div class="essay-answers" id="essay-sA">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answers</h4>
+                    <div class="sub-answer">
+                        <b>A1.</b> NSAIDs inhibit prostaglandin synthesis, depleting endogenous PGE<sub>2</sub> and PGI<sub>2</sub>. Misoprostol mimics PGE<sub>1</sub>, restoring mucosal protection by increasing mucus and bicarbonate secretion and improving mucosal blood flow.
+                    </div>
+                    <div class="sub-answer">
+                        <b>A2.</b> Diarrhea and abdominal pain.
+                    </div>
+                    <div class="sub-answer">
+                        <b>A3.</b> As a prostaglandin analogue, it stimulates uterine contractions, which can induce labor, abortion, or pregnancy termination.
+                    </div>
+                    <div class="sub-answer">
+                        <b>A4.</b> Digoxin and Phenytoin (as well as Tetracyclines and Cimetidine).
+                    </div>
+                    <div class="sub-answer">
+                        <b>A5.</b> Misoprostol enhances mucosal defense systemically/physiologically by increasing blood flow, mucus, and bicarbonate. Sucralfate acts physically by forming a protective coating over the ulcer base against acid-pepsin erosion.
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─── SCENARIO B ─── -->
+            <div class="essay-card">
+                <h3><span class="qnum">Scenario B</span> H. pylori Eradication Therapy</h3>
+                <div class="scenario-prompt">
+                    A 45-year-old male with confirmed H. pylori-associated duodenal ulcer is started on a 14-day triple-therapy regimen containing Esomeprazole, Clarithromycin, and Amoxicillin. Bismuth chelate is also added.
+                </div>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> B1. What is the explicit pharmacological rationale for including Esomeprazole (a PPI) in this antibiotic regimen?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> B2. According to clinical data, to what percentage can successful H. pylori eradication reduce duodenal ulcer recurrence?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> B3. Identify the specific enzymatic target of Esomeprazole on parietal cells and describe the nature of its inhibition.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> B4. If Bismuth chelate were added to this patient's regimen, what key protective mechanisms would Bismuth contribute?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> B5. What side effect regarding stool appearance should the patient be warned about if Bismuth is introduced?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('sB')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answers</span>
+                </div>
+
+                <div class="essay-answers" id="essay-sB">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answers</h4>
+                    <div class="sub-answer">
+                        <b>B1.</b> Elevating gastric pH reduces acid degradation of antibiotics (like Clarithromycin and Amoxicillin), enhancing their chemical stability and therapeutic efficacy in the stomach.
+                    </div>
+                    <div class="sub-answer">
+                        <b>B2.</b> To less than 5%.
+                    </div>
+                    <div class="sub-answer">
+                        <b>B3.</b> It irreversibly inhibits the H<sup>+</sup>/K<sup>+</sup> ATPase pump (the proton pump).
+                    </div>
+                    <div class="sub-answer">
+                        <b>B4.</b> It forms a protective coating over the ulcer base, inhibits pepsin action, stimulates bicarbonate secretion, and promotes PGE<sub>2</sub> synthesis.
+                    </div>
+                    <div class="sub-answer">
+                        <b>B5.</b> Black stools (and constipation).
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─── SCENARIO C ─── -->
+            <div class="essay-card">
+                <h3><span class="qnum">Scenario C</span> Complex Drug Interactions &amp; Side Effects with H<sub>2</sub> Blockers</h3>
+                <div class="scenario-prompt">
+                    A 58-year-old male with a history of GERD and atrial fibrillation managed with Warfarin is self-medicating with over-the-counter Cimetidine for acid indigestion. He presents to the clinic with severe bruising and blood in his urine. Physical examination also reveals bilateral gynecomastia.
+                </div>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> C1. Explain the biochemical mechanism responsible for the sudden increase in this patient's Warfarin activity and bleeding risk.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> C2. What specific pharmacological property of Cimetidine accounts for the development of gynecomastia in this male patient?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> C3. Name two alternative H<sub>2</sub> receptor antagonists that could treat his acid symptoms without inhibiting Cytochrome P450 enzymes.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> C4. Describe how H<sub>2</sub> blockers suppress acid secretion induced by acetylcholine and gastrin.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> C5. What general central nervous system adverse effects can sometimes occur with H<sub>2</sub> receptor antagonists in susceptible patients?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('sC')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answers</span>
+                </div>
+
+                <div class="essay-answers" id="essay-sC">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answers</h4>
+                    <div class="sub-answer">
+                        <b>C1.</b> Cimetidine inhibits hepatic cytochrome P450 enzymes, which slows the oxidative metabolism of Warfarin, increasing its plasma concentration and anticoagulant effect.
+                    </div>
+                    <div class="sub-answer">
+                        <b>C2.</b> Cimetidine exhibits anti-androgen effects.
+                    </div>
+                    <div class="sub-answer">
+                        <b>C3.</b> Ranitidine, Famotidine, or Nizatidine.
+                    </div>
+                    <div class="sub-answer">
+                        <b>C4.</b> Acetylcholine and gastrin exert their acid-stimulating effects largely indirectly by releasing histamine. Blocking H<sub>2</sub> receptors prevents this indirect stimulation.
+                    </div>
+                    <div class="sub-answer">
+                        <b>C5.</b> Dizziness and fatigue.
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─── SCENARIO D ─── -->
+            <div class="essay-card">
+                <h3><span class="qnum">Scenario D</span> Severe GERD &amp; Antacid Co-Administration</h3>
+                <div class="scenario-prompt">
+                    A 35-year-old patient with severe erosive esophagitis secondary to GERD is prescribed Pantoprazole once daily before breakfast. The patient asks if they can take an over-the-counter antacid (Magnesium Trisilicate) at the exact same time every morning to get faster pain relief.
+                </div>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> D1. Why should the patient be advised NOT to take Pantoprazole and Magnesium Trisilicate at the exact same time?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> D2. If the patient takes Magnesium Trisilicate alone in high doses, what primary gastrointestinal adverse effect should they expect?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> D3. If the patient had taken an Aluminium-based antacid instead, what would be the predominant bowel side effect?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> D4. What is the molecular target that PPIs like Pantoprazole inhibit, and why is this target called the "final common pathway" for acid secretion?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> D5. What potential gastric histological change is associated with chronic, long-term suppression of acid using Proton Pump Inhibitors?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('sD')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answers</span>
+                </div>
+
+                <div class="essay-answers" id="essay-sD">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answers</h4>
+                    <div class="sub-answer">
+                        <b>D1.</b> PPIs require an acidic environment (low pH) in parietal cells for drug activation; antacids raise gastric pH, impairing PPI activation.
+                    </div>
+                    <div class="sub-answer">
+                        <b>D2.</b> Diarrhea.
+                    </div>
+                    <div class="sub-answer">
+                        <b>D3.</b> Constipation.
+                    </div>
+                    <div class="sub-answer">
+                        <b>D4.</b> The H<sup>+</sup>/K<sup>+</sup> ATPase (proton pump). It is the final pump responsible for pumping H<sup>+</sup> into the lumen regardless of whether acid secretion was triggered by histamine, gastrin, or acetylcholine.
+                    </div>
+                    <div class="sub-answer">
+                        <b>D5.</b> Gastric mucosal atrophy.
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ═══════ JAVASCRIPT ═══════ -->
+    <script>
+        // ─── TAB NAVIGATION ───
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const section = this.dataset.section;
+                document.querySelectorAll('.section-panel').forEach(p => p.classList.add('hidden'));
+                document.getElementById('section-' + section).classList.remove('hidden');
+                const topEl = document.getElementById(section + '-top');
+                if (topEl) topEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // ─── MCQ CORRECT ANSWERS ───
+        const correctAnswers = {
+            q1: "c",
+            q2: "b",
+            q3: "b",
+            q4: "c",
+            q5: "b",
+            q6: "c",
+            q7: "b",
+            q8: "c",
+            q9: "c",
+            q10: "b",
+            q11: "b",
+            q12: "a",
+            q13: "c",
+            q14: "b",
+            q15: "d",
+            q16: "b",
+            q17: "c",
+            q18: "b",
+            q19: "c",
+            q20: "b"
+        };
+
+        // ─── MCQ EXPLANATIONS ───
+        const answerExplanations = {
+            q1: "PPIs irreversibly inhibit H+/K+ ATPase on the luminal surface of parietal cells.",
+            q2: "PPIs require an acidic environment (low pH) for activation; antacids neutralize acid and impair PPI activation.",
+            q3: "Long-term PPI use is associated with gastric mucosal atrophy.",
+            q4: "Acetylcholine (M1 receptors) stimulates acid secretion directly and indirectly by releasing histamine from enterochromaffin cells.",
+            q5: "Cimetidine inhibits CYP450 enzymes, causing significant interaction with Warfarin.",
+            q6: "Cimetidine has anti-androgen effects (gynecomastia) not seen with other H2 blockers.",
+            q7: "Misoprostol is a synthetic PGE1 analogue used to prevent NSAID-induced ulcers.",
+            q8: "Misoprostol increases mucosal blood flow and stimulates mucus and bicarbonate secretion.",
+            q9: "Bismuth compounds cause harmless black stools.",
+            q10: "Sucralfate impairs gastrointestinal absorption of Tetracycline.",
+            q11: "Aluminium causes constipation, Magnesium causes diarrhea; combined they balance bowel motility.",
+            q12: "Antacids raise gastric pH and inactivate pepsin, providing symptomatic relief.",
+            q13: "PPIs raise gastric pH, which enhances the stability and efficacy of co-administered antibiotics.",
+            q14: "Standard triple therapy: PPI + Metronidazole/Tinidazole + Clarithromycin/Amoxicillin.",
+            q15: "Eradication drops recurrence rate to less than 5%.",
+            q16: "Pirenzepine is a selective muscarinic antagonist.",
+            q17: "Endogenous PGE2 and PGI2 stimulate mucus/HCO3 secretion and inhibit acid.",
+            q18: "Sucralfate decreases absorption of Phenytoin.",
+            q19: "Bismuth and Sucralfate form a protective coating over the ulcer base.",
+            q20: "Acid-pepsin secretion is an endogenous aggressive factor."
+        };
+
+        // ─── MCQ SUBMIT ───
+        function submitQuiz() {
+            let score = 0;
+            const total = Object.keys(correctAnswers).length;
+
+            document.querySelectorAll('.question-feedback').forEach(el => el.innerHTML = '');
+
+            for (let key in correctAnswers) {
+                const radios = Array.from(document.querySelectorAll(`input[name="${key}"]`));
+                const selected = radios.find(r => r.checked);
+                const correct = correctAnswers[key];
+
+                if (selected && selected.value === correct) score++;
+
+                const feedbackEl = document.getElementById(`feedback-${key}`);
+                if (!feedbackEl) continue;
+
+                let html = `<div class="answer-block"><strong>Q${key.replace(/^q/, '')}</strong><div class="answer-list">`;
+
+                radios.forEach(r => {
+                    const label = r.parentElement;
+                    const text = label ? label.textContent.trim() : r.value;
+                    const classes = ['answer-item'];
+                    if (r.value === correct) classes.push('answer-correct');
+                    if (r.checked && r.value !== correct) classes.push('answer-wrong', 'user-choice');
+                    if (r.checked && r.value === correct) classes.push('user-choice');
+                    html += `<div class="${classes.join(' ')}">${text}${r.checked ? ' ◀' : ''}</div>`;
+                });
+
+                html += `</div>`;
+
+                const correctRadio = radios.find(rr => rr.value === correct);
+                const correctText = correctRadio && correctRadio.parentElement ? correctRadio.parentElement.textContent.trim() : correct;
+                const explanationText = answerExplanations[key] || '';
+
+                if (selected) {
+                    if (selected.value === correct) {
+                        html += `<div class="explanation">✅ Correct — ${explanationText}</div>`;
+                    } else {
+                        html += `<div class="explanation wrong">❌ Incorrect. Correct answer: <strong>${correctText}</strong>. ${explanationText}</div>`;
+                    }
+                } else {
+                    html += `<div class="explanation wrong">No answer selected. Correct answer: <strong>${correctText}</strong>. ${explanationText}</div>`;
+                }
+
+                html += `</div>`;
+                feedbackEl.innerHTML = html;
+            }
+
+            const percentage = Math.round((score / total) * 100);
+            const resultBox = document.getElementById('resultBox');
+            resultBox.style.display = 'block';
+            document.getElementById('answers').innerHTML = '';
+
+            let start = 0;
+            const timer = setInterval(() => {
+                if (start >= percentage) clearInterval(timer);
+                document.getElementById('score').innerText = start + '%';
+                start++;
+            }, 20);
+
+            document.querySelectorAll('#quizForm input[type="radio"]').forEach(i => i.disabled = true);
+        }
+
+        // ─── ESSAY TOGGLE ───
+        function toggleEssay(id) {
+            const el = document.getElementById('essay-' + id);
+            if (!el) return;
+            const isVisible = el.classList.toggle('visible');
+            el.setAttribute('aria-hidden', !isVisible);
+            if (isVisible) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        // ─── KEYBOARD ACCESSIBILITY ───
+        document.querySelectorAll('.essay-actions .btn').forEach(btn => {
+            btn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    btn.click();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

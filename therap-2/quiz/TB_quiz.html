@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anti-Mycobacterial Assessment | 20 MCQs + 4 Scenarios</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        /* ─────────── ROOT & RESET ─────────── */
+        :root {
+            --primary: #1a6e6b;
+            --accent: #3aafa9;
+            --dark: #17252a;
+            --light: #f8f9fa;
+            --radius: 12px;
+            --shadow: 0 4px 14px rgba(18, 38, 63, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Roboto, system-ui, sans-serif;
+            background: linear-gradient(180deg, #f5f7fb, #eef6f6);
+            color: var(--dark);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+
+        /* ─────────── HEADER ─────────── */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: #fff;
+            padding: 0.8rem 0;
+            box-shadow: 0 6px 18px rgba(11, 36, 36, 0.18);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            font-size: 1.6rem;
+            color: var(--accent);
+        }
+
+        .logo h1 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 0.25rem 1rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            color: #d4f0ee;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0.3rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-tabs .tab-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: none;
+            color: #d4f0ee;
+            padding: 0.3rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .nav-tabs .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #fff;
+        }
+
+        .nav-tabs .tab-btn.active {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        /* ─────────── CONTAINER ─────────── */
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 1.25rem 2.5rem;
+        }
+
+        /* ─────────── SECTION TITLES ─────────── */
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1.8rem 0 1rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 3px solid rgba(43, 122, 120, 0.20);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .section-title i {
+            font-size: 1.1rem;
+            color: rgb(8, 104, 66);
+        }
+
+        .section-title .count {
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0.05rem 0.7rem;
+        }
+
+        .section-subtitle {
+            color: #5f7a7a;
+            font-size: 0.92rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .section-panel {
+            display: block;
+        }
+
+        .section-panel.hidden {
+            display: none;
+        }
+
+        /* ─────────── MCQ QUESTION CARDS ─────────── */
+        .question {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.2rem 1.2rem 0.2rem 1.2rem;
+            margin-bottom: 1.2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(43, 122, 120, 0.06);
+            transition: box-shadow 0.2s;
+        }
+
+        .question:hover {
+            box-shadow: 0 6px 22px rgba(18, 38, 63, 0.07);
+        }
+
+        .question p {
+            font-weight: 600;
+            font-size: 0.98rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .question .q-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            line-height: 1.6;
+            margin-right: 0.4rem;
+        }
+
+        .options label {
+            display: block;
+            background: #fafcfd;
+            border: 1px solid #e0e8ef;
+            border-radius: 8px;
+            padding: 0.45rem 0.9rem;
+            margin-top: 0.45rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-weight: 450;
+            font-size: 0.94rem;
+        }
+
+        .options label:hover {
+            background: #e8f5f4;
+            border-color: var(--accent);
+        }
+
+        .options input[type="radio"] {
+            margin-right: 0.5rem;
+            accent-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        /* ─────────── FEEDBACK ─────────── */
+        .question-feedback {
+            margin-top: 0.9rem;
+            padding: 0.4rem 0 0.1rem 0;
+            border-top: 1px dashed #dce6ed;
+        }
+
+        .answer-block strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--primary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .answer-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .answer-item {
+            padding: 5px 10px;
+            border-radius: 6px;
+            border: 1px solid #e6eef3;
+            background: #ffffff;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .answer-correct {
+            background: #ecfdf5;
+            border-color: #bbf7d0;
+            color: #065f46;
+        }
+
+        .answer-wrong {
+            background: #fff1f2;
+            border-color: #fca5a5;
+            color: #9f1239;
+        }
+
+        .user-choice {
+            outline: 2px dashed rgba(0, 0, 0, 0.06);
+        }
+
+        .explanation {
+            margin-top: 6px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: #f1f8f6;
+            color: #065f46;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border-left: 4px solid var(--accent);
+        }
+
+        .explanation.wrong {
+            background: #fff5f5;
+            color: #7f1d1d;
+            border-left-color: #f87171;
+        }
+
+        /* ─────────── BUTTONS ─────────── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.6rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(43, 122, 120, 0.22);
+        }
+
+        .btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(43, 122, 120, 0.30);
+        }
+
+        .btn:active {
+            transform: scale(0.96);
+        }
+
+        .btn i {
+            font-size: 0.9rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .btn-sm {
+            padding: 0.35rem 1rem;
+            font-size: 0.85rem;
+        }
+
+        .submit-wrap {
+            text-align: center;
+            margin: 1.5rem 0 2rem;
+        }
+
+        /* ─────────── RESULT BOX ─────────── */
+        .result {
+            margin-top: 1.5rem;
+            padding: 1.5rem 1.5rem 1rem;
+            background: #f1faf9;
+            border-radius: var(--radius);
+            text-align: center;
+            display: none;
+            border: 1px solid #c5e3df;
+        }
+
+        .result h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.2rem;
+        }
+
+        .score {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0.2rem 0 0.4rem;
+        }
+
+        /* ─────────── ESSAY / SCENARIO SECTION ─────────── */
+        .essay-card {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.25rem 1.25rem 1rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(43, 122, 120, 0.06);
+        }
+
+        .essay-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 0 0 0.6rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .essay-card h3 .qnum {
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.75rem;
+            line-height: 1.6;
+        }
+
+        .essay-card .scenario-prompt {
+            background: #f4f8fa;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            margin: 0.2rem 0 0.8rem 0;
+            font-size: 0.94rem;
+            line-height: 1.6;
+        }
+
+        .essay-card .sub-q {
+            background: #fafcfd;
+            padding: 0.6rem 0.9rem;
+            margin-top: 0.5rem;
+            border-radius: 6px;
+            border: 1px solid #e9edf2;
+            font-size: 0.92rem;
+            font-weight: 500;
+        }
+
+        .essay-card .sub-q i {
+            color: var(--primary);
+            margin-right: 0.3rem;
+        }
+
+        .essay-card textarea {
+            width: 100%;
+            min-height: 70px;
+            border-radius: 8px;
+            border: 1px solid #d1dbe0;
+            padding: 0.7rem 0.9rem;
+            resize: vertical;
+            font-family: inherit;
+            font-size: 0.95rem;
+            background: #fafcfd;
+            transition: border 0.2s;
+            margin-top: 0.5rem;
+        }
+
+        .essay-card textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(43, 122, 120, 0.12);
+        }
+
+        .essay-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 0.7rem;
+            flex-wrap: wrap;
+        }
+
+        .essay-actions .btn {
+            padding: 0.45rem 1.2rem;
+            font-size: 0.9rem;
+        }
+
+        .essay-answers {
+            display: none;
+            margin-top: 1rem;
+            background: #f1f8f6;
+            border-radius: 8px;
+            padding: 1rem 1.2rem;
+            border: 1px solid #cfe6e0;
+            color: var(--dark);
+        }
+
+        .essay-answers.visible {
+            display: block;
+            animation: fadeSlide 0.25s ease;
+        }
+
+        .essay-answers h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: var(--primary);
+            margin: 0 0 0.5rem 0;
+        }
+
+        .essay-answers p,
+        .essay-answers li {
+            font-size: 0.94rem;
+            line-height: 1.6;
+        }
+
+        .essay-answers ul {
+            padding-left: 1.2rem;
+            margin: 0.3rem 0 0.5rem;
+        }
+
+        .essay-answers ul li {
+            margin-bottom: 0.2rem;
+        }
+
+        .essay-answers b {
+            color: var(--dark);
+        }
+
+        .essay-answers .sub-answer {
+            margin-top: 0.6rem;
+            padding-top: 0.5rem;
+            border-top: 1px dashed #d0e2dc;
+        }
+
+        .essay-answers .sub-answer:first-of-type {
+            border-top: none;
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        @keyframes fadeSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(-6px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ─────────── RESPONSIVE ─────────── */
+        @media (max-width: 700px) {
+            body {
+                padding-top: 72px;
+            }
+            .logo h1 {
+                font-size: 1rem;
+            }
+            .header-inner {
+                padding: 0 1rem;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.3rem;
+            }
+            .badge {
+                align-self: flex-start;
+            }
+            .nav-tabs {
+                justify-content: center;
+            }
+            .nav-tabs .tab-btn {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.7rem;
+            }
+            .question {
+                padding: 1rem 1rem 0.1rem 1rem;
+            }
+            .section-title {
+                font-size: 1.1rem;
+            }
+            .essay-card {
+                padding: 1rem;
+            }
+            .score {
+                font-size: 2.2rem;
+            }
+            .btn {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .logo h1 {
+                font-size: 0.85rem;
+            }
+            .logo i {
+                font-size: 1.2rem;
+            }
+            .options label {
+                font-size: 0.87rem;
+                padding: 0.4rem 0.7rem;
+            }
+        }
+
+        /* ─────────── UTILITY ─────────── */
+        .text-muted {
+            color: #5f7a7a;
+            font-size: 0.9rem;
+        }
+        .mt-1 {
+            margin-top: 0.8rem;
+        }
+        .mb-1 {
+            margin-bottom: 0.8rem;
+        }
+        .flex-center {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .hidden {
+            display: none !important;
+        }
+
+        .scroll-target {
+            scroll-margin-top: 90px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════ HEADER ═══════ -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <i class="fas fa-bacterium"></i>
+                <h1>Anti-Mycobacterial Assessment</h1>
+            </div>
+            <span class="badge"><i class="fas fa-pencil-alt"></i> &nbsp;20 MCQs + 4 Scenarios</span>
+            <div class="nav-tabs">
+                <button class="tab-btn active" data-section="mcq">MCQs</button>
+                <button class="tab-btn" data-section="essay">Scenarios</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══════ MAIN CONTENT ═══════ -->
+    <main>
+
+        <!-- ──── SECTION 1: MCQs ──── -->
+        <section class="container section-panel" id="section-mcq">
+            <div class="section-title scroll-target" id="mcq-top">
+                <i class="fas fa-list-ul"></i> Multiple Choice Questions
+                <span class="count">20</span>
+            </div>
+            <p class="section-subtitle">Select the best answer for each question, then click <strong>Submit All MCQs</strong> at the bottom.</p>
+
+            <form id="quizForm">
+
+                <!-- Q1 -->
+                <div class="question">
+                    <p><span class="q-badge">1</span> A 34-year-old patient with newly diagnosed pulmonary tuberculosis is initiated on first-line therapy. Which of the following best describes the specific mechanism of action of Isoniazid (INH)?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="a"> A. Direct inhibition of arabinosyl transferases involved in cell wall synthesis</label>
+                        <label><input type="radio" name="q1" value="b"> B. Inhibition of enoyl-acyl carrier protein reductase, blocking mycolic acid synthesis</label>
+                        <label><input type="radio" name="q1" value="c"> C. Binding to the 30S ribosomal subunit to prevent bacterial protein translation</label>
+                        <label><input type="radio" name="q1" value="d"> D. Inhibition of DNA-dependent RNA polymerase, thereby arresting RNA transcription</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q1"></div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="question">
+                    <p><span class="q-badge">2</span> A tuberculosis patient undergoing treatment develops bilateral numbness and tingling in a "glove-and-stocking" distribution. What is the metabolic mechanism underlying this drug-induced adverse effect?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="a"> A. Direct neurotoxic accumulation of acetylhydrazine in peripheral nerve axons</label>
+                        <label><input type="radio" name="q2" value="b"> B. Ethambutol-induced inhibition of axonal microtubule transport</label>
+                        <label><input type="radio" name="q2" value="c"> C. Inhibition of pyridoxal kinase and increased renal excretion of pyridoxine by INH</label>
+                        <label><input type="radio" name="q2" value="d"> D. Chelation of divalent intracellular magnesium ions required for nerve conduction</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q2"></div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question">
+                    <p><span class="q-badge">3</span> Which pharmacogenetic property explains why certain patient populations experience a significantly higher incidence of isoniazid-induced hepatotoxicity?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="a"> A. Slow acetylators accumulate unmetabolized parent isoniazid in hepatic parenchymal cells</label>
+                        <label><input type="radio" name="q3" value="b"> B. Rapid acetylators convert INH more rapidly into its hepatotoxic metabolite, acetylhydrazine</label>
+                        <label><input type="radio" name="q3" value="c"> C. Glucose-6-phosphate dehydrogenase deficiency leads to hepatic intracellular oxidation</label>
+                        <label><input type="radio" name="q3" value="d"> D. Polymorphisms in CYP3A4 decrease hepatic clearance of ethambutol</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q3"></div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="question">
+                    <p><span class="q-badge">4</span> A HIV-positive patient receiving a protease inhibitor-based antiretroviral therapy (ART) regimen requires treatment for active pulmonary tuberculosis. Which adjustment or selection is most appropriate regarding rifamycins?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="a"> A. Increase Rifampicin dosage to overcome the metabolic degradation caused by protease inhibitors</label>
+                        <label><input type="radio" name="q4" value="b"> B. Substitute Rifampicin with Rifabutin due to its weaker induction of cytochrome P450 enzymes</label>
+                        <label><input type="radio" name="q4" value="c"> C. Replace Rifampicin with Rifapentine given its once-weekly administration profile</label>
+                        <label><input type="radio" name="q4" value="d"> D. Discontinue protease inhibitors and rely solely on nucleoside reverse transcriptase inhibitors</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q4"></div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="question">
+                    <p><span class="q-badge">5</span> Rapid development of clinical resistance is observed when Rifampicin is administered as monotherapy for tuberculosis. What is the molecular basis of this drug resistance?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="a"> A. Upregulation of bacterial efflux pumps specific to lipophilic drugs</label>
+                        <label><input type="radio" name="q5" value="b"> B. Point mutations causing reduced binding affinity of DNA-dependent RNA polymerase</label>
+                        <label><input type="radio" name="q5" value="c"> C. Production of bacterial beta-lactamases that cleave the rifamycin ring</label>
+                        <label><input type="radio" name="q5" value="d"> D. Hyper-expression of arabinosyl transferases overriding enzyme blockade</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q5"></div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="question">
+                    <p><span class="q-badge">6</span> A patient on anti-TB medication is alarmed because her tears, sweat, and urine have turned an orange-red color. Which drug is responsible, and what is the clinical advice?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="a"> A. Pyrazinamide; discontinue immediately as this signifies acute renal tubular injury</label>
+                        <label><input type="radio" name="q6" value="b"> B. Rifampicin; reassure the patient that this is a benign, expected side effect</label>
+                        <label><input type="radio" name="q6" value="c"> C. Clofazimine; hold the medication and obtain immediate liver function tests</label>
+                        <label><input type="radio" name="q6" value="d"> D. Ethambutol; order an urgent ophthalmologic examination for retrobulbar neuritis</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q6"></div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="question">
+                    <p><span class="q-badge">7</span> Pyrazinamide exerts its tuberculocidal effect preferentially against intracellular bacilli residing inside macrophage phagosomes. Why is it ineffective against extracellular organisms at neutral pH?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="a"> A. Extracellular environments deactivate the drug via enzymatic hydrolysis</label>
+                        <label><input type="radio" name="q7" value="b"> B. Pyrazinamide requires an acidic environment (pH ~5.0) to convert into its active form or exert activity</label>
+                        <label><input type="radio" name="q7" value="c"> C. Macrophages selectively transport pyrazinamide via active transport mechanisms</label>
+                        <label><input type="radio" name="q7" value="d"> D. Extracellular mycobacteria lack the cell wall mycolic acids targeted by pyrazinamide</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q7"></div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="question">
+                    <p><span class="q-badge">8</span> A 52-year-old male on standard intensive-phase anti-TB therapy presents with acute severe pain and swelling in his right big toe. Serum uric acid is markedly elevated. Which two anti-TB drugs reduce renal uric acid excretion?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="a"> A. Isoniazid and Rifampicin</label>
+                        <label><input type="radio" name="q8" value="b"> B. Pyrazinamide and Ethambutol</label>
+                        <label><input type="radio" name="q8" value="c"> C. Streptomycin and Ethionamide</label>
+                        <label><input type="radio" name="q8" value="d"> D. Cycloserine and Dapsone</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q8"></div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="question">
+                    <p><span class="q-badge">9</span> A 45-year-old patient receiving Ethambutol reports progressive loss of visual acuity and difficulty distinguishing between red and green colors. What is the mechanism of this toxicity?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="a"> A. Corneal micro-deposits causing light refraction anomalies</label>
+                        <label><input type="radio" name="q9" value="b"> B. Retrobulbar optic neuritis affecting the optic nerve fibers</label>
+                        <label><input type="radio" name="q9" value="c"> C. Retinal artery thrombosis secondary to hyperuricemia</label>
+                        <label><input type="radio" name="q9" value="d"> D. Increased intraocular pressure leading to secondary open-angle glaucoma</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q9"></div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="question">
+                    <p><span class="q-badge">10</span> Why is Ethambutol generally contraindicated or avoided in young children under 5 years of age?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="a"> A. Young children lack hepatic enzymes to clear ethambutol, causing lethal hepatotoxicity</label>
+                        <label><input type="radio" name="q10" value="b"> B. Ethambutol causes premature closure of epiphyseal growth plates in pediatric bones</label>
+                        <label><input type="radio" name="q10" value="c"> C. Visual acuity and color discrimination cannot be reliably monitored in young children</label>
+                        <label><input type="radio" name="q10" value="d"> D. Ethambutol induces severe gastrointestinal ulceration and systemic anaphylaxis in infants</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q10"></div>
+                </div>
+
+                <!-- Q11 -->
+                <div class="question">
+                    <p><span class="q-badge">11</span> A tuberculosis patient with underlying chronic kidney disease (Creatinine Clearance &lt; 10 mL/min) requires dosing adjustments for Ethambutol. What specific modification is indicated?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q11" value="a"> A. Ethambutol is contraindicated; switch to an aminoglycoside immediately</label>
+                        <label><input type="radio" name="q11" value="b"> B. Reduce the standard dose of Ethambutol by half because 50% is excreted unchanged in urine</label>
+                        <label><input type="radio" name="q11" value="c"> C. Double the dose to compensate for increased peritoneal clearance</label>
+                        <label><input type="radio" name="q11" value="d"> D. Administer pyridoxine concurrently to enhance renal filtration of ethambutol</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q11"></div>
+                </div>
+
+                <!-- Q12 -->
+                <div class="question">
+                    <p><span class="q-badge">12</span> Bedaquiline is a novel second-line anti-TB agent indicated for Multi-Drug Resistant Tuberculosis (MDR-TB). What is its precise cellular mechanism of action?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q12" value="a"> A. Binding to the guanine bases of mycobacterial DNA to block transcription</label>
+                        <label><input type="radio" name="q12" value="b"> B. Selective inhibition of mycobacterial adenosine 5'-triphosphate (ATP) synthase</label>
+                        <label><input type="radio" name="q12" value="c"> C. Blockade of arabinosyl transferase enzymatic activity</label>
+                        <label><input type="radio" name="q12" value="d"> D. Direct inhibition of dihydroptoreate synthetase in folate metabolism</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q12"></div>
+                </div>
+
+                <!-- Q13 -->
+                <div class="question">
+                    <p><span class="q-badge">13</span> Which cardiac safety monitoring parameter is mandatory when initiating a patient on a regimen containing Bedaquiline or Delamanid?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q13" value="a"> A. Serial cardiac troponin I levels to monitor for acute myocardial necrosis</label>
+                        <label><input type="radio" name="q13" value="b"> B. Electrocardiogram (ECG) monitoring for QT interval prolongation</label>
+                        <label><input type="radio" name="q13" value="c"> C. Echocardiography to evaluate left ventricular ejection fraction reduction</label>
+                        <label><input type="radio" name="q13" value="d"> D. Blood pressure monitoring for severe pulmonary arterial hypertension</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q13"></div>
+                </div>
+
+                <!-- Q14 -->
+                <div class="question">
+                    <p><span class="q-badge">14</span> Dapsone is a mainstay in the multi-drug therapy (MDT) of leprosy. What is its mechanism of action and primary pharmacological effect?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q14" value="a"> A. Inhibits dihydrofolate reductase; highly bactericidal against M. leprae</label>
+                        <label><input type="radio" name="q14" value="b"> B. Inhibits dihydroperonate synthetase; exerts a leprostatic effect</label>
+                        <label><input type="radio" name="q14" value="c"> C. Inhibits DNA-dependent RNA polymerase; rapidly bactericidal</label>
+                        <label><input type="radio" name="q14" value="d"> D. Binds to 50S ribosomal subunit; inhibits protein elongation</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q14"></div>
+                </div>
+
+                <!-- Q15 -->
+                <div class="question">
+                    <p><span class="q-badge">15</span> A lepromatous leprosy patient undergoing Dapsone therapy develops acute hemolysis, dark urine, and jaundice. Which inherited enzymatic deficiency predisposes to this reaction?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q15" value="a"> A. Pyruvate kinase deficiency</label>
+                        <label><input type="radio" name="q15" value="b"> B. UDP-glucuronosyltransferase deficiency</label>
+                        <label><input type="radio" name="q15" value="c"> C. Glucose-6-Phosphate Dehydrogenase (G6PD) deficiency</label>
+                        <label><input type="radio" name="q15" value="d"> D. Myeloperoxidase deficiency</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q15"></div>
+                </div>
+
+                <!-- Q16 -->
+                <div class="question">
+                    <p><span class="q-badge">16</span> Clofazimine is utilized in multidrug regimens for leprosy and MDR-TB. Beyond binding mycobacterial DNA, what unique secondary mechanism contributes to its antibacterial activity?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q16" value="a"> A. Activation of bacterial phospholipase A2 leading to accumulation of toxic lysophospholipids</label>
+                        <label><input type="radio" name="q16" value="b"> B. Direct oxidation of bacterial cell wall peptidoglycans</label>
+                        <label><input type="radio" name="q16" value="c"> C. Competitive inhibition of mycolic acid synthetase enzymes</label>
+                        <label><input type="radio" name="q16" value="d"> D. Disruption of intracellular calcium homeostasis inside macrophages</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q16"></div>
+                </div>
+
+                <!-- Q17 -->
+                <div class="question">
+                    <p><span class="q-badge">17</span> A patient with lepromatous leprosy treated with Clofazimine expresses concern regarding side effects affecting skin appearance. Which characteristic side effect is expected with Clofazimine?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q17" value="a"> A. Slate-grey hyperpigmentation restricted strictly to palmar creases</label>
+                        <label><input type="radio" name="q17" value="b"> B. Reddish-black discoloration of the skin, skin dryness, and photodermatitis</label>
+                        <label><input type="radio" name="q17" value="c"> C. Generalized vitiligo and hypopigmented macules</label>
+                        <label><input type="radio" name="q17" value="d"> D. Acute urticarial skin eruption accompanied by scaling dermatoses</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q17"></div>
+                </div>
+
+                <!-- Q18 -->
+                <div class="question">
+                    <p><span class="q-badge">18</span> Which drug class represents the first-line backbone for both treatment and prophylaxis of Mycobacterium avium complex (MAC) infections in immunocompromised individuals?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q18" value="a"> A. Aminoglycosides (e.g., Streptomycin)</label>
+                        <label><input type="radio" name="q18" value="b"> B. Macrolides (e.g., Clarithromycin, Azithromycin)</label>
+                        <label><input type="radio" name="q18" value="c"> C. Sulfones (e.g., Dapsone)</label>
+                        <label><input type="radio" name="q18" value="d"> D. Oxazolidinones (e.g., Linezolid)</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q18"></div>
+                </div>
+
+                <!-- Q19 -->
+                <div class="question">
+                    <p><span class="q-badge">19</span> What primary rationale underlines the mandatory use of combination therapy (multi-drug regimens) in anti-tuberculosis and anti-leprosy protocols?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q19" value="a"> A. To allow lower dosing of each drug, completely eliminating all side effects</label>
+                        <label><input type="radio" name="q19" value="b"> B. To prevent emergence of drug resistance, target both dividing and persister organisms, and shorten therapy</label>
+                        <label><input type="radio" name="q19" value="c"> C. To enhance the renal excretion of lipophilic toxic drug metabolites</label>
+                        <label><input type="radio" name="q19" value="d"> D. To stimulate host cell-mediated immune responses against latent bacilli</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q19"></div>
+                </div>
+
+                <!-- Q20 -->
+                <div class="question">
+                    <p><span class="q-badge">20</span> Cycloserine is a second-line anti-TB drug that inhibits bacterial cell wall synthesis. Which concomitant therapy should be co-administered to mitigate its principal toxicities?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q20" value="a"> A. Corticosteroids to prevent acute hypersensitivity pneumonitis</label>
+                        <label><input type="radio" name="q20" value="b"> B. Pyridoxine (Vitamin B6) to reduce neurotoxic adverse effects such as seizures and psychosis</label>
+                        <label><input type="radio" name="q20" value="c"> C. Allopurinol to block hyperuricemia and gouty arthritis</label>
+                        <label><input type="radio" name="q20" value="d"> D. Folic acid to prevent severe megaloblastic anemia</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q20"></div>
+                </div>
+
+                <div class="submit-wrap">
+                    <button type="button" class="btn" onclick="submitQuiz()">
+                        <i class="fas fa-check-circle"></i> Submit All MCQs
+                    </button>
+                </div>
+
+            </form>
+
+            <div class="result" id="resultBox">
+                <h3><i class="fas fa-chart-simple"></i> Your Score</h3>
+                <div class="score" id="score">0%</div>
+                <p class="text-muted" style="font-size:0.9rem;">Review the feedback below each question.</p>
+                <div id="answers"></div>
+            </div>
+        </section>
+
+        <!-- ──── SECTION 2: SCENARIOS (Essays) ──── -->
+        <section class="container section-panel hidden" id="section-essay">
+            <div class="section-title scroll-target" id="essay-top">
+                <i class="fas fa-pen-fancy"></i> Clinical Scenarios
+                <span class="count">4</span>
+            </div>
+            <p class="section-subtitle">Read each scenario and write your answers in the boxes. Click <strong>Submit</strong> to reveal the model answers.</p>
+
+            <!-- ─── SCENARIO 1 ─── -->
+            <div class="essay-card">
+                <h3><span class="qnum">Scenario 1</span> Management of Active TB &amp; Drug Interactions</h3>
+                <div class="scenario-prompt">
+                    A 38-year-old male patient diagnosed with pulmonary tuberculosis is started on standard quadruple therapy (Isoniazid, Rifampicin, Pyrazinamide, and Ethambutol). His past medical history is significant for generalized tonic-clonic seizures, well-controlled on Phenytoin for 5 years. Two weeks after starting anti-TB treatment, he experiences slurred speech, ataxia, nystagmus, and confusion. Laboratory evaluation reveals normal renal function but elevated plasma phenytoin levels.
+                </div>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 1.1 Which anti-TB drug is responsible for the elevated phenytoin levels, and what is its specific mechanism of interaction?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 1.2 Explain the mechanism of action of Isoniazid and state why it is particularly potent against Mycobacterium tuberculosis.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 1.3 How does Rifampicin interact with cytochrome P450 enzymes, and how does its metabolic effect compare to Isoniazid's effect?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 1.4 Name the adverse effect of Isoniazid that affects peripheral nerves, explain its underlying biochemical mechanism, and describe how it is prevented.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 1.5 Contrast the metabolic fate of Isoniazid in "fast acetylators" versus "slow acetylators" regarding toxicity risks.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('s1')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answers</span>
+                </div>
+
+                <div class="essay-answers" id="essay-s1">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answers</h4>
+
+                    <div class="sub-answer">
+                        <b>1.1</b> — <b>Isoniazid (INH).</b> INH inhibits Cytochrome P450 enzymes in the liver, thereby slowing the hepatic metabolism of phenytoin and causing toxic accumulation.
+                    </div>
+
+                    <div class="sub-answer">
+                        <b>1.2</b> — INH inhibits <b>enoyl-acyl carrier protein reductase</b>, blocking the synthesis of <b>mycolic acids</b> required for the mycobacterial cell wall. Because mycolic acids are unique to mycobacteria, INH exhibits selective toxicity and potent tuberculocidal activity against rapidly multiplying bacilli.
+                    </div>
+
+                    <div class="sub-answer">
+                        <b>1.3</b> — Rifampicin is a potent <b>enzyme inducer</b> of Cytochrome P450, which accelerates the clearance of coadministered drugs. This opposes INH's enzyme inhibitory effect, though drug interactions must be evaluated based on net patient response and drug monitoring.
+                    </div>
+
+                    <div class="sub-answer">
+                        <b>1.4</b> — <b>Peripheral neuritis.</b> INH inhibits pyridoxal kinase and increases renal excretion of pyridoxine (vitamin B6), leading to B6 deficiency. It is prevented by prophylactic co-administration of oral <b>pyridoxine</b>.
+                    </div>
+
+                    <div class="sub-answer">
+                        <b>1.5</b> — <b>Fast acetylators</b> rapidly convert INH into acetylisoniazid (acetylhydrazine), putting them at higher risk for <b>hepatitis</b>. <b>Slow acetylators</b> maintain higher levels of parent INH and excreted metabolites, putting them at higher risk for <b>peripheral neuropathy</b>.
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─── SCENARIO 2 ─── -->
+            <div class="essay-card">
+                <h3><span class="qnum">Scenario 2</span> Renal Failure &amp; TB Treatment</h3>
+                <div class="scenario-prompt">
+                    A 60-year-old female with chronic kidney disease (CrCl &lt; 10 mL/min) is started on anti-TB therapy for pulmonary tuberculosis. Three weeks into treatment, she complains of blurred vision and difficulty distinguishing red from green. She also develops acute pain and swelling in her wrists and knees.
+                </div>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 2.1 Identify the anti-TB drug causing her visual disturbances, describe the specific condition, and state why renal failure exacerbated this condition.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 2.2 What exact mechanism of action does Ethambutol utilize to inhibit mycobacteria?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 2.3 Which two drugs in her regimen are responsible for her joint pain and swelling, and what is the underlying physiological mechanism?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 2.4 Describe the specific site of action of Pyrazinamide and explain why it is inactive against extracellular tubercle bacilli at neutral pH.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 2.5 What specific dosage adjustment is required for Ethambutol in this patient to prevent further toxicity?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('s2')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answers</span>
+                </div>
+
+                <div class="essay-answers" id="essay-s2">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answers</h4>
+
+                    <div class="sub-answer">
+                        <b>2.1</b> — <b>Ethambutol</b> causes optic (retrobulbar) neuritis (loss of visual acuity, red-green color blindness). Since <b>50%</b> of ethambutol is excreted unchanged by the kidneys, renal failure leads to drug accumulation and heightened toxicity if doses are not reduced.
+                    </div>
+
+                    <div class="sub-answer">
+                        <b>2.2</b> — Ethambutol inhibits <b>arabinosyl transferase</b> enzymes, thereby blocking the incorporation of mycolic acids into the arabinogalactan layer of the mycobacterial cell wall.
+                    </div>
+
+                    <div class="sub-answer">
+                        <b>2.3</b> — <b>Pyrazinamide</b> and <b>Ethambutol</b>. Both drugs inhibit the renal tubular clearance of uric acid, causing hyperuricemia and secondary gout arthritis / arthralgia.
+                    </div>
+
+                    <div class="sub-answer">
+                        <b>2.4</b> — Pyrazinamide acts on intracellular bacilli within <b>macrophage phagosomes</b>. It requires an acidic pH (~5.0) to exert its tuberculocidal effect; at neutral pH (extracellular space), it is completely inactive.
+                    </div>
+
+                    <div class="sub-answer">
+                        <b>2.5</b> — In patients with creatinine clearance &lt; 10 mL/min, the dose of Ethambutol must be reduced by <b>50%</b> (or the dosing interval extended).
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─── SCENARIO 3 ─── -->
+            <div class="essay-card">
+                <h3><span class="qnum">Scenario 3</span> MDR-TB Management</h3>
+                <div class="scenario-prompt">
+                    A 45-year-old patient with Multi-Drug Resistant Tuberculosis (MDR-TB) is started on a second-line regimen containing Bedaquiline, Delamanid, Moxifloxacin, Amikacin, and Cycloserine. Two months into therapy, the patient reports hearing loss and ECG shows QT prolongation.
+                </div>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 3.1 Define Multi-Drug Resistant Tuberculosis (MDR-TB) and list three general clinical indications for utilizing second-line anti-TB drugs.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 3.2 Describe the mechanism of action of Bedaquiline and state which drugs in this regimen contribute to the observed QT prolongation.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 3.3 Identify the drug causing the patient's high-frequency hearing loss, state its class, and list its two major characteristic organ toxicities.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 3.4 Describe the mechanism of action of Delamanid in the treatment of MDR-TB.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 3.5 What is the mechanism of action of Fluoroquinolones (e.g., Moxifloxacin) against M. tuberculosis?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('s3')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answers</span>
+                </div>
+
+                <div class="essay-answers" id="essay-s3">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answers</h4>
+
+                    <div class="sub-answer">
+                        <b>3.1</b> — MDR-TB is defined as tuberculosis resistant to at least <b>Isoniazid</b> and <b>Rifampicin</b>. Second-line drugs are indicated for: (1) Resistance to first-line agents, (2) Failure of clinical response to first-line therapy, and (3) Serious treatment-limiting adverse drug reactions to first-line drugs.
+                    </div>
+
+                    <div class="sub-answer">
+                        <b>3.2</b> — Bedaquiline inhibits mycobacterial <b>ATP synthase</b>, blocking energy production. <b>Bedaquiline, Delamanid, and Moxifloxacin</b> (a fluoroquinolone) all carry risks of extending cardiac repolarization, synergistically causing QT prolongation.
+                    </div>
+
+                    <div class="sub-answer">
+                        <b>3.3</b> — <b>Amikacin</b> (an aminoglycoside). Its major toxicities are <b>ototoxicity</b> (auditory and vestibular damage) and <b>nephrotoxicity</b>.
+                    </div>
+
+                    <div class="sub-answer">
+                        <b>3.4</b> — Delamanid inhibits the synthesis of <b>mycolic acids</b>, destabilizing and compromising the integrity of the mycobacterial cell wall.
+                    </div>
+
+                    <div class="sub-answer">
+                        <b>3.5</b> — Fluoroquinolones inhibit bacterial <b>DNA gyrase</b> (topoisomerase II) and <b>topoisomerase IV</b>, preventing DNA supercoiling, replication, and transcription.
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─── SCENARIO 4 ─── -->
+            <div class="essay-card">
+                <h3><span class="qnum">Scenario 4</span> Leprosy Management</h3>
+                <div class="scenario-prompt">
+                    A 52-year-old patient with lepromatous leprosy is started on multi-drug therapy (MDT) consisting of Dapsone, Rifampicin, and Clofazimine. Two weeks later, he develops dark urine, pallor, and jaundice. Laboratory studies show hemolytic anemia with Heinz bodies. He later develops tender erythematous nodules on his extremities.
+                </div>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 4.1 What is the mechanism of action of Dapsone, and what pharmacological classification describes its effect on M. leprae?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 4.2 Explain the cause of the patient's anemia and Heinz bodies in the context of Dapsone therapy.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 4.3 Identify the inflammatory reaction the patient experienced (Erythema Nodosum Leprosum) and state two pharmacological agents used to suppress it.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 4.4 Describe the primary mechanism of action of Clofazimine and list two non-dermatologic / dermatologic side effects associated with it.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 4.5 State the three main objectives recommended by WHO for utilizing combination multi-drug therapy (MDT) in leprosy treatment.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('s4')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answers</span>
+                </div>
+
+                <div class="essay-answers" id="essay-s4">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answers</h4>
+
+                    <div class="sub-answer">
+                        <b>4.1</b> — Dapsone inhibits <b>dihydroperonate synthetase</b>, blocking folic acid synthesis. It is classified pharmacologically as a <b>leprostatic</b> agent.
+                    </div>
+
+                    <div class="sub-answer">
+                        <b>4.2</b> — Dapsone causes oxidative denaturation of hemoglobin (forming <b>Heinz bodies</b>) and hemolysis, which is especially severe in patients with <b>G6PD deficiency</b>.
+                    </div>
+
+                    <div class="sub-answer">
+                        <b>4.3</b> — <b>Erythema Nodosum Leprosum (ENL / Type 2 lepra reaction)</b>. It is suppressed using <b>Corticosteroids</b> or <b>Thalidomide</b>. (Clofazimine also possesses anti-inflammatory action that helps suppress lepra reactions).
+                    </div>
+
+                    <div class="sub-answer">
+                        <b>4.4</b> — Clofazimine binds selectively to guanine bases of bacterial DNA, blocking template function; it also activates <b>phospholipase A2</b> to accumulate toxic lysophospholipids. Side effects include <b>reddish-black skin discoloration</b>, dryness, pruritus, and photodermatitis.
+                    </div>
+
+                    <div class="sub-answer">
+                        <b>4.5</b> — The three main objectives: <b>(1)</b> Eliminate persister bacilli, <b>(2)</b> Prevent the emergence of drug resistance, and <b>(3)</b> Reduce the overall duration of therapy.
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ═══════ JAVASCRIPT ═══════ -->
+    <script>
+        // ─── TAB NAVIGATION ───
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const section = this.dataset.section;
+                document.querySelectorAll('.section-panel').forEach(p => p.classList.add('hidden'));
+                document.getElementById('section-' + section).classList.remove('hidden');
+                const topEl = document.getElementById(section + '-top');
+                if (topEl) topEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // ─── MCQ CORRECT ANSWERS ───
+        const correctAnswers = {
+            q1: "b",
+            q2: "c",
+            q3: "b",
+            q4: "b",
+            q5: "b",
+            q6: "b",
+            q7: "b",
+            q8: "b",
+            q9: "b",
+            q10: "c",
+            q11: "b",
+            q12: "b",
+            q13: "b",
+            q14: "b",
+            q15: "c",
+            q16: "a",
+            q17: "b",
+            q18: "b",
+            q19: "b",
+            q20: "b"
+        };
+
+        // ─── MCQ EXPLANATIONS ───
+        const answerExplanations = {
+            q1: "Isoniazid inhibits enoyl-acyl carrier protein reductase, an essential enzyme required for the synthesis of mycolic acids, which are key structural components of the mycobacterial cell wall.",
+            q2: "Isoniazid causes peripheral neuropathy by interfering with pyridoxine (vitamin B6) utilization through pyridoxal kinase inhibition and increasing its excretion. It is prevented by co-administering pyridoxine.",
+            q3: "INH is metabolized by N-acetyltransferase. Rapid acetylators produce the hepatotoxic metabolite acetylisoniazid (acetylhydrazine) more quickly, increasing the risk of drug-induced hepatitis.",
+            q4: "Rifampicin is a potent CYP450 inducer that significantly lowers protease inhibitor concentrations. Rifabutin is a rifamycin analogue with substantially less CYP induction and is preferred in patients on protease inhibitors.",
+            q5: "Resistance to rifampicin develops rapidly when used alone due to genetic mutations altering the target enzyme, DNA-dependent RNA polymerase, reducing its drug binding affinity.",
+            q6: "Rifampicin and its metabolites naturally impart a harmless orange-red discoloration to body fluids (urine, sweat, tears, saliva). Patients should be reassured.",
+            q7: "Pyrazinamide is active only at acidic pH (~5.0), such as that found within macrophage phagosomes. It is inactive at neutral pH, making it selective for intracellular 'persister' bacilli.",
+            q8: "Both Pyrazinamide and Ethambutol inhibit the renal tubular excretion of uric acid, leading to hyperuricemia and potential precipitation of acute gouty arthritis.",
+            q9: "Ethambutol causes dose-dependent retrobulbar (optic) neuritis, which manifests as decreased visual acuity and red-green color blindness.",
+            q10: "Early optical neuritis can be reversed if detected early; however, in young children, testing visual acuity and red-green color discrimination is difficult, making monitoring unsafe.",
+            q11: "Approximately 50% of Ethambutol is eliminated unchanged in the urine. In severe renal failure (CrCl < 10 mL/min), the drug accumulates, requiring a 50% dose reduction to prevent toxicity.",
+            q12: "Bedaquiline targets energy generation in mycobacteria by inhibiting ATP synthase, effectively depleting ATP in both replicating and non-replicating bacilli.",
+            q13: "Both Bedaquiline and Delamanid carry significant risks of QT prolongation on ECG, requiring baseline and periodic cardiac monitoring to prevent fatal arrhythmias.",
+            q14: "Dapsone is a sulfone structurally related to sulfonamides that competitively inhibits dihydroperonate synthetase in the folate synthesis pathway, acting as a leprostatic agent.",
+            q15: "Dapsone causes oxidative stress in erythrocytes. In patients with G6PD deficiency, impaired NADPH production leads to acute hemolytic anemia and hemoglobinuria.",
+            q16: "Clofazimine increases bacterial phospholipase A2 activity, causing the generation and accumulation of lysophospholipids, which are membrane-disrupting and toxic to bacilli.",
+            q17: "Clofazimine is a phenazine dye that accumulates in tissues, causing reddish-black discoloration of the skin, hair, and secretions, along with skin dryness and photodermatitis.",
+            q18: "Macrolides (clarithromycin or azithromycin) are highly effective and constitute the primary first-choice agents for MAC treatment and prophylaxis.",
+            q19: "Multi-drug therapy suppresses resistant mutant sub-populations, targets rapidly dividing bacilli alongside dormant 'persisters', reduces toxicity, and shortens overall treatment duration.",
+            q20: "Cycloserine causes central nervous system neurotoxicity (headache, depression, psychosis, tremors, seizures). Supplemental pyridoxine is administered to minimize these neurotoxic risks."
+        };
+
+        // ─── MCQ SUBMIT ───
+        function submitQuiz() {
+            let score = 0;
+            const total = Object.keys(correctAnswers).length;
+
+            document.querySelectorAll('.question-feedback').forEach(el => el.innerHTML = '');
+
+            for (let key in correctAnswers) {
+                const radios = Array.from(document.querySelectorAll(`input[name="${key}"]`));
+                const selected = radios.find(r => r.checked);
+                const correct = correctAnswers[key];
+
+                if (selected && selected.value === correct) score++;
+
+                const feedbackEl = document.getElementById(`feedback-${key}`);
+                if (!feedbackEl) continue;
+
+                let html = `<div class="answer-block"><strong>Q${key.replace(/^q/, '')}</strong><div class="answer-list">`;
+
+                radios.forEach(r => {
+                    const label = r.parentElement;
+                    const text = label ? label.textContent.trim() : r.value;
+                    const classes = ['answer-item'];
+                    if (r.value === correct) classes.push('answer-correct');
+                    if (r.checked && r.value !== correct) classes.push('answer-wrong', 'user-choice');
+                    if (r.checked && r.value === correct) classes.push('user-choice');
+                    html += `<div class="${classes.join(' ')}">${text}${r.checked ? ' ◀' : ''}</div>`;
+                });
+
+                html += `</div>`;
+
+                const correctRadio = radios.find(rr => rr.value === correct);
+                const correctText = correctRadio && correctRadio.parentElement ? correctRadio.parentElement.textContent
+                    .trim() : correct;
+                const explanationText = answerExplanations[key] || '';
+
+                if (selected) {
+                    if (selected.value === correct) {
+                        html += `<div class="explanation">✅ Correct — ${explanationText}</div>`;
+                    } else {
+                        html +=
+                            `<div class="explanation wrong">❌ Incorrect. Correct answer: <strong>${correctText}</strong>. ${explanationText}</div>`;
+                    }
+                } else {
+                    html +=
+                        `<div class="explanation wrong">No answer selected. Correct answer: <strong>${correctText}</strong>. ${explanationText}</div>`;
+                }
+
+                html += `</div>`;
+                feedbackEl.innerHTML = html;
+            }
+
+            const percentage = Math.round((score / total) * 100);
+            const resultBox = document.getElementById('resultBox');
+            resultBox.style.display = 'block';
+            document.getElementById('answers').innerHTML = '';
+
+            let start = 0;
+            const timer = setInterval(() => {
+                if (start >= percentage) clearInterval(timer);
+                document.getElementById('score').innerText = start + '%';
+                start++;
+            }, 20);
+
+            document.querySelectorAll('#quizForm input[type="radio"]').forEach(i => i.disabled = true);
+        }
+
+        // ─── ESSAY TOGGLE ───
+        function toggleEssay(id) {
+            const el = document.getElementById('essay-' + id);
+            if (!el) return;
+            const isVisible = el.classList.toggle('visible');
+            el.setAttribute('aria-hidden', !isVisible);
+            if (isVisible) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        // ─── KEYBOARD ACCESSIBILITY ───
+        document.querySelectorAll('.essay-actions .btn').forEach(btn => {
+            btn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    btn.click();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

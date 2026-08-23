@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Antifungal Pharmacology | 20 MCQs + 4 Scenarios</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        /* ─────────── ROOT & RESET ─────────── */
+        :root {
+            --primary: #2b7a78;
+            --accent: #3aafa9;
+            --dark: #17252a;
+            --light: #f8f9fa;
+            --radius: 12px;
+            --shadow: 0 4px 14px rgba(18, 38, 63, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Roboto, system-ui, sans-serif;
+            background: linear-gradient(180deg, #f5f7fb, #eef6f6);
+            color: var(--dark);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: #fff;
+            padding: 0.8rem 0;
+            box-shadow: 0 6px 18px rgba(11, 36, 36, 0.18);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            font-size: 1.6rem;
+            color: var(--accent);
+        }
+
+        .logo h1 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .back-btn {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    padding: 0.3rem 0.9rem;
+    border-radius: 40px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+.back-btn i {
+    font-size: 0.8rem;
+}
+
+@media (max-width: 700px) {
+    .header-inner {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .back-btn {
+        order: 2; /* place it after logo but before badge */
+    }
+}
+
+        .badge {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 0.25rem 1rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            color: #d4f0ee;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0.3rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-tabs .tab-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: none;
+            color: #d4f0ee;
+            padding: 0.3rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .nav-tabs .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #fff;
+        }
+
+        .nav-tabs .tab-btn.active {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 1.25rem 2.5rem;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1.8rem 0 1rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 3px solid rgba(43, 122, 120, 0.20);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .section-title i {
+            font-size: 1.1rem;
+            color: rgb(8, 104, 66);
+        }
+
+        .section-title .count {
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0.05rem 0.7rem;
+        }
+
+        .section-subtitle {
+            color: #5f7a7a;
+            font-size: 0.92rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .section-panel {
+            display: block;
+        }
+
+        .section-panel.hidden {
+            display: none;
+        }
+
+        /* ─── MCQ CARDS ─── */
+        .question {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.2rem 1.2rem 0.2rem 1.2rem;
+            margin-bottom: 1.2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(43, 122, 120, 0.06);
+            transition: box-shadow 0.2s;
+        }
+
+        .question:hover {
+            box-shadow: 0 6px 22px rgba(18, 38, 63, 0.07);
+        }
+
+        .question p {
+            font-weight: 600;
+            font-size: 0.98rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .question .q-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            line-height: 1.6;
+            margin-right: 0.4rem;
+        }
+
+        .options label {
+            display: block;
+            background: #fafcfd;
+            border: 1px solid #e0e8ef;
+            border-radius: 8px;
+            padding: 0.45rem 0.9rem;
+            margin-top: 0.45rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-weight: 450;
+            font-size: 0.94rem;
+        }
+
+        .options label:hover {
+            background: #e8f5f4;
+            border-color: var(--accent);
+        }
+
+        .options input[type="radio"] {
+            margin-right: 0.5rem;
+            accent-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .question-feedback {
+            margin-top: 0.9rem;
+            padding: 0.4rem 0 0.1rem 0;
+            border-top: 1px dashed #dce6ed;
+        }
+
+        .answer-block strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--primary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .answer-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .answer-item {
+            padding: 5px 10px;
+            border-radius: 6px;
+            border: 1px solid #e6eef3;
+            background: #ffffff;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .answer-correct {
+            background: #ecfdf5;
+            border-color: #bbf7d0;
+            color: #065f46;
+        }
+
+        .answer-wrong {
+            background: #fff1f2;
+            border-color: #fca5a5;
+            color: #9f1239;
+        }
+
+        .user-choice {
+            outline: 2px dashed rgba(0, 0, 0, 0.06);
+        }
+
+        .explanation {
+            margin-top: 6px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: #f1f8f6;
+            color: #065f46;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border-left: 4px solid var(--accent);
+        }
+
+        .explanation.wrong {
+            background: #fff5f5;
+            color: #7f1d1d;
+            border-left-color: #f87171;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.6rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(43, 122, 120, 0.22);
+        }
+
+        .btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(43, 122, 120, 0.30);
+        }
+
+        .btn:active {
+            transform: scale(0.96);
+        }
+
+        .btn i {
+            font-size: 0.9rem;
+        }
+
+        .submit-wrap {
+            text-align: center;
+            margin: 1.5rem 0 2rem;
+        }
+
+        .result {
+            margin-top: 1.5rem;
+            padding: 1.5rem 1.5rem 1rem;
+            background: #f1faf9;
+            border-radius: var(--radius);
+            text-align: center;
+            display: none;
+            border: 1px solid #c5e3df;
+        }
+
+        .result h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.2rem;
+        }
+
+        .score {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0.2rem 0 0.4rem;
+        }
+
+        /* ─── SCENARIO / ESSAY ─── */
+        .essay-card {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.25rem 1.25rem 1rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(43, 122, 120, 0.06);
+        }
+
+        .essay-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 0 0 0.6rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .essay-card h3 .qnum {
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.75rem;
+            line-height: 1.6;
+        }
+
+        .essay-card .scenario-prompt {
+            background: #f4f8fa;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            margin: 0.2rem 0 0.8rem 0;
+            font-size: 0.94rem;
+            line-height: 1.6;
+        }
+
+        .essay-card .sub-q {
+            background: #fafcfd;
+            padding: 0.6rem 0.9rem;
+            margin-top: 0.5rem;
+            border-radius: 6px;
+            border: 1px solid #e9edf2;
+            font-size: 0.92rem;
+            font-weight: 500;
+        }
+
+        .essay-card .sub-q i {
+            color: var(--primary);
+            margin-right: 0.3rem;
+        }
+
+        .essay-card textarea {
+            width: 100%;
+            min-height: 60px;
+            border-radius: 8px;
+            border: 1px solid #d1dbe0;
+            padding: 0.7rem 0.9rem;
+            resize: vertical;
+            font-family: inherit;
+            font-size: 0.95rem;
+            background: #fafcfd;
+            transition: border 0.2s;
+            margin-top: 0.3rem;
+        }
+
+        .essay-card textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(43, 122, 120, 0.12);
+        }
+
+        .essay-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 0.7rem;
+            flex-wrap: wrap;
+        }
+
+        .essay-actions .btn {
+            padding: 0.45rem 1.2rem;
+            font-size: 0.9rem;
+        }
+
+        .essay-answers {
+            display: none;
+            margin-top: 1rem;
+            background: #f1f8f6;
+            border-radius: 8px;
+            padding: 1rem 1.2rem;
+            border: 1px solid #cfe6e0;
+            color: var(--dark);
+        }
+
+        .essay-answers.visible {
+            display: block;
+            animation: fadeSlide 0.25s ease;
+        }
+
+        .essay-answers h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: var(--primary);
+            margin: 0 0 0.5rem 0;
+        }
+
+        .essay-answers p,
+        .essay-answers li {
+            font-size: 0.94rem;
+            line-height: 1.6;
+        }
+
+        .essay-answers ul {
+            padding-left: 1.2rem;
+            margin: 0.3rem 0 0.5rem;
+        }
+
+        .essay-answers ul li {
+            margin-bottom: 0.2rem;
+        }
+
+        .essay-answers b {
+            color: var(--dark);
+        }
+
+        .essay-answers .sub-answer {
+            margin-top: 0.6rem;
+            padding-top: 0.5rem;
+            border-top: 1px dashed #d0e2dc;
+        }
+
+        .essay-answers .sub-answer:first-of-type {
+            border-top: none;
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        @keyframes fadeSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(-6px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 700px) {
+            body {
+                padding-top: 72px;
+            }
+            .logo h1 {
+                font-size: 1rem;
+            }
+            .header-inner {
+                padding: 0 1rem;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.3rem;
+            }
+            .badge {
+                align-self: flex-start;
+            }
+            .nav-tabs {
+                justify-content: center;
+            }
+            .nav-tabs .tab-btn {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.7rem;
+            }
+            .question {
+                padding: 1rem 1rem 0.1rem 1rem;
+            }
+            .section-title {
+                font-size: 1.1rem;
+            }
+            .essay-card {
+                padding: 1rem;
+            }
+            .score {
+                font-size: 2.2rem;
+            }
+            .btn {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .logo h1 {
+                font-size: 0.85rem;
+            }
+            .logo i {
+                font-size: 1.2rem;
+            }
+            .options label {
+                font-size: 0.87rem;
+                padding: 0.4rem 0.7rem;
+            }
+        }
+
+        .text-muted {
+            color: #5f7a7a;
+            font-size: 0.9rem;
+        }
+        .hidden {
+            display: none !important;
+        }
+        .scroll-target {
+            scroll-margin-top: 90px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════ HEADER ═══════ -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <i class="fas fa-biohazard"></i>
+                <h1>Antifungal Pharmacology</h1>
+            </div>
+            <button class="back-btn" onclick="history.back()" title="Go back to previous page">
+                <i class="fas fa-arrow-left"></i>Back
+            </button>
+            <span class="badge"><i class="fas fa-pencil-alt"></i> &nbsp;20 MCQs + 4 Scenarios</span>
+            <div class="nav-tabs">
+                <button class="tab-btn active" data-section="mcq">MCQs</button>
+                <button class="tab-btn" data-section="essay">Scenarios</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══════ MAIN CONTENT ═══════ -->
+    <main>
+
+        <!-- ──── SECTION 1: MCQs ──── -->
+        <section class="container section-panel" id="section-mcq">
+            <div class="section-title scroll-target" id="mcq-top">
+                <i class="fas fa-list-ul"></i> Multiple Choice Questions
+                <span class="count">20</span>
+            </div>
+            <p class="section-subtitle">Select the best answer for each question, then click <strong>Submit All MCQs</strong> at the bottom.</p>
+
+            <form id="quizForm">
+                <!-- Q1 -->
+                <div class="question">
+                    <p><span class="q-badge">1</span> A patient receiving long-term broad-spectrum antibacterial therapy develops an invasive systemic fungal infection. The attending physician initiates intravenous Amphotericin B infusion. Which of the following best describes the exact mechanism of action of this agent?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="a"> A. Direct inhibition of fungal squalene epoxidase leading to toxic squalene accumulation.</label>
+                        <label><input type="radio" name="q1" value="b"> B. Selective binding to ergosterol, creating transmembrane pores that cause leakage of intracellular ions and macromolecules.</label>
+                        <label><input type="radio" name="q1" value="c"> C. Competitive inhibition of fungal lanosterol 14-α-demethylase, disrupting membrane structure.</label>
+                        <label><input type="radio" name="q1" value="d"> D. Inhibition of fungal cell wall synthesis through non-competitive block of β-(1,3)-D-glucan synthase.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q1"></div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="question">
+                    <p><span class="q-badge">2</span> Prior to administering a full therapeutic dose of Conventional Amphotericin B, a test dose is routinely administered. What primary pharmacological concern necessitates this protocol?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="a"> A. Early detection of irreversible renal tubular necrosis.</label>
+                        <label><input type="radio" name="q2" value="b"> B. Mitigation and assessment of immediate infusion-related toxicities such as fever, muscle spasms, and severe hypotension.</label>
+                        <label><input type="radio" name="q2" value="c"> C. Risk of immediate bone marrow suppression and acute agranulocytosis.</label>
+                        <label><input type="radio" name="q2" value="d"> D. Risk of acute cholestatic jaundice caused by hepatic failure.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q2"></div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question">
+                    <p><span class="q-badge">3</span> Liposomal formulations of Amphotericin B are clinically superior to conventional deoxycholate formulations primarily because lipid encapsulation:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="a"> A. Increases oral bioavailability, allowing conversion to outpatient therapy.</label>
+                        <label><input type="radio" name="q3" value="b"> B. Reduces binding to human cell membranes, significantly decreasing nephrotoxicity and infusion-related toxicity.</label>
+                        <label><input type="radio" name="q3" value="c"> C. Circumvents the requirement for intracellular conversion by fungal enzymes.</label>
+                        <label><input type="radio" name="q3" value="d"> D. Eliminates the risk of hypokalemia and hypomagnesemia completely.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q3"></div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="question">
+                    <p><span class="q-badge">4</span> Nystatin is a polyene macrolide structurally related to Amphotericin B. Why is its clinical utility strictly limited to topical and oral non-absorbable formulations?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="a"> A. It undergoes rapid total liver degradation via first-pass metabolism upon systemic absorption.</label>
+                        <label><input type="radio" name="q4" value="b"> B. It causes severe systemic toxicity when administered parenterally.</label>
+                        <label><input type="radio" name="q4" value="c"> C. Fungi rapidly express efflux pumps against it in systemic circulation.</label>
+                        <label><input type="radio" name="q4" value="d"> D. It binds exclusively to host cholesterol when exposed to serum proteins.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q4"></div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="question">
+                    <p><span class="q-badge">5</span> Azole antifungals impair fungal membrane integrity through which of the following biochemical actions?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="a"> A. Direct enzymatic degradation of pre-existing ergosterol molecules.</label>
+                        <label><input type="radio" name="q5" value="b"> B. Inhibition of cytochrome P450 14-α-demethylase, preventing conversion of lanosterol to ergosterol.</label>
+                        <label><input type="radio" name="q5" value="c"> C. Inhibition of fungal thymidylate synthetase leading to arrest of sterol transcription.</label>
+                        <label><input type="radio" name="q5" value="d"> D. Non-selective inhibition of fungal aldehyde dehydrogenase.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q5"></div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="question">
+                    <p><span class="q-badge">6</span> A male patient taking systemic Ketoconazole for a severe fungal infection presents with gynecomastia, decreased libido, and menstrual irregularities in his female counterpart who also used the drug. These endocrine side effects stem from Ketoconazole's:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="a"> A. Potent activation of human estrogen receptors in peripheral tissues.</label>
+                        <label><input type="radio" name="q6" value="b"> B. Lack of selectivity for fungal CYP450, leading to inhibition of human gonadal and adrenal steroidogenesis.</label>
+                        <label><input type="radio" name="q6" value="c"> C. Direct stimulation of pituitary prolactin secretion.</label>
+                        <label><input type="radio" name="q6" value="d"> D. Downregulation of human glucocorticoid receptor expression.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q6"></div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="question">
+                    <p><span class="q-badge">7</span> A patient on oral Ketoconazole therapy begins taking an over-the-counter antacid and Omeprazole for acid reflux. How does this co-administration impact Ketoconazole efficacy?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="a"> A. Increases Ketoconazole clearance through renal tubular secretion.</label>
+                        <label><input type="radio" name="q7" value="b"> B. Decreases Ketoconazole oral bioavailability because its absorption requires a low gastric pH.</label>
+                        <label><input type="radio" name="q7" value="c"> C. Enhances Ketoconazole toxicity by displacing it from plasma proteins.</label>
+                        <label><input type="radio" name="q7" value="d"> D. Prevents Ketoconazole hepatic metabolism, leading to elevated serum concentrations.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q7"></div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="question">
+                    <p><span class="q-badge">8</span> Triazoles (such as Fluconazole and Itraconazole) are generally preferred over Imidazoles (such as Ketoconazole) for systemic infections because Triazoles:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="a"> A. Do not undergo any hepatic clearance and are excreted 100% unchanged in stool.</label>
+                        <label><input type="radio" name="q8" value="b"> B. Exhibit higher selectivity for fungal CYP450, resulting in fewer human endocrine side effects.</label>
+                        <label><input type="radio" name="q8" value="c"> C. Directly disrupt fungal cell walls by glucan synthesis inhibition.</label>
+                        <label><input type="radio" name="q8" value="d"> D. Are entirely free of drug interaction risks.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q8"></div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="question">
+                    <p><span class="q-badge">9</span> A patient suffering from Cryptococcal meningitis requires antifungal therapy that achieves reliable therapeutic levels within the Central Nervous System (CNS). Which of the following azoles reliably penetrates the Blood-Brain Barrier into the CSF?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="a"> A. Ketoconazole</label>
+                        <label><input type="radio" name="q9" value="b"> B. Itraconazole</label>
+                        <label><input type="radio" name="q9" value="c"> C. Fluconazole</label>
+                        <label><input type="radio" name="q9" value="d"> D. Miconazole</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q9"></div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="question">
+                    <p><span class="q-badge">10</span> An invasive Aspergillosis infection is diagnosed in an immunocompromised host. Which broad-spectrum triazole antifungal is recognized as a primary treatment choice for invasive Aspergillosis, but is associated with transient, reversible visual disturbances?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="a"> A. Fluconazole</label>
+                        <label><input type="radio" name="q10" value="b"> B. Voriconazole</label>
+                        <label><input type="radio" name="q10" value="c"> C. Ketoconazole</label>
+                        <label><input type="radio" name="q10" value="d"> D. Terbinafine</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q10"></div>
+                </div>
+
+                <!-- Q11 -->
+                <div class="question">
+                    <p><span class="q-badge">11</span> Flucytosine is a synthetic pyrimidine antimetabolite. What intracellular enzymatic conversion within fungal cells is essential for its selective antifungal activity?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q11" value="a"> A. Conversion to ergosterol by squalene epoxidase.</label>
+                        <label><input type="radio" name="q11" value="b"> B. Intracellular conversion to 5-fluorouracil, which inhibits thymidylate synthetase and DNA synthesis.</label>
+                        <label><input type="radio" name="q11" value="c"> C. Phosphorylation by human thymidine kinase to yield cytotoxic nucleotides.</label>
+                        <label><input type="radio" name="q11" value="d"> D. Oxidation by mitochondrial cytochrome oxidase to produce autodigestive peroxides.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q11"></div>
+                </div>
+
+                <!-- Q12 -->
+                <div class="question">
+                    <p><span class="q-badge">12</span> Why is Flucytosine frequently administered in synergistic combination with Amphotericin B in the treatment of cryptococcal meningitis?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q12" value="a"> A. Amphotericin B increases fungal cell membrane permeability, facilitating enhanced intracellular entry of Flucytosine.</label>
+                        <label><input type="radio" name="q12" value="b"> B. Flucytosine prevents the severe nephrotoxicity caused by Amphotericin B.</label>
+                        <label><input type="radio" name="q12" value="c"> C. Amphotericin B inhibits human liver enzymes that degrade Flucytosine.</label>
+                        <label><input type="radio" name="q12" value="d"> D. Flucytosine acts as an osmotic diuretic to increase CNS clearance of fungi.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q12"></div>
+                </div>
+
+                <!-- Q13 -->
+                <div class="question">
+                    <p><span class="q-badge">13</span> Caspofungin represents a distinct antifungal class (echinocandins). What is its precise mechanism of action?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q13" value="a"> A. Disruption of microtubule assembly during fungal mitotic spindle formation.</label>
+                        <label><input type="radio" name="q13" value="b"> B. Inhibition of fungal cell wall synthesis via inhibition of β-glucan synthesis.</label>
+                        <label><input type="radio" name="q13" value="c"> C. Inhibition of fungal protein synthesis through aminoacyl-tRNA transfer blockade.</label>
+                        <label><input type="radio" name="q13" value="d"> D. Binding to ergosterol to form ion-permeable membrane pores.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q13"></div>
+                </div>
+
+                <!-- Q14 -->
+                <div class="question">
+                    <p><span class="q-badge">14</span> A 10-year-old child presents with Tinea capitis (ringworm of the scalp). Oral Griseofulvin is prescribed. Which mechanism explains how Griseofulvin eradicates this cutaneous fungal infection?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q14" value="a"> A. It dissolves superficial keratin layers to strip fungal attachment sites.</label>
+                        <label><input type="radio" name="q14" value="b"> B. It binds to microtubule proteins, inhibiting fungal mitosis, and concentrates selectively in newly formed keratinized tissue.</label>
+                        <label><input type="radio" name="q14" value="c"> C. It inhibits squalene epoxidase, accumulating toxic intracellular squalene.</label>
+                        <label><input type="radio" name="q14" value="d"> D. It creates peroxides that digest the fungal cell wall from within.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q14"></div>
+                </div>
+
+                <!-- Q15 -->
+                <div class="question">
+                    <p><span class="q-badge">15</span> A patient on Griseofulvin therapy consumes alcohol at a social gathering and experiences flushing, tachycardia, and severe nausea. This reaction occurs because Griseofulvin:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q15" value="a"> A. Potently inhibits aldehyde dehydrogenase.</label>
+                        <label><input type="radio" name="q15" value="b"> B. Induces gastric alcohol dehydrogenase activity.</label>
+                        <label><input type="radio" name="q15" value="c"> C. Competes for renal elimination of lactate.</label>
+                        <label><input type="radio" name="q15" value="d"> D. Blockade of peripheral alpha-adrenergic receptors.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q15"></div>
+                </div>
+
+                <!-- Q16 -->
+                <div class="question">
+                    <p><span class="q-badge">16</span> Terbinafine is widely utilized as an oral and topical agent for onychomycosis. Its fungicidal action is attributed to:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q16" value="a"> A. Direct destruction of fungal DNA via pyrimidine antagonism.</label>
+                        <label><input type="radio" name="q16" value="b"> B. Inhibition of squalene epoxidase, leading to ergosterol deficiency and intracellular toxic accumulation of squalene.</label>
+                        <label><input type="radio" name="q16" value="c"> C. Inhibition of 14-α-demethylase with loss of cell wall integrity.</label>
+                        <label><input type="radio" name="q16" value="d"> D. Disruption of active transport systems across the fungal nuclear membrane.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q16"></div>
+                </div>
+
+                <!-- Q17 -->
+                <div class="question">
+                    <p><span class="q-badge">17</span> Whitfield's ointment is a classic topical preparation for dermatophytosis. It combines Benzoic acid with Salicylic acid. What is the functional role of Salicylic acid in this formulation?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q17" value="a"> A. It acts as a direct fungicidal agent against Candida albicans.</label>
+                        <label><input type="radio" name="q17" value="b"> B. It serves as a keratolytic agent to shed infected epidermal layers, facilitating Benzoic acid penetration.</label>
+                        <label><input type="radio" name="q17" value="c"> C. It neutralizes local skin inflammation by inhibiting histamine release.</label>
+                        <label><input type="radio" name="q17" value="d"> D. It acts as an enzyme inducer to accelerate local drug metabolism.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q17"></div>
+                </div>
+
+                <!-- Q18 -->
+                <div class="question">
+                    <p><span class="q-badge">18</span> A patient diagnosed with Pneumocystis pneumonia (PCP) is prescribed Co-trimoxazole. What is the fixed standard ratio of Trimethoprim to Sulfamethoxazole in fixed-dose combination formulations, and what is its physiological objective?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q18" value="a"> A. 1:2 ratio, designed to balance renal vs. hepatic clearance rates.</label>
+                        <label><input type="radio" name="q18" value="b"> B. 1:5 ratio, formulated to achieve an optimal systemic plasma concentration ratio of 1:20.</label>
+                        <label><input type="radio" name="q18" value="c"> C. 5:1 ratio, designed to maximize trimethoprim tissue accumulation.</label>
+                        <label><input type="radio" name="q18" value="d"> D. 1:10 ratio, designed to suppress allergic reactions to the sulfa component.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q18"></div>
+                </div>
+
+                <!-- Q19 -->
+                <div class="question">
+                    <p><span class="q-badge">19</span> Co-trimoxazole exerts a bactericidal and synergistic antimicrobial effect via dual sequential blockade of folate synthesis. Which option correctly pairs each component with its enzymatic target?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q19" value="a"> A. Sulfamethoxazole inhibits Dihydrofolate Reductase; Trimethoprim inhibits Dihydropteroate Synthetase.</label>
+                        <label><input type="radio" name="q19" value="b"> B. Sulfamethoxazole inhibits Dihydropteroate Synthetase; Trimethoprim inhibits Dihydrofolate Reductase.</label>
+                        <label><input type="radio" name="q19" value="c"> C. Both components non-competitively inhibit Folic Acid Synthetase.</label>
+                        <label><input type="radio" name="q19" value="d"> D. Trimethoprim inhibits PABA conversion; Sulfamethoxazole inhibits thymidylate synthetase.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q19"></div>
+                </div>
+
+                <!-- Q20 -->
+                <div class="question">
+                    <p><span class="q-badge">20</span> An AIDS patient receiving high-dose Co-trimoxazole for active Pneumocystis jirovecii pneumonia develops severe megaloblastic anemia and leukopenia. What adjunctive agent can be coadministered to reverse this hematological toxicity without compromising the antimicrobial efficacy against PCP?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q20" value="a"> A. Folic acid</label>
+                        <label><input type="radio" name="q20" value="b"> B. Folinic acid (Leucovorin)</label>
+                        <label><input type="radio" name="q20" value="c"> C. Pyridoxine (Vitamin B6)</label>
+                        <label><input type="radio" name="q20" value="d"> D. Recombinant Erythropoietin alone</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q20"></div>
+                </div>
+
+                <div class="submit-wrap">
+                    <button type="button" class="btn" onclick="submitQuiz()">
+                        <i class="fas fa-check-circle"></i> Submit All MCQs
+                    </button>
+                </div>
+
+            </form>
+
+            <div class="result" id="resultBox">
+                <h3><i class="fas fa-chart-simple"></i> Your Score</h3>
+                <div class="score" id="score">0%</div>
+                <p class="text-muted" style="font-size:0.9rem;">Review the feedback below each question.</p>
+                <div id="answers"></div>
+            </div>
+        </section>
+
+        <!-- ──── SECTION 2: SCENARIOS ──── -->
+        <section class="container section-panel hidden" id="section-essay">
+            <div class="section-title scroll-target" id="essay-top">
+                <i class="fas fa-pen-fancy"></i> Clinical Scenarios
+                <span class="count">4</span>
+            </div>
+            <p class="section-subtitle">Read each scenario and write your answers in the boxes. Click <strong>Submit</strong> to reveal the model answers.</p>
+
+            <!-- ─── SCENARIO 1 ─── -->
+            <div class="essay-card">
+                <h3><span class="qnum">Scenario 1</span> Management of Systemic Mycoses in Immunocompromised Hosts</h3>
+                <div class="scenario-prompt">
+                    A 42-year-old renal transplant patient on immunosuppressive therapy presents with severe headache, fever, and neck stiffness. A lumbar puncture confirms Cryptococcal meningitis. The medical team plans an aggressive induction regimen utilizing intravenous Amphotericin B combined with oral Flucytosine. During the second week of therapy, baseline blood work reveals serum potassium of 2.8 mmol/L (hypokalemia), serum creatinine elevated to 2.4 mg/dL, and a drop in absolute neutrophil count.
+                </div>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 1.1 Explain the precise cellular mechanism of action of Amphotericin B and explain the biochemical rationale behind combining it with Flucytosine in Cryptococcal meningitis.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 1.2 Detail the immediate acute infusion-related toxicities associated with conventional Amphotericin B and identify the primary chronic toxicity responsible for the patient's electrolyte abnormalities (hypokalemia, hypomagnesemia).</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 1.3 Describe how liposomal formulations of Amphotericin B alter drug distribution to reduce host toxicities while maintaining therapeutic efficacy.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 1.4 Identify the specific adverse effect of Flucytosine demonstrated by the patient's drop in neutrophil count, and explain how folinic acid (Leucovorin) selectively rescues host tissues.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 1.5 Following successful induction therapy, which systemic triazole antifungal is the drug of choice for long-term suppressive/consolidation therapy in cryptococcal meningitis, and why is it preferred over Ketoconazole?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('s1')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answers</span>
+                </div>
+
+                <div class="essay-answers" id="essay-s1">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answers</h4>
+                    <div class="sub-answer"><b>1.1</b> Amphotericin B binds to ergosterol in the fungal cell membrane, creating ion-permeable transmembrane pores that cause leakage of essential intracellular contents (K<sup>+</sup>, Mg<sup>2+</sup>, organic molecules) and cell lysis. When combined with Flucytosine, Amphotericin B increases fungal cell membrane permeability, facilitating enhanced uptake and intracellular accumulation of Flucytosine, which is converted to 5-FU to inhibit DNA synthesis. This dual mechanism produces potent synergistic fungicidal clearance in CNS cryptococcal infections.</div>
+                    <div class="sub-answer"><b>1.2</b> Immediate infusion-related toxicities include fever, muscle spasms, chills, severe headache, vomiting, and hypotension. The primary chronic toxicity is nephrotoxicity, occurring in nearly all patients. Nephrotoxicity causes renal tubular damage leading to renal wasting of electrolytes, specifically hypokalemia and hypomagnesemia.</div>
+                    <div class="sub-answer"><b>1.3</b> Liposomal Amphotericin B packages the drug in lipid-associated delivery systems (liposomes/lipid complexes). This reduces binding to human cell membranes (cholesterol), thereby markedly decreasing nephrotoxicity and acute infusion reactions while allowing delivery of higher cumulative antifungal doses to target infected tissues.</div>
+                    <div class="sub-answer"><b>1.4</b> Flucytosine causes severe bone marrow depression (reversible neutropenia, leukopenia, and thrombocytopenia). Folinic acid (Leucovorin) administration bypasses dihydrofolate reductase inhibition in human host cells to restore nucleotide synthesis without entering fungal cells or rescuing the organism.</div>
+                    <div class="sub-answer"><b>1.5</b> Fluconazole is the drug of choice for long-term suppressive and preventive maintenance therapy against cryptococcal meningitis relapse. Fluconazole is preferred because it readily crosses the Blood-Brain Barrier to achieve therapeutic levels in CSF, possesses higher oral bioavailability independent of gastric pH, and lacks the endocrine/hepatotoxic toxicities of Ketoconazole.</div>
+                </div>
+            </div>
+
+            <!-- ─── SCENARIO 2 ─── -->
+            <div class="essay-card">
+                <h3><span class="qnum">Scenario 2</span> Endocrine Disruption &amp; Drug Interactions with Azole Therapy</h3>
+                <div class="scenario-prompt">
+                    A 38-year-old male presenting with chronic cutaneous fungal infection was self-medicating with systemic Ketoconazole obtained over the counter. After 6 weeks of continuous use, he presents with bilateral breast enlargement (gynecomastia), loss of libido, erectile dysfunction, and constant upper abdominal discomfort. Furthermore, he recently started taking Warfarin for deep vein thrombosis and noticed extensive cutaneous ecchymoses and bleeding gums.
+                </div>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 2.1 Describe the primary mechanism of action of azole antifungals and explain the biochemical reason why Ketoconazole causes gynecomastia and loss of libido in male patients.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 2.2 Explain the pharmacokinetic requirements for oral absorption of Ketoconazole, and state how concomitant administration of H2-receptor antagonists or proton pump inhibitors affects its bioavailability.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 2.3 Analyze the pharmacological mechanism driving the severe drug interaction between Ketoconazole and Warfarin that resulted in the patient's bleeding manifestations.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 2.4 What severe, potentially fatal organ toxicity is associated with systemic Ketoconazole usage that led to restricted systemic indications? Name two absolute contraindications for Ketoconazole.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 2.5 How do Triazoles (e.g., Itraconazole, Fluconazole) structural properties differ from Imidazoles regarding human CYP450 inhibition and systemic toxicity profiles?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('s2')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answers</span>
+                </div>
+
+                <div class="essay-answers" id="essay-s2">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answers</h4>
+                    <div class="sub-answer"><b>2.1</b> Azoles inhibit fungal cytochrome P450 14-α-demethylase, blocking conversion of lanosterol to ergosterol. Ketoconazole lacks selectivity for fungal CYP450 and non-selectively inhibits human steroidogenic CYP enzymes in the adrenal cortex and testes. It blocks enzymes responsible for testosterone and cortisol synthesis; the resulting clinical reduction in circulating testosterone levels produces gynecomastia, loss of libido, and impotence.</div>
+                    <div class="sub-answer"><b>2.2</b> Ketoconazole requires an acidic gastric environment for adequate dissolution and systemic oral absorption. Co-administration of antacids, H2-receptor antagonists (e.g., ranitidine), or proton pump inhibitors (e.g., omeprazole) neutralizes gastric acidity, significantly decreasing Ketoconazole absorption and oral bioavailability.</div>
+                    <div class="sub-answer"><b>2.3</b> Ketoconazole is a potent inhibitor of human hepatic cytochrome P450 enzymes (specifically CYP3A4 and CYP2C9). Warfarin is metabolized by hepatic CYP enzymes. Co-administration of Ketoconazole inhibits Warfarin breakdown, causing toxic elevation of plasma Warfarin levels, excessive anticoagulation, and severe mucosal and subcutaneous bleeding.</div>
+                    <div class="sub-answer"><b>2.4</b> Systemic Ketoconazole causes severe, potentially fatal hepatotoxicity (hepatic failure). Absolute contraindications include: (1) Active or pre-existing hepatic dysfunction/disease, (2) Pregnancy and lactation (due to teratogenicity and neonatal exposure), and (3) Concomitant administration with drugs highly dependent on CYP3A4 metabolism.</div>
+                    <div class="sub-answer"><b>2.5</b> Triazoles (Itraconazole, Fluconazole, Voriconazole) possess a higher structural selectivity for fungal CYP450 enzymes over human CYP enzymes compared to Imidazoles (Ketoconazole). As a result, Triazoles produce far less suppression of human steroid hormone synthesis (significantly fewer endocrine side effects) and carry a lower risk of clinical hepatotoxicity.</div>
+                </div>
+            </div>
+
+            <!-- ─── SCENARIO 3 ─── -->
+            <div class="essay-card">
+                <h3><span class="qnum">Scenario 3</span> Dermatophyte Infections: Griseofulvin vs. Terbinafine</h3>
+                <div class="scenario-prompt">
+                    A 12-year-old boy presents with severe Tinea capitis resulting in localized alopecia and scaling. His 35-year-old mother presents simultaneously with severe onychomycosis of the toenails. The pediatrician prescribes oral Griseofulvin for the child, while the dermatologist prescribes oral Terbinafine for the mother. The mother is advised to take her medication cautiously as she is actively nursing an infant, and the father is warned about Griseofulvin interactions regarding alcohol consumption.
+                </div>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 3.1 Explain the mechanism of action of Griseofulvin. How does its tissue distribution pattern explain its efficacy in dermatophyte infections of the skin, hair, and nails?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 3.2 Describe the mechanism of action of Terbinafine. How does inhibition of squalene epoxidase lead to fungal cell death?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 3.3 What dietary counsel regarding drug administration should be given to a patient prescribed oral Griseofulvin to optimize gastrointestinal absorption?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 3.4 Why is oral Terbinafine therapy contraindicated in lactating mothers? List three common adverse effects associated with oral Terbinafine.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 3.5 Explain the metabolic interaction that occurs when ethanol is consumed during Griseofulvin therapy, and describe Griseofulvin's effect on hepatic CYP450 enzyme activity.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('s3')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answers</span>
+                </div>
+
+                <div class="essay-answers" id="essay-s3">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answers</h4>
+                    <div class="sub-answer"><b>3.1</b> Griseofulvin inhibits fungal mitosis by binding to tubulin, disrupting mitotic spindle assembly and microtubule function. When taken systemically, it is selectively taken up by precursor epidermal cells and becomes tightly concentrated in newly formed keratin. As infected skin, hair, or nails shed, they are replaced by fungus-resistant keratinized tissue.</div>
+                    <div class="sub-answer"><b>3.2</b> Terbinafine inhibits squalene epoxidase, an early enzyme in fungal ergosterol biosynthesis. This causes two distinct lethal events: (1) Depletion of membrane ergosterol, disrupting cell membrane integrity, and (2) Intracellular accumulation of toxic levels of squalene within the fungus, which causes fungal cell rupture and rapid cell death (fungicidal action).</div>
+                    <div class="sub-answer"><b>3.3</b> Oral Griseofulvin should be administered with a fatty meal. Lipids significantly enhance its gastrointestinal dissolution and absorption, maximizing peak plasma concentrations.</div>
+                    <div class="sub-answer"><b>3.4</b> Terbinafine accumulates in breast milk; therefore, it is strictly contraindicated in nursing/lactating mothers to prevent infant toxicity. Common adverse effects of oral Terbinafine include gastrointestinal disturbances (diarrhea, abdominal pain, nausea), taste disturbances (dysgeusia/loss of taste), and hepatotoxicity.</div>
+                    <div class="sub-answer"><b>3.5</b> Griseofulvin inhibits aldehyde dehydrogenase, causing toxic accumulation of acetaldehyde following alcohol consumption (disulfiram-like reaction: facial flushing, tachycardia, vomiting). Additionally, Griseofulvin acts as an inducer of hepatic CYP450 enzymes, which accelerates the metabolism and decreases the therapeutic efficacy of co-administered CYP-metabolized drugs (e.g., oral contraceptives, warfarin).</div>
+                </div>
+            </div>
+
+            <!-- ─── SCENARIO 4 ─── -->
+            <div class="essay-card">
+                <h3><span class="qnum">Scenario 4</span> Opportunistic Respiratory Infections in HIV/AIDS</h3>
+                <div class="scenario-prompt">
+                    A 32-year-old male with untreated HIV infection (CD4 count = 68 cells/μL) presents to the emergency department with progressive exertional dyspnea, non-productive cough, low-grade fever, and hypoxemia. Chest radiography demonstrates bilateral diffuse interstitial infiltrates. A diagnosis of Pneumocystis Pneumonia (PCP) caused by Pneumocystis jirovecii is established. Intravenous Co-trimoxazole is initiated immediately. The patient has a known history of mild G6PD deficiency.
+                </div>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 4.1 Detail the mechanism of action of Co-trimoxazole, identifying the specific enzymes targeted by Trimethoprim and Sulfamethoxazole, and explain why this combination produces a bactericidal/fungicidal synergistic effect.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 4.2 Explain the biochemical hazard of administering Co-trimoxazole to a patient with G6PD deficiency. Which specific component of the drug is responsible for triggering this acute adverse reaction?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 4.3 How does the incidence of adverse hypersensitivity reactions (e.g., severe rash, drug fever) to Co-trimoxazole in AIDS patients compare to the general population, and what are the major dermatological/gastrointestinal side effects?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 4.4 If this patient develops an absolute life-threatening intolerance to Co-trimoxazole, list the second-line and third-line alternative pharmacological regimens specifically indicated for Pneumocystis jirovecii pneumonia.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 4.5 List four diverse clinical indications for Co-trimoxazole outside of Pneumocystis jirovecii pneumonia therapy across different organ systems.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('s4')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answers</span>
+                </div>
+
+                <div class="essay-answers" id="essay-s4">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answers</h4>
+                    <div class="sub-answer"><b>4.1</b> Co-trimoxazole exerts a dual sequential blockade on bacterial/fungal folate synthesis: Sulfamethoxazole inhibits dihydropteroate synthetase (preventing formation of dihydrofolic acid from PABA), while Trimethoprim inhibits dihydrofolate reductase (preventing conversion of dihydrofolate to active tetrahydrofolate). This dual sequential block produces a powerful bactericidal/fungicidal synergistic effect that reduces MIC values and broadens the antimicrobial spectrum.</div>
+                    <div class="sub-answer"><b>4.2</b> Patients with Glucose-6-Phosphate Dehydrogenase (G6PD) deficiency cannot generate adequate NADPH to maintain reduced glutathione in erythrocytes. The Sulfamethoxazole component of Co-trimoxazole generates oxidative stress, leading to red blood cell membrane denaturation and precipitating acute hemolytic anemia.</div>
+                    <div class="sub-answer"><b>4.3</b> Patients with AIDS experience a significantly higher incidence of severe adverse hypersensitivity reactions to Co-trimoxazole (up to 50–70%) compared to non-immunocompromised patients. Manifestations include extensive skin rashes (maculopapular eruptions, Stevens-Johnson syndrome), drug-induced fever, severe nausea, vomiting, glossitis, stomatitis, diarrhea, and neutropenia.</div>
+                    <div class="sub-answer"><b>4.4</b> Second-line options include oral Dapsone + Trimetrexate OR Clindamycin + Primaquine. Third-line option is intravenous or aerosolized Pentamidine.</div>
+                    <div class="sub-answer"><b>4.5</b> (1) Urinary Tract Infections (uncomplicated lower UTI and recurrent/chronic UTIs, prostatitis), (2) Bacterial Respiratory Infections (acute exacerbations of chronic bronchitis, otitis media, sinusitis), (3) Gastrointestinal Infections (bacterial gastroenteritis due to Shigella or enterotoxigenic E. coli, systemic Salmonella infections), and (4) Sexually Transmitted Infections (Chancroid caused by Haemophilus ducreyi).</div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ═══════ JAVASCRIPT ═══════ -->
+    <script>
+        // ─── TAB NAVIGATION ───
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const section = this.dataset.section;
+                document.querySelectorAll('.section-panel').forEach(p => p.classList.add('hidden'));
+                document.getElementById('section-' + section).classList.remove('hidden');
+                const topEl = document.getElementById(section + '-top');
+                if (topEl) topEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // ─── MCQ CORRECT ANSWERS ───
+        const correctAnswers = {
+            q1: "b", q2: "b", q3: "b", q4: "b", q5: "b",
+            q6: "b", q7: "b", q8: "b", q9: "c", q10: "b",
+            q11: "b", q12: "a", q13: "b", q14: "b", q15: "a",
+            q16: "b", q17: "b", q18: "b", q19: "b", q20: "b"
+        };
+
+        // ─── MCQ EXPLANATIONS ───
+        const answerExplanations = {
+            q1: "Amphotericin B is a polyene macrolide that binds specifically to ergosterol in fungal cell membranes, forming transmembrane channels/pores that cause leakage of intracellular ions and macromolecules, ultimately producing cell death. Squalene epoxidase is inhibited by Terbinafine; 14-α-demethylase is inhibited by azoles; glucan synthase is inhibited by echinocandins.",
+            q2: "Infusion of conventional Amphotericin B produces immediate acute reactions including fever, chills, muscle spasms, headache, and severe hypotension (infusion-related toxicity). A slow infusion test dose is administered initially to assess patient tolerability and reduce immediate risks.",
+            q3: "Liposomal formulations package Amphotericin B into lipid vesicles, decreasing binding to mammalian/human cell membrane cholesterol, thereby significantly lessening renal toxicity and acute infusion reactions.",
+            q4: "Nystatin is a polyene macrolide with a mechanism identical to Amphotericin B. However, it exhibits severe systemic toxicity (systemic hemolysis, acute collapse) if absorbed or given intravenously. It is unabsorbed from intact skin, mucous membranes, or the GIT, making it safe strictly for topical or oral non-absorbable use.",
+            q5: "Azoles inhibit the fungal cytochrome P450 enzyme 14-α-demethylase, which converts lanosterol to ergosterol. Depletion of ergosterol disrupts fungal cell membrane structure and function.",
+            q6: "Imidazoles (specifically Ketoconazole) lack selective specificity for fungal CYP450 enzymes. Systemically, Ketoconazole inhibits human CYP enzymes responsible for steroidogenesis in adrenal glands and gonads, suppressing testosterone and cortisol synthesis. Decreased testosterone leads to gynecomastia, loss of libido, and impotence in males.",
+            q7: "Ketoconazole requires an acidic gastric medium for dissolution and systemic absorption. Antacids, H2 blockers, and proton pump inhibitors elevate gastric pH, markedly reducing Ketoconazole dissolution and oral bioavailability, leading to clinical treatment failure.",
+            q8: "Triazoles (Fluconazole, Itraconazole, Voriconazole) possess significantly greater selectivity for fungal cytochrome P450 enzymes over human CYP enzymes than Imidazoles. Consequently, Triazoles cause far less inhibition of human steroid hormone synthesis (fewer endocrine side effects like gynecomastia).",
+            q9: "Fluconazole penetrates body tissues and fluid spaces exceptionally well, readily crossing the Blood-Brain Barrier to achieve therapeutic levels in the CSF equal to plasma concentrations. Ketoconazole and Itraconazole do not cross the Blood-Brain Barrier adequately.",
+            q10: "Voriconazole is a broad-spectrum triazole indicated as a first-line agent for invasive Aspergillosis. A characteristic adverse effect unique to Voriconazole is transient, reversible visual disturbances (blurring, altered color perception/photophobia).",
+            q11: "Flucytosine is taken up selectively by fungal cells and converted intracellularly by fungal cytosine deaminase into 5-fluorouracil (5-FU). 5-FU is converted into metabolites that inhibit thymidylate synthetase, impairing fungal DNA synthesis. Human cells lack cytosine deaminase, conferring selective toxicity.",
+            q12: "Amphotericin B disrupts fungal cell membrane permeability, facilitating enhanced uptake and intracellular accumulation of Flucytosine within the fungal cell. This creates a potent synergistic fungicidal effect required for treating cryptococcal meningitis.",
+            q13: "Caspofungin acts as an echinocandin by non-competitively inhibiting β-(1,3)-D-glucan synthase, an enzyme vital for synthesizing β-D-glucan—a structural glucose polymer of the fungal cell wall. This leads to cell wall weakening, osmotic lysis, and fungal cell death.",
+            q14: "Griseofulvin disrupts fungal mitosis by binding to tubulin and interfering with microtubule assembly and mitotic spindle function. When administered orally, it deposits selectively in newly synthesized keratin precursor cells, rendering newly formed hair, skin, and nails resistant to fungal invasion.",
+            q15: "Griseofulvin inhibits aldehyde dehydrogenase (ALDH), the enzyme responsible for converting acetaldehyde to acetate. Co-ingestion of alcohol causes systemic accumulation of toxic acetaldehyde, triggering a severe disulfiram-like reaction (flushing, nausea, vomiting, tachycardia).",
+            q16: "Terbinafine inhibits the enzyme squalene epoxidase in the ergosterol synthetic pathway. Blockade of this enzyme results in dual pathology: intracellular ergosterol deficiency AND toxic intracellular accumulation of squalene, which causes rapid fungal cell death (fungicidal action).",
+            q17: "Whitfield's ointment contains Benzoic acid (antifungal agent) and Salicylic acid. Salicylic acid acts as a keratolytic agent that desquamates/softens hyperkeratotic stratum corneum, enabling deeper epidermal penetration of Benzoic acid to reach buried fungal hyphae.",
+            q18: "Co-trimoxazole is formulated in a fixed 1:5 ratio (e.g., 80 mg Trimethoprim to 400 mg Sulfamethoxazole). Because Trimethoprim has a larger volume of distribution, this 1:5 dosing ratio yields an optimal therapeutic plasma concentration ratio of 1:20 (TMP:SMX), maximizing synergistic antimicrobial activity.",
+            q19: "Sulfamethoxazole competitively inhibits dihydropteroate synthetase (blocking synthesis of dihydrofolic acid from PABA). Trimethoprim competitively inhibits dihydrofolate reductase (blocking conversion of dihydrofolic acid to active tetrahydrofolic acid). Dual sequential blockade yields bactericidal synergy.",
+            q20: "High-dose Co-trimoxazole can cause human bone marrow suppression (megaloblastic anemia, leukopenia, thrombocytopenia). Administering Folinic acid (Leucovorin) rescues human host hematopoietic cells because mammalian cells transport folinic acid directly, whereas microorganisms lack uptake mechanisms for folic acid, preserving drug efficacy against PCP."
+        };
+
+        // ─── MCQ SUBMIT ───
+        function submitQuiz() {
+            let score = 0;
+            const total = Object.keys(correctAnswers).length;
+
+            document.querySelectorAll('.question-feedback').forEach(el => el.innerHTML = '');
+
+            for (let key in correctAnswers) {
+                const radios = Array.from(document.querySelectorAll(`input[name="${key}"]`));
+                const selected = radios.find(r => r.checked);
+                const correct = correctAnswers[key];
+
+                if (selected && selected.value === correct) score++;
+
+                const feedbackEl = document.getElementById(`feedback-${key}`);
+                if (!feedbackEl) continue;
+
+                let html = `<div class="answer-block"><strong>Q${key.replace(/^q/, '')}</strong><div class="answer-list">`;
+
+                radios.forEach(r => {
+                    const label = r.parentElement;
+                    const text = label ? label.textContent.trim() : r.value;
+                    const classes = ['answer-item'];
+                    if (r.value === correct) classes.push('answer-correct');
+                    if (r.checked && r.value !== correct) classes.push('answer-wrong', 'user-choice');
+                    if (r.checked && r.value === correct) classes.push('user-choice');
+                    html += `<div class="${classes.join(' ')}">${text}${r.checked ? ' ◀' : ''}</div>`;
+                });
+
+                html += `</div>`;
+
+                const correctRadio = radios.find(rr => rr.value === correct);
+                const correctText = correctRadio && correctRadio.parentElement ? correctRadio.parentElement.textContent.trim() : correct;
+                const explanationText = answerExplanations[key] || '';
+
+                if (selected) {
+                    if (selected.value === correct) {
+                        html += `<div class="explanation">✅ Correct — ${explanationText}</div>`;
+                    } else {
+                        html += `<div class="explanation wrong">❌ Incorrect. Correct answer: <strong>${correctText}</strong>. ${explanationText}</div>`;
+                    }
+                } else {
+                    html += `<div class="explanation wrong">No answer selected. Correct answer: <strong>${correctText}</strong>. ${explanationText}</div>`;
+                }
+
+                html += `</div>`;
+                feedbackEl.innerHTML = html;
+            }
+
+            const percentage = Math.round((score / total) * 100);
+            const resultBox = document.getElementById('resultBox');
+            resultBox.style.display = 'block';
+            document.getElementById('answers').innerHTML = '';
+
+            let start = 0;
+            const timer = setInterval(() => {
+                if (start >= percentage) clearInterval(timer);
+                document.getElementById('score').innerText = start + '%';
+                start++;
+            }, 20);
+
+            document.querySelectorAll('#quizForm input[type="radio"]').forEach(i => i.disabled = true);
+        }
+
+        // ─── ESSAY TOGGLE ───
+        function toggleEssay(id) {
+            const el = document.getElementById('essay-' + id);
+            if (!el) return;
+            const isVisible = el.classList.toggle('visible');
+            el.setAttribute('aria-hidden', !isVisible);
+            if (isVisible) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        // ─── KEYBOARD ACCESSIBILITY ───
+        document.querySelectorAll('.essay-actions .btn').forEach(btn => {
+            btn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    btn.click();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Antihistamines &amp; Decongestants | 20 MCQs + 4 Scenarios</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        /* ─────────── ROOT & RESET ─────────── */
+        :root {
+            --primary: #2b7a78;
+            --accent: #3aafa9;
+            --dark: #17252a;
+            --light: #f8f9fa;
+            --radius: 12px;
+            --shadow: 0 4px 14px rgba(18, 38, 63, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Roboto, system-ui, sans-serif;
+            background: linear-gradient(180deg, #f5f7fb, #eef6f6);
+            color: var(--dark);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+
+        /* ─────────── HEADER ─────────── */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: #fff;
+            padding: 0.8rem 0;
+            box-shadow: 0 6px 18px rgba(11, 36, 36, 0.18);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            font-size: 1.6rem;
+            color: var(--accent);
+        }
+
+        .logo h1 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 0.25rem 1rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            color: #d4f0ee;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0.3rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-tabs .tab-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: none;
+            color: #d4f0ee;
+            padding: 0.3rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .nav-tabs .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #fff;
+        }
+
+        .nav-tabs .tab-btn.active {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        /* ─────────── CONTAINER ─────────── */
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 1.25rem 2.5rem;
+        }
+
+        /* ─────────── SECTION TITLES ─────────── */
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1.8rem 0 1rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 3px solid rgba(43, 122, 120, 0.20);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .section-title i {
+            font-size: 1.1rem;
+            color: rgb(8, 104, 66);
+        }
+
+        .section-title .count {
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0.05rem 0.7rem;
+        }
+
+        .section-subtitle {
+            color: #5f7a7a;
+            font-size: 0.92rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .section-panel {
+            display: block;
+        }
+
+        .section-panel.hidden {
+            display: none;
+        }
+
+        /* ─────────── MCQ QUESTION CARDS ─────────── */
+        .question {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.2rem 1.2rem 0.2rem 1.2rem;
+            margin-bottom: 1.2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(43, 122, 120, 0.06);
+            transition: box-shadow 0.2s;
+        }
+
+        .question:hover {
+            box-shadow: 0 6px 22px rgba(18, 38, 63, 0.07);
+        }
+
+        .question p {
+            font-weight: 600;
+            font-size: 0.98rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .question .q-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            line-height: 1.6;
+            margin-right: 0.4rem;
+        }
+
+        .options label {
+            display: block;
+            background: #fafcfd;
+            border: 1px solid #e0e8ef;
+            border-radius: 8px;
+            padding: 0.45rem 0.9rem;
+            margin-top: 0.45rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-weight: 450;
+            font-size: 0.94rem;
+        }
+
+        .options label:hover {
+            background: #e8f5f4;
+            border-color: var(--accent);
+        }
+
+        .options input[type="radio"] {
+            margin-right: 0.5rem;
+            accent-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        /* ─────────── FEEDBACK ─────────── */
+        .question-feedback {
+            margin-top: 0.9rem;
+            padding: 0.4rem 0 0.1rem 0;
+            border-top: 1px dashed #dce6ed;
+        }
+
+        .answer-block strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--primary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .answer-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .answer-item {
+            padding: 5px 10px;
+            border-radius: 6px;
+            border: 1px solid #e6eef3;
+            background: #ffffff;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .answer-correct {
+            background: #ecfdf5;
+            border-color: #bbf7d0;
+            color: #065f46;
+        }
+
+        .answer-wrong {
+            background: #fff1f2;
+            border-color: #fca5a5;
+            color: #9f1239;
+        }
+
+        .user-choice {
+            outline: 2px dashed rgba(0, 0, 0, 0.06);
+        }
+
+        .explanation {
+            margin-top: 6px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: #f1f8f6;
+            color: #065f46;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border-left: 4px solid var(--accent);
+        }
+
+        .explanation.wrong {
+            background: #fff5f5;
+            color: #7f1d1d;
+            border-left-color: #f87171;
+        }
+
+        /* ─────────── BUTTONS ─────────── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.6rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(43, 122, 120, 0.22);
+        }
+
+        .btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(43, 122, 120, 0.30);
+        }
+
+        .btn:active {
+            transform: scale(0.96);
+        }
+
+        .btn i {
+            font-size: 0.9rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .btn-sm {
+            padding: 0.35rem 1rem;
+            font-size: 0.85rem;
+        }
+
+        .submit-wrap {
+            text-align: center;
+            margin: 1.5rem 0 2rem;
+        }
+
+        /* ─────────── RESULT BOX ─────────── */
+        .result {
+            margin-top: 1.5rem;
+            padding: 1.5rem 1.5rem 1rem;
+            background: #f1faf9;
+            border-radius: var(--radius);
+            text-align: center;
+            display: none;
+            border: 1px solid #c5e3df;
+        }
+
+        .result h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.2rem;
+        }
+
+        .score {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0.2rem 0 0.4rem;
+        }
+
+        /* ─────────── SCENARIO / ESSAY SECTION ─────────── */
+        .essay-card {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.25rem 1.25rem 1rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(43, 122, 120, 0.06);
+        }
+
+        .essay-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 0 0 0.6rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .essay-card h3 .qnum {
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.75rem;
+            line-height: 1.6;
+        }
+
+        .essay-card .scenario-prompt {
+            background: #f4f8fa;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            margin: 0.2rem 0 0.8rem 0;
+            font-size: 0.94rem;
+            line-height: 1.6;
+        }
+
+        .essay-card .sub-q {
+            background: #fafcfd;
+            padding: 0.6rem 0.9rem;
+            margin-top: 0.5rem;
+            border-radius: 6px;
+            border: 1px solid #e9edf2;
+            font-size: 0.92rem;
+            font-weight: 500;
+        }
+
+        .essay-card .sub-q i {
+            color: var(--primary);
+            margin-right: 0.3rem;
+        }
+
+        .essay-card textarea {
+            width: 100%;
+            min-height: 60px;
+            border-radius: 8px;
+            border: 1px solid #d1dbe0;
+            padding: 0.7rem 0.9rem;
+            resize: vertical;
+            font-family: inherit;
+            font-size: 0.95rem;
+            background: #fafcfd;
+            transition: border 0.2s;
+            margin-top: 0.3rem;
+        }
+
+        .essay-card textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(43, 122, 120, 0.12);
+        }
+
+        .essay-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 0.7rem;
+            flex-wrap: wrap;
+        }
+
+        .essay-actions .btn {
+            padding: 0.45rem 1.2rem;
+            font-size: 0.9rem;
+        }
+
+        .essay-answers {
+            display: none;
+            margin-top: 1rem;
+            background: #f1f8f6;
+            border-radius: 8px;
+            padding: 1rem 1.2rem;
+            border: 1px solid #cfe6e0;
+            color: var(--dark);
+        }
+
+        .essay-answers.visible {
+            display: block;
+            animation: fadeSlide 0.25s ease;
+        }
+
+        .essay-answers h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: var(--primary);
+            margin: 0 0 0.5rem 0;
+        }
+
+        .essay-answers p,
+        .essay-answers li {
+            font-size: 0.94rem;
+            line-height: 1.6;
+        }
+
+        .essay-answers ul {
+            padding-left: 1.2rem;
+            margin: 0.3rem 0 0.5rem;
+        }
+
+        .essay-answers ul li {
+            margin-bottom: 0.2rem;
+        }
+
+        .essay-answers b {
+            color: var(--dark);
+        }
+
+        .essay-answers .sub-answer {
+            margin-top: 0.6rem;
+            padding-top: 0.5rem;
+            border-top: 1px dashed #d0e2dc;
+        }
+
+        .essay-answers .sub-answer:first-of-type {
+            border-top: none;
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        @keyframes fadeSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(-6px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ─────────── RESPONSIVE ─────────── */
+        @media (max-width: 700px) {
+            body {
+                padding-top: 72px;
+            }
+            .logo h1 {
+                font-size: 1rem;
+            }
+            .header-inner {
+                padding: 0 1rem;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.3rem;
+            }
+            .badge {
+                align-self: flex-start;
+            }
+            .nav-tabs {
+                justify-content: center;
+            }
+            .nav-tabs .tab-btn {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.7rem;
+            }
+            .question {
+                padding: 1rem 1rem 0.1rem 1rem;
+            }
+            .section-title {
+                font-size: 1.1rem;
+            }
+            .essay-card {
+                padding: 1rem;
+            }
+            .score {
+                font-size: 2.2rem;
+            }
+            .btn {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .logo h1 {
+                font-size: 0.85rem;
+            }
+            .logo i {
+                font-size: 1.2rem;
+            }
+            .options label {
+                font-size: 0.87rem;
+                padding: 0.4rem 0.7rem;
+            }
+        }
+
+        /* ─────────── UTILITY ─────────── */
+        .text-muted {
+            color: #5f7a7a;
+            font-size: 0.9rem;
+        }
+        .mt-1 {
+            margin-top: 0.8rem;
+        }
+        .mb-1 {
+            margin-bottom: 0.8rem;
+        }
+        .flex-center {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .hidden {
+            display: none !important;
+        }
+
+        .scroll-target {
+            scroll-margin-top: 90px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════ HEADER ═══════ -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <i class="fas fa-allergies"></i>
+                <h1>Antihistamines &amp; Decongestants</h1>
+            </div>
+            <span class="badge"><i class="fas fa-pencil-alt"></i> &nbsp;20 MCQs + 4 Scenarios</span>
+            <div class="nav-tabs">
+                <button class="tab-btn active" data-section="mcq">MCQs</button>
+                <button class="tab-btn" data-section="essay">Scenarios</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══════ MAIN CONTENT ═══════ -->
+    <main>
+
+        <!-- ──── SECTION 1: MCQs ──── -->
+        <section class="container section-panel" id="section-mcq">
+            <div class="section-title scroll-target" id="mcq-top">
+                <i class="fas fa-list-ul"></i> Multiple Choice Questions
+                <span class="count">20</span>
+            </div>
+            <p class="section-subtitle">Select the best answer for each question, then click <strong>Submit All MCQs</strong> at the bottom.</p>
+
+            <form id="quizForm">
+
+                <!-- Q1 -->
+                <div class="question">
+                    <p><span class="q-badge">1</span> Which of the following physiological responses is mediated through the activation of peripheral H1 receptors located on bronchial smooth muscle and vascular endothelial cells?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="a"> A. Direct inhibition of parietal cell proton pumps resulting in reduced gastric acid secretion</label>
+                        <label><input type="radio" name="q1" value="b"> B. Vasodilation, increased capillary permeability leading to endothelial cell separation, and bronchoconstriction</label>
+                        <label><input type="radio" name="q1" value="c"> C. Sympathetic stimulation causing vasoconstriction of mucosal arterioles and pupillary dilation</label>
+                        <label><input type="radio" name="q1" value="d"> D. Negative inotropic effect on cardiac tissue leading to profound bradycardia and hypotension</label>
+                        <label><input type="radio" name="q1" value="e"> E. Suppression of the central cough reflex in the brainstem medulla</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q1"></div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="question">
+                    <p><span class="q-badge">2</span> A clinical pharmacology lecture emphasizes that H1-receptor antagonists act via competitive antagonism. Which statement correctly describes the clinical implications of this mechanism of action?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="a"> A. They displace bound histamine from occupied H1 receptors to rapidly reverse anaphylactic shock.</label>
+                        <label><input type="radio" name="q2" value="b"> B. They irreversibly bind to H1 receptors, requiring new receptor synthesis for functional recovery.</label>
+                        <label><input type="radio" name="q2" value="c"> C. They are most effective when administered prophylactically or early in the response before histamine binds to unoccupied H1 receptors.</label>
+                        <label><input type="radio" name="q2" value="d"> D. They selectively activate H2 receptors to physiologically offset the inflammatory cascade of histamine.</label>
+                        <label><input type="radio" name="q2" value="e"> E. They prevent the synthesis and storage of endogenous histamine within tissue mast cells and basophils.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q2"></div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question">
+                    <p><span class="q-badge">3</span> Diphenhydramine is classified as a first-generation (traditional) antihistamine. Which pharmacological property explains why it causes significantly greater sedation and anticholinergic side effects compared to second-generation agents?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="a"> A. It selectively targets central H2 receptors without crossing the blood-brain barrier.</label>
+                        <label><input type="radio" name="q3" value="b"> B. It readily crosses the blood-brain barrier and possesses off-target affinity for central muscarinic receptors.</label>
+                        <label><input type="radio" name="q3" value="c"> C. It possesses a longer plasma elimination half-life and exclusively acts on peripheral tissue beds.</label>
+                        <label><input type="radio" name="q3" value="d"> D. It acts as a potent direct-acting alpha-1 adrenergic agonist in the central nervous system.</label>
+                        <label><input type="radio" name="q3" value="e"> E. It forms covalent, non-competitive bonds with both central H1 and H2 receptor sites.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q3"></div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="question">
+                    <p><span class="q-badge">4</span> Non-sedating second-generation antihistamines such as Fexofenadine and Cetirizine offer clinical advantages over traditional antihistamines primarily because:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="a"> A. They possess potent intrinsic anticholinergic activity that enhances airway drying.</label>
+                        <label><input type="radio" name="q4" value="b"> B. They cross the blood-brain barrier rapidly to promote central suppression of sneezing.</label>
+                        <label><input type="radio" name="q4" value="c"> C. They act peripherally with poor central nervous system penetration, resulting in reduced sedation and longer duration of action.</label>
+                        <label><input type="radio" name="q4" value="d"> D. They provide immediate curative eradication of viral respiratory pathogens in the upper tract.</label>
+                        <label><input type="radio" name="q4" value="e"> E. They completely replace the need for adrenergic decongestants during severe nasal obstruction.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q4"></div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="question">
+                    <p><span class="q-badge">5</span> A patient taking a traditional H1-antihistamine experiences classic anticholinergic side effects. Which set of manifestations represents expected anticholinergic adverse effects of this drug class?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="a"> A. Excessive lacrimation, profuse diarrhea, hypersalivation, and bronchospasm</label>
+                        <label><input type="radio" name="q5" value="b"> B. Dry mouth, urinary retention/difficulty urinating, constipation, and visual disturbances</label>
+                        <label><input type="radio" name="q5" value="c"> C. Severe orthostatic hypotension, reflex bradycardia, and increased gastric motility</label>
+                        <label><input type="radio" name="q5" value="d"> D. Hyperhidrosis, miosis, peripheral edema, and muscle twitching</label>
+                        <label><input type="radio" name="q5" value="e"> E. Hypoglycemia, sedation, hyperthermia, and direct hepatotoxicity</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q5"></div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="question">
+                    <p><span class="q-badge">6</span> Oral administration of sympathomimetic decongestants like Pseudoephedrine differs from topical nasal spray formulations (e.g., Phenylephrine nasal mist) in which of the following key pharmacological parameters?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="a"> A. Oral formulations produce a more rapid, potent onset of action but carry a higher risk of rebound congestion.</label>
+                        <label><input type="radio" name="q6" value="b"> B. Oral formulations have a delayed onset and less potent decongestant effect but do not cause rebound congestion.</label>
+                        <label><input type="radio" name="q6" value="c"> C. Topical sprays act exclusively via corticosteroid mechanisms without affecting vascular smooth muscle.</label>
+                        <label><input type="radio" name="q6" value="d"> D. Oral formulations are completely devoid of systemic cardiovascular and central nervous system side effects.</label>
+                        <label><input type="radio" name="q6" value="e"> E. Topical formulations are preferred for long-term daily maintenance exceeding several weeks.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q6"></div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="question">
+                    <p><span class="q-badge">7</span> A patient with severe nasal congestion uses an over-the-counter adrenergic nasal mist (Phenylephrine) continuously for 8 consecutive days. The patient notices that the congestion has worsened significantly despite frequent dosing. What is the mechanism of this adverse effect?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="a"> A. IgE-mediated type I hypersensitivity reaction targeting the vehicle of the nasal spray</label>
+                        <label><input type="radio" name="q7" value="b"> B. Rebound nasal congestion (rhinitis medicamentosa) due to downregulation/desensitization of vascular alpha-adrenergic receptors</label>
+                        <label><input type="radio" name="q7" value="c"> C. Systemic suppression of the hypothalamic-pituitary-adrenal (HPA) axis</label>
+                        <label><input type="radio" name="q7" value="d"> D. Bacterial superinfection resulting from direct mucosal immunosuppression</label>
+                        <label><input type="radio" name="q7" value="e"> E. Paradoxical histamine release caused by localized mast cell degranulation</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q7"></div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="question">
+                    <p><span class="q-badge">8</span> Adrenergic decongestants produce decongestion of the upper respiratory mucosa primarily through which specific vascular mechanism?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="a"> A. Direct activation of beta-2 adrenergic receptors on vascular smooth muscle leading to vasodilation</label>
+                        <label><input type="radio" name="q8" value="b"> B. Selective stimulation of alpha-adrenergic receptors causing constriction of dilated arterioles supplying the nasal mucosa</label>
+                        <label><input type="radio" name="q8" value="c"> C. Antagonism of H1 receptors on vascular endothelial cells preventing fluid extravasation</label>
+                        <label><input type="radio" name="q8" value="d"> D. Inhibition of cyclooxygenase-2 (COX-2) reducing localized prostaglandin synthesis</label>
+                        <label><input type="radio" name="q8" value="e"> E. Blockade of central muscarinic receptors resulting in immediate suppression of mucous glands</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q8"></div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="question">
+                    <p><span class="q-badge">9</span> Intranasal corticosteroids, such as Beclomethasone, Flunisolide, and Fluticasone, relieve nasal congestion through which mechanism?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="a"> A. Rapid direct constriction of mucosal arterioles via alpha-1 receptor agonist activity</label>
+                        <label><input type="radio" name="q9" value="b"> B. Competitive blockade of systemic H1 receptors to prevent allergic sensitization</label>
+                        <label><input type="radio" name="q9" value="c"> C. Anti-inflammatory action that turns off immune cells involved in the inflammatory response, reducing mucosal edema</label>
+                        <label><input type="radio" name="q9" value="d"> D. Osmotic extraction of mucosal interstitial fluid directly into the nasal passages</label>
+                        <label><input type="radio" name="q9" value="e"> E. Enzymatic inactivation of circulating histamine and bradykinin in nasal secretions</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q9"></div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="question">
+                    <p><span class="q-badge">10</span> Why are systemic adrenergic decongestants (such as Pseudoephedrine or oral Phenylephrine) generally contraindicated or used with extreme caution in patients with poorly controlled essential hypertension or ischemic heart disease?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="a"> A. They induce profound vagal stimulation leading to severe sinus bradycardia.</label>
+                        <label><input type="radio" name="q10" value="b"> B. Systemic alpha-1 and beta-1 adrenergic stimulation causes peripheral vasoconstriction, elevated blood pressure, and palpitations.</label>
+                        <label><input type="radio" name="q10" value="c"> C. They inhibit renal blood flow by selectively blocking renal dopamine receptors.</label>
+                        <label><input type="radio" name="q10" value="d"> D. They promote significant fluid retention through mineralocorticoid receptor activation.</label>
+                        <label><input type="radio" name="q10" value="e"> E. They interfere with the hepatic metabolism of antiarrhythmic medications via CYP450 induction.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q10"></div>
+                </div>
+
+                <!-- Q11 -->
+                <div class="question">
+                    <p><span class="q-badge">11</span> A patient presents with mild common cold symptoms and asks for an antibiotic prescription. Which pharmacological rationale correctly guides the clinician's response?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q11" value="a"> A. Antibiotics should be started immediately to prevent secondary allergic rhinitis.</label>
+                        <label><input type="radio" name="q11" value="b"> B. Common cold therapy is primarily empiric and symptomatic; viral etiology predominates, making routine antibiotics non-curative and inappropriate without proven bacterial infection.</label>
+                        <label><input type="radio" name="q11" value="c"> C. First-generation antihistamines neutralize viral particles, rendering antibiotics redundant.</label>
+                        <label><input type="radio" name="q11" value="d"> D. Oral decongestants enhance bacterial clearance, so antimicrobial therapy is unnecessary.</label>
+                        <label><input type="radio" name="q11" value="e"> E. Viral URI pathogens rapidly mutate upon antibiotic exposure, increasing viral load.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q11"></div>
+                </div>
+
+                <!-- Q12 -->
+                <div class="question">
+                    <p><span class="q-badge">12</span> Which of the following conditions is an established clinical indication for H1-antihistamines based on their underlying mechanisms?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q12" value="a"> A. Peptic ulcer disease and Zollinger-Ellison syndrome</label>
+                        <label><input type="radio" name="q12" value="b"> B. Seasonal allergic rhinitis, urticaria, and motion sickness</label>
+                        <label><input type="radio" name="q12" value="c"> C. Acute status asthmaticus and severe bronchospasm</label>
+                        <label><input type="radio" name="q12" value="d"> D. Acute bacterial sinusitis requiring bacterial eradication</label>
+                        <label><input type="radio" name="q12" value="e"> E. Essential hypertension and hypertensive crisis</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q12"></div>
+                </div>
+
+                <!-- Q13 -->
+                <div class="question">
+                    <p><span class="q-badge">13</span> Combined cold preparations often contain both an H1-antihistamine (e.g., Pheniramine) and an adrenergic vasoconstrictor (e.g., Phenylephrine). What is the rational therapeutic objective of this combination?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q13" value="a"> A. The antihistamine cures the underlying viral infection while the adrenergic agent prevents secondary bacterial invasion.</label>
+                        <label><input type="radio" name="q13" value="b"> B. The antihistamine blocks allergic/secretory mediator responses (rhinorrhea, sneezing) while the adrenergic agent constricts swollen mucosal blood vessels to relieve nasal obstruction.</label>
+                        <label><input type="radio" name="q13" value="c"> C. The adrenergic agent eliminates the anticholinergic side effects of the antihistamine.</label>
+                        <label><input type="radio" name="q13" value="d"> D. The combination prevents the development of rebound congestion regardless of treatment duration.</label>
+                        <label><input type="radio" name="q13" value="e"> E. The antihistamine increases the bioavailability and systemic absorption of the adrenergic agent.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q13"></div>
+                </div>
+
+                <!-- Q14 -->
+                <div class="question">
+                    <p><span class="q-badge">14</span> When educating a patient who is prescribed a traditional antihistamine such as Diphenhydramine, which safety instruction is essential?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q14" value="a"> A. Consume large amounts of caffeinated beverages to completely reverse central nervous system effects.</label>
+                        <label><input type="radio" name="q14" value="b"> B. Avoid driving, operating heavy machinery, or consuming alcohol/CNS depressants due to enhanced additive sedation and impaired motor performance.</label>
+                        <label><input type="radio" name="q14" value="c"> C. Discontinue the drug immediately if dry mouth or mild nasal dryness occurs.</label>
+                        <label><input type="radio" name="q14" value="d"> D. Take the medication strictly on an empty stomach with a large glass of acidic fruit juice to ensure absorption.</label>
+                        <label><input type="radio" name="q14" value="e"> E. Double the dose if severe daytime drowsiness occurs to achieve therapeutic tolerance.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q14"></div>
+                </div>
+
+                <!-- Q15 -->
+                <div class="question">
+                    <p><span class="q-badge">15</span> A patient with hyperthyroidism and type 2 diabetes asks about taking over-the-counter Oxymetazoline nasal spray. Why must patients with underlying thyroid or endocrine disease consult a physician before using adrenergic decongestants?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q15" value="a"> A. Adrenergics worsen thyroid storm by destroying thyroid follicular tissue.</label>
+                        <label><input type="radio" name="q15" value="b"> B. Sympathomimetic stimulation can aggravate hyperthyroid-induced cardiovascular instability (tachycardia, arrhythmias) and alter glycemic control.</label>
+                        <label><input type="radio" name="q15" value="c"> C. Decongestants block insulin absorption across the nasal mucosa.</label>
+                        <label><input type="radio" name="q15" value="d"> D. Oxymetazoline inhibits the peripheral conversion of thyroxine (T4) to triiodothyronine (T3).</label>
+                        <label><input type="radio" name="q15" value="e"> E. Adrenergics cause severe, irreversible hypoglycemia in diabetic patients.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q15"></div>
+                </div>
+
+                <!-- Q16 -->
+                <div class="question">
+                    <p><span class="q-badge">16</span> Which physiological mediator is primarily responsible for increasing capillary permeability, stimulating nociceptive nerve endings causing pain/itching, and inducing bronchial smooth muscle contraction during an acute allergic response?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q16" value="a"> A. Acetylcholine</label>
+                        <label><input type="radio" name="q16" value="b"> B. Histamine (acting on H1 receptors)</label>
+                        <label><input type="radio" name="q16" value="c"> C. Gastrin (acting on parietal receptors)</label>
+                        <label><input type="radio" name="q16" value="d"> D. Norepinephrine (acting on beta-2 receptors)</label>
+                        <label><input type="radio" name="q16" value="e"> E. Dopamine (acting on D2 receptors)</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q16"></div>
+                </div>
+
+                <!-- Q17 -->
+                <div class="question">
+                    <p><span class="q-badge">17</span> An athlete undergoing routine drug testing and health screening is advised to exercise caution regarding over-the-counter nasal decongestants and caffeine. What is the primary concern regarding sympathomimetic decongestants in athletes?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q17" value="a"> A. They cause sudden, severe lethargy and respiratory depression during intense exertion.</label>
+                        <label><input type="radio" name="q17" value="b"> B. Systemic sympathomimetic effects (tremors, tachycardia, hypertension) can be potentiated by caffeine and may breach athletic performance stimulant regulations.</label>
+                        <label><input type="radio" name="q17" value="c"> C. They induce acute rhabdomyolysis when combined with high-protein dietary supplements.</label>
+                        <label><input type="radio" name="q17" value="d"> D. They cause rapid, uncompensated metabolic acidosis during anaerobic exercise.</label>
+                        <label><input type="radio" name="q17" value="e"> E. They produce permanent skeletal muscle weakness by blocking neuromuscular transmission.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q17"></div>
+                </div>
+
+                <!-- Q18 -->
+                <div class="question">
+                    <p><span class="q-badge">18</span> Which non-pharmacological nursing intervention is most appropriate to alleviate the dry mouth (xerostomia) caused by the anticholinergic properties of H1-antihistamines?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q18" value="a"> A. Restricting total daily fluid intake to less than 1 liter.</label>
+                        <label><input type="radio" name="q18" value="b"> B. Recommending frequent mouth care, chewing sugarless gum, or sucking on hard candy.</label>
+                        <label><input type="radio" name="q18" value="c"> C. Administering high-dose oral systemic corticosteroids daily.</label>
+                        <label><input type="radio" name="q18" value="d"> D. Encouraging immediate cessation of all oral fluid intake after 6 PM.</label>
+                        <label><input type="radio" name="q18" value="e"> E. Prescribing oral cholinergic antagonists to suppress salivary gland hypofunction.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q18"></div>
+                </div>
+
+                <!-- Q19 -->
+                <div class="question">
+                    <p><span class="q-badge">19</span> H2-receptor antagonists such as Ranitidine, Cimetidine, and Famotidine differ fundamentally from H1-antihistamines because their primary clinical indication is:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q19" value="a"> A. Suppression of upper respiratory mucosal edema and rhinorrhea</label>
+                        <label><input type="radio" name="q19" value="b"> B. Reduction of gastric acid secretion in peptic ulcer disease and GERD</label>
+                        <label><input type="radio" name="q19" value="c"> C. Inhibition of IgE synthesis in systemic anaphylaxis</label>
+                        <label><input type="radio" name="q19" value="d"> D. Direct relaxation of bronchial smooth muscle during acute asthma</label>
+                        <label><input type="radio" name="q19" value="e"> E. Prevention of peripheral motion sickness and labyrinthitis</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q19"></div>
+                </div>
+
+                <!-- Q20 -->
+                <div class="question">
+                    <p><span class="q-badge">20</span> What is a key clinical limitation of symptomatic empiric common cold therapy using combination OTC preparations?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q20" value="a"> A. It provides a rapid, permanent cure for viral pathogens within 24 hours.</label>
+                        <label><input type="radio" name="q20" value="b"> B. It masks secondary bacterial infections by directly eradicating circulating leukocytes.</label>
+                        <label><input type="radio" name="q20" value="c"> C. It only provides temporary palliative relief of symptoms and does not shorten or eliminate the causative viral pathogen.</label>
+                        <label><input type="radio" name="q20" value="d"> D. It induces irreversible hepatic enzyme inhibition across all patient demographics.</label>
+                        <label><input type="radio" name="q20" value="e"> E. It completely abolishes host humoral immune responses against future rhinovirus strains.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q20"></div>
+                </div>
+
+                <div class="submit-wrap">
+                    <button type="button" class="btn" onclick="submitQuiz()">
+                        <i class="fas fa-check-circle"></i> Submit All MCQs
+                    </button>
+                </div>
+
+            </form>
+
+            <div class="result" id="resultBox">
+                <h3><i class="fas fa-chart-simple"></i> Your Score</h3>
+                <div class="score" id="score">0%</div>
+                <p class="text-muted" style="font-size:0.9rem;">Review the feedback below each question.</p>
+                <div id="answers"></div>
+            </div>
+        </section>
+
+        <!-- ──── SECTION 2: SCENARIOS ──── -->
+        <section class="container section-panel hidden" id="section-essay">
+            <div class="section-title scroll-target" id="essay-top">
+                <i class="fas fa-pen-fancy"></i> Clinical Scenarios
+                <span class="count">4</span>
+            </div>
+            <p class="section-subtitle">Read each scenario and write your answers in the boxes. Click <strong>Submit</strong> to reveal the model answers.</p>
+
+            <!-- ─── SCENARIO 1 ─── -->
+            <div class="essay-card">
+                <h3><span class="qnum">Scenario 1</span> Allergic Rhinitis vs. Viral URI</h3>
+                <div class="scenario-prompt">
+                    A 28-year-old female high-school teacher presents with a 5-day history of severe clear rhinorrhea, paroxysmal sneezing, nasal congestion, and itchy, watery eyes during peak spring pollen season. She has no significant past medical history. The clinician considers Diphenhydramine vs. Cetirizine/Fexofenadine.
+                </div>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 1.1 Describe the exact mechanism of action by which H1-antihistamines relieve this patient's clear rhinorrhea, sneezing, and ocular pruritus.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 1.2 Compare Diphenhydramine and Fexofenadine regarding central nervous system penetration and occupational safety for this patient.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 1.3 Explain why initiating H1-antihistamine therapy early in the course of allergic exposure yields significantly better clinical efficacy than delaying treatment until symptoms are severe.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 1.4 What anticholinergic side effects should the patient be warned about if prescribed Diphenhydramine, and what non-pharmacological self-care measures can alleviate these symptoms?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 1.5 Is this therapy curative for her condition? Explain the pharmacological difference between curative and palliative empiric treatment in this context.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('s1')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answers</span>
+                </div>
+
+                <div class="essay-answers" id="essay-s1">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answers</h4>
+                    <div class="sub-answer">
+                        <b>1.1</b> H1-antihistamines competitively block histamine from binding to unoccupied peripheral H1 receptors on capillary endothelial cells, vascular smooth muscle, and sensory nerves. This prevents histamine-induced vasodilation, increased capillary permeability (reducing fluid transduction into nasal mucosa), and nerve irritation (reducing sneezing and itching).
+                    </div>
+                    <div class="sub-answer">
+                        <b>1.2</b> Diphenhydramine is a first-generation agent that easily crosses the blood-brain barrier, causing central H1 blockade and significant sedation/impaired concentration. Fexofenadine is a second-generation agent with minimal CNS penetration that acts peripherally, making it non-sedating and far safer for a teacher required to remain alert.
+                    </div>
+                    <div class="sub-answer">
+                        <b>1.3</b> Antihistamines are competitive antagonists; they prevent histamine binding but cannot displace histamine already bound to H1 receptors. Giving the drug early (or prophylactically) before complete mast cell degranulation blocks open receptors, whereas late administration cannot reverse established receptor activation.
+                    </div>
+                    <div class="sub-answer">
+                        <b>1.4</b> Expected anticholinergic effects include dry mouth (xerostomia), urinary retention, constipation, and blurred vision. Relief measures: perform frequent oral hygiene, chew sugarless gum, suck on hard candy, and maintain adequate hydration.
+                    </div>
+                    <div class="sub-answer">
+                        <b>1.5</b> No, therapy is purely palliative (symptomatic relief). It blocks mediator actions to improve comfort but does not eradicate the underlying etiology (viral pathogen or allergen exposure).
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─── SCENARIO 2 ─── -->
+            <div class="essay-card">
+                <h3><span class="qnum">Scenario 2</span> Nasal Decongestant Therapy &amp; Rebound Congestion</h3>
+                <div class="scenario-prompt">
+                    A 34-year-old male reports severe nasal blockage from an acute URI. He used an OTC topical adrenergic nasal mist (Phenylephrine + Pheniramine) for 10 days. Initially dramatic relief, but over the last 3 days his congestion has worsened, forcing him to spray every 2–3 hours.
+                </div>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 2.1 Detail the vascular mechanism of action by which topical adrenergic decongestants produce prompt relief of nasal stuffiness.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 2.2 Identify the clinical phenomenon this patient is experiencing and explain its underlying receptor-level pathophysiology resulting from prolonged topical adrenergic use.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 2.3 Compare topical adrenergic decongestants with oral adrenergic agents (e.g., Pseudoephedrine) regarding onset of action, potency, and risk of rebound congestion.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 2.4 How do intranasal steroids (e.g., Fluticasone or Beclomethasone) differ from adrenergic decongestants in their site and mechanism of action for relieving congestion?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 2.5 What professional advice and management strategy should be provided to this patient regarding his current nasal spray use?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('s2')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answers</span>
+                </div>
+
+                <div class="essay-answers" id="essay-s2">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answers</h4>
+                    <div class="sub-answer">
+                        <b>2.1</b> Topical Phenylephrine directly stimulates vascular alpha-1 adrenergic receptors on arteriole smooth muscle surrounding nasal sinuses. This induces rapid vasoconstriction, shrinking swollen mucosal tissue and allowing sinus drainage.
+                    </div>
+                    <div class="sub-answer">
+                        <b>2.2</b> The patient has rhinitis medicamentosa (rebound congestion). Continuous, prolonged exposure (beyond 3–5 days) to topical alpha-agonists leads to receptor desensitization, downregulation, and tachyphylaxis. As drug levels decline, compensatory vasodilation occurs, causing worse congestion than baseline.
+                    </div>
+                    <div class="sub-answer">
+                        <b>2.3</b> Topical adrenergics have a rapid onset (seconds to minutes) and potent local action, but carry a high risk of rebound congestion after several days. Oral adrenergics (Pseudoephedrine) have a delayed onset and less potent local effect, but produce prolonged relief without causing rebound congestion.
+                    </div>
+                    <div class="sub-answer">
+                        <b>2.4</b> Nasal steroids (e.g., Fluticasone) work via anti-inflammatory gene transcription, inhibiting immune cells (mast cells, eosinophils) and cytokine release. They do not rely on direct acute sympathomimetic vasoconstriction and do not cause rebound congestion.
+                    </div>
+                    <div class="sub-answer">
+                        <b>2.5</b> Advise the patient to immediately withdraw/taper the topical adrenergic spray. Educate him on rebound congestion. Recommend transitioning to saline nasal flushes or a short course of an intranasal corticosteroid under medical supervision to suppress rebound inflammation.
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─── SCENARIO 3 ─── -->
+            <div class="essay-card">
+                <h3><span class="qnum">Scenario 3</span> Systemic Decongestants in Hypertensive Patient</h3>
+                <div class="scenario-prompt">
+                    A 52-year-old male with a 10-year history of essential hypertension, CAD, and type 2 diabetes presents with acute viral rhinitis. He is on Lisinopril, Metoprolol, and Metformin. BP 158/94, HR 88. He asks about OTC Pseudoephedrine and caffeine.
+                </div>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 3.1 Explain the adrenergic receptor mechanisms through which systemic Pseudoephedrine causes elevated blood pressure and cardiac stimulation.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 3.2 Why are systemic adrenergic decongestants contraindicated or strongly discouraged in this specific patient's clinical profile?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 3.3 Analyze the potential drug-drug interaction between systemic sympathomimetics (Pseudoephedrine/caffeine) and his current antihypertensive regimen (Lisinopril, Metoprolol).</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 3.4 What precautions regarding adrenergic decongestant use apply to patients with hyperthyroidism or diabetes mellitus?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 3.5 What safe pharmacological or non-pharmacological alternatives can be recommended to relieve his nasal congestion without compromising his cardiovascular stability?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('s3')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answers</span>
+                </div>
+
+                <div class="essay-answers" id="essay-s3">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answers</h4>
+                    <div class="sub-answer">
+                        <b>3.1</b> Oral Pseudoephedrine is absorbed systemically and stimulates vascular alpha-1 receptors (causing systemic vasoconstriction and increased systemic vascular resistance) and cardiac beta-1 receptors (increasing heart rate and myocardial contractility), elevating blood pressure.
+                    </div>
+                    <div class="sub-answer">
+                        <b>3.2</b> Systemic adrenergics are contraindicated/discouraged in uncontrolled hypertension, ischemic heart disease, and CAD because systemic vasoconstriction and cardiac stimulation increase myocardial oxygen demand, risking hypertensive crisis, angina, or dysrhythmias.
+                    </div>
+                    <div class="sub-answer">
+                        <b>3.3</b> Pseudoephedrine opposes the therapeutic action of his antihypertensives (Lisinopril, Metoprolol). Pseudoephedrine raises BP and HR, antagonizing the blood-pressure-lowering and beta-blocking actions of his prescribed regimen.
+                    </div>
+                    <div class="sub-answer">
+                        <b>3.4</b> In hyperthyroidism, excess thyroid hormone sensitizes adrenergics, increasing the risk of severe tachycardia/arrhythmias. In diabetes, sympathomimetic stimulation increases hepatic glycogenolysis, causing hyperglycemia.
+                    </div>
+                    <div class="sub-answer">
+                        <b>3.5</b> Safe alternatives include topical saline nasal sprays/rinses, humidified air, short-term intranasal steroids, or second-generation antihistamines (if rhinorrhea is present). If a decongestant is essential, extremely brief, supervised use of a topical spray with close BP monitoring may be evaluated.
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─── SCENARIO 4 ─── -->
+            <div class="essay-card">
+                <h3><span class="qnum">Scenario 4</span> Multi-Symptom OTC Therapy &amp; Nursing Implications</h3>
+                <div class="scenario-prompt">
+                    A 45-year-old long-distance truck driver presents with acute URI symptoms. He purchased an OTC "all-in-one" cold preparation containing Pheniramine (H1 blocker), Phenylephrine (adrenergic), and an analgesic. He asks if he can take it every 4–6 hours while driving a 12-hour overnight shift.
+                </div>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 4.1 Rationalize the pharmacological composition of this combination drug product (i.e., why combine an H1-antihistamine and an adrenergic vasoconstrictor?).</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 4.2 What specific safety warning must be given to this truck driver regarding the traditional antihistamine component (Pheniramine) and his job performance?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 4.3 What potential additive central nervous system interaction would occur if this patient consumed alcohol or other sedatives while taking this combination product?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 4.4 What clinical monitoring parameters (e.g., therapeutic effects and adverse signs) should be established for a patient on combined antihistamine-decongestant therapy?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 4.5 What education should be provided regarding the duration of OTC cold therapy and "red flag" symptoms that mandate immediate medical re-evaluation?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('s4')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answers</span>
+                </div>
+
+                <div class="essay-answers" id="essay-s4">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answers</h4>
+                    <div class="sub-answer">
+                        <b>4.1</b> Pheniramine (H1 blocker) reduces histamine-mediated sneezing, watery eyes, and rhinorrhea. Phenylephrine (adrenergic) constricts mucosal blood vessels to relieve physical airway swelling and blockage. Combining them addresses multiple distinct symptom pathways simultaneously.
+                    </div>
+                    <div class="sub-answer">
+                        <b>4.2</b> Traditional H1 antihistamines cause central CNS depression, drowsiness, lethargy, and impaired psychomotor function/reaction time. The truck driver must be strictly advised NOT to drive or operate heavy machinery while taking this medication.
+                    </div>
+                    <div class="sub-answer">
+                        <b>4.3</b> Co-ingestion of alcohol, tranquilizers, sedatives, or other CNS depressants with Pheniramine causes potent additive CNS depression, leading to profound sedation, severe cognitive impairment, hypotension, and collapse.
+                    </div>
+                    <div class="sub-answer">
+                        <b>4.4</b> Monitor therapeutic effectiveness (reduction in congestion, sneezing, rhinorrhea) and monitor for adverse effects: excessive sedation, elevated blood pressure, palpitations, dry mouth, urinary retention, or central excitation/insomnia.
+                    </div>
+                    <div class="sub-answer">
+                        <b>4.5</b> OTC common cold therapy is empiric and palliative. Use should be limited to short durations. If symptoms (e.g., high fever, severe cough, purulent discharge, dyspnea) persist longer than 7 days or worsen, the patient must stop the medication and seek medical evaluation.
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ═══════ JAVASCRIPT ═══════ -->
+    <script>
+        // ─── TAB NAVIGATION ───
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const section = this.dataset.section;
+                document.querySelectorAll('.section-panel').forEach(p => p.classList.add('hidden'));
+                document.getElementById('section-' + section).classList.remove('hidden');
+                const topEl = document.getElementById(section + '-top');
+                if (topEl) topEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // ─── MCQ CORRECT ANSWERS ───
+        const correctAnswers = {
+            q1: "b",
+            q2: "c",
+            q3: "b",
+            q4: "c",
+            q5: "b",
+            q6: "b",
+            q7: "b",
+            q8: "b",
+            q9: "c",
+            q10: "b",
+            q11: "b",
+            q12: "b",
+            q13: "b",
+            q14: "b",
+            q15: "b",
+            q16: "b",
+            q17: "b",
+            q18: "b",
+            q19: "b",
+            q20: "c"
+        };
+
+        // ─── MCQ EXPLANATIONS ───
+        const answerExplanations = {
+            q1: "Stimulation of peripheral H1 receptors on vascular endothelium causes separation of endothelial cells (leading to increased capillary permeability and hives), vasodilation of small blood vessels, and contraction of bronchial smooth muscle (bronchoconstriction). H2 receptors mediate gastric acid secretion.",
+            q2: "Antihistamines are competitive antagonists that block unoccupied H1 receptors; they cannot displace or push off histamine that is already bound. Therefore, they are most effective when administered early, before full endogenous histamine release and binding occur.",
+            q3: "First-generation (traditional) antihistamines like Diphenhydramine readily cross the blood-brain barrier to bind central H1 receptors (causing marked sedation) and possess significant off-target anticholinergic (antimuscarinic) activity. Second-generation agents have low CNS penetration.",
+            q4: "Non-sedating (peripherally acting) antihistamines such as Fexofenadine and Cetirizine were designed to target peripheral H1 receptors with minimal crossing of the blood-brain barrier, thereby eliminating drowsiness and providing a longer duration of action.",
+            q5: "Anticholinergic (drying) effects result from muscarinic receptor blockade and classically include dry mouth, urinary retention/difficulty urinating, constipation, and visual changes (blurred vision/mydriasis).",
+            q6: "Oral decongestants (e.g., Pseudoephedrine) have a delayed onset of action and less potent decongestant activity compared to topical sprays, but they produce prolonged effects and do not cause rebound congestion. Topical sprays act quickly and potently but cause rebound congestion if used beyond several days.",
+            q7: "Continuous topical adrenergic nasal spray use beyond 3-5 days causes desensitization/downregulation of vascular alpha-adrenergic receptors, leading to severe rebound nasal congestion (rhinitis medicamentosa) when the drug wears off.",
+            q8: "Adrenergic decongestants stimulate alpha-1 receptors on the small blood vessels supplying upper respiratory structures, causing vasoconstriction. This shrinks swollen mucosal tissues and allows nasal secretions to drain.",
+            q9: "Intranasal corticosteroids exert anti-inflammatory effects by inhibiting immune response cells (mast cells, eosinophils, lymphocytes) and inflammatory cytokine production, thereby decreasing mucosal inflammation and congestion.",
+            q10: "Systemic absorption of adrenergic drugs stimulates systemic alpha-1 and beta-1 receptors, causing peripheral arterial vasoconstriction, elevated blood pressure, and positive cardiac stimulation (palpitations/tachycardia), which can precipitate hypertensive crises or cardiac ischemia.",
+            q11: "Most common colds are caused by viral pathogens (rhinovirus, influenza). Pharmacotherapy is empiric and symptomatic only; antibiotics do not cure viral infections and should not be routinely used unless a bacterial infection is confirmed.",
+            q12: "Established indications for H1-antihistamines include nasal allergies, seasonal/perennial allergic rhinitis, motion sickness, sleep disorders, urticaria, and symptomatic relief of cold symptoms (sneezing/rhinorrhea). H2 blockers target peptic ulcers.",
+            q13: "Multi-ingredient cold remedies combine an H1 blocker (to block histamine-mediated secretions, sneezing, and itching) with an adrenergic agent (to constrict blood vessels and reduce physical airway tissue swelling), addressing complementary symptoms.",
+            q14: "Because traditional antihistamines cause significant central nervous system depression, patients must be warned to avoid driving, operating dangerous machinery, and co-ingesting alcohol or other CNS depressants.",
+            q15: "Sympathomimetic stimulation can worsen hyperthyroid-induced cardiovascular symptoms (tachycardia, palpitations, arrhythmias) and increase glycogenolysis, potentially disrupting glycemic control in diabetic patients.",
+            q16: "Histamine acting on peripheral H1 receptors causes increased microvascular permeability, bronchial smooth muscle constriction, and activation of sensory nerve endings causing pain and itching.",
+            q17: "Adrenergic decongestants produce systemic cardiovascular and central nervous system stimulation (hypertension, tremors, tachycardia). When combined with caffeine, these effects are intensified and may trigger adverse events or violate anti-doping regulations.",
+            q18: "To manage the anticholinergic drying effects (xerostomia) of traditional antihistamines, nursing interventions include teaching frequent mouth care, encouraging fluid intake if not contraindicated, and suggesting chewing sugarless gum or hard candies.",
+            q19: "H2-receptor antagonists (cimetidine, ranitidine, famotidine) selectively block H2 receptors located on gastric parietal cells, thereby decreasing gastric acid secretion in conditions like peptic ulcer disease (PUD) and GERD.",
+            q20: "Pharmacotherapy for the common cold is purely symptomatic and palliative. It helps relieve uncomfortable symptoms (congestion, sneezing, pain) but does not eliminate or shorten the life cycle of the causative viral pathogen."
+        };
+
+        // ─── MCQ SUBMIT ───
+        function submitQuiz() {
+            let score = 0;
+            const total = Object.keys(correctAnswers).length;
+
+            document.querySelectorAll('.question-feedback').forEach(el => el.innerHTML = '');
+
+            for (let key in correctAnswers) {
+                const radios = Array.from(document.querySelectorAll(`input[name="${key}"]`));
+                const selected = radios.find(r => r.checked);
+                const correct = correctAnswers[key];
+
+                if (selected && selected.value === correct) score++;
+
+                const feedbackEl = document.getElementById(`feedback-${key}`);
+                if (!feedbackEl) continue;
+
+                let html = `<div class="answer-block"><strong>Q${key.replace(/^q/, '')}</strong><div class="answer-list">`;
+
+                radios.forEach(r => {
+                    const label = r.parentElement;
+                    const text = label ? label.textContent.trim() : r.value;
+                    const classes = ['answer-item'];
+                    if (r.value === correct) classes.push('answer-correct');
+                    if (r.checked && r.value !== correct) classes.push('answer-wrong', 'user-choice');
+                    if (r.checked && r.value === correct) classes.push('user-choice');
+                    html += `<div class="${classes.join(' ')}">${text}${r.checked ? ' ◀' : ''}</div>`;
+                });
+
+                html += `</div>`;
+
+                const correctRadio = radios.find(rr => rr.value === correct);
+                const correctText = correctRadio && correctRadio.parentElement ? correctRadio.parentElement.textContent.trim() : correct;
+                const explanationText = answerExplanations[key] || '';
+
+                if (selected) {
+                    if (selected.value === correct) {
+                        html += `<div class="explanation">✅ Correct — ${explanationText}</div>`;
+                    } else {
+                        html += `<div class="explanation wrong">❌ Incorrect. Correct answer: <strong>${correctText}</strong>. ${explanationText}</div>`;
+                    }
+                } else {
+                    html += `<div class="explanation wrong">No answer selected. Correct answer: <strong>${correctText}</strong>. ${explanationText}</div>`;
+                }
+
+                html += `</div>`;
+                feedbackEl.innerHTML = html;
+            }
+
+            const percentage = Math.round((score / total) * 100);
+            const resultBox = document.getElementById('resultBox');
+            resultBox.style.display = 'block';
+            document.getElementById('answers').innerHTML = '';
+
+            let start = 0;
+            const timer = setInterval(() => {
+                if (start >= percentage) clearInterval(timer);
+                document.getElementById('score').innerText = start + '%';
+                start++;
+            }, 20);
+
+            document.querySelectorAll('#quizForm input[type="radio"]').forEach(i => i.disabled = true);
+        }
+
+        // ─── ESSAY TOGGLE ───
+        function toggleEssay(id) {
+            const el = document.getElementById('essay-' + id);
+            if (!el) return;
+            const isVisible = el.classList.toggle('visible');
+            el.setAttribute('aria-hidden', !isVisible);
+            if (isVisible) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        // ─── KEYBOARD ACCESSIBILITY ───
+        document.querySelectorAll('.essay-actions .btn').forEach(btn => {
+            btn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    btn.click();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

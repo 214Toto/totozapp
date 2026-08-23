@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Asthma Pharmacology | 20 MCQs + 4 Scenarios</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        /* ─────────── ROOT & RESET ─────────── */
+        :root {
+            --primary: #2b7a78;
+            --accent: #3aafa9;
+            --dark: #17252a;
+            --light: #f8f9fa;
+            --radius: 12px;
+            --shadow: 0 4px 14px rgba(18, 38, 63, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Roboto, system-ui, sans-serif;
+            background: linear-gradient(180deg, #f5f7fb, #eef6f6);
+            color: var(--dark);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+
+        /* ─────────── HEADER ─────────── */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: #fff;
+            padding: 0.8rem 0;
+            box-shadow: 0 6px 18px rgba(11, 36, 36, 0.18);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            font-size: 1.6rem;
+            color: var(--accent);
+        }
+
+        .logo h1 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 0.25rem 1rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            color: #d4f0ee;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0.3rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-tabs .tab-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: none;
+            color: #d4f0ee;
+            padding: 0.3rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .nav-tabs .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #fff;
+        }
+
+        .nav-tabs .tab-btn.active {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        /* ─────────── CONTAINER ─────────── */
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 1.25rem 2.5rem;
+        }
+
+        /* ─────────── SECTION TITLES ─────────── */
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1.8rem 0 1rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 3px solid rgba(43, 122, 120, 0.20);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .section-title i {
+            font-size: 1.1rem;
+            color: rgb(8, 104, 66);
+        }
+
+        .section-title .count {
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0.05rem 0.7rem;
+        }
+
+        .section-subtitle {
+            color: #5f7a7a;
+            font-size: 0.92rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .section-panel {
+            display: block;
+        }
+
+        .section-panel.hidden {
+            display: none;
+        }
+
+        /* ─────────── MCQ QUESTION CARDS ─────────── */
+        .question {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.2rem 1.2rem 0.2rem 1.2rem;
+            margin-bottom: 1.2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(43, 122, 120, 0.06);
+            transition: box-shadow 0.2s;
+        }
+
+        .question:hover {
+            box-shadow: 0 6px 22px rgba(18, 38, 63, 0.07);
+        }
+
+        .question p {
+            font-weight: 600;
+            font-size: 0.98rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .question .q-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            line-height: 1.6;
+            margin-right: 0.4rem;
+        }
+
+        .options label {
+            display: block;
+            background: #fafcfd;
+            border: 1px solid #e0e8ef;
+            border-radius: 8px;
+            padding: 0.45rem 0.9rem;
+            margin-top: 0.45rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-weight: 450;
+            font-size: 0.94rem;
+        }
+
+        .options label:hover {
+            background: #e8f5f4;
+            border-color: var(--accent);
+        }
+
+        .options input[type="radio"] {
+            margin-right: 0.5rem;
+            accent-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        /* ─────────── FEEDBACK ─────────── */
+        .question-feedback {
+            margin-top: 0.9rem;
+            padding: 0.4rem 0 0.1rem 0;
+            border-top: 1px dashed #dce6ed;
+        }
+
+        .answer-block strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--primary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .answer-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .answer-item {
+            padding: 5px 10px;
+            border-radius: 6px;
+            border: 1px solid #e6eef3;
+            background: #ffffff;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .answer-correct {
+            background: #ecfdf5;
+            border-color: #bbf7d0;
+            color: #065f46;
+        }
+
+        .answer-wrong {
+            background: #fff1f2;
+            border-color: #fca5a5;
+            color: #9f1239;
+        }
+
+        .user-choice {
+            outline: 2px dashed rgba(0, 0, 0, 0.06);
+        }
+
+        .explanation {
+            margin-top: 6px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: #f1f8f6;
+            color: #065f46;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border-left: 4px solid var(--accent);
+        }
+
+        .explanation.wrong {
+            background: #fff5f5;
+            color: #7f1d1d;
+            border-left-color: #f87171;
+        }
+
+        /* ─────────── BUTTONS ─────────── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.6rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(43, 122, 120, 0.22);
+        }
+
+        .btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(43, 122, 120, 0.30);
+        }
+
+        .btn:active {
+            transform: scale(0.96);
+        }
+
+        .btn i {
+            font-size: 0.9rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .btn-sm {
+            padding: 0.35rem 1rem;
+            font-size: 0.85rem;
+        }
+
+        .submit-wrap {
+            text-align: center;
+            margin: 1.5rem 0 2rem;
+        }
+
+        /* ─────────── RESULT BOX ─────────── */
+        .result {
+            margin-top: 1.5rem;
+            padding: 1.5rem 1.5rem 1rem;
+            background: #f1faf9;
+            border-radius: var(--radius);
+            text-align: center;
+            display: none;
+            border: 1px solid #c5e3df;
+        }
+
+        .result h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.2rem;
+        }
+
+        .score {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0.2rem 0 0.4rem;
+        }
+
+        /* ─────────── SCENARIO / ESSAY SECTION ─────────── */
+        .essay-card {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.25rem 1.25rem 1rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(43, 122, 120, 0.06);
+        }
+
+        .essay-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 0 0 0.6rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .essay-card h3 .qnum {
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.75rem;
+            line-height: 1.6;
+        }
+
+        .essay-card .scenario-prompt {
+            background: #f4f8fa;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            margin: 0.2rem 0 0.8rem 0;
+            font-size: 0.94rem;
+            line-height: 1.6;
+        }
+
+        .essay-card .sub-q {
+            background: #fafcfd;
+            padding: 0.6rem 0.9rem;
+            margin-top: 0.5rem;
+            border-radius: 6px;
+            border: 1px solid #e9edf2;
+            font-size: 0.92rem;
+            font-weight: 500;
+        }
+
+        .essay-card .sub-q i {
+            color: var(--primary);
+            margin-right: 0.3rem;
+        }
+
+        .essay-card textarea {
+            width: 100%;
+            min-height: 60px;
+            border-radius: 8px;
+            border: 1px solid #d1dbe0;
+            padding: 0.7rem 0.9rem;
+            resize: vertical;
+            font-family: inherit;
+            font-size: 0.95rem;
+            background: #fafcfd;
+            transition: border 0.2s;
+            margin-top: 0.3rem;
+        }
+
+        .essay-card textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(43, 122, 120, 0.12);
+        }
+
+        .essay-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 0.7rem;
+            flex-wrap: wrap;
+        }
+
+        .essay-actions .btn {
+            padding: 0.45rem 1.2rem;
+            font-size: 0.9rem;
+        }
+
+        .essay-answers {
+            display: none;
+            margin-top: 1rem;
+            background: #f1f8f6;
+            border-radius: 8px;
+            padding: 1rem 1.2rem;
+            border: 1px solid #cfe6e0;
+            color: var(--dark);
+        }
+
+        .essay-answers.visible {
+            display: block;
+            animation: fadeSlide 0.25s ease;
+        }
+
+        .essay-answers h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: var(--primary);
+            margin: 0 0 0.5rem 0;
+        }
+
+        .essay-answers p,
+        .essay-answers li {
+            font-size: 0.94rem;
+            line-height: 1.6;
+        }
+
+        .essay-answers ul {
+            padding-left: 1.2rem;
+            margin: 0.3rem 0 0.5rem;
+        }
+
+        .essay-answers ul li {
+            margin-bottom: 0.2rem;
+        }
+
+        .essay-answers b {
+            color: var(--dark);
+        }
+
+        .essay-answers .sub-answer {
+            margin-top: 0.6rem;
+            padding-top: 0.5rem;
+            border-top: 1px dashed #d0e2dc;
+        }
+
+        .essay-answers .sub-answer:first-of-type {
+            border-top: none;
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        @keyframes fadeSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(-6px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ─────────── RESPONSIVE ─────────── */
+        @media (max-width: 700px) {
+            body {
+                padding-top: 72px;
+            }
+            .logo h1 {
+                font-size: 1rem;
+            }
+            .header-inner {
+                padding: 0 1rem;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.3rem;
+            }
+            .badge {
+                align-self: flex-start;
+            }
+            .nav-tabs {
+                justify-content: center;
+            }
+            .nav-tabs .tab-btn {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.7rem;
+            }
+            .question {
+                padding: 1rem 1rem 0.1rem 1rem;
+            }
+            .section-title {
+                font-size: 1.1rem;
+            }
+            .essay-card {
+                padding: 1rem;
+            }
+            .score {
+                font-size: 2.2rem;
+            }
+            .btn {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .logo h1 {
+                font-size: 0.85rem;
+            }
+            .logo i {
+                font-size: 1.2rem;
+            }
+            .options label {
+                font-size: 0.87rem;
+                padding: 0.4rem 0.7rem;
+            }
+        }
+
+        /* ─────────── UTILITY ─────────── */
+        .text-muted {
+            color: #5f7a7a;
+            font-size: 0.9rem;
+        }
+        .mt-1 {
+            margin-top: 0.8rem;
+        }
+        .mb-1 {
+            margin-bottom: 0.8rem;
+        }
+        .flex-center {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .hidden {
+            display: none !important;
+        }
+
+        .scroll-target {
+            scroll-margin-top: 90px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════ HEADER ═══════ -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <i class="fas fa-lungs"></i>
+                <h1>Asthma Pharmacology</h1>
+            </div>
+            <span class="badge"><i class="fas fa-pencil-alt"></i> &nbsp;20 MCQs + 4 Scenarios</span>
+            <div class="nav-tabs">
+                <button class="tab-btn active" data-section="mcq">MCQs</button>
+                <button class="tab-btn" data-section="essay">Scenarios</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══════ MAIN CONTENT ═══════ -->
+    <main>
+
+        <!-- ──── SECTION 1: MCQs ──── -->
+        <section class="container section-panel" id="section-mcq">
+            <div class="section-title scroll-target" id="mcq-top">
+                <i class="fas fa-list-ul"></i> Multiple Choice Questions
+                <span class="count">20</span>
+            </div>
+            <p class="section-subtitle">Select the best answer for each question, then click <strong>Submit All MCQs</strong> at the bottom.</p>
+
+            <form id="quizForm">
+
+                <!-- Q1 -->
+                <div class="question">
+                    <p><span class="q-badge">1</span> A 28-year-old asthmatic patient receives an inhaled drug that stimulates G<sub>s</sub> protein-coupled receptors on airway smooth muscle. Which cellular downstream event directly mediates the resulting bronchodilation?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="a"> A. Increased degradation of cAMP by phosphodiesterase III</label>
+                        <label><input type="radio" name="q1" value="b"> B. Activation of Protein Kinase A leading to reduced intracellular calcium levels</label>
+                        <label><input type="radio" name="q1" value="c"> C. Direct inhibition of phospholipase A<sub>2</sub> membrane translocations</label>
+                        <label><input type="radio" name="q1" value="d"> D. Down-regulation of histone deacetylase (HDAC) transcriptional activity</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q1"></div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="question">
+                    <p><span class="q-badge">2</span> A patient with chronic asthma who is currently receiving high-dose inhaled corticosteroids is started on regular salmeterol twice daily. What is the pharmacological rationale for adding this agent rather than taking it as needed?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="a"> A. Salmeterol lacks anti-inflammatory properties and provides rapid immediate relief within 2 minutes</label>
+                        <label><input type="radio" name="q2" value="b"> B. It acts as a long-acting adjunctive controller with a 12-hour duration of action and should not be used for acute quick relief</label>
+                        <label><input type="radio" name="q2" value="c"> C. Salmeterol directly degrades cysteinyl leukotrienes in the pulmonary vasculature</label>
+                        <label><input type="radio" name="q2" value="d"> D. It prevents systemic adrenal axis suppression caused by long-term oral prednisolone</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q2"></div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question">
+                    <p><span class="q-badge">3</span> A 45-year-old female taking oral theophylline for persistent airway obstruction presents with nausea, severe headache, and ventricular tachycardia. Her serum theophylline level is measured at 135 μmol/L. Which mechanism contributes to both its therapeutic effect and its potential toxicity at elevated levels?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="a"> A. Selective blockade of cysteinyl leukotriene CysLT<sub>1</sub> receptors</label>
+                        <label><input type="radio" name="q3" value="b"> B. Inhibition of phosphodiesterase isoenzymes resulting in elevated cAMP/cGMP and competitive antagonism at adenosine A<sub>1</sub> receptors</label>
+                        <label><input type="radio" name="q3" value="c"> C. Direct binding and activation of interleukin-5 receptor alpha subunits</label>
+                        <label><input type="radio" name="q3" value="d"> D. Depressal of local airway neuronal tachykinin pathways</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q3"></div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="question">
+                    <p><span class="q-badge">4</span> A patient with stable severe asthma on theophylline therapy is prescribed an antibiotic for an upper respiratory tract infection. Three days later, the patient develops severe palpitations and tremors. Which co-administered drug most likely caused this toxicity by inhibiting cytochrome P450 enzymes?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="a"> A. Rifampicin</label>
+                        <label><input type="radio" name="q4" value="b"> B. Phenytoin</label>
+                        <label><input type="radio" name="q4" value="c"> C. Erythromycin</label>
+                        <label><input type="radio" name="q4" value="d"> D. Carbamazepine</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q4"></div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="question">
+                    <p><span class="q-badge">5</span> Which of the following conditions is an absolute contraindication to the clinical administration of theophylline?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="a"> A. Aspirin-induced asthma exacerbations</label>
+                        <label><input type="radio" name="q5" value="b"> B. Uncontrolled cardiac arrhythmias and active peptic ulcer disease</label>
+                        <label><input type="radio" name="q5" value="c"> C. Severe peripheral eosinophilia</label>
+                        <label><input type="radio" name="q5" value="d"> D. Concomitant administration of inhaled budesonide</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q5"></div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="question">
+                    <p><span class="q-badge">6</span> What is the primary mechanism by which ipratropium bromide produces bronchodilation in the bronchial tree?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="a"> A. Up-regulation of cell-surface β<sub>2</sub>-adrenoceptor density</label>
+                        <label><input type="radio" name="q6" value="b"> B. Antagonism of parasympathetic-mediated cholinergic bronchoconstriction</label>
+                        <label><input type="radio" name="q6" value="c"> C. Direct inhibition of 5-lipoxygenase enzyme in eosinophils</label>
+                        <label><input type="radio" name="q6" value="d"> D. Binding to circulatory immunoglobulin E to prevent mast cell degranulation</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q6"></div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="question">
+                    <p><span class="q-badge">7</span> Montelukast and zafirlukast produce clinical efficacy in bronchial asthma by targeting which specific component of the inflammatory cascade?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="a"> A. Histamine H<sub>1</sub> receptors on vascular endothelial cells</label>
+                        <label><input type="radio" name="q7" value="b"> B. Interleukin-5 cytokines released by T2 helper cells</label>
+                        <label><input type="radio" name="q7" value="c"> C. Cysteinyl leukotriene CysLT<sub>1</sub> receptors on bronchial smooth muscle and inflammatory cells</label>
+                        <label><input type="radio" name="q7" value="d"> D. Core histones in nucleus by promoting acetylation</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q7"></div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="question">
+                    <p><span class="q-badge">8</span> A patient with asthma experiences severe bronchospasm following administration of aspirin. Which drug class is specifically indicated to prevent asthma attacks triggered by aspirin ingestion?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="a"> A. Muscarinic antagonists (e.g., ipratropium)</label>
+                        <label><input type="radio" name="q8" value="b"> B. Leukotriene receptor antagonists (e.g., montelukast)</label>
+                        <label><input type="radio" name="q8" value="c"> C. Methylxanthines (e.g., aminophylline)</label>
+                        <label><input type="radio" name="q8" value="d"> D. Anti-IL-5 monoclonal antibodies (e.g., mepolizumab)</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q8"></div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="question">
+                    <p><span class="q-badge">9</span> Glucocorticoids enhance the bronchodilatory responsiveness of airway smooth muscle primarily through which genomic mechanism?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="a"> A. Direct cleavage of cell membrane phospholipids</label>
+                        <label><input type="radio" name="q9" value="b"> B. Up-regulation of β<sub>2</sub>-adrenoceptor transcription and expression</label>
+                        <label><input type="radio" name="q9" value="c"> C. Direct enzymatic inhibition of adenylyl cyclase</label>
+                        <label><input type="radio" name="q9" value="d"> D. Competitive binding to adenosine A<sub>3</sub> cell surface receptors</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q9"></div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="question">
+                    <p><span class="q-badge">10</span> A patient using high-dose inhaled fluticasone develops hoarseness (dysphonia) and white plaques on the oral mucosa. Which action should have been recommended to minimize these local adverse effects?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="a"> A. Switching to oral systemic prednisolone on alternate days</label>
+                        <label><input type="radio" name="q10" value="b"> B. Rinsing the mouth and oropharynx with water after each inhalation</label>
+                        <label><input type="radio" name="q10" value="c"> C. Pre-treating with an oral leukotriene receptor antagonist</label>
+                        <label><input type="radio" name="q10" value="d"> D. Co-administering intravenous magnesium sulfate</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q10"></div>
+                </div>
+
+                <!-- Q11 -->
+                <div class="question">
+                    <p><span class="q-badge">11</span> Chronic administration of systemic glucocorticoids like prednisolone can lead to severe systemic adverse effects. Which of the following is a recognized long-term toxicity of systemic steroid therapy?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q11" value="a"> A. Hypokalemia and bronchial hyper-responsiveness</label>
+                        <label><input type="radio" name="q11" value="b"> B. Hypothalamic-pituitary-adrenal (HPA) axis suppression, cataracts, and osteoporosis</label>
+                        <label><input type="radio" name="q11" value="c"> C. Immediate anaphylaxis and reactivation of herpes zoster</label>
+                        <label><input type="radio" name="q11" value="d"> D. Reflex bradycardia and urinary retention</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q11"></div>
+                </div>
+
+                <!-- Q12 -->
+                <div class="question">
+                    <p><span class="q-badge">12</span> What is the main clinical indication and target demographic for cromoglicate and nedocromil sodium?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q12" value="a"> A. Emergency treatment of acute status asthmaticus in elderly patients</label>
+                        <label><input type="radio" name="q12" value="b"> B. Prophylactic management of mild persistent or exercise-induced asthma, predominantly in pediatric patients</label>
+                        <label><input type="radio" name="q12" value="c"> C. Rapid bronchodilation in chronic obstructive pulmonary disease (COPD)</label>
+                        <label><input type="radio" name="q12" value="d"> D. Biological targeted therapy for severe eosinophilic refractory asthma</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q12"></div>
+                </div>
+
+                <!-- Q13 -->
+                <div class="question">
+                    <p><span class="q-badge">13</span> Omalizumab reduces asthma exacerbations and corticosteroid dependency by which targeted immunomodulatory action?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q13" value="a"> A. Neutralizing circulating interleukin-5 cytokines directly</label>
+                        <label><input type="radio" name="q13" value="b"> B. Inhibiting the binding of IgE to high-affinity receptors on mast cells and basophils</label>
+                        <label><input type="radio" name="q13" value="c"> C. Blocking muscarinic M<sub>3</sub> receptors on bronchial submucosal glands</label>
+                        <label><input type="radio" name="q13" value="d"> D. Inducing apoptosis of airway epithelial cells</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q13"></div>
+                </div>
+
+                <!-- Q14 -->
+                <div class="question">
+                    <p><span class="q-badge">14</span> A 35-year-old asthmatic patient receiving omalizumab therapy undergoes rapid tapering of oral steroids and subsequently presents with eosinophilia, a vasculitic cutaneous rash, and peripheral neuropathy. What condition is suspected?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q14" value="a"> A. Reactivation of Herpes Zoster</label>
+                        <label><input type="radio" name="q14" value="b"> B. Churg-Strauss Syndrome (Eosinophilic Granulomatosis with Polyangiitis)</label>
+                        <label><input type="radio" name="q14" value="c"> C. Oropharyngeal Candidiasis</label>
+                        <label><input type="radio" name="q14" value="d"> D. Severe Hypokalemia and Metabolic Alkalosis</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q14"></div>
+                </div>
+
+                <!-- Q15 -->
+                <div class="question">
+                    <p><span class="q-badge">15</span> Mepolizumab and reslizumab differ from benralizumab in their mechanism targeting the interleukin-5 pathway because mepolizumab and reslizumab:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q15" value="a"> A. Bind directly to free IL-5 cytokines, whereas benralizumab blocks the IL-5 receptor alpha subunit</label>
+                        <label><input type="radio" name="q15" value="b"> B. Block CysLT<sub>1</sub> receptors, whereas benralizumab inhibits phosphodiesterase IV</label>
+                        <label><input type="radio" name="q15" value="c"> C. Activate histone deacetylase, whereas benralizumab inhibits mast cell degranulation</label>
+                        <label><input type="radio" name="q15" value="d"> D. Are administered via metered-dose inhaler, whereas benralizumab is given orally</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q15"></div>
+                </div>
+
+                <!-- Q16 -->
+                <div class="question">
+                    <p><span class="q-badge">16</span> What is the primary clinical indication for anti-IL-5 biological therapies (e.g., mepolizumab, benralizumab)?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q16" value="a"> A. Acute relief of exercise-induced bronchospasm in non-allergic patients</label>
+                        <label><input type="radio" name="q16" value="b"> B. Add-on maintenance therapy for severe asthma in patients with documented peripheral/airway eosinophilia</label>
+                        <label><input type="radio" name="q16" value="c"> C. Initial monotherapy for mild intermittent allergic asthma</label>
+                        <label><input type="radio" name="q16" value="d"> D. Prophylaxis against aspirin sensitivity in pediatric patients</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q16"></div>
+                </div>
+
+                <!-- Q17 -->
+                <div class="question">
+                    <p><span class="q-badge">17</span> Intravenous magnesium sulfate is utilized as an adjunctive therapeutic agent in severe acute asthma exacerbations due to its ability to:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q17" value="a"> A. Stimulate G<sub>s</sub>-protein coupled β<sub>2</sub>-adrenoceptors</label>
+                        <label><input type="radio" name="q17" value="b"> B. Reduce intracellular calcium concentration in bronchial smooth muscle, promoting relaxation</label>
+                        <label><input type="radio" name="q17" value="c"> C. Inhibit hepatic cytochrome P450 clearance of corticosteroids</label>
+                        <label><input type="radio" name="q17" value="d"> D. Selectively block parasympathetic muscarinic ganglia</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q17"></div>
+                </div>
+
+                <!-- Q18 -->
+                <div class="question">
+                    <p><span class="q-badge">18</span> Which chemical mediator, produced by mast cells via the cyclooxygenase pathway, is a potent bronchoconstrictor involved in the immediate phase of asthma?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q18" value="a"> A. Prostaglandin D<sub>2</sub> (PGD2)</label>
+                        <label><input type="radio" name="q18" value="b"> B. Interleukin-5 (IL-5)</label>
+                        <label><input type="radio" name="q18" value="c"> C. Eosinophil Major Basic Protein</label>
+                        <label><input type="radio" name="q18" value="d"> D. Nitric Oxide</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q18"></div>
+                </div>
+
+                <!-- Q19 -->
+                <div class="question">
+                    <p><span class="q-badge">19</span> Which set of interleukins is primarily responsible for chemoattracting and activating eosinophils and mononuclear cells, setting the stage for late-phase asthmatic responses?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q19" value="a"> A. IL-1 and TNF-α</label>
+                        <label><input type="radio" name="q19" value="b"> B. IL-3, IL-4, IL-5, IL-8, and IL-13</label>
+                        <label><input type="radio" name="q19" value="c"> C. Interferon-gamma and IL-2</label>
+                        <label><input type="radio" name="q19" value="d"> D. IL-10 and IL-12</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q19"></div>
+                </div>
+
+                <!-- Q20 -->
+                <div class="question">
+                    <p><span class="q-badge">20</span> A patient presenting with acute severe asthma fails to improve after initial inhaled salbutamol and ipratropium. According to acute management guidelines, what systemic medication should be promptly administered?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q20" value="a"> A. Subcutaneous Omalizumab</label>
+                        <label><input type="radio" name="q20" value="b"> B. Systemic Corticosteroid (e.g., Oral Prednisolone or IV Hydrocortisone)</label>
+                        <label><input type="radio" name="q20" value="c"> C. Oral Zafirlukast</label>
+                        <label><input type="radio" name="q20" value="d"> D. Inhaled Cromoglicate</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q20"></div>
+                </div>
+
+                <div class="submit-wrap">
+                    <button type="button" class="btn" onclick="submitQuiz()">
+                        <i class="fas fa-check-circle"></i> Submit All MCQs
+                    </button>
+                </div>
+
+            </form>
+
+            <div class="result" id="resultBox">
+                <h3><i class="fas fa-chart-simple"></i> Your Score</h3>
+                <div class="score" id="score">0%</div>
+                <p class="text-muted" style="font-size:0.9rem;">Review the feedback below each question.</p>
+                <div id="answers"></div>
+            </div>
+        </section>
+
+        <!-- ──── SECTION 2: SCENARIOS ──── -->
+        <section class="container section-panel hidden" id="section-essay">
+            <div class="section-title scroll-target" id="essay-top">
+                <i class="fas fa-pen-fancy"></i> Clinical Scenarios
+                <span class="count">4</span>
+            </div>
+            <p class="section-subtitle">Read each scenario and write your answers in the boxes. Click <strong>Submit</strong> to reveal the model answers.</p>
+
+            <!-- ─── SCENARIO 1 ─── -->
+            <div class="essay-card">
+                <h3><span class="qnum">Scenario 1</span> Management of Acute Severe Asthma (Status Asthmaticus)</h3>
+                <div class="scenario-prompt">
+                    A 22-year-old university student is brought to the Emergency Department with extreme breathlessness, severe chest tightness, and audible wheezing. She can only speak in broken, single words. On examination: Respiratory Rate = 34 breaths/min, Heart Rate = 128 beats/min, SpO<sub>2</sub> = 88% on room air, and Peak Expiratory Flow (PEF) is 38% of predicted value. Auscultation reveals widespread bilateral inspiratory and expiratory polyphonic wheezes with poor air entry.
+                </div>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 1.1 Classify the severity of this patient's acute asthma presentation based on clinical criteria and state the immediate first-line pharmacological interventions required within the first hour.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 1.2 Describe the cellular mechanism of action of inhaled short-acting β<sub>2</sub>-agonists (SABA) and explain why coadministration of ipratropium bromide provides synergistic bronchodilation.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 1.3 Discuss the role, rationale, and mechanism of systemic corticosteroids (e.g., IV hydrocortisone or oral prednisolone) in this acute setting, including why they are not effective as immediate acute relievers.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 1.4 If the patient demonstrates a poor response after 1 hour of continuous nebulization and remains severely hypoxemic, what second-line adjunctive intravenous agent should be administered, and what is its mechanism of action?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 1.5 Explain the potential systemic metabolic and cardiac adverse effects that may arise from high-dose, repeated administration of nebulized salbutamol during this emergency protocol.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('s1')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answers</span>
+                </div>
+
+                <div class="essay-answers" id="essay-s1">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answers</h4>
+                    <div class="sub-answer">
+                        <b>1.1</b> Classified as <b>Severe Acute Asthma / Life-Threatening Exacerbation</b> (PEF &lt; 50%, RR &gt; 25, HR &gt; 120, SpO<sub>2</sub> &lt; 92%, inability to complete sentences). Immediate interventions: Oxygen to achieve SpO<sub>2</sub> 94–98%, high-dose nebulized SABA (Salbutamol 2.5–5 mg), nebulized Muscarinic Antagonist (Ipratropium bromide 0.5 mg), and early administration of systemic corticosteroids (Oral Prednisolone 40–50 mg or IV Hydrocortisone 100–200 mg).
+                    </div>
+                    <div class="sub-answer">
+                        <b>1.2</b> SABA binds β<sub>2</sub>-adrenoceptors → activates G<sub>s</sub> protein → stimulates adenylyl cyclase → ↑ cAMP → activates Protein Kinase A (PKA) → ↓ intracellular Ca<sup>2+</sup> → bronchial smooth muscle relaxation. Synergy occurs because SABA directly stimulates adrenergic bronchodilation while Ipratropium blocks parasympathetic cholinergic bronchoconstriction (vagal tone), addressing two distinct physiological pathways.
+                    </div>
+                    <div class="sub-answer">
+                        <b>1.3</b> Corticosteroids reduce airway mucosal edema, decrease inflammatory cytokine production, inhibit leukotriene synthesis via lipocortin induction, and up-regulate β<sub>2</sub>-adrenoceptor expression. They are not fast-acting relievers because their mechanism depends on gene transcription/protein synthesis, requiring 4 to 6 hours for clinical onset.
+                    </div>
+                    <div class="sub-answer">
+                        <b>1.4</b> <b>Intravenous Magnesium Sulfate</b> (MgSO<sub>4</sub>, 1.2–2 g IV infusion over 20 min). MOA: Blocks voltage-gated calcium channels, reducing intracellular calcium uptake in bronchial smooth muscle cells, resulting in smooth muscle relaxation and bronchodilation.
+                    </div>
+                    <div class="sub-answer">
+                        <b>1.5</b> Fine muscle tremor (β<sub>2</sub> stimulation in skeletal muscle), tachycardia/palpitations (reflex cardiac response and partial β<sub>1</sub> cross-reactivity), hypokalemia (β<sub>2</sub>-mediated drive of potassium into skeletal muscle cells via Na<sup>+</sup>/K<sup>+</sup> ATPase pump), nervousness, and headache.
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─── SCENARIO 2 ─── -->
+            <div class="essay-card">
+                <h3><span class="qnum">Scenario 2</span> Inadequate Asthma Control &amp; Controller Therapy</h3>
+                <div class="scenario-prompt">
+                    A 34-year-old accountant with a 5-year history of asthma visits the outpatient clinic. He reports using his salbutamol inhaler 4 to 5 times per week for daytime symptoms and wakes up at night short of breath twice a week. He is currently prescribed low-dose inhaled beclomethasone dipropionate but acknowledges irregular adherence because he feels it "doesn't provide fast relief like the blue inhaler."
+                </div>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 2.1 Evaluate this patient's level of asthma control based on his clinical presentation and explain why relying solely on SABA as needed is inadequate and dangerous.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 2.2 Explain the pharmacological mechanisms by which inhaled corticosteroids (ICS) control airway inflammation, including their influence on inflammatory mediator production and cell membrane stabilization.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 2.3 How does the combination of an ICS with a Long-Acting β<sub>2</sub>-Agonist (LABA, e.g., formoterol or salmeterol) demonstrate pharmacological synergy at the cellular level?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 2.4 Detail the clinical instructions and practical measures the patient must follow to prevent local adverse effects associated with inhaled corticosteroid therapy.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 2.5 If this patient also suffers from exercise-induced asthma and aspirin sensitivity, which oral controller drug class could be added to his regimen, and what is its mechanism of action?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('s2')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answers</span>
+                </div>
+
+                <div class="essay-answers" id="essay-s2">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answers</h4>
+                    <div class="sub-answer">
+                        <b>2.1</b> Classified as <b>Uncontrolled Chronic Asthma</b> (daytime symptoms &gt; 2 days/week, nighttime awakenings 2 times/week). SABA-only reliance treats acute bronchospasm without addressing underlying airway inflammation, leading to progressive airway remodeling, β-receptor desensitization/down-regulation, severe exacerbations, and increased mortality.
+                    </div>
+                    <div class="sub-answer">
+                        <b>2.2</b> ICS binds cytosolic glucocorticoid receptors, translocates to the nucleus, and regulates gene transcription: (a) Transactivation: ↑ synthesis of anti-inflammatory proteins (lipocortin-1, which inhibits PLA<sub>2</sub>, blocking prostaglandin and leukotriene synthesis); (b) Transrepression: ↓ transcription of pro-inflammatory cytokines (IL-4, IL-5, TNF-α) and adhesion molecules; (c) Cell stabilization: inhibits mast cell degranulation and reduces eosinophil survival.
+                    </div>
+                    <div class="sub-answer">
+                        <b>2.3</b> ICS up-regulates β<sub>2</sub>-adrenoceptor synthesis and prevents β<sub>2</sub>-receptor desensitization/tolerance caused by long-term LABA use. Concurrently, LABA activates PKA, which enhances glucocorticoid receptor translocation and nuclear binding, mutually boosting anti-inflammatory and bronchodilatory efficacy.
+                    </div>
+                    <div class="sub-answer">
+                        <b>2.4</b> Instruct patient to use a spacer device with Metered Dose Inhaler (MDI) to reduce deposition in the pharynx, rinse the mouth thoroughly with water and gargle after each inhalation (spitting the water out), and monitor for signs of oral thrush or voice hoarseness.
+                    </div>
+                    <div class="sub-answer">
+                        <b>2.5</b> <b>Leukotriene Receptor Antagonists</b> (LTRAs, e.g., Montelukast). MOA: Competitive antagonism of CysLT<sub>1</sub> receptors, blocking the effects of cysteinyl leukotrienes (LTC<sub>4</sub>, LTD<sub>4</sub>, LTE<sub>4</sub>). Effective in controlling aspirin-induced and exercise-induced asthma.
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─── SCENARIO 3 ─── -->
+            <div class="essay-card">
+                <h3><span class="qnum">Scenario 3</span> Narrow Therapeutic Index &amp; Pharmacokinetic Drug Interactions</h3>
+                <div class="scenario-prompt">
+                    A 58-year-old male with severe chronic airway disease is maintained on oral sustained-release theophylline (300 mg twice daily). His condition has been stable with a trough serum theophylline level of 65 μmol/L. Recently, he developed a severe bacterial bronchitis and was prescribed a 7-day course of ciprofloxacin. On day 4 of antibiotic therapy, he presents to the urgent care clinic complaining of intractable nausea, vomiting, severe insomnia, persistent throbbing headache, and palpitations. His ECG shows sinus tachycardia with occasional premature ventricular contractions.
+                </div>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 3.1 Explain the concept of narrow therapeutic index in relation to theophylline plasma concentration ranges (μmol/L) and identify the primary physiological systems affected by high serum levels.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 3.2 Analyze the drug interaction between theophylline and ciprofloxacin that led to this patient's acute toxic presentation.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 3.3 Name two classes of therapeutic agents or lifestyle factors that cause the exact opposite pharmacokinetic effect on theophylline (i.e., increased clearance) and explain the underlying mechanism.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 3.4 Describe the multiple molecular mechanisms of action by which theophylline produces bronchodilation and anti-inflammatory effects in the respiratory tract.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 3.5 Outline the immediate clinical management steps required to address theophylline toxicity in this patient.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('s3')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answers</span>
+                </div>
+
+                <div class="essay-answers" id="essay-s3">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answers</h4>
+                    <div class="sub-answer">
+                        <b>3.1</b> Therapeutic window is narrow: 55–110 μmol/L (5–15 μg/mL). Toxicity occurs at &gt; 110 μmol/L. Systems affected: Gastrointestinal (nausea, vomiting, abdominal pain), Central Nervous System (headache, nervousness, insomnia, severe seizures), Cardiovascular (tachycardia, palpitations, lethal tachyarrhythmias), and Renal (mild diuresis).
+                    </div>
+                    <div class="sub-answer">
+                        <b>3.2</b> Ciprofloxacin is a potent inhibitor of cytochrome P450 enzymes (specifically CYP1A2) in the liver. Co-administration decreases the hepatic metabolism and clearance of theophylline, leading to marked accumulation and toxic serum concentrations.
+                    </div>
+                    <div class="sub-answer">
+                        <b>3.3</b> (a) CYP450 Enzyme Inducers: Rifampicin, Phenytoin, Carbamazepine, Phenobarbital; (b) Lifestyle factors: Heavy tobacco smoking and chronic ethanol consumption. Mechanism: Induction of hepatic CYP1A2 enzymes accelerates theophylline metabolism, lowering serum levels and reducing therapeutic response.
+                    </div>
+                    <div class="sub-answer">
+                        <b>3.4</b> (1) Non-selective Phosphodiesterase (PDE) Inhibition: Increases intracellular cAMP and cGMP, producing smooth muscle relaxation; (2) Adenosine Receptor Antagonism: Blocks adenosine A<sub>1</sub> receptors, preventing bronchoconstriction and central nervous system stimulation; (3) Anti-inflammatory effects: Reduces cytokine release and eosinophil infiltration.
+                    </div>
+                    <div class="sub-answer">
+                        <b>3.5</b> (1) Discontinue theophylline and ciprofloxacin; (2) Monitor vital signs, ECG, and serum theophylline level; (3) Provide supportive care: IV fluids, antiemetics, and benzodiazepines for seizures; (4) In severe toxicity (arrhythmias, seizures), consider activated charcoal (if within 4 hours) and hemodialysis (for life-threatening levels).
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─── SCENARIO 4 ─── -->
+            <div class="essay-card">
+                <h3><span class="qnum">Scenario 4</span> Severe Refractory Allergic &amp; Eosinophilic Asthma (Biologic Therapies)</h3>
+                <div class="scenario-prompt">
+                    A 48-year-old female with severe refractory allergic asthma continues to experience frequent severe exacerbations despite adherence to high-dose ICS-LABA combination therapy plus oral montelukast. She requires 3–4 courses of oral prednisolone per year. Laboratory workup reveals: Total serum IgE = 480 IU/mL, Absolute Blood Eosinophil Count = 550 cells/μL. Her skin prick test is positive for perennial dust mite allergens. The multidisciplinary respiratory team decides to evaluate her for advanced biological therapy.
+                </div>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 4.1 Distinguish between the immunological targets and mechanisms of action of Omalizumab versus Anti-IL-5 agents (Mepolizumab, Reslizumab, Benralizumab).</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 4.2 Based on this patient's lab profile (elevated IgE and eosinophils), justify which biologic therapy options are appropriate and state their route of administration.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 4.3 Explain the pathophysiological role of Interleukin-5 (IL-5) in severe eosinophilic asthma and how targeting this pathway prevents exacerbations.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 4.4 What critical adverse effect is specifically associated with the reduction of systemic oral corticosteroids during anti-IgE (omalizumab) therapy, and what are its key clinical features?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 4.5 Identify the major safety risk and adverse effect profile associated with Anti-IL-5 therapies, including a specific infectious viral reactivation risk associated with mepolizumab.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('s4')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answers</span>
+                </div>
+
+                <div class="essay-answers" id="essay-s4">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answers</h4>
+                    <div class="sub-answer">
+                        <b>4.1</b> Omalizumab is an Anti-IgE monoclonal antibody that binds free circulating IgE, preventing its binding to FcεRI receptors on mast cells/basophils and inhibiting IgE synthesis. Anti-IL-5 agents target the eosinophilic pathway: Mepolizumab and Reslizumab bind and neutralize IL-5 ligand, while Benralizumab binds directly to the IL-5 receptor alpha (IL-5Rα) subunit on eosinophils, inducing antibody-dependent cell-mediated cytotoxicity (ADCC).
+                    </div>
+                    <div class="sub-answer">
+                        <b>4.2</b> Both Omalizumab (due to elevated IgE 480 IU/mL and allergic phenotype) and Anti-IL-5 agents (Mepolizumab/Benralizumab due to blood eosinophils 550 cells/μL) are appropriate options. Routes: Omalizumab (Subcutaneous), Mepolizumab (Subcutaneous), Reslizumab (Intravenous infusion), Benralizumab (Subcutaneous).
+                    </div>
+                    <div class="sub-answer">
+                        <b>4.3</b> IL-5 is secreted by T2 helper cells and innate lymphoid cells. It is the principal cytokine responsible for eosinophil differentiation, maturation, recruitment, activation, and survival in the airways. Eosinophils release cytotoxic proteins (Major Basic Protein, Eosinophil Cationic Protein) causing epithelial damage. Inhibiting IL-5 decreases airway eosinophilia and prevents severe asthma exacerbations.
+                    </div>
+                    <div class="sub-answer">
+                        <b>4.4</b> <b>Churg-Strauss Syndrome (Eosinophilic Granulomatosis with Polyangiitis).</b> Features: Eosinophilia, vasculitic skin rash, pulmonary infiltrates, cardiac complications, and peripheral neuropathy. It often manifests when oral steroid dosages are reduced during successful omalizumab therapy.
+                    </div>
+                    <div class="sub-answer">
+                        <b>4.5</b> Adverse effects include systemic hypersensitivity reactions and anaphylaxis. Specifically, Mepolizumab is associated with an increased risk of <b>Herpes Zoster (Shingles)</b> reactivation; varicella-zoster vaccination should be considered prior to initiating therapy.
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ═══════ JAVASCRIPT ═══════ -->
+    <script>
+        // ─── TAB NAVIGATION ───
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const section = this.dataset.section;
+                document.querySelectorAll('.section-panel').forEach(p => p.classList.add('hidden'));
+                document.getElementById('section-' + section).classList.remove('hidden');
+                const topEl = document.getElementById(section + '-top');
+                if (topEl) topEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // ─── MCQ CORRECT ANSWERS ───
+        const correctAnswers = {
+            q1: "b",
+            q2: "b",
+            q3: "b",
+            q4: "c",
+            q5: "b",
+            q6: "b",
+            q7: "c",
+            q8: "b",
+            q9: "b",
+            q10: "b",
+            q11: "b",
+            q12: "b",
+            q13: "b",
+            q14: "b",
+            q15: "a",
+            q16: "b",
+            q17: "b",
+            q18: "a",
+            q19: "b",
+            q20: "b"
+        };
+
+        // ─── MCQ EXPLANATIONS ───
+        const answerExplanations = {
+            q1: "β2-agonists bind β2-adrenoceptors, activating Gs protein, which stimulates adenylyl cyclase to produce cAMP. Elevated cAMP activates Protein Kinase A (PKA), which decreases intracellular free Ca2+ levels, leading to smooth muscle relaxation and bronchodilation.",
+            q2: "Salmeterol is a Long-Acting β2-Agonist (LABA) with a 12-hour duration. It is indicated as regular twice-daily adjunctive controller therapy alongside corticosteroids, not on an 'as needed' basis for quick symptom relief.",
+            q3: "Theophylline inhibits PDE (increasing cAMP/cGMP) and antagonizes adenosine A1 receptors. Its therapeutic window is narrow (55–110 μmol/L); levels above 110 μmol/L cause toxicity including nausea, arrhythmias, and seizures.",
+            q4: "Macrolide antibiotics (erythromycin), fluoroquinolones (ciprofloxacin), and azoles inhibit CYP450 enzymes, decreasing theophylline clearance and causing toxic accumulation. Rifampicin, phenytoin, and carbamazepine are CYP inducers.",
+            q5: "Contraindications to theophylline include documented hypersensitivity, uncontrolled cardiac arrhythmias, active peptic ulcer disease (since it stimulates gastric acid secretion), hyperthyroidism, and uncontrolled seizure disorders.",
+            q6: "Ipratropium bromide is a muscarinic receptor antagonist that blocks parasympathetic cholinergic tone on airway smooth muscle, producing bronchodilation.",
+            q7: "Montelukast and zafirlukast are leukotriene receptor antagonists (LTRAs) that selectively block CysLT1 receptors, preventing LTC4 and LTD4 mediated bronchospasm, mucosal edema, and inflammation.",
+            q8: "Aspirin-induced asthma occurs due to COX-1 inhibition shunting arachidonic acid toward leukotriene synthesis. LTRAs block CysLT1 receptors and specifically prevent aspirin- and exercise-induced asthma.",
+            q9: "Glucocorticoids up-regulate the expression and transcription of β2-adrenoceptors, reversing receptor desensitization and restoring responsiveness to β2-agonists.",
+            q10: "Local deposition of inhaled steroids causes oropharyngeal candidiasis and dysphonia. Rinsing and gargling with water (and spitting out) after inhalation minimizes local drug deposition.",
+            q11: "Long-term systemic glucocorticoid administration causes HPA axis suppression, growth suppression, skin thinning, hypertension, diabetes, cataracts, muscle weakness, and osteoporosis.",
+            q12: "Cromoglicate and nedocromil sodium are non-bronchodilator mast cell stabilizers used prophylactically in mild persistent or exercise-induced asthma, primarily in pediatric populations.",
+            q13: "Omalizumab is a monoclonal antibody that targets IgE, preventing its binding to mast cell/basophil IgE receptors and inhibiting IgE synthesis by B lymphocytes.",
+            q14: "Churg-Strauss syndrome (eosinophilia, vasculitic rash, cardiac/pulmonary complications, peripheral neuropathy) is associated with omalizumab therapy, often unmasked during oral steroid tapering.",
+            q15: "Mepolizumab and reslizumab directly bind to IL-5 ligand, preventing it from binding receptors. Benralizumab binds directly to the IL-5 receptor (IL-5Rα) on eosinophils.",
+            q16: "Anti-IL-5 biologics are indicated as add-on maintenance therapy for severe refractory asthma characterized by an eosinophilic phenotype.",
+            q17: "Magnesium sulfate relaxes bronchial smooth muscle by inhibiting calcium influx and lowering intracellular calcium concentrations in smooth muscle cells.",
+            q18: "PGD2 is a primary lipid mediator produced via COX pathway by mast cells that causes bronchoconstriction, vascular permeability, and mucus secretion.",
+            q19: "Interleukins IL-3, IL-4, IL-5, IL-8, and IL-13 act as chemokines and chemoattractants that recruit and activate eosinophils and inflammatory cells, mediating the late-phase response.",
+            q20: "Systemic corticosteroids (oral prednisolone 40–50 mg or IV hydrocortisone) are mandatory early initial therapy in acute severe asthma exacerbations to suppress inflammation and restore β-receptor responsiveness."
+        };
+
+        // ─── MCQ SUBMIT ───
+        function submitQuiz() {
+            let score = 0;
+            const total = Object.keys(correctAnswers).length;
+
+            document.querySelectorAll('.question-feedback').forEach(el => el.innerHTML = '');
+
+            for (let key in correctAnswers) {
+                const radios = Array.from(document.querySelectorAll(`input[name="${key}"]`));
+                const selected = radios.find(r => r.checked);
+                const correct = correctAnswers[key];
+
+                if (selected && selected.value === correct) score++;
+
+                const feedbackEl = document.getElementById(`feedback-${key}`);
+                if (!feedbackEl) continue;
+
+                let html = `<div class="answer-block"><strong>Q${key.replace(/^q/, '')}</strong><div class="answer-list">`;
+
+                radios.forEach(r => {
+                    const label = r.parentElement;
+                    const text = label ? label.textContent.trim() : r.value;
+                    const classes = ['answer-item'];
+                    if (r.value === correct) classes.push('answer-correct');
+                    if (r.checked && r.value !== correct) classes.push('answer-wrong', 'user-choice');
+                    if (r.checked && r.value === correct) classes.push('user-choice');
+                    html += `<div class="${classes.join(' ')}">${text}${r.checked ? ' ◀' : ''}</div>`;
+                });
+
+                html += `</div>`;
+
+                const correctRadio = radios.find(rr => rr.value === correct);
+                const correctText = correctRadio && correctRadio.parentElement ? correctRadio.parentElement.textContent.trim() : correct;
+                const explanationText = answerExplanations[key] || '';
+
+                if (selected) {
+                    if (selected.value === correct) {
+                        html += `<div class="explanation">✅ Correct — ${explanationText}</div>`;
+                    } else {
+                        html += `<div class="explanation wrong">❌ Incorrect. Correct answer: <strong>${correctText}</strong>. ${explanationText}</div>`;
+                    }
+                } else {
+                    html += `<div class="explanation wrong">No answer selected. Correct answer: <strong>${correctText}</strong>. ${explanationText}</div>`;
+                }
+
+                html += `</div>`;
+                feedbackEl.innerHTML = html;
+            }
+
+            const percentage = Math.round((score / total) * 100);
+            const resultBox = document.getElementById('resultBox');
+            resultBox.style.display = 'block';
+            document.getElementById('answers').innerHTML = '';
+
+            let start = 0;
+            const timer = setInterval(() => {
+                if (start >= percentage) clearInterval(timer);
+                document.getElementById('score').innerText = start + '%';
+                start++;
+            }, 20);
+
+            document.querySelectorAll('#quizForm input[type="radio"]').forEach(i => i.disabled = true);
+        }
+
+        // ─── ESSAY TOGGLE ───
+        function toggleEssay(id) {
+            const el = document.getElementById('essay-' + id);
+            if (!el) return;
+            const isVisible = el.classList.toggle('visible');
+            el.setAttribute('aria-hidden', !isVisible);
+            if (isVisible) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        // ─── KEYBOARD ACCESSIBILITY ───
+        document.querySelectorAll('.essay-actions .btn').forEach(btn => {
+            btn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    btn.click();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

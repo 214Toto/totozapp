@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cough Pharmacology | 20 MCQs + 4 Scenarios</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        /* ─────────── ROOT & RESET ─────────── */
+        :root {
+            --primary: #2b7a78;
+            --accent: #3aafa9;
+            --dark: #17252a;
+            --light: #f8f9fa;
+            --radius: 12px;
+            --shadow: 0 4px 14px rgba(18, 38, 63, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Roboto, system-ui, sans-serif;
+            background: linear-gradient(180deg, #f5f7fb, #eef6f6);
+            color: var(--dark);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+
+        /* ─────────── HEADER ─────────── */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: #fff;
+            padding: 0.8rem 0;
+            box-shadow: 0 6px 18px rgba(11, 36, 36, 0.18);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            font-size: 1.6rem;
+            color: var(--accent);
+        }
+
+        .logo h1 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 0.25rem 1rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            color: #d4f0ee;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0.3rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-tabs .tab-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: none;
+            color: #d4f0ee;
+            padding: 0.3rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .nav-tabs .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #fff;
+        }
+
+        .nav-tabs .tab-btn.active {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        /* ─────────── CONTAINER ─────────── */
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 1.25rem 2.5rem;
+        }
+
+        /* ─────────── SECTION TITLES ─────────── */
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1.8rem 0 1rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 3px solid rgba(43, 122, 120, 0.20);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .section-title i {
+            font-size: 1.1rem;
+            color: rgb(8, 104, 66);
+        }
+
+        .section-title .count {
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0.05rem 0.7rem;
+        }
+
+        .section-subtitle {
+            color: #5f7a7a;
+            font-size: 0.92rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .section-panel {
+            display: block;
+        }
+
+        .section-panel.hidden {
+            display: none;
+        }
+
+        /* ─────────── MCQ QUESTION CARDS ─────────── */
+        .question {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.2rem 1.2rem 0.2rem 1.2rem;
+            margin-bottom: 1.2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(43, 122, 120, 0.06);
+            transition: box-shadow 0.2s;
+        }
+
+        .question:hover {
+            box-shadow: 0 6px 22px rgba(18, 38, 63, 0.07);
+        }
+
+        .question p {
+            font-weight: 600;
+            font-size: 0.98rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .question .q-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            line-height: 1.6;
+            margin-right: 0.4rem;
+        }
+
+        .options label {
+            display: block;
+            background: #fafcfd;
+            border: 1px solid #e0e8ef;
+            border-radius: 8px;
+            padding: 0.45rem 0.9rem;
+            margin-top: 0.45rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-weight: 450;
+            font-size: 0.94rem;
+        }
+
+        .options label:hover {
+            background: #e8f5f4;
+            border-color: var(--accent);
+        }
+
+        .options input[type="radio"] {
+            margin-right: 0.5rem;
+            accent-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        /* ─────────── FEEDBACK ─────────── */
+        .question-feedback {
+            margin-top: 0.9rem;
+            padding: 0.4rem 0 0.1rem 0;
+            border-top: 1px dashed #dce6ed;
+        }
+
+        .answer-block strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--primary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .answer-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .answer-item {
+            padding: 5px 10px;
+            border-radius: 6px;
+            border: 1px solid #e6eef3;
+            background: #ffffff;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .answer-correct {
+            background: #ecfdf5;
+            border-color: #bbf7d0;
+            color: #065f46;
+        }
+
+        .answer-wrong {
+            background: #fff1f2;
+            border-color: #fca5a5;
+            color: #9f1239;
+        }
+
+        .user-choice {
+            outline: 2px dashed rgba(0, 0, 0, 0.06);
+        }
+
+        .explanation {
+            margin-top: 6px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: #f1f8f6;
+            color: #065f46;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border-left: 4px solid var(--accent);
+        }
+
+        .explanation.wrong {
+            background: #fff5f5;
+            color: #7f1d1d;
+            border-left-color: #f87171;
+        }
+
+        /* ─────────── BUTTONS ─────────── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.6rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(43, 122, 120, 0.22);
+        }
+
+        .btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(43, 122, 120, 0.30);
+        }
+
+        .btn:active {
+            transform: scale(0.96);
+        }
+
+        .btn i {
+            font-size: 0.9rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .btn-sm {
+            padding: 0.35rem 1rem;
+            font-size: 0.85rem;
+        }
+
+        .submit-wrap {
+            text-align: center;
+            margin: 1.5rem 0 2rem;
+        }
+
+        /* ─────────── RESULT BOX ─────────── */
+        .result {
+            margin-top: 1.5rem;
+            padding: 1.5rem 1.5rem 1rem;
+            background: #f1faf9;
+            border-radius: var(--radius);
+            text-align: center;
+            display: none;
+            border: 1px solid #c5e3df;
+        }
+
+        .result h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.2rem;
+        }
+
+        .score {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0.2rem 0 0.4rem;
+        }
+
+        /* ─────────── SCENARIO / ESSAY SECTION ─────────── */
+        .essay-card {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.25rem 1.25rem 1rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(43, 122, 120, 0.06);
+        }
+
+        .essay-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 0 0 0.6rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .essay-card h3 .qnum {
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.75rem;
+            line-height: 1.6;
+        }
+
+        .essay-card .scenario-prompt {
+            background: #f4f8fa;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            margin: 0.2rem 0 0.8rem 0;
+            font-size: 0.94rem;
+            line-height: 1.6;
+        }
+
+        .essay-card .sub-q {
+            background: #fafcfd;
+            padding: 0.6rem 0.9rem;
+            margin-top: 0.5rem;
+            border-radius: 6px;
+            border: 1px solid #e9edf2;
+            font-size: 0.92rem;
+            font-weight: 500;
+        }
+
+        .essay-card .sub-q i {
+            color: var(--primary);
+            margin-right: 0.3rem;
+        }
+
+        .essay-card textarea {
+            width: 100%;
+            min-height: 60px;
+            border-radius: 8px;
+            border: 1px solid #d1dbe0;
+            padding: 0.7rem 0.9rem;
+            resize: vertical;
+            font-family: inherit;
+            font-size: 0.95rem;
+            background: #fafcfd;
+            transition: border 0.2s;
+            margin-top: 0.3rem;
+        }
+
+        .essay-card textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(43, 122, 120, 0.12);
+        }
+
+        .essay-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 0.7rem;
+            flex-wrap: wrap;
+        }
+
+        .essay-actions .btn {
+            padding: 0.45rem 1.2rem;
+            font-size: 0.9rem;
+        }
+
+        .essay-answers {
+            display: none;
+            margin-top: 1rem;
+            background: #f1f8f6;
+            border-radius: 8px;
+            padding: 1rem 1.2rem;
+            border: 1px solid #cfe6e0;
+            color: var(--dark);
+        }
+
+        .essay-answers.visible {
+            display: block;
+            animation: fadeSlide 0.25s ease;
+        }
+
+        .essay-answers h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: var(--primary);
+            margin: 0 0 0.5rem 0;
+        }
+
+        .essay-answers p,
+        .essay-answers li {
+            font-size: 0.94rem;
+            line-height: 1.6;
+        }
+
+        .essay-answers ul {
+            padding-left: 1.2rem;
+            margin: 0.3rem 0 0.5rem;
+        }
+
+        .essay-answers ul li {
+            margin-bottom: 0.2rem;
+        }
+
+        .essay-answers b {
+            color: var(--dark);
+        }
+
+        .essay-answers .sub-answer {
+            margin-top: 0.6rem;
+            padding-top: 0.5rem;
+            border-top: 1px dashed #d0e2dc;
+        }
+
+        .essay-answers .sub-answer:first-of-type {
+            border-top: none;
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        @keyframes fadeSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(-6px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ─────────── RESPONSIVE ─────────── */
+        @media (max-width: 700px) {
+            body {
+                padding-top: 72px;
+            }
+            .logo h1 {
+                font-size: 1rem;
+            }
+            .header-inner {
+                padding: 0 1rem;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.3rem;
+            }
+            .badge {
+                align-self: flex-start;
+            }
+            .nav-tabs {
+                justify-content: center;
+            }
+            .nav-tabs .tab-btn {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.7rem;
+            }
+            .question {
+                padding: 1rem 1rem 0.1rem 1rem;
+            }
+            .section-title {
+                font-size: 1.1rem;
+            }
+            .essay-card {
+                padding: 1rem;
+            }
+            .score {
+                font-size: 2.2rem;
+            }
+            .btn {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .logo h1 {
+                font-size: 0.85rem;
+            }
+            .logo i {
+                font-size: 1.2rem;
+            }
+            .options label {
+                font-size: 0.87rem;
+                padding: 0.4rem 0.7rem;
+            }
+        }
+
+        /* ─────────── UTILITY ─────────── */
+        .text-muted {
+            color: #5f7a7a;
+            font-size: 0.9rem;
+        }
+        .mt-1 {
+            margin-top: 0.8rem;
+        }
+        .mb-1 {
+            margin-bottom: 0.8rem;
+        }
+        .flex-center {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .hidden {
+            display: none !important;
+        }
+
+        .scroll-target {
+            scroll-margin-top: 90px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════ HEADER ═══════ -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <i class="fas fa-lungs"></i>
+                <h1>Cough Pharmacology</h1>
+            </div>
+            <span class="badge"><i class="fas fa-pencil-alt"></i> &nbsp;20 MCQs + 4 Scenarios</span>
+            <div class="nav-tabs">
+                <button class="tab-btn active" data-section="mcq">MCQs</button>
+                <button class="tab-btn" data-section="essay">Scenarios</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══════ MAIN CONTENT ═══════ -->
+    <main>
+
+        <!-- ──── SECTION 1: MCQs ──── -->
+        <section class="container section-panel" id="section-mcq">
+            <div class="section-title scroll-target" id="mcq-top">
+                <i class="fas fa-list-ul"></i> Multiple Choice Questions
+                <span class="count">20</span>
+            </div>
+            <p class="section-subtitle">Select the best answer for each question, then click <strong>Submit All MCQs</strong> at the bottom.</p>
+
+            <form id="quizForm">
+
+                <!-- Q1 -->
+                <div class="question">
+                    <p><span class="q-badge">1</span> A 45-year-old male presenting with an acute dry, non-productive nocturnal cough is prescribed codeine syrup. What is the precise mechanism by which codeine suppresses the cough reflex?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="a"> A. Direct inhibition of peripherally located stretch receptors in the bronchial mucosa</label>
+                        <label><input type="radio" name="q1" value="b"> B. Activation of central opioid receptors to raise the threshold of the cough center in the medulla</label>
+                        <label><input type="radio" name="q1" value="c"> C. Depolymerization of mucopolysaccharide polymers within the airway lumen</label>
+                        <label><input type="radio" name="q1" value="d"> D. Irritation of the gastric mucosa triggering a vagal reflex that liquefies secretions</label>
+                        <label><input type="radio" name="q1" value="e"> E. Competitive blockade of pulmonary H1 histamine receptors</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q1"></div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="question">
+                    <p><span class="q-badge">2</span> A patient with severe osteoarthritis and a dry cough is prescribed codeine. However, after several days, the patient experiences no pain relief whatsoever, despite moderate cough suppression. Genetic testing reveals a metabolic deficiency. Which hepatic pathway is impaired in this patient?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="a"> A. Glucuronidation to codeine-6-glucuronide</label>
+                        <label><input type="radio" name="q2" value="b"> B. O-demethylation converting approximately 10% of codeine to morphine</label>
+                        <label><input type="radio" name="q2" value="c"> C. N-demethylation converting codeine to norcodeine</label>
+                        <label><input type="radio" name="q2" value="d"> D. Deacetylation converting codeine to 6-monoacetylmorphine</label>
+                        <label><input type="radio" name="q2" value="e"> E. Renal tubular secretion via organic cation transporters</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q2"></div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question">
+                    <p><span class="q-badge">3</span> A clinician wishes to prescribe a centrally acting non-narcotic antitussive that lacks analgesic properties, exhibits minimal habit-forming potential, and causes significantly less respiratory depression and constipation than codeine. Which drug fits this profile?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="a"> A. Hydrocodone</label>
+                        <label><input type="radio" name="q3" value="b"> B. Hydromorphone</label>
+                        <label><input type="radio" name="q3" value="c"> C. Dextromethorphan</label>
+                        <label><input type="radio" name="q3" value="d"> D. Diphenhydramine</label>
+                        <label><input type="radio" name="q3" value="e"> E. Potassium iodide</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q3"></div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="question">
+                    <p><span class="q-badge">4</span> An elderly patient taking Cimetidine for peptic ulcer disease is prescribed Codeine for a persistent dry cough. Which adverse drug interaction is most likely to occur?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="a"> A. Antagonism of codeine's therapeutic antitussive action</label>
+                        <label><input type="radio" name="q4" value="b"> B. Increased risk of central nervous system and respiratory depression due to enzyme inhibition</label>
+                        <label><input type="radio" name="q4" value="c"> C. Rapid renal excretion of codeine resulting in treatment failure</label>
+                        <label><input type="radio" name="q4" value="d"> D. Severe gastrointestinal ulceration and upper GI hemorrhage</label>
+                        <label><input type="radio" name="q4" value="e"> E. Hypertensive crisis due to monoamine oxidase inhibition</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q4"></div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="question">
+                    <p><span class="q-badge">5</span> Which of the following drugs operates as an expectorant primarily by inducing mild gastric mucosa irritation, thereby stimulating vagal afferents to increase bronchial secretion liquidity?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="a"> A. Acetylcysteine</label>
+                        <label><input type="radio" name="q5" value="b"> B. Guaifenesin</label>
+                        <label><input type="radio" name="q5" value="c"> C. Diphenhydramine</label>
+                        <label><input type="radio" name="q5" value="d"> D. Dextromethorphan</label>
+                        <label><input type="radio" name="q5" value="e"> E. Pholcodeine</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q5"></div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="question">
+                    <p><span class="q-badge">6</span> A patient with thick, hyperviscous mucus secretions in chronic obstructive pulmonary disease (COPD) is administered nebulized Acetylcysteine (Mucomyst). What is its precise chemical mechanism of action?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="a"> A. Direct activation of bronchial serous glands to secrete hypertonic fluid</label>
+                        <label><input type="radio" name="q6" value="b"> B. Cleavage of disulfide (-S-S-) bonds linking mucoprotein strands within bronchial secretions</label>
+                        <label><input type="radio" name="q6" value="c"> C. Central inhibition of the medullary respiratory pattern generator</label>
+                        <label><input type="radio" name="q6" value="d"> D. Competitive antagonism of pulmonary muscarinic M3 receptors</label>
+                        <label><input type="radio" name="q6" value="e"> E. Hydrolysis of bacterial DNA present in purulent pulmonary exudates</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q6"></div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="question">
+                    <p><span class="q-badge">7</span> A patient taking an antidepressant agent experiences a complete loss of analgesic efficacy from prescribed codeine therapy, though cough suppression is largely preserved. Which mechanism explains this interaction?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="a"> A. Direct chemical inactivation of codeine in the gut lumen</label>
+                        <label><input type="radio" name="q7" value="b"> B. Competitive inhibition of the hepatic cytochrome P450 enzyme responsible for converting codeine to morphine</label>
+                        <label><input type="radio" name="q7" value="c"> C. Antagonism at peripheral mu-opioid receptors in smooth muscle</label>
+                        <label><input type="radio" name="q7" value="d"> D. Induction of rapid renal clearance via urinary acidification</label>
+                        <label><input type="radio" name="q7" value="e"> E. Downregulation of medullary stretch receptors</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q7"></div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="question">
+                    <p><span class="q-badge">8</span> Diphenhydramine is included in several multi-ingredient cough formulas. Through which primary mechanism does it exert its antitussive effect?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="a"> A. Direct depolymerization of acid mucopolysaccharides</label>
+                        <label><input type="radio" name="q8" value="b"> B. Direct stimulation of secretory glands in the respiratory tract</label>
+                        <label><input type="radio" name="q8" value="c"> C. Central H1 histamine receptor blockade decreasing cough center sensitivity to afferent inputs</label>
+                        <label><input type="radio" name="q8" value="d"> D. Direct agonist activity at mu-opioid receptors in the bronchial epithelium</label>
+                        <label><input type="radio" name="q8" value="e"> E. Direct local anesthesia of tracheal stretch receptors</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q8"></div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="question">
+                    <p><span class="q-badge">9</span> Which of the following agents acts as an expectorant through DIRECT stimulation of respiratory secretory glands to increase the volume of fluid secretions?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="a"> A. Guaifenesin</label>
+                        <label><input type="radio" name="q9" value="b"> B. Potassium iodide</label>
+                        <label><input type="radio" name="q9" value="c"> C. Pholcodiene</label>
+                        <label><input type="radio" name="q9" value="d"> D. Noscapine</label>
+                        <label><input type="radio" name="q9" value="e"> E. Diphenhydramine</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q9"></div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="question">
+                    <p><span class="q-badge">10</span> During the physiological cough reflex, sensory impulses originating from irritant stretch receptors in the tracheobronchial tree travel to the medulla via which nerve pathway?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="a"> A. Phrenic afferent fibers</label>
+                        <label><input type="radio" name="q10" value="b"> B. Vagal (CN X) afferent fibers</label>
+                        <label><input type="radio" name="q10" value="c"> C. Glossopharyngeal (CN IX) efferent fibers</label>
+                        <label><input type="radio" name="q10" value="d"> D. Intercostal somatic motor nerves</label>
+                        <label><input type="radio" name="q10" value="e"> E. Sympathetic trunk cardiac accelerator fibers</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q10"></div>
+                </div>
+
+                <!-- Q11 -->
+                <div class="question">
+                    <p><span class="q-badge">11</span> A physician evaluates a 38-year-old female with an over-the-counter medication side-effect profile including dizziness, headache, and urticarial skin rash. Which expectorant is most likely responsible?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q11" value="a"> A. Codeine</label>
+                        <label><input type="radio" name="q11" value="b"> B. Guaifenesin</label>
+                        <label><input type="radio" name="q11" value="c"> C. Acetylcysteine</label>
+                        <label><input type="radio" name="q11" value="d"> D. Sodium chloride 0.9%</label>
+                        <label><input type="radio" name="q11" value="e"> E. Hydromorphone</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q11"></div>
+                </div>
+
+                <!-- Q12 -->
+                <div class="question">
+                    <p><span class="q-badge">12</span> What primary urinary metabolite is excreted following oral administration and hepatic metabolism of Guaifenesin?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q12" value="a"> A. Morphine-6-glucuronide</label>
+                        <label><input type="radio" name="q12" value="b"> B. Beta-2-(methoxyphenoxy) lactic acid</label>
+                        <label><input type="radio" name="q12" value="c"> C. N-acetyl-p-benzoquinone imine (NAPQI)</label>
+                        <label><input type="radio" name="q12" value="d"> D. Homovanillic acid</label>
+                        <label><input type="radio" name="q12" value="e"> E. Norcodeine-3-sulfate</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q12"></div>
+                </div>
+
+                <!-- Q13 -->
+                <div class="question">
+                    <p><span class="q-badge">13</span> A patient with a tracheostomized airway requires an agent to liquefy sticky, tenacious bronchial secretions. Which of the following routes and agents is recommended as a true mucolytic?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q13" value="a"> A. Oral Guaifenesin tablets</label>
+                        <label><input type="radio" name="q13" value="b"> B. Direct instillation or nebulization of Acetylcysteine (Mucomyst)</label>
+                        <label><input type="radio" name="q13" value="c"> C. Oral Codeine phosphate solution</label>
+                        <label><input type="radio" name="q13" value="d"> D. Intravenous Diphenhydramine hydrochloride</label>
+                        <label><input type="radio" name="q13" value="e"> E. Sublingual Hydrocodone</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q13"></div>
+                </div>
+
+                <!-- Q14 -->
+                <div class="question">
+                    <p><span class="q-badge">14</span> Which statement accurately compares the relative potency and safety profile of Hydrocodone versus Codeine as central antitussives?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q14" value="a"> A. Hydrocodone is weaker than codeine but carries a higher risk of urinary retention</label>
+                        <label><input type="radio" name="q14" value="b"> B. Hydrocodone is a stronger antitussive than codeine but poses greater risks of respiratory depression and dependence</label>
+                        <label><input type="radio" name="q14" value="c"> C. Codeine carries a significantly higher addiction liability than hydrocodone</label>
+                        <label><input type="radio" name="q14" value="d"> D. Hydrocodone acts purely peripherally, whereas codeine acts centrally</label>
+                        <label><input type="radio" name="q14" value="e"> E. Codeine produces no gastrointestinal side effects compared to hydrocodone</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q14"></div>
+                </div>
+
+                <!-- Q15 -->
+                <div class="question">
+                    <p><span class="q-badge">15</span> How do agents like Ambroxol and Bromhexine decrease the viscosity of bronchial secretions?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q15" value="a"> A. By depolymerizing mucopolysaccharide fibers and thinning bronchial phlegm</label>
+                        <label><input type="radio" name="q15" value="b"> B. By paralyzing the vagal efferent motor pathways</label>
+                        <label><input type="radio" name="q15" value="c"> C. By directly blocking H1 histamine receptors in bronchial smooth muscle</label>
+                        <label><input type="radio" name="q15" value="d"> D. By acting as central opioid receptor antagonists</label>
+                        <label><input type="radio" name="q15" value="e"> E. By neutralizing gastric acidity to stop reflex coughing</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q15"></div>
+                </div>
+
+                <!-- Q16 -->
+                <div class="question">
+                    <p><span class="q-badge">16</span> An 18-year-old asthmatic patient takes a central antitussive agent and experiences clinical cough suppression but develops significant urinary retention, constipation, and vertigo. Which class of drug was most likely administered?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q16" value="a"> A. Non-narcotic opioid derivative (e.g., Dextromethorphan)</label>
+                        <label><input type="radio" name="q16" value="b"> B. Narcotic opioid antitussive (e.g., Codeine)</label>
+                        <label><input type="radio" name="q16" value="c"> C. Inhaled mucolytic (e.g., Acetylcysteine)</label>
+                        <label><input type="radio" name="q16" value="d"> D. Expectorant (e.g., Guaifenesin)</label>
+                        <label><input type="radio" name="q16" value="e"> E. Inhaled hypertonic saline</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q16"></div>
+                </div>
+
+                <!-- Q17 -->
+                <div class="question">
+                    <p><span class="q-badge">17</span> Which of the following represents a correct physiological sequence during the efferent limb of the cough reflex arc?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q17" value="a"> A. Efferent impulses travel via vagus/motor nerves → contraction of diaphragm and intercostal muscles → forceful expiratory release</label>
+                        <label><input type="radio" name="q17" value="b"> B. Afferent impulses travel via phrenic nerve → brainstem inhibition → relaxation of abdominal muscles</label>
+                        <label><input type="radio" name="q17" value="c"> C. Stretch receptor activation → sympathetic trunk efferents → bronchodilatory silence</label>
+                        <label><input type="radio" name="q17" value="d"> D. Gastric mucosa irritation → motor nerve stimulation → immediate inhalation phase</label>
+                        <label><input type="radio" name="q17" value="e"> E. Medullary cough center suppression → increased intercostal muscle spasm</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q17"></div>
+                </div>
+
+                <!-- Q18 -->
+                <div class="question">
+                    <p><span class="q-badge">18</span> A clinical pharmacokinetic study of Codeine reveals which of the following baseline parameter sets?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q18" value="a"> A. Oral Bioavailability ~10%; Half-life 12 hours; Elimination purely hepatic</label>
+                        <label><input type="radio" name="q18" value="b"> B. Oral Bioavailability ~50%; Peak plasma level 1 hour; Half-life 3 to 4 hours</label>
+                        <label><input type="radio" name="q18" value="c"> C. Oral Bioavailability 100%; Peak plasma level 6 hours; Half-life 24 hours</label>
+                        <label><input type="radio" name="q18" value="d"> D. Oral Bioavailability ~80%; Peak plasma level 15 minutes; Elimination solely renal</label>
+                        <label><input type="radio" name="q18" value="e"> E. Oral Bioavailability ≤5%; No active metabolites formed</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q18"></div>
+                </div>
+
+                <!-- Q19 -->
+                <div class="question">
+                    <p><span class="q-badge">19</span> Why is routine suppression of a productive, phlegm-producing cough using codeine generally contraindicated in bacterial pneumonia?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q19" value="a"> A. Codeine neutralizes the effect of all antibiotic agents</label>
+                        <label><input type="radio" name="q19" value="b"> B. Retaining infected secretions by suppressing a protective reflex leads to airway obstruction and worsening infection</label>
+                        <label><input type="radio" name="q19" value="c"> C. Codeine causes rapid pulmonary edema in infected lungs</label>
+                        <label><input type="radio" name="q19" value="d"> D. Antitussives stimulate excess bacterial replication in the alveoli</label>
+                        <label><input type="radio" name="q19" value="e"> E. Codeine directly inhibits alveolar macrophage phagocytosis</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q19"></div>
+                </div>
+
+                <!-- Q20 -->
+                <div class="question">
+                    <p><span class="q-badge">20</span> What dose of Codeine has been demonstrated in clinical trials to reduce coughing paroxysms by approximately 60% compared to placebo?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q20" value="a"> A. 2 mg</label>
+                        <label><input type="radio" name="q20" value="b"> B. 15 mg</label>
+                        <label><input type="radio" name="q20" value="c"> C. 60 mg</label>
+                        <label><input type="radio" name="q20" value="d"> D. 120 mg</label>
+                        <label><input type="radio" name="q20" value="e"> E. 300 mg</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q20"></div>
+                </div>
+
+                <div class="submit-wrap">
+                    <button type="button" class="btn" onclick="submitQuiz()">
+                        <i class="fas fa-check-circle"></i> Submit All MCQs
+                    </button>
+                </div>
+
+            </form>
+
+            <div class="result" id="resultBox">
+                <h3><i class="fas fa-chart-simple"></i> Your Score</h3>
+                <div class="score" id="score">0%</div>
+                <p class="text-muted" style="font-size:0.9rem;">Review the feedback below each question.</p>
+                <div id="answers"></div>
+            </div>
+        </section>
+
+        <!-- ──── SECTION 2: SCENARIOS ──── -->
+        <section class="container section-panel hidden" id="section-essay">
+            <div class="section-title scroll-target" id="essay-top">
+                <i class="fas fa-pen-fancy"></i> Clinical Scenarios
+                <span class="count">4</span>
+            </div>
+            <p class="section-subtitle">Read each scenario and write your answers in the boxes. Click <strong>Submit</strong> to reveal the model answers.</p>
+
+            <!-- ─── SCENARIO 1 ─── -->
+            <div class="essay-card">
+                <h3><span class="qnum">Scenario 1</span> Management of Irritating Non-Productive Cough in a Polypharmacy Patient</h3>
+                <div class="scenario-prompt">
+                    A 58-year-old male presenting with a persistent, non-productive, hacking cough following a viral upper respiratory tract infection is seeking symptomatic relief because the cough prevents him from sleeping. His medical history includes hypertension, GERD, and major depressive disorder. He currently takes Cimetidine for acid reflux and Fluoxetine (an antidepressant) for depression. The attending clinician considers initiating antitussive therapy.
+                </div>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 1.1 What is the rational pharmacological basis for prescribing an antitussive rather than an expectorant in this patient?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 1.2 If Codeine is prescribed for this patient, how will his co-administration of Cimetidine affect its pharmacological profile?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 1.3 How will Fluoxetine (an antidepressant and CYP2D6 inhibitor) affect the therapeutic efficacy of codeine if the patient also requires pain relief?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 1.4 Describe the bioavailability, half-life, and dose-response characteristics of Codeine in cough reduction.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 1.5 Which centrally acting non-narcotic agent could be chosen to avoid addiction, severe respiratory depression, and constipation while maintaining antitussive efficacy?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('s1')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answers</span>
+                </div>
+
+                <div class="essay-answers" id="essay-s1">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answers</h4>
+                    <div class="sub-answer">
+                        <b>1.1</b> Antitussives are specifically indicated for non-productive (dry), irritating coughs that serve no physiological purpose (e.g., clearing phlegm) and impair rest/sleep. Expectorants are designed to liquefy and facilitate removal of mucus in productive coughs. Antitussives work by raising the threshold of the medullary cough center or decreasing sensitivity to peripheral stretch impulses.
+                    </div>
+                    <div class="sub-answer">
+                        <b>1.2</b> Cimetidine is a potent inhibitor of hepatic cytochrome P450 enzymes. Inhibiting codeine's metabolism will increase codeine blood concentration and prolong its half-life, intensifying central nervous system depression, sedation, and risks of respiratory depression.
+                    </div>
+                    <div class="sub-answer">
+                        <b>1.3</b> Codeine is a prodrug that requires O-demethylation via CYP2D6 to form morphine, which produces analgesia. Fluoxetine competitively inhibits CYP2D6, blocking this biotransformation and abolishing codeine's analgesic efficacy, although its direct central antitussive effect remains largely intact.
+                    </div>
+                    <div class="sub-answer">
+                        <b>1.4</b> Codeine has an oral bioavailability of ~50%, peak plasma levels within 1 hour, and an elimination half-life of 3 to 4 hours (predominantly extrarenal). In clinical studies, a 15 mg dose reduces coughing by 40%, whereas a 60 mg dose reduces coughing by 60% compared to placebo.
+                    </div>
+                    <div class="sub-answer">
+                        <b>1.5</b> Dextromethorphan (or Noscapine/Pholcodeine). Dextromethorphan is an opioid derivative that depresses the central cough center without causing addiction, analgesia, significant respiratory depression, or severe constipation.
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─── SCENARIO 2 ─── -->
+            <div class="essay-card">
+                <h3><span class="qnum">Scenario 2</span> Expectorant Therapy in Acute Tracheobronchitis</h3>
+                <div class="scenario-prompt">
+                    A 32-year-old schoolteacher presents with acute tracheobronchitis characterized by a bothersome cough and thick, tenacious bronchial mucus that she struggles to expectorate. A physician decides to initiate oral Guaifenesin therapy to assist in clearing her bronchial passageways.
+                </div>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 2.1 Differentiate between the "reflex stimulation" mechanism of Guaifenesin and the "direct stimulation" mechanism of agents like Potassium Iodide.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 2.2 What are the primary pharmacokinetic parameters of Guaifenesin regarding absorption, half-life, and major urinary metabolic products?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 2.3 What instructions regarding therapeutic expectations should be given to the patient regarding how Guaifenesin alters her cough pattern?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 2.4 What potential adverse drug reactions should the patient be warned about while taking Guaifenesin?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 2.5 If oral Guaifenesin proves insufficient, which oral expectorants that depolymerize mucopolysaccharides could be considered?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('s2')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answers</span>
+                </div>
+
+                <div class="essay-answers" id="essay-s2">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answers</h4>
+                    <div class="sub-answer">
+                        <b>2.1</b> Reflex Stimulation (Guaifenesin): Irritates the gastric mucosa, which reflexively triggers parasympathetic signals to bronchial glands, increasing watery respiratory secretions and thinning phlegm. Direct Stimulation (Potassium Iodide): Directly stimulates bronchial secretory glands to output fluid into the respiratory tract.
+                    </div>
+                    <div class="sub-answer">
+                        <b>2.2</b> Guaifenesin is readily and rapidly absorbed from the gastrointestinal tract, possesses a short elimination half-life of approximately 1 hour, undergoes renal excretion, and yields beta-2-(methoxyphenoxy) lactic acid as its major urinary metabolite.
+                    </div>
+                    <div class="sub-answer">
+                        <b>2.3</b> The patient should be advised that Guaifenesin does not stop coughing completely; rather, it loosens phlegm, thins bronchial secretions, and renders coughs more productive, making it easier to clear bothersome mucus from bronchial tubes.
+                    </div>
+                    <div class="sub-answer">
+                        <b>2.4</b> Common adverse effects include dizziness, headache, skin rash (including urticaria), and occasional mild gastrointestinal disturbances or drowsiness.
+                    </div>
+                    <div class="sub-answer">
+                        <b>2.5</b> Bromhexine or Ambroxol. These agents effectively decrease the viscosity of bronchial secretions by depolymerizing acid mucopolysaccharides present in mucus strands.
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─── SCENARIO 3 ─── -->
+            <div class="essay-card">
+                <h3><span class="qnum">Scenario 3</span> Mucolytic Therapy in ICU Patient</h3>
+                <div class="scenario-prompt">
+                    A 65-year-old ICU patient with severe chronic bronchitis and a permanent tracheostomy develops acute bronchial plugging due to copious, hyperviscous mucus secretions. Standard chest physiotherapy and suctioning fail to clear the airway. The intensivist orders nebulized Acetylcysteine (Mucomyst) alongside inhalation of sterile sodium chloride solution.
+                </div>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 3.1 Why are true mucolytics administered via inhalation/nebulization or direct instillation rather than oral systemic routes in acute airway obstruction?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 3.2 Describe the precise chemical reaction through which Acetylcysteine reduces the viscosity of purulent and nonpurulent mucus.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 3.3 According to formal pharmacological guidelines, which two agents are explicitly recommended for clinical use as true mucolytics?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 3.4 What acute respiratory adverse event can occur when nebulizing Acetylcysteine in hyperreactive airways, and how can it be managed?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 3.5 Explain why administering a potent central antitussive like Hydrocodone would be catastrophic for this patient.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('s3')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answers</span>
+                </div>
+
+                <div class="essay-answers" id="essay-s3">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answers</h4>
+                    <div class="sub-answer">
+                        <b>3.1</b> Mucolytics act topically within the bronchial tree to liquefy dense mucus immediately upon contact. Nebulization into a face mask or direct instillation into a tracheostomy delivers high drug concentrations directly to sticky mucous plugs, rapidly breaking down mucoprotein structures without requiring systemic distribution.
+                    </div>
+                    <div class="sub-answer">
+                        <b>3.2</b> Acetylcysteine contains free sulfhydryl (-SH) groups that open and cleave the disulfide (-S-S-) bonds binding mucoprotein strands in sputum. Disruption of these cross-links breaks down the gel matrix, dramatically decreasing mucus viscosity.
+                    </div>
+                    <div class="sub-answer">
+                        <b>3.3</b> Sodium chloride solution (hypertonic/sterile saline) and Acetylcysteine (Mucomyst).
+                    </div>
+                    <div class="sub-answer">
+                        <b>3.4</b> Inhaled acetylcysteine can cause acute bronchospasm due to airway irritation in sensitive patients. It is managed by co-administering a short-acting inhaled beta-2 agonist (e.g., Salbutamol) prior to or alongside nebulization.
+                    </div>
+                    <div class="sub-answer">
+                        <b>3.5</b> Hydrocodone would suppress the patient's cough reflex centrally. Suppressing the cough reflex in a patient with heavy mucus plugging prevents clearance of liquefied secretions, leading to worsening atelectasis, severe asphyxia, and secondary bacterial pneumonia.
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─── SCENARIO 4 ─── -->
+            <div class="essay-card">
+                <h3><span class="qnum">Scenario 4</span> Acute Chemical Inhalation</h3>
+                <div class="scenario-prompt">
+                    A 24-year-old male presents to the urgent care clinic complaining of severe dry coughing fits following accidental inhalation of chemical dust at a manufacturing plant. Physical exam reveals clear lung fields but irritated pharyngeal and tracheal mucosa. The physician considers prescribing Codeine or Hydrocodone for short-term relief.
+                </div>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 4.1 Trace the neuroanatomical path of the cough reflex from stimulus to muscle contraction in this patient.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 4.2 If the patient receives therapeutic doses of Codeine, list five potential systemic adverse reactions he may experience.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 4.3 If the physician selects Hydrocodone over Codeine, what relative clinical advantage and heightened safety risks are associated with this choice?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 4.4 Explain how adding Diphenhydramine to a cough regimen suppresses cough, and identify its major secondary systemic effect.</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="sub-q"><i class="fas fa-circle-question"></i> 4.5 Under what circumstances should cough suppression be strictly avoided according to respiratory pharmacology principles?</div>
+                <textarea placeholder="Your answer..."></textarea>
+
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('s4')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answers</span>
+                </div>
+
+                <div class="essay-answers" id="essay-s4">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answers</h4>
+                    <div class="sub-answer">
+                        <b>4.1</b> Chemical irritants stimulate mechanoreceptors/chemoreceptors (stretch receptors) in the tracheal/bronchial mucosa → Afferent sensory impulses travel via the Vagus nerve (CN X) → Medullary cough center integrates impulses → Efferent motor signals travel via parasympathetic & motor nerves → Diaphragm, intercostal, and abdominal muscles contract → Noisy expiration (cough).
+                    </div>
+                    <div class="sub-answer">
+                        <b>4.2</b> Retention of urine, itching (pruritus), vertigo/dizziness, sweating, and cardiac symptoms (palpitations or bradycardia), along with mild central nervous system sedation, nausea, and constipation.
+                    </div>
+                    <div class="sub-answer">
+                        <b>4.3</b> Hydrocodone provides stronger and more potent cough suppression than codeine, but it carries significantly higher risks of central respiratory depression, severe sedation, and physical dependence/addiction.
+                    </div>
+                    <div class="sub-answer">
+                        <b>4.4</b> Diphenhydramine is a first-generation H1 receptor antagonist that acts centrally to decrease the sensitivity of the medullary cough center to afferent signals. Its major secondary effect is central nervous system sedation (drowsiness) and anticholinergic dry mouth/urinary retention.
+                    </div>
+                    <div class="sub-answer">
+                        <b>4.5</b> Cough is a vital protective reflex. Indiscriminate suppression must be avoided when the cough is productive of excess mucus, purulent secretions, or foreign material (e.g., in pneumonia, bronchiectasis, active cystic fibrosis), as retention of secretions impairs gas exchange and fosters microbial growth.
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ═══════ JAVASCRIPT ═══════ -->
+    <script>
+        // ─── TAB NAVIGATION ───
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const section = this.dataset.section;
+                document.querySelectorAll('.section-panel').forEach(p => p.classList.add('hidden'));
+                document.getElementById('section-' + section).classList.remove('hidden');
+                const topEl = document.getElementById(section + '-top');
+                if (topEl) topEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // ─── MCQ CORRECT ANSWERS ───
+        const correctAnswers = {
+            q1: "b",
+            q2: "b",
+            q3: "c",
+            q4: "b",
+            q5: "b",
+            q6: "b",
+            q7: "b",
+            q8: "c",
+            q9: "b",
+            q10: "b",
+            q11: "b",
+            q12: "b",
+            q13: "b",
+            q14: "b",
+            q15: "a",
+            q16: "b",
+            q17: "a",
+            q18: "b",
+            q19: "b",
+            q20: "c"
+        };
+
+        // ─── MCQ EXPLANATIONS ───
+        const answerExplanations = {
+            q1: "Codeine is a centrally acting narcotic antitussive that acts as an agonist at opioid receptors in the medullary cough center, raising its threshold to afferent sensory impulses sent via the vagus nerve.",
+            q2: "Codeine requires hepatic demethylation (via CYP2D6 O-demethylation) to convert ~10% of the dose into active morphine, which mediates its primary analgesic effect. Poor metabolizers lack this conversion and experience absent analgesia, though antitussive actions remain partially intact.",
+            q3: "Dextromethorphan, noscapine, and pholcodiene are non-narcotic opioid derivatives/antitussives that suppress the central cough center without producing significant analgesia, addiction liability, or marked gastrointestinal/respiratory depression.",
+            q4: "Cimetidine is a hepatic microsomal enzyme inhibitor. Inhibiting the metabolism of codeine elevates its plasma levels, significantly increasing its central suppressive effects and toxicity risks (sedation, respiratory depression).",
+            q5: "Guaifenesin works via reflex stimulation: it irritates the gastric mucosa, which reflexively stimulates parasympathetic efferents to increase watery respiratory tract secretions, thereby thinning phlegm.",
+            q6: "Acetylcysteine is a mucolytic agent that breaks disulfide bonds in mucoproteins, significantly reducing the viscosity and tenacity of bronchial mucus.",
+            q7: "Antidepressives and neuroleptic agents can competitively inhibit CYP2D6, the hepatic enzyme responsible for demethylating codeine to its active analgesic metabolite (morphine).",
+            q8: "Diphenhydramine is a first-generation H1 receptor antagonist that crosses the blood-brain barrier to act centrally, decreasing the sensitivity of the cough center to afferent sensory signals.",
+            q9: "Expectorants act via two mechanisms: reflex stimulation (e.g., guaifenesin via GI irritation) or direct stimulation of respiratory secretory glands (e.g., iodine-containing products like potassium iodide and iodinated glycerol).",
+            q10: "Mechanoreceptors/stretch receptors in the trachea and bronchial tree transmit afferent sensory signals centrally to the medullary cough center via the vagus nerve (CN X).",
+            q11: "Adverse reactions associated with Guaifenesin include dizziness, headache, rash (including urticaria), and occasionally mild GI disturbances.",
+            q12: "Guaifenesin has a short plasma half-life (~1 hour) and is rapidly excreted renally; its major urinary metabolite is beta-2-(methoxyphenoxy) lactic acid.",
+            q13: "Mucolytics (e.g., Acetylcysteine and sterile sodium chloride solution) are administered by inhalation, nebulization, or direct instillation into a tracheostomy to break down mucus structure in situ.",
+            q14: "Opioids like hydrocodone are stronger antitussives than codeine, but their clinical use is accompanied by a much greater risk of adverse effects, including respiratory depression and drug dependence.",
+            q15: "Bromhexine and its active metabolite Ambroxol act as mucolytic expectorants that depolymerize acid mucopolysaccharides in respiratory secretions, reducing mucus viscosity.",
+            q16: "Narcotic opioid antitussives like Codeine commonly cause side effects such as urinary retention, constipation, nausea, itching, vertigo, bradycardia/palpitations, and mild CNS sedation.",
+            q17: "After sensory input reaches the medullary cough center, efferent impulses are transmitted via parasympathetic and motor nerves to the diaphragm, intercostal, and abdominal muscles, causing increased contraction and noisy expiration (cough).",
+            q18: "According to respiratory pharmacology standards, Codeine has an oral bioavailability of ~50%, reaches peak plasma levels in 1 hour, has a half-life of 3-4 hours, forms active metabolites, and undergoes predominantly extrarenal elimination.",
+            q19: "Cough is a vital physiological defense mechanism that clears foreign material and excess purulent secretions. Indiscriminate suppression of a productive cough promotes mucus retention and secondary pulmonary complications.",
+            q20: "Clinical studies demonstrate that Codeine reduces coughing by 40% at a dose of 15 mg and by 60% at a dose of 60 mg compared to placebo."
+        };
+
+        // ─── MCQ SUBMIT ───
+        function submitQuiz() {
+            let score = 0;
+            const total = Object.keys(correctAnswers).length;
+
+            document.querySelectorAll('.question-feedback').forEach(el => el.innerHTML = '');
+
+            for (let key in correctAnswers) {
+                const radios = Array.from(document.querySelectorAll(`input[name="${key}"]`));
+                const selected = radios.find(r => r.checked);
+                const correct = correctAnswers[key];
+
+                if (selected && selected.value === correct) score++;
+
+                const feedbackEl = document.getElementById(`feedback-${key}`);
+                if (!feedbackEl) continue;
+
+                let html = `<div class="answer-block"><strong>Q${key.replace(/^q/, '')}</strong><div class="answer-list">`;
+
+                radios.forEach(r => {
+                    const label = r.parentElement;
+                    const text = label ? label.textContent.trim() : r.value;
+                    const classes = ['answer-item'];
+                    if (r.value === correct) classes.push('answer-correct');
+                    if (r.checked && r.value !== correct) classes.push('answer-wrong', 'user-choice');
+                    if (r.checked && r.value === correct) classes.push('user-choice');
+                    html += `<div class="${classes.join(' ')}">${text}${r.checked ? ' ◀' : ''}</div>`;
+                });
+
+                html += `</div>`;
+
+                const correctRadio = radios.find(rr => rr.value === correct);
+                const correctText = correctRadio && correctRadio.parentElement ? correctRadio.parentElement.textContent.trim() : correct;
+                const explanationText = answerExplanations[key] || '';
+
+                if (selected) {
+                    if (selected.value === correct) {
+                        html += `<div class="explanation">✅ Correct — ${explanationText}</div>`;
+                    } else {
+                        html += `<div class="explanation wrong">❌ Incorrect. Correct answer: <strong>${correctText}</strong>. ${explanationText}</div>`;
+                    }
+                } else {
+                    html += `<div class="explanation wrong">No answer selected. Correct answer: <strong>${correctText}</strong>. ${explanationText}</div>`;
+                }
+
+                html += `</div>`;
+                feedbackEl.innerHTML = html;
+            }
+
+            const percentage = Math.round((score / total) * 100);
+            const resultBox = document.getElementById('resultBox');
+            resultBox.style.display = 'block';
+            document.getElementById('answers').innerHTML = '';
+
+            let start = 0;
+            const timer = setInterval(() => {
+                if (start >= percentage) clearInterval(timer);
+                document.getElementById('score').innerText = start + '%';
+                start++;
+            }, 20);
+
+            document.querySelectorAll('#quizForm input[type="radio"]').forEach(i => i.disabled = true);
+        }
+
+        // ─── ESSAY TOGGLE ───
+        function toggleEssay(id) {
+            const el = document.getElementById('essay-' + id);
+            if (!el) return;
+            const isVisible = el.classList.toggle('visible');
+            el.setAttribute('aria-hidden', !isVisible);
+            if (isVisible) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        // ─── KEYBOARD ACCESSIBILITY ───
+        document.querySelectorAll('.essay-actions .btn').forEach(btn => {
+            btn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    btn.click();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
