@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2018 Biochemistry Test 3 | Past Paper</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        :root {
+            --primary: #2b7a78;
+            --accent: #3aafa9;
+            --dark: #17252a;
+            --light: #f8f9fa;
+            --radius: 12px;
+            --shadow: 0 4px 14px rgba(18, 38, 63, 0.06);
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: "Segoe UI", Roboto, system-ui, sans-serif;
+            background: linear-gradient(180deg, #f5f7fb, #eef6f6);
+            color: var(--dark);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: #fff;
+            padding: 0.8rem 0;
+            box-shadow: 0 6px 18px rgba(11, 36, 36, 0.18);
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .logo i {
+            font-size: 1.6rem;
+            color: var(--accent);
+        }
+        .logo h1 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin: 0;
+        }
+        .badge {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 0.25rem 1rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #d4f0ee;
+        }
+        .nav-tabs {
+            display: flex;
+            gap: 0.3rem;
+            flex-wrap: wrap;
+        }
+        .nav-tabs .tab-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: none;
+            color: #d4f0ee;
+            padding: 0.3rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .nav-tabs .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #fff;
+        }
+        .nav-tabs .tab-btn.active {
+            background: var(--accent);
+            color: var(--dark);
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 1.25rem 2.5rem;
+        }
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1.8rem 0 1rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 3px solid rgba(43, 122, 120, 0.20);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+        .section-title .count {
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0.05rem 0.7rem;
+        }
+        .section-subtitle {
+            color: #5f7a7a;
+            font-size: 0.92rem;
+            margin-bottom: 1.2rem;
+        }
+        .section-panel {
+            display: block;
+        }
+        .section-panel.hidden {
+            display: none;
+        }
+        .question {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.2rem 1.2rem 0.2rem 1.2rem;
+            margin-bottom: 1.2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(43, 122, 120, 0.06);
+        }
+        .question p {
+            font-weight: 600;
+            font-size: 0.98rem;
+            margin-bottom: 0.5rem;
+        }
+        .question .q-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            line-height: 1.6;
+            margin-right: 0.4rem;
+        }
+        .options label {
+            display: block;
+            background: #fafcfd;
+            border: 1px solid #e0e8ef;
+            border-radius: 8px;
+            padding: 0.45rem 0.9rem;
+            margin-top: 0.45rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-weight: 450;
+            font-size: 0.94rem;
+        }
+        .options label:hover {
+            background: #e8f5f4;
+            border-color: var(--accent);
+        }
+        .options input[type="radio"] {
+            margin-right: 0.5rem;
+            accent-color: var(--primary);
+            transform: scale(1.05);
+        }
+        .question-feedback {
+            margin-top: 0.9rem;
+            padding: 0.4rem 0 0.1rem 0;
+            border-top: 1px dashed #dce6ed;
+        }
+        .answer-block strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--primary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .answer-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .answer-item {
+            padding: 5px 10px;
+            border-radius: 6px;
+            border: 1px solid #e6eef3;
+            background: #ffffff;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .answer-correct {
+            background: #ecfdf5;
+            border-color: #bbf7d0;
+            color: #065f46;
+        }
+        .answer-wrong {
+            background: #fff1f2;
+            border-color: #fca5a5;
+            color: #9f1239;
+        }
+        .user-choice {
+            outline: 2px dashed rgba(0, 0, 0, 0.06);
+        }
+        .explanation {
+            margin-top: 6px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: #f1f8f6;
+            color: #065f46;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border-left: 4px solid var(--accent);
+        }
+        .explanation.wrong {
+            background: #fff5f5;
+            color: #7f1d1d;
+            border-left-color: #f87171;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.6rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(43, 122, 120, 0.22);
+        }
+        .btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(43, 122, 120, 0.30);
+        }
+        .btn-sm {
+            padding: 0.4rem 1.2rem;
+            font-size: 0.85rem;
+        }
+        .submit-wrap {
+            text-align: center;
+            margin: 1.5rem 0 2rem;
+        }
+        .result {
+            margin-top: 1.5rem;
+            padding: 1.5rem 1.5rem 1rem;
+            background: #f1faf9;
+            border-radius: var(--radius);
+            text-align: center;
+            display: none;
+            border: 1px solid #c5e3df;
+        }
+        .result h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+        .score {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0.2rem 0 0.4rem;
+        }
+        .essay-card {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.25rem 1.25rem 1rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(43, 122, 120, 0.06);
+        }
+        .essay-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 0 0 0.6rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .essay-card h3 .qnum {
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.75rem;
+            line-height: 1.6;
+        }
+        .essay-card textarea {
+            width: 100%;
+            min-height: 80px;
+            border-radius: 8px;
+            border: 1px solid #d1dbe0;
+            padding: 0.7rem 0.9rem;
+            resize: vertical;
+            font-family: inherit;
+            font-size: 0.95rem;
+            background: #fafcfd;
+            transition: border 0.2s;
+        }
+        .essay-card textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(43, 122, 120, 0.12);
+        }
+        .essay-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 0.7rem;
+            flex-wrap: wrap;
+        }
+        .essay-answers {
+            display: none;
+            margin-top: 1rem;
+            background: #f1f8f6;
+            border-radius: 8px;
+            padding: 1rem 1.2rem;
+            border: 1px solid #cfe6e0;
+            color: var(--dark);
+        }
+        .essay-answers.visible {
+            display: block;
+            animation: fadeSlide 0.25s ease;
+        }
+        .essay-answers h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: var(--primary);
+            margin: 0 0 0.5rem 0;
+        }
+        .essay-answers p, .essay-answers li {
+            font-size: 0.94rem;
+            line-height: 1.6;
+        }
+        .essay-answers ul {
+            padding-left: 1.2rem;
+            margin: 0.3rem 0 0.5rem;
+        }
+        @keyframes fadeSlide {
+            0% { opacity: 0; transform: translateY(-6px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 700px) {
+            body { padding-top: 72px; }
+            .logo h1 { font-size: 1rem; }
+            .header-inner { flex-direction: column; align-items: stretch; gap: 0.3rem; }
+            .nav-tabs { justify-content: center; }
+            .question { padding: 1rem; }
+            .score { font-size: 2.2rem; }
+        }
+        .text-muted { color: #5f7a7a; font-size: 0.9rem; }
+        .hidden { display: none !important; }
+        .scroll-target { scroll-margin-top: 90px; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <i class="fas fa-dna"></i>
+                <h1>2018 Biochemistry Test 3</h1>
+            </div>
+            <span class="badge"><i class="fas fa-pencil-alt"></i> &nbsp;Past Paper</span>
+            <div class="nav-tabs">
+                <button class="tab-btn active" data-section="mcq">MCQs</button>
+                <button class="tab-btn" data-section="essay">Descriptive</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- MCQs Section -->
+        <section class="container section-panel" id="section-mcq">
+            <div class="section-title scroll-target" id="mcq-top">
+                <i class="fas fa-list-ul"></i> Multiple Choice Questions
+                <span class="count">25</span>
+            </div>
+            <p class="section-subtitle">Select the best answer for each question, then click <strong>Submit All MCQs</strong>.</p>
+            <form id="quizForm">
+                <div id="mcq-container"></div>
+                <div class="submit-wrap">
+                    <button type="button" class="btn" onclick="submitQuiz()">
+                        <i class="fas fa-check-circle"></i> Submit All MCQs
+                    </button>
+                </div>
+            </form>
+            <div class="result" id="resultBox">
+                <h3><i class="fas fa-chart-simple"></i> Your Score</h3>
+                <div class="score" id="score">0%</div>
+                <p class="text-muted">Review feedback below each question.</p>
+            </div>
+        </section>
+
+        <!-- Descriptive Section -->
+        <section class="container section-panel hidden" id="section-essay">
+            <div class="section-title scroll-target" id="essay-top">
+                <i class="fas fa-pen-fancy"></i> Descriptive Questions
+                <span class="count">8</span>
+            </div>
+            <p class="section-subtitle">Answer each question in the box, then click <strong>Submit</strong> to reveal a model answer.</p>
+
+            <!-- Q33 -->
+            <div class="essay-card">
+                <h3><span class="qnum">Q33</span> What are the main steps of PCR? (2 marks)</h3>
+                <textarea placeholder="List the steps of PCR..."></textarea>
+                <div class="essay-actions">
+                    <button class="btn btn-sm" onclick="toggleEssay('q33')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answer</span>
+                </div>
+                <div class="essay-answers" id="essay-q33">
+                    <h4><i class="fas fa-check-circle"></i> Model Answer</h4>
+                    <ul>
+                        <li><b>Denaturation:</b> Heat (≈95°C) to separate DNA strands.</li>
+                        <li><b>Annealing:</b> Cool (≈55–65°C) to allow primers to bind.</li>
+                        <li><b>Extension:</b> Heat (≈72°C) for Taq polymerase to synthesize new strands.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Q34 -->
+            <div class="essay-card">
+                <h3><span class="qnum">Q34</span> What are the major types of gene transfer methods used to create transgenic animals? (2 marks)</h3>
+                <textarea placeholder="List methods..."></textarea>
+                <div class="essay-actions">
+                    <button class="btn btn-sm" onclick="toggleEssay('q34')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answer</span>
+                </div>
+                <div class="essay-answers" id="essay-q34">
+                    <h4><i class="fas fa-check-circle"></i> Model Answer</h4>
+                    <ul>
+                        <li>DNA microinjection into pronucleus of fertilized egg.</li>
+                        <li>Embryonic stem cell-mediated gene transfer.</li>
+                        <li>Retrovirus-mediated gene transfer.</li>
+                        <li>Other: electroporation, lipofection, gene gun.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Q35 -->
+            <div class="essay-card">
+                <h3><span class="qnum">Q35</span> Differentiate DNA fingerprinting from DNA footprinting. (2 marks)</h3>
+                <textarea placeholder="Differentiate..."></textarea>
+                <div class="essay-actions">
+                    <button class="btn btn-sm" onclick="toggleEssay('q35')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answer</span>
+                </div>
+                <div class="essay-answers" id="essay-q35">
+                    <h4><i class="fas fa-check-circle"></i> Model Answer</h4>
+                    <p><b>DNA Fingerprinting:</b> Technique to identify individuals based on unique patterns of tandem repeats (VNTRs) in their DNA. Used in forensics and paternity testing.</p>
+                    <p><b>DNA Footprinting:</b> Method to determine the precise binding site of a protein on DNA by protecting the DNA from cleavage at the binding site. Used to study protein-DNA interactions.</p>
+                </div>
+            </div>
+
+            <!-- Q36 -->
+            <div class="essay-card">
+                <h3><span class="qnum">Q36</span> What are the different types of enzymes and proteins required for replication and what are their functions? (3 marks)</h3>
+                <textarea placeholder="List enzymes and functions..."></textarea>
+                <div class="essay-actions">
+                    <button class="btn btn-sm" onclick="toggleEssay('q36')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answer</span>
+                </div>
+                <div class="essay-answers" id="essay-q36">
+                    <h4><i class="fas fa-check-circle"></i> Model Answer</h4>
+                    <ul>
+                        <li><b>Helicase:</b> Unwinds DNA double helix.</li>
+                        <li><b>Topoisomerase:</b> Relieves supercoiling.</li>
+                        <li><b>Primase:</b> Synthesizes RNA primers.</li>
+                        <li><b>DNA polymerase III:</b> Elongates new DNA strands (prokaryotes).</li>
+                        <li><b>DNA polymerase I:</b> Removes RNA primers and replaces with DNA.</li>
+                        <li><b>DNA ligase:</b> Joins Okazaki fragments.</li>
+                        <li><b>Single-strand binding proteins:</b> Stabilize single-stranded DNA.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Q37 -->
+            <div class="essay-card">
+                <h3><span class="qnum">Q37</span> What are the main causes of damage to DNA and how are they repaired? (3 marks)</h3>
+                <textarea placeholder="Causes and repair mechanisms..."></textarea>
+                <div class="essay-actions">
+                    <button class="btn btn-sm" onclick="toggleEssay('q37')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answer</span>
+                </div>
+                <div class="essay-answers" id="essay-q37">
+                    <h4><i class="fas fa-check-circle"></i> Model Answer</h4>
+                    <p><b>Causes:</b></p>
+                    <ul>
+                        <li>Ultraviolet (UV) light → pyrimidine dimers.</li>
+                        <li>Chemical mutagens (e.g., alkylating agents).</li>
+                        <li>Oxidative damage (reactive oxygen species).</li>
+                        <li>Spontaneous deamination or depurination.</li>
+                    </ul>
+                    <p><b>Repair mechanisms:</b></p>
+                    <ul>
+                        <li><b>Nucleotide excision repair (NER):</b> Removes bulky lesions like thymine dimers.</li>
+                        <li><b>Base excision repair (BER):</b> Corrects single-base damage.</li>
+                        <li><b>Mismatch repair:</b> Corrects replication errors.</li>
+                        <li><b>Non-homologous end joining (NHEJ) / homologous recombination:</b> Fixes double-strand breaks.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Q38 -->
+            <div class="essay-card">
+                <h3><span class="qnum">Q38</span> How is hnRNA converted to mRNA? (3 marks)</h3>
+                <textarea placeholder="Describe processing..."></textarea>
+                <div class="essay-actions">
+                    <button class="btn btn-sm" onclick="toggleEssay('q38')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answer</span>
+                </div>
+                <div class="essay-answers" id="essay-q38">
+                    <h4><i class="fas fa-check-circle"></i> Model Answer</h4>
+                    <ul>
+                        <li><b>5' capping:</b> Addition of 7-methylguanosine cap to the 5' end.</li>
+                        <li><b>Polyadenylation:</b> Addition of a poly(A) tail to the 3' end.</li>
+                        <li><b>Splicing:</b> Removal of introns and joining of exons by the spliceosome.</li>
+                        <li>These modifications protect mRNA, aid in export, and enhance translation.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Q39 -->
+            <div class="essay-card">
+                <h3><span class="qnum">Q39</span> Define the terms: (a) Transition and transversion (b) Introns and exons (c) Karyotype and Phenotype (1+1+1 marks)</h3>
+                <textarea placeholder="Define each..."></textarea>
+                <div class="essay-actions">
+                    <button class="btn btn-sm" onclick="toggleEssay('q39')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answer</span>
+                </div>
+                <div class="essay-answers" id="essay-q39">
+                    <h4><i class="fas fa-check-circle"></i> Model Answer</h4>
+                    <p><b>(a) Transition:</b> Substitution of a purine with another purine (A↔G) or pyrimidine with another pyrimidine (C↔T). <b>Transversion:</b> Substitution of a purine with a pyrimidine or vice versa.</p>
+                    <p><b>(b) Introns:</b> Non-coding sequences within a gene that are spliced out during mRNA processing. <b>Exons:</b> Coding sequences that are retained in mature mRNA.</p>
+                    <p><b>(c) Karyotype:</b> The complete set of chromosomes in a cell, arranged by size and morphology. <b>Phenotype:</b> The observable physical or biochemical characteristics of an organism, determined by genotype and environment.</p>
+                </div>
+            </div>
+
+            <!-- Q40 -->
+            <div class="essay-card">
+                <h3><span class="qnum">Q40</span> Define the terms: (a) Totipotency and Pluripotency (b) Chimeric DNA and vector (c) Isoschizomers and Neoschizomers (1+1+1 marks)</h3>
+                <textarea placeholder="Define each..."></textarea>
+                <div class="essay-actions">
+                    <button class="btn btn-sm" onclick="toggleEssay('q40')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answer</span>
+                </div>
+                <div class="essay-answers" id="essay-q40">
+                    <h4><i class="fas fa-check-circle"></i> Model Answer</h4>
+                    <p><b>(a) Totipotency:</b> Ability of a single cell to develop into a complete organism. <b>Pluripotency:</b> Ability of a cell to differentiate into any cell type of the body (but not extra-embryonic tissues).</p>
+                    <p><b>(b) Chimeric DNA:</b> Recombinant DNA formed by joining sequences from different organisms. <b>Vector:</b> A DNA molecule (e.g., plasmid) used to carry foreign DNA into a host cell.</p>
+                    <p><b>(c) Isoschizomers:</b> Restriction enzymes that recognize the same DNA sequence and cut at the same position. <b>Neoschizomers:</b> Enzymes that recognize the same sequence but cut at a different position.</p>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <script>
+        // MCQs data
+        const mcqs = [
+            {
+                q: "Which of the following statements is correct regarding transcription regulation in bacteria?",
+                options: [
+                    "A. All mRNAs are monocistronic.",
+                    "B. The TATA box contains a consensus sequence for the binding of RNA polymerase.",
+                    "C. The RNA chain grows in the 3'→5' direction.",
+                    "D. Rho factor is critical for initiation of RNA synthesis.",
+                    "E. RNA polymerase requires a primer."
+                ],
+                correct: 4, // E
+                explanation: "RNA polymerase does not require a primer; it initiates de novo. Prokaryotic mRNAs are polycistronic, TATA box is eukaryotic, RNA grows 5'→3', Rho is for termination."
+            },
+            {
+                q: "A biomedical research student isolates nucleic acids from cells after exposure to a known carcinogen and finds pseudouridine and ribothymidine. Which type of nucleic acid has the student likely isolated?",
+                options: [
+                    "A. snRNP",
+                    "B. rRNA",
+                    "C. hnRNA",
+                    "D. mRNA",
+                    "E. tRNA"
+                ],
+                correct: 4,
+                explanation: "Pseudouridine and ribothymidine are modified bases found in tRNA."
+            },
+            {
+                q: "Sickle cell anemia is caused by a mutation that results in one amino acid being replaced by another, which results from which of the following?",
+                options: [
+                    "A. A missense point mutation",
+                    "B. A frameshift mutation",
+                    "C. An insertion mutation",
+                    "D. A deletion mutation",
+                    "E. A nonsense point mutation"
+                ],
+                correct: 0,
+                explanation: "Sickle cell anemia is caused by a missense mutation (GAG to GTG) leading to Glu→Val."
+            },
+            {
+                q: "A physician suspects atypical pneumonia from Mycoplasma pneumoniae and decides to treat with erythromycin. Which best describes the mechanism of action of erythromycin?",
+                options: [
+                    "A. Binds to the 5' cap of mRNA and prevents translation",
+                    "B. Binds to the 30S ribosomal subunit and blocks peptidyl transferase activity",
+                    "C. Binds to the 50S ribosomal subunit and blocks translocation during translation",
+                    "D. Binds to and inhibits initiation factor IF-1",
+                    "E. Binds to the Shine-Dalgarno sequence of mRNA"
+                ],
+                correct: 2,
+                explanation: "Erythromycin binds to the 50S ribosomal subunit, inhibiting translocation of peptidyl-tRNA from the A to P site."
+            },
+            {
+                q: "Diphtheria toxin inhibits eEF-2. Which statement best explains the function of eEF-2?",
+                options: [
+                    "A. It is required for the initiation of protein synthesis.",
+                    "B. It is required for the translocation of peptidyl-tRNA during translation.",
+                    "C. It is the agent that binds to, and is inactivated by, chloramphenicol.",
+                    "D. It is a ribozyme that catalyzes peptide bond formation.",
+                    "E. It is required for the release of the polypeptide chain."
+                ],
+                correct: 1,
+                explanation: "eEF-2 (eukaryotic elongation factor 2) mediates translocation of the ribosome along mRNA."
+            },
+            {
+                q: "A mutation to this sequence in eukaryotic mRNA will affect the process by which the 3'-end poly-A tail is added to the mRNA.",
+                options: [
+                    "A. CAAT",
+                    "B. CCA",
+                    "C. GGGGCG",
+                    "D. AAUAAA",
+                    "E. TATAAA"
+                ],
+                correct: 3,
+                explanation: "The polyadenylation signal is AAUAAA, which directs cleavage and polyadenylation."
+            },
+            {
+                q: "A 25-year-old anemic man is found to have an abnormal form of β-globin that is 192 amino acids long, rather than the 141 found in normal protein. Which point mutation is consistent with this abnormality?",
+                options: [
+                    "A. UAA → UAG",
+                    "B. UAA → CAA",
+                    "C. CGA → UGA",
+                    "D. GAU → GAC",
+                    "E. GCA → GAA"
+                ],
+                correct: 1,
+                explanation: "Changing a stop codon (UAA) to a sense codon (CAA) would extend the protein length."
+            },
+            {
+                q: "When an antibiotic is added to an in vitro translation system with mRNA AUGUUUUUUUUAG, the only product is fMet-Phe. What step is most likely inhibited?",
+                options: [
+                    "A. Initiation",
+                    "B. Ribosomal translocation",
+                    "C. Peptidyltransferase activity",
+                    "D. Binding of charged tRNA to the A site",
+                    "E. Termination"
+                ],
+                correct: 1,
+                explanation: "Since fMet-Phe is formed, peptidyltransferase worked; translocation is needed to move to the next codon, so inhibition of translocation stops elongation."
+            },
+            {
+                q: "A tRNA that is supposed to carry valine is mischarged with alanine. What will be the fate of this alanine?",
+                options: [
+                    "A. It will be incorporated in response to an alanine codon.",
+                    "B. It will be incorporated randomly at any codon.",
+                    "C. It will remain attached to the tRNA.",
+                    "D. It will be incorporated in response to a valine codon.",
+                    "E. It will be chemically converted to valine."
+                ],
+                correct: 3,
+                explanation: "The tRNA's anticodon specifies valine codons; so alanine will be inserted at valine positions."
+            },
+            {
+                q: "Which of the following is required for both prokaryotic and eukaryotic protein synthesis?",
+                options: [
+                    "A. Binding of the small ribosomal subunit to the Shine-Dalgarno sequence.",
+                    "B. fMet-tRNA.",
+                    "C. Movement of mRNA out of the nucleus.",
+                    "D. Translocation of the peptidyl-tRNA from the A site to the P site.",
+                    "E. Recognition of the 5'-cap by initiation factors."
+                ],
+                correct: 3,
+                explanation: "Translocation of peptidyl-tRNA from A to P site is a conserved step in all translation."
+            },
+            {
+                q: "Which of the following statements is true regarding prokaryotic and eukaryotic genomes?",
+                options: [
+                    "A. They are both diploid.",
+                    "B. They both use the same genetic code to convert codons to amino acids.",
+                    "C. They both have short repetitive DNA sequences throughout their genome.",
+                    "D. They both organize their genes into operons.",
+                    "E. They both organize and compact their DNA with histones."
+                ],
+                correct: 1,
+                explanation: "The genetic code is nearly universal; both use the same code (with minor exceptions)."
+            },
+            {
+                q: "A colony of bacteria is cultured in a medium with lactose and NH4+ (no glucose). Which statement is correct?",
+                options: [
+                    "A. cAMP levels will be lower than cells growing in the presence of glucose.",
+                    "B. Attenuation of transcription of the trp operon will increase.",
+                    "C. The lac repressor will be bound to the lac operator.",
+                    "D. RNA polymerase will not bind to the promoter.",
+                    "E. CAP protein (cAMP-binding protein) will be bound to the lac promoter."
+                ],
+                correct: 4,
+                explanation: "Without glucose, cAMP levels are high, CAP binds to the lac promoter, enhancing transcription."
+            },
+            {
+                q: "Which technique is required to carry out RFLP analysis?",
+                options: [
+                    "A. Southern blot",
+                    "B. Northern blot",
+                    "C. Western blot",
+                    "D. X-ray crystallography",
+                    "E. Mass spectrometry"
+                ],
+                correct: 0,
+                explanation: "RFLP (Restriction Fragment Length Polymorphism) uses Southern blotting to detect DNA fragments."
+            },
+            {
+                q: "Which of the following statements is exclusively true of prokaryotes but not eukaryotes?",
+                options: [
+                    "A. DNA is complexed with histones.",
+                    "B. Most cells are diploid.",
+                    "C. Each gene has its own promoter.",
+                    "D. Transcription and translation are coupled.",
+                    "E. Genes contain introns."
+                ],
+                correct: 3,
+                explanation: "In prokaryotes, transcription and translation occur simultaneously in the cytoplasm, a feature not seen in eukaryotes."
+            },
+            {
+                q: "Glucocorticoid treatment caused a 10-fold increase in transcription and a 20-fold increase in mRNA and enzyme activity. This indicates a primary effect to decrease which of the following?",
+                options: [
+                    "A. The activity of RNA polymerase II",
+                    "B. The rate of mRNA translation",
+                    "C. The rate of binding of ribosomes to mRNA",
+                    "D. The ability of nucleases to act on mRNA",
+                    "E. The activity of RNA polymerase III"
+                ],
+                correct: 3,
+                explanation: "Greater increase in mRNA than transcription suggests increased mRNA stability, likely due to decreased nuclease activity."
+            },
+            {
+                q: "The interconnecting bonds connecting the nucleotides of RNA and DNA are termed",
+                options: [
+                    "A. N-glycosidic bonds",
+                    "B. 3'-2'-phosphodiester linkages",
+                    "C. Hydrogen bonds",
+                    "D. 3'-5'-phosphodiester linkages",
+                    "E. Peptide nucleic acid bonds"
+                ],
+                correct: 3,
+                explanation: "Nucleotides are linked by 3'→5' phosphodiester bonds."
+            },
+            {
+                q: "Which of the following is correct with respect to the synthesis of telomeres?",
+                options: [
+                    "A. The polymerase of telomerase is a DNA-directed DNA polymerase.",
+                    "B. The RNA of telomerase serves as a primer.",
+                    "C. Telomerase, a ribonucleoprotein, provides both the RNA and the polymerase needed for synthesis.",
+                    "D. The shorter 3'→5' strand gets extended.",
+                    "E. The direction of synthesis is 3'→5'."
+                ],
+                correct: 2,
+                explanation: "Telomerase is a ribonucleoprotein with an RNA template and reverse transcriptase activity, extending the 3' overhang."
+            },
+            {
+                q: "The extent of DNA synthesis in a cell could most specifically be determined by measuring the incorporation of radiolabeled",
+                options: [
+                    "A. Leucine",
+                    "B. Phosphate",
+                    "C. Ribose",
+                    "D. Uracil",
+                    "E. Thymidine"
+                ],
+                correct: 4,
+                explanation: "Thymidine is specific to DNA, so its incorporation measures DNA synthesis."
+            },
+            {
+                q: "Which component of the DNA duplex causes the molecule to have a net negative charge at physiological pH?",
+                options: [
+                    "A. Deoxyribose",
+                    "B. Ribose",
+                    "C. Histone proteins",
+                    "D. Phosphate groups",
+                    "E. Thymine base"
+                ],
+                correct: 3,
+                explanation: "Phosphate groups in the DNA backbone are negatively charged."
+            },
+            {
+                q: "The base sequence of the strand of DNA used as the template for transcription is GATCTAC. What is the base sequence of the RNA product? (All sequences 5'→3')",
+                options: [
+                    "A. GAUCUAC",
+                    "B. GTAGATC",
+                    "C. CTAGATG",
+                    "D. CUAGAUG",
+                    "E. GUAGAUC"
+                ],
+                correct: 4,
+                explanation: "RNA is complementary and antiparallel to the template. Template 5'-GATCTAC-3' gives RNA 3'-CUAGAUG-5', written 5'→3' as GUAGAUC."
+            },
+            {
+                q: "HindIII is a restriction endonuclease commonly used to cut human DNA. Which is most likely the recognition sequence?",
+                options: [
+                    "A. AAGGAA",
+                    "B. AAGCTT",
+                    "C. GAATTC",
+                    "D. GGTACC",
+                    "E. GGATCC"
+                ],
+                correct: 1,
+                explanation: "HindIII recognizes AAGCTT (from Haemophilus influenzae Rd)."
+            },
+            {
+                q: "Which technique was most likely used to analyze the size and amount of the mRNA?",
+                options: [
+                    "A. Dideoxy chain termination",
+                    "B. Southern blot",
+                    "C. Polymerase chain reaction",
+                    "D. Northern blot",
+                    "E. Western blot"
+                ],
+                correct: 3,
+                explanation: "Northern blot is used to detect and quantify specific mRNA molecules."
+            },
+            {
+                q: "The normal function of topoisomerase enzyme is to do which of the following?",
+                options: [
+                    "A. Repair nuclear DNA in the event of DNA damage",
+                    "B. Break and rejoin the DNA helix during replication",
+                    "C. Unwind the DNA helix during replication",
+                    "D. Prevent single strands from reannealing",
+                    "E. Synthesize RNA primers"
+                ],
+                correct: 1,
+                explanation: "Topoisomerase breaks and rejoins DNA strands to relieve supercoiling during replication."
+            },
+            {
+                q: "Certain nucleoside analogs used to treat infectious diseases inhibit DNA synthesis because they lack which property required for normal DNA polymerization?",
+                options: [
+                    "A. A 3'-hydroxyl",
+                    "B. A 5'-phosphate",
+                    "C. A 7-methyl G modification",
+                    "D. A poly(A) tail",
+                    "E. A consensus sequence"
+                ],
+                correct: 0,
+                explanation: "Nucleoside analogs like AZT lack a 3'-OH group, which prevents chain elongation."
+            },
+            {
+                q: "Which of the following is a correct statement concerning mRNA processing?",
+                options: [
+                    "A. Poly(A) RNA is the initial transcript produced, which is subsequently spliced to mRNA.",
+                    "B. The coding region of the gene is found within introns.",
+                    "C. The 5' end of the intron contains the nucleotides AG followed by an invariant GU.",
+                    "D. All human genes require splicing of introns.",
+                    "E. The coding regions of the gene are found within exons."
+                ],
+                correct: 4,
+                explanation: "Exons contain the coding sequence; introns are non-coding and are spliced out."
+            }
+        ];
+
+        // Generate MCQ HTML
+        const container = document.getElementById('mcq-container');
+        mcqs.forEach((q, idx) => {
+            const qNum = idx + 1;
+            let html = `<div class="question"><p><span class="q-badge">${qNum}</span> ${q.q}</p><div class="options">`;
+            q.options.forEach((opt, oi) => {
+                html += `<label><input type="radio" name="q${qNum}" value="${oi}"> ${opt}</label>`;
+            });
+            html += `</div><div class="question-feedback" id="feedback-q${qNum}"></div></div>`;
+            container.insertAdjacentHTML('beforeend', html);
+        });
+
+        // Submit MCQs
+        function submitQuiz() {
+            let score = 0;
+            const total = mcqs.length;
+            document.querySelectorAll('.question-feedback').forEach(el => el.innerHTML = '');
+
+            for (let i = 0; i < total; i++) {
+                const qNum = i + 1;
+                const radios = document.querySelectorAll(`input[name="q${qNum}"]`);
+                let selected = null;
+                radios.forEach(r => { if (r.checked) selected = r; });
+                const correct = mcqs[i].correct;
+
+                if (selected && parseInt(selected.value) === correct) score++;
+
+                const feedbackEl = document.getElementById(`feedback-q${qNum}`);
+                let html = `<div class="answer-block"><strong>Q${qNum}</strong><div class="answer-list">`;
+                radios.forEach((r, idx) => {
+                    const label = r.parentElement;
+                    const text = label ? label.textContent.trim() : r.value;
+                    let classes = ['answer-item'];
+                    if (idx === correct) classes.push('answer-correct');
+                    if (r.checked && idx !== correct) classes.push('answer-wrong', 'user-choice');
+                    if (r.checked && idx === correct) classes.push('user-choice');
+                    html += `<div class="${classes.join(' ')}">${text}${r.checked ? ' ◀' : ''}</div>`;
+                });
+                html += `</div>`;
+                const correctText = radios[correct].parentElement.textContent.trim();
+                if (selected) {
+                    if (parseInt(selected.value) === correct) {
+                        html += `<div class="explanation">✅ Correct — ${mcqs[i].explanation}</div>`;
+                    } else {
+                        html += `<div class="explanation wrong">❌ Incorrect. Correct answer: <strong>${correctText}</strong>. ${mcqs[i].explanation}</div>`;
+                    }
+                } else {
+                    html += `<div class="explanation wrong">No answer selected. Correct answer: <strong>${correctText}</strong>. ${mcqs[i].explanation}</div>`;
+                }
+                html += `</div>`;
+                feedbackEl.innerHTML = html;
+            }
+
+            const percentage = Math.round((score / total) * 100);
+            const resultBox = document.getElementById('resultBox');
+            resultBox.style.display = 'block';
+            document.getElementById('score').innerText = percentage + '%';
+            document.querySelectorAll('#quizForm input[type="radio"]').forEach(i => i.disabled = true);
+        }
+
+        // Toggle essay answers
+        function toggleEssay(id) {
+            const el = document.getElementById('essay-' + id);
+            if (!el) return;
+            const isVisible = el.classList.toggle('visible');
+            if (isVisible) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        // Tab navigation
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const section = this.dataset.section;
+                document.querySelectorAll('.section-panel').forEach(p => p.classList.add('hidden'));
+                document.getElementById('section-' + section).classList.remove('hidden');
+                const topEl = document.getElementById(section + '-top');
+                if (topEl) topEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // Keyboard support for essay buttons
+        document.querySelectorAll('.essay-actions .btn').forEach(btn => {
+            btn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    btn.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

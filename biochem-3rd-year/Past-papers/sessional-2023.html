@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2023 Sessional Biochemistry | Past Paper</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        :root {
+            --primary: #2b7a78;
+            --accent: #3aafa9;
+            --dark: #17252a;
+            --light: #f8f9fa;
+            --radius: 12px;
+            --shadow: 0 4px 14px rgba(18, 38, 63, 0.06);
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: "Segoe UI", Roboto, system-ui, sans-serif;
+            background: linear-gradient(180deg, #f5f7fb, #eef6f6);
+            color: var(--dark);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: #fff;
+            padding: 0.8rem 0;
+            box-shadow: 0 6px 18px rgba(11, 36, 36, 0.18);
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .logo i {
+            font-size: 1.6rem;
+            color: var(--accent);
+        }
+        .logo h1 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin: 0;
+        }
+        .badge {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 0.25rem 1rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #d4f0ee;
+        }
+        .nav-tabs {
+            display: flex;
+            gap: 0.3rem;
+            flex-wrap: wrap;
+        }
+        .nav-tabs .tab-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: none;
+            color: #d4f0ee;
+            padding: 0.3rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .nav-tabs .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #fff;
+        }
+        .nav-tabs .tab-btn.active {
+            background: var(--accent);
+            color: var(--dark);
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 1.25rem 2.5rem;
+        }
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1.8rem 0 1rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 3px solid rgba(43, 122, 120, 0.20);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+        .section-title .count {
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0.05rem 0.7rem;
+        }
+        .section-subtitle {
+            color: #5f7a7a;
+            font-size: 0.92rem;
+            margin-bottom: 1.2rem;
+        }
+        .section-panel {
+            display: block;
+        }
+        .section-panel.hidden {
+            display: none;
+        }
+        .question {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.2rem 1.2rem 0.2rem 1.2rem;
+            margin-bottom: 1.2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(43, 122, 120, 0.06);
+        }
+        .question p {
+            font-weight: 600;
+            font-size: 0.98rem;
+            margin-bottom: 0.5rem;
+        }
+        .question .q-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            line-height: 1.6;
+            margin-right: 0.4rem;
+        }
+        .options label {
+            display: block;
+            background: #fafcfd;
+            border: 1px solid #e0e8ef;
+            border-radius: 8px;
+            padding: 0.45rem 0.9rem;
+            margin-top: 0.45rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-weight: 450;
+            font-size: 0.94rem;
+        }
+        .options label:hover {
+            background: #e8f5f4;
+            border-color: var(--accent);
+        }
+        .options input[type="radio"] {
+            margin-right: 0.5rem;
+            accent-color: var(--primary);
+            transform: scale(1.05);
+        }
+        .question-feedback {
+            margin-top: 0.9rem;
+            padding: 0.4rem 0 0.1rem 0;
+            border-top: 1px dashed #dce6ed;
+        }
+        .answer-block strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--primary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .answer-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .answer-item {
+            padding: 5px 10px;
+            border-radius: 6px;
+            border: 1px solid #e6eef3;
+            background: #ffffff;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .answer-correct {
+            background: #ecfdf5;
+            border-color: #bbf7d0;
+            color: #065f46;
+        }
+        .answer-wrong {
+            background: #fff1f2;
+            border-color: #fca5a5;
+            color: #9f1239;
+        }
+        .user-choice {
+            outline: 2px dashed rgba(0, 0, 0, 0.06);
+        }
+        .explanation {
+            margin-top: 6px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: #f1f8f6;
+            color: #065f46;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border-left: 4px solid var(--accent);
+        }
+        .explanation.wrong {
+            background: #fff5f5;
+            color: #7f1d1d;
+            border-left-color: #f87171;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.6rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(43, 122, 120, 0.22);
+        }
+        .btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(43, 122, 120, 0.30);
+        }
+        .btn-sm {
+            padding: 0.3rem 1rem;
+            font-size: 0.8rem;
+        }
+        .submit-wrap {
+            text-align: center;
+            margin: 1.5rem 0 2rem;
+        }
+        .result {
+            margin-top: 1.5rem;
+            padding: 1.5rem 1.5rem 1rem;
+            background: #f1faf9;
+            border-radius: var(--radius);
+            text-align: center;
+            display: none;
+            border: 1px solid #c5e3df;
+        }
+        .result h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+        .score {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0.2rem 0 0.4rem;
+        }
+        .essay-card {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.25rem 1.25rem 1rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(43, 122, 120, 0.06);
+        }
+        .essay-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 0 0 0.6rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .essay-card h3 .qnum {
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.75rem;
+            line-height: 1.6;
+        }
+        .subpart {
+            margin-top: 0.8rem;
+            border-top: 1px dashed #e0e8ef;
+            padding-top: 0.8rem;
+        }
+        .subpart-label {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+        .subpart textarea {
+            width: 100%;
+            min-height: 60px;
+            border-radius: 8px;
+            border: 1px solid #d1dbe0;
+            padding: 0.5rem 0.8rem;
+            resize: vertical;
+            font-family: inherit;
+            font-size: 0.92rem;
+            background: #fafcfd;
+            transition: border 0.2s;
+        }
+        .subpart textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(43, 122, 120, 0.12);
+        }
+        .subpart-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 0.4rem;
+            flex-wrap: wrap;
+        }
+        .subpart-answers {
+            display: none;
+            margin-top: 0.6rem;
+            background: #f1f8f6;
+            border-radius: 8px;
+            padding: 0.7rem 1rem;
+            border: 1px solid #cfe6e0;
+            color: var(--dark);
+            font-size: 0.94rem;
+            line-height: 1.5;
+        }
+        .subpart-answers.visible {
+            display: block;
+            animation: fadeSlide 0.25s ease;
+        }
+        .subpart-answers h4 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: var(--primary);
+            margin: 0 0 0.3rem 0;
+        }
+        @keyframes fadeSlide {
+            0% { opacity: 0; transform: translateY(-6px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 700px) {
+            body { padding-top: 72px; }
+            .logo h1 { font-size: 1rem; }
+            .header-inner { flex-direction: column; align-items: stretch; gap: 0.3rem; }
+            .nav-tabs { justify-content: center; }
+            .question { padding: 1rem; }
+            .score { font-size: 2.2rem; }
+        }
+        .text-muted { color: #5f7a7a; font-size: 0.9rem; }
+        .hidden { display: none !important; }
+        .scroll-target { scroll-margin-top: 90px; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <i class="fas fa-dna"></i>
+                <h1>2023 Sessional Biochemistry</h1>
+            </div>
+            <span class="badge"><i class="fas fa-pencil-alt"></i> &nbsp;Past Paper</span>
+            <div class="nav-tabs">
+                <button class="tab-btn active" data-section="mcq">MCQs</button>
+                <button class="tab-btn" data-section="essay">Descriptive</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- MCQs Section -->
+        <section class="container section-panel" id="section-mcq">
+            <div class="section-title scroll-target" id="mcq-top">
+                <i class="fas fa-list-ul"></i> Multiple Choice Questions
+                <span class="count">40</span>
+            </div>
+            <p class="section-subtitle">Select the best answer for each question, then click <strong>Submit All MCQs</strong>.</p>
+            <form id="quizForm">
+                <div id="mcq-container"></div>
+                <div class="submit-wrap">
+                    <button type="button" class="btn" onclick="submitQuiz()">
+                        <i class="fas fa-check-circle"></i> Submit All MCQs
+                    </button>
+                </div>
+            </form>
+            <div class="result" id="resultBox">
+                <h3><i class="fas fa-chart-simple"></i> Your Score</h3>
+                <div class="score" id="score">0%</div>
+                <p class="text-muted">Review feedback below each question.</p>
+            </div>
+        </section>
+
+        <!-- Descriptive Section -->
+        <section class="container section-panel hidden" id="section-essay">
+            <div class="section-title scroll-target" id="essay-top">
+                <i class="fas fa-pen-fancy"></i> Descriptive Questions
+                <span class="count">8</span>
+            </div>
+            <p class="section-subtitle">Each sub‑question has its own text area and submit button. Click <strong>Submit</strong> to reveal a model answer.</p>
+            <div id="essay-container"></div>
+        </section>
+    </main>
+
+    <script>
+        // ─── MCQ DATA (40 questions) ───
+        const mcqs = [
+            { q: "A patient was diagnosed with a mitochondrial DNA mutation that led to reduced complex activity. This patient would have difficulties in which of the following electron transfers?",
+              options: ["A) Succinate to complex III", "B) Cytochrome c to complex IV", "C) Coenzyme Q to complex III", "D) Malate to coenzyme Q", "E) Coenzyme Q to oxygen"],
+              correct: 1, explanation: "Reduced complex IV activity affects electron transfer from cytochrome c to oxygen." },
+            { q: "Why is the yield of ATP from the complete oxidation of glucose lower in muscle and brain than in kidney, liver, and heart?",
+              options: ["A) Different shuttle mechanisms operate to transfer electrons from the cytosol to the mitochondria", "B) Muscle and brain cells have a lower requirement for ATP", "C) There are fewer mitochondria in muscle and brain cells", "D) There are fewer ATP synthases in muscle and brain cells", "E) Mitochondrial glycerophosphate dehydrogenase uses NAD rather than FAD"],
+              correct: 0, explanation: "Muscle and brain use the glycerol‑phosphate shuttle (yields 1.5 ATP per NADH) while liver/heart use the malate‑aspartate shuttle (2.5 ATP)." },
+            { q: "A 43‑year‑old man presented with symptoms of weakness, fatigue, shortness of breath, and dizziness. His hemoglobin was <7 g/dL. RBCs showed abnormally low level of lactate production. A deficiency of which enzyme would be the most likely cause?",
+              options: ["A) Phosphoglucose isomerase", "B) Phosphofructokinase", "C) Pyruvate kinase", "D) Hexokinase", "E) Lactate dehydrogenase"],
+              correct: 2, explanation: "Pyruvate kinase deficiency impairs glycolysis, reducing pyruvate and lactate production, causing hemolytic anemia." },
+            { q: "A 7‑year‑old obese Hispanic girl presents with dehydration after 3 days of vomiting and diarrhea. Urine reducing sugars positive but glucose oxidase negative. Further analysis reveals fructose and an unidentified pentose. Which pentose is most likely?",
+              options: ["A) Galactose", "B) Glucose", "C) Lactose", "D) Mannose", "E) Xylulose"],
+              correct: 4, explanation: "Essential pentosuria (xylulose excretion) is a benign condition with reducing sugar positive but glucose negative." },
+            { q: "Topical fluoride treatment can slow acid production by Streptococcus mutans, resulting in the accumulation of which metabolite?",
+              options: ["A) Glucose-6-phosphate", "B) Fructose-1,6-bisphosphate", "C) Glyceraldehyde-3-phosphate", "D) 2‑phosphoglycerate", "E) Phosphoenolpyruvate"],
+              correct: 3, explanation: "Fluoride inhibits enolase, causing accumulation of 2‑phosphoglycerate." },
+            { q: "During fasting, insulin decreases and glucagon increases. Which one occurs in an individual rested and fasted for 12 hours?",
+              options: ["A) Gluconeogenesis is the major process by which blood glucose is maintained", "B) Adenylate cyclase has been inactivated in liver", "C) Liver glycogen stores have been depleted", "D) Glycogen phosphorylase, pyruvate kinase, and glycogen synthase are phosphorylated in the liver", "E) Glycogen synthase has been activated in liver"],
+              correct: 3, explanation: "In fasting, glucagon promotes phosphorylation of glycogen phosphorylase (activation), pyruvate kinase (inactivation), and glycogen synthase (inactivation)." },
+            { q: "A young man given primaquine develops hemolysis. The most likely cause is a less‑than‑normal level of which of the following?",
+              options: ["A) Glucose 6‑phosphate", "B) Oxidized form of NAD", "C) Reduced form of glutathione", "D) Ribose 5‑phosphate", "E) Ribulose 5‑phosphate"],
+              correct: 2, explanation: "G6PD deficiency leads to decreased NADPH and reduced glutathione, making RBCs susceptible to oxidative damage." },
+            { q: "To minimize synthesis of abnormal glycogen in a patient with deficiency of the α1→6 branching enzyme, which molecule might be targeted?",
+              options: ["A) UDP‑glucose 1‑phosphate", "B) UDP‑glucose", "C) UDP‑glucose 6‑phosphate", "D) Glucose 6‑phosphate", "E) Glucose 1‑phosphate"],
+              correct: 1, explanation: "UDP‑glucose is the substrate for glycogen synthase; reducing its availability might limit abnormal glycogen formation." },
+            { q: "An infant has hepatosplenomegaly, hypoglycemia, hyperlipidemia, acidosis and normal structured glycogen deposition. What is the diagnosis?",
+              options: ["A) Her's disease", "B) von Gierke's disease", "C) Cori's disease", "D) Anderson's disease", "E) Pompe's disease"],
+              correct: 1, explanation: "von Gierke's disease (glucose‑6‑phosphatase deficiency) presents with these features and normal glycogen structure." },
+            { q: "A 5‑month‑old boy with vomiting, night sweats, tremors after fruit juices, hepatomegaly, reducing sugar positive but glucose negative. Most likely suffers from:",
+              options: ["A) aldolase B deficiency", "B) fructokinase deficiency", "C) galactokinase deficiency", "D) β‑galactosidase deficiency", "E) glucose 6‑phosphatase deficiency"],
+              correct: 0, explanation: "Hereditary fructose intolerance is due to aldolase B deficiency, causing fructose‑1‑phosphate accumulation." },
+            { q: "In contracting skeletal muscle, a sudden elevation of cytosolic Ca²⁺ will result in:",
+              options: ["A) activation of cAMP‑dependent protein kinase A", "B) dissociation of cAMP‑dependent protein kinase A into catalytic and regulatory subunits", "C) inactivation of phosphorylase kinase caused by protein phosphatase‑1", "D) direct activation of phosphorylase kinase b", "E) direct activation of glycogen phosphorylase b"],
+              correct: 3, explanation: "Ca²⁺ binds to calmodulin, activating phosphorylase kinase b directly, which then phosphorylates glycogen phosphorylase." },
+            { q: "People with diabetes mellitus are prone to cataracts because elevated blood glucose:",
+              options: ["A) Inhibits gluconeogenesis", "B) Increases glycosylate hemoglobin", "C) Increases glycogen synthesis within the lens", "D) Allows aldose reductase to reduce glucose to sorbitol", "E) Increases glycogen storage within the lens"],
+              correct: 3, explanation: "Aldose reductase converts glucose to sorbitol, which accumulates in the lens causing osmotic damage." },
+            { q: "A chronic alcoholic presents with nystagmus, edema, ataxia, mental confusion. A test for vitamin deficiency uses which enzyme?",
+              options: ["A) Transaldolase", "B) Aldolase", "C) Transketolase", "D) β‑ketothiolase", "E) Acetylcholine synthase"],
+              correct: 2, explanation: "Thiamine deficiency (Wernicke‑Korsakoff) is diagnosed by measuring transketolase activity in RBCs." },
+            { q: "Norfloxacin inhibits chromosome duplication in bacteria. Which enzyme is directly inhibited?",
+              options: ["A) DNA polymerase I", "B) DNA polymerase II", "C) Topoisomerase", "D) Topoisomerase", "E) DNA ligase"],
+              correct: 2, explanation: "Norfloxacin inhibits bacterial DNA gyrase (topoisomerase II), a type of topoisomerase." },
+            { q: "Accumulation of heme in reticulocytes can regulate globin synthesis by inactivating eIF‑2. Which step is most directly affected?",
+              options: ["A) Attachment of spliceosomes to pre‑mRNA", "B) Attachment of the ribosome to the endoplasmic reticulum", "C) Met‑tRNAmet binding to the P‑site", "D) Translocation of mRNA on the ribosome", "E) Attachment of RNA polymerase II to the promoter"],
+              correct: 2, explanation: "eIF‑2 is required for the binding of Met‑tRNA to the P‑site; its inactivation inhibits initiation." },
+            { q: "Dyskeratosis congenita (DKC) is due to inadequate production of an enzyme needed for chromosome duplication. The active site contains a single‑stranded RNA. Which step is deficient?",
+              options: ["A) Synthesis of centromeres", "B) Synthesis of Okazaki fragments", "C) Synthesis of RNA primers", "D) Synthesis of telomeres", "E) Removal of RNA primers"],
+              correct: 3, explanation: "DKC is caused by telomerase deficiency; telomerase is a ribonucleoprotein with an RNA template." },
+            { q: "Starting material for production of insulin in bacteria is:",
+              options: ["A) Genomic DNA of lymphocytes", "B) mRNA of lymphocytes", "C) Genomic DNA of beta cell of pancreas", "D) mRNA of beta cells of pancreas", "E) Insulin gene from any human cell DNA"],
+              correct: 3, explanation: "mRNA from pancreatic beta cells is used to synthesize cDNA for insulin production." },
+            { q: "DNA fingerprinting is based on possessing in DNA of:",
+              options: ["A) Constant Tandem Repeat", "B) Variable Number Tandem Repeat", "C) Non‑repetitive sequence", "D) Exon", "E) Intron in eukaryotes"],
+              correct: 1, explanation: "VNTRs are highly polymorphic and form the basis of DNA fingerprinting." },
+            { q: "A cancer patient on 6‑mercaptopurine develops hyperuricemia and is given allopurinol. What effect will allopurinol have on 6‑mercaptopurine?",
+              options: ["A) Enhanced deactivation", "B) Enhanced elimination as uric acid", "C) Enhanced retention and potentiation of activity", "D) Decreased inhibition of PRPP glutamylamidotransferase", "E) Competitively inhibits the action of 6‑mercaptopurine"],
+              correct: 2, explanation: "Allopurinol inhibits xanthine oxidase, which also metabolizes 6‑mercaptopurine, thus increasing its levels." },
+            { q: "Reduction of the 2'‑hydroxyl of purine and pyrimidine ribonucleotides is catalysed by:",
+              options: ["A) Thioredoxin reductase", "B) Ribonucleotide reductase", "C) Dihydrofolate reductase", "D) Oxidoreductase", "E) 2'‑hydroxy reductase"],
+              correct: 1, explanation: "Ribonucleotide reductase catalyzes the conversion of ribonucleotides to deoxyribonucleotides." },
+            { q: "The derepression of the lac operon in the presence of lactose is an example of:",
+              options: ["A) Positive regulation", "B) Negative regulation", "C) Double negative regulation", "D) Double positive regulation", "E) Disregulation"],
+              correct: 1, explanation: "Removal of repression (by inducer binding) is negative regulation." },
+            { q: "The ideal support medium for separation of nucleic acid is:",
+              options: ["A) Starch gel", "B) Cellulose acetate gel", "C) Agarose gel", "D) SDS gel", "E) Filter paper"],
+              correct: 2, explanation: "Agarose gel electrophoresis is standard for nucleic acid separation." },
+            { q: "Which of the following structural analogs is not an anticancer drug?",
+              options: ["A) Azaserine", "B) Allopurinol", "C) Cytosine arabinoside", "D) Mercaptopurine", "E) Fluorouracil"],
+              correct: 1, explanation: "Allopurinol is used to treat gout, not cancer." },
+            { q: "Degeneracy of the genetic code denotes the existence of:",
+              options: ["A) Base triplets that do not code for any amino acids", "B) Codons consisting of only two bases", "C) Codons that include one or more unusual bases", "D) Different protein synthesizing systems in which a given triplet codes for different amino acids", "E) Multiple codons for a single amino acid"],
+              correct: 4, explanation: "Degeneracy means multiple codons encode the same amino acid." },
+            { q: "The binding of prokaryotic DNA dependent RNA polymerase to promoter sites is inhibited by the antibiotic:",
+              options: ["A) Streptomycin", "B) Rifampicin", "C) Aureomycin", "D) Terramycin", "E) Puromycin"],
+              correct: 1, explanation: "Rifampicin binds to the β‑subunit of RNA polymerase, blocking initiation." },
+            { q: "A 4‑month‑old with pertussis is treated with an antibiotic that inhibits translocation of 70S ribosomes. Which antibiotic?",
+              options: ["A) erythromycin", "B) tetracycline", "C) chloramphenicol", "D) rifamycin", "E) levofloxacin"],
+              correct: 0, explanation: "Erythromycin binds to 50S subunit and inhibits translocation." },
+            { q: "A patient with cirrhosis and elevated ammonia should restrict which class of nutrients?",
+              options: ["A) Ethanol", "B) Lipids", "C) Proteins", "D) Carbohydrates", "E) Water‑soluble vitamins"],
+              correct: 2, explanation: "Dietary protein provides amino acids that generate ammonia; restricting protein reduces ammonia production." },
+            { q: "To lower chylomicron levels most effectively, restrict which dietary component?",
+              options: ["A) Overall calories", "B) Fat", "C) Cholesterol", "D) Starch", "E) Sugar"],
+              correct: 1, explanation: "Chylomicrons are formed from dietary fat; restricting fat lowers their levels." },
+            { q: "In DKA, ketone bodies are all of which type of structure?",
+              options: ["A) Butyl structure", "B) Aromatic structure", "C) Aliphatic structure", "D) Hydroxyl‑containing structure", "E) Amine‑containing structure"],
+              correct: 2, explanation: "Ketone bodies (acetoacetate, β‑hydroxybutyrate, acetone) are small aliphatic compounds." },
+            { q: "Which statement about amino acid degradation is correct?",
+              options: ["A) Amino acid carbons can be stored only as glycogen", "B) The liver is the only site of amino acid oxidation", "C) The nitrogen of oxidized branched‑chain amino acids must travel to the liver for disposal", "D) The nitrogen of amino acids is always excreted as urea", "E) The nitrogen of amino acids is only excreted by the kidney"],
+              correct: 2, explanation: "BCAA nitrogen is transported to the liver via glutamine/alanine for urea synthesis." },
+            { q: "Which of the following is an example of a pancreatic protease?",
+              options: ["A) Pepsin", "B) Elastase", "C) Aminopeptidase", "D) Cathepsin", "E) Ubiquitin"],
+              correct: 1, explanation: "Elastase is secreted by the pancreas as a zymogen." },
+            { q: "Which apolipoprotein acts as a cofactor activator of LPL?",
+              options: ["A) ApoCIII", "B) ApoCII", "C) ApoB‑100", "D) ApoB‑48s", "E) ApoE"],
+              correct: 1, explanation: "ApoCII is the obligatory activator of lipoprotein lipase." },
+            { q: "Trypsinogen is cleaved to form trypsin by a protease secreted by which organ?",
+              options: ["A) Stomach", "B) Pancreas", "C) Colon", "D) Liver", "E) Small intestine"],
+              correct: 4, explanation: "Enterokinase (from small intestinal brush border) cleaves trypsinogen." },
+            { q: "An adult ingesting protein‑rich drinks without exercise. Which correctly describes a problem?",
+              options: ["A) Dietary proteins in excess pass unchanged into feces", "B) Dietary proteins in excess pass unchanged in urine", "C) Dietary proteins in excess feed‑back and shut down pancreatic enzymes", "D) Dietary proteins in excess are stored as amino acids in the liver", "E) Dietary proteins in excess are converted to glycogen and triacylglycerols for storage"],
+              correct: 4, explanation: "Excess amino acids are deaminated and the carbon skeletons are converted to glycogen or fat." },
+            { q: "A child with PKU is supplemented with large doses of tryptophan, leucine, and tyrosine. The rationale is:",
+              options: ["A) To inhibit phenylalanine hydroxylase activity", "B) To increase neurotransmitter synthesis", "C) To activate phenylalanine hydroxylase activity", "D) To stimulate protein synthesis", "E) To decrease neurotransmitter biosynthesis"],
+              correct: 1, explanation: "Tyrosine (and tryptophan) are precursors to neurotransmitters; supplementation helps bypass deficient PAH." },
+            { q: "Which of the following is an end product of amino acid degradative families?",
+              options: ["A) Citrate", "B) Glyceraldehyde 3‑phosphate", "C) Fructose 6‑phosphate", "D) Malate", "E) Succinyl‑CoA"],
+              correct: 4, explanation: "Succinyl‑CoA is an end product of several amino acids (e.g., methionine, valine)." },
+            { q: "The ATP yield from complete oxidation of 1 mol of C18:0 fatty acid is closest to:",
+              options: ["A) 105", "B) 115", "C) 120", "D) 125", "E) 130"],
+              correct: 2, explanation: "C18:0 yields 8 acetyl‑CoA (8×10=80), 7 FADH₂ (7×1.5=10.5), 7 NADH (7×2.5=17.5) total ≈ 120 ATP." },
+            { q: "A newborn unable to oxidize phytanic acid likely has a defect in which organelle?",
+              options: ["A) Endoplasmic reticulum", "B) Golgi apparatus", "C) Lysosome", "D) Mitochondria", "E) Peroxisome"],
+              correct: 4, explanation: "Phytanic acid oxidation occurs in peroxisomes; defects cause Refsum disease." },
+            { q: "A patient with hyperlipoproteinemia would benefit most from a low‑carbohydrate diet if elevated lipoproteins are:",
+              options: ["A) Chylomicrons", "B) VLDL", "C) HDL", "D) LDL", "E) IDL"],
+              correct: 1, explanation: "VLDL is rich in triglycerides and responds to carbohydrate restriction." },
+            { q: "Statins inhibit HMG‑CoA reductase. Which metabolite would accumulate?",
+              options: ["A) Acetoacetyl‑CoA", "B) HMG‑CoA", "C) Mevalonate", "D) Squalene", "E) Steroid ring"],
+              correct: 1, explanation: "HMG‑CoA reductase converts HMG‑CoA to mevalonate; inhibition causes HMG‑CoA accumulation." }
+        ];
+
+        // ─── DESCRIPTIVE DATA ───
+        const essayData = [
+            { title: "Question 1 (Pyruvate Dehydrogenase Deficiency)", subparts: [
+                { label: "a)", q: "What is the location and normal catalysis (metabolic reaction catalyzed) of pyruvate dehydrogenase?",
+                  a: "Location: mitochondrial matrix. Catalyses: pyruvate → acetyl‑CoA + CO₂ + NADH." },
+                { label: "b)", q: "How is this enzyme activity regulated normally?",
+                  a: "Inhibited by acetyl‑CoA, ATP, NADH; activated by ADP, pyruvate, and decreased NADH/NAD⁺ ratio." },
+                { label: "c)", q: "Vitamin deficiencies would affect the activity of pyruvate dehydrogenase complex. Since there are five B vitamins necessary for its activity that includes thiamine, niacin and lipoic acid, what are the other two vitamins and their roles?",
+                  a: "Riboflavin (FAD) – cofactor for dihydrolipoyl dehydrogenase; Pantothenic acid (CoA) – carries acetyl group." },
+                { label: "d)", q: "Explain why pyruvate dehydrogenase deficiency results in the buildup of lactic acid.",
+                  a: "Because pyruvate cannot be converted to acetyl‑CoA; it accumulates and is reduced to lactate by lactate dehydrogenase." },
+                { label: "e)", q: "What other acidic metabolite than lactic acid would also accumulate in the body?",
+                  a: "Alanine (from transamination) and possibly pyruvate itself." }
+            ]},
+            { title: "Question 2 (Adenosine Deaminase Deficiency)", subparts: [
+                { label: "a)", q: "Sketch the outline of degradation of adenosine in the body.",
+                  a: "Adenosine → (adenosine deaminase) → inosine → hypoxanthine → xanthine → uric acid." },
+                { label: "b)", q: "Which tissue(s) in the body has (have) increased activity of this enzyme?",
+                  a: "Lymphocytes (T and B cells) and intestinal mucosa have high ADA activity." },
+                { label: "c)", q: "Explain the biochemical basis of immune system damages in this condition.",
+                  a: "ADA deficiency leads to accumulation of deoxyadenosine and dATP, which inhibit ribonucleotide reductase, causing depletion of other dNTPs and lymphocyte death, resulting in SCID." },
+                { label: "d)", q: "Explain the biochemical basis of developmental delay in this condition.",
+                  a: "Immune dysfunction makes the patient susceptible to recurrent infections, which can affect growth and development; also, dATP may affect neuronal cells." }
+            ]},
+            { title: "Question 3 (Xeroderma Pigmentosum)", subparts: [
+                { label: "a)", q: "What is the most likely cause of thymine‑thymine dimers in DNA?",
+                  a: "Exposure to ultraviolet (UV) light causes covalent bonding between adjacent thymine bases." },
+                { label: "b)", q: "What are the different types of pyrimidine dimers in DNA?",
+                  a: "Cyclobutane pyrimidine dimers (CPD) and 6‑4 photoproducts." },
+                { label: "c)", q: "What are the cancer susceptibilities in this case?",
+                  a: "Increased risk of skin cancers (basal cell carcinoma, squamous cell carcinoma, melanoma) due to unrepaired UV damage." },
+                { label: "d)", q: "What are the repair mechanisms (list two) for thymine‑thymine dimers in DNA under normal health?",
+                  a: "Nucleotide excision repair (NER) and photoreactivation (in some organisms)." },
+                { label: "e)", q: "Which enzyme is used to make a cut within DNA on each side of the lesion during the repair mechanism?",
+                  a: "Endonuclease (e.g., UvrC in bacteria, XPG and XPF in eukaryotes)." },
+                { label: "f)", q: "Which enzyme is used to remove the entire fragment of the damaged portion?",
+                  a: "Helicase (e.g., UvrD) unwinds and releases the damaged oligonucleotide." },
+                { label: "g)", q: "Which enzyme is used to fill the gap in DNA?",
+                  a: "DNA polymerase (DNA polymerase δ or ε in eukaryotes, DNA polymerase I in bacteria)." },
+                { label: "h)", q: "Which enzyme seals the nick remaining after gap filling?",
+                  a: "DNA ligase." },
+                { label: "i)", q: "Which of the DNA repair mechanisms is involved in correcting post‑replicative errors?",
+                  a: "Mismatch repair (MMR)." },
+                { label: "j)", q: "Which DNA repair mechanism is mutagenic and what is the name of proteins that mediate this repair mechanism?",
+                  a: "Translesion synthesis (TLS) is error‑prone; mediated by Y‑family polymerases (Pol η, Pol ι, Pol κ, Rev1)." },
+                { label: "k)", q: "What is the name of DNA repair mechanism that results in formation of chimeric DNA?",
+                  a: "Homologous recombination repair (HRR) can generate chimeric DNA during recombination." },
+                { label: "l)", q: "Why is there no repair mechanism for RNAs and proteins but for DNA?",
+                  a: "DNA is the only genetic material; RNA and proteins can be replaced from DNA, so repair is not essential." }
+            ]},
+            { title: "Question 4 (Gene Expression)", subparts: [
+                { label: "a)", q: "What is the basic principle of gene expression?",
+                  a: "The flow of genetic information from DNA → RNA → protein (the central dogma)." },
+                { label: "b)", q: "What are the major stages of gene expression?",
+                  a: "Transcription (DNA → mRNA) and translation (mRNA → protein)." },
+                { label: "c)", q: "Which stages of gene expression are mostly controlled/regulated? Why?",
+                  a: "Transcription initiation is the most regulated stage because it is energetically efficient and allows rapid response to signals." },
+                { label: "d)", q: "What are the final products of gene expression?",
+                  a: "Proteins, and also functional RNAs (rRNA, tRNA, snRNA, etc.)." },
+                { label: "e)", q: "Explain the facts (any two) why gene expression in eukaryotes is more complex than in prokaryotes.",
+                  a: "Eukaryotes have nuclear membrane separating transcription and translation, require splicing of introns, and have chromatin remodeling and multiple regulatory elements." },
+                { label: "f)", q: "What causes (any two) gene over expression?",
+                  a: "Gene amplification, promoter mutations, translocation to an active locus, or loss of repressor function." },
+                { label: "g)", q: "What is a class switching in gene regulation? Give an example.",
+                  a: "Class switching refers to changing the type of antibody produced (e.g., IgM to IgG) via DNA recombination in B cells." }
+            ]},
+            { title: "Question 5 (Diabetes & Ketone Bodies)", subparts: [
+                { label: "a)", q: "Why are ketone bodies elevated in this case?",
+                  a: "Due to increased production of ketone bodies from fatty acid oxidation in the liver." },
+                { label: "b)", q: "Where are these ketone bodies produced?",
+                  a: "In the liver mitochondria." },
+                { label: "c)", q: "Which hormone predominates in this case?",
+                  a: "Glucagon (and decreased insulin)." },
+                { label: "d)", q: "Why is the brain not able to utilise ketone bodies in this case?",
+                  a: "The brain can use ketone bodies, but in early ketoacidosis, the enzymes may not be fully adapted; also, high acidity may impair utilization." },
+                { label: "e)", q: "Why is the liver not able to utilise ketone bodies?",
+                  a: "The liver lacks the enzyme thiophorase (succinyl‑CoA:acetoacetate CoA‑transferase), so it cannot activate acetoacetate for oxidation." },
+                { label: "f)", q: "Is there a relationship between blood urea nitrogen and rate of ketone body formation? Justify.",
+                  a: "Yes, during starvation, protein breakdown increases urea production; ketogenesis also increases as fatty acids are oxidized. Both reflect a catabolic state." },
+                { label: "g)", q: "What is the major source of energy during fasting?",
+                  a: "Fatty acid oxidation (and ketone bodies)." },
+                { label: "h)", q: "Which two ketone bodies are formed from acetyl CoA in the liver?",
+                  a: "Acetoacetate and β‑hydroxybutyrate." },
+                { label: "i)", q: "Name the reaction that is involved in the production of the third ketone body?",
+                  a: "Decarboxylation of acetoacetate to acetone." }
+            ]},
+            { title: "Question 6 (Xenobiotics Metabolism)", subparts: [
+                { label: "a)", q: "How many phases are involved in the metabolism of xenobiotics? List the major reactions take place in each phase.",
+                  a: "Two phases. Phase I: oxidation (cytochrome P450), reduction, hydrolysis. Phase II: conjugation (glucuronidation, sulfation, acetylation, etc.)." },
+                { label: "b)", q: "One of the phases in the biotransformation is mediated by a cytochrome. Name the cytochrome and its coenzyme.",
+                  a: "Cytochrome P450; coenzyme is NADPH (and O₂)." },
+                { label: "c)", q: "State how drug‑metabolizing enzymes catalyze these biotransformations.",
+                  a: "They convert lipophilic xenobiotics to more hydrophilic metabolites via oxidation or conjugation, facilitating excretion." },
+                { label: "d)", q: "Explain one of biotransformation reaction.",
+                  a: "Glucuronidation: UDP‑glucuronosyltransferase transfers glucuronic acid to a xenobiotic, increasing water solubility." },
+                { label: "e)", q: "Explain why the extent of removal of given xenobiotic from blood is directly related to the liver dysfunction.",
+                  a: "The liver is the primary site of drug metabolism; impaired liver function reduces clearance, prolonging drug half‑life." }
+            ]},
+            { title: "Question 7 (Urea Cycle)", subparts: [
+                { label: "a)", q: "How is free ammonia fixed rapidly in the body under normal conditions?",
+                  a: "Ammonia is converted to urea via the urea cycle (ornithine cycle) in the liver, and also incorporated into glutamine." },
+                { label: "b)", q: "Explain why a defect in any of the urea cycle enzymes leads to elevated glutamine and ammonia levels.",
+                  a: "Ammonia cannot be converted to urea; excess ammonia is detoxified by glutamine synthase to form glutamine, leading to hyperammonemia and elevated glutamine." },
+                { label: "c)", q: "Osmotic imbalance due to ammonia toxicity leads to brain swelling. What really leads to brain swelling?",
+                  a: "Ammonia is converted to glutamine in astrocytes, increasing intracellular osmotic pressure, drawing water into cells and causing cerebral edema." },
+                { label: "d)", q: "The urea cycle is regulated by substrate availability. The higher the rate of ammonia production, the higher is the rate of urea formation. This is feed‑forward regulation. Explain.",
+                  a: "Ammonia activates carbamoyl phosphate synthetase I (CPS I) through its allosteric activator N‑acetylglutamate, increasing urea cycle flux." }
+            ]}
+        ];
+
+        // ─── GENERATE MCQ HTML ───
+        const mcqContainer = document.getElementById('mcq-container');
+        mcqs.forEach((q, idx) => {
+            const qNum = idx + 1;
+            let html = `<div class="question"><p><span class="q-badge">${qNum}</span> ${q.q}</p><div class="options">`;
+            q.options.forEach((opt, oi) => {
+                html += `<label><input type="radio" name="q${qNum}" value="${oi}"> ${opt}</label>`;
+            });
+            html += `</div><div class="question-feedback" id="feedback-q${qNum}"></div></div>`;
+            mcqContainer.insertAdjacentHTML('beforeend', html);
+        });
+
+        // ─── GENERATE ESSAY HTML ───
+        const essayContainer = document.getElementById('essay-container');
+        essayData.forEach((main, idx) => {
+            let html = `<div class="essay-card"><h3><span class="qnum">${main.title}</span></h3>`;
+            main.subparts.forEach((sub, si) => {
+                const subId = `essay-${idx}-${si}`;
+                html += `<div class="subpart">
+                    <div class="subpart-label">${sub.label} ${sub.q}</div>
+                    <textarea id="ta-${subId}" placeholder="Write your answer here..."></textarea>
+                    <div class="subpart-actions">
+                        <button class="btn btn-sm" onclick="toggleSubpart('${subId}')"><i class="fas fa-paper-plane"></i> Submit</button>
+                        <span class="text-muted" style="font-size:0.8rem;">Click to reveal model answer</span>
+                    </div>
+                    <div class="subpart-answers" id="ans-${subId}">
+                        <h4><i class="fas fa-check-circle"></i> Model Answer</h4>
+                        <p>${sub.a}</p>
+                    </div>
+                </div>`;
+            });
+            html += `</div>`;
+            essayContainer.insertAdjacentHTML('beforeend', html);
+        });
+
+        // ─── FUNCTIONS ───
+        function submitQuiz() {
+            let score = 0;
+            const total = mcqs.length;
+            document.querySelectorAll('.question-feedback').forEach(el => el.innerHTML = '');
+
+            for (let i = 0; i < total; i++) {
+                const qNum = i + 1;
+                const radios = document.querySelectorAll(`input[name="q${qNum}"]`);
+                let selected = null;
+                radios.forEach(r => { if (r.checked) selected = r; });
+                const correct = mcqs[i].correct;
+
+                if (selected && parseInt(selected.value) === correct) score++;
+
+                const feedbackEl = document.getElementById(`feedback-q${qNum}`);
+                let html = `<div class="answer-block"><strong>Q${qNum}</strong><div class="answer-list">`;
+                radios.forEach((r, idx) => {
+                    const label = r.parentElement;
+                    const text = label ? label.textContent.trim() : r.value;
+                    let classes = ['answer-item'];
+                    if (idx === correct) classes.push('answer-correct');
+                    if (r.checked && idx !== correct) classes.push('answer-wrong', 'user-choice');
+                    if (r.checked && idx === correct) classes.push('user-choice');
+                    html += `<div class="${classes.join(' ')}">${text}${r.checked ? ' ◀' : ''}</div>`;
+                });
+                html += `</div>`;
+                const correctText = radios[correct].parentElement.textContent.trim();
+                if (selected) {
+                    if (parseInt(selected.value) === correct) {
+                        html += `<div class="explanation">✅ Correct — ${mcqs[i].explanation}</div>`;
+                    } else {
+                        html += `<div class="explanation wrong">❌ Incorrect. Correct answer: <strong>${correctText}</strong>. ${mcqs[i].explanation}</div>`;
+                    }
+                } else {
+                    html += `<div class="explanation wrong">No answer selected. Correct answer: <strong>${correctText}</strong>. ${mcqs[i].explanation}</div>`;
+                }
+                html += `</div>`;
+                feedbackEl.innerHTML = html;
+            }
+
+            const percentage = Math.round((score / total) * 100);
+            const resultBox = document.getElementById('resultBox');
+            resultBox.style.display = 'block';
+            document.getElementById('score').innerText = percentage + '%';
+            document.querySelectorAll('#quizForm input[type="radio"]').forEach(i => i.disabled = true);
+        }
+
+        function toggleSubpart(id) {
+            const ansDiv = document.getElementById('ans-' + id);
+            if (!ansDiv) return;
+            const isVisible = ansDiv.classList.toggle('visible');
+            if (isVisible) {
+                ansDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        // ─── TAB NAVIGATION ───
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const section = this.dataset.section;
+                document.querySelectorAll('.section-panel').forEach(p => p.classList.add('hidden'));
+                document.getElementById('section-' + section).classList.remove('hidden');
+                const topEl = document.getElementById(section + '-top');
+                if (topEl) topEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+</body>
+</html>

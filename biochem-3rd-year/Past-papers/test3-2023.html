@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2023 Biochemistry Test 3 | Past Paper</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        /* ─────────── ROOT & RESET ─────────── */
+        :root {
+            --primary: #2b7a78;
+            --accent: #3aafa9;
+            --dark: #17252a;
+            --light: #f8f9fa;
+            --radius: 12px;
+            --shadow: 0 4px 14px rgba(18, 38, 63, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Roboto, system-ui, sans-serif;
+            background: linear-gradient(180deg, #f5f7fb, #eef6f6);
+            color: var(--dark);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+
+        /* ─────────── HEADER ─────────── */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: #fff;
+            padding: 0.8rem 0;
+            box-shadow: 0 6px 18px rgba(11, 36, 36, 0.18);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            font-size: 1.6rem;
+            color: var(--accent);
+        }
+
+        .logo h1 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 0.25rem 1rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            color: #d4f0ee;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0.3rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-tabs .tab-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: none;
+            color: #d4f0ee;
+            padding: 0.3rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .nav-tabs .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #fff;
+        }
+
+        .nav-tabs .tab-btn.active {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        /* ─────────── CONTAINER ─────────── */
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 1.25rem 2.5rem;
+        }
+
+        /* ─────────── SECTION TITLES ─────────── */
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1.8rem 0 1rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 3px solid rgba(43, 122, 120, 0.20);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .section-title i {
+            font-size: 1.1rem;
+            color: rgb(8, 104, 66);
+        }
+
+        .section-title .count {
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0.05rem 0.7rem;
+        }
+
+        .section-subtitle {
+            color: #5f7a7a;
+            font-size: 0.92rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .section-panel {
+            display: block;
+        }
+
+        .section-panel.hidden {
+            display: none;
+        }
+
+        /* ─────────── MCQ QUESTION CARDS ─────────── */
+        .question {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.2rem 1.2rem 0.2rem 1.2rem;
+            margin-bottom: 1.2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(43, 122, 120, 0.06);
+            transition: box-shadow 0.2s;
+        }
+
+        .question:hover {
+            box-shadow: 0 6px 22px rgba(18, 38, 63, 0.07);
+        }
+
+        .question p {
+            font-weight: 600;
+            font-size: 0.98rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .question .q-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            line-height: 1.6;
+            margin-right: 0.4rem;
+        }
+
+        .options label {
+            display: block;
+            background: #fafcfd;
+            border: 1px solid #e0e8ef;
+            border-radius: 8px;
+            padding: 0.45rem 0.9rem;
+            margin-top: 0.45rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-weight: 450;
+            font-size: 0.94rem;
+        }
+
+        .options label:hover {
+            background: #e8f5f4;
+            border-color: var(--accent);
+        }
+
+        .options input[type="radio"] {
+            margin-right: 0.5rem;
+            accent-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        /* ─────────── FEEDBACK ─────────── */
+        .question-feedback {
+            margin-top: 0.9rem;
+            padding: 0.4rem 0 0.1rem 0;
+            border-top: 1px dashed #dce6ed;
+        }
+
+        .answer-block strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--primary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .answer-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .answer-item {
+            padding: 5px 10px;
+            border-radius: 6px;
+            border: 1px solid #e6eef3;
+            background: #ffffff;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .answer-correct {
+            background: #ecfdf5;
+            border-color: #bbf7d0;
+            color: #065f46;
+        }
+
+        .answer-wrong {
+            background: #fff1f2;
+            border-color: #fca5a5;
+            color: #9f1239;
+        }
+
+        .user-choice {
+            outline: 2px dashed rgba(0, 0, 0, 0.06);
+        }
+
+        .explanation {
+            margin-top: 6px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: #f1f8f6;
+            color: #065f46;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border-left: 4px solid var(--accent);
+        }
+
+        .explanation.wrong {
+            background: #fff5f5;
+            color: #7f1d1d;
+            border-left-color: #f87171;
+        }
+
+        /* ─────────── BUTTONS ─────────── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.6rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(43, 122, 120, 0.22);
+        }
+
+        .btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(43, 122, 120, 0.30);
+        }
+
+        .btn:active {
+            transform: scale(0.96);
+        }
+
+        .btn i {
+            font-size: 0.9rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .btn-sm {
+            padding: 0.35rem 1rem;
+            font-size: 0.85rem;
+        }
+
+        .submit-wrap {
+            text-align: center;
+            margin: 1.5rem 0 2rem;
+        }
+
+        /* ─────────── RESULT BOX ─────────── */
+        .result {
+            margin-top: 1.5rem;
+            padding: 1.5rem 1.5rem 1rem;
+            background: #f1faf9;
+            border-radius: var(--radius);
+            text-align: center;
+            display: none;
+            border: 1px solid #c5e3df;
+        }
+
+        .result h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.2rem;
+        }
+
+        .score {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0.2rem 0 0.4rem;
+        }
+
+        /* ─────────── ESSAY SECTION ─────────── */
+        .essay-card {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.25rem 1.25rem 1rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(43, 122, 120, 0.06);
+        }
+
+        .essay-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 0 0 0.6rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .essay-card h3 .qnum {
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.75rem;
+            line-height: 1.6;
+        }
+
+        .essay-card img {
+            margin: 0.2rem 0 0.8rem 0;
+            border-radius: 8px;
+            border: 1px solid #e9edf2;
+            max-height: 340px;
+            object-fit: contain;
+            background: #fafcfd;
+        }
+
+        .essay-card textarea {
+            width: 100%;
+            min-height: 80px;
+            border-radius: 8px;
+            border: 1px solid #d1dbe0;
+            padding: 0.7rem 0.9rem;
+            resize: vertical;
+            font-family: inherit;
+            font-size: 0.95rem;
+            background: #fafcfd;
+            transition: border 0.2s;
+        }
+
+        .essay-card textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(43, 122, 120, 0.12);
+        }
+
+        .essay-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 0.7rem;
+            flex-wrap: wrap;
+        }
+
+        .essay-actions .btn {
+            padding: 0.45rem 1.2rem;
+            font-size: 0.9rem;
+        }
+
+        .essay-answers {
+            display: none;
+            margin-top: 1rem;
+            background: #f1f8f6;
+            border-radius: 8px;
+            padding: 1rem 1.2rem;
+            border: 1px solid #cfe6e0;
+            color: var(--dark);
+        }
+
+        .essay-answers.visible {
+            display: block;
+            animation: fadeSlide 0.25s ease;
+        }
+
+        .essay-answers h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: var(--primary);
+            margin: 0 0 0.5rem 0;
+        }
+
+        .essay-answers p,
+        .essay-answers li {
+            font-size: 0.94rem;
+            line-height: 1.6;
+        }
+
+        .essay-answers ul {
+            padding-left: 1.2rem;
+            margin: 0.3rem 0 0.5rem;
+        }
+
+        .essay-answers ul li {
+            margin-bottom: 0.2rem;
+        }
+
+        .essay-answers b {
+            color: var(--dark);
+        }
+
+        @keyframes fadeSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(-6px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ─────────── RESPONSIVE ─────────── */
+        @media (max-width: 700px) {
+            body {
+                padding-top: 72px;
+            }
+            .logo h1 {
+                font-size: 1rem;
+            }
+            .header-inner {
+                padding: 0 1rem;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.3rem;
+            }
+            .badge {
+                align-self: flex-start;
+            }
+            .nav-tabs {
+                justify-content: center;
+            }
+            .nav-tabs .tab-btn {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.7rem;
+            }
+            .question {
+                padding: 1rem 1rem 0.1rem 1rem;
+            }
+            .section-title {
+                font-size: 1.1rem;
+            }
+            .score {
+                font-size: 2.2rem;
+            }
+            .btn {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .logo h1 {
+                font-size: 0.85rem;
+            }
+            .logo i {
+                font-size: 1.2rem;
+            }
+            .options label {
+                font-size: 0.87rem;
+                padding: 0.4rem 0.7rem;
+            }
+        }
+
+        .text-muted {
+            color: #5f7a7a;
+            font-size: 0.9rem;
+        }
+        .mt-1 {
+            margin-top: 0.8rem;
+        }
+        .mb-1 {
+            margin-bottom: 0.8rem;
+        }
+        .flex-center {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .hidden {
+            display: none !important;
+        }
+
+        .scroll-target {
+            scroll-margin-top: 90px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════ HEADER ═══════ -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <i class="fas fa-dna"></i>
+                <h1>2023 Biochemistry Test 3</h1>
+            </div>
+            <span class="badge"><i class="fas fa-pencil-alt"></i> &nbsp;Past Paper</span>
+            <div class="nav-tabs">
+                <button class="tab-btn active" data-section="mcq">MCQs</button>
+                <button class="tab-btn" data-section="essay">Essays</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══════ MAIN CONTENT ═══════ -->
+    <main>
+
+        <!-- ──── SECTION 1: MCQs ──── -->
+        <section class="container section-panel" id="section-mcq">
+            <div class="section-title scroll-target" id="mcq-top">
+                <i class="fas fa-list-ul"></i> Multiple Choice Questions
+                <span class="count">30</span>
+            </div>
+            <p class="section-subtitle">Select the best answer for each question, then click <strong>Submit All MCQs</strong> at the bottom.</p>
+
+            <form id="quizForm">
+
+                <!-- Q1 -->
+                <div class="question">
+                    <p><span class="q-badge">1</span> A ten-year-old child with aggressive behavior and poor concentration is brought with presenting complaints of joint pain and reduced urinary output. Mother gives history of self-mutilation of his finger. Which of the following enzymes is likely to be deficient in this child?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="a"> A. HGPRTase</label>
+                        <label><input type="radio" name="q1" value="b"> B. Adenosine deaminase</label>
+                        <label><input type="radio" name="q1" value="c"> C. APRTase</label>
+                        <label><input type="radio" name="q1" value="d"> D. Acid maltase</label>
+                        <label><input type="radio" name="q1" value="e"> E. Xanthine oxidase</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q1"></div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="question">
+                    <p><span class="q-badge">2</span> A 10-year-old child presents with history of rashes, self-mutilation and positive family history. Which of the following investigations do you think may be suggestive of valuable for diagnosis?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="a"> A. Lead</label>
+                        <label><input type="radio" name="q2" value="b"> B. Alkaline phosphatase</label>
+                        <label><input type="radio" name="q2" value="c"> C. LDH</label>
+                        <label><input type="radio" name="q2" value="d"> D. Uric acid</label>
+                        <label><input type="radio" name="q2" value="e"> E. Urea</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q2"></div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question">
+                    <p><span class="q-badge">3</span> A patient with increased Hypoxanthine and Xanthine in blood with hypouricemia which enzyme is deficient?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="a"> A. HGPRTase</label>
+                        <label><input type="radio" name="q3" value="b"> B. Xanthine oxidase</label>
+                        <label><input type="radio" name="q3" value="c"> C. Adenosine deaminase</label>
+                        <label><input type="radio" name="q3" value="d"> D. APRTase</label>
+                        <label><input type="radio" name="q3" value="e"> E. Glucose-6-phosphatase</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q3"></div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="question">
+                    <p><span class="q-badge">4</span> Which of the following is created to provide a free 3' hydroxyl group, enabling the initiation of DNA replication?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="a"> A. Single-strand binding protein</label>
+                        <label><input type="radio" name="q4" value="b"> B. DNA polymerase II</label>
+                        <label><input type="radio" name="q4" value="c"> C. DNA primer</label>
+                        <label><input type="radio" name="q4" value="d"> D. Replication fork</label>
+                        <label><input type="radio" name="q4" value="e"> E. RNA primer</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q4"></div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="question">
+                    <p><span class="q-badge">5</span> DNA replication is semi-conservative. This means that</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="a"> A. parts from each original strand will be used as templates when creating the new double helix, resulting in a patchwork combination of both original and newly-synthesized nucleotides</label>
+                        <label><input type="radio" name="q5" value="b"> B. both double strands have different percentages of nucleotides</label>
+                        <label><input type="radio" name="q5" value="c"> C. both double strands have a newly created strand and an original template strand</label>
+                        <label><input type="radio" name="q5" value="d"> D. an entirely new synthesized DNA molecule is created, while the original double helix stays together</label>
+                        <label><input type="radio" name="q5" value="e"> E. one strand is synthesized continuously, while the other strand is synthesized discontinuously</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q5"></div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="question">
+                    <p><span class="q-badge">6</span> What is involved in formation of d-TMP from d-UMP?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="a"> A. N5,N10-methylene tetrahydrofolate</label>
+                        <label><input type="radio" name="q6" value="b"> B. From iminofolate</label>
+                        <label><input type="radio" name="q6" value="c"> C. N5 formylfolate</label>
+                        <label><input type="radio" name="q6" value="d"> D. Dihydrofolate</label>
+                        <label><input type="radio" name="q6" value="e"> E. Glutamine</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q6"></div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="question">
+                    <p><span class="q-badge">7</span> Which protein is responsible for the removal of the RNA primer from the 5' end of a lagging strand of DNA, and replacing it with DNA nucleotides?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="a"> A. Topoisomerase</label>
+                        <label><input type="radio" name="q7" value="b"> B. DNA Polymerase I</label>
+                        <label><input type="radio" name="q7" value="c"> C. Primase</label>
+                        <label><input type="radio" name="q7" value="d"> D. DNA Polymerase III</label>
+                        <label><input type="radio" name="q7" value="e"> E. None of the choices</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q7"></div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="question">
+                    <p><span class="q-badge">8</span> Primase is not required during DNA repair processes because of which one of the following?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="a"> A. All of the primase is associated with replication origins.</label>
+                        <label><input type="radio" name="q8" value="b"> B. RNA would be highly mutagenic at a repair site.</label>
+                        <label><input type="radio" name="q8" value="c"> C. Repair DNA polymerases do not require a primer.</label>
+                        <label><input type="radio" name="q8" value="d"> D. Replicative DNA polymerases do not require a primer.</label>
+                        <label><input type="radio" name="q8" value="e"> E. DNA polymerases (both repair and replicative) can use any 3'-OH for elongation.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q8"></div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="question">
+                    <p><span class="q-badge">9</span> During DNA replication, an enzyme called DNA helicase "unzips" the molecule of double-stranded DNA. What is the most likely mechanism of DNA helicase?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="a"> A. DNA helicase breaks down the hydrogen bonds between the purines and pyrimidines</label>
+                        <label><input type="radio" name="q9" value="b"> B. DNA helicase breaks down the hydrogen bonds between purines and purines</label>
+                        <label><input type="radio" name="q9" value="c"> C. DNA helicase breaks down the covalent bonds between pyrimidines and pyrimidines</label>
+                        <label><input type="radio" name="q9" value="d"> D. DNA helicase breaks down the covalent bonds between the purines and pyrimidines</label>
+                        <label><input type="radio" name="q9" value="e"> E. DNA helicase breaks down the hydrogen bonds between pyrimidines and pyrimidines</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q9"></div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="question">
+                    <p><span class="q-badge">10</span> Which polymerase is involved in transcribing ribosomal RNA (except 5S rRNA)?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="a"> A. DNA polymerase V</label>
+                        <label><input type="radio" name="q10" value="b"> B. RNA polymerase III</label>
+                        <label><input type="radio" name="q10" value="c"> C. DNA polymerase IV</label>
+                        <label><input type="radio" name="q10" value="d"> D. RNA polymerase II</label>
+                        <label><input type="radio" name="q10" value="e"> E. RNA polymerase I</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q10"></div>
+                </div>
+
+                <!-- Q11 -->
+                <div class="question">
+                    <p><span class="q-badge">11</span> What is the role of the promoter region in the regulation of gene expression?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q11" value="a"> A. Recruit RNA polymerase and transcription factors to DNA</label>
+                        <label><input type="radio" name="q11" value="b"> B. Bind negative regulators to inhibit gene expression</label>
+                        <label><input type="radio" name="q11" value="c"> C. Alter gene expression by binding transcription factors</label>
+                        <label><input type="radio" name="q11" value="d"> D. Allow for alternative splicing and recombination of genetic components</label>
+                        <label><input type="radio" name="q11" value="e"> E. Promote the stability of the gene</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q11"></div>
+                </div>
+
+                <!-- Q12 -->
+                <div class="question">
+                    <p><span class="q-badge">12</span> Which of the following best describes distant regulatory sequences that influence gene expression?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q12" value="a"> A. Promoters</label>
+                        <label><input type="radio" name="q12" value="b"> B. Transcriptional start sites</label>
+                        <label><input type="radio" name="q12" value="c"> C. Exons</label>
+                        <label><input type="radio" name="q12" value="d"> D. Enhancers</label>
+                        <label><input type="radio" name="q12" value="e"> E. Introns</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q12"></div>
+                </div>
+
+                <!-- Q13 -->
+                <div class="question">
+                    <p><span class="q-badge">13</span> All of the following are types of alternative RNA splicing except</p>
+                    <div class="options">
+                        <label><input type="radio" name="q13" value="a"> A. exon reversal</label>
+                        <label><input type="radio" name="q13" value="b"> B. skipped exon</label>
+                        <label><input type="radio" name="q13" value="c"> C. alternative 3' splicing</label>
+                        <label><input type="radio" name="q13" value="d"> D. intron removal</label>
+                        <label><input type="radio" name="q13" value="e"> E. None of the above</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q13"></div>
+                </div>
+
+                <!-- Q14 -->
+                <div class="question">
+                    <p><span class="q-badge">14</span> Chloramphenicol prevents protein translation by which of the following mechanisms?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q14" value="a"> A. It blocks the translocation reaction on ribosomes</label>
+                        <label><input type="radio" name="q14" value="b"> B. It blocks the peptidyl transferase reaction on ribosomes</label>
+                        <label><input type="radio" name="q14" value="c"> C. It blocks initiation of RNA chains by binding to RNA polymerase</label>
+                        <label><input type="radio" name="q14" value="d"> D. It blocks the binding of aminoacyl tRNA to the A site of the ribosome</label>
+                        <label><input type="radio" name="q14" value="e"> E. It blocks the binding of FFT on the A site of the ribosome</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q14"></div>
+                </div>
+
+                <!-- Q15 -->
+                <div class="question">
+                    <p><span class="q-badge">15</span> In prokaryotes what site on the mRNA does the ribosome bind to initiate translation?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q15" value="a"> A. The Shine-Dalgarno sequence</label>
+                        <label><input type="radio" name="q15" value="b"> B. The operator</label>
+                        <label><input type="radio" name="q15" value="c"> C. The 3' untranslated region</label>
+                        <label><input type="radio" name="q15" value="d"> D. The promoter</label>
+                        <label><input type="radio" name="q15" value="e"> E. The poly adenine tail</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q15"></div>
+                </div>
+
+                <!-- Q16 -->
+                <div class="question">
+                    <p><span class="q-badge">16</span> Which of the following proteins are likely to contain leucine zipper domains?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q16" value="a"> A. Lipases</label>
+                        <label><input type="radio" name="q16" value="b"> B. Proteases</label>
+                        <label><input type="radio" name="q16" value="c"> C. Transcription factors</label>
+                        <label><input type="radio" name="q16" value="d"> D. Transmembrane proteins</label>
+                        <label><input type="radio" name="q16" value="e"> E. Helicases</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q16"></div>
+                </div>
+
+                <!-- Q17 -->
+                <div class="question">
+                    <p><span class="q-badge">17</span> When conducting a stain of chromosomes, certain regions along the chromosome will stain more darkly than the rest. This is due to the fact that these regions are more tightly condensed. What is the functional outcome of having one region more condensed (heterochromatin) than the rest (euchromatin)?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q17" value="a"> A. Heterochromatin is transcribed at a high frequency because there are a high number of genes in a small area.</label>
+                        <label><input type="radio" name="q17" value="b"> B. Heterochromatin unpacking requires many ATP and is energetically expensive.</label>
+                        <label><input type="radio" name="q17" value="c"> C. Heterochromatin does not contain any genes and is a structural component of the chromosome.</label>
+                        <label><input type="radio" name="q17" value="d"> D. Heterochromatin is not transcribed/is transcribed at a lower rate because euchromatin saturates all available polymerase.</label>
+                        <label><input type="radio" name="q17" value="e"> E. Heterochromatin is typically not transcribed/transcribed at a lower rate because the tight packing limits accessibility to polymerases.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q17"></div>
+                </div>
+
+                <!-- Q18 -->
+                <div class="question">
+                    <p><span class="q-badge">18</span> How many ribosomal binding sites are there and what are their functions?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q18" value="a"> A. There are two sites. A site binds free tRNA before ribosomal exit, P site binds aminoacyl-tRNA.</label>
+                        <label><input type="radio" name="q18" value="b"> B. There are two sites. A site binds free tRNA before ribosomal exit, P site binds peptidyl-tRNA.</label>
+                        <label><input type="radio" name="q18" value="c"> C. There are three sites. A site binds peptidyl-tRNA, P site binds aminoacyl-tRNA. E site binds free tRNA before ribosomal exit</label>
+                        <label><input type="radio" name="q18" value="d"> D. There are three sites. A site binds aminoacyl-tRNA, P site binds peptidyl-tRNA. E site binds free tRNA before ribosomal exit</label>
+                        <label><input type="radio" name="q18" value="e"> E. There are three sites. A site binds free tRNA before ribosomal exit, P site binds aminoacyl-tRNA, E site binds peptidyl-tRNA</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q18"></div>
+                </div>
+
+                <!-- Q19 -->
+                <div class="question">
+                    <p><span class="q-badge">19</span> Which of the following is not a type of modification that can occur after translation?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q19" value="a"> A. Proteasomal degradation</label>
+                        <label><input type="radio" name="q19" value="b"> B. 5' capping</label>
+                        <label><input type="radio" name="q19" value="c"> C. Trimming</label>
+                        <label><input type="radio" name="q19" value="d"> D. Phosphorylation</label>
+                        <label><input type="radio" name="q19" value="e"> E. Ubiquitination</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q19"></div>
+                </div>
+
+                <!-- Q20 -->
+                <div class="question">
+                    <p><span class="q-badge">20</span> In which of the following organelles does the initial linkage of a sugar for post-translation modification N-linked glycosylation most commonly occur?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q20" value="a"> A. Mitochondria</label>
+                        <label><input type="radio" name="q20" value="b"> B. Nucleus</label>
+                        <label><input type="radio" name="q20" value="c"> C. Endoplasmic reticulum</label>
+                        <label><input type="radio" name="q20" value="d"> D. Golgi apparatus</label>
+                        <label><input type="radio" name="q20" value="e"> E. Lysosomes</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q20"></div>
+                </div>
+
+                <!-- Q21 -->
+                <div class="question">
+                    <p><span class="q-badge">21</span> Researchers first identified parts of genes that are spliced out of mRNA and not included in the final protein product by observing that not all of the original gene hybridizes to the cognate mRNA. What are these regions called?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q21" value="a"> A. Micro RNAs</label>
+                        <label><input type="radio" name="q21" value="b"> B. Introns</label>
+                        <label><input type="radio" name="q21" value="c"> C. Intergenic regions</label>
+                        <label><input type="radio" name="q21" value="d"> D. Exons</label>
+                        <label><input type="radio" name="q21" value="e"> E. Internal transcribed spacers</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q21"></div>
+                </div>
+
+                <!-- Q22 -->
+                <div class="question">
+                    <p><span class="q-badge">22</span> What are snRNPs (small nuclear ribonucleic particles)?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q22" value="a"> A. RNA molecules that convey genetic information from DNA to the ribosome</label>
+                        <label><input type="radio" name="q22" value="b"> B. RNA protein complexes that combine with pre-mRNA and other proteins to form a spliceosome</label>
+                        <label><input type="radio" name="q22" value="c"> C. RNA component of the ribosome, essential for protein synthesis</label>
+                        <label><input type="radio" name="q22" value="d"> D. RNA molecules that serve as the link between the nucleotide sequence of nucleic acids and the amino acid sequence of proteins</label>
+                        <label><input type="radio" name="q22" value="e"> E. RNAs having catalytic activities</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q22"></div>
+                </div>
+
+                <!-- Q23 -->
+                <div class="question">
+                    <p><span class="q-badge">23</span> Inducible operons are bound by a repressor and turned off under normal conditions. How are these operons turned on?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q23" value="a"> A. An activator protein displaces the repressor on the operator</label>
+                        <label><input type="radio" name="q23" value="b"> B. An inducer molecule binds to and inactivates the repressor</label>
+                        <label><input type="radio" name="q23" value="c"> C. The transcription of the repressor protein is inactivated</label>
+                        <label><input type="radio" name="q23" value="d"> D. An inducer molecule competes with the repressor for binding to the operator</label>
+                        <label><input type="radio" name="q23" value="e"> E. A second repressor protein binds to and represses the repressor</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q23"></div>
+                </div>
+
+                <!-- Q24 -->
+                <div class="question">
+                    <p><span class="q-badge">24</span> Regulatory proteins turn transcription off through binding to a site rapidly at the front of the promoter and many times even overlaps the promoter, this site is the</p>
+                    <div class="options">
+                        <label><input type="radio" name="q24" value="a"> A. regulatory site</label>
+                        <label><input type="radio" name="q24" value="b"> B. operator site</label>
+                        <label><input type="radio" name="q24" value="c"> C. suppressor site</label>
+                        <label><input type="radio" name="q24" value="d"> D. transcriptional control site</label>
+                        <label><input type="radio" name="q24" value="e"> E. enhancer site</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q24"></div>
+                </div>
+
+                <!-- Q25 -->
+                <div class="question">
+                    <p><span class="q-badge">25</span> What would happen if the operator sequence of the trp operon contained a mutation that prevented the repressor protein from binding to the operator?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q25" value="a"> A. In the absence of tryptophan, the genes trpA-E will not be transcribed.</label>
+                        <label><input type="radio" name="q25" value="b"> B. In the absence of tryptophan, only genes trpE and trpD will be transcribed.</label>
+                        <label><input type="radio" name="q25" value="c"> C. In the presence of tryptophan, the genes trpA-E will be transcribed.</label>
+                        <label><input type="radio" name="q25" value="d"> D. In the presence of tryptophan, the trpE gene will not be transcribed.</label>
+                        <label><input type="radio" name="q25" value="e"> E. In the presence of tryptophan, leader peptide gene will not be transcribed.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q25"></div>
+                </div>
+
+                <!-- Q26 -->
+                <div class="question">
+                    <p><span class="q-badge">26</span> Housekeeping genes are:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q26" value="a"> A. Inducible</label>
+                        <label><input type="radio" name="q26" value="b"> B. Required only when inducer is present</label>
+                        <label><input type="radio" name="q26" value="c"> C. Mutant</label>
+                        <label><input type="radio" name="q26" value="d"> D. Not regulated</label>
+                        <label><input type="radio" name="q26" value="e"> E. Regulated</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q26"></div>
+                </div>
+
+                <!-- Q27 -->
+                <div class="question">
+                    <p><span class="q-badge">27</span> Normal role of Micro RNA is:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q27" value="a"> A. Gene regulation</label>
+                        <label><input type="radio" name="q27" value="b"> B. RNA splicing</label>
+                        <label><input type="radio" name="q27" value="c"> C. Initiation of Translation</label>
+                        <label><input type="radio" name="q27" value="d"> D. DNA conformation change</label>
+                        <label><input type="radio" name="q27" value="e"> E. Removal of introns</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q27"></div>
+                </div>
+
+                <!-- Q28 -->
+                <div class="question">
+                    <p><span class="q-badge">28</span> Restriction Endonuclease is used in:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q28" value="a"> A. RFLP</label>
+                        <label><input type="radio" name="q28" value="b"> B. PCR</label>
+                        <label><input type="radio" name="q28" value="c"> C. FISH</label>
+                        <label><input type="radio" name="q28" value="d"> D. SDS-PAGE</label>
+                        <label><input type="radio" name="q28" value="e"> E. Western blotting</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q28"></div>
+                </div>
+
+                <!-- Q29 -->
+                <div class="question">
+                    <p><span class="q-badge">29</span> Starting material for production of insulin in bacteria is:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q29" value="a"> A. Genomic DNA of lymphocytes</label>
+                        <label><input type="radio" name="q29" value="b"> B. mRNA of lymphocytes</label>
+                        <label><input type="radio" name="q29" value="c"> C. Genomic DNA of beta cell of pancreas</label>
+                        <label><input type="radio" name="q29" value="d"> D. mRNA of beta cells of pancreas</label>
+                        <label><input type="radio" name="q29" value="e"> E. Insulin gene from any human cell DNA</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q29"></div>
+                </div>
+
+                <!-- Q30 -->
+                <div class="question">
+                    <p><span class="q-badge">30</span> DNA fingerprinting is based on possessing in DNA of:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q30" value="a"> A. Constant Tandem Repeat</label>
+                        <label><input type="radio" name="q30" value="b"> B. Variable Number Tandem Repeat</label>
+                        <label><input type="radio" name="q30" value="c"> C. Non-repetitive sequence</label>
+                        <label><input type="radio" name="q30" value="d"> D. Exon</label>
+                        <label><input type="radio" name="q30" value="e"> E. Intron in eukaryotes</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q30"></div>
+                </div>
+
+                <div class="submit-wrap">
+                    <button type="button" class="btn" onclick="submitQuiz()">
+                        <i class="fas fa-check-circle"></i> Submit All MCQs
+                    </button>
+                </div>
+
+            </form>
+
+            <div class="result" id="resultBox">
+                <h3><i class="fas fa-chart-simple"></i> Your Score</h3>
+                <div class="score" id="score">0%</div>
+                <p class="text-muted" style="font-size:0.9rem;">Review the feedback below each question.</p>
+                <div id="answers"></div>
+            </div>
+        </section>
+
+        <!-- ──── SECTION 2: ESSAYS ──── -->
+        <section class="container section-panel hidden" id="section-essay">
+            <div class="section-title scroll-target" id="essay-top">
+                <i class="fas fa-pen-fancy"></i> Short Essay Questions
+                <span class="count">5</span>
+            </div>
+            <p class="section-subtitle">Answer any <strong>THREE</strong> of the five questions. Write your answer in the box below each question, then click <strong>Submit</strong> to reveal the model answer.</p>
+
+            <!-- Essay Q1 -->
+            <div class="essay-card">
+                <h3><span class="qnum">Q1</span> Gout &amp; Purine Metabolism</h3>
+                <p style="font-weight:500; margin-bottom:0.5rem;">A 56-year-old male patient presented with intense redness, heat, and pain over his right great toe at the metatarsophalangeal joint. Fluid from his joint showed birefringent crystals. The patient was treated with allopurinol and was also advised to go vegan.</p>
+                <textarea placeholder="(a) Most likely disease? (1 mark)&#10;(b) This disease is caused by degradation of excessive amount of which metabolite? (1 mark)&#10;(c) Which metabolite might be found in the fluid collected from the affected joint that shows as birefringent crystals? (1 mark)&#10;(d) What is the range of this metabolite in normal human serum? (1 mark)&#10;(e) What are the enzyme defects (any two) that would cause this condition? (1 mark)&#10;(f) Eating sugary food items considered to be worsening this condition. Explain it biochemically. (2 marks)&#10;(g) List two other factors that promote this condition. (1 mark)&#10;(h) Mechanism of action of allopurinol in treatment? (1 mark)&#10;(i) Basis of advice to patient to go vegan? (1 mark)"></textarea>
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('q1')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answer</span>
+                </div>
+                <div class="essay-answers" id="essay-q1">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answer</h4>
+                    <p><b>(a)</b> Gout.</p>
+                    <p><b>(b)</b> Purines (adenine and guanine).</p>
+                    <p><b>(c)</b> Urate crystals (monosodium urate).</p>
+                    <p><b>(d)</b> Normal serum uric acid: 3.4 – 7.0 mg/dL (in men); 2.4 – 6.0 mg/dL (in women).</p>
+                    <p><b>(e)</b> Two enzyme defects: <br /> 1. HGPRTase deficiency (Lesch-Nyhan syndrome). <br /> 2. PRPP synthetase overactivity (increased PRPP production).</p>
+                    <p><b>(f)</b> Fructose-rich foods (sugary items) cause rapid ATP depletion → ADP accumulation → AMP formation → AMP deamination to inosine and hypoxanthine, which are converted to uric acid, increasing its production.</p>
+                    <p><b>(g)</b> Two other factors: <br /> 1. High purine diet (organ meats, seafood). <br /> 2. Alcohol intake (especially beer).</p>
+                    <p><b>(h)</b> Allopurinol competitively inhibits xanthine oxidase, decreasing uric acid formation.</p>
+                    <p><b>(i)</b> A vegan diet reduces intake of purine-rich animal products and also lowers fructose intake, thereby decreasing uric acid production.</p>
+                </div>
+            </div>
+
+            <!-- Essay Q2 -->
+            <div class="essay-card">
+                <h3><span class="qnum">Q2</span> Replication Fork Diagram</h3>
+                <p style="font-weight:500; margin-bottom:0.5rem;">Based on the following diagram of replication with labels 1 to 12 answer the questions below.</p>
+                <!-- Placeholder for diagram - we can't include image, but we describe -->
+                <div style="background:#f0f4f8; border-radius:8px; padding:0.8rem; margin:0.5rem 0; text-align:center; border:1px dashed #aaa;">
+                    <i class="fas fa-dna" style="font-size:2rem; color:var(--primary);"></i>
+                    <p style="margin:0; font-size:0.9rem;">(Replication fork diagram with labels 1–12)</p>
+                </div>
+                <textarea placeholder="(a) What is label 1 and how many of these could be found in a replication bubble? (1 mark)&#10;(b) What is label 2 and what is its role in replication? (1 mark)&#10;(c) What is label 3 and how many different types of it are used in replication? (1 mark)&#10;(d) What is label 4 and label 11? (0.5 mark)&#10;(e) What is label 5 and what is its role in replication? (1 mark)&#10;(f) What is label 6 and what is its role in replication? (1 mark)&#10;(g) What is label 7 in prokaryotes and eukaryotes? (0.5 mark)&#10;(h) What is label 8 and why is it necessary for replication? (1 mark)&#10;(i) What is label 9 and how do they differ between prokaryotes and eukaryotes? (1 mark)&#10;(j) What is label 10 in prokaryotes and what is its role in replication? (1 mark)"></textarea>
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('q2')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answer</span>
+                </div>
+                <div class="essay-answers" id="essay-q2">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answer</h4>
+                    <p><b>(a)</b> Label 1 = Replication fork. There are two replication forks in a replication bubble.</p>
+                    <p><b>(b)</b> Label 2 = DNA polymerase. It synthesizes new DNA strands by adding nucleotides.</p>
+                    <p><b>(c)</b> Label 3 = Topoisomerase. There are two types: Topoisomerase I (relaxes supercoils) and Topoisomerase II (cuts and rejoins DNA).</p>
+                    <p><b>(d)</b> Label 4 = Leading strand; Label 11 = Lagging strand.</p>
+                    <p><b>(e)</b> Label 5 = Helicase. It unwinds the DNA double helix by breaking hydrogen bonds.</p>
+                    <p><b>(f)</b> Label 6 = Single-strand binding proteins (SSB). They stabilize single-stranded DNA and prevent reannealing.</p>
+                    <p><b>(g)</b> Label 7 = Primase. In prokaryotes, it synthesizes RNA primers; in eukaryotes, it is part of the primosome complex.</p>
+                    <p><b>(h)</b> Label 8 = 3'-OH end. It provides the free hydroxyl group for DNA polymerase to add nucleotides.</p>
+                    <p><b>(i)</b> Label 9 = Okazaki fragments. In prokaryotes they are longer (~1000–2000 nt), in eukaryotes they are shorter (~100–200 nt).</p>
+                    <p><b>(j)</b> Label 10 = DNA polymerase I (in prokaryotes). It removes RNA primers and replaces them with DNA, and also fills gaps.</p>
+                </div>
+            </div>
+
+            <!-- Essay Q3 -->
+            <div class="essay-card">
+                <h3><span class="qnum">Q3</span> Translation &amp; Central Dogma</h3>
+                <p style="font-weight:500; margin-bottom:0.5rem;">Based on/using the following diagram answer the questions below.</p>
+                <div style="background:#f0f4f8; border-radius:8px; padding:0.8rem; margin:0.5rem 0; text-align:center; border:1px dashed #aaa;">
+                    <i class="fas fa-ribbon" style="font-size:2rem; color:var(--primary);"></i>
+                    <p style="margin:0; font-size:0.9rem;">(Diagram showing transcription/translation coupling)</p>
+                </div>
+                <textarea placeholder="(a) Identify and label the following items clearly in the above diagram: (4.5 marks)&#10;i) The sense strand of DNA&#10;ii) DNA-RNA hybrid&#10;iii) 5' end of mRNA&#10;iv) 60S ribosome subunit&#10;v) Uncharged tRNA&#10;vi) Amino acid which is bound on tRNA&#10;vii) Nascent peptide chain&#10;viii) Codon&#10;ix) Anticodon&#10;&#10;(b) Which major processes of central dogma are being depicted? (1 mark)&#10;(c) Which organisms (prokaryotes or eukaryotes) perform these processes as depicted? (0.5 mark)&#10;(d) Which type of mRNA (monocistronic or polycistronic) is formed in these organisms? (0.5 mark)&#10;(e) Which terminus (N or C) of the polypeptide chain is formed first? (0.5 mark)&#10;(f) What is the name of enzyme that catalyses the formation of peptide bond and what is the chemical nature of the enzyme? (1 mark)&#10;(g) Name any two mechanisms responsible for the fidelity of protein synthesis. (1 mark)&#10;(h) What are the possible mRNA codons for the anticodon sequence of tRNA, 3'-AAG-5'? (1 mark)"></textarea>
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('q3')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answer</span>
+                </div>
+                <div class="essay-answers" id="essay-q3">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answer</h4>
+                    <p><b>(a)</b> i) Sense strand = DNA strand with same sequence as mRNA (except T→U). <br />
+                    ii) DNA-RNA hybrid = region where RNA is base-paired with template DNA.<br />
+                    iii) 5' end of mRNA = the end with a phosphate group (usually capped).<br />
+                    iv) 60S ribosome subunit = large subunit in eukaryotes.<br />
+                    v) Uncharged tRNA = tRNA without amino acid.<br />
+                    vi) Amino acid bound on tRNA = the specific amino acid attached to the 3' end.<br />
+                    vii) Nascent peptide chain = growing polypeptide chain.<br />
+                    viii) Codon = triplet of nucleotides on mRNA.<br />
+                    ix) Anticodon = triplet on tRNA complementary to codon.</p>
+                    <p><b>(b)</b> Transcription and translation (coupled in prokaryotes).</p>
+                    <p><b>(c)</b> Prokaryotes (since transcription and translation are coupled).</p>
+                    <p><b>(d)</b> Polycistronic mRNA.</p>
+                    <p><b>(e)</b> N-terminus.</p>
+                    <p><b>(f)</b> Peptidyl transferase; it is a ribozyme (RNA-based enzyme).</p>
+                    <p><b>(g)</b> Two mechanisms: (1) Aminoacyl-tRNA synthetase proofreading; (2) Ribosomal proofreading (decoding center).</p>
+                    <p><b>(h)</b> The anticodon 3'-AAG-5' pairs with codon 5'-UUC-3' (also wobble with 5'-UUU-3'? Actually, standard pairing gives UUC). Possible codons: UUC (and UUU due to wobble).</p>
+                </div>
+            </div>
+
+            <!-- Essay Q4 -->
+            <div class="essay-card">
+                <h3><span class="qnum">Q4</span> lac Operon</h3>
+                <p style="font-weight:500; margin-bottom:0.5rem;">The lac operon (diagram below) is a portion of the bacterial chromosome that controls the synthesis of three enzymes involved in the metabolism of lactose.</p>
+                <div style="background:#f0f4f8; border-radius:8px; padding:0.8rem; margin:0.5rem 0; text-align:center; border:1px dashed #aaa;">
+                    <i class="fas fa-code-branch" style="font-size:2rem; color:var(--primary);"></i>
+                    <p style="margin:0; font-size:0.9rem;">(lac operon diagram with regulator, promoter, operator, structural genes)</p>
+                </div>
+                <textarea placeholder="(a) Describe the roles of Regulator gene, Promoter site, Operator and Structural genes of lac operon. (2 marks)&#10;(b) Depict diagrammatically the mechanism of repression on lac operon in the absence of inducer. (2 marks)&#10;(c) Depict diagrammatically the mechanism of derepression by an inducer on lac operon. (2 marks)&#10;(d) Explain the positive regulation of CAP-cAMP complex on lac operon. (2 marks)&#10;(e) Explain the effect of high glucose on functioning of lac operon. (2 marks)"></textarea>
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('q4')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answer</span>
+                </div>
+                <div class="essay-answers" id="essay-q4">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answer</h4>
+                    <p><b>(a)</b> <br /> <b>Regulator gene (lacI):</b> Codes for the repressor protein. <br /> <b>Promoter (P):</b> Binding site for RNA polymerase. <br /> <b>Operator (O):</b> Binding site for the repressor; controls access of RNA polymerase to structural genes. <br /> <b>Structural genes (lacZ, lacY, lacA):</b> Encode β-galactosidase, permease, and transacetylase.</p>
+                    <p><b>(b)</b> Repression: In absence of inducer, repressor binds to operator, preventing RNA polymerase from transcribing structural genes.</p>
+                    <p><b>(c)</b> Derepression: Inducer (allolactose) binds to repressor, causing conformational change that releases repressor from operator, allowing transcription.</p>
+                    <p><b>(d)</b> Positive regulation: When glucose is low, cAMP levels rise; cAMP binds to CAP, and CAP-cAMP complex binds to CAP site near promoter, enhancing RNA polymerase binding and transcription.</p>
+                    <p><b>(e)</b> High glucose: Lowers cAMP, so CAP-cAMP complex does not form; RNA polymerase binds poorly, reducing transcription even in presence of lactose (catabolite repression).</p>
+                </div>
+            </div>
+
+            <!-- Essay Q5 -->
+            <div class="essay-card">
+                <h3><span class="qnum">Q5</span> DNA Analysis Techniques</h3>
+                <p style="font-weight:500; margin-bottom:0.5rem;">In the future, doctors may be able to evaluate your DNA to check for genetic markers related to specific medical conditions. Your personalized genetic profile could be kept on record and referred to in order to develop personal medical treatment based on your unique DNA sequencing.</p>
+                <textarea placeholder="(a) Describe the mechanism of Sanger's enzymatic DNA sequencing method. (1.5 marks)&#10;(b) Which technique can be used to locate the genes in chromosomes? (0.5 mark)&#10;(c) Which technique can be used to locate the genes in DNA for genetic disorders? (0.5 mark)&#10;(d) DNA can be amplified in the lab using PCR. Describe the three repetitive processes of PCR. (1.5 marks)&#10;(e) DNA can be fragmented using restriction enzymes. Describe the following types:&#10;i. Isoschizomer (1 mark)&#10;ii. Neoschizomers (1 mark)&#10;iii. Isocaudomers (1 mark)&#10;(f) Describe the principle of electrophoresis. (1.5 marks)&#10;(g) List any three different types of probes for DNA. (1.5 marks)"></textarea>
+                <div class="essay-actions">
+                    <button class="btn" onclick="toggleEssay('q5')"><i class="fas fa-paper-plane"></i> Submit</button>
+                    <span class="text-muted" style="font-size:0.85rem;">Click to reveal model answer</span>
+                </div>
+                <div class="essay-answers" id="essay-q5">
+                    <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answer</h4>
+                    <p><b>(a)</b> Sanger method uses dideoxynucleotides (ddNTPs) to terminate DNA synthesis. Four reactions (each with a different ddNTP) produce fragments of different lengths, which are separated by electrophoresis to read the sequence.</p>
+                    <p><b>(b)</b> Fluorescence in situ hybridization (FISH).</p>
+                    <p><b>(c)</b> Southern blotting or PCR-based techniques (e.g., allele-specific PCR).</p>
+                    <p><b>(d)</b> PCR steps: <br /> i. Denaturation (95°C) – separate strands. <br /> ii. Annealing (55–65°C) – primers bind. <br /> iii. Extension (72°C) – Taq polymerase extends primers.</p>
+                    <p><b>(e)</b> <br /> i. Isoschizomer: Different restriction enzymes that recognize the same sequence and cut at the same position. <br /> ii. Neoschizomer: Enzymes that recognize the same sequence but cut at different positions. <br /> iii. Isocaudomer: Enzymes that recognize different sequences but generate compatible cohesive ends.</p>
+                    <p><b>(f)</b> Electrophoresis separates DNA fragments based on size and charge. Negatively charged DNA moves toward the positive electrode; smaller fragments migrate faster through the gel matrix.</p>
+                    <p><b>(g)</b> Three types of probes: <br /> 1. Radioactive probes (³²P-labeled). <br /> 2. Fluorescent probes (e.g., fluorophore-labeled). <br /> 3. Chemiluminescent probes (e.g., digoxigenin-labeled).</p>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ═══════ JAVASCRIPT ═══════ -->
+    <script>
+        // ─── TAB NAVIGATION ───
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const section = this.dataset.section;
+                document.querySelectorAll('.section-panel').forEach(p => p.classList.add('hidden'));
+                document.getElementById('section-' + section).classList.remove('hidden');
+                const topEl = document.getElementById(section + '-top');
+                if (topEl) topEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // ─── MCQ CORRECT ANSWERS ───
+        const correctAnswers = {
+            q1: "a",
+            q2: "d",
+            q3: "b",
+            q4: "e",
+            q5: "c",
+            q6: "a",
+            q7: "b",
+            q8: "e",
+            q9: "a",
+            q10: "e",
+            q11: "a",
+            q12: "d",
+            q13: "a",
+            q14: "b",
+            q15: "a",
+            q16: "c",
+            q17: "e",
+            q18: "d",
+            q19: "b",
+            q20: "c",
+            q21: "b",
+            q22: "b",
+            q23: "b",
+            q24: "b",
+            q25: "c",
+            q26: "d",
+            q27: "a",
+            q28: "a",
+            q29: "d",
+            q30: "b"
+        };
+
+        // ─── MCQ EXPLANATIONS ───
+        const answerExplanations = {
+            q1: "Lesch-Nyhan syndrome due to HGPRTase deficiency. Symptoms include self-mutilation, aggression, hyperuricemia, and gout.",
+            q2: "Uric acid is elevated in Lesch-Nyhan syndrome due to overproduction of purines.",
+            q3: "Xanthine oxidase deficiency leads to accumulation of hypoxanthine and xanthine with low uric acid (hypouricemia).",
+            q4: "RNA primer provides a free 3'-OH for DNA polymerase to initiate synthesis.",
+            q5: "Semi-conservative replication: each daughter DNA molecule has one old strand and one newly synthesized strand.",
+            q6: "dTMP is formed from dUMP by thymidylate synthase, which uses N5,N10-methylene tetrahydrofolate as methyl donor.",
+            q7: "DNA polymerase I removes RNA primers and replaces them with DNA in prokaryotes.",
+            q8: "DNA repair polymerases can extend from any available 3'-OH, so a separate primer (primase) is not needed.",
+            q9: "Helicase breaks hydrogen bonds between base pairs (purines and pyrimidines).",
+            q10: "RNA polymerase I transcribes rRNA genes (except 5S rRNA).",
+            q11: "Promoter region recruits RNA polymerase and transcription factors to initiate transcription.",
+            q12: "Enhancers are distant regulatory sequences that can increase transcription.",
+            q13: "Exon reversal is not a recognized type of alternative splicing.",
+            q14: "Chloramphenicol inhibits peptidyl transferase activity of the 50S ribosome subunit.",
+            q15: "Shine-Dalgarno sequence is the ribosomal binding site in prokaryotic mRNA.",
+            q16: "Leucine zipper is a structural motif found in many transcription factors.",
+            q17: "Heterochromatin is tightly packed and generally transcriptionally inactive.",
+            q18: "Three sites: A (aminoacyl-tRNA), P (peptidyl-tRNA), E (exit).",
+            q19: "5' capping occurs co-transcriptionally, not after translation.",
+            q20: "N-linked glycosylation begins in the ER.",
+            q21: "Introns are non-coding regions that are spliced out.",
+            q22: "snRNPs combine with pre-mRNA to form the spliceosome.",
+            q23: "Inducer binds to repressor, inactivating it and allowing transcription.",
+            q24: "Operator site is where repressor binds to block transcription.",
+            q25: "If operator can't bind repressor, the trp operon is constitutively expressed even in presence of tryptophan.",
+            q26: "Housekeeping genes are constitutively expressed (not regulated).",
+            q27: "MicroRNAs regulate gene expression post-transcriptionally.",
+            q28: "Restriction endonucleases are used in RFLP analysis.",
+            q29: "mRNA from beta cells is used to synthesize cDNA for insulin production.",
+            q30: "DNA fingerprinting uses Variable Number Tandem Repeats (VNTRs)."
+        };
+
+        // ─── MCQ SUBMIT ───
+        function submitQuiz() {
+            let score = 0;
+            const total = Object.keys(correctAnswers).length;
+
+            document.querySelectorAll('.question-feedback').forEach(el => el.innerHTML = '');
+
+            for (let key in correctAnswers) {
+                const radios = Array.from(document.querySelectorAll(`input[name="${key}"]`));
+                const selected = radios.find(r => r.checked);
+                const correct = correctAnswers[key];
+
+                if (selected && selected.value === correct) score++;
+
+                const feedbackEl = document.getElementById(`feedback-${key}`);
+                if (!feedbackEl) continue;
+
+                let html = `<div class="answer-block"><strong>Q${key.replace(/^q/, '')}</strong><div class="answer-list">`;
+
+                radios.forEach(r => {
+                    const label = r.parentElement;
+                    const text = label ? label.textContent.trim() : r.value;
+                    const classes = ['answer-item'];
+                    if (r.value === correct) classes.push('answer-correct');
+                    if (r.checked && r.value !== correct) classes.push('answer-wrong', 'user-choice');
+                    if (r.checked && r.value === correct) classes.push('user-choice');
+                    html += `<div class="${classes.join(' ')}">${text}${r.checked ? ' ◀' : ''}</div>`;
+                });
+
+                html += `</div>`;
+
+                const correctRadio = radios.find(rr => rr.value === correct);
+                const correctText = correctRadio && correctRadio.parentElement ? correctRadio.parentElement.textContent.trim() : correct;
+                const explanationText = answerExplanations[key] || '';
+
+                if (selected) {
+                    if (selected.value === correct) {
+                        html += `<div class="explanation">✅ Correct — ${explanationText}</div>`;
+                    } else {
+                        html += `<div class="explanation wrong">❌ Incorrect. Correct answer: <strong>${correctText}</strong>. ${explanationText}</div>`;
+                    }
+                } else {
+                    html += `<div class="explanation wrong">No answer selected. Correct answer: <strong>${correctText}</strong>. ${explanationText}</div>`;
+                }
+
+                html += `</div>`;
+                feedbackEl.innerHTML = html;
+            }
+
+            const percentage = Math.round((score / total) * 100);
+            const resultBox = document.getElementById('resultBox');
+            resultBox.style.display = 'block';
+            document.getElementById('answers').innerHTML = '';
+
+            let start = 0;
+            const timer = setInterval(() => {
+                if (start >= percentage) clearInterval(timer);
+                document.getElementById('score').innerText = start + '%';
+                start++;
+            }, 20);
+
+            document.querySelectorAll('#quizForm input[type="radio"]').forEach(i => i.disabled = true);
+        }
+
+        // ─── ESSAY TOGGLE ───
+        function toggleEssay(id) {
+            const el = document.getElementById('essay-' + id);
+            if (!el) return;
+            const isVisible = el.classList.toggle('visible');
+            if (isVisible) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        // ─── KEYBOARD ACCESSIBILITY ───
+        document.querySelectorAll('.essay-actions .btn').forEach(btn => {
+            btn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    btn.click();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
