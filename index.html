@@ -1357,6 +1357,228 @@
             margin-right: 4px;
         }
 
+        /* ---- AUDIO POPUP STYLES (mirrors video) ---- */
+.audio-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(12px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 3200;
+    animation: fadeInOverlay 0.3s ease;
+    padding: 1.5rem;
+}
+.audio-overlay.active {
+    display: flex;
+}
+.audio-box {
+    background: white;
+    border-radius: 44px;
+    max-width: 640px;
+    width: 100%;
+    max-height: 80vh;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    animation: scaleIn 0.3s ease;
+}
+.audio-box .audio-header {
+    padding: 1.5rem 2rem 0.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eef2f7;
+    flex-shrink: 0;
+}
+.audio-box .audio-header h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #0a2b4a;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+.audio-box .audio-header h3 i {
+    color: #2d7b9e;
+}
+.audio-box .audio-header .close-audio {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: #8a9bb0;
+    cursor: pointer;
+    transition: 0.2s;
+    padding: 0.2rem 0.5rem;
+    line-height: 1;
+}
+.audio-box .audio-header .close-audio:hover {
+    color: #0a2b4a;
+    transform: rotate(90deg);
+}
+.audio-box .audio-topic-badge {
+    padding: 0.2rem 2rem;
+    font-size: 0.85rem;
+    color: #2d7b9e;
+    font-weight: 600;
+    background: #eef4fa;
+    display: inline-block;
+    border-radius: 30px;
+    margin: 0.2rem 2rem 0.8rem 2rem;
+    flex-shrink: 0;
+    text-align: center;
+}
+.audio-box .audio-list {
+    padding: 0.5rem 2rem 2rem 2rem;
+    overflow-y: auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+.audio-box .audio-list .audio-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.9rem 1.4rem;
+    background: #f8fafc;
+    border-radius: 16px;
+    border: 1px solid #e8edf4;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-decoration: none;
+    color: #1f2a41;
+}
+.audio-box .audio-list .audio-item:hover {
+    background: #2d7b9e;
+    border-color: #2d7b9e;
+    color: white;
+    transform: translateX(6px);
+    box-shadow: 0 8px 24px rgba(45, 123, 158, 0.2);
+}
+.audio-box .audio-list .audio-item i {
+    font-size: 1.6rem;
+    color: #2d7b9e;
+    transition: 0.2s;
+    flex-shrink: 0;
+    width: 2rem;
+    text-align: center;
+}
+.audio-box .audio-list .audio-item:hover i {
+    color: white;
+}
+.audio-box .audio-list .audio-item .audio-info {
+    flex: 1;
+    min-width: 0;
+}
+.audio-box .audio-list .audio-item .audio-info .audio-title {
+    font-weight: 600;
+    font-size: 1rem;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.audio-box .audio-list .audio-item .audio-info .audio-sub {
+    font-size: 0.8rem;
+    color: #7a8ca0;
+    display: block;
+    transition: 0.2s;
+}
+.audio-box .audio-list .audio-item:hover .audio-info .audio-sub {
+    color: rgba(255, 255, 255, 0.8);
+}
+.audio-box .audio-list .audio-item .audio-play {
+    font-size: 1.2rem;
+    color: #2d7b9e;
+    transition: 0.2s;
+    flex-shrink: 0;
+}
+.audio-box .audio-list .audio-item:hover .audio-play {
+    color: white;
+}
+.audio-box .audio-empty {
+    padding: 2rem 2rem 2.5rem;
+    text-align: center;
+    color: #7a8ca0;
+}
+.audio-box .audio-empty i {
+    font-size: 3rem;
+    color: #dce6ef;
+    display: block;
+    margin-bottom: 0.8rem;
+}
+.audio-box .audio-footer {
+    padding: 0.8rem 2rem 1.2rem;
+    border-top: 1px solid #eef2f7;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #8a9bb0;
+    flex-shrink: 0;
+}
+.audio-box .audio-footer i {
+    color: #2d7b9e;
+    margin-right: 4px;
+}
+@media (max-width: 480px) {
+    .audio-box {
+        max-width: 100%;
+        border-radius: 28px;
+        max-height: 90vh;
+    }
+    .audio-box .audio-header {
+        padding: 1rem 1.2rem 0.3rem 1.2rem;
+    }
+    .audio-box .audio-header h3 {
+        font-size: 1.1rem;
+    }
+    .audio-box .audio-list {
+        padding: 0.3rem 1.2rem 1.2rem 1.2rem;
+    }
+    .audio-box .audio-list .audio-item {
+        padding: 0.7rem 1rem;
+    }
+    .audio-box .audio-topic-badge {
+        padding: 0.1rem 1.2rem;
+        font-size: 0.75rem;
+        margin: 0.1rem 1.2rem 0.4rem 1.2rem;
+    }
+}
+
+.btn-sm.audio-btn {
+    background: #f0f4fa;
+    border-color: #8ab4d6;
+    color: #1a5f7a;
+}
+.btn-sm.audio-btn:hover {
+    background: #2d7b9e;
+    border-color: #2d7b9e;
+    color: white;
+}
+
+.audio-box #audioPlayerContainer {
+    background: #f4f7fc;
+    border-radius: 30px;
+    padding: 0.5rem 1rem !important;
+    margin: 0 2rem 0.8rem 2rem;
+    border: 1px solid #dce6ef;
+}
+.audio-box #audioPlayer {
+    display: block;
+    height: 40px;
+    background: transparent;
+}
+.audio-box #audioPlayer::-webkit-media-controls-panel {
+    background: #eef4fa;
+    border-radius: 20px;
+}
+
         @media (max-width: 480px) {
             .video-box, .document-box {
                 max-width: 100%;
@@ -1482,6 +1704,24 @@
             </div>
         </div>
     </div>
+
+    <!-- AUDIO POPUP OVERLAY -->
+<div class="audio-overlay" id="audioOverlay">
+    <div class="audio-box">
+        <div class="audio-header">
+            <h3><i class="fas fa-headphones"></i> <span id="audioPopupTitle">Audio</span></h3>
+            <button class="close-audio" id="closeAudioPopup"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="audio-topic-badge" id="audioPopupTopic">Topic</div>
+        
+        <div class="audio-list" id="audioListContainer">
+            <!-- dynamically populated -->
+        </div>
+        <div class="audio-footer">
+            <i class="fas fa-music"></i> Click any audio to open the google Drive Link
+        </div>
+    </div>
+</div>
 
     <header>
         <div class="logo"><i class="fas fa-heartbeat"></i><span>ToToZ</span></div>
@@ -1869,6 +2109,70 @@
                 ]
             },
             // 3rd Year
+
+            {
+                id: 'therap3',
+                name: 'Therapeutics',
+                icon: 'fa-microscope',
+                year: 3,
+                type: 'preclinical',
+                desc: 'Study the microscopic anatomy of cells, tissues, and organ systems.',
+                terms: [
+                    { 
+                        name: 'Term 1',
+                        topics: [
+                            'Drugs affecting fertility and reproduction',
+                            'Drugs used in Infertility and Management of cancer related to the reproductive system',
+                            'Tocolytics and oxytocic drugs',
+                            'Adrenal steroids and related drugs',
+                            'Anti - diabetic drugs',
+                            'Thyroid drugs',
+                            'Rheumatoid arthritic drugs'
+                        ]
+                    },
+                    { 
+                        name: 'Term 2',
+                        topics: [
+                            'Anti-Gout drugs',
+                            'Principles of chemotherapy',
+                            'Anti-bacterial drugs (cell wall & protein synthesis inhibitors)',
+                            'Anti-bacterial drugs (anti-folate)',
+                            'Anti-bacterial drugs (Quinolone)',
+                            'Anti-mycobacterial drugs',
+                            'Anti-fungal drugs'
+                        ]
+                    },
+                    { 
+                        name: 'Term 3',
+                        topics: [
+                            'Antiretroviral',
+                            'antiviral',
+                            'drugs used in parkinsons',
+                            'Antidepressants',
+                            'drugs used in epilepsy',
+                            'anesthetic drugs',
+                            'antipsychotics'
+                        ]
+                    },
+                    { 
+                        name: 'Therapeutics Past Papers',
+                        topics: [
+                            '2021 Test 1 (MBS 330)',
+                            '2022 Therapeutics Test 1 (MBS 330)',
+                            '2024 Therapeutics (MBS 330) Test 1',
+                            '2021 Therapeutics Test 2',
+                            '2022 Therapeutic test 2',
+                            '2023 Therapetuics Test 2 ✅',
+                            '2024 Therapeutics MBS330 test 2 ✅',
+                            '2021 Therapeutics Test 3 ✅',
+                            '2022 Test 3 Therap 3rd Year ✅',
+                            '2023 Therapeutics Tests 3 ✅',
+                            'Therapeutics biomed T3 2023 ✅',
+                            'Therapeutics week 3 Test ✅',
+                        ]
+                    }
+                ]
+            },
             {
                 id: 'biochemistry_3',
                 name: 'Biochemistry',
@@ -2115,11 +2419,11 @@
             // Anatomy 3rd Year 
             { id: 'anatomy3', name: 'Anatomy', icon: 'fa-dna', year: 3, type: 'preclinical',
                 desc: 'Explore cell biology, genetics, and physiology.', terms: [
-                    { name: 'Pelvic Region', topics: ['Osteology', 'Musculature', 'Blood Supply', 'Nerve Supply'] },
-                    { name: 'Reproductive System', topics: ['Osteology', 'Musculature', 'Blood Supply', 'Nerve Supply'] },
-                    { name: 'Lower Limb', topics: ['Lower Limb Osteology', 'Lower Limb Musculature', 'Lower Limb Blood Supply', 'Lower Limb Nerve Supply'] },
-                    { name: 'Upper limb', topics: ['Upper limb Osteology', ' Upper limb Musculature', 'Upper limb Blood Supply', 'Upper limb Nerve Supply'] },
-                    { name: 'Head Anatomy', topics: ['Head Osteology', 'Head Musculature', 'Head Blood Supply', 'Head Nerve Supply'] },
+                    { name: 'Pelvic Region', topics: ['Pelvic Osteology', 'Pelvic Musculature', 'Pelvic Neurovasculature'] },
+                    { name: 'Reproductive System', topics: ['Male Gross', 'Male Histology', 'Female Gross', 'Female Histology'] },
+                    { name: 'Lower Limb', topics: ['Lower Limb Osteology', 'Thigh', 'Leg', 'Foot', 'Lower Limb Neurovasculature'] },
+                    { name: 'Upper limb', topics: ['Upper limb Osteology', 'Arm and Shoulder', 'Forearm', 'Hand', 'Upper limb Neurovasculature'] },
+                    { name: 'Head Anatomy', topics: ['Head Osteology', 'Head Musculature', 'Head Neurovasculature', 'Brain Anatomy', 'The Eye', 'The Ear', 'Ventricles & CSF Flow'] },
                     { name: 'Neck Anatomy', topics: ['Neck Osteology', 'Neck Musculature', 'Neck Blood Supply', 'Neck Nerve Supply'] },
                     { name: 'Neuroanatomy', topics: ['Osteology', 'Musculature', 'Blood Supply', 'Nerve Supply'] }
                 ] },
@@ -2802,6 +3106,65 @@
             }
         };
 
+    
+
+    // ===== AUDIO POPUP FUNCTIONS =====
+const audioOverlay = document.getElementById('audioOverlay');
+const audioListContainer = document.getElementById('audioListContainer');
+const audioPopupTitle = document.getElementById('audioPopupTitle');
+const audioPopupTopic = document.getElementById('audioPopupTopic');
+const closeAudioBtn = document.getElementById('closeAudioPopup');
+
+function openAudioPopup(topic) {
+    let audios = audioData[topic] || [];
+
+    audioPopupTitle.textContent = 'Audio';
+    audioPopupTopic.textContent = topic;
+
+    let html = '';
+    if (audios.length > 0) {
+        audios.forEach((audio, index) => {
+            const url = audio.url || '#';
+            html += `
+                <a href="${url}" target="_blank" class="audio-item" data-index="${index}">
+                    <i class="fas fa-headphones"></i>
+                    <div class="audio-info">
+                        <span class="audio-title">${audio.title}</span>
+                        <span class="audio-sub">Click to open in Google Drive</span>
+                    </div>
+                    <span class="audio-play"><i class="fas fa-arrow-right"></i></span>
+                </a>
+            `;
+        });
+    } else {
+        html = `
+            <div class="audio-empty">
+                <i class="fas fa-headphones"></i>
+                <p>No audio available for this topic yet.</p>
+                <p style="font-size:0.85rem;margin-top:0.3rem;">Check back later for updates.</p>
+            </div>
+        `;
+    }
+
+    audioListContainer.innerHTML = html;
+    audioOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    audioListContainer.scrollTop = 0;
+}
+
+function closeAudioPopup() {
+    audioOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+closeAudioBtn.addEventListener('click', closeAudioPopup);
+audioOverlay.addEventListener('click', function(e) {
+    if (e.target === audioOverlay) closeAudioPopup();
+});
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && audioOverlay.classList.contains('active')) closeAudioPopup();
+});
+
         // ---- HTML ANSWERED VERSION LINKS for past papers & quizzes ----
         const htmlAnsweredLinks = {
             
@@ -2817,6 +3180,22 @@
             '2018 Test 3 biochem 3rd Year ✅': 'biochem-3rd-year/Past-papers/test3-2018.html',
             '2023 Sessional biochem 3rd Year ✅': 'biochem-3rd-year/Past-papers/sessional-2023.html',
             '2022 Sessional biochem 3rd Year ✅': 'biochem-3rd-year/Past-papers/sessional-2022.html',
+
+
+            // 3rd year therap
+            '2021 Test 1 (MBS 330)': 'https://drive.google.com/file/d/13Y0YtXKSvOeSNbqLlP8CkC8jbD8SnHZF/view?usp=drive_link',
+            '2021 Therapeutics Test 2': 'https://drive.google.com/file/d/1IdRv-5FkHlK5EvhgJS64Qyh-uGeGfNuR/view?usp=drive_link',
+            '2021 Therapeutics Test 3 ✅': 'therap-3/past-papers/2021_therap3_T3.html',
+            '2022 Therapeutics Test 1 (MBS 330)': 'https://drive.google.com/file/d/1t5L5q-8P6hEtZLNdsQER6Fn1yFmu_PDo/view?usp=drive_link',
+            '2022 Therapeutic test 2': 'https://drive.google.com/file/d/1qJzaMH64Vye3L4LhG3qm0bWlGvlZGTri/view?usp=drive_link',
+            '2022 Test 3 Therap 3rd Year ✅': 'therap-3/past-papers/2022_therap3_T3.html',
+            '2023 Therapetuics Test 2 ✅': 'therap-3/past-papers/2023_therap3_T2.html',
+            '2023 Therapeutics Tests 3 ✅': 'therap-3/past-papers/2023_therap3_T3.html',
+            'Therapeutics biomed T3 2023 ✅': 'therap-3/past-papers/2023_biomed_T3.html',
+            'Therapeutics week 3 Test ✅': 'therap-3/past-papers/term_3_test.html',
+            '2024 Therapeutics (MBS 330) Test 1': 'https://drive.google.com/file/d/1lbLpcjW1XfVZ5OWeYVUWqWaK7YS4c0D8/view?usp=drive_link',
+            '2024 Therapeutics MBS330 test 2 ✅': 'therap-3/past-papers/2024_therap3_T2.html',
+
         }
 
 const quizLinks = {
@@ -2830,6 +3209,11 @@ const quizLinks = {
         
         // 3r year biochem
         'Nucleotide Metabolism': 'biochem-3rd-year/nucleotide-quiz.html',
+        
+        // 3rd year physiology 
+        'Renal Function, Anatomy and Blood Flow': 'physio3/quiz/renal-functional-quiz.html',
+        'Mechanism of Urine Formation': 'physio3/quiz/urine-formation-quiz.html',
+        'Concentration, Dilution and Acidification': 'physio3/quiz/conc-quiz.html',
 }
         
 
@@ -2955,16 +3339,51 @@ const pdfLinks = {
             '2021 Sessional biochem 3rd Year': 'https://drive.google.com/file/d/1ndnu6EuHY4xboOtz8Ojm8QdVu6NenXsv/view?usp=drive_link',
             '2022 Sessional biochem 3rd Year ✅': 'https://drive.google.com/file/d/1R2VU8CIFa8QjMwVUiOnm8iStF9mIRV40/view?usp=drive_link',
             '2023 Sessional biochem 3rd Year ✅': 'https://drive.google.com/file/d/1GDyPsVNMNb9rfNmpStcZNG2WrguTPfm_/view?usp=drive_link',
+
+            // 3rd year therapeutics 
+            '2021 Test 1 (MBS 330)': 'https://drive.google.com/file/d/13Y0YtXKSvOeSNbqLlP8CkC8jbD8SnHZF/view?usp=drive_link',
+            '2021 Therapeutics Test 2': 'https://drive.google.com/file/d/1IdRv-5FkHlK5EvhgJS64Qyh-uGeGfNuR/view?usp=drive_link',
+            '2021 Therapeutics Test 3 ✅': 'https://drive.google.com/file/d/1kuKzWoDLimt9-XHUZqqS4O6tk8ga_dIf/view?usp=drive_link',
+            '2022 Therapeutics Test 1 (MBS 330)': 'https://drive.google.com/file/d/1t5L5q-8P6hEtZLNdsQER6Fn1yFmu_PDo/view?usp=drive_link',
+            '2022 Therapeutic test 2': 'https://drive.google.com/file/d/1qJzaMH64Vye3L4LhG3qm0bWlGvlZGTri/view?usp=drive_link',
+            '2022 Test 3 Therap 3rd Year ✅': 'https://drive.google.com/file/d/11I4mNFDxgpf3cxNOJOkRABWS7n93VtrT/view?usp=drive_link',
+            '2023 Therapetuics Test 2 ✅': 'https://drive.google.com/file/d/1wQjVhwHA-uLhqG7Evg4Hzc6Ugq6nph9d/view?usp=drive_link',
+            '2023 Therapeutics Tests 3 ✅': 'https://drive.google.com/file/d/1I-xKdswZgCNt2E4wSYhK57vM1QtCCv3b/view?usp=drive_link',
+            'Therapeutics biomed T3 2023 ✅': 'https://drive.google.com/file/d/1oh3FfM03g8LEdqWg22bxyAs-rv0hudo7/view?usp=drive_link',
+            'Therapeutics week 3 Test ✅': 'https://drive.google.com/file/d/1pWDvvn17q1jgxa5BiqC_pPCxQuTi3VTi/view?usp=drive_link',
+            '2024 Therapeutics (MBS 330) Test 1': 'https://drive.google.com/file/d/1lbLpcjW1XfVZ5OWeYVUWqWaK7YS4c0D8/view?usp=drive_link',
+            '2024 Therapeutics MBS330 test 2 ✅': 'https://drive.google.com/file/d/1hKHnNixwl024_NHAaa52FbbpJ0ZKsqQW/view?usp=drive_link',
         };
 
         // ---- VIDEO DATA: maps topic names to an array of video objects ----
         const videoData = {
+            'Head Osteology': [
+                { title: 'Anterior and Lateral Views of the Skull', url: 'https://drive.google.com/file/d/192itH9vQ8Zq5YEaBc7-H0Z3LCpgQJEVl/view?usp=drive_link' },
+                { title: 'Posterior and Lateral Views of the Skull', url: 'https://drive.google.com/file/d/1h6U1k9UWydNMBzB9aaXIM_FNuITX8xUj/view?usp=drive_link' },
+                { title: 'Calvaria', url: 'https://drive.google.com/file/d/1Oaboj0Cz01pj-ECfALVudbcW1PA_4Eux/view?usp=drive_link' },
+                { title: 'Inferior View of Base of the Skull', url: 'https://drive.google.com/file/d/1-CVlV_i0j4oGevKzlALGe3zFIq8J_yUk/view?usp=drive_link' },
+                { title: 'Superior View of Base of the Skull', url: 'https://drive.google.com/file/d/1xUwNt45DQWRoorzKRddbZL5VOVpDdlyb/view?usp=drive_link' },
+                { title: 'Midsagittal Skull', url: 'https://drive.google.com/file/d/1NuDLdRgfdxHWs61AjHnaXtuh8QHg7Tbm/view?usp=drive_link' },
+                { title: 'Ethmoid Bone', url: 'https://drive.google.com/file/d/1PPMgifv8NVe1HYn3UKHvEHx0ReHVOqmq/view?usp=drive_link' },
+                { title: 'Sphenoid Bone', url: 'https://drive.google.com/file/d/1ghOSLA-ErLIZukfCgnL3k0xhISFq8ual/view?usp=drive_link' },
+                { title: 'Temporal Bone', url: 'https://drive.google.com/file/d/1VCi0Zx1k9fx7PuoNoj2fXC8aN68k5bsN/view?usp=drive_link' },
+                { title: 'Mandible', url: 'https://drive.google.com/file/d/1RCuiTPh2GzeakpvCVR-iwTCnUd595H7Z/view?usp=drive_link' }
+            ],
+            'Head Musculature': [
+                { title: 'Masseter Muscle', url: 'https://drive.google.com/file/d/1YBL4o7HKoCwVfABct6VmOSodmRtodBRX/view?usp=drive_link' },
+                { title: 'Temporal Muscle', url: 'https://drive.google.com/file/d/1adIL2oTEELGCv006eFnh8C-LZj0DXt3V/view?usp=drive_link' },
+                { title: 'Muscles of Mastication', url: 'https://drive.google.com/file/d/1gbsGGmTY5HAPPsG5QR8Pk4c61au7Im4Y/view?usp=drive_link' },
+                { title: 'Lateral Pterygoid Muscle', url: 'https://drive.google.com/file/d/1J87Ib4d1yyIEmH1FuZvEGIgKmKMrm2PG/view?usp=drive_link' },
+                { title: 'Muscles of the Tongue', url: 'https://drive.google.com/file/d/1e4tIb8HkWPCdK7S_DBsZH-8Tlds92B0v/view?usp=drive_link' },
+                { title: 'Medial Pterygoid Muscle', url: 'https://drive.google.com/file/d/13GOgSk1mnY5k64VruS9ts3n5QiSbYdMO/view?usp=drive_link' }
+            ],
+
             // ========== 2nd Year Therapeutics ==========
             'Common Terminologies Used in Pharmacology': [
                 { title: 'Pharmacology Basics – Key Terms Explained', url: 'https://drive.google.com/file/d/1v1_Pharma_Terms/view?usp=drive_link' },
                 { title: 'Introduction to Pharmacodynamics & Pharmacokinetics', url: 'https://drive.google.com/file/d/1v2_Pharma_Intro/view?usp=drive_link' },
             ],
-            'Membrane Transport and Absoprtion': [
+            'Membrane Transport and Absorption': [
                 { title: 'Membrane Transport Mechanisms in Drug Absorption', url: 'https://drive.google.com/file/d/1v3_Membrane_Transport/view?usp=drive_link' },
                 { title: 'Passive & Active Transport – Pharmacology', url: 'https://drive.google.com/file/d/1v4_Transport_Pharma/view?usp=drive_link' },
             ],
@@ -3121,10 +3540,10 @@ const pdfLinks = {
                 { title: 'Urine Formation', url: 'https://drive.google.com/file/d/1yaqs7_lyRmMHriEybqO8YpHErdNrUhgj/view?usp=drive_link' },
             ],
 
-            'Concentration, Dilution and Acidification': [
-                { title: 'Lipids – Fatty Acids, Triglycerides, and Phospholipids', url: 'https://drive.google.com/file/d/1v69_Lipids/view?usp=drive_link' },
-                { title: 'Lipid Metabolism and Disorders', url: 'https://drive.google.com/file/d/1v70_Lipid_Metabolism/view?usp=drive_link' },
-            ],
+            // 'Concentration, Dilution and Acidification': [
+            //     { title: 'Lipids – Fatty Acids, Triglycerides, and Phospholipids', url: 'https://drive.google.com/file/d/1v69_Lipids/view?usp=drive_link' },
+            //     { title: 'Lipid Metabolism and Disorders', url: 'https://drive.google.com/file/d/1v70_Lipid_Metabolism/view?usp=drive_link' },
+            // ],
             // 'Minerals and Vitamins': [
             //     { title: 'Minerals and Vitamins – Essential Nutrients', url: 'https://drive.google.com/file/d/1v71_Minerals_Vitamins/view?usp=drive_link' },
             //     { title: 'Clinical Manifestations of Vitamin Deficiencies', url: 'https://drive.google.com/file/d/1v72_Vitamin_Deficiencies/view?usp=drive_link' },
@@ -3557,8 +3976,291 @@ const pdfLinks = {
             ],
         };
 
+
+        // ---- AUDIO DATA: maps topic names to an array of audio objects ----
+const audioData = {
+    // 2nd Year Therapeutics
+    'Common Terminologies Used in Pharmacology': [
+        { title: 'Pharmacology Terms – Audio Lecture', url: 'https://drive.google.com/file/d/1kvnbKUYuoTevA5t30hUreEFOSGWZD2LO/view?usp=drive_link' },
+    ],
+    'Membrane Transport and Absoprtion': [
+        { title: 'Membrane Transport – Audio Notes', url: 'https://drive.google.com/file/d/1audio_membrane/view?usp=drive_link' },
+    ],
+    'Drug Distribution': [
+        { title: 'Drug Distribution – Audio Summary', url: 'https://drive.google.com/file/d/1audio_distribution/view?usp=drive_link' },
+    ],
+
+    // 2nd Year Biochemistry
+    'Amino Acids': [
+        { title: 'Amino Acids – Audio Lecture', url: 'https://drive.google.com/file/d/1audio_amino_acids/view?usp=drive_link' },
+    ],
+    'Carbohydrates': [
+        { title: 'Carbohydrates – Audio Overview', url: 'https://drive.google.com/file/d/1audio_carbohydrates/view?usp=drive_link' },
+    ],
+
+    // Term 1
+            'Drugs affecting fertility and reproduction': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1kvnbKUYuoTevA5t30hUreEFOSGWZD2LO/view?usp=drive_link' }
+            ],
+            'Drugs used in Infertility and Management of cancer related to the reproductive system': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1YUiU76N9tvv2W0i75ITghI1m9IKF0Xx4/view?usp=drive_link' }
+            ],
+            'Tocolytics and oxytocic drugs': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1AmvBnv9j0uTzM3dIPh-EZNS_0J14fTJ8/view?usp=drive_link' }
+            ],
+            'Adrenal steroids and related drugs': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1MaoIfd7xbiV6REdGTSXJAtaTxJ3AIUMG/view?usp=drive_link' }
+            ],
+            'Anti - diabetic drugs': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1j2BVFrTKAvBpbqXo_lnSUNSoZTBWGNTH/view?usp=drive_link' }
+            ],
+            'Thyroid drugs': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1t6KNozI9W072WbcMU4pAz0YwJGL1H5S3/view?usp=drive_link' }
+            ],
+            'Rheumatoid arthritic drugs': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1rdntvzQY5bW-siiPzAslMPvYbKn9AaFT/view?usp=drive_link' }
+            ],
+
+            // Term 2
+            'Anti-Gout drugs': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1WcpFCqvMLl3lYDhgNDGl6Gi2k7GW8or_/view?usp=drive_link' }
+            ],
+            'Principles of chemotherapy': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1s1ZUSkhNPWt_iZVmYvQyBAD7y5w17p3e/view?usp=drive_link' }
+            ],
+            'Anti-bacterial drugs (cell wall & protein synthesis inhibitors)': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1t4Y71KpdMH6GLET85DIFgH1vYsu-t3IE/view?usp=drive_link' }
+            ],
+            'Anti-bacterial drugs (anti-folate)': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1bIsV9dJyOBWl9QxvteNsZVehQ_K7zCOb/view?usp=drive_link' }
+            ],
+            'Anti-bacterial drugs (Quinolone)': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1vsSrwho9PRYaWmi9GVFv5FS2LGMujLus/view?usp=drive_link' }
+            ],
+            'Anti-mycobacterial drugs': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1rLa9Z-epZuks9Cf4uJy4i8bgghhTA5gE/view?usp=drive_link' }
+            ],
+            'Anti-fungal drugs': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/16Roc52y3nysRuGKSt36qj_A6T1DEz4Xw/view?usp=drive_link' }
+            ],
+
+            // Term 3
+            'Antiretroviral': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1nP9AyyLTnCGZcYZgg6OacVHliEQA4L9P/view?usp=drive_link' }
+            ],
+            'antiviral': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1f3wJ0UxF9RzkF_4OLVMcIp3Eww-oIx5H/view?usp=drive_link' }
+            ],
+            'drugs used in parkinsons': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1BTqYD2CEhf2Doz8FMrdL0zq2_3CD2KSs/view?usp=drive_link' }
+            ],
+            'Antidepressants': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1DS1oUtMLp3qvXYLJHU7wFMcS-TTVnwNK/view?usp=drive_link' }
+            ],
+            'drugs used in epilepsy': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1qaLEx8PAkOPolDEt9phhfN595zNTjykc/view?usp=drive_link' }
+            ],
+            'anesthetic drugs': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1Q_QJVbkTfJ0idx-ZCEBgKAL1ELrPcH3i/view?usp=drive_link' }
+            ],
+            'antipsychotics': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1RNl9eMJhpf9T_D4zRhCXQvX891lrBhQZ/view?usp=drive_link' }
+            ],
+
+    // 3rd Year Public Health
+    'Introduction to Epidemiology': [
+        { title: 'Epidemiology Intro – Audio', url: 'https://drive.google.com/file/d/1audio_epi_intro/view?usp=drive_link' },
+    ],
+    'Measures of association': [
+        { title: 'Measures of Association – Audio', url: 'https://drive.google.com/file/d/1audio_association/view?usp=drive_link' },
+    ],
+
+    // 4th Year Surgery
+    'Acute Appendicitis': [
+        { title: 'Appendicitis – Audio Lecture', url: 'https://drive.google.com/file/d/1audio_appendicitis/view?usp=drive_link' },
+    ],
+    'GIT Bleeding': [
+        { title: 'GIT Bleeding – Audio Summary', url: 'https://drive.google.com/file/d/1audio_git_bleeding/view?usp=drive_link' },
+    ],
+
+    // 4th Year OB/GYN
+    'Diagnosis of Labour and Normal Labour': [
+        { title: 'Labour Diagnosis – Audio', url: 'https://drive.google.com/file/d/1audio_labour/view?usp=drive_link' },
+    ],
+    'Postpartum Haemorrhage': [
+        { title: 'PPH – Audio Lecture', url: 'https://drive.google.com/file/d/1audio_pph/view?usp=drive_link' },
+    ],
+
+    // ... add all your topics with their audio file links
+};
+
         // ---- DOCUMENT DATA: maps topic names to an array of document objects ----
         const docData = {
+
+            // 3rd Year anatomy 
+            'Pelvic Osteology': [
+                { title: 'Class Notes', url: '' },
+            ],
+            'Pelvic Musculature': [
+                { title: 'Class Notes', url: '' }
+            ],
+            'Pelvic Neurovasculature': [
+                { title: 'Class Notes', url: '' }
+            ],
+            'Male Gross': [
+                { title: 'Class Notes', url: '' }
+            ],
+            'Male Histology': [
+                { title: 'Class Notes', url: '' }
+            ],
+            'Female Gross': [
+                { title: 'Class Notes', url: '' }
+            ],
+            'Female Histology': [
+                { title: 'Class Notes', url: '' }
+            ],
+            'Lower Limb Osteology': [
+                { title: 'Class Notes', url: '' }
+            ],
+            'Thigh': [
+                { title: 'Class Notes', url: '' }
+            ],
+            'Leg': [
+                { title: 'Class Notes', url: '' }
+            ],
+            'Foot': [
+                { title: 'Class Notes', url: '' }
+            ],
+            'Lower Limb Neurovasculature': [
+                { title: 'Class Notes', url: '' }
+            ],
+            'Upper limb Osteology': [
+                { title: 'Class Notes', url: '' }
+            ],
+            'Arm and Shoulder': [
+                { title: 'Class Notes', url: '' }
+            ],
+            'Forearm': [
+                { title: 'Class Notes', url: '' }
+            ],
+            'Hand': [
+                { title: 'Class Notes', url: '' }
+            ],
+            'Upper limb Neurovasculature': [
+                { title: 'Class Notes', url: '' }
+            ],
+            'Head Osteology': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1vrzTMTngSYh5YrsuJkSm-IVqACduHESw/view?usp=drive_link' },
+                { title: 'ToToZ Notes Part 1', url: 'https://drive.google.com/file/d/1YZPSuDXzlYTCCcrEWgk1gdTT_EwgHPFy/view?usp=drive_link' },
+                { title: 'ToToZ Notes Part 2', url: 'https://drive.google.com/file/d/1oLKtaBj7ewQpaNjrqvAPBwBJyuUXzxHm/view?usp=drive_link' }
+            ],
+            'Head Musculature': [
+                { title: 'ToToZ Notes', url: 'https://drive.google.com/file/d/18AzrcR9qnCfy04a08GSYM_gNxjC5rszq/view?usp=drive_link' }
+            ],
+            'Head Neurovasculature': [
+                { title: 'Class Notes', url: '' }
+            ],
+            'Brain Anatomy': [
+                { title: 'Class Notes', url: '' }
+            ],
+            'The Eye': [
+                { title: 'Class Notes', url: '' }
+            ],
+            'The Ear': [
+                { title: 'Class Notes', url: '' }
+            ],
+            'Ventricles & CSF Flow': [
+                { title: 'Class Notes', url: '' }
+            ],
+            'Neck Osteology': [
+                { title: 'Class Notes', url: '' }
+            ],
+            'Neck Musculature': [
+                { title: 'Class Notes', url: '' }
+            ],
+            'Neck Blood Supply': [
+                { title: 'Class Notes', url: '' }
+            ],
+            'Neck Nerve Supply': [
+                { title: 'Class Notes', url: '' }
+            ],
+            'Blood Supply': [
+                { title: 'Class Notes', url: '' }
+            ],
+            'Nerve Supply': [
+                { title: 'Class Notes', url: '' }
+            ],
+
+
+
+            // Term 1
+            'Drugs affecting fertility and reproduction': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1bBv75VlNogLTszs-qP0E2PIs_ZAxE3v_/view?usp=drive_link' }
+            ],
+            'Drugs used in Infertility and Management of cancer related to the reproductive system': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1LbW4j24lyl64YMIn9tecRX4xilKHG-MU/view?usp=drive_link' }
+            ],
+            'Tocolytics and oxytocic drugs': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/107mAod2ZULfTPw6vSPbcORBnh0arpXYR/view?usp=drive_link' }
+            ],
+            'Adrenal steroids and related drugs': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1l3ndeFvgJxD0x5xyGPSv3XCPZ_Y4h0-u/view?usp=drive_link' }
+            ],
+            'Anti - diabetic drugs': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1mlG2vIKS0t4T8NJjGC03eKEexLKIJsKF/view?usp=drive_link' }
+            ],
+            'Thyroid drugs': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1l_bcE-zApe68ht6XDGBK0g-Lb1NcVrNU/view?usp=drive_link' }
+            ],
+            'Rheumatoid arthritic drugs': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1vdrmj3yI33BWPRN6ULxkuk13T9wcE6zx/view?usp=drive_link' }
+            ],
+
+            // Term 2
+            'Anti-Gout drugs': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1WcpFCqvMLl3lYDhgNDGl6Gi2k7GW8or_/view?usp=drive_link' }
+            ],
+            'Principles of chemotherapy': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1s1ZUSkhNPWt_iZVmYvQyBAD7y5w17p3e/view?usp=drive_link' }
+            ],
+            'Anti-bacterial drugs (cell wall & protein synthesis inhibitors)': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/10CLb_04nYUNhq8xQEdOV4Taj8DuDXTuq/view?usp=drive_link' }
+            ],
+            'Anti-bacterial drugs (anti-folate)': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1yLw0iECGcu_viyIiQSE-Vdka77R6Lxja/view?usp=drive_link' }
+            ],
+            'Anti-bacterial drugs (Quinolone)': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1WGLJsaHE3cQ32-9IsDP4KJzy1eJMv5NM/view?usp=drive_link' }
+            ],
+            'Anti-mycobacterial drugs': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1DiLFrydv2zyAjQNRWMPlo258PkfF_BY0/view?usp=drive_link' }
+            ],
+            'Anti-fungal drugs': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1WEtMF2S8UDUqtTM3mEk4eQDV_bpGCA06/view?usp=drive_link' }
+            ],
+
+            // Term 3
+            'Antiretroviral': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1UoUSIG7IVrfj-d5tIkOYz4aEI0UNDgBJ/view?usp=drive_link' }
+            ],
+            'antiviral': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1U_7Kcpv-6uFVkiwbHgWeobg7L33XjWXU/view?usp=drive_link' }
+            ],
+            'drugs used in parkinsons': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1BTqYD2CEhf2Doz8FMrdL0zq2_3CD2KSs/view?usp=drive_link' }
+            ],
+            'Antidepressants': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1DS1oUtMLp3qvXYLJHU7wFMcS-TTVnwNK/view?usp=drive_link' }
+            ],
+            'drugs used in epilepsy': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1KR-LRY_sbf5YKIVXaZAeVMVK55nZEubF/view?usp=drive_link' }
+            ],
+            'anesthetic drugs': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1ExNN544Hd7P7BkXxGbNp1mWMrmdFuwlL/view?usp=drive_link' }
+            ],
+            'antipsychotics': [
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1q-O2M9JS0Q5oJrv0XSe4T2Ol3VKED1vP/view?usp=drive_link' }
+            ],
             'Bacterial Classification': [
                 { title: 'Class Notes', url: 'https://drive.google.com/file/d/1TcoLu2ddbkziBvLcdk1hatE39djRzSol/view?usp=drive_link' },
             ],
@@ -4105,8 +4807,7 @@ const pdfLinks = {
                 { title: 'Role of Glucuronic Acid in Detoxification', url: 'https://drive.google.com/file/d/1d96_Glucuronic_Detox.pdf/view?usp=drive_link' },
             ],
             'Glycogen metabolism': [
-                { title: 'Glycogenesis and Glycogenolysis', url: 'https://drive.google.com/file/d/1d97_Glycogen_Metabolism.pdf/view?usp=drive_link' },
-                { title: 'Regulation of Glycogen Metabolism', url: 'https://drive.google.com/file/d/1d98_Glycogen_Regulation.pdf/view?usp=drive_link' },
+                { title: 'Class Notes', url: 'https://drive.google.com/file/d/1d97_Glycogen_Metabolism.pdf/view?usp=drive_link' },
             ],
 
             // ========== 3rd Year Public Health ==========
@@ -4745,33 +5446,37 @@ const pdfLinks = {
                 }
 
                 // ---- Regular topic display ----
-                const hasVideos = videoData[topic] && videoData[topic].length > 0;
-                const hasDocs = docData[topic] && docData[topic].length > 0;
+const hasVideos = videoData[topic] && videoData[topic].length > 0;
+const hasDocs = docData[topic] && docData[topic].length > 0;
+const hasAudios = audioData[topic] && audioData[topic].length > 0;
 
-                html += `<h5><button class="back-btn" onclick="selectTopic('${courseId}', ${termIdx}, null)"><i class="fas fa-arrow-left"></i></button> ${term.name} → ${topic}</h5>`;
-                html += `<div class="topic-actions">`;
+html += `<h5><button class="back-btn" onclick="selectTopic('${courseId}', ${termIdx}, null)"><i class="fas fa-arrow-left"></i></button> ${term.name} → ${topic}</h5>`;
+html += `<div class="topic-actions">`;
 
-                // Document button - opens popup
-                const docClickHandler = `openDocumentPopup('${topic.replace(/'/g, "\\'")}')`;
-                html += `<button class="btn-sm doc-btn" onclick="${docClickHandler}"><i class="fas fa-file-alt"></i> Documents ${hasDocs ? '(' + docData[topic].length + ')' : ''}</button>`;
+// Document button
+const docClickHandler = `openDocumentPopup('${topic.replace(/'/g, "\\'")}')`;
+html += `<button class="btn-sm doc-btn" onclick="${docClickHandler}"><i class="fas fa-file-alt"></i> Documents ${hasDocs ? '(' + docData[topic].length + ')' : ''}</button>`;
 
-                // Video button - opens popup
-                const videoClickHandler = `openVideoPopup('${topic.replace(/'/g, "\\'")}')`;
-                html += `<button class="btn-sm video-btn" onclick="${videoClickHandler}"><i class="fas fa-video"></i> Videos ${hasVideos ? '(' + videoData[topic].length + ')' : ''}</button>`;
+// Video button
+const videoClickHandler = `openVideoPopup('${topic.replace(/'/g, "\\'")}')`;
+html += `<button class="btn-sm video-btn" onclick="${videoClickHandler}"><i class="fas fa-video"></i> Videos ${hasVideos ? '(' + videoData[topic].length + ')' : ''}</button>`;
 
-                // Quiz button - direct link
-                html += `<a href="${links.quiz}" target="_blank" class="btn-sm"><i class="fas fa-pencil-alt"></i> Quiz</a>`;
-                html += `</div>`;
+// 🔥 ADDED: Audio button
+const audioClickHandler = `openAudioPopup('${topic.replace(/'/g, "\\'")}')`;
+html += `<button class="btn-sm audio-btn" onclick="${audioClickHandler}"><i class="fas fa-headphones"></i> Audio ${hasAudios ? '(' + audioData[topic].length + ')' : ''}</button>`;
 
-                // Show info counts
-                let infoParts = [];
-                if (hasDocs) infoParts.push(`📄 ${docData[topic].length} document(s)`);
-                if (hasVideos) infoParts.push(`🎬 ${videoData[topic].length} video(s)`);
-                if (infoParts.length) {
-                    html += `<p class="info-text" style="color:#2d7b9e;"><i class="fas fa-info-circle"></i> ${infoParts.join(' · ')}. Click the buttons above to browse.</p>`;
-                } else {
-                    html += `<p class="info-text" style="color:#7a8ca0;"><i class="fas fa-info-circle"></i> No specific documents or videos for this topic yet. Use the default links below.</p>`;
-                }
+// Quiz button
+html += `<a href="${links.quiz}" target="_blank" class="btn-sm"><i class="fas fa-pencil-alt"></i> Quiz</a>`;
+html += `</div>`;
+
+// Show info counts (🔥 added audio count)
+let infoParts = [];
+if (hasDocs) infoParts.push(`📄 ${docData[topic].length} document(s)`);
+if (hasVideos) infoParts.push(`🎬 ${videoData[topic].length} video(s)`);
+if (hasAudios) infoParts.push(`🎧 ${audioData[topic].length} audio(s)`);
+
+            
+
 
                 // Link section with fallback direct links
                 // html += `<div class="link-section">`;
