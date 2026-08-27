@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2022 Test 3 Therap (3rd Year) | Past Paper</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        :root {
+            --primary: #1a6b6b;
+            --accent: #2d9b9b;
+            --dark: #0f2b2b;
+            --light: #f6fafa;
+            --radius: 12px;
+            --shadow: 0 4px 14px rgba(10, 40, 40, 0.07);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: "Segoe UI", Roboto, system-ui, sans-serif;
+            background: linear-gradient(180deg, #f0f6f6, #e4efef);
+            color: var(--dark);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: #fff;
+            padding: 0.7rem 0;
+            box-shadow: 0 6px 18px rgba(8, 30, 30, 0.20);
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .logo i { font-size: 1.5rem; color: var(--accent); }
+        .logo h1 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            margin: 0;
+            line-height: 1;
+        }
+        .badge {
+            background: rgba(255,255,255,0.13);
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            color: #cae6e6;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.25rem 2.5rem;
+        }
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1.8rem 0 1rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 3px solid rgba(26,107,107,0.18);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+        .section-title i { font-size: 1.1rem; color: var(--accent); }
+        .section-title .count {
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0.05rem 0.7rem;
+        }
+        .section-subtitle {
+            color: #4f6f6f;
+            font-size: 0.92rem;
+            margin-bottom: 1.2rem;
+        }
+        .section-panel { display: block; }
+        .question {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.1rem 1.1rem 0.1rem 1.1rem;
+            margin-bottom: 1.1rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(26,107,107,0.06);
+        }
+        .question:hover {
+            box-shadow: 0 6px 22px rgba(10,40,40,0.07);
+        }
+        .question p {
+            font-weight: 600;
+            font-size: 0.97rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            line-height: 1.5;
+        }
+        .question .q-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            line-height: 1.6;
+            margin-right: 0.4rem;
+        }
+        .options label {
+            display: block;
+            background: #fafdfd;
+            border: 1px solid #dde8ec;
+            border-radius: 8px;
+            padding: 0.4rem 0.85rem;
+            margin-top: 0.4rem;
+            cursor: pointer;
+            transition: 0.15s ease;
+            font-weight: 450;
+            font-size: 0.93rem;
+        }
+        .options label:hover {
+            background: #e6f3f3;
+            border-color: var(--accent);
+        }
+        .options input[type="radio"] {
+            margin-right: 0.5rem;
+            accent-color: var(--primary);
+            transform: scale(1.05);
+        }
+        .question-feedback {
+            margin-top: 0.8rem;
+            padding: 0.3rem 0 0.1rem 0;
+            border-top: 1px dashed #d5e3e3;
+        }
+        .answer-block strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--primary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .answer-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .answer-item {
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid #e3edf0;
+            background: #fff;
+            font-weight: 500;
+            font-size: 0.88rem;
+        }
+        .answer-correct {
+            background: #ebfaf3;
+            border-color: #b5e6cc;
+            color: #065f46;
+        }
+        .answer-wrong {
+            background: #fdeeef;
+            border-color: #f7b5b5;
+            color: #8f1a2e;
+        }
+        .user-choice {
+            outline: 2px dashed rgba(0,0,0,0.06);
+        }
+        .explanation {
+            margin-top: 6px;
+            padding: 7px 12px;
+            border-radius: 8px;
+            background: #f0f8f6;
+            color: #065f46;
+            font-size: 0.89rem;
+            line-height: 1.5;
+            border-left: 4px solid var(--accent);
+        }
+        .explanation.wrong {
+            background: #fdf3f4;
+            color: #6f1a1a;
+            border-left-color: #e07a7a;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.6rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(26,107,107,0.25);
+        }
+        .btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(26,107,107,0.32);
+        }
+        .btn:active { transform: scale(0.96); }
+        .btn i { font-size: 0.9rem; }
+        .submit-wrap {
+            text-align: center;
+            margin: 1.5rem 0 2rem;
+        }
+        .result {
+            margin-top: 1.5rem;
+            padding: 1.5rem 1.5rem 1rem;
+            background: #eff8f7;
+            border-radius: var(--radius);
+            text-align: center;
+            display: none;
+            border: 1px solid #bddcd9;
+        }
+        .result h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.2rem;
+        }
+        .score {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0.2rem 0 0.4rem;
+        }
+        @media (max-width: 700px) {
+            body { padding-top: 72px; }
+            .logo h1 { font-size: 0.95rem; }
+            .header-inner { padding: 0 1rem; flex-direction: column; align-items: stretch; gap: 0.3rem; }
+            .badge { align-self: flex-start; }
+            .question { padding: 0.9rem 0.9rem 0.1rem 0.9rem; }
+            .section-title { font-size: 1.1rem; }
+            .score { font-size: 2.2rem; }
+            .btn { padding: 0.5rem 1.2rem; font-size: 0.85rem; }
+        }
+        .text-muted { color: #4f6f6f; font-size: 0.9rem; }
+        .mt-1 { margin-top: 0.8rem; }
+        .hidden { display: none !important; }
+        .scroll-target { scroll-margin-top: 90px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <i class="fas fa-capsules"></i>
+                <h1>2022 Test 3 Therap (3rd Year)</h1>
+            </div>
+            <span class="badge"><i class="fas fa-pencil-alt"></i> &nbsp;60 MCQs</span>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="section-title scroll-target">
+                <i class="fas fa-list-ul"></i> Multiple Choice Questions
+                <span class="count">60 marks</span>
+            </div>
+            <p class="section-subtitle">Select the best answer for each question, then click <strong>Submit All MCQs</strong>.</p>
+
+            <div id="mcqContainer"></div>
+
+            <div class="submit-wrap">
+                <button type="button" class="btn" onclick="submitMCQs()">
+                    <i class="fas fa-check-circle"></i> Submit All MCQs
+                </button>
+            </div>
+
+            <div class="result" id="mcqResult">
+                <h3><i class="fas fa-chart-simple"></i> Your Score</h3>
+                <div class="score" id="mcqScore">0 / 60</div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // ─── MCQ DATA ───
+        // 60 questions as extracted from the PDF (with inferred answers for incomplete questions)
+        const mcqData = [
+            // 1
+            {
+                id: 'q1',
+                text: 'The following is a long acting barbiturate',
+                options: ['A. Pentobarbital', 'B. Flumazenil', 'C. Phenobarbital', 'D. Thiopental', 'E. Buspirone'],
+                correct: 'c',
+                explanation: 'Phenobarbital is a long-acting barbiturate (half-life > 50 hours). Pentobarbital and thiopental are short/ultra-short.'
+            },
+            // 2
+            {
+                id: 'q2',
+                text: 'Which of the following drug is short acting benzodiazepine?',
+                options: ['A. Midazolam', 'B. Alprazolam', 'C. Diazepam', 'D. Clonazepam', 'E. Clonazepam (dup)'],
+                correct: 'a',
+                explanation: 'Midazolam is a short-acting benzodiazepine (t½ ~2–3 h). Diazepam and clonazepam are long-acting.'
+            },
+            // 3
+            {
+                id: 'q3',
+                text: 'Which of the following drugs is known to cause anterograde amnesia as a notable side effect?',
+                options: ['A. Pentobarbital', 'B. Lorazepam', 'C. Thiopental', 'D. Phenobarbitone', 'E. Valproate'],
+                correct: 'b',
+                explanation: 'Benzodiazepines, especially short-acting ones like lorazepam, can cause anterograde amnesia. Thiopental also but lorazepam is classic.'
+            },
+            // 4
+            {
+                id: 'q4',
+                text: 'Regarding sedative hypnotics, which of the following is true?',
+                options: [
+                    'A. Drugs used in anxiety may be used alone without psychotherapy',
+                    'B. Therapy of insomnia can be started with or without alternative methods like exercises',
+                    'C. Administering low doses for a short period helps prevent drug dependence',
+                    'D. Termination of hypnotic therapy can be done at any time',
+                    'E. Drug dosage is dependent on the symptoms presenting and can be increased as high as the severity of the symptoms'
+                ],
+                correct: 'c',
+                explanation: 'Low doses for short periods reduce the risk of dependence. Psychotherapy is often needed, and withdrawal should be gradual.'
+            },
+            // 5
+            {
+                id: 'q5',
+                text: 'Which of the following drugs can cause an additive effect on alcohol?',
+                options: ['A. Ketamine', 'B. Atropine', 'C. Thiopental', 'D. Phenytoin', 'E. Carbamazepine'],
+                correct: 'c',
+                explanation: 'Barbiturates (thiopental) have additive CNS depression with alcohol. Ketamine also but less classic.'
+            },
+            // 6
+            {
+                id: 'q6',
+                text: 'All the following are used as pre anesthetic drugs EXCEPT',
+                options: ['A. Phenobarbital', 'B. Thiopental', 'C. Midazolam', 'D. Diazepam', 'E. Clonazepam'],
+                correct: 'a',
+                explanation: 'Phenobarbital is a long-acting barbiturate not typically used for premedication; thiopental, midazolam, diazepam, and clonazepam are used.'
+            },
+            // 7
+            {
+                id: 'q7',
+                text: 'James is found ... alcohol withdrawal syndrome. Which drug will be very useful?',
+                options: ['A. Midazolam', 'B. Thiopental', 'C. Lorazepam', 'D. Alprazolam', 'E. Diazepam'],
+                correct: 'e',
+                explanation: 'Diazepam is the benzodiazepine of choice for alcohol withdrawal due to its long half-life and smooth tapering.'
+            },
+            // 8
+            {
+                id: 'q8',
+                text: 'Which of the following drug is used in psychotic patients presenting with violent symptoms?',
+                options: ['A. Midazolam i.v', 'B. Alprazolam i.v', 'C. Diazepam i.v', 'D. Clonazepam i.v', 'E. Lorazepam i.v'],
+                correct: 'e',
+                explanation: 'Lorazepam IV is used for rapid tranquilization in agitated psychotic patients. Haloperidol is also used, but among benzos, lorazepam is preferred.'
+            },
+            // 9
+            {
+                id: 'q9',
+                text: 'The following are selective serotonin re-uptake inhibitors EXCEPT',
+                options: ['A. Fluoxetine', 'B. Paroxetine', 'C. Duloxetine', 'D. Sertraline', 'E. Fluvoxamine'],
+                correct: 'c',
+                explanation: 'Duloxetine is an SNRI (inhibits both serotonin and norepinephrine reuptake); the others are SSRIs.'
+            },
+            // 10
+            {
+                id: 'q10',
+                text: 'A Mr P aged 45 ... complains of bed wetting ... Which properties would you look for in choosing an appropriate drug for him?',
+                options: ['A. Cholinergic activities', 'B. Anticholinergic activities', 'C. Adrenergic activities', 'D. Anti-adrenergic activities', 'E. Dopaminergic activities'],
+                correct: 'b',
+                explanation: 'Enuresis is treated with anticholinergic drugs (e.g., oxybutynin, imipramine) to relax the bladder detrusor muscle.'
+            },
+            // 11
+            {
+                id: 'q11',
+                text: 'Which of the following drugs would you take extra caution when prescribing for patients who may already be receiving other drugs for erectile dysfunction?',
+                options: ['A. Trazodone', 'B. Venlafaxine', 'C. Maprotiline', 'D. Clomipramine'],
+                correct: 'a',
+                explanation: 'Trazodone can cause priapism; caution with other drugs affecting erections.'
+            },
+            // 12
+            {
+                id: 'q12',
+                text: 'Hypertensive crisis, hyperthermia and convulsions are likely to occur with usage of the following drugs',
+                options: ['A. MAOIs and sympathomimetics', 'B. MAOIs and opioids', 'C. MAOIs and SSRIs', 'D. MAOIs and TCAs', 'E. SSRIs and TCAs'],
+                correct: 'a',
+                explanation: 'MAOIs with sympathomimetics or tyramine-rich foods cause hypertensive crisis, hyperthermia, and convulsions.'
+            },
+            // 13
+            {
+                id: 'q13',
+                text: 'With which of the following drugs is it not advised to take Cheese and other lacto products?',
+                options: ['A. Imipramine', 'B. Phenelzine', 'C. Paroxetine', 'D. Amitriptyline', 'E. Fluoxetine'],
+                correct: 'b',
+                explanation: 'Phenelzine is an MAOI; tyramine in cheese can cause hypertensive crisis.'
+            },
+            // 14
+            {
+                id: 'q14',
+                text: 'Patients on MAOIs should not receive TCAs until after such a period of cessation from MAOIs.',
+                options: ['A. Immediately after stopping MAOIs', 'B. 1 week', 'C. 1 month', 'D. 2 weeks', 'E. 2 months'],
+                correct: 'd',
+                explanation: 'A washout period of at least 2 weeks is recommended between MAOI and TCA to avoid serotonin syndrome.'
+            },
+            // 15
+            {
+                id: 'q15',
+                text: 'The following is an example of typical symptoms of depression',
+                options: ['A. Hypochondriasis', 'B. Anxieties', 'C. Phobias', 'D. Weight loss', 'E. Obsessions'],
+                correct: 'd',
+                explanation: 'Weight loss is a somatic symptom of depression; the others are more characteristic of anxiety or OCD.'
+            },
+            // 16
+            {
+                id: 'q16',
+                text: 'The following drug inhibits the metabolism of biogenic amines like serotonin and noradrenaline',
+                options: ['A. Tranylcypromine', 'B. Fluoxetine', 'C. Imipramine', 'D. Fluvoxamine', 'E. Phenelzine'],
+                correct: 'a',
+                explanation: 'Tranylcypromine (and phenelzine) are MAOIs that inhibit monoamine metabolism. Both are correct but tranylcypromine is listed first.'
+            },
+            // 17
+            {
+                id: 'q17',
+                text: 'Antipsychotic drugs should not be used in the following conditions Except',
+                options: ['A. Manic phase of bipolar disorder', 'B. Known hypersensitivity', 'C. Comatose patients', 'D. Severely depressed patients', 'E. Parkinson\'s disease'],
+                correct: 'a',
+                explanation: 'Antipsychotics are used to treat mania, so it is an indication, not a contraindication.'
+            },
+            // 18
+            {
+                id: 'q18',
+                text: 'Combination of antipsychotics and alcohol can cause the following',
+                options: ['A. Tardive dyskinesia', 'B. Reduced renal clearance', 'C. Constipation', 'D. CNS depression', 'E. Liver impairment'],
+                correct: 'd',
+                explanation: 'Both cause CNS depression; additive effect leads to increased sedation and respiratory depression.'
+            },
+            // 19
+            {
+                id: 'q19',
+                text: 'Refractory schizophrenia can best be treated with the following drug',
+                options: ['A. Olanzapine', 'B. Risperidone', 'C. Haloperidol', 'D. Fluphenazine', 'E. Clozapine'],
+                correct: 'e',
+                explanation: 'Clozapine is the drug of choice for treatment-resistant schizophrenia.'
+            },
+            // 20
+            {
+                id: 'q20',
+                text: 'Antipsychotic drugs work by the following mechanism',
+                options: ['A. Blockade of D2 receptors in hypothalamus and pituitary', 'B. Blockade of D2 receptors in brain basal ganglia', 'C. Blockade of D2 receptors in brain mesolimbic system', 'D. Blockade of D2 receptors in CTZ', 'E. Inhibition of glutamate'],
+                correct: 'c',
+                explanation: 'The antipsychotic effect is primarily from D2 blockade in the mesolimbic pathway.'
+            },
+            // 21
+            {
+                id: 'q21',
+                text: 'Apart from the antipsychotic effects the following drug can be used in the management of CNS induced nausea and vomiting',
+                options: ['A. Haloperidol', 'B. Chlorpromazine', 'C. Fluphenazine', 'D. Clozapine', 'E. Risperidone'],
+                correct: 'b',
+                explanation: 'Chlorpromazine has potent antiemetic effects via D2 blockade in the CTZ.'
+            },
+            // 22
+            {
+                id: 'q22',
+                text: 'The following statements true EXCEPT',
+                options: [
+                    'A. Anticholinergics do not worsen psychotic symptoms neither do they increase tardive dyskinesia',
+                    'B. Combination of antipsychotic and alcohol enhances additive CNS depression',
+                    'C. Anticholinergics reduce the therapeutic effects of Antipsychotics',
+                    'D. Clozapine synergistic with other drugs that suppress bone marrow',
+                    'E. Drugs that reduce renal clearance increase risk of Lithium toxicity'
+                ],
+                correct: 'c',
+                explanation: 'Anticholinergics do not reduce antipsychotic efficacy; they are used to treat EPS. This statement is false.'
+            },
+            // 23 - incomplete in PDF, we infer options
+            {
+                id: 'q23',
+                text: 'Manic phase of bipolar can be treated with the following drug',
+                options: ['A. Clozapine', 'B. Risperidone', 'C. Chlorpromazine', 'D. Olanzapine', 'E. Fluphenazine'],
+                correct: 'd',
+                explanation: 'Olanzapine (and other atypicals) are commonly used for acute mania.'
+            },
+            // 24
+            {
+                id: 'q24',
+                text: 'The following is one of the commonest side effects of antipsychotic drugs',
+                options: ['A. Extrapyramidal effects', 'B. Drowsiness and sedation', 'C. Gynecomastia', 'D. Amenorrhea', 'E. Depression'],
+                correct: 'a',
+                explanation: 'EPS is very common with typical antipsychotics due to D2 blockade in the nigrostriatal pathway.'
+            },
+            // 25
+            {
+                id: 'q25',
+                text: 'Facilitation of GABA action is the mechanism of action of the following drug',
+                options: ['A. Valproate', 'B. Vigabatrin', 'C. Ethosuximide', 'D. Phenobarbital', 'E. Phenytoin'],
+                correct: 'd',
+                explanation: 'Phenobarbital enhances GABA-mediated chloride channel opening. Valproate also increases GABA but via different mechanism.'
+            },
+            // 26
+            {
+                id: 'q26',
+                text: 'The following can trigger an epileptic seizure EXCEPT',
+                options: ['A. Insulin', 'B. Hyperglycemia', 'C. Antipsychotics', 'D. Meningitis', 'E. Tricyclic antidepressants'],
+                correct: 'b',
+                explanation: 'Hyperglycemia is less likely to trigger seizures; hypoglycemia (insulin), antipsychotics, meningitis, and TCAs lower seizure threshold.'
+            },
+            // 27
+            {
+                id: 'q27',
+                text: 'The following is the first line drug treatment for tonic clonic attack (Grand mal)',
+                options: ['A. Lamotrigine', 'B. Phenobarbital', 'C. Carbamazepine', 'D. Phenytoin', 'E. Valproate'],
+                correct: 'e',
+                explanation: 'Valproate is a broad-spectrum anticonvulsant and first-line for generalized tonic-clonic seizures.'
+            },
+            // 28
+            {
+                id: 'q28',
+                text: 'The following drugs works against the breaking down of GABA',
+                options: ['A. Valproate', 'B. Phenytoin', 'C. Diazepam', 'D. Ethosuximide', 'E. Carbamazepine'],
+                correct: 'a',
+                explanation: 'Valproate inhibits GABA transaminase, reducing GABA breakdown, thus increasing GABA levels.'
+            },
+            // 29
+            {
+                id: 'q29',
+                text: 'Gingival hypoplasia is side effect of the following drug',
+                options: ['A. Gabapentin', 'B. Phenytoin', 'C. Primidone', 'D. Lamotrigine', 'E. Carbamazepine'],
+                correct: 'b',
+                explanation: 'Phenytoin causes gingival hyperplasia (overgrowth).'
+            },
+            // 30
+            {
+                id: 'q30',
+                text: 'Which of the following drug works by blocking the Ca2+ channels?',
+                options: ['A. Vigabatrin', 'B. Phenytoin', 'C. Ethosuximide', 'D. Carbamazepine', 'E. Valproate'],
+                correct: 'c',
+                explanation: 'Ethosuximide blocks T-type calcium channels in thalamic neurons, effective for absence seizures.'
+            },
+            // 31
+            {
+                id: 'q31',
+                text: 'The following is used as first line in simple partial seizures',
+                options: ['A. Phenobarbital', 'B. Valproic acid', 'C. Phenytoin', 'D. Carbamazepine', 'E. Primidone'],
+                correct: 'd',
+                explanation: 'Carbamazepine (or phenytoin) is first-line for focal (partial) seizures.'
+            },
+            // 32
+            {
+                id: 'q32',
+                text: 'Miss MK aged 21 ... seizure has now lasted 25 minutes ... Which drug would you prescribe for this patient?',
+                options: ['A. Lamotrigine i.v', 'B. Thiopental', 'C. Midazolam i.v', 'D. Phenobarbital i.v', 'E. Lorazepam i.v'],
+                correct: 'e',
+                explanation: 'Status epilepticus is treated with IV lorazepam (or diazepam) as first-line.'
+            },
+            // 33
+            {
+                id: 'q33',
+                text: 'The following is used as an adjunct in the treatment of advanced parkinsonism disease',
+                options: ['A. Bromocriptine', 'B. Levodopa', 'C. Selegiline', 'D. Amantadine', 'E. A and C'],
+                correct: 'e',
+                explanation: 'Bromocriptine (dopamine agonist) and selegiline (MAO-B inhibitor) are adjuncts in advanced Parkinson\'s.'
+            },
+            // 34
+            {
+                id: 'q34',
+                text: 'Which of the following drugs can delay the need for levodopa in management of parkinsonism?',
+                options: ['A. Carbidopa', 'B. Pramipexole', 'C. Bromocriptine', 'D. Selegiline', 'E. Amantadine'],
+                correct: 'd',
+                explanation: 'Selegiline (MAO-B inhibitor) may delay the need for levodopa by providing symptomatic benefit early on.'
+            },
+            // 35
+            {
+                id: 'q35',
+                text: 'The following may not reduce the cholinergic activities in parkinsonism EXCEPT',
+                options: ['A. Ropinirole', 'B. Entacapone', 'C. Trihexyphenidyl hydrochloride', 'D. Levodopa-carbidopa', 'E. Bromocriptine'],
+                correct: 'c',
+                explanation: 'Trihexyphenidyl is an anticholinergic that reduces cholinergic activity. The others do not have anticholinergic effects.'
+            },
+            // 36
+            {
+                id: 'q36',
+                text: 'Parkinsonism patients whose clinical manifestations are limited to mild tremors and slowness can best be treated with',
+                options: ['A. Trihexyphenidyl hydrochloride', 'B. Amantadine', 'C. Levodopa', 'D. Bromocriptine', 'E. A and B'],
+                correct: 'e',
+                explanation: 'For mild symptoms, anticholinergics (trihexyphenidyl) or amantadine are used first-line before levodopa.'
+            },
+            // 37
+            {
+                id: 'q37',
+                text: 'Which among the known treatments counteracts all signs of Parkinsonism?',
+                options: ['A. Bromocriptine', 'B. Levodopa', 'C. Amantadine', 'D. Ropinirole', 'E. Entacapone'],
+                correct: 'b',
+                explanation: 'Levodopa is the most effective drug for Parkinson\'s, addressing bradykinesia, rigidity, and tremor.'
+            },
+            // 38
+            {
+                id: 'q38',
+                text: 'Which of the following statements is true?',
+                options: [
+                    'A. Selegiline prevents progression of parkinsonism disease by inhibiting formation of free radicals',
+                    'B. Amantadine\'s CNS side effect profile are same in all age groups',
+                    'C. Selegiline worsens the Wearing off and On Off effects',
+                    'D. Bromocriptine is effective when used alone',
+                    'E. Amantadine is less tolerated than levodopa and bromocriptine'
+                ],
+                correct: 'a',
+                explanation: 'Selegiline may have neuroprotective effects by reducing free radical formation. The other statements are false.'
+            },
+            // 39
+            {
+                id: 'q39',
+                text: 'The following drug is an effective adjunct to levodopa in patients who have advanced parkinsonism disease and also experiencing wearing off and On and Off effects',
+                options: ['A. Selegiline', 'B. Ropinirole', 'C. Trihexyphenidyl', 'D. Bromocriptine', 'E. Carbidopa'],
+                correct: 'a',
+                explanation: 'Selegiline (or entacapone) is used as adjunct to levodopa to reduce wearing-off. Among options, selegiline is correct.'
+            },
+            // 40 - incomplete, we infer
+            {
+                id: 'q40',
+                text: 'The following statements are correct EXCEPT',
+                options: [
+                    'A. Carbidopa enhances the peripheral effects of levodopa',
+                    'B. Entacapone prolongs the action of levodopa',
+                    'C. Selegiline is an MAO-B inhibitor',
+                    'D. Amantadine has antiviral properties',
+                    'E. Bromocriptine is a dopamine agonist'
+                ],
+                correct: 'a',
+                explanation: 'Carbidopa reduces peripheral metabolism of levodopa, but does not enhance its peripheral effects; it allows more levodopa to reach the brain.'
+            },
+            // 41
+            {
+                id: 'q41',
+                text: 'The following drug is known as a dissociative anesthetic drug',
+                options: ['A. Thiopental', 'B. Halothane', 'C. Ketamine', 'D. Propofol', 'E. Etomidate'],
+                correct: 'c',
+                explanation: 'Ketamine is a dissociative anesthetic, causing catalepsy and analgesia.'
+            },
+            // 42
+            {
+                id: 'q42',
+                text: 'The following are side effects of general anesthetic drugs EXCEPT',
+                options: ['A. Nephrotoxicity', 'B. Hepatitis', 'C. Hypersensitivity reactions', 'D. Bronchodilation', 'E. Respiratory depression'],
+                correct: 'd',
+                explanation: 'General anesthetics can cause bronchoconstriction, not bronchodilation. They also cause respiratory depression, nephrotoxicity, hepatitis, and hypersensitivity.'
+            },
+            // 43
+            {
+                id: 'q43',
+                text: 'Which of the following drug can be used in the initiation of general anesthesia?',
+                options: ['A. Etomidate', 'B. Sevoflurane', 'C. Thiopental', 'D. Ropivacaine', 'E. Midazolam'],
+                correct: 'c',
+                explanation: 'Thiopental is a rapid-acting IV barbiturate used for induction of general anesthesia.'
+            },
+            // 44
+            {
+                id: 'q44',
+                text: 'The following drugs and hallucinations during recovery',
+                options: ['A. Ketamine', 'B. Enflurane', 'C. Halothane', 'D. Midazolam', 'E. Propofol'],
+                correct: 'a',
+                explanation: 'Ketamine is well known for causing emergence reactions including hallucinations.'
+            },
+            // 45
+            {
+                id: 'q45',
+                text: 'All the following are desired effect of general anesthetic drugs except?',
+                options: ['A. Loss of consciousness', 'B. Loss of pain sensation', 'C. Amnesia', 'D. Prolonged postsurgical sedative effect', 'E. Comfort during surgery'],
+                correct: 'd',
+                explanation: 'Prolonged sedation after surgery is not desired; rapid recovery is preferred.'
+            },
+            // 46
+            {
+                id: 'q46',
+                text: 'Which of the following is a volatile liquid anesthetic drug?',
+                options: ['A. Isoflurane', 'B. Propofol', 'C. Bupivacaine', 'D. Nitrous oxide', 'E. Ketamine'],
+                correct: 'a',
+                explanation: 'Isoflurane is a volatile liquid used for inhalation anesthesia. Nitrous oxide is gas, propofol is IV, bupivacaine is local.'
+            },
+            // 47
+            {
+                id: 'q47',
+                text: 'Which of the following comprises the cell membrane of the fungi?',
+                options: ['A. Terbinafine', 'B. Caspofungin', 'C. Amphotericin', 'D. Fluconazole', 'E. Tolnaftate'],
+                correct: 'c',
+                explanation: 'Amphotericin B binds to ergosterol in fungal cell membranes, compromising membrane integrity.'
+            },
+            // 48
+            {
+                id: 'q48',
+                text: 'Which of the following drugs inhibit the precursor of lanosterol?',
+                options: ['A. Terbinafine', 'B. Tioconazole', 'C. Tolnaftate', 'D. Griseofulvin', 'E. Flucytosine'],
+                correct: 'a',
+                explanation: 'Terbinafine inhibits squalene epoxidase, reducing the formation of lanosterol (precursor of ergosterol).'
+            },
+            // 49
+            {
+                id: 'q49',
+                text: 'The following drug will need to be stopped way before a couple may embark conceiving',
+                options: ['A. Itraconazole', 'B. Griseofulvin', 'C. Amphotericin B', 'D. Ketoconazole', 'E. Voriconazole'],
+                correct: 'b',
+                explanation: 'Griseofulvin is teratogenic and should be discontinued for at least 1 month (or more) before pregnancy.'
+            },
+            // 50
+            {
+                id: 'q50',
+                text: 'Which of the following drugs\' absorption will be affected by the elevation of gastric pH?',
+                options: ['A. Fluconazole', 'B. Ketoconazole', 'C. Nystatin', 'D. Miconazole', 'E. Voriconazole'],
+                correct: 'b',
+                explanation: 'Ketoconazole requires acidic gastric pH for dissolution and absorption; antacids/PPIs reduce its bioavailability.'
+            },
+            // 51
+            {
+                id: 'q51',
+                text: 'The following has excellent activity against aspergillus species',
+                options: ['A. Flucytosine', 'B. Caspofungin', 'C. Naftifine', 'D. Ciclopirox', 'E. Fluconazole'],
+                correct: 'b',
+                explanation: 'Caspofungin (echinocandin) has good activity against Aspergillus. Voriconazole is better but not listed.'
+            },
+            // 52
+            {
+                id: 'q52',
+                text: 'A baby is brought ... positive influenza. Which antipyretic agent is most suitable?',
+                options: ['A. Indomethacin', 'B. Mefenamic acid', 'C. Aspirin', 'D. Paracetamol', 'E. Mefenamic acid (dup)'],
+                correct: 'd',
+                explanation: 'Paracetamol is the antipyretic of choice in children; aspirin is avoided due to Reye syndrome risk.'
+            },
+            // 53
+            {
+                id: 'q53',
+                text: 'A Mr K ... rheumatoid arthritis with PUD history. Which drug would you prescribe?',
+                options: ['A. Diclofenac', 'B. Celecoxib', 'C. Aceclofenac + paracetamol', 'D. Tramadol', 'E. Piroxicam'],
+                correct: 'b',
+                explanation: 'Celecoxib is a COX-2 selective inhibitor with lower GI ulcer risk, suitable for patients with PUD.'
+            },
+            // 54
+            {
+                id: 'q54',
+                text: 'Which of the following presents with a coiling effect regarding the analgesic effects?',
+                options: ['A. Piroxicam', 'B. Celecoxib', 'C. Pethidine', 'D. Ibuprofen', 'E. Diclofenac'],
+                correct: 'c',
+                explanation: '"Coiling effect" likely refers to "ceiling effect" – pethidine (meperidine) has a ceiling effect for analgesia.'
+            },
+            // 55
+            {
+                id: 'q55',
+                text: 'Which of the following falls within the category of adjuvant analgesics',
+                options: ['A. Phenobarbitone', 'B. Valproate', 'C. Gabapentin', 'D. Pethidine', 'E. Diazepam'],
+                correct: 'c',
+                explanation: 'Gabapentin is used as an adjuvant analgesic for neuropathic pain.'
+            },
+            // 56
+            {
+                id: 'q56',
+                text: 'The following is the drug of choice in gout',
+                options: ['A. Diclofenac', 'B. Aceclofenac', 'C. Ibuprofen', 'D. Acetyl salicylic acid', 'E. Indomethacin'],
+                correct: 'e',
+                explanation: 'Indomethacin is the NSAID of choice for acute gout attacks (other NSAIDs also used).'
+            },
+            // 57 - incomplete, we infer a statement about TB drugs
+            {
+                id: 'q57',
+                text: 'Which of the following regarding the anti TB drugs is true?',
+                options: [
+                    'A. Isoniazid is bactericidal for extracellular organisms',
+                    'B. Rifampicin is bacteriostatic',
+                    'C. Pyrazinamide is active only in acidic pH',
+                    'D. Ethambutol is the most hepatotoxic',
+                    'E. Streptomycin is given orally'
+                ],
+                correct: 'c',
+                explanation: 'Pyrazinamide is active against intracellular mycobacteria in acidic pH; it is bactericidal. Others are false.'
+            },
+            // 58
+            {
+                id: 'q58',
+                text: 'Which of the following is the most hepatotoxic drug',
+                options: ['A. Isoniazid', 'B. Rifampicin', 'C. Pyrazinamide', 'D. Ethambutol', 'E. Amikacin'],
+                correct: 'c',
+                explanation: 'Pyrazinamide is considered the most hepatotoxic among first-line anti-TB drugs, though isoniazid and rifampicin also cause hepatitis.'
+            },
+            // 59
+            {
+                id: 'q59',
+                text: 'A patient ... TB relapse, isoniazid sensitive. Which combination is appropriate?',
+                options: [
+                    'A. Isoniazid + Pyrazinamide + Ethionamide + Cycloserine + Levofloxacin + Ethambutol + Pyridoxine',
+                    'B. Isoniazid + Pyrazinamide + Rifampicin + Ethambutol + Kanamycin + Pyridoxine',
+                    'C. Isoniazid + Pyrazinamide + Rifampicin + Ethambutol + Kanamycin + Levofloxacin + Pyridoxine',
+                    'D. Isoniazid + Pyrazinamide + Linezolid + Ethambutol + Delamanid + Capreomycin + Pyridoxine',
+                    'E. Isoniazid + Pyrazinamide + Rifampicin + Ethambutol + Pyridoxine'
+                ],
+                correct: 'e',
+                explanation: 'For isoniazid-sensitive TB, standard first-line regimen (isoniazid, rifampicin, pyrazinamide, ethambutol) plus pyridoxine is appropriate.'
+            },
+            // 60
+            {
+                id: 'q60',
+                text: 'Which of the following drugs does not require adjustment in its dosing when used in patients undergoing TB treatment?',
+                options: ['A. Dolutegravir', 'B. Lopinavir', 'C. Levofloxacin', 'D. Combined oral contraceptives', 'E. Warfarin'],
+                correct: 'a',
+                explanation: 'Dolutegravir is an integrase inhibitor that is not significantly affected by rifampicin, so dose adjustment is minimal. Others require adjustment.'
+            }
+        ];
+
+        // ─── RENDER MCQs ───
+        const container = document.getElementById('mcqContainer');
+        let html = '<form id="mcqForm">';
+        mcqData.forEach(q => {
+            html += `<div class="question" id="mcq-${q.id}">`;
+            html += `<p><span class="q-badge">${q.id.replace('q','')}</span> ${q.text}</p>`;
+            html += `<div class="options">`;
+            q.options.forEach((opt, idx) => {
+                const val = String.fromCharCode(97 + idx);
+                html += `<label><input type="radio" name="${q.id}" value="${val}"> ${opt}</label>`;
+            });
+            html += `</div>`;
+            html += `<div class="question-feedback" id="mcq-feedback-${q.id}"></div>`;
+            html += `</div>`;
+        });
+        html += '</form>';
+        container.innerHTML = html;
+
+        // ─── SUBMIT MCQs ───
+        function submitMCQs() {
+            let earned = 0;
+            const total = mcqData.length;
+
+            mcqData.forEach(q => {
+                const radios = document.querySelectorAll(`#mcqForm input[name="${q.id}"]`);
+                const selected = Array.from(radios).find(r => r.checked);
+                const correct = q.correct;
+                const feedbackEl = document.getElementById(`mcq-feedback-${q.id}`);
+                let html = `<div class="answer-block"><strong>Q${q.id.replace('q','')}</strong><div class="answer-list">`;
+
+                radios.forEach(r => {
+                    const label = r.parentElement;
+                    const text = label ? label.textContent.trim() : r.value;
+                    const classes = ['answer-item'];
+                    if (r.value === correct) classes.push('answer-correct');
+                    if (r.checked && r.value !== correct) classes.push('answer-wrong', 'user-choice');
+                    if (r.checked && r.value === correct) classes.push('user-choice');
+                    html += `<div class="${classes.join(' ')}">${text}${r.checked ? ' ◀' : ''}</div>`;
+                });
+                html += `</div>`;
+                const correctRadio = Array.from(radios).find(rr => rr.value === correct);
+                const correctText = correctRadio ? correctRadio.parentElement.textContent.trim() : correct;
+                let isCorrect = false;
+                if (selected && selected.value === correct) {
+                    earned += 1;
+                    isCorrect = true;
+                }
+                const status = isCorrect ? '✅ Correct' : '❌ Incorrect';
+                const statusClass = isCorrect ? '' : 'wrong';
+                html += `<div class="explanation ${statusClass}">${status}. Correct answer: <strong>${correctText}</strong>. ${q.explanation}</div>`;
+                html += `</div>`;
+                feedbackEl.innerHTML = html;
+            });
+
+            document.querySelectorAll('#mcqForm input[type="radio"]').forEach(i => i.disabled = true);
+            const resultDiv = document.getElementById('mcqResult');
+            resultDiv.style.display = 'block';
+            document.getElementById('mcqScore').innerText = `${earned} / ${total}`;
+        }
+
+        // ─── KEYBOARD SUPPORT ───
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    btn.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2023 Therapeutics Test 3 | Past Paper</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        /* ─────────── ROOT & RESET ─────────── */
+        :root {
+            --primary: #1a6b6b;
+            --accent: #2d9b9b;
+            --dark: #0f2b2b;
+            --light: #f6fafa;
+            --radius: 12px;
+            --shadow: 0 4px 14px rgba(10, 40, 40, 0.07);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Roboto, system-ui, sans-serif;
+            background: linear-gradient(180deg, #f0f6f6, #e4efef);
+            color: var(--dark);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: #fff;
+            padding: 0.7rem 0;
+            box-shadow: 0 6px 18px rgba(8, 30, 30, 0.20);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+
+        .logo h1 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.13);
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            color: #cae6e6;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0.3rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-tabs .tab-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: none;
+            color: #cae6e6;
+            padding: 0.25rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .nav-tabs .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #fff;
+        }
+
+        .nav-tabs .tab-btn.active {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.25rem 2.5rem;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1.8rem 0 1rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 3px solid rgba(26, 107, 107, 0.18);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .section-title i {
+            font-size: 1.1rem;
+            color: var(--accent);
+        }
+
+        .section-title .count {
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0.05rem 0.7rem;
+        }
+
+        .section-subtitle {
+            color: #4f6f6f;
+            font-size: 0.92rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .section-panel {
+            display: block;
+        }
+
+        .section-panel.hidden {
+            display: none;
+        }
+
+        /* MCQ cards */
+        .question {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.1rem 1.1rem 0.1rem 1.1rem;
+            margin-bottom: 1.1rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(26, 107, 107, 0.06);
+        }
+
+        .question:hover {
+            box-shadow: 0 6px 22px rgba(10, 40, 40, 0.07);
+        }
+
+        .question p {
+            font-weight: 600;
+            font-size: 0.97rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            line-height: 1.5;
+        }
+
+        .question .q-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            line-height: 1.6;
+            margin-right: 0.4rem;
+        }
+
+        .options label {
+            display: block;
+            background: #fafdfd;
+            border: 1px solid #dde8ec;
+            border-radius: 8px;
+            padding: 0.4rem 0.85rem;
+            margin-top: 0.4rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-weight: 450;
+            font-size: 0.93rem;
+        }
+
+        .options label:hover {
+            background: #e6f3f3;
+            border-color: var(--accent);
+        }
+
+        .options input[type="radio"] {
+            margin-right: 0.5rem;
+            accent-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .question-feedback {
+            margin-top: 0.8rem;
+            padding: 0.3rem 0 0.1rem 0;
+            border-top: 1px dashed #d5e3e3;
+        }
+
+        .answer-block strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--primary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .answer-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .answer-item {
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid #e3edf0;
+            background: #ffffff;
+            font-weight: 500;
+            font-size: 0.88rem;
+        }
+
+        .answer-correct {
+            background: #ebfaf3;
+            border-color: #b5e6cc;
+            color: #065f46;
+        }
+
+        .answer-wrong {
+            background: #fdeeef;
+            border-color: #f7b5b5;
+            color: #8f1a2e;
+        }
+
+        .user-choice {
+            outline: 2px dashed rgba(0, 0, 0, 0.06);
+        }
+
+        .explanation {
+            margin-top: 6px;
+            padding: 7px 12px;
+            border-radius: 8px;
+            background: #f0f8f6;
+            color: #065f46;
+            font-size: 0.89rem;
+            line-height: 1.5;
+            border-left: 4px solid var(--accent);
+        }
+
+        .explanation.wrong {
+            background: #fdf3f4;
+            color: #6f1a1a;
+            border-left-color: #e07a7a;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.6rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(26, 107, 107, 0.25);
+        }
+
+        .btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(26, 107, 107, 0.32);
+        }
+
+        .btn:active {
+            transform: scale(0.96);
+        }
+
+        .btn i {
+            font-size: 0.9rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .btn-sm {
+            padding: 0.3rem 1rem;
+            font-size: 0.85rem;
+        }
+
+        .submit-wrap {
+            text-align: center;
+            margin: 1.5rem 0 2rem;
+        }
+
+        .result {
+            margin-top: 1.5rem;
+            padding: 1.5rem 1.5rem 1rem;
+            background: #eff8f7;
+            border-radius: var(--radius);
+            text-align: center;
+            display: none;
+            border: 1px solid #bddcd9;
+        }
+
+        .result h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.2rem;
+        }
+
+        .score {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0.2rem 0 0.4rem;
+        }
+
+        /* Table Section */
+        .table-wrap {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+            overflow-x: auto;
+        }
+
+        .table-wrap table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .table-wrap th,
+        .table-wrap td {
+            border: 1px solid #cbd5d9;
+            padding: 0.6rem 0.4rem;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .table-wrap th {
+            background: #e2edf0;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .table-wrap td input {
+            width: 100%;
+            border: 1px solid #bcc9ce;
+            border-radius: 4px;
+            padding: 0.3rem 0.4rem;
+            font-size: 0.85rem;
+            background: #fafcfd;
+            text-align: center;
+        }
+
+        .table-wrap td input:focus {
+            outline: 2px solid var(--accent);
+            border-color: transparent;
+        }
+
+        .table-feedback {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            background: #f0f8f6;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            display: none;
+        }
+
+        .table-feedback.visible {
+            display: block;
+        }
+
+        .table-feedback .correct {
+            color: #065f46;
+        }
+        .table-feedback .wrong {
+            color: #8f1a2e;
+        }
+
+        .table-feedback table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        .table-feedback td {
+            padding: 0.3rem 0.5rem;
+            border-bottom: 1px solid #d5e3e3;
+        }
+
+        .table-feedback .status-icon {
+            font-size: 1.2rem;
+        }
+
+        .scroll-target {
+            scroll-margin-top: 90px;
+        }
+
+        @media (max-width: 700px) {
+            body {
+                padding-top: 72px;
+            }
+            .logo h1 {
+                font-size: 0.95rem;
+            }
+            .header-inner {
+                padding: 0 1rem;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.3rem;
+            }
+            .badge {
+                align-self: flex-start;
+            }
+            .nav-tabs {
+                justify-content: center;
+            }
+            .nav-tabs .tab-btn {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.7rem;
+            }
+            .question {
+                padding: 0.9rem 0.9rem 0.1rem 0.9rem;
+            }
+            .section-title {
+                font-size: 1.1rem;
+            }
+            .score {
+                font-size: 2.2rem;
+            }
+            .btn {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.85rem;
+            }
+            .table-wrap td input {
+                font-size: 0.75rem;
+                padding: 0.2rem;
+            }
+        }
+
+        .text-muted {
+            color: #4f6f6f;
+            font-size: 0.9rem;
+        }
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════ HEADER ═══════ -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <i class="fas fa-capsules"></i>
+                <h1>2023 Therapeutics Test 3</h1>
+            </div>
+            <span class="badge"><i class="fas fa-pencil-alt"></i> &nbsp;60 MCQs + Table</span>
+            <div class="nav-tabs">
+                <button class="tab-btn active" data-section="mcq">MCQs</button>
+                <button class="tab-btn" data-section="table">Section B (Table)</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══════ MAIN CONTENT ═══════ -->
+    <main>
+
+        <!-- ──── SECTION 1: MCQs ──── -->
+        <section class="container section-panel" id="section-mcq">
+            <div class="section-title scroll-target" id="mcq-top">
+                <i class="fas fa-list-ul"></i> Multiple Choice Questions
+                <span class="count">60</span>
+            </div>
+            <p class="section-subtitle">Select the best answer for each question, then click <strong>Submit All MCQs</strong>.</p>
+
+            <form id="quizForm">
+
+                <!-- We'll generate 60 questions using JavaScript to keep code manageable -->
+                <!-- But we'll write them out for simplicity; we'll use a template -->
+                <!-- We'll insert questions via JavaScript to reduce HTML size -->
+                <!-- For this answer, we'll generate the questions dynamically -->
+            </form>
+
+            <div id="mcqContainer"></div>
+
+            <div class="submit-wrap">
+                <button type="button" class="btn" onclick="submitMCQ()">
+                    <i class="fas fa-check-circle"></i> Submit All MCQs
+                </button>
+            </div>
+
+            <div class="result" id="resultBox">
+                <h3><i class="fas fa-chart-simple"></i> Your Score</h3>
+                <div class="score" id="score">0%</div>
+                <p class="text-muted">Review the feedback below each question.</p>
+                <div id="answers"></div>
+            </div>
+        </section>
+
+        <!-- ──── SECTION 2: TABLE ──── -->
+        <section class="container section-panel hidden" id="section-table">
+            <div class="section-title scroll-target" id="table-top">
+                <i class="fas fa-table"></i> Section B – Fill in the Table
+                <span class="count">15 marks</span>
+            </div>
+            <p class="section-subtitle">Fill in the blank cells based on the given lead information. Each blank is worth 1 mark.</p>
+
+            <div class="table-wrap">
+                <table id="sectionBTable">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Class of drugs</th>
+                            <th>Example</th>
+                            <th>Indication</th>
+                            <th>Side effects &amp; Interaction</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><input type="text" id="t1c" placeholder="Class" /></td>
+                            <td>Clindamycin</td>
+                            <td><input type="text" id="t1i" placeholder="Indication" /></td>
+                            <td><input type="text" id="t1s" placeholder="Side effects" /></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><input type="text" id="t2c" placeholder="Class" /></td>
+                            <td><input type="text" id="t2e" placeholder="Example" /></td>
+                            <td>Pseudomonas colitis</td>
+                            <td><input type="text" id="t2s" placeholder="Side effects" /></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><input type="text" id="t3c" placeholder="Class" /></td>
+                            <td>Cilastatin</td>
+                            <td><input type="text" id="t3i" placeholder="Indication" /></td>
+                            <td><input type="text" id="t3s" placeholder="Side effects" /></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><input type="text" id="t4c" placeholder="Class" /></td>
+                            <td><input type="text" id="t4e" placeholder="Example" /></td>
+                            <td>Cryptococcal neoformans</td>
+                            <td><input type="text" id="t4s" placeholder="Side effects" /></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Broad spectrum penicillins</td>
+                            <td><input type="text" id="t5e" placeholder="Example" /></td>
+                            <td><input type="text" id="t5i" placeholder="Indication" /></td>
+                            <td><input type="text" id="t5s" placeholder="Side effects" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="submit-wrap">
+                <button type="button" class="btn" onclick="submitTable()">
+                    <i class="fas fa-check-circle"></i> Check Table Answers
+                </button>
+            </div>
+
+            <div class="table-feedback" id="tableFeedback">
+                <h4 style="margin-bottom:0.5rem;"><i class="fas fa-clipboard-check"></i> Table Feedback</h4>
+                <div id="tableFeedbackContent"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ═══════ JAVASCRIPT ═══════ -->
+    <script>
+        // ─── TAB NAVIGATION ───
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const section = this.dataset.section;
+                document.querySelectorAll('.section-panel').forEach(p => p.classList.add('hidden'));
+                document.getElementById('section-' + section).classList.remove('hidden');
+                const topEl = document.getElementById(section + '-top');
+                if (topEl) topEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // ─── MCQ DATA ───
+        const mcqData = [
+            // q1
+            {
+                id: 'q1',
+                text: 'The following are bacteriostatic <strong>EXCEPT</strong>',
+                options: [
+                    'A. Doxycycline',
+                    'B. Erythromycin',
+                    'C. Benzathine',
+                    'D. Sulfamethoxazole combination with Trimethoprim',
+                    'E. Trimethoprim'
+                ],
+                correct: 'c',
+                explanation: 'Benzathine penicillin is bactericidal (penicillin). Doxycycline, erythromycin, sulfamethoxazole/trimethoprim, and trimethoprim are bacteriostatic.'
+            },
+            // q2
+            {
+                id: 'q2',
+                text: 'Regarding renal toxicity, which group of drugs would require dose adjustment in renal insufficiency or simply having the treatment to be stopped?',
+                options: [
+                    'A. Penicillins',
+                    'B. Aminoglycosides',
+                    'C. Tetracyclines',
+                    'D. Macrolides',
+                    'E. All anti-microbials'
+                ],
+                correct: 'b',
+                explanation: 'Aminoglycosides are nephrotoxic and require dose adjustment in renal impairment. Other classes may require adjustment but aminoglycosides are the classic example.'
+            },
+            // q3
+            {
+                id: 'q3',
+                text: 'In which of the following is renal toxicity a notable side effect?',
+                options: [
+                    'A. Dicloxacillin',
+                    'B. Minocycline',
+                    'C. Erythromycin',
+                    'D. Capreomycin',
+                    'E. Moxifloxacin'
+                ],
+                correct: 'd',
+                explanation: 'Capreomycin is an aminoglycoside-like antibiotic with significant nephrotoxicity.'
+            },
+            // q4
+            {
+                id: 'q4',
+                text: 'In terms of drug toxicity, which of the following is the best example of drugs having their expired metabolite exhibiting more toxicity than that of the unexpired drug?',
+                options: [
+                    'A. Procaine penicillin',
+                    'B. Cephalexin',
+                    'C. Ceftriaxone',
+                    'D. Doxycycline',
+                    'E. Clarithromycin'
+                ],
+                correct: 'd',
+                explanation: 'Expired tetracyclines (like doxycycline) can degrade to toxic metabolites causing Fanconi syndrome.'
+            },
+            // q5
+            {
+                id: 'q5',
+                text: 'Regarding selection of antimicrobial, the following is considered as a property relating to the antimicrobial activity',
+                options: [
+                    'A. Immune state',
+                    'B. Susceptibility test',
+                    'C. Severity of infection',
+                    'D. Neoplastic chemotherapeutic agents',
+                    'E. All of the above'
+                ],
+                correct: 'b',
+                explanation: 'Susceptibility testing directly measures antimicrobial activity against the organism. The others are host or infection factors.'
+            },
+            // q6
+            {
+                id: 'q6',
+                text: 'Microorganisms can develop resistance based on their ability to inactivate the following class of drugs',
+                options: [
+                    'A. Penicillins',
+                    'B. Cephalosporins',
+                    'C. Aminoglycosides',
+                    'D. Macrolides',
+                    'E. Tetracyclines'
+                ],
+                correct: 'a',
+                explanation: 'Bacteria produce beta-lactamase enzymes that inactivate penicillins and cephalosporins. This is a classic resistance mechanism.'
+            },
+            // q7
+            {
+                id: 'q7',
+                text: 'Staphylococcus infections can best be treated using the following drug',
+                options: [
+                    'A. Benzyl penicillin',
+                    'B. Phenoxymethyl penicillin',
+                    'C. Dicloxacillin',
+                    'D. Ampicillin',
+                    'E. Procaine penicillin'
+                ],
+                correct: 'c',
+                explanation: 'Dicloxacillin is a penicillinase-resistant penicillin effective against penicillinase-producing Staphylococcus.'
+            },
+            // q8
+            {
+                id: 'q8',
+                text: 'The following drug cannot cross the blood brain barrier whether it is inflamed or not inflamed',
+                options: [
+                    'A. Erythromycin',
+                    'B. Benzyl penicillin',
+                    'C. Chloramphenicol',
+                    'D. Ceftazidime',
+                    'E. Cefixime'
+                ],
+                correct: 'a',
+                explanation: 'Macrolides like erythromycin are large and do not penetrate the CNS effectively, even with inflamed meninges.'
+            },
+            // q9
+            {
+                id: 'q9',
+                text: 'Antimicrobial combinations help achieve all the following therapeutic benefits <strong>except</strong>',
+                options: [
+                    'A. Treatment of life threatening infection like the nosocomial ones',
+                    'B. Prevention of antimicrobial resistance in conditions where it is very likely',
+                    'C. Control of the side effect profile',
+                    'D. Treatment of suspected mixed infections',
+                    'E. Replenishing of the microflora'
+                ],
+                correct: 'e',
+                explanation: 'Antimicrobial combinations do not replenish microflora; they may disrupt it. The others are valid benefits of combination therapy.'
+            },
+            // q10
+            {
+                id: 'q10',
+                text: 'Which one among the listed drugs below is an example of beta lactamase resistant penicillins?',
+                options: [
+                    'A. Clavulanic acid',
+                    'B. Nafcillin',
+                    'C. Ticarcillin',
+                    'D. Sulbactam',
+                    'E. Piperacillin'
+                ],
+                correct: 'b',
+                explanation: 'Nafcillin is a penicillinase-resistant penicillin. Clavulanic acid and sulbactam are beta-lactamase inhibitors, not penicillins.'
+            },
+            // q11
+            {
+                id: 'q11',
+                text: 'Regarding the classification of cephalosporin, which of the following is a second generation?',
+                options: [
+                    'A. Cefadroxil',
+                    'B. Cefixime',
+                    'C. Cefpodoxime',
+                    'D. Cefaclor',
+                    'E. Cefradine'
+                ],
+                correct: 'd',
+                explanation: 'Cefaclor is a second-generation cephalosporin. Cefadroxil (first), cefixime and cefpodoxime (third), cefradine (first).'
+            },
+            // q12
+            {
+                id: 'q12',
+                text: 'A mother brings in a boy aged 2 who has been crying from the previous night and has been touching the ear. Upon examination you discover a trace of pus, and so you conclude it is otitis media caused by Streptococcus pyogenes. What best drug would you prescribe for the boy?',
+                options: [
+                    'A. Cloxacillin',
+                    'B. Amoxycillin',
+                    'C. Methicillin',
+                    'D. Benzathine',
+                    'E. Clavulanate'
+                ],
+                correct: 'b',
+                explanation: 'Amoxicillin is first-line for acute otitis media in children (Streptococcus pyogenes is susceptible).'
+            },
+            // q13
+            {
+                id: 'q13',
+                text: 'Which of the following is very active against gonococcal infection?',
+                options: [
+                    'A. Ceftazidime',
+                    'B. Cephalexin',
+                    'C. Cefuroxime',
+                    'D. Cefotetan',
+                    'E. Cefradine'
+                ],
+                correct: 'c',
+                explanation: 'Cefuroxime is a second-generation cephalosporin with good activity against Neisseria gonorrhoeae (though ceftriaxone is preferred, but not listed).'
+            },
+            // q14
+            {
+                id: 'q14',
+                text: 'The following can be given in patients who have history of hypersensitivity reactions with benzyl penicillin',
+                options: [
+                    'A. Imipenem',
+                    'B. Cefuroxime',
+                    'C. Meropenem',
+                    'D. Aztreonam',
+                    'E. Amoxicillin'
+                ],
+                correct: 'd',
+                explanation: 'Aztreonam is a monobactam with minimal cross-reactivity with penicillins, safe in penicillin-allergic patients.'
+            },
+            // q15
+            {
+                id: 'q15',
+                text: 'The following drug can safely be used together with gentamycin <strong>EXCEPT</strong>',
+                options: [
+                    'A. Vancomycin',
+                    'B. Benzyl penicillin',
+                    'C. Amoxycillin + Clavulanic acid',
+                    'D. Cefotaxime',
+                    'E. Cefuroxime'
+                ],
+                correct: 'a',
+                explanation: 'Vancomycin + gentamicin increases nephrotoxicity; they should not be used together if possible. Penicillins and cephalosporins can be combined with gentamicin for synergy.'
+            },
+            // q16
+            {
+                id: 'q16',
+                text: 'In terms of protein synthesis inhibition, the following target the 50s subunit',
+                options: [
+                    'A. Tetracycline',
+                    'B. Amikacin',
+                    'C. Vancomycin',
+                    'D. Clarithromycin',
+                    'E. Minocycline'
+                ],
+                correct: 'd',
+                explanation: 'Macrolides (clarithromycin) bind to the 50S ribosomal subunit. Tetracyclines bind 30S, aminoglycosides bind 30S, vancomycin inhibits cell wall.'
+            },
+            // q17
+            {
+                id: 'q17',
+                text: 'In the treatment of enterococcal, staphylococcal or viridans caused infections like endocarditis, the following can be used in combinations with penicillins',
+                options: [
+                    'A. Gentamycin',
+                    'B. Azithromycin',
+                    'C. Chloramphenicol',
+                    'D. Doxycycline',
+                    'E. Sulfamethoxazole'
+                ],
+                correct: 'a',
+                explanation: 'Gentamicin is used synergistically with penicillins for enterococcal endocarditis and other serious infections.'
+            },
+            // q18
+            {
+                id: 'q18',
+                text: 'A patient B comes complaining of the prickly burning sensation especially when exposed to the sun. He says this started when he was commenced on a course of medicine. He is likely to suffer more phototoxicity when on the following drug',
+                options: [
+                    'A. Ciprofloxacin',
+                    'B. Doxycycline',
+                    'C. Tetracycline',
+                    'D. Streptomycin',
+                    'E. Benzyl penicillin'
+                ],
+                correct: 'a',
+                explanation: 'Fluoroquinolones like ciprofloxacin are notorious for phototoxicity. Tetracyclines also cause photosensitivity but ciprofloxacin is more commonly associated.'
+            },
+            // q19
+            {
+                id: 'q19',
+                text: 'Massive skin eruptions is an established side effect of the following drug',
+                options: [
+                    'A. Benzyl penicillin',
+                    'B. Sulphamethoxazole+trimethoprim',
+                    'C. Cefotaxime',
+                    'D. Streptomycin',
+                    'E. Cefipime'
+                ],
+                correct: 'b',
+                explanation: 'Sulfonamides (like sulfamethoxazole/trimethoprim) can cause severe cutaneous reactions including Stevens-Johnson syndrome and toxic epidermal necrolysis.'
+            },
+            // q20
+            {
+                id: 'q20',
+                text: 'Which of the following is the most suitable for management or prevention infections related to burns?',
+                options: [
+                    'A. Sulfacetamide',
+                    'B. Sulfadiazine',
+                    'C. Sulfadoxine',
+                    'D. Sulfadimidine',
+                    'E. Sulfamethoxazole'
+                ],
+                correct: 'b',
+                explanation: 'Silver sulfadiazine is used topically for burns to prevent infection. Sulfadiazine is the active component.'
+            },
+            // q21
+            {
+                id: 'q21',
+                text: 'Trimethoprim combination with sulphamethoxazole is effective against the following',
+                options: [
+                    'A. Pneumocystis jiroveci pneumonia',
+                    'B. Klebsiella pneumonia',
+                    'C. Prevention of UTI and prostate infection',
+                    'D. Salmonella',
+                    'E. All of the above'
+                ],
+                correct: 'e',
+                explanation: 'TMP-SMX is effective against all listed: PJP, Klebsiella, UTI prophylaxis, and Salmonella (though resistance is increasing).'
+            },
+            // q22
+            {
+                id: 'q22',
+                text: 'Sulphonamides cause the following adverse effect',
+                options: [
+                    'A. Pancreatitis',
+                    'B. Crystalluria',
+                    'C. Megaloblastic anaemia',
+                    'D. CNS effects',
+                    'E. Photosensitivity'
+                ],
+                correct: 'b',
+                explanation: 'Sulfonamides can precipitate in urine causing crystalluria, especially with inadequate hydration. Megaloblastic anemia is seen with trimethoprim (folate antagonist).'
+            },
+            // q23
+            {
+                id: 'q23',
+                text: 'Which of the following drugs is a structural analogue of Para Amino Benzoic Acid?',
+                options: [
+                    'A. Clarithromycin',
+                    'B. Sulfamethoxazole',
+                    'C. Trimethoprim',
+                    'D. Pyrimethamine',
+                    'E. Sulfadiazine'
+                ],
+                correct: 'b',
+                explanation: 'Sulfonamides are structural analogues of PABA and competitively inhibit dihydropteroate synthase. Sulfamethoxazole is a sulfonamide.'
+            },
+            // q24
+            {
+                id: 'q24',
+                text: 'Patient K has been diagnosed with bacterial blepharitis and conjunctivitis. Further assessment reveals sensitivity to sulphonamides. Which of the following drugs would you recommend for such?',
+                options: [
+                    'A. Sulphamethoxazole',
+                    'B. Pyrimethamine',
+                    'C. Sulfasalazine',
+                    'D. Trimethoprim',
+                    'E. Sulfacetamide'
+                ],
+                correct: 'd',
+                explanation: 'Trimethoprim (often with polymyxin B) is a topical option for eye infections that is not a sulfonamide. Sulfonamides are contraindicated due to allergy.'
+            },
+            // q25
+            {
+                id: 'q25',
+                text: 'Which of the following affects the joints and tendons and thus should only be considered for use in children when their benefit outweighs the risk?',
+                options: [
+                    'A. Tetracycline',
+                    'B. Sulfamethoxazole',
+                    'C. Pyrimethamine',
+                    'D. Levofloxacin',
+                    'E. Gentamycin'
+                ],
+                correct: 'd',
+                explanation: 'Fluoroquinolones (like levofloxacin) can cause arthropathy and tendon damage in children; use only if benefits outweigh risks.'
+            },
+            // q26
+            {
+                id: 'q26',
+                text: 'Which of the following drugs work more by inhibiting DNA gyrase as a way of exerting its antimicrobial activity?',
+                options: [
+                    'A. Levofloxacin',
+                    'B. Moxifloxacin',
+                    'C. Norfloxacin',
+                    'D. Ciprofloxacin',
+                    'E. Ofloxacin'
+                ],
+                correct: 'd',
+                explanation: 'Ciprofloxacin is the prototype fluoroquinolone that inhibits DNA gyrase (topoisomerase II) and topoisomerase IV. All fluoroquinolones do, but ciprofloxacin is the classic example.'
+            },
+            // q27
+            {
+                id: 'q27',
+                text: 'JM just came back from a trip and 3 days after he has developed diarrhoea the cause of which has been found to be E. coli. Which of the following drugs is appropriate for the treatment of such type of diarrhoea?',
+                options: [
+                    'A. Sulfamethoxazole',
+                    'B. Metronidazole',
+                    'C. Ceftriaxone',
+                    'D. Norfloxacin',
+                    'E. Cotrimoxazole'
+                ],
+                correct: 'd',
+                explanation: 'Norfloxacin is a fluoroquinolone used for traveller\'s diarrhoea caused by enterotoxigenic E. coli. It is effective against many Gram-negative bacteria.'
+            },
+            // q28
+            {
+                id: 'q28',
+                text: 'Which of the following drugs tend to cause the QT prolongation?',
+                options: [
+                    'A. Erythromycin',
+                    'B. Ciprofloxacin',
+                    'C. Amoxicillin',
+                    'D. Gentamicin',
+                    'E. Vancomycin'
+                ],
+                correct: 'a',
+                explanation: 'Macrolides, especially erythromycin, are known to prolong the QT interval and can cause torsades de pointes. Fluoroquinolones also, but erythromycin is a classic example.'
+            },
+            // q29
+            {
+                id: 'q29',
+                text: 'Which of the following can cause tendon rupture?',
+                options: [
+                    'A. Erythromycin',
+                    'B. Aztreonam',
+                    'C. Ciprofloxacin',
+                    'D. Meropenem',
+                    'E. Cefadroxil'
+                ],
+                correct: 'c',
+                explanation: 'Fluoroquinolones (ciprofloxacin) are associated with tendinitis and tendon rupture, especially in elderly and those on corticosteroids.'
+            },
+            // q30
+            {
+                id: 'q30',
+                text: 'Which of the following group of drugs would you counsel the patient to beware of the extremes of either hypoglycemia or hyperglycemia?',
+                options: [
+                    'A. Tetracyclines',
+                    'B. Quinolones',
+                    'C. Carbapenems',
+                    'D. Macrolides',
+                    'E. Monobactams'
+                ],
+                correct: 'b',
+                explanation: 'Fluoroquinolones (quinolones) can cause dysglycemia (both hypo- and hyperglycemia), particularly in diabetics and elderly.'
+            },
+            // q31
+            {
+                id: 'q31',
+                text: 'Patient BBM comes for review after one month T.B treatment. Among his complaints prickly and twitching sensation in his feet and hands accompanied by numbness and this he says has made him uncomfortable. Which of the following drugs do you think had caused this problem?',
+                options: [
+                    'A. Rifampicin',
+                    'B. Isoniazid',
+                    'C. Ethambutol',
+                    'D. Pyrazinamide',
+                    'E. Ethionamide'
+                ],
+                correct: 'b',
+                explanation: 'Isoniazid causes peripheral neuropathy (sensory and motor) due to pyridoxine (vitamin B6) deficiency. This can be prevented with B6 supplementation.'
+            },
+            // q32
+            {
+                id: 'q32',
+                text: 'Which of the following drugs can be used for prophylactic treatment of target groups identified to be at risk of TB infections?',
+                options: [
+                    'A. High dose Isoniazid',
+                    'B. Cycloserine',
+                    'C. Rifampicin',
+                    'D. Pyrazinamide',
+                    'E. Linezolid'
+                ],
+                correct: 'a',
+                explanation: 'Isoniazid (usually 300 mg daily) is the standard drug for TB prophylaxis (latent TB treatment).'
+            },
+            // q33
+            {
+                id: 'q33',
+                text: 'Which among the hepatotoxic drugs causes the least of this effect?',
+                options: [
+                    'A. Rifampicin',
+                    'B. Isoniazid',
+                    'C. Pyrazinamide',
+                    'D. Ethambutol',
+                    'E. Streptomycin'
+                ],
+                correct: 'd',
+                explanation: 'Ethambutol is generally not hepatotoxic; it is well tolerated. Rifampicin, isoniazid, and pyrazinamide can cause hepatotoxicity.'
+            },
+            // q34
+            {
+                id: 'q34',
+                text: 'KM is a known epileptic patient whose presentation of seizures is not well controlled despite being on regular treatment. Which of the following drugs would you take extra caution on its use in KM because of fear of the likely worsening of the described case above?',
+                options: [
+                    'A. Ethambutol',
+                    'B. Rifampicin',
+                    'C. Bedaquiline',
+                    'D. Isoniazid',
+                    'E. Kanamycin'
+                ],
+                correct: 'd',
+                explanation: 'Isoniazid can lower the seizure threshold and may precipitate seizures, so caution in epileptic patients.'
+            },
+            // q35
+            {
+                id: 'q35',
+                text: 'A truck driver comes and explains that 2 weeks ago, after a chronic cough and having been subjected to a number of tests, he was started on treatment in Congo where he had gone for work. Ever since he started the medicine, his urine has not been usual as it has mostly been brownish or orange. He now ponders on stopping the treatment. Which of the following drugs is most likely the cause of this effect?',
+                options: [
+                    'A. Rifampicin',
+                    'B. Pyrazinamide',
+                    'C. Isoniazid',
+                    'D. Ethambutol',
+                    'E. Levofloxacin'
+                ],
+                correct: 'a',
+                explanation: 'Rifampicin causes red-orange discoloration of urine, tears, sweat, and other body fluids, which is harmless but alarming.'
+            },
+            // q36
+            {
+                id: 'q36',
+                text: 'Which of the following belong to Group D1 of the drugs used for management of MDR T.B?',
+                options: [
+                    'A. Linezolid',
+                    'B. High dose isoniazid',
+                    'C. Cycloserine',
+                    'D. Moxifloxacin',
+                    'E. Bedaquiline'
+                ],
+                correct: 'c',
+                explanation: 'In WHO classification, Group D1 includes cycloserine, ethambutol, and others. Linezolid, bedaquiline, and fluoroquinolones are Group A.'
+            },
+            // q37
+            {
+                id: 'q37',
+                text: 'Which of the following drugs played an upper hand in having the T.B treatment duration period reduced?',
+                options: [
+                    'A. Rifampicin',
+                    'B. Cycloserine',
+                    'C. Ethambutol',
+                    'D. Pyrazinamide',
+                    'E. Isoniazid'
+                ],
+                correct: 'd',
+                explanation: 'Pyrazinamide allowed shortening of TB treatment from 9 to 6 months because of its sterilizing activity in acidic environments.'
+            },
+            // q38
+            {
+                id: 'q38',
+                text: 'Which of the following has been found to be effective in treatment of staphylococcal endocarditis?',
+                options: [
+                    'A. Moxifloxacin',
+                    'B. Amoxclav',
+                    'C. Rifampicin',
+                    'D. Ceftriaxone',
+                    'E. Clarithromycin'
+                ],
+                correct: 'c',
+                explanation: 'Rifampicin is used in combination for staphylococcal endocarditis, especially with prosthetic valves, due to its biofilm activity.'
+            },
+            // q39
+            {
+                id: 'q39',
+                text: 'Which of the following drugs inhibit the precursor of lanosterol?',
+                options: [
+                    'A. Terbinafine',
+                    'B. Ticonazole',
+                    'C. Tolnaftate',
+                    'D. Griseofulvin',
+                    'E. Flucytosine'
+                ],
+                correct: 'a',
+                explanation: 'Terbinafine inhibits squalene epoxidase, which converts squalene to lanosterol, thus inhibiting the precursor of lanosterol. Azoles inhibit lanosterol 14α-demethylase.'
+            },
+            // q40
+            {
+                id: 'q40',
+                text: 'The following compromises the cell membrane of the fungi',
+                options: [
+                    'A. Nystatin',
+                    'B. Terbinafine',
+                    'C. Caspofungin',
+                    'D. Fluconazole',
+                    'E. Tolnaftate'
+                ],
+                correct: 'a',
+                explanation: 'Nystatin is a polyene antifungal that binds to ergosterol in the fungal cell membrane, creating pores and causing leakage.'
+            },
+            // q41
+            {
+                id: 'q41',
+                text: 'The following drug will need to be stopped way before a couple may embark on conceiving',
+                options: [
+                    'A. Itraconazole',
+                    'B. Griseofulvin',
+                    'C. Amphotericin B',
+                    'D. Ketoconazole',
+                    'E. Voriconazole'
+                ],
+                correct: 'b',
+                explanation: 'Griseofulvin is teratogenic and should be discontinued for at least 1 month (some say 6 months) before pregnancy due to its long tissue persistence.'
+            },
+            // q42
+            {
+                id: 'q42',
+                text: 'The following indirectly or directly inhibit the formation of cell membrane <strong>Except</strong>',
+                options: [
+                    'A. Terbinafine',
+                    'B. Posaconazole',
+                    'C. Caspofungin',
+                    'D. Naftifine',
+                    'E. Itraconazole'
+                ],
+                correct: 'c',
+                explanation: 'Caspofungin inhibits cell wall (β-glucan synthesis), not cell membrane. Terbinafine, azoles (posaconazole, itraconazole), and naftifine affect membrane synthesis.'
+            },
+            // q43
+            {
+                id: 'q43',
+                text: 'Which of the following drugs\' absorption will be affected by the elevation of gastric pH?',
+                options: [
+                    'A. Fluconazole',
+                    'B. Ketoconazole',
+                    'C. Nystatin',
+                    'D. Miconazole',
+                    'E. Voriconazole'
+                ],
+                correct: 'b',
+                explanation: 'Ketoconazole requires acidic gastric pH for dissolution and absorption; antacids or PPIs reduce its absorption.'
+            },
+            // q44
+            {
+                id: 'q44',
+                text: 'The following has excellent activity against aspergillus species',
+                options: [
+                    'A. Flucytosine',
+                    'B. Caspofungin',
+                    'C. Naftifine',
+                    'D. Ciclopirox',
+                    'E. Fluconazole'
+                ],
+                correct: 'b',
+                explanation: 'Caspofungin (echinocandin) has good activity against Aspergillus species. Voriconazole is the drug of choice, but among options, caspofungin is active.'
+            },
+            // q45
+            {
+                id: 'q45',
+                text: 'Which of the following drugs is used in the management of hepatitis B?',
+                options: [
+                    'A. Ribavirin',
+                    'B. Tenofovir',
+                    'C. Cidofovir',
+                    'D. Ganciclovir',
+                    'E. Indinavir'
+                ],
+                correct: 'b',
+                explanation: 'Tenofovir is a nucleotide analogue used for chronic hepatitis B. Ribavirin is for hepatitis C, cidofovir and ganciclovir for CMV, indinavir for HIV.'
+            },
+            // q46
+            {
+                id: 'q46',
+                text: 'Which of the following drugs require a hypersensitivity test to be done first before initiation of treatment?',
+                options: [
+                    'A. Lamivudine',
+                    'B. Emtricitabine',
+                    'C. Tenofovir',
+                    'D. Efavirenz',
+                    'E. Abacavir'
+                ],
+                correct: 'e',
+                explanation: 'Abacavir requires HLA-B*5701 screening because of a hypersensitivity reaction risk in patients with that allele.'
+            },
+            // q47
+            {
+                id: 'q47',
+                text: 'A patient is brought to your consulting and after your investigation, you discover one alarming reading on the hematogram where it shows Hb of 7 (Lower Hb). Which drug would you not consider for this patient?',
+                options: [
+                    'A. Lamivudine',
+                    'B. Zidovudine',
+                    'C. Stavudine',
+                    'D. Didanosine',
+                    'E. Emtricitabine'
+                ],
+                correct: 'b',
+                explanation: 'Zidovudine (AZT) causes significant bone marrow suppression leading to anaemia, neutropenia, and thrombocytopenia. It should be avoided in patients with low Hb.'
+            },
+            // q48
+            {
+                id: 'q48',
+                text: 'Trifluridine can cause the following side effect',
+                options: [
+                    'A. Headache',
+                    'B. Lip edema',
+                    'C. Pruritus',
+                    'D. Herpetic lesions',
+                    'E. Vomiting'
+                ],
+                correct: 'c',
+                explanation: 'Trifluridine (ophthalmic) can cause local irritation, burning, and pruritus. It is used for herpes keratitis.'
+            },
+            // q49
+            {
+                id: 'q49',
+                text: 'Which of the following drug causes both DNA chain termination and inhibition of DNA synthesis?',
+                options: [
+                    'A. Ganciclovir',
+                    'B. Famciclovir',
+                    'C. Valacyclovir',
+                    'D. Acyclovir',
+                    'E. Cidofovir'
+                ],
+                correct: 'a',
+                explanation: 'Ganciclovir inhibits viral DNA polymerase and causes chain termination after incorporation into DNA. It is used for CMV.'
+            },
+            // q50
+            {
+                id: 'q50',
+                text: 'Which of the following drugs is the most effective against Cytomegalovirus among heart transplant patients?',
+                options: [
+                    'A. Valaciclovir',
+                    'B. Acyclovir',
+                    'C. Valganciclovir',
+                    'D. Ganciclovir',
+                    'E. Tenofovir'
+                ],
+                correct: 'c',
+                explanation: 'Valganciclovir is the oral prodrug of ganciclovir and is preferred for CMV prophylaxis and treatment in transplant patients due to high oral bioavailability.'
+            },
+            // q51
+            {
+                id: 'q51',
+                text: 'Which of the following drugs does not depend on viral kinases for activation?',
+                options: [
+                    'A. Valacyclovir',
+                    'B. Foscarnet',
+                    'C. Acyclovir',
+                    'D. Trifluridine',
+                    'E. Cidofovir'
+                ],
+                correct: 'b',
+                explanation: 'Foscarnet directly inhibits viral DNA polymerase without needing phosphorylation by viral kinases. Acyclovir and others require viral thymidine kinase.'
+            },
+            // q52
+            {
+                id: 'q52',
+                text: 'Which of the following drugs does not depend on viral kinases and host kinases?',
+                options: [
+                    'A. Valacyclovir',
+                    'B. Foscarnet',
+                    'C. Acyclovir',
+                    'D. Trifluridine',
+                    'E. Cidofovir'
+                ],
+                correct: 'b',
+                explanation: 'Foscarnet acts directly without requiring phosphorylation by any kinase (viral or host).'
+            },
+            // q53
+            {
+                id: 'q53',
+                text: 'Which of the following set of combinations is useful to treat conditions that may be resistant to either of the two individual drugs when used alone?',
+                options: [
+                    'A. Foscarnet + Cidofovir',
+                    'B. Foscarnet + Valganciclovir',
+                    'C. Foscarnet + Acyclovir',
+                    'D. Foscarnet + Ganciclovir',
+                    'E. Foscarnet + Adefovir'
+                ],
+                correct: 'd',
+                explanation: 'Foscarnet + Ganciclovir is used for resistant CMV infections (e.g., in immunocompromised patients). They have synergistic activity.'
+            },
+            // q54
+            {
+                id: 'q54',
+                text: 'The following are examples of NRTIs <strong>Except</strong>',
+                options: [
+                    'A. Stavudine',
+                    'B. Tenofovir',
+                    'C. Emtricitabine',
+                    'D. Didanosine',
+                    'E. Etravirine'
+                ],
+                correct: 'e',
+                explanation: 'Etravirine is a non-nucleoside reverse transcriptase inhibitor (NNRTI), not an NRTI. The others are NRTIs.'
+            },
+            // q55
+            {
+                id: 'q55',
+                text: 'All the following will be affected by CYP 450 inducers <strong>EXCEPT</strong>',
+                options: [
+                    'A. Didanosine',
+                    'B. Lamivudine',
+                    'C. Enfuvirtide',
+                    'D. Delavirdine',
+                    'E. Ritonavir'
+                ],
+                correct: 'c',
+                explanation: 'Enfuvirtide is a fusion inhibitor, a peptide that is not metabolized by CYP450. Delavirdine is an NNRTI that is metabolized; didanosine and lamivudine are NRTIs (not CYP substrates). Actually, NRTIs are not significantly metabolized by CYP, but the question says "all the following will be affected by CYP450 inducers EXCEPT" - enfuvirtide is not a substrate, so answer C.'
+            },
+            // q56
+            {
+                id: 'q56',
+                text: 'Which of the following drug is found to be active against HIV strains found to be resistant to NRTIs, PIs and Maraviroc?',
+                options: [
+                    'A. Ritonavir',
+                    'B. Enfuvirtide',
+                    'C. Dolutegravir',
+                    'D. Raltegravir',
+                    'E. Indinavir'
+                ],
+                correct: 'c',
+                explanation: 'Dolutegravir is an integrase inhibitor with a high barrier to resistance and activity against many resistant strains, including those resistant to other classes.'
+            },
+            // q57
+            {
+                id: 'q57',
+                text: 'Patient KL has been found with acute pancreatitis. With thorough medical and drug history, there is a strong view that this could have been induced by drugs. Which of the following drugs could be more strongly suspected to be the cause?',
+                options: [
+                    'A. Zidovudine',
+                    'B. Lamivudine',
+                    'C. Didanosine',
+                    'D. Raltegravir',
+                    'E. Abacavir'
+                ],
+                correct: 'c',
+                explanation: 'Didanosine (ddI) is known to cause acute pancreatitis. Other NRTIs like stavudine also, but didanosine is the classic.'
+            },
+            // q58
+            {
+                id: 'q58',
+                text: 'When is it recommended to initiate anti-retroviral therapy?',
+                options: [
+                    'A. CD4 cell count of less than 500 cells/µL',
+                    'B. Viral load of more than 100,000 copies/mL',
+                    'C. CD4 cell count of less than 500 cells/µL (duplicate)',
+                    'D. HIV positive test result',
+                    'E. Kaposi\'s sarcoma'
+                ],
+                correct: 'd',
+                explanation: 'Current guidelines recommend ART for all HIV-positive individuals regardless of CD4 count (treat all). So once HIV is diagnosed, ART should be initiated.'
+            },
+            // q59
+            {
+                id: 'q59',
+                text: 'Which of the following is an example of a serious side effect of protease inhibitors?',
+                options: [
+                    'A. Peripheral neuropathy',
+                    'B. Insulin resistance',
+                    'C. Bone marrow suppression',
+                    'D. Renal toxicity',
+                    'E. Hypersensitivity'
+                ],
+                correct: 'b',
+                explanation: 'Protease inhibitors (e.g., ritonavir, atazanavir) cause metabolic syndrome including insulin resistance, dyslipidemia, and lipodystrophy.'
+            },
+            // q60
+            {
+                id: 'q60',
+                text: 'Which of the following is an example of the principle of HIV drug resistance?',
+                options: [
+                    'A. The changes occur either when HIV is replicating or at rest',
+                    'B. Partial HIV suppression does not promote resistance',
+                    'C. Resistance cannot be overcome by suppressing virus completely',
+                    'D. Flexibility is equal among the reverse transcriptase, non-nucleoside reverse transcriptase and protease (highly mutable)',
+                    'E. Resistance may fade but not disappear when a drug is stopped'
+                ],
+                correct: 'e',
+                explanation: 'HIV resistance mutations can persist as archived mutations even if the drug is stopped; they may fade but are not completely lost, leading to rapid reappearance upon re-exposure.'
+            }
+        ];
+
+        // ─── RENDER MCQ ───
+        const container = document.getElementById('mcqContainer');
+        let html = '<form id="quizForm">';
+        mcqData.forEach(q => {
+            html += `<div class="question" id="q-${q.id}">`;
+            html += `<p><span class="q-badge">${q.id.replace('q','')}</span> ${q.text}</p>`;
+            html += `<div class="options">`;
+            q.options.forEach((opt, idx) => {
+                const val = String.fromCharCode(97 + idx); // a, b, c...
+                html += `<label><input type="radio" name="${q.id}" value="${val}"> ${opt}</label>`;
+            });
+            html += `</div>`;
+            html += `<div class="question-feedback" id="feedback-${q.id}"></div>`;
+            html += `</div>`;
+        });
+        html += '</form>';
+        container.innerHTML = html;
+
+        // ─── MCQ CORRECT ANSWERS ───
+        const correctMap = {};
+        mcqData.forEach(q => { correctMap[q.id] = q.correct; });
+
+        // ─── MCQ SUBMIT ───
+        function submitMCQ() {
+            let score = 0;
+            const total = mcqData.length;
+
+            mcqData.forEach(q => {
+                const radios = document.querySelectorAll(`input[name="${q.id}"]`);
+                const selected = Array.from(radios).find(r => r.checked);
+                const correct = correctMap[q.id];
+                const feedbackEl = document.getElementById(`feedback-${q.id}`);
+                let html = `<div class="answer-block"><strong>Q${q.id.replace('q','')}</strong><div class="answer-list">`;
+
+                radios.forEach(r => {
+                    const label = r.parentElement;
+                    const text = label ? label.textContent.trim() : r.value;
+                    const classes = ['answer-item'];
+                    if (r.value === correct) classes.push('answer-correct');
+                    if (r.checked && r.value !== correct) classes.push('answer-wrong', 'user-choice');
+                    if (r.checked && r.value === correct) classes.push('user-choice');
+                    html += `<div class="${classes.join(' ')}">${text}${r.checked ? ' ◀' : ''}</div>`;
+                });
+
+                html += `</div>`;
+                const correctRadio = Array.from(radios).find(rr => rr.value === correct);
+                const correctText = correctRadio ? correctRadio.parentElement.textContent.trim() : correct;
+                if (selected) {
+                    if (selected.value === correct) {
+                        html += `<div class="explanation">✅ Correct — ${q.explanation}</div>`;
+                        score++;
+                    } else {
+                        html += `<div class="explanation wrong">❌ Incorrect. Correct answer: <strong>${correctText}</strong>. ${q.explanation}</div>`;
+                    }
+                } else {
+                    html += `<div class="explanation wrong">No answer selected. Correct answer: <strong>${correctText}</strong>. ${q.explanation}</div>`;
+                }
+                html += `</div>`;
+                feedbackEl.innerHTML = html;
+            });
+
+            const percentage = Math.round((score / total) * 100);
+            const resultBox = document.getElementById('resultBox');
+            resultBox.style.display = 'block';
+            document.getElementById('score').innerText = percentage + '%';
+            document.querySelectorAll('#quizForm input[type="radio"]').forEach(i => i.disabled = true);
+        }
+
+        // ─── TABLE DATA ───
+        const tableCorrect = {
+            t1c: 'Lincosamide',
+            t1i: 'Anaerobic infections (e.g., skin, soft tissue)',
+            t1s: 'Pseudomembranous colitis, diarrhea',
+            t2c: 'Fluoroquinolones (or Antipseudomonal)',
+            t2e: 'Ciprofloxacin',
+            t2s: 'Tendon rupture, GI upset',
+            t3c: 'Renal dehydropeptidase inhibitor',
+            t3i: 'Used with Imipenem to prevent renal metabolism',
+            t3s: 'Nausea, vomiting, hypersensitivity',
+            t4c: 'Polyene antifungal (or Azole)',
+            t4e: 'Amphotericin B (or Fluconazole)',
+            t4s: 'Nephrotoxicity, infusion reactions',
+            t5e: 'Amoxicillin (or Ampicillin)',
+            t5i: 'Respiratory, UTI, skin infections',
+            t5s: 'Hypersensitivity, diarrhea'
+        };
+
+        // ─── TABLE SUBMIT ───
+        function submitTable() {
+            const feedbackDiv = document.getElementById('tableFeedback');
+            const content = document.getElementById('tableFeedbackContent');
+            let resultHtml = '<table><tr><th>Cell</th><th>Your Answer</th><th>Correct Answer</th><th>Status</th></tr>';
+            let allCorrect = true;
+
+            for (let key in tableCorrect) {
+                const input = document.getElementById(key);
+                const userVal = input.value.trim();
+                const correctVal = tableCorrect[key];
+                const isCorrect = userVal.toLowerCase() === correctVal.toLowerCase();
+                if (!isCorrect) allCorrect = false;
+                const status = isCorrect ? '✅ Correct' : '❌ Incorrect';
+                const statusClass = isCorrect ? 'correct' : 'wrong';
+                resultHtml += `<tr>
+                    <td><strong>${key}</strong></td>
+                    <td>${userVal || '(blank)'}</td>
+                    <td>${correctVal}</td>
+                    <td class="${statusClass}">${status}</td>
+                </tr>`;
+            }
+
+            resultHtml += '</table>';
+            content.innerHTML = resultHtml;
+            feedbackDiv.classList.add('visible');
+
+            if (allCorrect) {
+                content.innerHTML += '<p style="margin-top:1rem; font-weight:bold; color:#065f46;">🎉 All answers are correct!</p>';
+            } else {
+                content.innerHTML += '<p style="margin-top:1rem; font-weight:bold; color:#8f1a2e;">Some answers are incorrect. Review the table above.</p>';
+            }
+        }
+
+        // ─── KEYBOARD SUPPORT ───
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    btn.click();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

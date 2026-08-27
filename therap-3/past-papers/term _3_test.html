@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Therapeutics Week 3 Test | Past Paper</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        /* ─────────── ROOT & RESET ─────────── */
+        :root {
+            --primary: #1a6b6b;
+            --accent: #2d9b9b;
+            --dark: #0f2b2b;
+            --light: #f6fafa;
+            --radius: 12px;
+            --shadow: 0 4px 14px rgba(10, 40, 40, 0.07);
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: "Segoe UI", Roboto, system-ui, sans-serif;
+            background: linear-gradient(180deg, #f0f6f6, #e4efef);
+            color: var(--dark);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: #fff;
+            padding: 0.7rem 0;
+            box-shadow: 0 6px 18px rgba(8, 30, 30, 0.20);
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .logo i {
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+        .logo h1 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            margin: 0;
+            line-height: 1;
+        }
+        .badge {
+            background: rgba(255, 255, 255, 0.13);
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            color: #cae6e6;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.25rem 2.5rem;
+        }
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1.8rem 0 1rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 3px solid rgba(26, 107, 107, 0.18);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+        .section-title i {
+            font-size: 1.1rem;
+            color: var(--accent);
+        }
+        .section-title .count {
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0.05rem 0.7rem;
+        }
+        .section-subtitle {
+            color: #4f6f6f;
+            font-size: 0.92rem;
+            margin-bottom: 1.2rem;
+        }
+        .section-panel {
+            display: none;
+        }
+        .section-panel.active {
+            display: block;
+        }
+        .scroll-target {
+            scroll-margin-top: 90px;
+        }
+
+        /* Tab buttons */
+        .tab-nav {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin: 1rem 0 1.5rem;
+        }
+        .tab-btn {
+            background: #e8f0f0;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--dark);
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .tab-btn:hover {
+            background: #d0e4e4;
+        }
+        .tab-btn.active {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 4px 10px rgba(26, 107, 107, 0.25);
+        }
+        .tab-btn i {
+            font-size: 0.9rem;
+        }
+        .tab-btn .tab-count {
+            background: rgba(255,255,255,0.2);
+            border-radius: 40px;
+            padding: 0.05rem 0.6rem;
+            font-size: 0.7rem;
+        }
+        .tab-btn.active .tab-count {
+            background: rgba(255,255,255,0.25);
+        }
+
+        /* MCQ & T/F cards */
+        .question {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.1rem 1.1rem 0.1rem 1.1rem;
+            margin-bottom: 1.1rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(26, 107, 107, 0.06);
+        }
+        .question:hover {
+            box-shadow: 0 6px 22px rgba(10, 40, 40, 0.07);
+        }
+        .question p {
+            font-weight: 600;
+            font-size: 0.97rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            line-height: 1.5;
+        }
+        .question .q-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            line-height: 1.6;
+            margin-right: 0.4rem;
+        }
+        .question .sub-badge {
+            display: inline-block;
+            background: #3a7a7a;
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.5rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            line-height: 1.6;
+            margin-right: 0.3rem;
+        }
+        .options label {
+            display: block;
+            background: #fafdfd;
+            border: 1px solid #dde8ec;
+            border-radius: 8px;
+            padding: 0.4rem 0.85rem;
+            margin-top: 0.4rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-weight: 450;
+            font-size: 0.93rem;
+        }
+        .options label:hover {
+            background: #e6f3f3;
+            border-color: var(--accent);
+        }
+        .options input[type="radio"] {
+            margin-right: 0.5rem;
+            accent-color: var(--primary);
+            transform: scale(1.05);
+        }
+        .tf-options {
+            display: flex;
+            gap: 1rem;
+            margin: 0.4rem 0 0.2rem;
+        }
+        .tf-options label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            background: #fafdfd;
+            border: 1px solid #dde8ec;
+            border-radius: 8px;
+            padding: 0.3rem 1rem;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .tf-options label:hover {
+            background: #e6f3f3;
+            border-color: var(--accent);
+        }
+        .tf-options input[type="radio"] {
+            accent-color: var(--primary);
+        }
+
+        .question-feedback {
+            margin-top: 0.8rem;
+            padding: 0.3rem 0 0.1rem 0;
+            border-top: 1px dashed #d5e3e3;
+        }
+        .answer-block strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--primary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .answer-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .answer-item {
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid #e3edf0;
+            background: #ffffff;
+            font-weight: 500;
+            font-size: 0.88rem;
+        }
+        .answer-correct {
+            background: #ebfaf3;
+            border-color: #b5e6cc;
+            color: #065f46;
+        }
+        .answer-wrong {
+            background: #fdeeef;
+            border-color: #f7b5b5;
+            color: #8f1a2e;
+        }
+        .user-choice {
+            outline: 2px dashed rgba(0, 0, 0, 0.06);
+        }
+        .explanation {
+            margin-top: 6px;
+            padding: 7px 12px;
+            border-radius: 8px;
+            background: #f0f8f6;
+            color: #065f46;
+            font-size: 0.89rem;
+            line-height: 1.5;
+            border-left: 4px solid var(--accent);
+        }
+        .explanation.wrong {
+            background: #fdf3f4;
+            color: #6f1a1a;
+            border-left-color: #e07a7a;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.6rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(26, 107, 107, 0.25);
+        }
+        .btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(26, 107, 107, 0.32);
+        }
+        .btn:active {
+            transform: scale(0.96);
+        }
+        .btn i {
+            font-size: 0.9rem;
+        }
+
+        .submit-wrap {
+            text-align: center;
+            margin: 1.5rem 0 2rem;
+        }
+        .result {
+            margin-top: 1.5rem;
+            padding: 1.5rem 1.5rem 1rem;
+            background: #eff8f7;
+            border-radius: var(--radius);
+            text-align: center;
+            display: none;
+            border: 1px solid #bddcd9;
+        }
+        .result h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.2rem;
+        }
+        .score {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0.2rem 0 0.4rem;
+        }
+
+        /* Essay section */
+        .essay-card {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(26, 107, 107, 0.06);
+        }
+        .essay-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 0 0 0.5rem 0;
+        }
+        .essay-card .sub {
+            font-weight: 600;
+            margin-top: 0.5rem;
+            color: var(--primary);
+        }
+        .essay-actions {
+            margin-top: 0.8rem;
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .essay-answers {
+            display: none;
+            margin-top: 1rem;
+            background: #f1f8f6;
+            border-radius: 8px;
+            padding: 1rem 1.2rem;
+            border: 1px solid #cfe6e0;
+            color: var(--dark);
+        }
+        .essay-answers.visible {
+            display: block;
+            animation: fadeSlide 0.25s ease;
+        }
+        .essay-answers h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: var(--primary);
+            margin: 0 0 0.5rem 0;
+        }
+        .essay-answers p, .essay-answers li {
+            font-size: 0.94rem;
+            line-height: 1.6;
+        }
+        .essay-answers ul {
+            padding-left: 1.2rem;
+            margin: 0.3rem 0 0.5rem;
+        }
+        @keyframes fadeSlide {
+            0% { opacity: 0; transform: translateY(-6px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 700px) {
+            body { padding-top: 72px; }
+            .logo h1 { font-size: 0.95rem; }
+            .header-inner { padding: 0 1rem; flex-direction: column; align-items: stretch; gap: 0.3rem; }
+            .badge { align-self: flex-start; }
+            .question { padding: 0.9rem 0.9rem 0.1rem 0.9rem; }
+            .section-title { font-size: 1.1rem; }
+            .score { font-size: 2.2rem; }
+            .btn { padding: 0.5rem 1.2rem; font-size: 0.85rem; }
+            .tf-options { flex-wrap: wrap; gap: 0.5rem; }
+            .tab-btn { padding: 0.4rem 1rem; font-size: 0.8rem; }
+        }
+        .text-muted { color: #4f6f6f; font-size: 0.9rem; }
+        .mt-1 { margin-top: 0.8rem; }
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <i class="fas fa-capsules"></i>
+                <h1>Therapeutics Week 3 Test</h1>
+            </div>
+            <span class="badge"><i class="fas fa-pencil-alt"></i> &nbsp;MCQ + T/F + Essay</span>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- Tab Navigation -->
+            <div class="tab-nav">
+                <button class="tab-btn active" data-tab="tab-mcq"><i class="fas fa-list-ul"></i> MCQs <span class="tab-count">11</span></button>
+                <button class="tab-btn" data-tab="tab-tf"><i class="fas fa-check-square"></i> True/False <span class="tab-count">25</span></button>
+                <button class="tab-btn" data-tab="tab-essay"><i class="fas fa-pen-fancy"></i> Section B – Essay <span class="tab-count">3</span></button>
+            </div>
+
+            <!-- ─── TAB 1: MCQs ─── -->
+            <div class="section-panel active" id="tab-mcq">
+                <div class="section-title scroll-target">
+                    <i class="fas fa-list-ul"></i> Multiple Choice Questions
+                    <span class="count">11 marks</span>
+                </div>
+                <p class="section-subtitle">Choose the best option for each question (1 mark each).</p>
+                <div id="mcqContainer"></div>
+                <div class="submit-wrap">
+                    <button type="button" class="btn" onclick="submitMCQs()">
+                        <i class="fas fa-check-circle"></i> Submit MCQs
+                    </button>
+                </div>
+                <div class="result" id="mcqResult">
+                    <h3><i class="fas fa-chart-simple"></i> MCQ Score</h3>
+                    <div class="score" id="mcqScore">0 / 11</div>
+                </div>
+            </div>
+
+            <!-- ─── TAB 2: True/False ─── -->
+            <div class="section-panel" id="tab-tf">
+                <div class="section-title scroll-target">
+                    <i class="fas fa-check-square"></i> True / False Questions
+                    <span class="count">12.5 marks</span>
+                </div>
+                <p class="section-subtitle">Indicate whether each statement is True or False (0.5 mark each).</p>
+                <div id="tfContainer"></div>
+                <div class="submit-wrap">
+                    <button type="button" class="btn" onclick="submitTF()">
+                        <i class="fas fa-check-circle"></i> Submit True/False
+                    </button>
+                </div>
+                <div class="result" id="tfResult">
+                    <h3><i class="fas fa-chart-simple"></i> True/False Score</h3>
+                    <div class="score" id="tfScore">0 / 12.5</div>
+                </div>
+            </div>
+
+            <!-- ─── TAB 3: Section B (Essay) ─── -->
+            <div class="section-panel" id="tab-essay">
+                <div class="section-title scroll-target">
+                    <i class="fas fa-pen-fancy"></i> Section B – Short Notes
+                    <span class="count">25 marks</span>
+                </div>
+                <p class="section-subtitle">Answer all questions. Click "Show Model Answer" to reveal the suggested response.</p>
+
+                <!-- Essay Q1 -->
+                <div class="essay-card">
+                    <h3>1. Give at least 5 contra-indications for antipsychotic drugs (5 marks)</h3>
+                    <div class="essay-actions">
+                        <button class="btn" onclick="toggleEssay('essay1')"><i class="fas fa-paper-plane"></i> Show Model Answer</button>
+                    </div>
+                    <div class="essay-answers" id="essay1">
+                        <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answer</h4>
+                        <ul>
+                            <li>Known hypersensitivity to the drug</li>
+                            <li>Comatose states</li>
+                            <li>Severe depression (relative contraindication)</li>
+                            <li>Parkinson's disease (due to dopamine blockade)</li>
+                            <li>Severe hypotension or hypertension</li>
+                            <li>Liver impairment (many antipsychotics metabolised in liver)</li>
+                            <li>Bone marrow depression (especially with clozapine)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Essay Q2 -->
+                <div class="essay-card">
+                    <h3>2. Antipsychotic drugs interact with other drugs, describe briefly on 2 of these interactions. (2 marks)</h3>
+                    <div class="essay-actions">
+                        <button class="btn" onclick="toggleEssay('essay2')"><i class="fas fa-paper-plane"></i> Show Model Answer</button>
+                    </div>
+                    <div class="essay-answers" id="essay2">
+                        <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answer</h4>
+                        <ul>
+                            <li><strong>Alcohol:</strong> Additive CNS depression, increased sedation and risk of respiratory depression.</li>
+                            <li><strong>Anticholinergics:</strong> May reduce extrapyramidal side effects but can worsen anticholinergic effects (dry mouth, constipation, confusion).</li>
+                            <li><strong>Lithium:</strong> Drugs that reduce renal clearance (e.g., NSAIDs) increase lithium levels and toxicity risk.</li>
+                            <li><strong>Drugs that prolong QT:</strong> Antipsychotics (especially haloperidol, thioridazine) can prolong QT interval; co-administration with other QT-prolonging drugs increases risk of arrhythmias.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Essay Q3 (case) -->
+                <div class="essay-card">
+                    <h3>3. A 23-year-old man with Tourette's syndrome (15 marks)</h3>
+                    <div class="essay-actions">
+                        <button class="btn" onclick="toggleEssay('essay3')"><i class="fas fa-paper-plane"></i> Show Model Answer</button>
+                    </div>
+                    <div class="essay-answers" id="essay3">
+                        <h4><i class="fas fa-check-circle" style="color:var(--primary);"></i> Model Answer</h4>
+                        <p><b>(i) How is psychosis caused?</b><br />
+                        Psychosis is thought to be caused by a combination of genetic vulnerability, neurotransmitter imbalances (especially dopamine hyperactivity in the mesolimbic pathway), and environmental triggers (stress, substance abuse).</p>
+
+                        <p><b>(ii) 3 positive & 2 negative symptoms:</b><br />
+                        <u>Positive:</u> Hallucinations (auditory, visual), delusions (false beliefs), disorganised speech/behaviour.<br />
+                        <u>Negative:</u> Social withdrawal, flat affect (emotional blunting).</p>
+
+                        <p><b>(iii) Best drug:</b> Haloperidol (or risperidone). Haloperidol is a typical antipsychotic often used for Tourette's.</p>
+
+                        <p><b>(iv) Mechanism of action:</b> Antipsychotics block dopamine D2 receptors in the brain (mesolimbic pathway for antipsychotic effect, nigrostriatal for EPS).</p>
+
+                        <p><b>(v) 3 side effects of haloperidol:</b> Extrapyramidal symptoms (tremor, rigidity, bradykinesia), sedation, hyperprolactinemia (gynecomastia, amenorrhea).</p>
+
+                        <p><b>(vi) Involuntary movements (tardive dyskinesia):</b> These are involuntary choreoathetoid movements of the face, tongue, and extremities. They arise from chronic D2 receptor blockade leading to up-regulation of dopamine receptors and super-sensitivity.</p>
+
+                        <p><b>(vii) Treatment:</b> Reduce dose or switch to an atypical antipsychotic. Use of tetrabenazine or deutetrabenazine may be considered. VMAT2 inhibitors are specific treatments for tardive dyskinesia.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // ─── TAB SWITCHING ───
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const target = this.dataset.tab;
+                document.querySelectorAll('.section-panel').forEach(p => p.classList.remove('active'));
+                document.getElementById(target).classList.add('active');
+                // scroll to top of section
+                document.getElementById(target).scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // ─── MCQ DATA ───
+        const mcqData = [
+            {
+                id: 'q1',
+                text: 'Antipsychotic drugs work by the following mechanism',
+                options: [
+                    'A. Blockade of D2 receptors in hypothalamus and pituitary gland',
+                    'B. Blockade of D2 receptors in brain basal ganglia',
+                    'C. Blockade of D2 receptors in brain mesolimbic system',
+                    'D. Blockade of D2 receptors in brain\'s chemo-receptor trigger zone (CTZ)',
+                    'E. Inhibition of glutamate'
+                ],
+                correct: 'c',
+                explanation: 'The antipsychotic effect is primarily mediated by D2 receptor blockade in the mesolimbic pathway.'
+            },
+            {
+                id: 'q2',
+                text: 'The following is one of the commonest side effects of antipsychotic drugs',
+                options: ['A. Extrapyramidal effects', 'B. Drowsiness and sedation', 'C. Gynecomastia', 'D. Amenorrhea', 'E. Depression'],
+                correct: 'a',
+                explanation: 'Extrapyramidal symptoms (EPS) are very common with typical antipsychotics due to D2 blockade in the nigrostriatal pathway.'
+            },
+            {
+                id: 'q3',
+                text: 'The following are known as side effect of antipsychotic drugs <strong>except</strong>',
+                options: ['A. Akathisia', 'B. Nausea and vomiting', 'C. Weight gain', 'D. Gynecomastia', 'E. Complication of depression'],
+                correct: 'e',
+                explanation: 'Complication of depression is not a side effect of antipsychotics. The others are recognised side effects.'
+            },
+            {
+                id: 'q4',
+                text: 'Hypotension has been reported as a side effect of the following <strong>Except</strong>',
+                options: ['A. Haloperidol', 'B. Chlorpromazine', 'C. Fluphenazine', 'D. Risperidone', 'E. Clozapine'],
+                correct: 'a',
+                explanation: 'Haloperidol has less alpha-blocking activity, so it causes less hypotension compared to the others.'
+            },
+            {
+                id: 'q5',
+                text: 'Antipsychotic drugs should not be used in the following conditions <strong>Except</strong>',
+                options: ['A. Manic phase of bipolar disorder', 'B. Known hypersensitivity', 'C. Comatose patients', 'D. Severely depressed patients', 'E. Parkinson\'s disease'],
+                correct: 'a',
+                explanation: 'Antipsychotics are used to treat mania, so it is an indication, not a contraindication.'
+            },
+            {
+                id: 'q6',
+                text: 'The following causes extrapyramidal effects <strong>except</strong>',
+                options: ['A. Fluphenazine', 'B. Olanzapine', 'C. Haloperidol', 'D. Chlorpromazine', 'E. Trifluoperazine'],
+                correct: 'b',
+                explanation: 'Olanzapine is atypical with lower EPS risk. The others are typical antipsychotics.'
+            },
+            {
+                id: 'q7',
+                text: 'Tourette\'s syndrome can be treated with the following drug',
+                options: ['A. Fluphenazine', 'B. Olanzapine', 'C. Chlorpromazine', 'D. Risperidone', 'E. Haloperidol'],
+                correct: 'e',
+                explanation: 'Haloperidol is a classic antipsychotic used for Tourette\'s syndrome.'
+            },
+            {
+                id: 'q8',
+                text: 'Antipsychotic drugs are not recommended in all the following group <strong>EXCEPT</strong>',
+                options: ['A. Severely depressed patients', 'B. Severe hypotension or hypertension', 'C. Liver impairment', 'D. Manic patients', 'E. Comatose patients'],
+                correct: 'd',
+                explanation: 'Manic patients are treated with antipsychotics; they are not a contraindication.'
+            },
+            {
+                id: 'q9',
+                text: 'The following statements true <strong>EXCEPT</strong>',
+                options: [
+                    'A. Anticholinergics do not worsen psychotic symptoms neither do they increase tardive dyskinesia',
+                    'B. Combination of antipsychotic and alcohol enhances additive CNS depression',
+                    'C. Anticholinergics reduce the therapeutic effects of Antipsychotics',
+                    'D. Clozapine synergistic with other drugs that suppress bone marrow',
+                    'E. Drugs that reduce renal clearance increase risk of Lithium toxicity'
+                ],
+                correct: 'c',
+                explanation: 'Anticholinergics do not reduce antipsychotic efficacy; they are used to treat EPS. This statement is false.'
+            },
+            {
+                id: 'q10',
+                text: 'Refractory schizophrenia can best be treated with the following drug',
+                options: ['A. Olanzapine', 'B. Risperidone', 'C. Haloperidol', 'D. Fluphenazine', 'E. Clozapine'],
+                correct: 'e',
+                explanation: 'Clozapine is the drug of choice for treatment-resistant schizophrenia.'
+            },
+            {
+                id: 'q11',
+                text: 'The following are atypical antipsychotics <strong>except</strong>',
+                options: ['A. Haloperidol', 'B. Olanzapine', 'C. Risperidone', 'D. Clozapine'],
+                correct: 'a',
+                explanation: 'Haloperidol is a typical antipsychotic.'
+            }
+        ];
+
+        // ─── RENDER MCQs ───
+        const mcqContainer = document.getElementById('mcqContainer');
+        let mcqHtml = '<form id="mcqForm">';
+        mcqData.forEach(q => {
+            mcqHtml += `<div class="question" id="mcq-${q.id}">`;
+            mcqHtml += `<p><span class="q-badge">${q.id.replace('q','')}</span> ${q.text}</p>`;
+            mcqHtml += `<div class="options">`;
+            q.options.forEach((opt, idx) => {
+                const val = String.fromCharCode(97 + idx);
+                mcqHtml += `<label><input type="radio" name="${q.id}" value="${val}"> ${opt}</label>`;
+            });
+            mcqHtml += `</div>`;
+            mcqHtml += `<div class="question-feedback" id="mcq-feedback-${q.id}"></div>`;
+            mcqHtml += `</div>`;
+        });
+        mcqHtml += '</form>';
+        mcqContainer.innerHTML = mcqHtml;
+
+        // ─── SUBMIT MCQs ───
+        function submitMCQs() {
+            let earned = 0;
+            const total = mcqData.length;
+
+            mcqData.forEach(q => {
+                const radios = document.querySelectorAll(`#mcqForm input[name="${q.id}"]`);
+                const selected = Array.from(radios).find(r => r.checked);
+                const correct = q.correct;
+                const feedbackEl = document.getElementById(`mcq-feedback-${q.id}`);
+                let html = `<div class="answer-block"><strong>Q${q.id.replace('q','')}</strong><div class="answer-list">`;
+
+                radios.forEach(r => {
+                    const label = r.parentElement;
+                    const text = label ? label.textContent.trim() : r.value;
+                    const classes = ['answer-item'];
+                    if (r.value === correct) classes.push('answer-correct');
+                    if (r.checked && r.value !== correct) classes.push('answer-wrong', 'user-choice');
+                    if (r.checked && r.value === correct) classes.push('user-choice');
+                    html += `<div class="${classes.join(' ')}">${text}${r.checked ? ' ◀' : ''}</div>`;
+                });
+                html += `</div>`;
+                const correctRadio = Array.from(radios).find(rr => rr.value === correct);
+                const correctText = correctRadio ? correctRadio.parentElement.textContent.trim() : correct;
+                let isCorrect = false;
+                if (selected && selected.value === correct) {
+                    earned += 1;
+                    isCorrect = true;
+                }
+                const status = isCorrect ? '✅ Correct' : '❌ Incorrect';
+                const statusClass = isCorrect ? '' : 'wrong';
+                html += `<div class="explanation ${statusClass}">${status}. Correct answer: <strong>${correctText}</strong>. ${q.explanation}</div>`;
+                html += `</div>`;
+                feedbackEl.innerHTML = html;
+            });
+
+            document.querySelectorAll('#mcqForm input[type="radio"]').forEach(i => i.disabled = true);
+            document.getElementById('mcqResult').style.display = 'block';
+            document.getElementById('mcqScore').innerText = `${earned} / ${total}`;
+        }
+
+        // ─── TRUE/FALSE DATA ───
+        const tfData = [
+            // Q12
+            { parent: 'q12', label: 'A', text: 'Haloperidol can be used in the management of CNS induced nausea and vomiting', correct: true, explanation: 'Haloperidol has antiemetic properties due to D2 blockade in the CTZ.' },
+            { parent: 'q12', label: 'B', text: 'Chlorpromazine can be used in the management of CNS induced nausea and vomiting', correct: true, explanation: 'Chlorpromazine is a potent antiemetic.' },
+            { parent: 'q12', label: 'C', text: 'Fluphenazine can be used in the management of CNS induced nausea and vomiting', correct: false, explanation: 'Fluphenazine is not typically used as an antiemetic.' },
+            { parent: 'q12', label: 'D', text: 'Clozapine can be used in the management of CNS induced nausea and vomiting', correct: false, explanation: 'Clozapine is not used as an antiemetic.' },
+            { parent: 'q12', label: 'E', text: 'AloperidolS can be used in the management of CNS induced nausea and vomiting', correct: false, explanation: 'Aloperidol is not a recognised drug.' },
+            // Q13
+            { parent: 'q13', label: 'A', text: 'Clozapine can be used to treat manic phase of bipolar disorder', correct: true, explanation: 'Clozapine has antimanic effects, though not first-line.' },
+            { parent: 'q13', label: 'B', text: 'Risperidone can be used to treat manic phase of bipolar disorder', correct: true, explanation: 'Risperidone is approved for acute mania.' },
+            { parent: 'q13', label: 'C', text: 'Chlorpromazine can be used to treat manic phase of bipolar disorder', correct: true, explanation: 'Chlorpromazine is a typical antipsychotic used for mania.' },
+            { parent: 'q13', label: 'D', text: 'Olanzapine can be used to treat manic phase of bipolar disorder', correct: true, explanation: 'Olanzapine is commonly used for acute mania.' },
+            { parent: 'q13', label: 'E', text: 'Fluphenazine can be used to treat manic phase of bipolar disorder', correct: true, explanation: 'Fluphenazine is a typical antipsychotic with antimanic properties.' },
+            // Q14
+            { parent: 'q14', label: 'A', text: 'Chlorpromazine has pronounced bone marrow suppressive effects especially when combined with other drugs', correct: false, explanation: 'Chlorpromazine has low risk of bone marrow suppression.' },
+            { parent: 'q14', label: 'B', text: 'Haloperidol has pronounced bone marrow suppressive effects especially when combined with other drugs', correct: false, explanation: 'Haloperidol is not known for bone marrow suppression.' },
+            { parent: 'q14', label: 'C', text: 'Clozapine has pronounced bone marrow suppressive effects especially when combined with other drugs', correct: true, explanation: 'Clozapine causes agranulocytosis, risk increased with other myelosuppressive drugs.' },
+            { parent: 'q14', label: 'D', text: 'Olanzapine has pronounced bone marrow suppressive effects especially when combined with other drugs', correct: false, explanation: 'Olanzapine has low risk of bone marrow suppression.' },
+            { parent: 'q14', label: 'E', text: 'Risperidone has pronounced bone marrow suppressive effects especially when combined with other drugs', correct: false, explanation: 'Risperidone has low risk of bone marrow suppression.' },
+            // Q15
+            { parent: 'q15', label: 'A', text: 'Haloperidol is an atypical antipsychotic', correct: false, explanation: 'Haloperidol is a typical antipsychotic.' },
+            { parent: 'q15', label: 'B', text: 'Fluphenazine is an atypical antipsychotic', correct: false, explanation: 'Fluphenazine is a typical antipsychotic.' },
+            { parent: 'q15', label: 'C', text: 'Clozapine is an atypical antipsychotic', correct: true, explanation: 'Clozapine is the prototype atypical antipsychotic.' },
+            { parent: 'q15', label: 'D', text: 'Chlorpromazine is an atypical antipsychotic', correct: false, explanation: 'Chlorpromazine is a typical antipsychotic.' },
+            { parent: 'q15', label: 'E', text: 'Trifluoperazine is an atypical antipsychotic', correct: false, explanation: 'Trifluoperazine is a typical antipsychotic.' },
+            // Q16
+            { parent: 'q16', label: 'A', text: 'Combination of antipsychotics and alcohol cannot cause tardive dyskinesia', correct: true, explanation: 'Tardive dyskinesia is caused by antipsychotics, not by alcohol combination.' },
+            { parent: 'q16', label: 'B', text: 'Combination of antipsychotics and alcohol cannot cause reduced renal clearance', correct: true, explanation: 'Alcohol does not significantly affect renal clearance in this context.' },
+            { parent: 'q16', label: 'C', text: 'Combination of antipsychotics and alcohol cannot cause constipation', correct: false, explanation: 'Antipsychotics and alcohol both can cause constipation, so combination can.' },
+            { parent: 'q16', label: 'D', text: 'Combination of antipsychotics and alcohol cannot cause CNS depression', correct: false, explanation: 'Both cause CNS depression; combination enhances it.' },
+            { parent: 'q16', label: 'E', text: 'Combination of antipsychotics and alcohol cannot cause liver impairment', correct: false, explanation: 'Both can be hepatotoxic; combination increases risk.' }
+        ];
+
+        // ─── RENDER TRUE/FALSE ───
+        const tfContainer = document.getElementById('tfContainer');
+        let tfHtml = '<form id="tfForm">';
+        const tfGroups = {};
+        tfData.forEach(item => {
+            if (!tfGroups[item.parent]) tfGroups[item.parent] = [];
+            tfGroups[item.parent].push(item);
+        });
+
+        for (let parent in tfGroups) {
+            const items = tfGroups[parent];
+            const parentNum = parent.replace('q','');
+            tfHtml += `<div class="question" id="tf-${parent}">`;
+            tfHtml += `<p><span class="q-badge">${parentNum}</span> Indicate True or False for each statement:</p>`;
+            items.forEach((item, idx) => {
+                const tfId = `${parent}${item.label}`;
+                tfHtml += `<div style="margin:0.5rem 0 0.2rem; display:flex; align-items:center; flex-wrap:wrap; gap:0.3rem;">`;
+                tfHtml += `<span class="sub-badge">${item.label}</span>`;
+                tfHtml += `<span style="flex:1;">${item.text}</span>`;
+                tfHtml += `<span class="tf-options">`;
+                tfHtml += `<label><input type="radio" name="${tfId}" value="true"> True</label>`;
+                tfHtml += `<label><input type="radio" name="${tfId}" value="false"> False</label>`;
+                tfHtml += `</span>`;
+                tfHtml += `</div>`;
+                tfHtml += `<div class="question-feedback" id="tf-feedback-${tfId}"></div>`;
+            });
+            tfHtml += `</div>`;
+        }
+        tfHtml += '</form>';
+        tfContainer.innerHTML = tfHtml;
+
+        // ─── SUBMIT TRUE/FALSE ───
+        function submitTF() {
+            let earned = 0;
+            const total = tfData.length;
+
+            tfData.forEach(item => {
+                const tfId = `${item.parent}${item.label}`;
+                const radios = document.querySelectorAll(`#tfForm input[name="${tfId}"]`);
+                const selected = Array.from(radios).find(r => r.checked);
+                const correct = item.correct ? 'true' : 'false';
+                const feedbackEl = document.getElementById(`tf-feedback-${tfId}`);
+                let html = `<div class="answer-block"><strong>${item.parent.toUpperCase()}${item.label}</strong> <span style="font-weight:400;">${item.text}</span></div>`;
+                let userAns = 'None';
+                if (selected) userAns = selected.value === 'true' ? 'True' : 'False';
+                const isCorrect = selected && selected.value === correct;
+                if (isCorrect) earned += 0.5;
+                const status = isCorrect ? '✅ Correct' : '❌ Incorrect';
+                const statusClass = isCorrect ? '' : 'wrong';
+                const correctDisplay = correct === 'true' ? 'True' : 'False';
+                html += `<div class="explanation ${statusClass}">${status} &nbsp; Your answer: ${userAns} &nbsp; Correct: <strong>${correctDisplay}</strong>. ${item.explanation}</div>`;
+                feedbackEl.innerHTML = html;
+            });
+
+            document.querySelectorAll('#tfForm input[type="radio"]').forEach(i => i.disabled = true);
+            document.getElementById('tfResult').style.display = 'block';
+            document.getElementById('tfScore').innerText = `${earned.toFixed(1)} / ${total.toFixed(1)}`;
+        }
+
+        // ─── ESSAY TOGGLE ───
+        function toggleEssay(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.classList.toggle('visible');
+                if (el.classList.contains('visible')) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        }
+
+        // ─── KEYBOARD SUPPORT ───
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    btn.click();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
