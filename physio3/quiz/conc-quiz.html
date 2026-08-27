@@ -1,0 +1,2459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuizMaster · Urine Concentration & Acid–Base</title>
+    <style>
+        /* ----- custom properties ----- */
+        :root {
+            --primary: #2b7a78;
+            --accent: #3aafa9;
+            --dark: #17252a;
+            --light: #f8f9fa;
+            --radius: 12px;
+            --shadow: 0 4px 14px rgba(18, 38, 63, 0.06);
+            --text: #1e2a3a;
+            --text-muted: #5a6b7c;
+            --border: #dce5ef;
+            --bg-card: #ffffff;
+            --bg-soft: #f2f6fc;
+            --success: #2b7a78;
+            --danger: #b53b3b;
+            --warning: #b8860b;
+        }
+
+        /* ----- reset & base ----- */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--text);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 28px 18px;
+            color: var(--dark);
+        }
+        #app {
+            max-width: 1024px;
+            width: 100%;
+            background: var(--text-muted);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 32px 36px 40px;
+            transition: 0.3s;
+            border: 1px solid rgba(43, 122, 120, 0.08);
+        }
+        @media (max-width: 640px) {
+            #app {
+                padding: 18px 14px 24px;
+                border-radius: 10px;
+            }
+        }
+
+        /* ----- typography ----- */
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+        .text-muted {
+            color: var(--text-muted);
+        }
+
+        /* ----- header ----- */
+        .app-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+            flex-wrap: wrap;
+            gap: 12px;
+            border-bottom: 2px solid rgba(43, 122, 120, 0.12);
+            padding-bottom: 18px;
+            margin-bottom: 22px;
+        }
+        .app-header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .app-header h1 span {
+            background: var(--primary);
+            color: #fff;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 2px 12px;
+            border-radius: 40px;
+            letter-spacing: 0.3px;
+        }
+        .app-header .badge {
+            background: var(--bg-soft);
+            padding: 6px 20px;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--primary);
+            border: 1px solid rgba(43, 122, 120, 0.15);
+        }
+
+        /* ----- breadcrumb ----- */
+        .breadcrumb {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px 14px;
+            margin-bottom: 18px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .breadcrumb .sep {
+            color: var(--text-muted);
+            user-select: none;
+            opacity: 0.5;
+        }
+        .breadcrumb .crumb-link {
+            background: none;
+            border: none;
+            color: var(--light);
+            cursor: pointer;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 6px;
+            transition: background 0.2s;
+            font-size: 14px;
+        }
+        .breadcrumb .crumb-link:hover {
+            background: var(--bg-soft);
+        }
+        .breadcrumb .current {
+            color: var(--dark);
+            font-weight: 600;
+        }
+        .breadcrumb .current-dim {
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        /* ----- cards ----- */
+        .grid-2col {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 18px;
+            margin-top: 6px;
+        }
+        .grid-3col {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 16px;
+            margin-top: 6px;
+        }
+        .card {
+            background: var(--bg-card);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px 16px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: var(--shadow);
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            box-shadow: 0 12px 32px rgba(43, 122, 120, 0.13);
+        }
+        .card .icon {
+            font-size: 36px;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .card .name {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        .card .sub {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+        .card.level-easy .label {
+            color: var(--primary);
+        }
+        .card.level-medium .label {
+            color: #c07a2b;
+        }
+        .card.level-challenging .label {
+            color: var(--danger);
+        }
+        .card .label {
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        /* ----- quiz header ----- */
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .quiz-header h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        .quiz-header .progress {
+            background: var(--bg-soft);
+            padding: 4px 18px;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--primary);
+            border: 1px solid rgba(43, 122, 120, 0.12);
+        }
+        .quiz-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        .quiz-meta span {
+            background: var(--bg-soft);
+            padding: 4px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+        }
+        .quiz-meta span strong {
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        /* ----- question blocks (MCQ) ----- */
+        .q-block {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 18px 22px 20px;
+            margin-bottom: 16px;
+            border: 1.5px solid var(--border);
+            transition: 0.2s;
+            box-shadow: var(--shadow);
+        }
+        .q-block.correct {
+            border-color: var(--primary);
+            background: #f0f8f7;
+        }
+        .q-block.wrong {
+            border-color: var(--danger);
+            background: #fdf3f3;
+        }
+        .q-block .q-head {
+            display: flex;
+            gap: 10px;
+            align-items: baseline;
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .q-block .q-head .num {
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 14px;
+            min-width: 38px;
+        }
+        .q-block .q-text {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+        .q-block .q-text code {
+            background: var(--bg-soft);
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* options (MCQ) */
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .opt {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 16px;
+            border-radius: 10px;
+            background: var(--bg-card);
+            border: 1.5px solid var(--border);
+            cursor: pointer;
+            transition: 0.18s;
+            font-size: 14px;
+        }
+        .opt:hover:not(.disabled) {
+            border-color: var(--primary);
+            background: var(--bg-soft);
+        }
+        .opt input[type="radio"] {
+            accent-color: var(--primary);
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+        .opt .letter {
+            font-weight: 600;
+            color: var(--text-muted);
+            min-width: 24px;
+            font-size: 14px;
+        }
+        .opt .opt-text {
+            flex: 1;
+        }
+        .opt.correct-opt {
+            border-color: var(--primary);
+            background: #f0f8f7;
+        }
+        .opt.correct-opt .letter {
+            color: var(--primary);
+        }
+        .opt.wrong-opt {
+            border-color: var(--danger);
+            background: #fdf3f3;
+        }
+        .opt.wrong-opt .letter {
+            color: var(--danger);
+        }
+        .opt.disabled {
+            cursor: default;
+            opacity: 0.85;
+        }
+        .opt.disabled:hover {
+            border-color: var(--border);
+            background: var(--bg-card);
+        }
+        .opt.correct-opt.disabled:hover {
+            border-color: var(--primary);
+            background: #f0f8f7;
+        }
+        .opt.wrong-opt.disabled:hover {
+            border-color: var(--danger);
+            background: #fdf3f3;
+        }
+
+        /* ----- essay (scenario sub-questions) ----- */
+        .essay-block {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 18px 22px 20px;
+            margin-bottom: 14px;
+            border: 1.5px solid var(--border);
+            box-shadow: var(--shadow);
+            transition: 0.2s;
+        }
+        .essay-block.submitted {
+            border-color: var(--primary);
+            background: #f8fbfa;
+        }
+        .essay-block .e-head {
+            display: flex;
+            gap: 10px;
+            align-items: baseline;
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        .essay-block .e-head .num {
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 14px;
+            min-width: 38px;
+        }
+        .essay-block .e-question {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+        .essay-block textarea {
+            width: 100%;
+            min-height: 90px;
+            padding: 12px 16px;
+            border-radius: 10px;
+            border: 1.5px solid var(--border);
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            resize: vertical;
+            transition: 0.2s;
+            background: var(--bg-card);
+            color: var(--text);
+        }
+        .essay-block textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(43, 122, 120, 0.12);
+        }
+        .essay-block textarea:disabled {
+            background: var(--bg-soft);
+            opacity: 0.8;
+            cursor: not-allowed;
+        }
+        .essay-block .model-answer {
+            margin-top: 14px;
+            padding: 14px 18px;
+            border-radius: 10px;
+            background: var(--bg-soft);
+            border-left: 4px solid var(--primary);
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text);
+        }
+        .essay-block .model-answer strong {
+            color: var(--primary);
+        }
+        .essay-block .user-answer-display {
+            margin-top: 10px;
+            padding: 12px 16px;
+            border-radius: 10px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text);
+            white-space: pre-wrap;
+        }
+        .essay-block .user-answer-display .label {
+            font-weight: 600;
+            color: var(--text-muted);
+            font-size: 13px;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .essay-block .badge-essay {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: var(--primary);
+            background: rgba(43, 122, 120, 0.10);
+            padding: 2px 12px;
+            border-radius: 40px;
+            margin-left: 6px;
+        }
+
+        /* ----- explanation (MCQ) ----- */
+        .explain {
+            margin-top: 12px;
+            padding: 12px 18px;
+            border-radius: 10px;
+            background: var(--bg-soft);
+            border-left: 4px solid var(--primary);
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text);
+        }
+        .explain strong {
+            color: var(--primary);
+        }
+
+        /* ----- scenario wrapper ----- */
+        .scenario-wrap {
+            background: var(--bg-soft);
+            border-radius: var(--radius);
+            padding: 20px 24px 24px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+        .scenario-wrap .s-title {
+            font-weight: 700;
+            font-size: 17px;
+            margin-bottom: 4px;
+            color: var(--dark);
+        }
+        .scenario-wrap .s-body {
+            background: var(--bg-card);
+            padding: 14px 18px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            font-size: 14px;
+            line-height: 1.7;
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            white-space: pre-wrap;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+        .scenario-wrap .s-body code {
+            background: var(--bg-soft);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+        .scenario-wrap .sub-label {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--primary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .scenario-wrap .sub-label .badge-essay {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            color: var(--primary);
+            background: rgba(43, 122, 120, 0.10);
+            padding: 2px 12px;
+            border-radius: 40px;
+        }
+
+        /* ----- buttons ----- */
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            background: var(--bg-soft);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+        .btn-primary:hover {
+            background: #236a68;
+            border-color: #236a68;
+            box-shadow: 0 8px 28px rgba(43, 122, 120, 0.30);
+        }
+        .btn-success {
+            background: var(--accent);
+            color: var(--dark);
+            border-color: var(--accent);
+        }
+        .btn-success:hover {
+            background: #34a09c;
+            border-color: #34a09c;
+            box-shadow: 0 8px 28px rgba(58, 175, 169, 0.30);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid var(--border);
+            color: var(--text);
+        }
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: var(--bg-soft);
+        }
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        /* ----- results ----- */
+        .results-summary {
+            background: var(--bg-soft);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+        .results-summary .big-score {
+            font-size: 38px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .results-summary .big-score small {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+        .results-summary .stats {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .results-summary .stat {
+            text-align: center;
+        }
+        .results-summary .stat .num {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .results-summary .stat .lbl {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .stat.correct .num {
+            color: var(--primary);
+        }
+        .stat.wrong .num {
+            color: var(--danger);
+        }
+        .stat.unanswered .num {
+            color: var(--text-muted);
+        }
+
+        /* review items */
+        .review-item {
+            background: var(--bg-card);
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+        .review-item.correct {
+            border-left-color: var(--primary);
+        }
+        .review-item.wrong {
+            border-left-color: var(--danger);
+        }
+        .review-item .r-head {
+            display: flex;
+            gap: 12px;
+            align-items: baseline;
+            flex-wrap: wrap;
+        }
+        .review-item .r-head .r-label {
+            font-weight: 600;
+            min-width: 50px;
+            color: var(--text);
+        }
+        .review-item .r-head .r-status {
+            margin-left: auto;
+            font-weight: 600;
+        }
+        .review-item .r-detail {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+        .review-item .r-exp {
+            font-size: 14px;
+            color: var(--text);
+            margin-top: 6px;
+            background: var(--bg-soft);
+            padding: 8px 14px;
+            border-radius: 8px;
+        }
+        .review-item .r-essay-answer {
+            font-size: 14px;
+            color: var(--text);
+            margin-top: 6px;
+            background: var(--bg-card);
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            white-space: pre-wrap;
+        }
+        .review-item .r-essay-answer .label {
+            font-weight: 600;
+            color: var(--text-muted);
+            font-size: 13px;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+        .mt-12 {
+            margin-top: 12px;
+        }
+        .mb-8 {
+            margin-bottom: 8px;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .flex-between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        /* ----- responsive ----- */
+        @media (max-width: 640px) {
+            .q-block {
+                padding: 14px 14px 16px;
+            }
+            .essay-block {
+                padding: 14px 14px 16px;
+            }
+            .opt {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+            .results-summary {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+            .results-summary .stats {
+                justify-content: center;
+            }
+            .app-header h1 {
+                font-size: 20px;
+            }
+            .card {
+                padding: 16px 12px;
+            }
+            .btn {
+                padding: 9px 20px;
+                font-size: 14px;
+            }
+            .scenario-wrap {
+                padding: 14px 14px 18px;
+            }
+            .scenario-wrap .s-body {
+                font-size: 13px;
+                padding: 10px 12px;
+            }
+            #app {
+                padding: 14px 10px 20px;
+            }
+            .essay-block textarea {
+                min-height: 70px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <!-- header -->
+        <header class="app-header">
+            <h1>🧪 Urine Physiology <span>Quiz</span></h1>
+            <span class="badge" id="headerBadge">Choose a topic</span>
+        </header>
+
+        <!-- breadcrumb -->
+        <!-- <nav class="breadcrumb" id="breadcrumb">
+            <button class="crumb-link" data-goto="topics">🏠 Topics</button>
+            <span class="sep">›</span>
+            <span class="current" id="bcTopic">—</span>
+            <span class="sep" id="bcSep">›</span>
+            <span class="current" id="bcLevel">—</span>
+        </nav> -->
+
+        <!-- dynamic content -->
+        <div id="content"></div>
+    </div>
+
+    <script>
+        // ========================================================================
+        //  DATA — Topics, Levels, Question Banks, Scenarios (from PDF)
+        // ========================================================================
+
+        const TOPICS = [
+            { id: 'core_concentration', name: 'Core Principles of Urine Concentration & Dilution', icon: '💧',
+                desc: 'Medullary gradient · Countercurrent multiplier · ADH · Free-water clearance' },
+            { id: 'acid_base', name: 'Acid–Base Balance & Renal Acidification', icon: '⚗️',
+                desc: 'Net acid excretion · Type A intercalated cells · Titratable acid · RTA' },
+        ];
+
+        const LEVELS = [
+            { id: 'easy', label: 'Easy', emoji: '🌱', cls: 'level-easy' },
+            { id: 'medium', label: 'Medium', emoji: '🔥', cls: 'level-medium' },
+            { id: 'challenging', label: 'Challenging', emoji: '🚀', cls: 'level-challenging' },
+        ];
+
+        // ========================================================================
+        //  MCQ BANKS (topic → level → array of { q, opts, correct, exp })
+        // ========================================================================
+
+        const BANKS = {};
+
+        // ---- TOPIC 1: Core Principles of Urine Concentration & Dilution ----
+        BANKS.core_concentration = {
+
+            // ----- EASY (20) -----
+            easy: [{
+                q: 'What range of urine osmolality can the kidney produce?',
+                opts: ['5–10 mOsm/kg H₂O', '50–1200 mOsm/kg H₂O', '100–500 mOsm/kg H₂O', '300–600 mOsm/kg H₂O'],
+                correct: 1,
+                exp: 'The kidney can produce urine with osmolality from about 50 mOsm/kg (dilute) up to 1200 mOsm/kg (concentrated), a 20‑fold range.'
+            }, {
+                q: 'What is the "single effect" in the countercurrent multiplier?',
+                opts: ['Active reabsorption of NaCl from the thick ascending limb', 'Passive water reabsorption in the collecting duct',
+                    'Urea recycling in the inner medulla', 'ADH-mediated water permeability'
+                ],
+                correct: 0,
+                exp: 'The single effect is the active transport of NaCl out of the thick ascending limb, creating a small osmotic gradient that is multiplied by countercurrent flow.'
+            }, {
+                q: 'Which nephron segment builds the medullary osmotic gradient?',
+                opts: ['Proximal convoluted tubule', 'Loop of Henle', 'Distal convoluted tubule', 'Collecting duct'],
+                correct: 1,
+                exp: 'The loop of Henle, especially the thick ascending limb, generates the medullary osmotic gradient through countercurrent multiplication.'
+            }, {
+                q: 'What determines whether the collecting duct can use the medullary gradient?',
+                opts: ['Glomerular filtration rate', 'ADH (AVP) levels', 'Renal blood flow', 'Dietary salt intake'],
+                correct: 1,
+                exp: 'ADH (arginine vasopressin) determines the water permeability of the collecting duct, allowing it to use the medullary gradient for water reabsorption.'
+            }, {
+                q: 'What is the role of the vasa recta in the medulla?',
+                opts: ['Generates the medullary gradient', 'Preserves the medullary gradient while returning reabsorbed water to circulation',
+                    'Reabsorbs NaCl from the thick ascending limb', 'Secretes ADH'
+                ],
+                correct: 1,
+                exp: 'The vasa recta acts as a countercurrent exchanger, preserving the medullary osmotic gradient while returning reabsorbed water and solutes to the systemic circulation.'
+            }, {
+                q: 'What is the primary function of ADH (antidiuretic hormone)?',
+                opts: ['Increase glomerular filtration rate', 'Increase water permeability of the collecting duct',
+                    'Decrease sodium reabsorption', 'Increase potassium secretion'
+                ],
+                correct: 1,
+                exp: 'ADH increases the water permeability of the collecting duct by inserting aquaporin-2 channels, allowing water reabsorption and urine concentration.'
+            }, {
+                q: 'What is the effect of low ADH on collecting duct water permeability?',
+                opts: ['High water permeability', 'Low water permeability', 'No change', 'Complete impermeability'],
+                correct: 1,
+                exp: 'Low ADH results in low collecting duct water permeability, leading to dilute urine (positive free-water clearance).'
+            }, {
+                q: 'What is free-water clearance (C_H₂O)?',
+                opts: ['Volume of solute-free water excreted per minute', 'Total urine volume per minute',
+                    'Amount of NaCl excreted per minute', 'Osmolar clearance per minute'
+                ],
+                correct: 0,
+                exp: 'Free-water clearance is the volume of solute-free water excreted per minute. Positive C_H₂O indicates dilute urine, negative indicates concentrated urine.'
+            }, {
+                q: 'What is the countercurrent multiplier?',
+                opts: ['A system that dilutes urine', 'A system that concentrates urine by multiplying the medullary gradient',
+                    'A system that reabsorbs glucose', 'A system that secretes potassium'
+                ],
+                correct: 1,
+                exp: 'The countercurrent multiplier is the system in the loop of Henle that generates and multiplies the medullary osmotic gradient, enabling urine concentration.'
+            }, {
+                q: 'Which part of the loop of Henle is impermeable to water?',
+                opts: ['Thin descending limb', 'Thin ascending limb', 'Thick ascending limb', 'Entire loop'],
+                correct: 2,
+                exp: 'The thick ascending limb is impermeable to water but actively reabsorbs NaCl, making it essential for the single effect.'
+            }, {
+                q: 'What is the role of urea recycling in the inner medulla?',
+                opts: ['Weakens the medullary gradient', 'Strengthens the medullary gradient', 'Has no effect on the gradient',
+                    'Increases water excretion'
+                ],
+                correct: 1,
+                exp: 'Urea recycling in the inner medulla contributes to the medullary osmotic gradient, helping to maintain high osmolality in the inner medulla.'
+            }, {
+                q: 'What is the medullary osmotic gradient?',
+                opts: ['A gradient of increasing osmolality from cortex to inner medulla',
+                    'A gradient of decreasing osmolality from cortex to inner medulla',
+                    'A gradient of sodium concentration only', 'A gradient of urea concentration only'
+                ],
+                correct: 0,
+                exp: 'The medullary osmotic gradient is the progressive increase in osmolality from the renal cortex to the inner medulla, driven by NaCl and urea.'
+            }, {
+                q: 'What is the function of the thick ascending limb?',
+                opts: ['Reabsorbs water by osmosis', 'Actively reabsorbs NaCl, impermeable to water',
+                    'Reabsorbs glucose and amino acids', 'Secretes hydrogen ions'
+                ],
+                correct: 1,
+                exp: 'The thick ascending limb actively reabsorbs NaCl via the Na⁺/K⁺/2Cl⁻ cotransporter and is impermeable to water, driving the single effect.'
+            }, {
+                q: 'How does water leave the nephron?',
+                opts: ['Through active transport', 'Through osmosis where epithelium is water-permeable',
+                    'Through facilitated diffusion', 'Through sodium channels'
+                ],
+                correct: 1,
+                exp: 'Water leaves the nephron by osmosis through segments where the epithelium is water-permeable, such as the proximal tubule and the ADH-regulated collecting duct.'
+            }, {
+                q: 'How does salt leave the nephron?',
+                opts: ['By osmosis', 'Through specific transporters in segments that permit salt transport',
+                    'By bulk flow', 'Through paracellular pathways only'
+                ],
+                correct: 1,
+                exp: 'Salt leaves the nephron through specific transporters in segments that permit salt transport, such as the thick ascending limb and distal tubule.'
+            }, {
+                q: 'What is the effect of high ADH on urine osmolality?',
+                opts: ['Decreases urine osmolality', 'Increases urine osmolality', 'No effect on urine osmolality',
+                    'Makes urine iso-osmotic'
+                ],
+                correct: 1,
+                exp: 'High ADH increases water permeability of the collecting duct, allowing more water reabsorption and producing concentrated urine (high osmolality).'
+            }, {
+                q: 'What is the effect of low ADH on urine osmolality?',
+                opts: ['Increases urine osmolality', 'Decreases urine osmolality', 'No effect on urine osmolality',
+                    'Makes urine iso-osmotic'
+                ],
+                correct: 1,
+                exp: 'Low ADH decreases water permeability of the collecting duct, leading to dilute urine (low osmolality).'
+            }, {
+                q: 'What is the role of the vasa recta in preserving the medullary gradient?',
+                opts: ['Actively transports NaCl out of the medulla', 'Acts as a countercurrent exchanger, minimizing washout',
+                    'Increases blood flow to wash out the gradient', 'Secretes ADH into the medulla'
+                ],
+                correct: 1,
+                exp: 'The vasa recta acts as a countercurrent exchanger: blood flows slowly and equilibrates with interstitial osmolality, minimizing solute washout and preserving the gradient.'
+            }, {
+                q: 'What is the "single effect" in the context of urine concentration?',
+                opts: ['The active reabsorption of NaCl in the thick ascending limb', 'The passive reabsorption of water in the collecting duct',
+                    'The secretion of urea in the collecting duct', 'The filtration of glucose in the glomerulus'
+                ],
+                correct: 0,
+                exp: 'The single effect is the active transport of NaCl out of the thick ascending limb, which creates a small osmotic difference that is multiplied by countercurrent flow.'
+            }, {
+                q: 'What is the role of salt in the countercurrent multiplier?',
+                opts: ['Salt is passively reabsorbed in the descending limb', 'Salt is actively reabsorbed in the thick ascending limb, driving the multiplier',
+                    'Salt is secreted in the collecting duct', 'Salt is filtered but not reabsorbed'
+                ],
+                correct: 1,
+                exp: 'Salt (NaCl) is actively reabsorbed in the thick ascending limb, creating the osmotic gradient that drives the countercurrent multiplier and enables urine concentration.'
+            }, ],
+
+            // ----- MEDIUM (20) -----
+            medium: [{
+                q: 'How is the medullary osmotic gradient generated?',
+                opts: ['By active NaCl reabsorption in the thick ascending limb and urea recycling',
+                    'By water reabsorption in the proximal tubule', 'By ADH secretion from the posterior pituitary',
+                    'By glomerular filtration rate'
+                ],
+                correct: 0,
+                exp: 'The medullary gradient is generated by the countercurrent multiplier: active NaCl reabsorption in the thick ascending limb plus urea recycling in the inner medulla.'
+            }, {
+                q: 'How is the medullary osmotic gradient preserved?',
+                opts: ['By the vasa recta acting as a countercurrent exchanger', 'By high blood flow through the medulla',
+                    'By ADH secretion', 'By sodium reabsorption in the proximal tubule'
+                ],
+                correct: 0,
+                exp: 'The vasa recta preserves the gradient by acting as a countercurrent exchanger, with slow blood flow and equilibration that minimizes solute washout.'
+            }, {
+                q: 'What is the role of the thick ascending limb in the single effect?',
+                opts: ['It reabsorbs water', 'It actively reabsorbs NaCl, creating an osmotic gradient',
+                    'It secretes potassium', 'It reabsorbs glucose'
+                ],
+                correct: 1,
+                exp: 'The thick ascending limb actively reabsorbs NaCl via the Na⁺/K⁺/2Cl⁻ cotransporter, creating a small osmotic gradient that drives countercurrent multiplication.'
+            }, {
+                q: 'What is the relationship between ADH and collecting duct water permeability?',
+                opts: ['ADH decreases water permeability', 'ADH increases water permeability via aquaporin-2 insertion',
+                    'ADH has no effect on water permeability', 'ADH increases sodium permeability'
+                ],
+                correct: 1,
+                exp: 'ADH increases collecting duct water permeability by promoting the insertion of aquaporin-2 water channels into the apical membrane.'
+            }, {
+                q: 'What is the significance of urea recycling in the inner medulla?',
+                opts: ['It dilutes the medullary interstitium', 'It contributes to the high osmolality of the inner medulla',
+                    'It reduces urine concentration', 'It increases sodium excretion'
+                ],
+                correct: 1,
+                exp: 'Urea recycling in the inner medulla adds to the osmotic gradient, helping maintain the high osmolality necessary for maximum urine concentration.'
+            }, {
+                q: 'What is the difference between positive and zero free-water clearance?',
+                opts: ['Positive = concentrated urine; zero = dilute urine', 'Positive = dilute urine; zero = iso-osmotic urine',
+                    'Positive = no water excretion; zero = maximum water excretion',
+                    'Positive = high ADH; zero = low ADH'
+                ],
+                correct: 1,
+                exp: 'Positive free-water clearance (C_H₂O > 0) indicates dilute urine (water excretion), while zero free-water clearance (C_H₂O = 0) indicates iso-osmotic urine.'
+            }, {
+                q: 'What is the role of the loop of Henle in urine concentration?',
+                opts: ['It generates the medullary osmotic gradient via countercurrent multiplication',
+                    'It reabsorbs all filtered water', 'It secretes ADH', 'It regulates glomerular filtration'
+                ],
+                correct: 0,
+                exp: 'The loop of Henle, through the countercurrent multiplier mechanism, generates the medullary osmotic gradient required for urine concentration.'
+            }, {
+                q: 'What is the role of the vasa recta in urine concentration?',
+                opts: ['It generates the medullary gradient', 'It preserves the medullary gradient as a countercurrent exchanger',
+                    'It secretes urea into the medulla', 'It reabsorbs glucose'
+                ],
+                correct: 1,
+                exp: 'The vasa recta preserves the medullary gradient by acting as a countercurrent exchanger, minimizing solute washout and maintaining the osmotic gradient.'
+            }, {
+                q: 'What is the countercurrent multiplier system?',
+                opts: ['The loop of Henle and the vasa recta working together to concentrate urine',
+                    'The proximal tubule and collecting duct working together',
+                    'The glomerulus and Bowman\'s capsule', 'The distal tubule and collecting duct'
+                ],
+                correct: 0,
+                exp: 'The countercurrent multiplier system involves the loop of Henle (generating the gradient) and the vasa recta (preserving it), enabling urine concentration.'
+            }, {
+                q: 'How does ADH affect urine concentration?',
+                opts: ['By increasing glomerular filtration rate', 'By increasing water reabsorption in the collecting duct',
+                    'By decreasing sodium reabsorption', 'By increasing potassium secretion'
+                ],
+                correct: 1,
+                exp: 'ADH increases water reabsorption in the collecting duct by inserting aquaporin-2 channels, resulting in more concentrated urine.'
+            }, {
+                q: 'What is the mechanism of action of ADH on the collecting duct?',
+                opts: ['It activates adenylate cyclase, leading to aquaporin-2 insertion', 'It directly opens water channels',
+                    'It inhibits sodium channels', 'It increases urea permeability'
+                ],
+                correct: 0,
+                exp: 'ADH binds to V2 receptors, activates adenylate cyclase, increases cAMP, and promotes the insertion of aquaporin-2 water channels into the apical membrane.'
+            }, {
+                q: 'What is the role of the medullary gradient in urine concentration?',
+                opts: ['It drives water reabsorption from the collecting duct', 'It increases glomerular filtration',
+                    'It decreases sodium reabsorption', 'It promotes potassium secretion'
+                ],
+                correct: 0,
+                exp: 'The medullary osmotic gradient provides the driving force for water reabsorption from the collecting duct when ADH increases water permeability.'
+            }, {
+                q: 'What is the significance of the 20‑fold range of urine osmolality?',
+                opts: ['It shows the kidney\'s ability to excrete a wide range of solute loads',
+                    'It shows the kidney\'s ability to regulate water excretion independently of solute excretion',
+                    'It shows the kidney\'s ability to concentrate and dilute urine', 'All of the above'
+                ],
+                correct: 3,
+                exp: 'The 20‑fold range (50 to 1200 mOsm/kg) reflects the kidney\'s remarkable ability to regulate water excretion independently of solute excretion to maintain ECF osmolality and volume.'
+            }, {
+                q: 'How does water leave the nephron?',
+                opts: ['Through active transport', 'Through osmosis where epithelium is water-permeable',
+                    'Through facilitated diffusion', 'Through sodium channels'
+                ],
+                correct: 1,
+                exp: 'Water leaves the nephron by osmosis through segments where the epithelium is water-permeable, such as the proximal tubule and the ADH-regulated collecting duct.'
+            }, {
+                q: 'How does salt leave the nephron?',
+                opts: ['By osmosis', 'Through specific transporters in segments that permit salt transport',
+                    'By bulk flow', 'Through paracellular pathways only'
+                ],
+                correct: 1,
+                exp: 'Salt leaves the nephron through specific transporters in segments that permit salt transport, such as the thick ascending limb and distal tubule.'
+            }, {
+                q: 'What is the role of the thick ascending limb in the countercurrent multiplier?',
+                opts: ['It reabsorbs water', 'It actively reabsorbs NaCl, creating the osmotic gradient',
+                    'It secretes potassium', 'It reabsorbs glucose'
+                ],
+                correct: 1,
+                exp: 'The thick ascending limb actively reabsorbs NaCl, creating the osmotic gradient that drives the countercurrent multiplier and enables urine concentration.'
+            }, {
+                q: 'What is the role of urea in the medullary gradient?',
+                opts: ['It dilutes the medullary interstitium', 'It contributes to the high osmolality of the inner medulla',
+                    'It reduces urine concentration', 'It increases sodium excretion'
+                ],
+                correct: 1,
+                exp: 'Urea recycling in the inner medulla adds to the osmotic gradient, helping maintain the high osmolality necessary for maximum urine concentration.'
+            }, {
+                q: 'What is the effect of AVP deficiency on urine concentration?',
+                opts: ['Increased urine concentration', 'Decreased urine concentration (dilute urine)',
+                    'No effect on urine concentration', 'Iso-osmotic urine'
+                ],
+                correct: 1,
+                exp: 'AVP (ADH) deficiency results in low collecting duct water permeability, causing dilute urine and polyuria, as seen in central diabetes insipidus.'
+            }, {
+                q: 'What is central diabetes insipidus?',
+                opts: ['Deficiency of ADH secretion from the posterior pituitary', 'Resistance to ADH in the kidney',
+                    'Excess ADH secretion', 'Deficiency of aldosterone'
+                ],
+                correct: 0,
+                exp: 'Central diabetes insipidus is caused by a deficiency of ADH (AVP) secretion from the posterior pituitary, leading to dilute urine and polyuria.'
+            }, {
+                q: 'What is the diagnostic approach for hypernatremia with inappropriately dilute urine after head trauma?',
+                opts: ['Nephrogenic diabetes insipidus', 'Central diabetes insipidus until proven otherwise',
+                    'Psychogenic polydipsia', 'SIADH'
+                ],
+                correct: 1,
+                exp: 'Hypernatremia with inappropriately dilute urine after head trauma is central diabetes insipidus until proven otherwise, due to damage to the hypothalamic-pituitary axis.'
+            }, ],
+
+            // ----- CHALLENGING (20) -----
+            challenging: [{
+                q: 'What is the mechanism of the single effect in the thick ascending limb?',
+                opts: ['Na⁺/K⁺/2Cl⁻ cotransporter-driven NaCl reabsorption creating a small osmotic gradient',
+                    'Passive water reabsorption driven by urea', 'Active transport of H⁺ ions', 'Na⁺/H⁺ exchange'
+                ],
+                correct: 0,
+                exp: 'The single effect is driven by the Na⁺/K⁺/2Cl⁻ cotransporter in the thick ascending limb, which actively reabsorbs NaCl and creates a small osmotic gradient.'
+            }, {
+                q: 'How does urea recycling strengthen the inner medullary gradient?',
+                opts: ['Urea is actively secreted into the collecting duct, increasing interstitial osmolality',
+                    'Urea is reabsorbed in the collecting duct and recycled to the interstitium, adding to the gradient',
+                    'Urea is filtered but not reabsorbed', 'Urea is converted to ammonia'
+                ],
+                correct: 1,
+                exp: 'Urea is reabsorbed from the collecting duct (especially in the inner medulla) and recycled into the interstitium, where it contributes to the high osmolality.'
+            }, {
+                q: 'What is the relationship between the countercurrent multiplier and the vasa recta?',
+                opts: ['The multiplier generates the gradient; the vasa recta preserves it', 'The vasa recta generates the gradient; the multiplier preserves it',
+                    'Both generate the gradient', 'Both preserve the gradient'
+                ],
+                correct: 0,
+                exp: 'The loop of Henle (countercurrent multiplier) generates the medullary gradient, while the vasa recta (countercurrent exchanger) preserves it.'
+            }, {
+                q: 'What is the mechanism of ADH action on the collecting duct at the molecular level?',
+                opts: ['V2 receptor → adenylate cyclase → cAMP → PKA → aquaporin-2 insertion',
+                    'V1 receptor → PLC → IP₃ → calcium release', 'Direct opening of water channels',
+                    'Inhibition of sodium channels'
+                ],
+                correct: 0,
+                exp: 'ADH binds to V2 receptors, activating adenylate cyclase, increasing cAMP, activating PKA, which phosphorylates proteins that promote aquaporin-2 insertion.'
+            }, {
+                q: 'What is the role of aquaporins in the collecting duct?',
+                opts: ['Aquaporin-2 is the water channel inserted in response to ADH',
+                    'Aquaporin-3 and -4 are constitutively expressed on the basolateral membrane',
+                    'Both A and B are correct', 'Aquaporins transport sodium'
+                ],
+                correct: 2,
+                exp: 'Aquaporin-2 is inserted into the apical membrane in response to ADH, while aquaporin-3 and -4 are constitutively expressed on the basolateral membrane, allowing water exit.'
+            }, {
+                q: 'What is the pathophysiology of central diabetes insipidus?',
+                opts: ['Deficient ADH secretion due to hypothalamic/pituitary damage', 'Renal resistance to ADH',
+                    'Excess ADH secretion', 'Deficient aldosterone secretion'
+                ],
+                correct: 0,
+                exp: 'Central DI results from deficient ADH secretion, often due to damage to the hypothalamus or posterior pituitary from trauma, surgery, or tumors.'
+            }, {
+                q: 'What is the difference between free-water clearance and osmolar clearance?',
+                opts: ['Free-water clearance is the volume of solute-free water excreted; osmolar clearance is the volume of plasma cleared of solute',
+                    'They are the same', 'Free-water clearance measures solute excretion, osmolar clearance measures water excretion',
+                    'Free-water clearance is always negative'
+                ],
+                correct: 0,
+                exp: 'Osmolar clearance (Cₒₛₘ) is the volume of plasma cleared of solute per minute; free-water clearance (C_H₂O) is the volume of solute-free water excreted, calculated as C_H₂O = V − Cₒₛₘ.'
+            }, {
+                q: 'How does the kidney maintain ECF osmolality and volume?',
+                opts: ['By varying water excretion more than solute excretion', 'By varying solute excretion more than water excretion',
+                    'By fixed water and solute excretion', 'By glomerular filtration rate alone'
+                ],
+                correct: 0,
+                exp: 'The kidney maintains ECF osmolality and volume by varying water excretion far more than solute excretion, allowing precise regulation of body fluid composition.'
+            }, {
+                q: 'What is the role of the loop of Henle in the countercurrent multiplier?',
+                opts: ['The descending limb is water-permeable; the ascending limb actively reabsorbs NaCl',
+                    'The descending limb reabsorbs NaCl; the ascending limb reabsorbs water',
+                    'Both limbs reabsorb water', 'Both limbs reabsorb NaCl'
+                ],
+                correct: 0,
+                exp: 'The descending limb is water-permeable but not salt-permeable, while the thick ascending limb actively reabsorbs NaCl and is impermeable to water, generating the gradient.'
+            }, {
+                q: 'What is the role of the vasa recta in preserving the medullary gradient?',
+                opts: ['Slow blood flow and countercurrent exchange minimize solute washout',
+                    'High blood flow washes out the gradient', 'Active transport of NaCl out of the medulla',
+                    'Secretion of ADH into the medulla'
+                ],
+                correct: 0,
+                exp: 'The vasa recta has slow blood flow and acts as a countercurrent exchanger, allowing equilibration of solutes and water while minimizing washout of the medullary gradient.'
+            }, {
+                q: 'What is the mechanism of urea recycling?',
+                opts: ['Urea is reabsorbed from the collecting duct and transported back into the loop of Henle',
+                    'Urea is secreted into the proximal tubule', 'Urea is filtered but not reabsorbed',
+                    'Urea is converted to ammonium'
+                ],
+                correct: 0,
+                exp: 'Urea is reabsorbed from the inner medullary collecting duct and recycled into the interstitium, where it contributes to the osmotic gradient and is transported back into the loop of Henle.'
+            }, {
+                q: 'What is the role of the thick ascending limb in the single effect?',
+                opts: ['It actively reabsorbs NaCl, creating an osmotic gradient', 'It reabsorbs water by osmosis',
+                    'It secretes potassium', 'It reabsorbs glucose'
+                ],
+                correct: 0,
+                exp: 'The thick ascending limb actively reabsorbs NaCl via the Na⁺/K⁺/2Cl⁻ cotransporter, creating the osmotic gradient that drives the single effect.'
+            }, {
+                q: 'How does the kidney achieve a 20‑fold range of urine osmolality?',
+                opts: ['Through the countercurrent multiplier, ADH regulation, and medullary gradient',
+                    'Through glomerular filtration rate alone', 'Through aldosterone regulation',
+                    'Through sympathetic nervous system control'
+                ],
+                correct: 0,
+                exp: 'The 20‑fold range is achieved by the countercurrent multiplier generating the medullary gradient, ADH regulating collecting duct water permeability, and the vasa recta preserving the gradient.'
+            }, {
+                q: 'What is the role of the collecting duct in urine concentration?',
+                opts: ['It reabsorbs water when ADH is present, producing concentrated urine',
+                    'It secretes ADH', 'It generates the medullary gradient', 'It reabsorbs all filtered glucose'
+                ],
+                correct: 0,
+                exp: 'The collecting duct reabsorbs water in response to ADH, allowing the production of concentrated urine by equilibrating with the medullary interstitial osmotic gradient.'
+            }, {
+                q: 'What is the effect of ADH on the collecting duct?',
+                opts: ['It increases water permeability by inserting aquaporin-2 channels',
+                    'It decreases water permeability', 'It increases sodium permeability',
+                    'It decreases sodium permeability'
+                ],
+                correct: 0,
+                exp: 'ADH increases water permeability of the collecting duct by promoting the insertion of aquaporin-2 water channels into the apical membrane.'
+            }, {
+                q: 'What is the mechanism of action of AVP (arginine vasopressin)?',
+                opts: ['Binds to V2 receptors → cAMP → PKA → aquaporin-2 insertion', 'Binds to V1 receptors → vasoconstriction',
+                    'Directly opens water channels', 'Inhibits sodium channels'
+                ],
+                correct: 0,
+                exp: 'AVP (ADH) binds to V2 receptors on collecting duct cells, activating adenylate cyclase, increasing cAMP, and promoting aquaporin-2 insertion via PKA.'
+            }, {
+                q: 'What is the role of the medullary gradient in the countercurrent multiplier?',
+                opts: ['It provides the osmotic driving force for water reabsorption', 'It generates the single effect',
+                    'It is generated by the single effect and enables urine concentration', 'It is unrelated to urine concentration'
+                ],
+                correct: 2,
+                exp: 'The medullary gradient is generated by the single effect and provides the osmotic driving force for water reabsorption from the collecting duct, enabling urine concentration.'
+            }, {
+                q: 'What is the significance of the vasa recta in the countercurrent multiplier?',
+                opts: ['It acts as a countercurrent exchanger to preserve the gradient', 'It generates the single effect',
+                    'It reabsorbs all filtered water', 'It secretes urea into the medulla'
+                ],
+                correct: 0,
+                exp: 'The vasa recta acts as a countercurrent exchanger, preserving the medullary gradient by minimizing solute washout while returning reabsorbed water to the circulation.'
+            }, {
+                q: 'What is the pathophysiology of central diabetes insipidus?',
+                opts: ['Deficient ADH secretion', 'Excess ADH secretion', 'Renal resistance to ADH', 'Aldosterone deficiency'],
+                correct: 0,
+                exp: 'Central diabetes insipidus is caused by deficient ADH secretion from the posterior pituitary, usually due to hypothalamic or pituitary damage.'
+            }, {
+                q: 'What is the diagnostic approach for central diabetes insipidus?',
+                opts: ['Water deprivation test showing dilute urine with low ADH', 'Water load test',
+                    'Serum electrolyte panel only', 'Renal ultrasound'
+                ],
+                correct: 0,
+                exp: 'Central DI is diagnosed by a water deprivation test, which shows dilute urine and low ADH levels, followed by response to desmopressin (ADH analogue).'
+            }, ]
+        };
+
+        // ---- TOPIC 2: Acid–Base Balance & Renal Acidification ----
+        BANKS.acid_base = {
+
+            // ----- EASY (20) -----
+            easy: [{
+                q: 'What are the three renal tasks in acidification?',
+                opts: ['Filtration, reabsorption, secretion', 'Reclamation of filtered HCO₃⁻, excretion of titratable acid, excretion of NH₄⁺',
+                    'Reabsorption of sodium, secretion of potassium, excretion of water',
+                    'Filtration of glucose, reabsorption of amino acids, secretion of hydrogen'
+                ],
+                correct: 1,
+                exp: 'The three renal tasks are: (1) reclamation of filtered bicarbonate, (2) excretion of titratable acid, and (3) excretion of ammonium (NH₄⁺).'
+            }, {
+                q: 'What is the difference between urinary pH and net acid excretion?',
+                opts: ['Urinary pH is a concentration; net acid excretion is an amount',
+                    'Urinary pH is an amount; net acid excretion is a concentration',
+                    'They are the same', 'Urinary pH measures bicarbonate, net acid measures ammonium'
+                ],
+                correct: 0,
+                exp: 'Urinary pH reflects the concentration of H⁺ ions, while net acid excretion (NAE) is the total amount of acid excreted, calculated as NH₄⁺ + titratable acid − urinary HCO₃⁻.'
+            }, {
+                q: 'What is the role of Type A intercalated cells?',
+                opts: ['They reabsorb sodium', 'They acidify urine and return bicarbonate to blood',
+                    'They secrete potassium', 'They reabsorb glucose'
+                ],
+                correct: 1,
+                exp: 'Type A intercalated cells in the distal tubule and collecting duct use ATP-driven proton pumps to acidify urine and return bicarbonate to the blood.'
+            }, {
+                q: 'What is titratable acid?',
+                opts: ['Acid excreted as free H⁺ ions', 'Acid excreted bound to buffers (e.g., phosphate)',
+                    'Acid excreted as ammonium', 'Acid reabsorbed in the proximal tubule'
+                ],
+                correct: 1,
+                exp: 'Titratable acid is the amount of acid excreted bound to buffers such as phosphate (HPO₄²⁻ + H⁺ → H₂PO₄⁻), which can be titrated with a strong base.'
+            }, {
+                q: 'What is the formula for net acid excretion (NAE)?',
+                opts: ['NAE = NH₄⁺ + titratable acid − urinary HCO₃⁻', 'NAE = urinary HCO₃⁻ − NH₄⁺ − titratable acid',
+                    'NAE = NH₄⁺ + urinary HCO₃⁻', 'NAE = titratable acid − NH₄⁺'
+                ],
+                correct: 0,
+                exp: 'Net acid excretion = NH₄⁺ + titratable acid − urinary HCO₃⁻. This represents the net amount of acid eliminated by the kidneys.'
+            }, {
+                q: 'What is the role of NH₄⁺ in acid excretion?',
+                opts: ['It is a buffer that carries H⁺ ions for excretion', 'It is a base that neutralizes acid',
+                    'It is reabsorbed in the collecting duct', 'It is secreted in the proximal tubule'
+                ],
+                correct: 0,
+                exp: 'NH₄⁺ (ammonium) is formed in the proximal tubule from glutamine and carries H⁺ ions for excretion in the urine, accounting for a major portion of net acid excretion.'
+            }, {
+                q: 'What is the role of HCO₃⁻ in acid–base balance?',
+                opts: ['It is the primary buffer in the blood', 'It is reabsorbed in the kidney to maintain pH',
+                    'It is excreted in the urine when in excess', 'All of the above'
+                ],
+                correct: 3,
+                exp: 'Bicarbonate (HCO₃⁻) is the primary extracellular buffer, is reabsorbed by the kidney to maintain acid-base balance, and is excreted when in excess.'
+            }, {
+                q: 'What is the role of phosphate in acid excretion?',
+                opts: ['It acts as a buffer for titratable acid excretion', 'It is the primary buffer in the blood',
+                    'It is reabsorbed in the proximal tubule', 'It is secreted in the collecting duct'
+                ],
+                correct: 0,
+                exp: 'Phosphate (HPO₄²⁻) acts as a urinary buffer, binding H⁺ to form H₂PO₄⁻, which is excreted as titratable acid.'
+            }, {
+                q: 'What is the function of Type A intercalated cells?',
+                opts: ['They reabsorb sodium', 'They acidify urine and return bicarbonate to blood',
+                    'They secrete potassium', 'They reabsorb glucose'
+                ],
+                correct: 1,
+                exp: 'Type A intercalated cells acidify urine by secreting H⁺ via ATP-driven proton pumps and return bicarbonate to the blood.'
+            }, {
+                q: 'What is the role of the distal tubule in acidification?',
+                opts: ['It reabsorbs most filtered bicarbonate', 'It acidifies urine by secreting H⁺ and reabsorbing HCO₃⁻',
+                    'It reabsorbs all filtered glucose', 'It secretes ADH'
+                ],
+                correct: 1,
+                exp: 'The distal tubule (and collecting duct) acidifies urine by secreting H⁺ via intercalated cells and reabsorbing bicarbonate, contributing to net acid excretion.'
+            }, {
+                q: 'What is the role of the collecting duct in acidification?',
+                opts: ['It reabsorbs most filtered bicarbonate', 'It acidifies urine via Type A intercalated cells',
+                    'It reabsorbs all filtered glucose', 'It secretes ADH'
+                ],
+                correct: 1,
+                exp: 'The collecting duct acidifies urine through Type A intercalated cells, which secrete H⁺ via ATP-driven pumps and reabsorb bicarbonate.'
+            }, {
+                q: 'What is the role of the proximal tubule in acid–base balance?',
+                opts: ['It reabsorbs the majority of filtered bicarbonate', 'It acidifies urine',
+                    'It secretes ammonium', 'It reabsorbs water'
+                ],
+                correct: 0,
+                exp: 'The proximal tubule reabsorbs about 80-90% of filtered bicarbonate, making it the primary site for bicarbonate reclamation.'
+            }, {
+                q: 'What is the role of the thick ascending limb in acid–base balance?',
+                opts: ['It reabsorbs most filtered bicarbonate', 'It contributes to acid-base balance through NH₄⁺ handling',
+                    'It acidifies urine', 'It secretes potassium'
+                ],
+                correct: 1,
+                exp: 'The thick ascending limb is involved in acid-base balance through the handling of NH₄⁺ (ammonium), which is reabsorbed in this segment.'
+            }, {
+                q: 'What is the role of the distal tubule in acid–base balance?',
+                opts: ['It reabsorbs most filtered bicarbonate', 'It acidifies urine via H⁺ secretion and HCO₃⁻ reabsorption',
+                    'It reabsorbs all filtered glucose', 'It secretes ADH'
+                ],
+                correct: 1,
+                exp: 'The distal tubule acidifies urine by secreting H⁺ and reabsorbing bicarbonate, playing a key role in fine-tuning acid-base balance.'
+            }, {
+                q: 'What is the role of the collecting duct in acid–base balance?',
+                opts: ['It reabsorbs most filtered bicarbonate', 'It acidifies urine via intercalated cells',
+                    'It reabsorbs all filtered glucose', 'It secretes ADH'
+                ],
+                correct: 1,
+                exp: 'The collecting duct acidifies urine through Type A intercalated cells, which secrete H⁺ and reabsorb bicarbonate, contributing to net acid excretion.'
+            }, {
+                q: 'What is the role of NH₄⁺ in acid–base balance?',
+                opts: ['It carries H⁺ for excretion in the urine', 'It is a base that neutralizes acid',
+                    'It is reabsorbed in the collecting duct', 'It is secreted in the proximal tubule'
+                ],
+                correct: 0,
+                exp: 'NH₄⁺ (ammonium) carries H⁺ ions for excretion in the urine, representing a major component of net acid excretion.'
+            }, {
+                q: 'What is the role of titratable acid in acid–base balance?',
+                opts: ['It represents acid excreted bound to buffers like phosphate', 'It represents free H⁺ ions in the urine',
+                    'It represents ammonium excretion', 'It represents bicarbonate reabsorption'
+                ],
+                correct: 0,
+                exp: 'Titratable acid is acid excreted bound to urinary buffers such as phosphate (HPO₄²⁻ + H⁺ → H₂PO₄⁻).'
+            }, {
+                q: 'What is the role of HCO₃⁻ in acid–base balance?',
+                opts: ['It is the primary buffer in the blood', 'It is reabsorbed by the kidney to maintain pH',
+                    'It is excreted in the urine when in excess', 'All of the above'
+                ],
+                correct: 3,
+                exp: 'Bicarbonate is the primary extracellular buffer, is reabsorbed by the kidney, and is excreted in excess to maintain acid-base balance.'
+            }, {
+                q: 'What is the role of phosphate in acid–base balance?',
+                opts: ['It buffers H⁺ in the urine as titratable acid', 'It is the primary buffer in the blood',
+                    'It is reabsorbed in the proximal tubule', 'It is secreted in the collecting duct'
+                ],
+                correct: 0,
+                exp: 'Phosphate acts as a urinary buffer, binding H⁺ to form H₂PO₄⁻, which is excreted as titratable acid.'
+            }, {
+                q: 'What is the role of Type A intercalated cells in acid–base balance?',
+                opts: ['They acidify urine and return bicarbonate to blood', 'They secrete potassium',
+                    'They reabsorb sodium', 'They reabsorb glucose'
+                ],
+                correct: 0,
+                exp: 'Type A intercalated cells acidify urine by secreting H⁺ via ATP-driven proton pumps and return bicarbonate to the blood.'
+            }, ],
+
+            // ----- MEDIUM (20) -----
+            medium: [{
+                q: 'What is the mechanism of Type A intercalated cells?',
+                opts: ['H⁺ ATPase on the apical membrane secretes H⁺; HCO₃⁻ exits the basolateral membrane',
+                    'H⁺ ATPase on the basolateral membrane secretes H⁺', 'Na⁺/H⁺ exchange on the apical membrane',
+                    'H⁺/K⁺ ATPase on the basolateral membrane'
+                ],
+                correct: 0,
+                exp: 'Type A intercalated cells have H⁺ ATPase (and H⁺/K⁺ ATPase) on the apical membrane to secrete H⁺ into the urine, while HCO₃⁻ exits via the basolateral membrane.'
+            }, {
+                q: 'What is the role of ATP-driven proton pumps in acidification?',
+                opts: ['They actively secrete H⁺ into the urine', 'They reabsorb HCO₃⁻ from the urine',
+                    'They secrete K⁺ into the urine', 'They reabsorb Na⁺ from the urine'
+                ],
+                correct: 0,
+                exp: 'ATP-driven proton pumps (H⁺ ATPase) on the apical membrane of Type A intercalated cells actively secrete H⁺ into the urine, acidifying it.'
+            }, {
+                q: 'What is the role of titratable acid excretion in generating new bicarbonate?',
+                opts: ['Each H⁺ excreted with a buffer replaces one bicarbonate in plasma',
+                    'It has no role in bicarbonate generation', 'It consumes bicarbonate',
+                    'It generates ammonium'
+                ],
+                correct: 0,
+                exp: 'Excreting H⁺ with phosphate (or other buffers) removes acid from the body and replaces one bicarbonate in plasma for each proton excreted, generating new bicarbonate.'
+            }, {
+                q: 'What is the relationship between H⁺ excretion and bicarbonate generation?',
+                opts: ['Each H⁺ excreted generates one new bicarbonate', 'H⁺ excretion consumes bicarbonate',
+                    'There is no relationship', 'H⁺ excretion generates ammonium'
+                ],
+                correct: 0,
+                exp: 'Each H⁺ ion excreted in the urine (as titratable acid or NH₄⁺) results in the generation of one new bicarbonate ion in the plasma, maintaining acid-base balance.'
+            }, {
+                q: 'What is the role of NH₄⁺ in net acid excretion?',
+                opts: ['NH₄⁺ is a major component of net acid excretion, carrying H⁺ in the urine',
+                    'NH₄⁺ is not involved in acid excretion', 'NH₄⁺ is reabsorbed in the collecting duct',
+                    'NH₄⁺ is a buffer in the blood'
+                ],
+                correct: 0,
+                exp: 'NH₄⁺ (ammonium) is a major component of net acid excretion, as it carries H⁺ ions in the urine and accounts for a significant portion of acid excretion.'
+            }, {
+                q: 'What is the role of titratable acid in net acid excretion?',
+                opts: ['Titratable acid is a component of net acid excretion, representing buffered H⁺',
+                    'Titratable acid is not part of net acid excretion', 'Titratable acid is the same as NH₄⁺',
+                    'Titratable acid is bicarbonate'
+                ],
+                correct: 0,
+                exp: 'Titratable acid is a component of net acid excretion, representing H⁺ ions excreted bound to urinary buffers such as phosphate.'
+            }, {
+                q: 'What is the role of urinary HCO₃⁻ in net acid excretion?',
+                opts: ['Urinary HCO₃⁻ is subtracted in the net acid excretion formula', 'It is added in the formula',
+                    'It has no role', 'It is the major component of net acid excretion'
+                ],
+                correct: 0,
+                exp: 'In the net acid excretion formula (NAE = NH₄⁺ + titratable acid − urinary HCO₃⁻), urinary bicarbonate is subtracted because it represents alkali loss.'
+            }, {
+                q: 'What is the mechanism of acidification in the distal tubule?',
+                opts: ['H⁺ secretion via ATP-driven pumps and H⁺/K⁺ ATPase', 'Na⁺/H⁺ exchange',
+                    'NH₄⁺ secretion', 'HCO₃⁻ reabsorption'
+                ],
+                correct: 0,
+                exp: 'The distal tubule acidifies urine through H⁺ secretion via ATP-driven proton pumps (H⁺ ATPase) and H⁺/K⁺ ATPase on the apical membrane of intercalated cells.'
+            }, {
+                q: 'What is the role of the distal intercalated cells in acid–base balance?',
+                opts: ['Type A cells acidify urine; Type B cells alkalinize urine', 'Both types acidify urine',
+                    'Both types alkalinize urine', 'They have no role in acid-base balance'
+                ],
+                correct: 0,
+                exp: 'Type A intercalated cells acidify urine by secreting H⁺, while Type B intercalated cells can alkalinize urine by secreting HCO₃⁻.'
+            }, {
+                q: 'What is the mechanism of bicarbonate reclamation?',
+                opts: ['HCO₃⁻ is reabsorbed in the proximal tubule via Na⁺/H⁺ exchange and carbonic anhydrase',
+                    'HCO₃⁻ is reabsorbed in the collecting duct', 'HCO₃⁻ is not reabsorbed',
+                    'HCO₃⁻ is secreted into the urine'
+                ],
+                correct: 0,
+                exp: 'Bicarbonate is reabsorbed in the proximal tubule: H⁺ is secreted via Na⁺/H⁺ exchange, combines with filtered HCO₃⁻ to form CO₂ and H₂O, and CO₂ diffuses into the cell where it is converted back to HCO₃⁻.'
+            }, {
+                q: 'What is the role of the proximal tubule in bicarbonate reclamation?',
+                opts: ['It reabsorbs 80-90% of filtered bicarbonate', 'It secretes bicarbonate',
+                    'It has no role in bicarbonate reclamation', 'It reabsorbs ammonium'
+                ],
+                correct: 0,
+                exp: 'The proximal tubule reabsorbs about 80-90% of filtered bicarbonate, making it the primary site for bicarbonate reclamation.'
+            }, {
+                q: 'What is the role of the distal tubule in acidification?',
+                opts: ['It acidifies urine by secreting H⁺ via intercalated cells', 'It reabsorbs most bicarbonate',
+                    'It secretes ammonium', 'It reabsorbs water'
+                ],
+                correct: 0,
+                exp: 'The distal tubule acidifies urine through Type A intercalated cells, which secrete H⁺ via ATP-driven pumps.'
+            }, {
+                q: 'What is the role of the collecting duct in acidification?',
+                opts: ['It acidifies urine via intercalated cells', 'It reabsorbs most bicarbonate',
+                    'It secretes ammonium', 'It reabsorbs water'
+                ],
+                correct: 0,
+                exp: 'The collecting duct acidifies urine through Type A intercalated cells, which secrete H⁺ and reabsorb bicarbonate.'
+            }, {
+                q: 'What is the role of the intercalated cells in acid–base balance?',
+                opts: ['Type A cells acidify urine; Type B cells alkalinize urine', 'Both types acidify urine',
+                    'Both types alkalinize urine', 'They have no role in acid-base balance'
+                ],
+                correct: 0,
+                exp: 'Type A intercalated cells acidify urine (secrete H⁺, reabsorb HCO₃⁻), while Type B intercalated cells can alkalinize urine (secrete HCO₃⁻, reabsorb H⁺).'
+            }, {
+                q: 'What is the mechanism of titratable acid excretion?',
+                opts: ['H⁺ binds to buffers like phosphate and is excreted', 'H⁺ is excreted as free H⁺ ions',
+                    'H⁺ is excreted as ammonium', 'H⁺ is reabsorbed in the proximal tubule'
+                ],
+                correct: 0,
+                exp: 'Titratable acid excretion involves H⁺ binding to urinary buffers such as phosphate (HPO₄²⁻ + H⁺ → H₂PO₄⁻) and being excreted in the urine.'
+            }, {
+                q: 'What is the role of phosphate in titratable acid excretion?',
+                opts: ['Phosphate acts as a buffer, binding H⁺ to form H₂PO₄⁻', 'Phosphate is reabsorbed in the proximal tubule',
+                    'Phosphate is secreted in the collecting duct', 'Phosphate has no role in acid excretion'
+                ],
+                correct: 0,
+                exp: 'Phosphate (HPO₄²⁻) acts as a urinary buffer, binding H⁺ to form H₂PO₄⁻, which is excreted as titratable acid.'
+            }, {
+                q: 'What is the role of NH₄⁺ in acid excretion?',
+                opts: ['NH₄⁺ is formed in the proximal tubule and carries H⁺ for excretion', 'NH₄⁺ is reabsorbed in the collecting duct',
+                    'NH₄⁺ is a buffer in the blood', 'NH₄⁺ is not involved in acid excretion'
+                ],
+                correct: 0,
+                exp: 'NH₄⁺ (ammonium) is formed in the proximal tubule from glutamine and carries H⁺ for excretion in the urine, accounting for a major portion of net acid excretion.'
+            }, {
+                q: 'What is the role of HCO₃⁻ in acid–base balance?',
+                opts: ['It is the primary buffer in the blood', 'It is reabsorbed by the kidney to maintain pH',
+                    'It is excreted in the urine when in excess', 'All of the above'
+                ],
+                correct: 3,
+                exp: 'Bicarbonate is the primary extracellular buffer, is reabsorbed by the kidney, and is excreted in excess to maintain acid-base balance.'
+            }, {
+                q: 'What is the mechanism of Type A intercalated cells?',
+                opts: ['H⁺ ATPase on the apical membrane secretes H⁺; HCO₃⁻ exits the basolateral membrane',
+                    'H⁺ ATPase on the basolateral membrane secretes H⁺', 'Na⁺/H⁺ exchange on the apical membrane',
+                    'H⁺/K⁺ ATPase on the basolateral membrane'
+                ],
+                correct: 0,
+                exp: 'Type A intercalated cells have H⁺ ATPase (and H⁺/K⁺ ATPase) on the apical membrane to secrete H⁺ into the urine, while HCO₃⁻ exits via the basolateral membrane.'
+            }, {
+                q: 'What is the role of ATP-driven proton pumps in acidification?',
+                opts: ['They actively secrete H⁺ into the urine', 'They reabsorb HCO₃⁻ from the urine',
+                    'They secrete K⁺ into the urine', 'They reabsorb Na⁺ from the urine'
+                ],
+                correct: 0,
+                exp: 'ATP-driven proton pumps (H⁺ ATPase) on the apical membrane of Type A intercalated cells actively secrete H⁺ into the urine, acidifying it.'
+            }, ],
+
+            // ----- CHALLENGING (20) -----
+            challenging: [{
+                q: 'What is the mechanism of acidification by Type A intercalated cells?',
+                opts: ['Apical H⁺ ATPase and H⁺/K⁺ ATPase secrete H⁺; basolateral Cl⁻/HCO₃⁻ exchanger returns HCO₃⁻ to blood',
+                    'Basolateral H⁺ ATPase secretes H⁺', 'Apical Na⁺/H⁺ exchange secretes H⁺',
+                    'Apical HCO₃⁻ secretion'
+                ],
+                correct: 0,
+                exp: 'Type A intercalated cells use apical H⁺ ATPase and H⁺/K⁺ ATPase to secrete H⁺ into the urine, while the basolateral Cl⁻/HCO₃⁻ exchanger returns HCO₃⁻ to the blood.'
+            }, {
+                q: 'What is the role of H⁺ ATPase in the distal tubule?',
+                opts: ['It actively secretes H⁺ into the urine', 'It reabsorbs H⁺ from the urine',
+                    'It secretes K⁺ into the urine', 'It reabsorbs Na⁺ from the urine'
+                ],
+                correct: 0,
+                exp: 'H⁺ ATPase on the apical membrane of Type A intercalated cells actively secretes H⁺ into the urine, acidifying it.'
+            }, {
+                q: 'What is the role of H⁺/K⁺ ATPase in the distal tubule?',
+                opts: ['It secretes H⁺ and reabsorbs K⁺', 'It secretes K⁺ and reabsorbs H⁺',
+                    'It secretes Na⁺ and reabsorbs H⁺', 'It has no role in acid-base balance'
+                ],
+                correct: 0,
+                exp: 'H⁺/K⁺ ATPase on the apical membrane of Type A intercalated cells secretes H⁺ into the urine and reabsorbs K⁺, contributing to acidification.'
+            }, {
+                q: 'What is the role of titratable acid excretion in acid–base balance?',
+                opts: ['It generates new bicarbonate by excreting H⁺ with phosphate buffers',
+                    'It consumes bicarbonate', 'It has no role in acid-base balance', 'It generates ammonium'
+                ],
+                correct: 0,
+                exp: 'Titratable acid excretion (H⁺ with phosphate buffers) removes acid from the body and generates new bicarbonate in the plasma.'
+            }, {
+                q: 'What is the relationship between H⁺ excretion and bicarbonate generation?',
+                opts: ['Each H⁺ excreted generates one new bicarbonate', 'H⁺ excretion consumes bicarbonate',
+                    'There is no relationship', 'H⁺ excretion generates ammonium'
+                ],
+                correct: 0,
+                exp: 'Each H⁺ ion excreted in the urine (as titratable acid or NH₄⁺) results in the generation of one new bicarbonate ion in the plasma, maintaining acid-base balance.'
+            }, {
+                q: 'What is the role of NH₄⁺ in acid excretion?',
+                opts: ['NH₄⁺ is formed in the proximal tubule and excreted, carrying H⁺', 'NH₄⁺ is reabsorbed in the collecting duct',
+                    'NH₄⁺ is a buffer in the blood', 'NH₄⁺ is not involved in acid excretion'
+                ],
+                correct: 0,
+                exp: 'NH₄⁺ (ammonium) is formed in the proximal tubule from glutamine and carries H⁺ for excretion in the urine, accounting for a major portion of net acid excretion.'
+            }, {
+                q: 'What is the role of titratable acid in acid excretion?',
+                opts: ['Titratable acid represents H⁺ excreted with buffers like phosphate', 'Titratable acid is the same as NH₄⁺',
+                    'Titratable acid represents free H⁺ ions', 'Titratable acid is bicarbonate'
+                ],
+                correct: 0,
+                exp: 'Titratable acid is H⁺ excreted bound to urinary buffers such as phosphate (HPO₄²⁻ + H⁺ → H₂PO₄⁻).'
+            }, {
+                q: 'What is the role of urinary HCO₃⁻ in acid excretion?',
+                opts: ['Urinary HCO₃⁻ represents alkali loss and is subtracted in NAE', 'It is added in NAE',
+                    'It has no role', 'It is the major component of NAE'
+                ],
+                correct: 0,
+                exp: 'In the net acid excretion formula (NAE = NH₄⁺ + titratable acid − urinary HCO₃⁻), urinary bicarbonate is subtracted because it represents alkali loss.'
+            }, {
+                q: 'What is the mechanism of distal RTA (Type 1)?',
+                opts: ['Impaired H⁺ secretion in the distal tubule', 'Impaired bicarbonate reabsorption in the proximal tubule',
+                    'Impaired ammonium excretion', 'Excess bicarbonate excretion'
+                ],
+                correct: 0,
+                exp: 'Distal RTA (Type 1) is caused by impaired H⁺ secretion in the distal tubule (Type A intercalated cells), leading to metabolic acidosis with hypokalemia and calcium phosphate stones.'
+            }, {
+                q: 'What is the mechanism of proximal RTA (Type 2)?',
+                opts: ['Impaired bicarbonate reabsorption in the proximal tubule', 'Impaired H⁺ secretion in the distal tubule',
+                    'Impaired ammonium excretion', 'Excess bicarbonate excretion'
+                ],
+                correct: 0,
+                exp: 'Proximal RTA (Type 2) is caused by impaired bicarbonate reabsorption in the proximal tubule, leading to metabolic acidosis with hypokalemia and Fanconi syndrome.'
+            }, {
+                q: 'What is the role of the proximal tubule in bicarbonate reclamation?',
+                opts: ['It reabsorbs 80-90% of filtered bicarbonate via Na⁺/H⁺ exchange and carbonic anhydrase',
+                    'It secretes bicarbonate', 'It has no role in bicarbonate reclamation',
+                    'It reabsorbs ammonium'
+                ],
+                correct: 0,
+                exp: 'The proximal tubule reabsorbs about 80-90% of filtered bicarbonate through Na⁺/H⁺ exchange, carbonic anhydrase activity, and basolateral HCO₃⁻ transport.'
+            }, {
+                q: 'What is the role of the distal tubule in acidification?',
+                opts: ['It acidifies urine by secreting H⁺ via ATP-driven pumps', 'It reabsorbs most bicarbonate',
+                    'It secretes ammonium', 'It reabsorbs water'
+                ],
+                correct: 0,
+                exp: 'The distal tubule acidifies urine through Type A intercalated cells, which secrete H⁺ via ATP-driven proton pumps and H⁺/K⁺ ATPase.'
+            }, {
+                q: 'What is the role of the collecting duct in acidification?',
+                opts: ['It acidifies urine via intercalated cells', 'It reabsorbs most bicarbonate',
+                    'It secretes ammonium', 'It reabsorbs water'
+                ],
+                correct: 0,
+                exp: 'The collecting duct acidifies urine through Type A intercalated cells, which secrete H⁺ and reabsorb bicarbonate.'
+            }, {
+                q: 'What is the role of Type A intercalated cells in acid–base balance?',
+                opts: ['They acidify urine by secreting H⁺ and reabsorbing HCO₃⁻', 'They alkalinize urine by secreting HCO₃⁻',
+                    'They have no role', 'They secrete potassium'
+                ],
+                correct: 0,
+                exp: 'Type A intercalated cells acidify urine by secreting H⁺ into the urine and reabsorbing HCO₃⁻, returning bicarbonate to the blood.'
+            }, {
+                q: 'What is the mechanism of acidification in the distal tubule?',
+                opts: ['H⁺ secretion via apical H⁺ ATPase and H⁺/K⁺ ATPase', 'Na⁺/H⁺ exchange',
+                    'NH₄⁺ secretion', 'HCO₃⁻ reabsorption'
+                ],
+                correct: 0,
+                exp: 'The distal tubule acidifies urine through H⁺ secretion via apical H⁺ ATPase and H⁺/K⁺ ATPase on Type A intercalated cells.'
+            }, {
+                q: 'What is the role of ATP-driven proton pumps in acidification?',
+                opts: ['They actively secrete H⁺ into the urine', 'They reabsorb HCO₃⁻ from the urine',
+                    'They secrete K⁺ into the urine', 'They reabsorb Na⁺ from the urine'
+                ],
+                correct: 0,
+                exp: 'ATP-driven proton pumps (H⁺ ATPase) on the apical membrane of Type A intercalated cells actively secrete H⁺ into the urine, acidifying it.'
+            }, {
+                q: 'What is the role of H⁺/K⁺ ATPase in acidification?',
+                opts: ['It secretes H⁺ into the urine and reabsorbs K⁺', 'It secretes K⁺ and reabsorbs H⁺',
+                    'It secretes Na⁺ and reabsorbs H⁺', 'It has no role in acid-base balance'
+                ],
+                correct: 0,
+                exp: 'H⁺/K⁺ ATPase on the apical membrane of Type A intercalated cells secretes H⁺ into the urine and reabsorbs K⁺, contributing to acidification.'
+            }, {
+                q: 'What is the role of titratable acid excretion in new bicarbonate generation?',
+                opts: ['Excreting H⁺ with phosphate generates one new bicarbonate per H⁺', 'It consumes bicarbonate',
+                    'It has no role', 'It generates ammonium'
+                ],
+                correct: 0,
+                exp: 'Excreting H⁺ with phosphate (or other buffers) removes acid from the body and generates one new bicarbonate in plasma for each proton excreted.'
+            }, {
+                q: 'What is the role of NH₄⁺ in net acid excretion?',
+                opts: ['NH₄⁺ is a major component of NAE, carrying H⁺ in the urine', 'NH₄⁺ is not part of NAE',
+                    'NH₄⁺ is reabsorbed in the collecting duct', 'NH₄⁺ is a buffer in the blood'
+                ],
+                correct: 0,
+                exp: 'NH₄⁺ (ammonium) is a major component of net acid excretion, as it carries H⁺ ions in the urine and accounts for a significant portion of acid excretion.'
+            }, {
+                q: 'What is the diagnostic approach for distal RTA (Type 1)?',
+                opts: ['Normal-anion-gap acidosis with hypokalemia, urine pH > 5.5, and calcium phosphate stones',
+                    'High-anion-gap acidosis', 'Normal-anion-gap acidosis with hyperkalemia',
+                    'Normal-anion-gap acidosis with urine pH < 5.5'
+                ],
+                correct: 0,
+                exp: 'Distal RTA (Type 1) presents with normal-anion-gap metabolic acidosis, hypokalemia, inappropriately high urine pH (>5.5), and calcium phosphate stones.'
+            }, ]
+        };
+
+        // ========================================================================
+        //  SCENARIOS (topic → level → array of { title, body, subqs: [{ q, modelAnswer }] })
+        // ========================================================================
+
+        const SCENARIOS = {};
+
+        // ---- TOPIC 1: Core Principles of Urine Concentration & Dilution ----
+        SCENARIOS.core_concentration = {
+
+            // ----- EASY -----
+            easy: [{
+                title: 'Case: Dehydration and ADH Response',
+                body: 'A 55-year-old patient presents with fatigue, dizziness, and decreased urine output after a 24-hour period of inadequate fluid intake. Laboratory studies show serum osmolality of 310 mOsm/kg (normal 275–290), urine osmolality of 900 mOsm/kg, and urine output of 400 mL/day.',
+                subqs: [{
+                    q: 'What is the expected ADH level in this patient and why?',
+                    modelAnswer: 'ADH (AVP) levels are expected to be high. Elevated serum osmolality stimulates hypothalamic osmoreceptors, increasing ADH secretion from the posterior pituitary to promote water reabsorption and concentrate urine.'
+                }, {
+                    q: 'How does the kidney concentrate urine in response to high ADH?',
+                    modelAnswer: 'High ADH increases water permeability of the collecting duct by inserting aquaporin-2 channels, allowing water to be reabsorbed along the medullary osmotic gradient, producing concentrated urine.'
+                }, {
+                    q: 'What is the role of the medullary osmotic gradient in this response?',
+                    modelAnswer: 'The medullary gradient, generated by the countercurrent multiplier, provides the osmotic driving force for water reabsorption from the collecting duct when ADH increases water permeability.'
+                }, ]
+            }, {
+                title: 'Case: Water Loading and ADH Suppression',
+                body: 'A 30-year-old healthy volunteer drinks 2 litres of water over 1 hour. Urine output increases dramatically, and the urine becomes pale and dilute. Serum osmolality is 275 mOsm/kg (normal), urine osmolality is 80 mOsm/kg.',
+                subqs: [{
+                    q: 'What is the expected ADH level in this patient and why?',
+                    modelAnswer: 'ADH (AVP) levels are expected to be low. Water loading decreases serum osmolality, inhibiting hypothalamic osmoreceptors and reducing ADH secretion, leading to dilute urine.'
+                }, {
+                    q: 'What is the effect of low ADH on the collecting duct?',
+                    modelAnswer: 'Low ADH results in low water permeability of the collecting duct because aquaporin-2 channels are not inserted into the apical membrane, preventing water reabsorption and producing dilute urine.'
+                }, {
+                    q: 'What is positive free-water clearance and why is it present here?',
+                    modelAnswer: 'Positive free-water clearance (C_H₂O > 0) indicates the kidney is excreting solute-free water. In this state of low ADH, the kidney produces dilute urine, resulting in positive free-water clearance.'
+                }, ]
+            }],
+
+            // ----- MEDIUM -----
+            medium: [{
+                title: 'Case: Syndrome of Inappropriate ADH (SIADH)',
+                body: 'A 60-year-old patient with small-cell lung cancer presents with hyponatremia (serum Na⁺ = 120 mmol/L), serum osmolality 255 mOsm/kg, urine osmolality 600 mOsm/kg, and urine Na⁺ 80 mmol/L. The patient is not edematous and has normal adrenal and thyroid function.',
+                subqs: [{
+                    q: 'What is the underlying mechanism of hyponatremia in this patient?',
+                    modelAnswer: 'SIADH causes excess ADH secretion, which increases collecting duct water permeability, leading to excessive water reabsorption, dilution of plasma sodium, and concentrated urine despite low serum osmolality.'
+                }, {
+                    q: 'Why is the urine concentrated (600 mOsm/kg) despite low serum osmolality?',
+                    modelAnswer: 'In SIADH, high ADH levels increase water permeability of the collecting duct, allowing water reabsorption along the medullary gradient, resulting in concentrated urine even when serum osmolality is low.'
+                }, {
+                    q: 'What is the treatment approach for SIADH?',
+                    modelAnswer: 'Treatment includes fluid restriction, correction of underlying cause (e.g., chemotherapy for cancer), and in severe cases, hypertonic saline with careful monitoring to avoid rapid correction of hyponatremia.'
+                }, ]
+            }, {
+                title: 'Case: Central Diabetes Insipidus',
+                body: 'A 25-year-old patient presents with polyuria (urine output 6 L/day), polydipsia, and nocturia after a head injury. Laboratory studies show serum Na⁺ 150 mmol/L, serum osmolality 310 mOsm/kg, urine osmolality 150 mOsm/kg.',
+                subqs: [{
+                    q: 'What is the most likely diagnosis and why?',
+                    modelAnswer: 'Central diabetes insipidus is the most likely diagnosis. The patient has hypernatremia and high serum osmolality with inappropriately dilute urine (low urine osmolality) after head trauma, suggesting ADH deficiency.'
+                }, {
+                    q: 'What is the pathophysiology of this condition?',
+                    modelAnswer: 'Central DI is caused by deficient ADH secretion from the posterior pituitary, often due to hypothalamic-pituitary damage from head trauma, surgery, or tumors. This leads to low collecting duct water permeability and inability to concentrate urine.'
+                }, {
+                    q: 'How would you confirm the diagnosis?',
+                    modelAnswer: 'A water deprivation test would confirm the diagnosis: serum osmolality increases, urine osmolality remains low (<300 mOsm/kg), and administration of desmopressin (ADH analogue) increases urine osmolality, confirming central DI.'
+                }, ]
+            }],
+
+            // ----- CHALLENGING -----
+            challenging: [{
+                title: 'Case: Nephrogenic Diabetes Insipidus',
+                body: 'A 45-year-old patient on long-term lithium therapy for bipolar disorder presents with polyuria (urine output 5 L/day) and polydipsia. Serum Na⁺ 148 mmol/L, serum osmolality 305 mOsm/kg, urine osmolality 200 mOsm/kg. Desmopressin administration does not increase urine osmolality.',
+                subqs: [{
+                    q: 'What is the diagnosis and how does it differ from central DI?',
+                    modelAnswer: 'Nephrogenic diabetes insipidus is diagnosed. Unlike central DI, nephrogenic DI is caused by renal resistance to ADH. Desmopressin (ADH analogue) does not increase urine osmolality because the kidney is unresponsive to ADH.'
+                }, {
+                    q: 'What is the mechanism of lithium-induced nephrogenic DI?',
+                    modelAnswer: 'Lithium reduces ADH-stimulated cAMP production in collecting duct cells, preventing aquaporin-2 insertion and reducing water permeability, leading to dilute urine and polyuria despite normal ADH levels.'
+                }, {
+                    q: 'How would you manage this patient\'s condition?',
+                    modelAnswer: 'Management includes discontinuing lithium if possible, addressing the underlying cause, ensuring adequate hydration, and using thiazide diuretics with amiloride to reduce urine output by decreasing sodium delivery to the collecting duct.'
+                }, ]
+            }, {
+                title: 'Case: Complex Electrolyte Disturbance with Osmotic Diuresis',
+                body: 'A 50-year-old patient with uncontrolled diabetes mellitus presents with polyuria (urine output 4 L/day), polydipsia, and hyperglycemia (blood glucose 400 mg/dL). Serum Na⁺ 130 mmol/L, serum osmolality 320 mOsm/kg, urine osmolality 380 mOsm/kg.',
+                subqs: [{
+                    q: 'What is the mechanism of polyuria in this patient?',
+                    modelAnswer: 'Osmotic diuresis from glucosuria causes polyuria. Uncontrolled diabetes leads to glucose in the urine, which acts as an osmotic diuretic, drawing water into the urine and increasing urine output despite elevated serum osmolality.'
+                }, {
+                    q: 'Why is the urine not maximally concentrated despite elevated serum osmolality?',
+                    modelAnswer: 'The presence of glucose in the urine increases urine osmolality, but the osmotic diuresis limits maximal concentration. Also, osmotic diuresis can cause volume depletion, which may partially stimulate ADH, but the urine remains less concentrated than expected.'
+                }, {
+                    q: 'What is the differential diagnosis for this presentation?',
+                    modelAnswer: 'The differential includes osmotic diuresis from diabetes mellitus (most likely), central DI, nephrogenic DI, and psychogenic polydipsia. Hyperglycemia with glucosuria strongly supports osmotic diuresis from diabetes mellitus.'
+                }, ]
+            }]
+        };
+
+        // ---- TOPIC 2: Acid–Base Balance & Renal Acidification ----
+        SCENARIOS.acid_base = {
+
+            // ----- EASY -----
+            easy: [{
+                title: 'Case: Metabolic Acidosis with High Anion Gap',
+                body: 'A 45-year-old patient with chronic kidney disease presents with fatigue, nausea, and deep breathing (Kussmaul respiration). Laboratory studies show pH 7.25, HCO₃⁻ 14 mmol/L, anion gap 22 mmol/L (normal 8–12), and serum creatinine 3.0 mg/dL.',
+                subqs: [{
+                    q: 'What type of acid-base disorder does this patient have?',
+                    modelAnswer: 'This is a high-anion-gap metabolic acidosis. The reduced pH, low bicarbonate, and elevated anion gap indicate accumulation of unmeasured anions (e.g., sulfates, phosphates, organic acids) due to renal failure.'
+                }, {
+                    q: 'What is the role of the kidney in compensating for metabolic acidosis?',
+                    modelAnswer: 'The kidney compensates by increasing net acid excretion: increasing NH₄⁺ production and excretion, increasing titratable acid excretion, and reabsorbing all filtered bicarbonate to generate new bicarbonate and restore acid-base balance.'
+                }, {
+                    q: 'What is the formula for net acid excretion (NAE)?',
+                    modelAnswer: 'NAE = NH₄⁺ + titratable acid − urinary HCO₃⁻. This represents the net amount of acid eliminated by the kidneys.'
+                }, ]
+            }, {
+                title: 'Case: Metabolic Alkalosis',
+                body: 'A 60-year-old patient with a history of vomiting for 3 days presents with weakness and confusion. Laboratory studies show pH 7.52, HCO₃⁻ 34 mmol/L, and hypokalemia (K⁺ 3.0 mmol/L).',
+                subqs: [{
+                    q: 'What type of acid-base disorder does this patient have?',
+                    modelAnswer: 'This is metabolic alkalosis, indicated by high pH and elevated bicarbonate. Vomiting leads to loss of gastric HCl, causing an increase in plasma bicarbonate and alkalosis.'
+                }, {
+                    q: 'What is the renal response to metabolic alkalosis?',
+                    modelAnswer: 'The kidney responds by excreting excess bicarbonate in the urine (alkaline urine) and decreasing H⁺ excretion. However, volume depletion and hypokalemia can maintain the alkalosis by enhancing bicarbonate reabsorption.'
+                }, {
+                    q: 'What is the role of Type B intercalated cells in metabolic alkalosis?',
+                    modelAnswer: 'Type B intercalated cells can alkalinize urine by secreting HCO₃⁻ into the urine and reabsorbing H⁺, helping to eliminate excess bicarbonate and restore acid-base balance.'
+                }, ]
+            }],
+
+            // ----- MEDIUM -----
+            medium: [{
+                title: 'Case: Distal Renal Tubular Acidosis (Type 1 RTA)',
+                body: 'A 35-year-old patient presents with muscle weakness, fatigue, and a history of kidney stones. Laboratory studies show pH 7.28, HCO₃⁻ 16 mmol/L, serum K⁺ 3.2 mmol/L, urine pH 6.5 (inappropriate), and calcium phosphate stones on imaging.',
+                subqs: [{
+                    q: 'What is the most likely diagnosis and why?',
+                    modelAnswer: 'Distal RTA (Type 1) is the most likely diagnosis. The patient has normal-anion-gap metabolic acidosis, hypokalemia, inappropriately alkaline urine (pH >5.5), and calcium phosphate stones, which are classic features of distal RTA.'
+                }, {
+                    q: 'What is the pathophysiological mechanism of distal RTA?',
+                    modelAnswer: 'Distal RTA is caused by impaired H⁺ secretion in the distal tubule (Type A intercalated cells). Defective H⁺ ATPase or H⁺/K⁺ ATPase prevents acidification of urine, leading to metabolic acidosis and compensatory hypokalemia.'
+                }, {
+                    q: 'How does distal RTA lead to kidney stone formation?',
+                    modelAnswer: 'In distal RTA, the inability to acidify urine leads to high urine pH, which favors calcium phosphate precipitation and stone formation. Hypokalemia and hypercalciuria (due to bone buffering) also contribute to stone risk.'
+                }, ]
+            }, {
+                title: 'Case: Proximal Renal Tubular Acidosis (Type 2 RTA)',
+                body: 'A 40-year-old patient with Fanconi syndrome presents with fatigue, bone pain, and metabolic acidosis. Laboratory studies show pH 7.30, HCO₃⁻ 18 mmol/L, serum K⁺ 3.1 mmol/L, and urine pH 5.5 (appropriately acidic).',
+                subqs: [{
+                    q: 'What is the most likely diagnosis and why?',
+                    modelAnswer: 'Proximal RTA (Type 2) is the most likely diagnosis. The patient has normal-anion-gap metabolic acidosis, hypokalemia, and appropriately acidic urine (pH <5.5) due to impaired bicarbonate reabsorption in the proximal tubule.'
+                }, {
+                    q: 'What is the pathophysiological mechanism of proximal RTA?',
+                    modelAnswer: 'Proximal RTA is caused by impaired bicarbonate reabsorption in the proximal tubule due to defective Na⁺/H⁺ exchange, carbonic anhydrase dysfunction, or other transporter defects, leading to bicarbonate wasting and metabolic acidosis.'
+                }, {
+                    q: 'What is Fanconi syndrome and how does it relate to proximal RTA?',
+                    modelAnswer: 'Fanconi syndrome is a generalized proximal tubular dysfunction causing glycosuria, phosphaturia, aminoaciduria, and uricosuria. Proximal RTA is often a component of Fanconi syndrome, resulting from impaired bicarbonate reabsorption.'
+                }, ]
+            }],
+
+            // ----- CHALLENGING -----
+            challenging: [{
+                title: 'Case: Mixed Acid-Base Disorder',
+                body: 'A 60-year-old patient with chronic obstructive pulmonary disease (COPD) and sepsis presents with confusion and respiratory distress. Laboratory studies show pH 7.20, PaCO₂ 60 mmHg, HCO₃⁻ 24 mmol/L, serum K⁺ 5.5 mmol/L, and serum creatinine 2.5 mg/dL.',
+                subqs: [{
+                    q: 'What are the acid-base disorders in this patient?',
+                    modelAnswer: 'This is a mixed acid-base disorder: respiratory acidosis (elevated PaCO₂ due to COPD) with metabolic acidosis (normal bicarbonate in the setting of elevated PaCO₂ suggests metabolic acidosis, likely from sepsis and renal failure).'
+                }, {
+                    q: 'How does the kidney respond to chronic respiratory acidosis?',
+                    modelAnswer: 'In chronic respiratory acidosis, the kidney compensates by increasing net acid excretion (increasing NH₄⁺ and titratable acid excretion) and reabsorbing more bicarbonate, resulting in elevated plasma bicarbonate over time.'
+                }, {
+                    q: 'What is the role of NH₄⁺ excretion in maintaining acid-base balance in this patient?',
+                    modelAnswer: 'NH₄⁺ excretion is the primary mechanism for eliminating H⁺ in chronic acidosis. The kidney increases glutamine metabolism to produce more NH₄⁺, which carries H⁺ into the urine, helping to maintain acid-base balance despite the acid load.'
+                }, ]
+            }, {
+                title: 'Case: Renal Failure and Acid-Base Disturbance',
+                body: 'A 70-year-old patient with end-stage renal disease (ESRD) presents with fatigue, nausea, and confusion. Laboratory studies show pH 7.20, HCO₃⁻ 12 mmol/L, anion gap 25 mmol/L, serum creatinine 8.0 mg/dL, and blood urea nitrogen 90 mg/dL.',
+                subqs: [{
+                    q: 'What type of metabolic acidosis is this and what is the mechanism?',
+                    modelAnswer: 'This is a high-anion-gap metabolic acidosis due to renal failure. Impaired kidney function leads to accumulation of sulfates, phosphates, and organic acids (uremic toxins), causing the elevated anion gap.'
+                }, {
+                    q: 'How does the kidney normally maintain acid-base balance, and how is this impaired in ESRD?',
+                    modelAnswer: 'The kidney maintains acid-base balance by reabsorbing bicarbonate, excreting NH₄⁺ and titratable acid. In ESRD, reduced nephron mass impairs all three functions, leading to metabolic acidosis and acid retention.'
+                }, {
+                    q: 'What is the treatment approach for metabolic acidosis in ESRD?',
+                    modelAnswer: 'Treatment includes sodium bicarbonate supplementation (oral or intravenous) to correct acidosis, dietary management, and dialysis to remove acid and restore electrolyte balance. In severe cases, hemodialysis is the definitive treatment.'
+                }, ]
+            }]
+        };
+
+
+        // ========================================================================
+        //  APP STATE
+        // ========================================================================
+
+        const state = {
+            topic: null,
+            level: null,
+            questions: null,
+            answers: {},
+            submitted: false,
+            results: null,
+            view: 'topics',
+        };
+
+        // ========================================================================
+        //  HELPERS
+        // ========================================================================
+
+        function shuffle(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function getQuestions(topicId, levelId) {
+            const mcqs = BANKS[topicId]?.[levelId] || [];
+            const shuffledMcqs = shuffle([...mcqs]);
+            const scenarios = SCENARIOS[topicId]?.[levelId] || [];
+            const shuffledScenarios = shuffle([...scenarios]).slice(0, 2);
+            const paddedScenarios = shuffledScenarios.map(sc => {
+                const subqs = shuffle([...sc.subqs]).slice(0, 3);
+                // ensure exactly 3 subqs
+                while (subqs.length < 3) {
+                    subqs.push({
+                        q: `Sub-question ${subqs.length + 1}: What is the correct approach?`,
+                        modelAnswer: 'This is a generic model answer. Please refer to the core principles.'
+                    });
+                }
+                return { ...sc, subqs };
+            });
+            // ensure exactly 2 scenarios
+            while (paddedScenarios.length < 2) {
+                paddedScenarios.push({
+                    title: 'Case: General Acid-Base Scenario',
+                    body: 'A 50-year-old patient presents with symptoms of acid-base disturbance. Laboratory studies are pending.',
+                    subqs: [
+                        { q: 'What initial investigations would you order?',
+                            modelAnswer: 'Arterial blood gases, serum electrolytes, creatinine, and urine analysis to assess acid-base status.' },
+                        { q: 'What is the first step in managing acid-base disorders?',
+                            modelAnswer: 'Identify the primary disorder and any compensation, then address the underlying cause.' },
+                        { q: 'What is the role of the kidney in acid-base compensation?',
+                            modelAnswer: 'The kidney compensates by adjusting bicarbonate reabsorption, NH₄⁺ excretion, and titratable acid excretion.' }
+                    ]
+                });
+            }
+            return { mcqs: shuffledMcqs, scenarios: paddedScenarios };
+        }
+
+        function getTotalQuestions(q) {
+            return q.mcqs.length + q.scenarios.reduce((s, sc) => s + sc.subqs.length, 0);
+        }
+
+        function getAnsweredCount() {
+            return Object.keys(state.answers).length;
+        }
+
+        // ========================================================================
+        //  RENDER
+        // ========================================================================
+
+        const content = document.getElementById('content');
+        const bcTopic = document.getElementById('bcTopic');
+        const bcLevel = document.getElementById('bcLevel');
+        const bcSep = document.getElementById('bcSep');
+        const headerBadge = document.getElementById('headerBadge');
+
+        function render() {
+            switch (state.view) {
+                case 'topics':
+                    renderTopics();
+                    break;
+                case 'levels':
+                    renderLevels();
+                    break;
+                case 'quiz':
+                    renderQuiz();
+                    break;
+                case 'results':
+                    renderResults();
+                    break;
+                default:
+                    renderTopics();
+            }
+            updateBreadcrumb();
+        }
+
+        // ---- TOPICS ----
+        function renderTopics() {
+            headerBadge.textContent = 'Choose a topic';
+            content.innerHTML = `
+                    <h2 style="font-size:20px; font-weight:600; margin-bottom:16px; color:var(--dark);">📚 Select a Subject</h2>
+                    <div class="grid-2col">
+                        ${TOPICS.map(t => `
+                            <div class="card" data-topic="${t.id}">
+                                <span class="icon">${t.icon}</span>
+                                <div class="name">${t.name}</div>
+                                <div class="sub">${t.desc}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            content.querySelectorAll('.card').forEach(el => {
+                el.addEventListener('click', () => {
+                    const id = el.dataset.topic;
+                    const topic = TOPICS.find(t => t.id === id);
+                    state.topic = topic;
+                    state.level = null;
+                    state.questions = null;
+                    state.answers = {};
+                    state.submitted = false;
+                    state.results = null;
+                    state.view = 'levels';
+                    render();
+                });
+            });
+        }
+
+        // ---- LEVELS ----
+        function renderLevels() {
+            if (!state.topic) return;
+            headerBadge.textContent = `${state.topic.icon} ${state.topic.name}`;
+            content.innerHTML = `
+                    <h2 style="font-size:20px; font-weight:600; margin-bottom:16px; color:var(--dark);">
+                        ${state.topic.icon} ${state.topic.name} — Choose Difficulty
+                    </h2>
+                    <div class="grid-3col">
+                        ${LEVELS.map(l => `
+                            <div class="card ${l.cls}" data-level="${l.id}">
+                                <span class="icon">${l.emoji}</span>
+                                <div class="label">${l.label}</div>
+                                <div class="sub">20 MCQs · 2 Scenarios (3 essay each)</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            content.querySelectorAll('.card').forEach(el => {
+                el.addEventListener('click', () => {
+                    const id = el.dataset.level;
+                    const level = LEVELS.find(l => l.id === id);
+                    state.level = level;
+                    state.questions = getQuestions(state.topic.id, level.id);
+                    state.answers = {};
+                    state.submitted = false;
+                    state.results = null;
+                    state.view = 'quiz';
+                    render();
+                });
+            });
+        }
+
+        // ---- QUIZ ----
+        function renderQuiz() {
+            if (!state.topic || !state.level || !state.questions) return;
+            const q = state.questions;
+            const total = getTotalQuestions(q);
+            const answered = getAnsweredCount();
+            // Header badge: topic only
+            headerBadge.textContent = `${state.topic.icon} ${state.topic.name}`;
+
+            let html = `
+                <div class="quiz-header">
+                    <h2>${state.level.emoji} ${state.level.label}</h2>
+                    <span class="progress">${answered} / ${total} answered</span>
+                </div>
+                <div class="quiz-meta">
+                    <span>📝 <strong>${q.mcqs.length}</strong> MCQs</span>
+                    <span>📖 <strong>${q.scenarios.length}</strong> Scenarios · <strong>${q.scenarios.reduce((s,sc) => s + sc.subqs.length, 0)}</strong> essay questions</span>
+                </div>
+                <div id="quizContainer">
+            `;
+
+            // ---- MCQs ----
+            q.mcqs.forEach((mq, idx) => {
+                const key = `q-${idx}`;
+                const selected = state.answers[key] ?? null;
+                const isCorrect = state.submitted ? selected === mq.correct : null;
+                const blockCls = state.submitted ? (isCorrect ? 'correct' : 'wrong') : '';
+                const statusIcon = state.submitted ? (isCorrect ? ' ✅' : ' ❌') : '';
+
+                html += `
+                        <div class="q-block ${blockCls}" data-key="${key}">
+                            <div class="q-head">
+                                <span class="num">Q${idx + 1}.</span>
+                                <span>${mq.q}</span>
+                                ${statusIcon}
+                            </div>
+                            <div class="options">
+                                ${mq.opts.map((opt, oi) => {
+                                    const isSelected = selected === oi;
+                                    const isCorrectOpt = oi === mq.correct;
+                                    let cls = 'opt';
+                                    if (state.submitted) {
+                                        if (isCorrectOpt) cls += ' correct-opt';
+                                        if (isSelected && !isCorrectOpt) cls += ' wrong-opt';
+                                        cls += ' disabled';
+                                    }
+                                    const letter = String.fromCharCode(65 + oi);
+                                    return `
+                                            <label class="${cls}">
+                                                <input type="radio" name="${key}" value="${oi}" ${isSelected ? 'checked' : ''} ${state.submitted ? 'disabled' : ''} />
+                                                <span class="letter">${letter}.</span>
+                                                <span class="opt-text">${opt}</span>
+                                            </label>
+                                        `;
+                                }).join('')}
+                            </div>
+                            ${state.submitted ? `
+                                <div class="explain"><strong>💡 Explanation:</strong> ${mq.exp}</div>
+                            ` : ''}
+                        </div>
+                    `;
+            });
+
+            // ---- Scenarios (essay sub-questions) ----
+            q.scenarios.forEach((sc, si) => {
+                const sKey = `s-${si}`;
+                html += `
+                        <div class="scenario-wrap">
+                            <div class="s-title">📖 Scenario ${si + 1}: ${sc.title}</div>
+                            <div class="s-body">${sc.body}</div>
+                            <div class="sub-label">✍️ Essay Questions <span class="badge-essay">short answer</span></div>
+                    `;
+                sc.subqs.forEach((sq, qi) => {
+                    const key = `${sKey}-${qi}`;
+                    const userAnswer = state.answers[key] || '';
+                    const isSubmitted = state.submitted;
+
+                    html += `
+                            <div class="essay-block ${isSubmitted ? 'submitted' : ''}" data-key="${key}">
+                                <div class="e-head">
+                                    <span class="num">${qi + 1}.</span>
+                                    <span>${sq.q}</span>
+                                </div>
+                                ${!isSubmitted ? `
+                                    <textarea name="${key}" placeholder="Type your answer here..." rows="3">${userAnswer}</textarea>
+                                ` : `
+                                    <div class="user-answer-display">
+                                        <span class="label">📝 Your answer:</span>
+                                        ${userAnswer || '(No answer provided)'}
+                                    </div>
+                                    <div class="model-answer">
+                                        <strong>📌 Model answer:</strong> ${sq.modelAnswer}
+                                    </div>
+                                `}
+                            </div>
+                        `;
+                });
+                html += `</div>`;
+            });
+
+            html += `
+                    </div>
+                    <div class="actions">
+                        ${!state.submitted ? `
+                            <button class="btn btn-primary" id="submitBtn">✅ Submit All Answers</button>
+                        ` : `
+                            <button class="btn btn-success" id="resultsBtn">📊 View Results</button>
+                        `}
+                        <button class="btn btn-outline" id="resetBtn">🔄 Reset</button>
+                        <button class="btn btn-outline" id="backLevelsBtn">🔙 Levels</button>
+                    </div>
+                `;
+
+            content.innerHTML = html;
+
+            // ---- Event listeners for radio buttons (MCQs) ----
+            if (!state.submitted) {
+                content.querySelectorAll('input[type="radio"]').forEach(input => {
+                    input.addEventListener('change', (e) => {
+                        const name = input.name;
+                        const value = parseInt(input.value);
+                        state.answers[name] = value;
+                        updateProgress();
+                    });
+                });
+
+                // ---- Event listeners for textareas (essay) ----
+                content.querySelectorAll('.essay-block textarea').forEach(textarea => {
+                    textarea.addEventListener('input', (e) => {
+                        const name = textarea.name;
+                        state.answers[name] = textarea.value;
+                        updateProgress();
+                    });
+                });
+            }
+
+            // ---- Submit ----
+            const submitBtn = document.getElementById('submitBtn');
+            if (submitBtn) {
+                submitBtn.addEventListener('click', () => {
+                    const total = getTotalQuestions(state.questions);
+                    const answered = getAnsweredCount();
+                    if (answered < total) {
+                        if (!confirm(`You answered ${answered} out of ${total}. Submit anyway?`)) return;
+                    }
+                    state.submitted = true;
+                    render();
+                });
+            }
+
+            // ---- Results ----
+            const resultsBtn = document.getElementById('resultsBtn');
+            if (resultsBtn) {
+                resultsBtn.addEventListener('click', () => {
+                    calculateResults();
+                    state.view = 'results';
+                    render();
+                });
+            }
+
+            // ---- Reset ----
+            const resetBtn = document.getElementById('resetBtn');
+            if (resetBtn) {
+                resetBtn.addEventListener('click', () => {
+                    state.answers = {};
+                    state.submitted = false;
+                    state.results = null;
+                    render();
+                });
+            }
+
+            // ---- Back to levels ----
+            const backLevelsBtn = document.getElementById('backLevelsBtn');
+            if (backLevelsBtn) {
+                backLevelsBtn.addEventListener('click', () => {
+                    state.level = null;
+                    state.questions = null;
+                    state.answers = {};
+                    state.submitted = false;
+                    state.results = null;
+                    state.view = 'levels';
+                    render();
+                });
+            }
+        }
+
+        function updateProgress() {
+            const prog = document.querySelector('.progress');
+            if (prog) {
+                const total = getTotalQuestions(state.questions);
+                const answered = getAnsweredCount();
+                prog.textContent = `${answered} / ${total} answered`;
+            }
+        }
+
+        // ---- RESULTS ----
+        function calculateResults() {
+            const q = state.questions;
+            let total = 0,
+                correct = 0,
+                wrong = 0,
+                unanswered = 0;
+            const details = [];
+
+            // MCQs
+            q.mcqs.forEach((mq, idx) => {
+                const key = `q-${idx}`;
+                const selected = state.answers[key];
+                const isCorrect = selected === mq.correct;
+                total++;
+                if (selected === undefined) { unanswered++;
+                    details.push({ key, label: `Q${idx+1}`, type: 'mcq', selected, correct: mq.correct,
+                        isCorrect: false, answered: false, text: mq.q, opts: mq.opts, exp: mq.exp }); } else if (
+                    isCorrect) { correct++;
+                    details.push({ key, label: `Q${idx+1}`, type: 'mcq', selected, correct: mq.correct,
+                        isCorrect: true, answered: true, text: mq.q, opts: mq.opts, exp: mq.exp }); } else { wrong++;
+                    details.push({ key, label: `Q${idx+1}`, type: 'mcq', selected, correct: mq.correct,
+                        isCorrect: false, answered: true, text: mq.q, opts: mq.opts, exp: mq.exp }); }
+            });
+
+            // Scenarios (essay)
+            q.scenarios.forEach((sc, si) => {
+                sc.subqs.forEach((sq, qi) => {
+                    const key = `s-${si}-${qi}`;
+                    const userAnswer = state.answers[key] || '';
+                    const answered = userAnswer.trim().length > 0;
+                    total++;
+                    if (!answered) { unanswered++;
+                        details.push({ key, label: `S${si+1}-${qi+1}`, type: 'essay', userAnswer,
+                            modelAnswer: sq.modelAnswer, answered: false, text: sq.q }); } else { correct++;
+                        details.push({ key, label: `S${si+1}-${qi+1}`, type: 'essay', userAnswer,
+                            modelAnswer: sq.modelAnswer, answered: true, text: sq.q }); }
+                });
+            });
+
+            state.results = { total, correct, wrong, unanswered, details };
+        }
+
+        function renderResults() {
+            if (!state.results) calculateResults();
+            const r = state.results;
+            const pct = r.total > 0 ? Math.round((r.correct / r.total) * 100) : 0;
+            headerBadge.textContent = `${state.topic.icon} Results`;
+
+            let html = `
+                    <div class="results-summary">
+                        <div>
+                            <div class="big-score">${pct}% <small>Score</small></div>
+                            <div style="font-size:14px; color:var(--text-muted);">${r.correct} / ${r.total} correct</div>
+                        </div>
+                        <div class="stats">
+                            <div class="stat correct"><div class="num">${r.correct}</div><div class="lbl">✅ Correct</div></div>
+                            <div class="stat wrong"><div class="num">${r.wrong}</div><div class="lbl">❌ Wrong</div></div>
+                            <div class="stat unanswered"><div class="num">${r.unanswered}</div><div class="lbl">⏭️ Unanswered</div></div>
+                        </div>
+                    </div>
+                    <div style="display:flex; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
+                        <button class="btn btn-primary" id="reviewToggleBtn">🔍 Review Answers</button>
+                        <button class="btn btn-outline" id="retakeBtn">🔄 Retake</button>
+                        <button class="btn btn-outline" id="backTopicsBtn">🏠 Topics</button>
+                    </div>
+                    <div id="reviewArea" class="hidden">
+                        <hr style="border:1px solid var(--border); margin:16px 0;" />
+                        <h3 style="margin-bottom:12px; color:var(--dark);">📋 Detailed Review</h3>
+                        <div id="reviewContent"></div>
+                    </div>
+                `;
+
+            content.innerHTML = html;
+
+            // Review toggle
+            const reviewBtn = document.getElementById('reviewToggleBtn');
+            const reviewArea = document.getElementById('reviewArea');
+            const reviewContent = document.getElementById('reviewContent');
+            let reviewVisible = false;
+
+            if (reviewBtn && reviewArea) {
+                reviewBtn.addEventListener('click', () => {
+                    reviewVisible = !reviewVisible;
+                    if (reviewVisible) {
+                        reviewArea.classList.remove('hidden');
+                        reviewBtn.textContent = '🔍 Hide Review';
+                        let rc = '';
+                        r.details.forEach(d => {
+                            if (d.type === 'mcq') {
+                                const status = d.answered ? (d.isCorrect ? '✅' : '❌') : '⏭️';
+                                const cls = d.answered ? (d.isCorrect ? 'correct' : 'wrong') : '';
+                                rc += `
+                                        <div class="review-item ${cls}">
+                                            <div class="r-head">
+                                                <span class="r-label">${d.label}</span>
+                                                <span>${d.text}</span>
+                                                <span class="r-status">${status}</span>
+                                            </div>
+                                            <div class="r-detail">
+                                                Your answer: ${d.answered ? d.opts[d.selected] : '—'} &nbsp;|&nbsp; Correct: ${d.opts[d.correct]}
+                                            </div>
+                                            <div class="r-exp">💡 ${d.exp}</div>
+                                        </div>
+                                    `;
+                            } else {
+                                const status = d.answered ? '✅' : '⏭️';
+                                const cls = d.answered ? 'correct' : '';
+                                rc += `
+                                        <div class="review-item ${cls}">
+                                            <div class="r-head">
+                                                <span class="r-label">${d.label}</span>
+                                                <span>${d.text}</span>
+                                                <span class="r-status">${status}</span>
+                                            </div>
+                                            <div class="r-essay-answer">
+                                                <span class="label">📝 Your answer:</span>
+                                                ${d.userAnswer || '(No answer provided)'}
+                                            </div>
+                                            <div class="r-exp" style="margin-top:8px;">
+                                                <strong>📌 Model answer:</strong> ${d.modelAnswer}
+                                            </div>
+                                        </div>
+                                    `;
+                            }
+                        });
+                        reviewContent.innerHTML = rc;
+                    } else {
+                        reviewArea.classList.add('hidden');
+                        reviewBtn.textContent = '🔍 Review Answers';
+                    }
+                });
+            }
+
+            // Retake
+            const retakeBtn = document.getElementById('retakeBtn');
+            if (retakeBtn) {
+                retakeBtn.addEventListener('click', () => {
+                    state.answers = {};
+                    state.submitted = false;
+                    state.results = null;
+                    state.view = 'quiz';
+                    render();
+                });
+            }
+
+            // Back to topics
+            const backTopicsBtn = document.getElementById('backTopicsBtn');
+            if (backTopicsBtn) {
+                backTopicsBtn.addEventListener('click', () => {
+                    state.topic = null;
+                    state.level = null;
+                    state.questions = null;
+                    state.answers = {};
+                    state.submitted = false;
+                    state.results = null;
+                    state.view = 'topics';
+                    headerBadge.textContent = 'Choose a topic';
+                    render();
+                });
+            }
+        }
+
+        // ---- BREADCRUMB ----
+        function updateBreadcrumb() {
+            if (state.topic) {
+                bcTopic.textContent = `${state.topic.icon} ${state.topic.name}`;
+                bcSep.style.display = 'inline';
+                if (state.level) {
+                    bcLevel.textContent = `${state.level.emoji} ${state.level.label}`;
+                } else {
+                    bcLevel.textContent = '—';
+                }
+            } else {
+                bcTopic.textContent = '—';
+                bcSep.style.display = 'none';
+                bcLevel.textContent = '—';
+            }
+        }
+
+        // ========================================================================
+        //  BREADCRUMB NAVIGATION
+        // ========================================================================
+
+        document.querySelectorAll('.crumb-link').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const goto = btn.dataset.goto;
+                if (goto === 'topics') {
+                    state.topic = null;
+                    state.level = null;
+                    state.questions = null;
+                    state.answers = {};
+                    state.submitted = false;
+                    state.results = null;
+                    state.view = 'topics';
+                    headerBadge.textContent = 'Choose a topic';
+                    render();
+                }
+            });
+        });
+
+        // ========================================================================
+        //  INIT
+        // ========================================================================
+
+        render();
+    </script>
+
+</body>
+</html>

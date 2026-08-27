@@ -1,0 +1,2402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuizMaster · Renal Physiology — Urine Formation</title>
+    <style>
+        /* ----- custom properties ----- */
+        :root {
+            --primary: #1a6e7a;
+            --accent: #2fa8a0;
+            --dark: #0f2a2e;
+            --light: #f4f9fa;
+            --radius: 12px;
+            --shadow: 0 4px 14px rgba(10, 40, 50, 0.08);
+            --text: #1a2e36;
+            --text-muted: #4d6a74;
+            --border: #c8dce4;
+            --bg-card: #ffffff;
+            --bg-soft: #eaf3f6;
+            --success: #1a6e7a;
+            --danger: #a54040;
+            --warning: #a07a1a;
+        }
+
+        /* ----- reset & base ----- */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 28px 18px;
+            color: var(--dark);
+        }
+        #app {
+            max-width: 1024px;
+            width: 100%;
+            background: var(--text-muted);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 32px 36px 40px;
+            transition: 0.3s;
+            border: 1px solid rgba(26, 110, 122, 0.08);
+        }
+        @media (max-width: 640px) {
+            #app {
+                padding: 18px 14px 24px;
+                border-radius: 10px;
+            }
+        }
+
+        /* ----- typography ----- */
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+        .text-muted {
+            color: var(--text-muted);
+        }
+
+        /* ----- header ----- */
+        .app-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+            flex-wrap: wrap;
+            gap: 12px;
+            border-bottom: 2px solid rgba(26, 110, 122, 0.12);
+            padding-bottom: 18px;
+            margin-bottom: 22px;
+        }
+        .app-header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .app-header h1 span {
+            background: var(--primary);
+            color: #fff;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 2px 12px;
+            border-radius: 40px;
+            letter-spacing: 0.3px;
+        }
+        .app-header .badge {
+            background: var(--bg-soft);
+            padding: 6px 20px;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--primary);
+            border: 1px solid rgba(26, 110, 122, 0.15);
+        }
+
+        /* ----- breadcrumb ----- */
+        .breadcrumb {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px 14px;
+            margin-bottom: 18px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .breadcrumb .sep {
+            color: var(--text-muted);
+            user-select: none;
+            opacity: 0.5;
+        }
+        .breadcrumb .crumb-link {
+            background: none;
+            border: none;
+            color: var(--light);
+            cursor: pointer;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 6px;
+            transition: background 0.2s;
+            font-size: 14px;
+        }
+        .breadcrumb .crumb-link:hover {
+            background: var(--bg-soft);
+        }
+        .breadcrumb .current {
+            color: var(--dark);
+            font-weight: 600;
+        }
+        .breadcrumb .current-dim {
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        /* ----- cards ----- */
+        .grid-2col {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 18px;
+            margin-top: 6px;
+        }
+        .grid-3col {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 16px;
+            margin-top: 6px;
+        }
+        .card {
+            background: var(--bg-card);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px 16px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: var(--shadow);
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            box-shadow: 0 12px 32px rgba(26, 110, 122, 0.13);
+        }
+        .card .icon {
+            font-size: 36px;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .card .name {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        .card .sub {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+        .card.level-easy .label {
+            color: var(--primary);
+        }
+        .card.level-medium .label {
+            color: #b07a1a;
+        }
+        .card.level-challenging .label {
+            color: var(--danger);
+        }
+        .card .label {
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        /* ----- quiz header ----- */
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .quiz-header h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        .quiz-header .progress {
+            background: var(--bg-soft);
+            padding: 4px 18px;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--primary);
+            border: 1px solid rgba(26, 110, 122, 0.12);
+        }
+        .quiz-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        .quiz-meta span {
+            background: var(--bg-soft);
+            padding: 4px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+        }
+        .quiz-meta span strong {
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        /* ----- question blocks (MCQ) ----- */
+        .q-block {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 18px 22px 20px;
+            margin-bottom: 16px;
+            border: 1.5px solid var(--border);
+            transition: 0.2s;
+            box-shadow: var(--shadow);
+        }
+        .q-block.correct {
+            border-color: var(--primary);
+            background: #ecf6f5;
+        }
+        .q-block.wrong {
+            border-color: var(--danger);
+            background: #fdf2f2;
+        }
+        .q-block .q-head {
+            display: flex;
+            gap: 10px;
+            align-items: baseline;
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .q-block .q-head .num {
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 14px;
+            min-width: 38px;
+        }
+        .q-block .q-text {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+        .q-block .q-text code {
+            background: var(--bg-soft);
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* options (MCQ) */
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .opt {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 16px;
+            border-radius: 10px;
+            background: var(--bg-card);
+            border: 1.5px solid var(--border);
+            cursor: pointer;
+            transition: 0.18s;
+            font-size: 14px;
+        }
+        .opt:hover:not(.disabled) {
+            border-color: var(--primary);
+            background: var(--bg-soft);
+        }
+        .opt input[type="radio"] {
+            accent-color: var(--primary);
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+        .opt .letter {
+            font-weight: 600;
+            color: var(--text-muted);
+            min-width: 24px;
+            font-size: 14px;
+        }
+        .opt .opt-text {
+            flex: 1;
+        }
+        .opt.correct-opt {
+            border-color: var(--primary);
+            background: #ecf6f5;
+        }
+        .opt.correct-opt .letter {
+            color: var(--primary);
+        }
+        .opt.wrong-opt {
+            border-color: var(--danger);
+            background: #fdf2f2;
+        }
+        .opt.wrong-opt .letter {
+            color: var(--danger);
+        }
+        .opt.disabled {
+            cursor: default;
+            opacity: 0.85;
+        }
+        .opt.disabled:hover {
+            border-color: var(--border);
+            background: var(--bg-card);
+        }
+        .opt.correct-opt.disabled:hover {
+            border-color: var(--primary);
+            background: #ecf6f5;
+        }
+        .opt.wrong-opt.disabled:hover {
+            border-color: var(--danger);
+            background: #fdf2f2;
+        }
+
+        /* ----- essay (scenario sub-questions) ----- */
+        .essay-block {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 18px 22px 20px;
+            margin-bottom: 14px;
+            border: 1.5px solid var(--border);
+            box-shadow: var(--shadow);
+            transition: 0.2s;
+        }
+        .essay-block.submitted {
+            border-color: var(--primary);
+            background: #f6fbfa;
+        }
+        .essay-block .e-head {
+            display: flex;
+            gap: 10px;
+            align-items: baseline;
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        .essay-block .e-head .num {
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 14px;
+            min-width: 38px;
+        }
+        .essay-block .e-question {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+        .essay-block textarea {
+            width: 100%;
+            min-height: 90px;
+            padding: 12px 16px;
+            border-radius: 10px;
+            border: 1.5px solid var(--border);
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            resize: vertical;
+            transition: 0.2s;
+            background: var(--bg-card);
+            color: var(--text);
+        }
+        .essay-block textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 110, 122, 0.12);
+        }
+        .essay-block textarea:disabled {
+            background: var(--bg-soft);
+            opacity: 0.8;
+            cursor: not-allowed;
+        }
+        .essay-block .model-answer {
+            margin-top: 14px;
+            padding: 14px 18px;
+            border-radius: 10px;
+            background: var(--bg-soft);
+            border-left: 4px solid var(--primary);
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text);
+        }
+        .essay-block .model-answer strong {
+            color: var(--primary);
+        }
+        .essay-block .user-answer-display {
+            margin-top: 10px;
+            padding: 12px 16px;
+            border-radius: 10px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text);
+            white-space: pre-wrap;
+        }
+        .essay-block .user-answer-display .label {
+            font-weight: 600;
+            color: var(--text-muted);
+            font-size: 13px;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .essay-block .badge-essay {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: var(--primary);
+            background: rgba(26, 110, 122, 0.10);
+            padding: 2px 12px;
+            border-radius: 40px;
+            margin-left: 6px;
+        }
+
+        /* ----- explanation (MCQ) ----- */
+        .explain {
+            margin-top: 12px;
+            padding: 12px 18px;
+            border-radius: 10px;
+            background: var(--bg-soft);
+            border-left: 4px solid var(--primary);
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text);
+        }
+        .explain strong {
+            color: var(--primary);
+        }
+
+        /* ----- scenario wrapper ----- */
+        .scenario-wrap {
+            background: var(--bg-soft);
+            border-radius: var(--radius);
+            padding: 20px 24px 24px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+        .scenario-wrap .s-title {
+            font-weight: 700;
+            font-size: 17px;
+            margin-bottom: 4px;
+            color: var(--dark);
+        }
+        .scenario-wrap .s-body {
+            background: var(--bg-card);
+            padding: 14px 18px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            font-size: 14px;
+            line-height: 1.7;
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            white-space: pre-wrap;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+        .scenario-wrap .s-body code {
+            background: var(--bg-soft);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+        .scenario-wrap .sub-label {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--primary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .scenario-wrap .sub-label .badge-essay {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            color: var(--primary);
+            background: rgba(26, 110, 122, 0.10);
+            padding: 2px 12px;
+            border-radius: 40px;
+        }
+
+        /* ----- buttons ----- */
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            background: var(--bg-soft);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+        .btn-primary:hover {
+            background: #145a64;
+            border-color: #145a64;
+            box-shadow: 0 8px 28px rgba(26, 110, 122, 0.30);
+        }
+        .btn-success {
+            background: var(--accent);
+            color: var(--dark);
+            border-color: var(--accent);
+        }
+        .btn-success:hover {
+            background: #25968e;
+            border-color: #25968e;
+            box-shadow: 0 8px 28px rgba(47, 168, 160, 0.30);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid var(--border);
+            color: var(--text);
+        }
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: var(--bg-soft);
+        }
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        /* ----- results ----- */
+        .results-summary {
+            background: var(--bg-soft);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+        .results-summary .big-score {
+            font-size: 38px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .results-summary .big-score small {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+        .results-summary .stats {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .results-summary .stat {
+            text-align: center;
+        }
+        .results-summary .stat .num {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .results-summary .stat .lbl {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .stat.correct .num {
+            color: var(--primary);
+        }
+        .stat.wrong .num {
+            color: var(--danger);
+        }
+        .stat.unanswered .num {
+            color: var(--text-muted);
+        }
+
+        /* review items */
+        .review-item {
+            background: var(--bg-card);
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+        .review-item.correct {
+            border-left-color: var(--primary);
+        }
+        .review-item.wrong {
+            border-left-color: var(--danger);
+        }
+        .review-item .r-head {
+            display: flex;
+            gap: 12px;
+            align-items: baseline;
+            flex-wrap: wrap;
+        }
+        .review-item .r-head .r-label {
+            font-weight: 600;
+            min-width: 50px;
+            color: var(--text);
+        }
+        .review-item .r-head .r-status {
+            margin-left: auto;
+            font-weight: 600;
+        }
+        .review-item .r-detail {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+        .review-item .r-exp {
+            font-size: 14px;
+            color: var(--text);
+            margin-top: 6px;
+            background: var(--bg-soft);
+            padding: 8px 14px;
+            border-radius: 8px;
+        }
+        .review-item .r-essay-answer {
+            font-size: 14px;
+            color: var(--text);
+            margin-top: 6px;
+            background: var(--bg-card);
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            white-space: pre-wrap;
+        }
+        .review-item .r-essay-answer .label {
+            font-weight: 600;
+            color: var(--text-muted);
+            font-size: 13px;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+        .mt-12 {
+            margin-top: 12px;
+        }
+        .mb-8 {
+            margin-bottom: 8px;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .flex-between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        /* ----- responsive ----- */
+        @media (max-width: 640px) {
+            .q-block {
+                padding: 14px 14px 16px;
+            }
+            .essay-block {
+                padding: 14px 14px 16px;
+            }
+            .opt {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+            .results-summary {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+            .results-summary .stats {
+                justify-content: center;
+            }
+            .app-header h1 {
+                font-size: 20px;
+            }
+            .card {
+                padding: 16px 12px;
+            }
+            .btn {
+                padding: 9px 20px;
+                font-size: 14px;
+            }
+            .scenario-wrap {
+                padding: 14px 14px 18px;
+            }
+            .scenario-wrap .s-body {
+                font-size: 13px;
+                padding: 10px 12px;
+            }
+            #app {
+                padding: 14px 10px 20px;
+            }
+            .essay-block textarea {
+                min-height: 70px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <!-- header -->
+        <header class="app-header">
+            <h1>🧬 Renal Physiology <span>Quiz</span></h1>
+            <span class="badge" id="headerBadge">Choose a topic</span>
+        </header>
+
+        <!-- breadcrumb -->
+        <!-- <nav class="breadcrumb" id="breadcrumb">
+            <button class="crumb-link" data-goto="topics">🏠 Topics</button>
+            <span class="sep">›</span>
+            <span class="current" id="bcTopic">—</span>
+            <span class="sep" id="bcSep">›</span>
+            <span class="current" id="bcLevel">—</span>
+        </nav> -->
+
+        <!-- dynamic content -->
+        <div id="content"></div>
+    </div>
+
+    <script>
+        // ========================================================================
+        //  DATA — Topics, Levels, Question Banks, Scenarios (from PDF lecture notes)
+        // ========================================================================
+
+        const TOPICS = [
+            { id: 'glomerular_architecture', name: 'Glomerular Architecture & Filtration', icon: '🧪',
+                desc: 'Ultrafiltration, Starling forces, GFR, clearance (slides 1–13)' },
+            { id: 'tubular_contribution', name: 'Tubular Contribution to Urine Formation', icon: '🔄',
+                desc: 'Transport max, proximal tubule, loop of Henle, handling patterns (slides 14+)' },
+        ];
+
+        const LEVELS = [
+            { id: 'easy', label: 'Easy', emoji: '🌱', cls: 'level-easy' },
+            { id: 'medium', label: 'Medium', emoji: '🔥', cls: 'level-medium' },
+            { id: 'challenging', label: 'Challenging', emoji: '🚀', cls: 'level-challenging' },
+        ];
+
+        // ----- MCQ BANKS (topic → level → array of { q, opts, correct, exp }) -----
+        const BANKS = {};
+
+        // ============================================================
+        //  TOPIC 1 — Glomerular Architecture & Filtration (slides 1–13)
+        // ============================================================
+
+        BANKS.glomerular_architecture = {
+
+            // ---------- EASY ----------
+            easy: [{
+                q: 'Which three renal processes combine to form urine?',
+                opts: ['Filtration, reabsorption, secretion', 'Filtration, digestion, excretion',
+                    'Reabsorption, secretion, metabolism', 'Filtration, excretion, osmosis'
+                ],
+                correct: 0,
+                exp: 'Urine formation = filtration – reabsorption + secretion. Filtration occurs at the glomerulus, reabsorption and secretion occur along the tubules.'
+            }, {
+                q: 'What is the equation for urinary excretion rate of a substance X?',
+                opts: ['Ux × V = filtration – reabsorption + secretion', 'Ux × V = filtration + reabsorption – secretion',
+                    'Ux × V = filtration × reabsorption', 'Ux × V = secretion – filtration'
+                ],
+                correct: 0,
+                exp: 'Excretion rate = Ux × V = (filtered load) – (reabsorbed) + (secreted). This is the substance-specific net balance.'
+            }, {
+                q: 'What is the approximate glomerular capillary hydrostatic pressure?',
+                opts: ['25–30 mmHg', '55–60 mmHg', '80–90 mmHg', '110–120 mmHg'],
+                correct: 1,
+                exp: 'Glomerular capillary hydrostatic pressure is approximately 55–60 mmHg, which drives ultrafiltration across the glomerular barrier.'
+            }, {
+                q: 'Which of the following is freely filtered across the glomerular filtration barrier?',
+                opts: ['Albumin', 'Red blood cells', 'Sodium (Na⁺)', 'Platelets'],
+                correct: 2,
+                exp: 'Water, Na⁺, K⁺, Cl⁻, HCO₃⁻, glucose, amino acids, urea, and creatinine are freely filtered. Cells and most proteins are retained.'
+            }, {
+                q: 'What is the normal glomerular filtration rate (GFR) in a healthy adult?',
+                opts: ['25 mL/min', '80 mL/min', '125 mL/min', '250 mL/min'],
+                correct: 2,
+                exp: 'Normal GFR is approximately 125 mL/min (or about 180 L/day). It is often indexed to 1.73 m² body surface area.'
+            }, {
+                q: 'What is the normal renal plasma flow (RPF)?',
+                opts: ['125 mL/min', '325 mL/min', '625 mL/min', '1250 mL/min'],
+                correct: 2,
+                exp: 'Normal renal plasma flow is approximately 625 mL/min. The filtration fraction (GFR/RPF) is therefore about 20%.'
+            }, {
+                q: 'What is the filtration fraction?',
+                opts: ['GFR ÷ RBF', 'GFR ÷ RPF', 'RPF ÷ GFR', 'GFR × RPF'],
+                correct: 1,
+                exp: 'Filtration fraction = GFR ÷ RPF = 125 ÷ 625 = 0.20 (20%). About one-fifth of the plasma entering the kidneys is filtered into Bowman\'s space.'
+            }, {
+                q: 'What does PAH clearance estimate?',
+                opts: ['True GFR', 'Effective renal plasma flow (ERPF)', 'Tubular reabsorption rate', 'Filtration fraction'],
+                correct: 1,
+                exp: 'PAH is extensively secreted and nearly completely cleared from plasma in one pass, so PAH clearance estimates effective renal plasma flow (ERPF).'
+            }, {
+                q: 'What does inulin clearance estimate?',
+                opts: ['True GFR', 'Renal plasma flow', 'Tubular secretion rate', 'Glucose reabsorption'],
+                correct: 0,
+                exp: 'Inulin is freely filtered, not reabsorbed or secreted, so its clearance equals true GFR. Creatinine clearance slightly overestimates GFR.'
+            }, {
+                q: 'Which statement about creatinine clearance is true?',
+                opts: ['It equals true GFR', 'It underestimates true GFR', 'It slightly overestimates true GFR',
+                    'It measures renal plasma flow'
+                ],
+                correct: 2,
+                exp: 'Creatinine is freely filtered and slightly secreted by the tubules, so creatinine clearance slightly overestimates true GFR.'
+            }, {
+                q: 'What is the effect of afferent arteriolar constriction on GFR?',
+                opts: ['Increases GFR', 'Decreases GFR', 'No effect on GFR', 'Increases filtration fraction'],
+                correct: 1,
+                exp: 'Constriction of the afferent arteriole reduces glomerular capillary hydrostatic pressure, thereby decreasing GFR.'
+            }, {
+                q: 'What is the effect of efferent arteriolar constriction on GFR?',
+                opts: ['Decreases GFR', 'Increases GFR initially', 'No effect on GFR', 'Decreases filtration fraction'],
+                correct: 1,
+                exp: 'Efferent arteriolar constriction increases resistance downstream, raising glomerular capillary hydrostatic pressure and initially increasing GFR.'
+            }, {
+                q: 'What is the formula for clearance of a substance X?',
+                opts: ['Cx = Ux × V', 'Cx = Ux × V / Px', 'Cx = Px × V / Ux', 'Cx = Ux / (Px × V)'],
+                correct: 1,
+                exp: 'Clearance = (Ux × V) / Px, where Ux is urine concentration, V is urine flow rate, and Px is plasma concentration. It represents the volume of plasma cleared of the substance per unit time.'
+            }, {
+                q: 'What is retained in the blood during glomerular filtration?',
+                opts: ['Water and small solutes', 'Blood cells and most plasma proteins',
+                    'Glucose and amino acids', 'Electrolytes and urea'
+                ],
+                correct: 1,
+                exp: 'Blood cells, platelets, and nearly all plasma proteins (especially albumin) are retained. Only water and small solutes are freely filtered.'
+            }, {
+                q: 'What is the role of podocytes in the glomerular filtration barrier?',
+                opts: ['They secrete renin', 'They form filtration slits and regulate permeability',
+                    'They produce erythropoietin', 'They reabsorb sodium'
+                ],
+                correct: 1,
+                exp: 'Podocytes have foot processes that form filtration slits (slit diaphragms) which are a key part of the size- and charge-selective filtration barrier.'
+            }, {
+                q: 'What happens when the glomerular filtration barrier is injured?',
+                opts: ['Increased GFR', 'Proteinuria (albuminuria)', 'Increased sodium reabsorption',
+                    'Decreased urine output'
+                ],
+                correct: 1,
+                exp: 'Podocyte/slit-diaphragm injury leads to albuminuria (proteinuria). Severe injury can cause nephrotic-range proteinuria.'
+            }, {
+                q: 'What is Alport syndrome?',
+                opts: ['A defect in the glomerular basement membrane', 'A disorder of the proximal tubule',
+                    'A defect in the loop of Henle', 'A disease of the collecting duct'
+                ],
+                correct: 0,
+                exp: 'Alport syndrome is a genetic defect in the glomerular basement membrane (GBM) that impairs barrier integrity, leading to hematuria and progressive renal failure.'
+            }, {
+                q: 'What is the effect of mesangial contraction on GFR?',
+                opts: ['Increases GFR', 'Decreases GFR', 'No effect', 'Increases filtration surface area'],
+                correct: 1,
+                exp: 'Mesangial contraction reduces the filtration surface area and Kf (filtration coefficient), thereby decreasing GFR.'
+            }, {
+                q: 'How is GFR commonly indexed to account for body size?',
+                opts: ['Per kg body weight', 'Per m² body surface area', 'Per liter of blood', 'Per year of age'],
+                correct: 1,
+                exp: 'GFR is commonly indexed to 1.73 m² body surface area to allow comparison across individuals of different body sizes.'
+            }, {
+                q: 'What is the major driving force for glomerular filtration?',
+                opts: ['Oncotic pressure', 'Hydrostatic pressure in the glomerular capillaries',
+                    'Hydrostatic pressure in Bowman\'s space', 'Tubular hydrostatic pressure'
+                ],
+                correct: 1,
+                exp: 'Glomerular capillary hydrostatic pressure (≈55–60 mmHg) is the major outward force driving ultrafiltration across the glomerular barrier.'
+            }, ],
+
+            // ---------- MEDIUM ----------
+            medium: [{
+                q: 'What is the net filtration pressure (NFP) determined by?',
+                opts: ['Starling forces across the glomerular capillary', 'Only the glomerular hydrostatic pressure',
+                    'Only the oncotic pressure', 'The rate of tubular reabsorption'
+                ],
+                correct: 0,
+                exp: 'NFP is determined by the balance of Starling forces: glomerular hydrostatic pressure (outward) minus plasma oncotic pressure and Bowman\'s space hydrostatic pressure (inward).'
+            }, {
+                q: 'Which of the following substances is NOT freely filtered?',
+                opts: ['Urea', 'Creatinine', 'Albumin', 'Glucose'],
+                correct: 2,
+                exp: 'Albumin is a large plasma protein that is retained in the blood. Urea, creatinine, and glucose are freely filtered (though glucose is normally reabsorbed).'
+            }, {
+                q: 'What is the significance of the filtration fraction of 20%?',
+                opts: ['20% of renal blood flow is filtered', '20% of renal plasma flow is filtered',
+                    '20% of filtered load is excreted', '20% of urine is reabsorbed'
+                ],
+                correct: 1,
+                exp: 'Filtration fraction = GFR/RPF = 125/625 = 0.20. This means about 20% of the plasma entering the kidneys is filtered into Bowman\'s space.'
+            }, {
+                q: 'What is the effect of decreased renal plasma flow (RPF) on filtration fraction?',
+                opts: ['Filtration fraction decreases', 'Filtration fraction increases',
+                    'Filtration fraction remains unchanged', 'It has no effect on GFR'
+                ],
+                correct: 1,
+                exp: 'If RPF decreases while GFR remains relatively constant, the filtration fraction (GFR/RPF) increases. However, severe reductions in RPF can also reduce GFR.'
+            }, {
+                q: 'What does the clearance of a substance represent?',
+                opts: ['The amount of substance in urine', 'The volume of plasma cleared of the substance per minute',
+                    'The concentration of the substance in plasma', 'The rate of tubular secretion'
+                ],
+                correct: 1,
+                exp: 'Clearance (Cx = Ux·V / Px) represents the volume of plasma completely cleared of substance X per unit time. It is a virtual volume, not an actual volume.'
+            }, {
+                q: 'Why does creatinine clearance slightly overestimate true GFR?',
+                opts: ['Creatinine is reabsorbed', 'Creatinine is secreted by the tubules',
+                    'Creatinine is bound to plasma proteins', 'Creatinine is metabolized'
+                ],
+                correct: 1,
+                exp: 'Creatinine is freely filtered and also undergoes some tubular secretion, so the amount excreted exceeds the filtered load, making clearance slightly higher than true GFR.'
+            }, {
+                q: 'What is the effect of afferent arteriolar dilation on GFR?',
+                opts: ['Decreases GFR', 'Increases GFR', 'No effect on GFR', 'Decreases renal plasma flow'],
+                correct: 1,
+                exp: 'Afferent arteriolar dilation reduces resistance, allowing more blood flow and increasing glomerular capillary hydrostatic pressure, which increases GFR.'
+            }, {
+                q: 'What is the effect of efferent arteriolar dilation on GFR?',
+                opts: ['Increases GFR', 'Decreases GFR', 'No effect on GFR', 'Increases filtration fraction'],
+                correct: 1,
+                exp: 'Efferent arteriolar dilation reduces downstream resistance, decreasing glomerular capillary hydrostatic pressure, which decreases GFR.'
+            }, {
+                q: 'What is the relationship between GFR and serum creatinine?',
+                opts: ['They are directly proportional', 'They are inversely proportional',
+                    'There is no relationship', 'Serum creatinine equals GFR'
+                ],
+                correct: 1,
+                exp: 'Serum creatinine and GFR are inversely related. As GFR falls, serum creatinine rises. However, serum creatinine may remain "normal" despite a significant fall in GFR.'
+            }, {
+                q: 'What is the role of the glomerular basement membrane (GBM) in filtration?',
+                opts: ['It secretes renin', 'It provides a size- and charge-selective barrier',
+                    'It reabsorbs sodium', 'It produces erythropoietin'
+                ],
+                correct: 1,
+                exp: 'The GBM is a key component of the filtration barrier. It restricts macromolecules based on size and negative charge (heparan sulfate proteoglycans).'
+            }, {
+                q: 'Which of the following is a cause of decreased GFR?',
+                opts: ['Increased glomerular capillary pressure', 'Increased Kf',
+                    'Obstruction of the urinary tract', 'Decreased plasma oncotic pressure'
+                ],
+                correct: 2,
+                exp: 'Obstruction of the urinary tract increases hydrostatic pressure in Bowman\'s space, reducing net filtration pressure and decreasing GFR.'
+            }, {
+                q: 'What is the effect of increased plasma oncotic pressure on GFR?',
+                opts: ['Increases GFR', 'Decreases GFR', 'No effect on GFR', 'Increases filtration fraction'],
+                correct: 1,
+                exp: 'Increased plasma oncotic pressure opposes filtration by drawing water into the capillaries, reducing net filtration pressure and decreasing GFR.'
+            }, {
+                q: 'What does the term "ultrafiltrate" refer to?',
+                opts: ['The fluid that enters Bowman\'s space', 'The final urine', 'The blood in the glomerular capillaries',
+                    'The fluid in the collecting duct'
+                ],
+                correct: 0,
+                exp: 'Ultrafiltrate is the fluid that crosses the glomerular filtration barrier into Bowman\'s space. It is essentially plasma water with small solutes and virtually no cells or large proteins.'
+            }, {
+                q: 'What is the effect of angiotensin II on GFR?',
+                opts: ['It increases GFR by dilating the afferent arteriole',
+                    'It decreases GFR by constricting the efferent arteriole',
+                    'It decreases GFR by constricting the afferent arteriole',
+                    'It increases GFR by dilating the efferent arteriole'
+                ],
+                correct: 2,
+                exp: 'Angiotensin II preferentially constricts the efferent arteriole (which can increase GFR) but at high levels also constricts the afferent arteriole, which decreases GFR. The net effect depends on the balance.'
+            }, {
+                q: 'What is the clinical significance of the filtration barrier\'s negative charge?',
+                opts: ['It repels positively charged molecules', 'It repels negatively charged molecules like albumin',
+                    'It attracts water', 'It has no significance'
+                ],
+                correct: 1,
+                exp: 'The GBM and podocyte glycocalyx are negatively charged, which repels negatively charged molecules like albumin. Loss of this negative charge contributes to albuminuria.'
+            }, {
+                q: 'What is the equation for filtered load of a substance?',
+                opts: ['Filtered load = GFR × Px', 'Filtered load = Ux × V', 'Filtered load = GFR / Px',
+                    'Filtered load = Px / GFR'
+                ],
+                correct: 0,
+                exp: 'Filtered load = GFR × Px, where Px is the plasma concentration of the substance. This is the amount of substance filtered per unit time.'
+            }, {
+                q: 'What is the major site of regulation of GFR?',
+                opts: ['The proximal tubule', 'The afferent and efferent arterioles', 'The collecting duct',
+                    'The loop of Henle'
+                ],
+                correct: 1,
+                exp: 'GFR is primarily regulated by adjusting the tone of the afferent and efferent arterioles, which control glomerular capillary hydrostatic pressure and blood flow.'
+            }, {
+                q: 'What is the effect of sympathetic stimulation on GFR?',
+                opts: ['Increases GFR', 'Decreases GFR', 'No effect', 'Increases filtration fraction'],
+                correct: 1,
+                exp: 'Sympathetic stimulation causes vasoconstriction of the afferent arterioles, reducing renal blood flow and decreasing GFR.'
+            }, {
+                q: 'What is the normal range for serum creatinine in adults?',
+                opts: ['0.2–0.5 mg/dL', '0.6–1.2 mg/dL', '1.5–2.5 mg/dL', '3.0–5.0 mg/dL'],
+                correct: 1,
+                exp: 'Normal serum creatinine is approximately 0.6–1.2 mg/dL, but it varies with muscle mass, age, sex, and diet. It is not a sensitive marker for early GFR decline.'
+            }, {
+                q: 'What is the clinical utility of eGFR equations?',
+                opts: ['They measure renal plasma flow', 'They estimate GFR without urine collection',
+                    'They directly measure tubular secretion', 'They assess glomerular permeability'
+                ],
+                correct: 1,
+                exp: 'eGFR equations use serum creatinine with demographic variables (age, sex, race) to estimate GFR without the need for urine collection, making them practical for clinical use.'
+            }, ],
+
+            // ---------- CHALLENGING ----------
+            challenging: [{
+                q: 'What is the effect of a 50% reduction in GFR on serum creatinine in a patient with stable creatinine production?',
+                opts: ['Serum creatinine increases by 50%', 'Serum creatinine doubles', 'Serum creatinine remains unchanged',
+                    'Serum creatinine decreases by 50%'
+                ],
+                correct: 1,
+                exp: 'In steady state, creatinine excretion equals production. If GFR halves, serum creatinine must approximately double to maintain the same filtered load (GFR × Pcr = production).'
+            }, {
+                q: 'How does the glomerular filtration barrier restrict macromolecules?',
+                opts: ['By size only', 'By charge only', 'By size and charge', 'By active transport'],
+                correct: 2,
+                exp: 'The filtration barrier restricts macromolecules based on size (molecular radius) and charge (negative charge repels anionic molecules like albumin).'
+            }, {
+                q: 'What is the role of the slit diaphragm in podocytes?',
+                opts: ['It transports sodium', 'It forms the final size-selective barrier to proteins',
+                    'It secretes renin', 'It reabsorbs glucose'
+                ],
+                correct: 1,
+                exp: 'The slit diaphragm between podocyte foot processes is the final size-selective component of the filtration barrier. It is composed of proteins like nephrin and podocin.'
+            }, {
+                q: 'What happens to filtration fraction when renal plasma flow decreases while GFR is maintained?',
+                opts: ['It decreases', 'It increases', 'It stays the same', 'It becomes zero'],
+                correct: 1,
+                exp: 'Filtration fraction = GFR / RPF. If RPF decreases and GFR is maintained, the fraction increases. This occurs with efferent arteriolar constriction.'
+            }, {
+                q: 'What is the significance of the "splay" in the glucose titration curve?',
+                opts: ['It represents complete saturation of carriers', 'It represents the gradual onset of excretion due to heterogeneity of nephrons',
+                    'It indicates maximum reabsorption', 'It represents the renal threshold'
+                ],
+                correct: 1,
+                exp: 'Splay in the glucose titration curve reflects the heterogeneity of nephrons — some nephrons have lower transport maxima (Tm) and begin excreting glucose earlier than others.'
+            }, {
+                q: 'What is the relationship between inulin clearance and true GFR?',
+                opts: ['Inulin clearance > true GFR', 'Inulin clearance = true GFR',
+                    'Inulin clearance < true GFR', 'Inulin clearance measures RPF'
+                ],
+                correct: 1,
+                exp: 'Inulin is freely filtered, not reabsorbed, and not secreted. Therefore, inulin clearance accurately measures true GFR.'
+            }, {
+                q: 'What is the effect of increased glomerular capillary hydrostatic pressure on GFR?',
+                opts: ['It decreases GFR', 'It increases GFR', 'It has no effect', 'It decreases filtration fraction'],
+                correct: 1,
+                exp: 'Increased glomerular capillary hydrostatic pressure increases net filtration pressure, thereby increasing GFR.'
+            }, {
+                q: 'What is the effect of increased Bowman\'s space hydrostatic pressure on GFR?',
+                opts: ['Increases GFR', 'Decreases GFR', 'No effect', 'Increases filtration fraction'],
+                correct: 1,
+                exp: 'Increased hydrostatic pressure in Bowman\'s space opposes filtration, reducing net filtration pressure and decreasing GFR.'
+            }, {
+                q: 'What is the clinical significance of the "filtration fraction" in heart failure?',
+                opts: ['It is decreased due to increased renal blood flow', 'It is increased due to reduced renal blood flow',
+                    'It is unchanged', 'It is not relevant'
+                ],
+                correct: 1,
+                exp: 'In heart failure, reduced cardiac output leads to decreased renal blood flow. If GFR is relatively maintained, the filtration fraction (GFR/RPF) increases.'
+            }, {
+                q: 'What is the effect of prostaglandins on GFR?',
+                opts: ['They decrease GFR', 'They increase GFR by dilating afferent arterioles',
+                    'They have no effect on GFR', 'They constrict efferent arterioles'
+                ],
+                correct: 1,
+                exp: 'Prostaglandins (especially PGE2 and PGI2) cause vasodilation of the afferent arteriole, helping to maintain GFR in states of decreased renal perfusion.'
+            }, {
+                q: 'What is the mechanism of action of ACE inhibitors on GFR?',
+                opts: ['They constrict the afferent arteriole', 'They dilate the efferent arteriole',
+                    'They constrict the efferent arteriole', 'They have no effect on GFR'
+                ],
+                correct: 1,
+                exp: 'ACE inhibitors reduce angiotensin II production, causing efferent arteriolar dilation, which decreases glomerular capillary hydrostatic pressure and may reduce GFR, especially in patients with renal artery stenosis.'
+            }, {
+                q: 'What is the normal filtration fraction in a healthy adult?',
+                opts: ['10%', '20%', '30%', '40%'],
+                correct: 1,
+                exp: 'Normal filtration fraction = GFR/RPF = 125/625 = 0.20 = 20%. This means 20% of the renal plasma flow is filtered into Bowman\'s space.'
+            }, {
+                q: 'What is the effect of hypoproteinemia on GFR?',
+                opts: ['It decreases GFR', 'It increases GFR', 'It has no effect', 'It decreases filtration fraction'],
+                correct: 1,
+                exp: 'Hypoproteinemia reduces plasma oncotic pressure, which decreases the opposing force to filtration, thereby increasing net filtration pressure and GFR.'
+            }, {
+                q: 'What is the role of the endothelium in the glomerular filtration barrier?',
+                opts: ['It secretes erythropoietin', 'It forms fenestrated capillaries that allow water and solutes to pass',
+                    'It reabsorbs sodium', 'It produces renin'
+                ],
+                correct: 1,
+                exp: 'The glomerular endothelium is fenestrated, allowing water and small solutes to pass while restricting blood cells and large molecules.'
+            }, {
+                q: 'What is the clinical significance of the "afferent arteriole" in acute kidney injury?',
+                opts: ['It is the primary site of tubular reabsorption', 'It regulates GFR and is a target for vasoconstriction',
+                    'It secretes potassium', 'It produces ammonia'
+                ],
+                correct: 1,
+                exp: 'The afferent arteriole is the primary site of GFR regulation. Vasoconstriction (e.g., from norepinephrine, angiotensin II) reduces GFR and can contribute to acute kidney injury.'
+            }, {
+                q: 'What is the effect of atrial natriuretic peptide (ANP) on GFR?',
+                opts: ['It decreases GFR', 'It increases GFR', 'It has no effect', 'It decreases renal blood flow'],
+                correct: 1,
+                exp: 'ANP dilates the afferent arteriole and constricts the efferent arteriole, increasing glomerular capillary hydrostatic pressure and GFR. It also increases filtration fraction.'
+            }, {
+                q: 'What is the effect of decreased plasma oncotic pressure on filtration fraction?',
+                opts: ['It decreases filtration fraction', 'It increases filtration fraction',
+                    'It has no effect on filtration fraction', 'It decreases GFR'
+                ],
+                correct: 1,
+                exp: 'Decreased plasma oncotic pressure reduces the inward Starling force, increasing net filtration pressure and GFR, which tends to increase filtration fraction.'
+            }, {
+                q: 'What is the effect of unilateral renal artery stenosis on GFR in the affected kidney?',
+                opts: ['Increases GFR', 'Decreases GFR', 'No effect', 'Increases filtration fraction'],
+                correct: 1,
+                exp: 'Renal artery stenosis reduces perfusion pressure to the affected kidney, leading to decreased GFR. The contralateral kidney may compensate with increased GFR.'
+            }, {
+                q: 'What is the relationship between GFR and age?',
+                opts: ['GFR increases with age', 'GFR decreases with age', 'GFR is stable throughout life',
+                    'GFR fluctuates randomly'
+                ],
+                correct: 1,
+                exp: 'GFR declines with age, beginning around age 30–40, at a rate of approximately 1 mL/min/1.73 m² per year. This is a normal physiological change.'
+            }, {
+                q: 'What is the effect of pregnancy on GFR?',
+                opts: ['GFR decreases', 'GFR increases', 'GFR is unchanged', 'GFR fluctuates'],
+                correct: 1,
+                exp: 'During pregnancy, GFR increases significantly (by up to 50%) due to increased renal blood flow and vasodilation, which is driven by hormonal changes and increased cardiac output.'
+            }, ]
+        };
+
+        // ============================================================
+        //  TOPIC 2 — Tubular Contribution to Urine Formation (slides 14+)
+        // ============================================================
+
+        BANKS.tubular_contribution = {
+
+            // ---------- EASY ----------
+            easy: [{
+                q: 'What is the transport maximum (Tm) in renal physiology?',
+                opts: ['The maximum rate of glomerular filtration', 'The maximum rate of carrier-mediated tubular reabsorption',
+                    'The maximum rate of tubular secretion', 'The maximum urine flow rate'
+                ],
+                correct: 1,
+                exp: 'Tm is the maximum rate at which a substance can be reabsorbed by carrier-mediated transport. For glucose, Tm ≈ 375 mg/min.'
+            }, {
+                q: 'What is the renal threshold for glucose?',
+                opts: ['80–100 mg/dL', '180–200 mg/dL', '250–300 mg/dL', '400–500 mg/dL'],
+                correct: 1,
+                exp: 'The renal threshold for glucose is approximately 180–200 mg/dL. Above this plasma concentration, glucose begins to appear in the urine.'
+            }, {
+                q: 'What happens when the filtered load of glucose exceeds the transport maximum?',
+                opts: ['Glucose is completely reabsorbed', 'Glucose appears in the urine (glucosuria)',
+                    'Glucose is secreted', 'Glucose is metabolized'
+                ],
+                correct: 1,
+                exp: 'When filtered load exceeds Tm, the carriers are saturated and excess glucose remains in the tubule lumen, leading to glucosuria.'
+            }, {
+                q: 'What is the mechanism of glucosuria in diabetes mellitus?',
+                opts: ['Increased tubular secretion of glucose', 'Hyperglycemia causes filtered load to exceed Tm',
+                    'Decreased glomerular filtration of glucose', 'Increased glucose reabsorption'
+                ],
+                correct: 1,
+                exp: 'In diabetes mellitus, hyperglycemia leads to a high filtered load of glucose that exceeds the Tm (≈375 mg/min), causing glucosuria and osmotic diuresis.'
+            }, {
+                q: 'What is the primary function of the proximal tubule?',
+                opts: ['To concentrate urine', 'To perform bulk, near-iso-osmotic reabsorption',
+                    'To secrete potassium', 'To reabsorb water only'
+                ],
+                correct: 1,
+                exp: 'The proximal tubule is responsible for the bulk reabsorption of water, Na⁺, HCO₃⁻, glucose, amino acids, and other solutes in a near-iso-osmotic manner.'
+            }, {
+                q: 'What is the primary function of the loop of Henle?',
+                opts: ['To reabsorb glucose', 'To separate water from solute transport',
+                    'To secrete hydrogen ions', 'To reabsorb albumin'
+                ],
+                correct: 1,
+                exp: 'The loop of Henle separates water from solute transport. The descending limb is water-permeable, and the ascending limb is water-impermeable and actively transports NaCl.'
+            }, {
+                q: 'What is the function of the principal cells in the collecting duct?',
+                opts: ['They secrete renin', 'They regulate water, Na⁺, and K⁺ balance',
+                    'They produce erythropoietin', 'They reabsorb glucose'
+                ],
+                correct: 1,
+                exp: 'Principal cells in the collecting duct are responsible for the regulation of water (via aquaporins under ADH control), sodium reabsorption, and potassium secretion.'
+            }, {
+                q: 'What is the effect of ADH (antidiuretic hormone) on the collecting duct?',
+                opts: ['It increases water permeability', 'It decreases water permeability',
+                    'It increases sodium reabsorption', 'It decreases potassium secretion'
+                ],
+                correct: 0,
+                exp: 'ADH increases water permeability in the collecting duct by promoting the insertion of aquaporin-2 channels, leading to increased water reabsorption and concentrated urine.'
+            }, {
+                q: 'What is osmotic diuresis?',
+                opts: ['Increased water reabsorption', 'Increased urine output due to non-reabsorbable solutes',
+                    'Decreased urine output', 'Increased sodium reabsorption'
+                ],
+                correct: 1,
+                exp: 'Osmotic diuresis is increased urine output caused by the presence of non-reabsorbable solutes (e.g., glucose in diabetes) that hold water in the tubule lumen.'
+            }, {
+                q: 'What is the "splay" in the context of renal transport?',
+                opts: ['The point of complete carrier saturation', 'The gradual onset of excretion due to nephron heterogeneity',
+                    'The maximum reabsorption rate', 'The renal threshold'
+                ],
+                correct: 1,
+                exp: 'Splay is the gradual onset of excretion as plasma concentration rises, due to the heterogeneity of nephrons — some nephrons have lower Tm and excrete earlier than others.'
+            }, {
+                q: 'Which segment of the nephron is responsible for the countercurrent multiplier system?',
+                opts: ['Proximal tubule', 'Loop of Henle', 'Distal tubule', 'Collecting duct'],
+                correct: 1,
+                exp: 'The loop of Henle functions as a countercurrent multiplier, creating a medullary osmotic gradient that enables the kidney to concentrate urine.'
+            }, {
+                q: 'What is the role of the descending limb of the loop of Henle?',
+                opts: ['It actively transports NaCl', 'It is permeable to water', 'It reabsorbs glucose',
+                    'It secretes potassium'
+                ],
+                correct: 1,
+                exp: 'The descending limb is permeable to water but relatively impermeable to solutes. Water moves out into the hyperosmotic medullary interstitium.'
+            }, {
+                q: 'What is the role of the ascending limb of the loop of Henle?',
+                opts: ['It actively transports NaCl and is impermeable to water',
+                    'It is permeable to water and impermeable to solutes', 'It reabsorbs glucose',
+                    'It secretes hydrogen ions'
+                ],
+                correct: 0,
+                exp: 'The ascending limb actively transports NaCl out of the tubule and is impermeable to water, creating a dilute tubular fluid and contributing to the medullary osmotic gradient.'
+            }, {
+                q: 'What is the effect of loop diuretics (e.g., furosemide) on the loop of Henle?',
+                opts: ['They inhibit Na⁺-K⁺-2Cl⁻ cotransport in the thick ascending limb',
+                    'They inhibit carbonic anhydrase in the proximal tubule',
+                    'They inhibit Na⁺-Cl⁻ cotransport in the distal tubule',
+                    'They block ADH receptors'
+                ],
+                correct: 0,
+                exp: 'Loop diuretics inhibit the Na⁺-K⁺-2Cl⁻ cotransporter in the thick ascending limb, preventing NaCl reabsorption, reducing the medullary osmotic gradient, and causing diuresis.'
+            }, {
+                q: 'What is the normal glucose reabsorption Tm?',
+                opts: ['125 mg/min', '250 mg/min', '375 mg/min', '500 mg/min'],
+                correct: 2,
+                exp: 'The transport maximum for glucose reabsorption is approximately 375 mg/min. This is the maximum rate at which glucose can be reabsorbed by the proximal tubule carriers.'
+            }, {
+                q: 'What is the clinical significance of the renal threshold for glucose?',
+                opts: ['It helps diagnose diabetes mellitus', 'It helps diagnose liver disease',
+                    'It helps diagnose heart failure', 'It helps diagnose anemia'
+                ],
+                correct: 0,
+                exp: 'The renal threshold for glucose (180–200 mg/dL) is clinically significant because when plasma glucose exceeds this level, glucosuria occurs, which is a key feature of diabetes mellitus.'
+            }, {
+                q: 'What is the major ion reabsorbed in the thick ascending limb of the loop of Henle?',
+                opts: ['Sodium', 'Potassium', 'Chloride', 'Calcium'],
+                correct: 0,
+                exp: 'The thick ascending limb reabsorbs Na⁺, K⁺, and Cl⁻ via the Na⁺-K⁺-2Cl⁻ cotransporter. Sodium reabsorption drives the countercurrent multiplier system.'
+            }, {
+                q: 'What is the effect of aldosterone on the principal cells?',
+                opts: ['It decreases Na⁺ reabsorption', 'It increases Na⁺ reabsorption and K⁺ secretion',
+                    'It increases water permeability', 'It decreases K⁺ secretion'
+                ],
+                correct: 1,
+                exp: 'Aldosterone increases Na⁺ reabsorption (via ENaC) and K⁺ secretion in principal cells, helping to regulate blood pressure and electrolyte balance.'
+            }, {
+                q: 'What is the mechanism of action of thiazide diuretics?',
+                opts: ['Inhibition of Na⁺-K⁺-2Cl⁻ cotransport in the loop of Henle',
+                    'Inhibition of Na⁺-Cl⁻ cotransport in the distal convoluted tubule',
+                    'Inhibition of carbonic anhydrase in the proximal tubule', 'Blockade of ADH receptors'
+                ],
+                correct: 1,
+                exp: 'Thiazide diuretics inhibit the Na⁺-Cl⁻ cotransporter (NCC) in the distal convoluted tubule, reducing Na⁺ reabsorption and causing diuresis.'
+            }, {
+                q: 'What is the effect of the countercurrent multiplier system?',
+                opts: ['It produces a dilute urine', 'It creates a medullary osmotic gradient',
+                    'It increases glomerular filtration', 'It decreases tubular reabsorption'
+                ],
+                correct: 1,
+                exp: 'The countercurrent multiplier system in the loop of Henle creates a medullary osmotic gradient that allows the kidney to concentrate urine when ADH is present.'
+            }, ],
+
+            // ---------- MEDIUM ----------
+            medium: [{
+                q: 'What is the relationship between filtered load, reabsorption, and excretion for a substance with a transport maximum?',
+                opts: ['Excretion = filtered load – reabsorption (until Tm is exceeded)',
+                    'Excretion = filtered load + reabsorption', 'Excretion = reabsorption – filtered load',
+                    'Excretion is constant regardless of filtered load'
+                ],
+                correct: 0,
+                exp: 'Excretion = filtered load – reabsorbed amount. Below the renal threshold, reabsorption is complete and excretion = 0. Above Tm, excretion rises linearly with filtered load.'
+            }, {
+                q: 'What is the effect of hyperglycemia on urine output?',
+                opts: ['Decreases urine output', 'Increases urine output (osmotic diuresis)',
+                    'No effect on urine output', 'Decreases urine concentration'
+                ],
+                correct: 1,
+                exp: 'In hyperglycemia, filtered glucose exceeds Tm, and excess glucose remains in the tubule, acting as an osmotic agent that holds water and increases urine output (osmotic diuresis).'
+            }, {
+                q: 'What is the mechanism of water reabsorption in the proximal tubule?',
+                opts: ['Active transport of water', 'Osmotic movement following solute reabsorption',
+                    'ADH-mediated water channels', 'Water is not reabsorbed in the proximal tubule'
+                ],
+                correct: 1,
+                exp: 'Water is reabsorbed passively in the proximal tubule, following the osmotic gradient created by solute reabsorption. This results in near-iso-osmotic reabsorption.'
+            }, {
+                q: 'What is the effect of ADH on the collecting duct\'s water permeability?',
+                opts: ['It decreases water permeability', 'It increases water permeability',
+                    'It has no effect on water permeability', 'It decreases sodium reabsorption'
+                ],
+                correct: 1,
+                exp: 'ADH promotes the insertion of aquaporin-2 channels into the apical membrane of principal cells, increasing water permeability and allowing water to be reabsorbed into the hyperosmotic medullary interstitium.'
+            }, {
+                q: 'What is the difference between the renal threshold and the transport maximum?',
+                opts: ['Threshold is the plasma concentration at which excretion begins; Tm is the maximum transport rate',
+                    'Threshold is the maximum transport rate; Tm is the plasma concentration at which excretion begins',
+                    'They are the same thing', 'Threshold is measured in urine, Tm is measured in plasma'
+                ],
+                correct: 0,
+                exp: 'The renal threshold is the plasma concentration at which a substance first appears in the urine. Tm is the maximum rate of carrier-mediated transport. Threshold and Tm are related but not identical.'
+            }, {
+                q: 'What is the effect of carbonic anhydrase inhibitors on proximal tubule function?',
+                opts: ['They increase Na⁺ reabsorption', 'They decrease HCO₃⁻ reabsorption',
+                    'They increase water reabsorption', 'They decrease K⁺ secretion'
+                ],
+                correct: 1,
+                exp: 'Carbonic anhydrase inhibitors (e.g., acetazolamide) inhibit HCO₃⁻ reabsorption in the proximal tubule, leading to increased HCO₃⁻ excretion and diuresis.'
+            }, {
+                q: 'What is the role of the vasa recta in the countercurrent exchange system?',
+                opts: ['It actively transports NaCl', 'It maintains the medullary osmotic gradient',
+                    'It reabsorbs glucose', 'It secretes potassium'
+                ],
+                correct: 1,
+                exp: 'The vasa recta (peritubular capillaries in the medulla) function as a countercurrent exchange system, maintaining the medullary osmotic gradient by preventing rapid washout of solute.'
+            }, {
+                q: 'What is the effect of potassium-sparing diuretics on the collecting duct?',
+                opts: ['They increase Na⁺ reabsorption and K⁺ secretion', 'They decrease Na⁺ reabsorption and K⁺ secretion',
+                    'They increase water reabsorption', 'They decrease Ca²⁺ reabsorption'
+                ],
+                correct: 1,
+                exp: 'Potassium-sparing diuretics (e.g., amiloride, spironolactone) inhibit Na⁺ reabsorption and K⁺ secretion in the collecting duct, promoting Na⁺ excretion while sparing K⁺.'
+            }, {
+                q: 'What is the mechanism of action of SGLT2 inhibitors (gliflozins)?',
+                opts: ['They inhibit glucose reabsorption in the proximal tubule', 'They inhibit Na⁺-K⁺-2Cl⁻ cotransport',
+                    'They inhibit carbonic anhydrase', 'They block ADH receptors'
+                ],
+                correct: 0,
+                exp: 'SGLT2 inhibitors block the sodium-glucose cotransporter 2 in the proximal tubule, reducing glucose and Na⁺ reabsorption, leading to glucosuria, natriuresis, and osmotic diuresis.'
+            }, {
+                q: 'What is the effect of the countercurrent multiplier on urine concentration?',
+                opts: ['It produces a dilute urine', 'It produces a concentrated urine', 'It increases GFR',
+                    'It decreases sodium reabsorption'
+                ],
+                correct: 1,
+                exp: 'The countercurrent multiplier creates a medullary osmotic gradient that enables the kidney to produce concentrated urine when ADH is present and water is reabsorbed from the collecting duct.'
+            }, {
+                q: 'What is the role of the distal convoluted tubule in urine formation?',
+                opts: ['It performs bulk reabsorption', 'It fine-tunes electrolyte balance under hormonal control',
+                    'It creates the medullary osmotic gradient', 'It reabsorbs glucose'
+                ],
+                correct: 1,
+                exp: 'The distal convoluted tubule is responsible for fine-tuning electrolyte balance, with Na⁺ reabsorption regulated by aldosterone and Ca²⁺ reabsorption regulated by PTH.'
+            }, {
+                q: 'What is the effect of loop diuretics on the medullary osmotic gradient?',
+                opts: ['They increase the gradient', 'They decrease the gradient', 'They have no effect on the gradient',
+                    'They increase water reabsorption'
+                ],
+                correct: 1,
+                exp: 'Loop diuretics inhibit NaCl reabsorption in the thick ascending limb, reducing the medullary osmotic gradient and decreasing the kidney\'s ability to concentrate urine.'
+            }, {
+                q: 'What is the relationship between the proximal tubule and the filtered load of glucose?',
+                opts: ['The proximal tubule secretes glucose', 'The proximal tubule reabsorbs glucose until Tm is reached',
+                    'The proximal tubule does not handle glucose', 'The proximal tubule metabolizes glucose'
+                ],
+                correct: 1,
+                exp: 'The proximal tubule reabsorbs filtered glucose via SGLT transporters. When the filtered load exceeds Tm, the excess glucose remains in the tubular fluid and is excreted.'
+            }, {
+                q: 'What is the effect of angiotensin II on the proximal tubule?',
+                opts: ['It decreases Na⁺ reabsorption', 'It increases Na⁺-H⁺ exchange and Na⁺ reabsorption',
+                    'It decreases water reabsorption', 'It inhibits bicarbonate reabsorption'
+                ],
+                correct: 1,
+                exp: 'Angiotensin II stimulates Na⁺-H⁺ exchange in the proximal tubule, increasing Na⁺ and HCO₃⁻ reabsorption and contributing to volume expansion.'
+            }, {
+                q: 'What is the clinical significance of the "osmotic gap" in the urine?',
+                opts: ['It indicates the presence of non-reabsorbable solutes', 'It measures GFR',
+                    'It indicates tubular secretion', 'It measures plasma osmolality'
+                ],
+                correct: 0,
+                exp: 'The osmotic gap (calculated as urine osmolality minus 2×[Na⁺+K⁺]) indicates the presence of non-reabsorbable solutes such as glucose, mannitol, or urea in the urine.'
+            }, {
+                q: 'What is the effect of aldosterone on the distal tubule and collecting duct?',
+                opts: ['It increases Na⁺ reabsorption and K⁺ secretion', 'It decreases Na⁺ reabsorption and K⁺ secretion',
+                    'It increases water reabsorption', 'It decreases Ca²⁺ reabsorption'
+                ],
+                correct: 0,
+                exp: 'Aldosterone increases Na⁺ reabsorption (via ENaC) and K⁺ secretion in principal cells, helping to regulate blood pressure and potassium balance.'
+            }, {
+                q: 'What is the effect of PTH on the distal tubule?',
+                opts: ['It increases Ca²⁺ reabsorption', 'It decreases Ca²⁺ reabsorption',
+                    'It increases phosphate reabsorption', 'It decreases Na⁺ reabsorption'
+                ],
+                correct: 0,
+                exp: 'Parathyroid hormone (PTH) increases Ca²⁺ reabsorption in the distal convoluted tubule and decreases phosphate reabsorption in the proximal tubule.'
+            }, {
+                q: 'What is the role of the thick ascending limb in the countercurrent multiplier?',
+                opts: ['It actively transports NaCl into the medullary interstitium',
+                    'It passively reabsorbs water', 'It secretes potassium', 'It reabsorbs glucose'
+                ],
+                correct: 0,
+                exp: 'The thick ascending limb actively transports NaCl into the medullary interstitium, creating a hyperosmotic environment that drives water reabsorption from the collecting duct.'
+            }, {
+                q: 'What is the effect of ADH on urea permeability in the collecting duct?',
+                opts: ['It increases urea permeability', 'It decreases urea permeability',
+                    'It has no effect on urea permeability', 'It decreases water permeability'
+                ],
+                correct: 0,
+                exp: 'ADH increases urea permeability in the inner medullary collecting duct, allowing urea to be reabsorbed and contribute to the medullary osmotic gradient.'
+            }, {
+                q: 'What is the mechanism of action of osmotic diuretics (e.g., mannitol)?',
+                opts: ['They inhibit Na⁺ reabsorption', 'They increase the osmotic pressure of the tubular fluid',
+                    'They inhibit ADH', 'They increase water reabsorption'
+                ],
+                correct: 1,
+                exp: 'Osmotic diuretics (e.g., mannitol) are filtered but not reabsorbed, increasing the osmotic pressure of the tubular fluid and preventing water reabsorption, leading to diuresis.'
+            }, ],
+
+            // ---------- CHALLENGING ----------
+            challenging: [{
+                q: 'What is the relationship between the glomerular filtration rate (GFR) and the rate of glucose excretion in a diabetic patient?',
+                opts: ['Glucose excretion = GFR × Pglucose – Tm (when Pglucose > threshold)',
+                    'Glucose excretion = Tm – GFR × Pglucose', 'Glucose excretion = GFR × Pglucose + Tm',
+                    'Glucose excretion is independent of GFR'
+                ],
+                correct: 0,
+                exp: 'When plasma glucose exceeds the renal threshold, the filtered load (GFR × Pglucose) exceeds Tm, and glucose excretion = GFR × Pglucose – Tm (the excess beyond what can be reabsorbed).'
+            }, {
+                q: 'What is the effect of chronic hyperglycemia on the renal glucose threshold?',
+                opts: ['It increases the threshold', 'It decreases the threshold', 'It has no effect',
+                    'It eliminates the threshold'
+                ],
+                correct: 1,
+                exp: 'Chronic hyperglycemia can lead to downregulation of SGLT transporters and increased glucose excretion, effectively lowering the renal threshold for glucose.'
+            }, {
+                q: 'What is the mechanism of action of loop diuretics on the countercurrent multiplier?',
+                opts: ['They inhibit Na⁺-K⁺-2Cl⁻ cotransport, reducing the medullary osmotic gradient',
+                    'They inhibit carbonic anhydrase', 'They block ADH receptors',
+                    'They inhibit Na⁺-Cl⁻ cotransport in the distal tubule'
+                ],
+                correct: 0,
+                exp: 'Loop diuretics inhibit the Na⁺-K⁺-2Cl⁻ cotransporter in the thick ascending limb, reducing NaCl reabsorption and diminishing the medullary osmotic gradient, which decreases the kidney\'s concentrating ability.'
+            }, {
+                q: 'What is the effect of renal tubular acidosis (RTA) on urine pH and bicarbonate handling?',
+                opts: ['It increases urine pH and decreases HCO₃⁻ reabsorption',
+                    'It decreases urine pH and increases HCO₃⁻ reabsorption',
+                    'It has no effect on urine pH', 'It increases HCO₃⁻ secretion'
+                ],
+                correct: 0,
+                exp: 'In proximal RTA (type 2), HCO₃⁻ reabsorption is impaired, leading to increased HCO₃⁻ excretion, higher urine pH, and metabolic acidosis. In distal RTA (type 1), H⁺ secretion is impaired.'
+            }, {
+                q: 'What is the mechanism of action of thiazide diuretics on calcium handling?',
+                opts: ['They increase Ca²⁺ reabsorption in the distal tubule', 'They decrease Ca²⁺ reabsorption',
+                    'They have no effect on Ca²⁺', 'They increase Ca²⁺ excretion'
+                ],
+                correct: 0,
+                exp: 'Thiazide diuretics increase Ca²⁺ reabsorption in the distal tubule (by enhancing the activity of the Na⁺-Ca²⁺ exchanger), which can be beneficial in conditions like nephrolithiasis.'
+            }, {
+                q: 'What is the effect of ADH on the permeability of the collecting duct to urea?',
+                opts: ['It decreases urea permeability', 'It increases urea permeability',
+                    'It has no effect on urea permeability', 'It decreases water permeability'
+                ],
+                correct: 1,
+                exp: 'ADH increases urea permeability in the inner medullary collecting duct by upregulating urea transporters (UT-A1), allowing urea to be reabsorbed and contribute to the medullary osmotic gradient.'
+            }, {
+                q: 'What is the clinical significance of the "splay" in the glucose titration curve?',
+                opts: ['It indicates complete saturation of carriers', 'It reflects nephron heterogeneity and the gradual onset of glucosuria',
+                    'It indicates maximum reabsorption', 'It represents the renal threshold'
+                ],
+                correct: 1,
+                exp: 'Splay reflects the heterogeneity of nephrons — some nephrons have lower Tm and begin excreting glucose at lower plasma concentrations, leading to a gradual rather than abrupt onset of glucosuria.'
+            }, {
+                q: 'What is the effect of angiotensin II on the proximal tubule Na⁺-H⁺ exchanger?',
+                opts: ['It inhibits the exchanger', 'It stimulates the exchanger', 'It has no effect',
+                    'It decreases Na⁺ reabsorption'
+                ],
+                correct: 1,
+                exp: 'Angiotensin II stimulates the Na⁺-H⁺ exchanger (NHE3) in the proximal tubule, increasing Na⁺ reabsorption and contributing to volume expansion and hypertension.'
+            }, {
+                q: 'What is the mechanism of action of acetazolamide on the proximal tubule?',
+                opts: ['It inhibits Na⁺-K⁺-2Cl⁻ cotransport', 'It inhibits carbonic anhydrase',
+                    'It inhibits Na⁺-Cl⁻ cotransport', 'It blocks ADH receptors'
+                ],
+                correct: 1,
+                exp: 'Acetazolamide inhibits carbonic anhydrase in the proximal tubule, reducing H⁺ generation and HCO₃⁻ reabsorption, leading to increased HCO₃⁻ excretion and diuresis.'
+            }, {
+                q: 'What is the effect of chronic kidney disease (CKD) on the renal threshold for glucose?',
+                opts: ['It increases the threshold', 'It decreases the threshold', 'It has no effect',
+                    'It eliminates the threshold'
+                ],
+                correct: 1,
+                exp: 'In CKD, the number of functioning nephrons decreases, and the remaining nephrons may have altered transport characteristics. The glucose threshold may be reduced due to tubular dysfunction.'
+            }, {
+                q: 'What is the effect of sodium-glucose cotransporter 2 (SGLT2) inhibitors on proximal tubule function?',
+                opts: ['They increase glucose reabsorption', 'They decrease glucose reabsorption and increase natriuresis',
+                    'They have no effect on glucose', 'They increase water reabsorption'
+                ],
+                correct: 1,
+                exp: 'SGLT2 inhibitors reduce glucose reabsorption in the proximal tubule, leading to glucosuria and natriuresis, which lowers blood glucose and has beneficial cardiovascular effects.'
+            }, {
+                q: 'What is the role of the medullary interstitium in urine concentration?',
+                opts: ['It is the site of ultrafiltration', 'It provides the osmotic gradient for water reabsorption',
+                    'It reabsorbs glucose', 'It secretes potassium'
+                ],
+                correct: 1,
+                exp: 'The medullary interstitium is hyperosmotic due to the countercurrent multiplier. This osmotic gradient drives water reabsorption from the collecting duct when ADH is present.'
+            }, {
+                q: 'What is the effect of lithium on the collecting duct?',
+                opts: ['It increases ADH sensitivity', 'It decreases ADH sensitivity (nephrogenic diabetes insipidus)',
+                    'It increases Na⁺ reabsorption', 'It decreases K⁺ secretion'
+                ],
+                correct: 1,
+                exp: 'Lithium can cause nephrogenic diabetes insipidus by reducing the response of the collecting duct to ADH, impairing water reabsorption and leading to polyuria.'
+            }, {
+                q: 'What is the mechanism of action of amiloride on the principal cells?',
+                opts: ['It blocks Na⁺ channels (ENaC)', 'It blocks Na⁺-K⁺-2Cl⁻ cotransport',
+                    'It blocks Na⁺-Cl⁻ cotransport', 'It blocks ADH receptors'
+                ],
+                correct: 0,
+                exp: 'Amiloride is a potassium-sparing diuretic that blocks epithelial sodium channels (ENaC) in the apical membrane of principal cells, reducing Na⁺ reabsorption and K⁺ secretion.'
+            }, {
+                q: 'What is the effect of hypokalemia on the renal handling of glucose?',
+                opts: ['It increases the glucose threshold', 'It decreases the glucose threshold',
+                    'It has no effect on glucose handling', 'It increases glucose reabsorption'
+                ],
+                correct: 1,
+                exp: 'Hypokalemia can reduce the renal threshold for glucose, leading to glucosuria at lower plasma glucose levels, due to effects on tubular transport and insulin sensitivity.'
+            }, {
+                q: 'What is the role of the thick ascending limb in magnesium handling?',
+                opts: ['It reabsorbs Mg²⁺ via paracellular transport', 'It secretes Mg²⁺',
+                    'It has no role in Mg²⁺ handling', 'It reabsorbs Mg²⁺ via active transport'
+                ],
+                correct: 0,
+                exp: 'The thick ascending limb reabsorbs a significant amount of filtered Mg²⁺ via paracellular transport, driven by the lumen-positive potential created by Na⁺-K⁺-2Cl⁻ cotransport.'
+            }, {
+                q: 'What is the effect of loop diuretics on Mg²⁺ excretion?',
+                opts: ['They decrease Mg²⁺ excretion', 'They increase Mg²⁺ excretion', 'They have no effect',
+                    'They increase Mg²⁺ reabsorption'
+                ],
+                correct: 1,
+                exp: 'Loop diuretics inhibit the Na⁺-K⁺-2Cl⁻ cotransporter, reducing the lumen-positive potential and decreasing paracellular Mg²⁺ reabsorption, leading to increased Mg²⁺ excretion (hypomagnesemia).'
+            }, {
+                q: 'What is the mechanism of the countercurrent multiplier in the loop of Henle?',
+                opts: ['Active transport of NaCl in the ascending limb creates a medullary osmotic gradient',
+                    'Passive transport of water in the descending limb creates the gradient',
+                    'Active transport of water in the ascending limb creates the gradient',
+                    'Passive transport of NaCl in the descending limb creates the gradient'
+                ],
+                correct: 0,
+                exp: 'The countercurrent multiplier is driven by active transport of NaCl out of the thick ascending limb, which is impermeable to water. This creates a hyperosmotic medullary interstitium, drawing water out of the descending limb.'
+            }, {
+                q: 'What is the effect of ADH on the permeability of the inner medullary collecting duct to water?',
+                opts: ['It increases water permeability', 'It decreases water permeability',
+                    'It has no effect on water permeability', 'It decreases urea permeability'
+                ],
+                correct: 0,
+                exp: 'ADH increases water permeability in the inner medullary collecting duct by promoting the insertion of aquaporin-2 channels, allowing water to be reabsorbed into the hyperosmotic medullary interstitium.'
+            }, {
+                q: 'What is the clinical significance of the "urine anion gap" in evaluating metabolic acidosis?',
+                opts: ['It measures GFR', 'It estimates ammonium (NH₄⁺) excretion',
+                    'It measures glucose excretion', 'It measures proteinuria'
+                ],
+                correct: 1,
+                exp: 'The urine anion gap (calculated as [Na⁺ + K⁺] – [Cl⁻]) is used to estimate urinary ammonium excretion. A negative gap suggests adequate NH₄⁺ excretion and a renal cause of metabolic acidosis is less likely.'
+            }, ]
+        };
+
+        // ============================================================
+        //  SCENARIOS (topic → level → array of { title, body, subqs })
+        // ============================================================
+
+        const SCENARIOS = {};
+
+        // ---------- TOPIC 1: Glomerular Architecture ----------
+        SCENARIOS.glomerular_architecture = {
+
+            easy: [{
+                title: 'Case: Nephrotic Syndrome',
+                body: 'A 45-year-old patient presents with peripheral edema, proteinuria (3.5 g/day), hypoalbuminemia, and hyperlipidemia. A renal biopsy shows effacement of podocyte foot processes.',
+                subqs: [
+                    { q: 'What is the most likely diagnosis, and what component of the glomerular filtration barrier is affected?',
+                        modelAnswer: 'Minimal change disease (or nephrotic syndrome). The podocyte foot processes are effaced, disrupting the slit diaphragm and leading to proteinuria.' },
+                    { q: 'What is the normal function of podocytes in the filtration barrier?',
+                        modelAnswer: 'Podocytes form filtration slits (slit diaphragms) that provide a size- and charge-selective barrier, preventing the passage of plasma proteins like albumin.' },
+                    { q: 'What would you expect the patient\'s serum albumin and lipid profile to show?',
+                        modelAnswer: 'Serum albumin would be low (hypoalbuminemia) due to protein loss in the urine, and lipids would be elevated (hyperlipidemia) due to increased hepatic lipoprotein synthesis.' },
+                    { q: 'What is the effect of this condition on the patient\'s oncotic pressure and edema formation?',
+                        modelAnswer: 'Loss of albumin reduces plasma oncotic pressure, reducing the inward Starling force and promoting fluid extravasation into the interstitium, leading to edema.' },
+                    { q: 'What laboratory findings would confirm the diagnosis?',
+                        modelAnswer: 'Heavy proteinuria (≥3.5 g/day), low serum albumin (<3.0 g/dL), elevated lipids, and renal biopsy showing podocyte effacement on electron microscopy.' },
+                ]
+            }, {
+                title: 'Case: Acute Kidney Injury (AKI)',
+                body: 'A 60-year-old patient with hypertension and diabetes develops acute kidney injury after an episode of severe vomiting and diarrhea. Lab results show BUN 45 mg/dL, creatinine 2.8 mg/dL, and urine osmolality 350 mOsm/kg.',
+                subqs: [
+                    { q: 'What is the expected change in GFR in this patient, and why?',
+                        modelAnswer: 'GFR is decreased due to prerenal azotemia from volume depletion, which reduces renal blood flow and glomerular capillary hydrostatic pressure.' },
+                    { q: 'What is the role of the afferent arteriole in regulating GFR under these conditions?',
+                        modelAnswer: 'The afferent arteriole constricts in response to decreased renal perfusion pressure, reducing blood flow into the glomerulus and decreasing GFR.' },
+                    { q: 'How would the filtration fraction change in prerenal azotemia?',
+                        modelAnswer: 'The filtration fraction (GFR/RPF) would increase because GFR is maintained initially while RPF decreases, but in severe volume depletion, both GFR and RPF decrease.' },
+                    { q: 'What is the significance of the urine osmolality in this case?',
+                        modelAnswer: 'Urine osmolality > 300 mOsm/kg suggests prerenal azotemia, as the kidneys are attempting to conserve water in response to volume depletion.' },
+                    { q: 'What would you expect the serum creatinine to indicate about the patient\'s GFR?',
+                        modelAnswer: 'Elevated serum creatinine indicates decreased GFR, but serum creatinine may not accurately reflect the degree of GFR reduction in acute settings due to non-steady-state conditions.' },
+                ]
+            }],
+
+            medium: [{
+                title: 'Case: Diabetic Nephropathy',
+                body: 'A 55-year-old patient with type 2 diabetes for 15 years presents with microalbuminuria (200 mg/g creatinine) and hypertension. eGFR is 65 mL/min/1.73 m².',
+                subqs: [
+                    { q: 'What is the earliest sign of diabetic nephropathy, and what part of the glomerular barrier is damaged?',
+                        modelAnswer: 'Microalbuminuria is the earliest sign. It results from damage to the glomerular filtration barrier, including thickening of the GBM and loss of the negative charge that normally repels albumin.' },
+                    { q: 'How does hypertension contribute to the progression of kidney disease in this patient?',
+                        modelAnswer: 'Hypertension increases glomerular capillary hydrostatic pressure, promoting hyperfiltration and further damaging the filtration barrier, leading to progressive proteinuria and fibrosis.' },
+                    { q: 'What is the effect of angiotensin-converting enzyme (ACE) inhibitors on GFR in this patient?',
+                        modelAnswer: 'ACE inhibitors dilate the efferent arteriole, reducing glomerular capillary pressure. This decreases GFR but reduces proteinuria and slows disease progression.' },
+                    { q: 'What is the relationship between eGFR and serum creatinine in this patient?',
+                        modelAnswer: 'The eGFR of 65 mL/min/1.73 m² indicates moderate renal impairment. Serum creatinine may still be within or near the normal range despite a significant reduction in GFR.' },
+                    { q: 'What is the role of SGLT2 inhibitors in managing diabetic nephropathy?',
+                        modelAnswer: 'SGLT2 inhibitors reduce intraglomerular pressure by constricting the afferent arteriole, reducing hyperfiltration and proteinuria, and slowing the progression of diabetic nephropathy.' },
+                ]
+            }, {
+                title: 'Case: Nephritic Syndrome',
+                body: 'A 25-year-old patient presents with hematuria, proteinuria (1.5 g/day), hypertension, and edema. Serum creatinine is 2.0 mg/dL. A renal biopsy shows crescent formation in the glomeruli.',
+                subqs: [
+                    { q: 'What is the most likely diagnosis, and what part of the glomerulus is affected?',
+                        modelAnswer: 'Rapidly progressive glomerulonephritis (crescentic GN). The crescents are composed of cells and fibrin, which can compress the glomerular tuft and impair filtration.' },
+                    { q: 'What is the effect of crescents on GFR?',
+                        modelAnswer: 'Crescents compress the glomerular tuft, reducing the filtration surface area and decreasing GFR, leading to rapid loss of renal function.' },
+                    { q: 'What is the mechanism of hematuria in this condition?',
+                        modelAnswer: 'Hematuria results from damage to the glomerular basement membrane, allowing red blood cells to pass through the filtration barrier into Bowman\'s space.' },
+                    { q: 'What is the role of the filtration barrier\'s negative charge in this condition?',
+                        modelAnswer: 'Loss of the negative charge (due to GBM damage) allows negatively charged molecules like albumin to pass through, contributing to proteinuria.' },
+                    { q: 'What treatment would you recommend to preserve renal function?',
+                        modelAnswer: 'Immunosuppressive therapy (corticosteroids, cyclophosphamide) to reduce inflammation and crescent formation, along with supportive care to manage hypertension and fluid balance.' },
+                ]
+            }],
+
+            challenging: [{
+                title: 'Case: Alport Syndrome',
+                body: 'A 30-year-old patient with a family history of kidney disease presents with hematuria, sensorineural hearing loss, and ocular abnormalities. Urinalysis shows microscopic hematuria and proteinuria. eGFR is 55 mL/min/1.73 m².',
+                subqs: [
+                    { q: 'What is the underlying molecular defect in Alport syndrome, and how does it affect the glomerular filtration barrier?',
+                        modelAnswer: 'Alport syndrome is caused by mutations in COL4A5, COL4A3, or COL4A4 genes encoding type IV collagen. This leads to a defective glomerular basement membrane (GBM) that is thin and irregular, impairing barrier function.' },
+                    { q: 'Why does Alport syndrome cause hematuria?',
+                        modelAnswer: 'The defective GBM allows red blood cells to pass through the filtration barrier, causing microscopic or macroscopic hematuria.' },
+                    { q: 'What is the effect of Alport syndrome on the filtration barrier\'s charge selectivity?',
+                        modelAnswer: 'The abnormal GBM has reduced negative charge due to loss of heparan sulfate proteoglycans, increasing permeability to negatively charged molecules like albumin.' },
+                    { q: 'What is the clinical significance of the GFR decline in Alport syndrome?',
+                        modelAnswer: 'Progressive GFR decline leads to end-stage renal disease (ESRD), typically by age 30–40 in males with X-linked inheritance. Early intervention with ACE inhibitors can slow progression.' },
+                    { q: 'What diagnostic tests would confirm Alport syndrome?',
+                        modelAnswer: 'Renal biopsy with electron microscopy showing characteristic GBM thinning and lamination, genetic testing for COL4A5/COL4A3/COL4A4 mutations, and family history.' },
+                ]
+            }, {
+                title: 'Case: Hyperfiltration in Obesity',
+                body: 'A 45-year-old obese patient with BMI 38 kg/m² presents with microalbuminuria and eGFR of 130 mL/min/1.73 m². Blood pressure is 138/88 mmHg.',
+                subqs: [
+                    { q: 'What is the mechanism of hyperfiltration in obesity?',
+                        modelAnswer: 'Obesity is associated with increased glomerular capillary hydrostatic pressure due to afferent arteriolar dilation and increased renal blood flow, leading to hyperfiltration.' },
+                    { q: 'What is the effect of hyperfiltration on the glomerular filtration barrier?',
+                        modelAnswer: 'Chronic hyperfiltration increases shear stress on the filtration barrier, leading to glomerular hypertrophy, podocyte injury, and progressive proteinuria.' },
+                    { q: 'What is the significance of microalbuminuria in this patient?',
+                        modelAnswer: 'Microalbuminuria indicates early glomerular damage and is a risk factor for progressive kidney disease and cardiovascular events.' },
+                    { q: 'How would you manage this patient to prevent further kidney damage?',
+                        modelAnswer: 'Weight loss, dietary modification, blood pressure control (target <130/80 mmHg), and use of ACE inhibitors or ARBs to reduce intraglomerular pressure.' },
+                    { q: 'What is the effect of weight loss on GFR in obese patients?',
+                        modelAnswer: 'Weight loss reduces glomerular hyperfiltration by decreasing renal blood flow and glomerular capillary pressure, which can reduce proteinuria and slow disease progression.' },
+                ]
+            }]
+        };
+
+        // ---------- TOPIC 2: Tubular Contribution ----------
+        SCENARIOS.tubular_contribution = {
+
+            easy: [{
+                title: 'Case: Diabetes Mellitus and Glucosuria',
+                body: 'A 50-year-old patient with type 2 diabetes mellitus has a fasting plasma glucose of 220 mg/dL and urine dipstick positive for glucose (3+). The patient reports increased thirst and urination.',
+                subqs: [
+                    { q: 'What is the mechanism of glucosuria in this patient?',
+                        modelAnswer: 'The filtered load of glucose exceeds the transport maximum (Tm ≈ 375 mg/min) in the proximal tubule, so excess glucose remains in the tubular fluid and appears in the urine.' },
+                    { q: 'What is the renal threshold for glucose, and how does it relate to this case?',
+                        modelAnswer: 'The renal threshold for glucose is approximately 180–200 mg/dL. The patient\'s plasma glucose of 220 mg/dL exceeds this threshold, leading to glucosuria.' },
+                    { q: 'What is the cause of the patient\'s increased thirst and urination?',
+                        modelAnswer: 'Glucosuria causes osmotic diuresis — the glucose in the tubule holds water, increasing urine output. This leads to volume depletion and thirst (polydipsia).' },
+                    { q: 'What is the effect of SGLT2 inhibitors on glucose reabsorption?',
+                        modelAnswer: 'SGLT2 inhibitors block sodium-glucose cotransporter 2 in the proximal tubule, reducing glucose reabsorption and promoting glucosuria, which lowers blood glucose.' },
+                    { q: 'What would happen if the patient\'s Tm were reduced?',
+                        modelAnswer: 'A reduced Tm would lower the renal threshold, causing glucosuria at even lower plasma glucose levels, increasing osmotic diuresis and risk of dehydration.' },
+                ]
+            }, {
+                title: 'Case: Syndrome of Inappropriate ADH (SIADH)',
+                body: 'A 60-year-old patient with small cell lung cancer presents with hyponatremia (serum Na⁺ 120 mEq/L), low serum osmolality, and high urine osmolality (600 mOsm/kg).',
+                subqs: [
+                    { q: 'What is the mechanism of hyponatremia in SIADH?',
+                        modelAnswer: 'Excess ADH increases water permeability in the collecting duct, causing excessive water reabsorption and dilutional hyponatremia.' },
+                    { q: 'What is the role of the principal cells in the collecting duct in this condition?',
+                        modelAnswer: 'ADH promotes the insertion of aquaporin-2 channels into the apical membrane of principal cells, increasing water permeability and reabsorption.' },
+                    { q: 'What is the effect of high urine osmolality in SIADH?',
+                        modelAnswer: 'High urine osmolality indicates that the kidneys are reabsorbing water in response to ADH, concentrating the urine despite low serum osmolality.' },
+                    { q: 'What is the clinical significance of the high urine osmolality in this case?',
+                        modelAnswer: 'High urine osmolality in the setting of low serum osmolality and hyponatremia is diagnostic of SIADH, indicating inappropriate water retention.' },
+                    { q: 'How would you manage a patient with SIADH?',
+                        modelAnswer: 'Fluid restriction is the mainstay of treatment. In severe cases, hypertonic saline and vasopressin receptor antagonists (vaptans) may be used.' },
+                ]
+            }],
+
+            medium: [{
+                title: 'Case: Diabetic Ketoacidosis (DKA)',
+                body: 'A 25-year-old patient with type 1 diabetes presents with nausea, vomiting, and confusion. Blood glucose is 450 mg/dL, serum ketones are positive, and urine is positive for glucose and ketones.',
+                subqs: [
+                    { q: 'What is the mechanism of glucosuria in DKA, and how does it affect urine output?',
+                        modelAnswer: 'Severe hyperglycemia causes the filtered load of glucose to far exceed Tm, leading to massive glucosuria and osmotic diuresis, resulting in polyuria and dehydration.' },
+                    { q: 'What is the effect of ketone bodies on proximal tubule function?',
+                        modelAnswer: 'Ketone bodies (acetoacetate, β-hydroxybutyrate) are weak acids that can be reabsorbed or secreted. They compete with organic acids for transport and can affect acid-base balance.' },
+                    { q: 'What is the role of the proximal tubule in glucose reabsorption?',
+                        modelAnswer: 'The proximal tubule reabsorbs filtered glucose via SGLT1 (late proximal) and SGLT2 (early proximal) cotransporters. Glucose reabsorption is complete until Tm is exceeded.' },
+                    { q: 'What is the effect of glucosuria on sodium and water balance?',
+                        modelAnswer: 'Glucose in the tubular fluid acts as an osmotic agent, reducing water reabsorption and increasing urine output. Sodium reabsorption is also affected, leading to electrolyte imbalances.' },
+                    { q: 'What is the clinical significance of the Tm in this patient?',
+                        modelAnswer: 'The Tm of ≈375 mg/min is exceeded, and the excess glucose is excreted. The amount of glucose excreted depends on the GFR and plasma glucose level above the threshold.' },
+                ]
+            }, {
+                title: 'Case: Hyperkalemia and Aldosterone Deficiency',
+                body: 'A 55-year-old patient with type 2 diabetes and chronic kidney disease presents with serum K⁺ 6.2 mEq/L. The patient is on an ACE inhibitor. Plasma aldosterone level is low.',
+                subqs: [
+                    { q: 'What is the role of aldosterone in potassium handling in the collecting duct?',
+                        modelAnswer: 'Aldosterone increases K⁺ secretion in principal cells by upregulating Na⁺-K⁺-ATPase and ROMK channels, promoting K⁺ excretion.' },
+                    { q: 'What is the mechanism of hyperkalemia in aldosterone deficiency?',
+                        modelAnswer: 'Decreased aldosterone reduces K⁺ secretion in the collecting duct, leading to K⁺ retention and hyperkalemia.' },
+                    { q: 'What is the effect of ACE inhibitors on aldosterone levels?',
+                        modelAnswer: 'ACE inhibitors reduce angiotensin II production, decreasing aldosterone secretion, which can contribute to hyperkalemia in patients with renal impairment.' },
+                    { q: 'What is the role of the principal cells in K⁺ homeostasis?',
+                        modelAnswer: 'Principal cells regulate K⁺ secretion (under aldosterone control) and Na⁺ reabsorption. In the collecting duct, they are the primary site of K⁺ excretion.' },
+                    { q: 'What is the effect of hyperkalemia on the glomerular filtration rate?',
+                        modelAnswer: 'Hyperkalemia can cause vasoconstriction of the afferent arteriole, reducing GFR, but this is a secondary effect. The primary issue is impaired K⁺ secretion in the collecting duct.' },
+                ]
+            }],
+
+            challenging: [{
+                title: 'Case: Bartter Syndrome',
+                body: 'A 5-year-old child presents with failure to thrive, polyuria, hypokalemia, and metabolic alkalosis. Serum magnesium is normal, and urine calcium is elevated.',
+                subqs: [
+                    { q: 'What is the underlying defect in Bartter syndrome, and which nephron segment is affected?',
+                        modelAnswer: 'Bartter syndrome is caused by mutations in the Na⁺-K⁺-2Cl⁻ cotransporter (NKCC2) in the thick ascending limb of the loop of Henle, impairing NaCl reabsorption.' },
+                    { q: 'What is the mechanism of hypokalemia in Bartter syndrome?',
+                        modelAnswer: 'Impaired NaCl reabsorption in the thick ascending limb leads to increased delivery of Na⁺ to the distal tubule, stimulating aldosterone secretion and promoting K⁺ secretion, causing hypokalemia.' },
+                    { q: 'What is the effect of the NKCC2 defect on the medullary osmotic gradient?',
+                        modelAnswer: 'The defect reduces NaCl reabsorption in the thick ascending limb, impairing the countercurrent multiplier and decreasing the medullary osmotic gradient, leading to polyuria.' },
+                    { q: 'What is the role of the thick ascending limb in calcium handling?',
+                        modelAnswer: 'The thick ascending limb reabsorbs Ca²⁺ via paracellular transport driven by the lumen-positive potential. Impaired NKCC2 reduces the potential, increasing Ca²⁺ excretion (hypercalciuria).' },
+                    { q: 'What treatment would you recommend for Bartter syndrome?',
+                        modelAnswer: 'Treatment includes potassium and magnesium supplementation, NSAIDs to reduce prostaglandin-mediated NaCl loss, and potassium-sparing diuretics to reduce K⁺ excretion.' },
+                ]
+            }, {
+                title: 'Case: Gitelman Syndrome',
+                body: 'A 30-year-old patient presents with muscle cramps, fatigue, hypokalemia, metabolic alkalosis, hypomagnesemia, and low urine calcium.',
+                subqs: [
+                    { q: 'What is the underlying defect in Gitelman syndrome, and which nephron segment is affected?',
+                        modelAnswer: 'Gitelman syndrome is caused by mutations in the Na⁺-Cl⁻ cotransporter (NCC) in the distal convoluted tubule, impairing NaCl reabsorption.' },
+                    { q: 'What is the mechanism of hypomagnesemia in Gitelman syndrome?',
+                        modelAnswer: 'The distal convoluted tubule is a major site of Mg²⁺ reabsorption. Impaired NCC function reduces the driving force for Mg²⁺ reabsorption, leading to hypomagnesemia.' },
+                    { q: 'How does Gitelman syndrome differ from Bartter syndrome in terms of calcium handling?',
+                        modelAnswer: 'In Gitelman syndrome, urine calcium is low (hypocalciuria) due to increased Ca²⁺ reabsorption in the distal tubule, whereas in Bartter syndrome, urine calcium is elevated (hypercalciuria).' },
+                    { q: 'What is the effect of the NCC defect on aldosterone secretion?',
+                        modelAnswer: 'Impaired NaCl reabsorption in the distal tubule leads to increased Na⁺ delivery to the collecting duct, stimulating aldosterone secretion and promoting K⁺ secretion (hypokalemia).' },
+                    { q: 'What treatment would you recommend for Gitelman syndrome?',
+                        modelAnswer: 'Treatment includes potassium and magnesium supplementation, potassium-sparing diuretics (amiloride), and liberal salt intake to correct volume depletion.' },
+                ]
+            }]
+        };
+
+        // ========================================================================
+        //  APP STATE
+        // ========================================================================
+
+        const state = {
+            topic: null,
+            level: null,
+            questions: null, // { mcqs: [], scenarios: [] }
+            answers: {}, // 'q-0' → index, 's-0-0' → string (essay answer)
+            submitted: false,
+            results: null,
+            view: 'topics',
+        };
+
+        // ========================================================================
+        //  HELPERS
+        // ========================================================================
+
+        function shuffle(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function getQuestions(topicId, levelId) {
+            const mcqs = BANKS[topicId]?.[levelId] || [];
+            const shuffledMcqs = shuffle([...mcqs]);
+            const scenarios = SCENARIOS[topicId]?.[levelId] || [];
+            const shuffledScenarios = shuffle([...scenarios]).slice(0, 2);
+            const paddedScenarios = shuffledScenarios.map(sc => {
+                const subqs = shuffle([...sc.subqs]).slice(0, 5);
+                while (subqs.length < 5) {
+                    subqs.push({
+                        q: `Sub-question ${subqs.length + 1}: What is the correct approach?`,
+                        modelAnswer: 'This is a generic model answer. Please replace with a real answer.'
+                    });
+                }
+                return { ...sc, subqs };
+            });
+            return { mcqs: shuffledMcqs, scenarios: paddedScenarios };
+        }
+
+        function getTotalQuestions(q) {
+            return q.mcqs.length + q.scenarios.reduce((s, sc) => s + sc.subqs.length, 0);
+        }
+
+        function getAnsweredCount() {
+            return Object.keys(state.answers).length;
+        }
+
+        // ========================================================================
+        //  RENDER
+        // ========================================================================
+
+        const content = document.getElementById('content');
+        const bcTopic = document.getElementById('bcTopic');
+        const bcLevel = document.getElementById('bcLevel');
+        const bcSep = document.getElementById('bcSep');
+        const headerBadge = document.getElementById('headerBadge');
+
+        function render() {
+            switch (state.view) {
+                case 'topics':
+                    renderTopics();
+                    break;
+                case 'levels':
+                    renderLevels();
+                    break;
+                case 'quiz':
+                    renderQuiz();
+                    break;
+                case 'results':
+                    renderResults();
+                    break;
+                default:
+                    renderTopics();
+            }
+            updateBreadcrumb();
+        }
+
+        // ---- TOPICS ----
+        function renderTopics() {
+            headerBadge.textContent = 'Choose a topic';
+            content.innerHTML = `
+                <h2 style="font-size:20px; font-weight:600; margin-bottom:16px; color:var(--dark);">📚 Select a Subject</h2>
+                <div class="grid-2col">
+                    ${TOPICS.map(t => `
+                        <div class="card" data-topic="${t.id}">
+                            <span class="icon">${t.icon}</span>
+                            <div class="name">${t.name}</div>
+                            <div class="sub">${t.desc}</div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            content.querySelectorAll('.card').forEach(el => {
+                el.addEventListener('click', () => {
+                    const id = el.dataset.topic;
+                    const topic = TOPICS.find(t => t.id === id);
+                    state.topic = topic;
+                    state.level = null;
+                    state.questions = null;
+                    state.answers = {};
+                    state.submitted = false;
+                    state.results = null;
+                    state.view = 'levels';
+                    render();
+                });
+            });
+        }
+
+        // ---- LEVELS ----
+        function renderLevels() {
+            if (!state.topic) return;
+            headerBadge.textContent = `${state.topic.icon} ${state.topic.name}`;
+            content.innerHTML = `
+                <h2 style="font-size:20px; font-weight:600; margin-bottom:16px; color:var(--dark);">
+                    ${state.topic.icon} ${state.topic.name} — Choose Difficulty
+                </h2>
+                <div class="grid-3col">
+                    ${LEVELS.map(l => `
+                        <div class="card ${l.cls}" data-level="${l.id}">
+                            <span class="icon">${l.emoji}</span>
+                            <div class="label">${l.label}</div>
+                            <div class="sub">20 MCQs · 2 Scenarios (5 essay each)</div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            content.querySelectorAll('.card').forEach(el => {
+                el.addEventListener('click', () => {
+                    const id = el.dataset.level;
+                    const level = LEVELS.find(l => l.id === id);
+                    state.level = level;
+                    state.questions = getQuestions(state.topic.id, level.id);
+                    state.answers = {};
+                    state.submitted = false;
+                    state.results = null;
+                    state.view = 'quiz';
+                    render();
+                });
+            });
+        }
+
+        // ---- QUIZ ----
+        function renderQuiz() {
+            if (!state.topic || !state.level || !state.questions) return;
+            const q = state.questions;
+            const total = getTotalQuestions(q);
+            const answered = getAnsweredCount();
+            // Header badge: topic only
+            headerBadge.textContent = `${state.topic.icon} ${state.topic.name}`;
+
+            let html = `
+                <div class="quiz-header">
+                    <h2>${state.level.emoji} ${state.level.label}</h2>
+                    <span class="progress">${answered} / ${total} answered</span>
+                </div>
+                <div class="quiz-meta">
+                    <span>📝 <strong>${q.mcqs.length}</strong> MCQs</span>
+                    <span>📖 <strong>${q.scenarios.length}</strong> Scenarios · <strong>${q.scenarios.reduce((s,sc) => s + sc.subqs.length, 0)}</strong> essay questions</span>
+                </div>
+                <div id="quizContainer">
+            `;
+
+            // ---- MCQs ----
+            q.mcqs.forEach((mq, idx) => {
+                const key = `q-${idx}`;
+                const selected = state.answers[key] ?? null;
+                const isCorrect = state.submitted ? selected === mq.correct : null;
+                const blockCls = state.submitted ? (isCorrect ? 'correct' : 'wrong') : '';
+                const statusIcon = state.submitted ? (isCorrect ? ' ✅' : ' ❌') : '';
+
+                html += `
+                    <div class="q-block ${blockCls}" data-key="${key}">
+                        <div class="q-head">
+                            <span class="num">Q${idx + 1}.</span>
+                            <span>${mq.q}</span>
+                            ${statusIcon}
+                        </div>
+                        <div class="options">
+                            ${mq.opts.map((opt, oi) => {
+                                const isSelected = selected === oi;
+                                const isCorrectOpt = oi === mq.correct;
+                                let cls = 'opt';
+                                if (state.submitted) {
+                                    if (isCorrectOpt) cls += ' correct-opt';
+                                    if (isSelected && !isCorrectOpt) cls += ' wrong-opt';
+                                    cls += ' disabled';
+                                }
+                                const letter = String.fromCharCode(65 + oi);
+                                return `
+                                    <label class="${cls}">
+                                        <input type="radio" name="${key}" value="${oi}" ${isSelected ? 'checked' : ''} ${state.submitted ? 'disabled' : ''} />
+                                        <span class="letter">${letter}.</span>
+                                        <span class="opt-text">${opt}</span>
+                                    </label>
+                                `;
+                            }).join('')}
+                        </div>
+                        ${state.submitted ? `
+                            <div class="explain"><strong>💡 Explanation:</strong> ${mq.exp}</div>
+                        ` : ''}
+                    </div>
+                `;
+            });
+
+            // ---- Scenarios (essay sub-questions) ----
+            q.scenarios.forEach((sc, si) => {
+                const sKey = `s-${si}`;
+                html += `
+                    <div class="scenario-wrap">
+                        <div class="s-title">📖 Scenario ${si + 1}: ${sc.title}</div>
+                        <div class="s-body">${sc.body}</div>
+                        <div class="sub-label">✍️ Essay Questions <span class="badge-essay">short answer</span></div>
+                `;
+                sc.subqs.forEach((sq, qi) => {
+                    const key = `${sKey}-${qi}`;
+                    const userAnswer = state.answers[key] || '';
+                    const isSubmitted = state.submitted;
+
+                    html += `
+                        <div class="essay-block ${isSubmitted ? 'submitted' : ''}" data-key="${key}">
+                            <div class="e-head">
+                                <span class="num">${qi + 1}.</span>
+                                <span>${sq.q}</span>
+                            </div>
+                            ${!isSubmitted ? `
+                                <textarea name="${key}" placeholder="Type your answer here..." rows="3">${userAnswer}</textarea>
+                            ` : `
+                                <div class="user-answer-display">
+                                    <span class="label">📝 Your answer:</span>
+                                    ${userAnswer || '(No answer provided)'}
+                                </div>
+                                <div class="model-answer">
+                                    <strong>📌 Model answer:</strong> ${sq.modelAnswer}
+                                </div>
+                            `}
+                        </div>
+                    `;
+                });
+                html += `</div>`;
+            });
+
+            html += `
+                </div>
+                <div class="actions">
+                    ${!state.submitted ? `
+                        <button class="btn btn-primary" id="submitBtn">✅ Submit All Answers</button>
+                    ` : `
+                        <button class="btn btn-success" id="resultsBtn">📊 View Results</button>
+                    `}
+                    <button class="btn btn-outline" id="resetBtn">🔄 Reset</button>
+                    <button class="btn btn-outline" id="backLevelsBtn">🔙 Levels</button>
+                </div>
+            `;
+
+            content.innerHTML = html;
+
+            // ---- Event listeners for radio buttons (MCQs) ----
+            if (!state.submitted) {
+                content.querySelectorAll('input[type="radio"]').forEach(input => {
+                    input.addEventListener('change', (e) => {
+                        const name = input.name;
+                        const value = parseInt(input.value);
+                        state.answers[name] = value;
+                        updateProgress();
+                    });
+                });
+
+                // ---- Event listeners for textareas (essay) ----
+                content.querySelectorAll('.essay-block textarea').forEach(textarea => {
+                    textarea.addEventListener('input', (e) => {
+                        const name = textarea.name;
+                        state.answers[name] = textarea.value;
+                        updateProgress();
+                    });
+                });
+            }
+
+            // ---- Submit ----
+            const submitBtn = document.getElementById('submitBtn');
+            if (submitBtn) {
+                submitBtn.addEventListener('click', () => {
+                    const total = getTotalQuestions(state.questions);
+                    const answered = getAnsweredCount();
+                    if (answered < total) {
+                        if (!confirm(`You answered ${answered} out of ${total}. Submit anyway?`)) return;
+                    }
+                    state.submitted = true;
+                    render();
+                });
+            }
+
+            // ---- Results ----
+            const resultsBtn = document.getElementById('resultsBtn');
+            if (resultsBtn) {
+                resultsBtn.addEventListener('click', () => {
+                    calculateResults();
+                    state.view = 'results';
+                    render();
+                });
+            }
+
+            // ---- Reset ----
+            const resetBtn = document.getElementById('resetBtn');
+            if (resetBtn) {
+                resetBtn.addEventListener('click', () => {
+                    state.answers = {};
+                    state.submitted = false;
+                    state.results = null;
+                    render();
+                });
+            }
+
+            // ---- Back to levels ----
+            const backLevelsBtn = document.getElementById('backLevelsBtn');
+            if (backLevelsBtn) {
+                backLevelsBtn.addEventListener('click', () => {
+                    state.level = null;
+                    state.questions = null;
+                    state.answers = {};
+                    state.submitted = false;
+                    state.results = null;
+                    state.view = 'levels';
+                    render();
+                });
+            }
+        }
+
+        function updateProgress() {
+            const prog = document.querySelector('.progress');
+            if (prog) {
+                const total = getTotalQuestions(state.questions);
+                const answered = getAnsweredCount();
+                prog.textContent = `${answered} / ${total} answered`;
+            }
+        }
+
+        // ---- RESULTS ----
+        function calculateResults() {
+            const q = state.questions;
+            let total = 0,
+                correct = 0,
+                wrong = 0,
+                unanswered = 0;
+            const details = [];
+
+            // MCQs
+            q.mcqs.forEach((mq, idx) => {
+                const key = `q-${idx}`;
+                const selected = state.answers[key];
+                const isCorrect = selected === mq.correct;
+                total++;
+                if (selected === undefined) { unanswered++;
+                    details.push({ key, label: `Q${idx+1}`, type: 'mcq', selected, correct: mq.correct,
+                        isCorrect: false, answered: false, text: mq.q, opts: mq.opts, exp: mq.exp }); } else if (
+                    isCorrect) { correct++;
+                    details.push({ key, label: `Q${idx+1}`, type: 'mcq', selected, correct: mq.correct,
+                        isCorrect: true, answered: true, text: mq.q, opts: mq.opts, exp: mq.exp }); } else { wrong++;
+                    details.push({ key, label: `Q${idx+1}`, type: 'mcq', selected, correct: mq.correct,
+                        isCorrect: false, answered: true, text: mq.q, opts: mq.opts, exp: mq.exp }); }
+            });
+
+            // Scenarios (essay)
+            q.scenarios.forEach((sc, si) => {
+                sc.subqs.forEach((sq, qi) => {
+                    const key = `s-${si}-${qi}`;
+                    const userAnswer = state.answers[key] || '';
+                    const answered = userAnswer.trim().length > 0;
+                    total++;
+                    if (!answered) { unanswered++;
+                        details.push({ key, label: `S${si+1}-${qi+1}`, type: 'essay', userAnswer,
+                            modelAnswer: sq.modelAnswer, answered: false, text: sq.q }); } else { correct++;
+                        details.push({ key, label: `S${si+1}-${qi+1}`, type: 'essay', userAnswer,
+                            modelAnswer: sq.modelAnswer, answered: true, text: sq.q }); }
+                });
+            });
+
+            state.results = { total, correct, wrong, unanswered, details };
+        }
+
+        function renderResults() {
+            if (!state.results) calculateResults();
+            const r = state.results;
+            const pct = r.total > 0 ? Math.round((r.correct / r.total) * 100) : 0;
+            headerBadge.textContent = `${state.topic.icon} Results`;
+
+            let html = `
+                <div class="results-summary">
+                    <div>
+                        <div class="big-score">${pct}% <small>Score</small></div>
+                        <div style="font-size:14px; color:var(--text-muted);">${r.correct} / ${r.total} correct</div>
+                    </div>
+                    <div class="stats">
+                        <div class="stat correct"><div class="num">${r.correct}</div><div class="lbl">✅ Correct</div></div>
+                        <div class="stat wrong"><div class="num">${r.wrong}</div><div class="lbl">❌ Wrong</div></div>
+                        <div class="stat unanswered"><div class="num">${r.unanswered}</div><div class="lbl">⏭️ Unanswered</div></div>
+                    </div>
+                </div>
+                <div style="display:flex; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
+                    <button class="btn btn-primary" id="reviewToggleBtn">🔍 Review Answers</button>
+                    <button class="btn btn-outline" id="retakeBtn">🔄 Retake</button>
+                    <button class="btn btn-outline" id="backTopicsBtn">🏠 Topics</button>
+                </div>
+                <div id="reviewArea" class="hidden">
+                    <hr style="border:1px solid var(--border); margin:16px 0;" />
+                    <h3 style="margin-bottom:12px; color:var(--dark);">📋 Detailed Review</h3>
+                    <div id="reviewContent"></div>
+                </div>
+            `;
+
+            content.innerHTML = html;
+
+            // Review toggle
+            const reviewBtn = document.getElementById('reviewToggleBtn');
+            const reviewArea = document.getElementById('reviewArea');
+            const reviewContent = document.getElementById('reviewContent');
+            let reviewVisible = false;
+
+            if (reviewBtn && reviewArea) {
+                reviewBtn.addEventListener('click', () => {
+                    reviewVisible = !reviewVisible;
+                    if (reviewVisible) {
+                        reviewArea.classList.remove('hidden');
+                        reviewBtn.textContent = '🔍 Hide Review';
+                        let rc = '';
+                        r.details.forEach(d => {
+                            if (d.type === 'mcq') {
+                                const status = d.answered ? (d.isCorrect ? '✅' : '❌') : '⏭️';
+                                const cls = d.answered ? (d.isCorrect ? 'correct' : 'wrong') : '';
+                                rc += `
+                                    <div class="review-item ${cls}">
+                                        <div class="r-head">
+                                            <span class="r-label">${d.label}</span>
+                                            <span>${d.text}</span>
+                                            <span class="r-status">${status}</span>
+                                        </div>
+                                        <div class="r-detail">
+                                            Your answer: ${d.answered ? d.opts[d.selected] : '—'} &nbsp;|&nbsp; Correct: ${d.opts[d.correct]}
+                                        </div>
+                                        <div class="r-exp">💡 ${d.exp}</div>
+                                    </div>
+                                `;
+                            } else {
+                                // Essay
+                                const status = d.answered ? '✅' : '⏭️';
+                                const cls = d.answered ? 'correct' : '';
+                                rc += `
+                                    <div class="review-item ${cls}">
+                                        <div class="r-head">
+                                            <span class="r-label">${d.label}</span>
+                                            <span>${d.text}</span>
+                                            <span class="r-status">${status}</span>
+                                        </div>
+                                        <div class="r-essay-answer">
+                                            <span class="label">📝 Your answer:</span>
+                                            ${d.userAnswer || '(No answer provided)'}
+                                        </div>
+                                        <div class="r-exp" style="margin-top:8px;">
+                                            <strong>📌 Model answer:</strong> ${d.modelAnswer}
+                                        </div>
+                                    </div>
+                                `;
+                            }
+                        });
+                        reviewContent.innerHTML = rc;
+                    } else {
+                        reviewArea.classList.add('hidden');
+                        reviewBtn.textContent = '🔍 Review Answers';
+                    }
+                });
+            }
+
+            // Retake
+            const retakeBtn = document.getElementById('retakeBtn');
+            if (retakeBtn) {
+                retakeBtn.addEventListener('click', () => {
+                    state.answers = {};
+                    state.submitted = false;
+                    state.results = null;
+                    state.view = 'quiz';
+                    render();
+                });
+            }
+
+            // Back to topics
+            const backTopicsBtn = document.getElementById('backTopicsBtn');
+            if (backTopicsBtn) {
+                backTopicsBtn.addEventListener('click', () => {
+                    state.topic = null;
+                    state.level = null;
+                    state.questions = null;
+                    state.answers = {};
+                    state.submitted = false;
+                    state.results = null;
+                    state.view = 'topics';
+                    headerBadge.textContent = 'Choose a topic';
+                    render();
+                });
+            }
+        }
+
+        // ---- BREADCRUMB ----
+        function updateBreadcrumb() {
+            if (state.topic) {
+                bcTopic.textContent = `${state.topic.icon} ${state.topic.name}`;
+                bcSep.style.display = 'inline';
+                if (state.level) {
+                    bcLevel.textContent = `${state.level.emoji} ${state.level.label}`;
+                } else {
+                    bcLevel.textContent = '—';
+                }
+            } else {
+                bcTopic.textContent = '—';
+                bcSep.style.display = 'none';
+                bcLevel.textContent = '—';
+            }
+        }
+
+        // ========================================================================
+        //  BREADCRUMB NAVIGATION
+        // ========================================================================
+
+        document.querySelectorAll('.crumb-link').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const goto = btn.dataset.goto;
+                if (goto === 'topics') {
+                    state.topic = null;
+                    state.level = null;
+                    state.questions = null;
+                    state.answers = {};
+                    state.submitted = false;
+                    state.results = null;
+                    state.view = 'topics';
+                    headerBadge.textContent = 'Choose a topic';
+                    render();
+                }
+            });
+        });
+
+        // ========================================================================
+        //  INIT
+        // ========================================================================
+
+        render();
+    </script>
+
+</body>
+</html>

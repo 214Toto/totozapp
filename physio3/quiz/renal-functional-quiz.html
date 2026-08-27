@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuizMaster · Renal Physiology</title>
+    <style>
+        /* ----- custom properties ----- */
+        :root {
+            --primary: #2b7a78;
+            --accent: #3aafa9;
+            --dark: #17252a;
+            --light: #f8f9fa;
+            --radius: 12px;
+            --shadow: 0 4px 14px rgba(18, 38, 63, 0.06);
+            --text: #1e2a3a;
+            --text-muted: #5a6b7c;
+            --border: #dce5ef;
+            --bg-card: #ffffff;
+            --bg-soft: #f2f6fc;
+            --success: #2b7a78;
+            --danger: #b53b3b;
+            --warning: #b8860b;
+        }
+
+        /* ----- reset & base ----- */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--text);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 28px 18px;
+            color: var(--dark);
+        }
+        #app {
+            max-width: 1024px;
+            width: 100%;
+            background: var(--text-muted);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 32px 36px 40px;
+            transition: 0.3s;
+            border: 1px solid rgba(43, 122, 120, 0.08);
+        }
+        @media (max-width: 640px) {
+            #app {
+                padding: 18px 14px 24px;
+                border-radius: 10px;
+            }
+        }
+
+        /* ----- typography ----- */
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+        .text-muted {
+            color: var(--text-muted);
+        }
+
+        /* ----- header ----- */
+        .app-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+            flex-wrap: wrap;
+            gap: 12px;
+            border-bottom: 2px solid rgba(43, 122, 120, 0.12);
+            padding-bottom: 18px;
+            margin-bottom: 22px;
+        }
+        .app-header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .app-header h1 span {
+            background: var(--primary);
+            color: #fff;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 2px 12px;
+            border-radius: 40px;
+            letter-spacing: 0.3px;
+        }
+        .app-header .badge {
+            background: var(--bg-soft);
+            padding: 6px 20px;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--primary);
+            border: 1px solid rgba(43, 122, 120, 0.15);
+        }
+
+        /* ----- breadcrumb ----- */
+        .breadcrumb {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px 14px;
+            margin-bottom: 18px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .breadcrumb .sep {
+            color: var(--text-muted);
+            user-select: none;
+            opacity: 0.5;
+        }
+        .breadcrumb .crumb-link {
+            background: none;
+            border: none;
+            color: var(--light);
+            cursor: pointer;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 6px;
+            transition: background 0.2s;
+            font-size: 14px;
+        }
+        .breadcrumb .crumb-link:hover {
+            background: var(--bg-soft);
+        }
+        .breadcrumb .current {
+            color: var(--dark);
+            font-weight: 600;
+        }
+        .breadcrumb .current-dim {
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        /* ----- cards ----- */
+        .grid-2col {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 18px;
+            margin-top: 6px;
+        }
+        .grid-3col {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 16px;
+            margin-top: 6px;
+        }
+        .card {
+            background: var(--bg-card);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px 16px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: var(--shadow);
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            box-shadow: 0 12px 32px rgba(43, 122, 120, 0.13);
+        }
+        .card .icon {
+            font-size: 36px;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .card .name {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        .card .sub {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+        .card.level-easy .label {
+            color: var(--primary);
+        }
+        .card.level-medium .label {
+            color: #c07a2b;
+        }
+        .card.level-challenging .label {
+            color: var(--danger);
+        }
+        .card .label {
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        /* ----- quiz header ----- */
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .quiz-header h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        .quiz-header .progress {
+            background: var(--bg-soft);
+            padding: 4px 18px;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--primary);
+            border: 1px solid rgba(43, 122, 120, 0.12);
+        }
+        .quiz-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        .quiz-meta span {
+            background: var(--bg-soft);
+            padding: 4px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+        }
+        .quiz-meta span strong {
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        /* ----- question blocks (MCQ) ----- */
+        .q-block {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 18px 22px 20px;
+            margin-bottom: 16px;
+            border: 1.5px solid var(--border);
+            transition: 0.2s;
+            box-shadow: var(--shadow);
+        }
+        .q-block.correct {
+            border-color: var(--primary);
+            background: #f0f8f7;
+        }
+        .q-block.wrong {
+            border-color: var(--danger);
+            background: #fdf3f3;
+        }
+        .q-block .q-head {
+            display: flex;
+            gap: 10px;
+            align-items: baseline;
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .q-block .q-head .num {
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 14px;
+            min-width: 38px;
+        }
+        .q-block .q-text {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+        .q-block .q-text code {
+            background: var(--bg-soft);
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* options (MCQ) */
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .opt {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 16px;
+            border-radius: 10px;
+            background: var(--bg-card);
+            border: 1.5px solid var(--border);
+            cursor: pointer;
+            transition: 0.18s;
+            font-size: 14px;
+        }
+        .opt:hover:not(.disabled) {
+            border-color: var(--primary);
+            background: var(--bg-soft);
+        }
+        .opt input[type="radio"] {
+            accent-color: var(--primary);
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+        .opt .letter {
+            font-weight: 600;
+            color: var(--text-muted);
+            min-width: 24px;
+            font-size: 14px;
+        }
+        .opt .opt-text {
+            flex: 1;
+        }
+        .opt.correct-opt {
+            border-color: var(--primary);
+            background: #f0f8f7;
+        }
+        .opt.correct-opt .letter {
+            color: var(--primary);
+        }
+        .opt.wrong-opt {
+            border-color: var(--danger);
+            background: #fdf3f3;
+        }
+        .opt.wrong-opt .letter {
+            color: var(--danger);
+        }
+        .opt.disabled {
+            cursor: default;
+            opacity: 0.85;
+        }
+        .opt.disabled:hover {
+            border-color: var(--border);
+            background: var(--bg-card);
+        }
+        .opt.correct-opt.disabled:hover {
+            border-color: var(--primary);
+            background: #f0f8f7;
+        }
+        .opt.wrong-opt.disabled:hover {
+            border-color: var(--danger);
+            background: #fdf3f3;
+        }
+
+        /* ----- essay (scenario sub-questions) ----- */
+        .essay-block {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 18px 22px 20px;
+            margin-bottom: 14px;
+            border: 1.5px solid var(--border);
+            box-shadow: var(--shadow);
+            transition: 0.2s;
+        }
+        .essay-block.submitted {
+            border-color: var(--primary);
+            background: #f8fbfa;
+        }
+        .essay-block .e-head {
+            display: flex;
+            gap: 10px;
+            align-items: baseline;
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        .essay-block .e-head .num {
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 14px;
+            min-width: 38px;
+        }
+        .essay-block .e-question {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+        .essay-block textarea {
+            width: 100%;
+            min-height: 90px;
+            padding: 12px 16px;
+            border-radius: 10px;
+            border: 1.5px solid var(--border);
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            resize: vertical;
+            transition: 0.2s;
+            background: var(--bg-card);
+            color: var(--text);
+        }
+        .essay-block textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(43, 122, 120, 0.12);
+        }
+        .essay-block textarea:disabled {
+            background: var(--bg-soft);
+            opacity: 0.8;
+            cursor: not-allowed;
+        }
+        .essay-block .model-answer {
+            margin-top: 14px;
+            padding: 14px 18px;
+            border-radius: 10px;
+            background: var(--bg-soft);
+            border-left: 4px solid var(--primary);
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text);
+        }
+        .essay-block .model-answer strong {
+            color: var(--primary);
+        }
+        .essay-block .user-answer-display {
+            margin-top: 10px;
+            padding: 12px 16px;
+            border-radius: 10px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text);
+            white-space: pre-wrap;
+        }
+        .essay-block .user-answer-display .label {
+            font-weight: 600;
+            color: var(--text-muted);
+            font-size: 13px;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .essay-block .badge-essay {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: var(--primary);
+            background: rgba(43, 122, 120, 0.10);
+            padding: 2px 12px;
+            border-radius: 40px;
+            margin-left: 6px;
+        }
+
+        /* ----- explanation (MCQ) ----- */
+        .explain {
+            margin-top: 12px;
+            padding: 12px 18px;
+            border-radius: 10px;
+            background: var(--bg-soft);
+            border-left: 4px solid var(--primary);
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text);
+        }
+        .explain strong {
+            color: var(--primary);
+        }
+
+        /* ----- scenario wrapper ----- */
+        .scenario-wrap {
+            background: var(--bg-soft);
+            border-radius: var(--radius);
+            padding: 20px 24px 24px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+        .scenario-wrap .s-title {
+            font-weight: 700;
+            font-size: 17px;
+            margin-bottom: 4px;
+            color: var(--dark);
+        }
+        .scenario-wrap .s-body {
+            background: var(--bg-card);
+            padding: 14px 18px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            font-size: 14px;
+            line-height: 1.7;
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            white-space: pre-wrap;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+        .scenario-wrap .s-body code {
+            background: var(--bg-soft);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+        .scenario-wrap .sub-label {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--primary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .scenario-wrap .sub-label .badge-essay {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            color: var(--primary);
+            background: rgba(43, 122, 120, 0.10);
+            padding: 2px 12px;
+            border-radius: 40px;
+        }
+
+        /* ----- buttons ----- */
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            background: var(--bg-soft);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+        .btn-primary:hover {
+            background: #236a68;
+            border-color: #236a68;
+            box-shadow: 0 8px 28px rgba(43, 122, 120, 0.30);
+        }
+        .btn-success {
+            background: var(--accent);
+            color: var(--dark);
+            border-color: var(--accent);
+        }
+        .btn-success:hover {
+            background: #34a09c;
+            border-color: #34a09c;
+            box-shadow: 0 8px 28px rgba(58, 175, 169, 0.30);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid var(--border);
+            color: var(--text);
+        }
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: var(--bg-soft);
+        }
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        /* ----- results ----- */
+        .results-summary {
+            background: var(--bg-soft);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+        .results-summary .big-score {
+            font-size: 38px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .results-summary .big-score small {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+        .results-summary .stats {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .results-summary .stat {
+            text-align: center;
+        }
+        .results-summary .stat .num {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .results-summary .stat .lbl {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .stat.correct .num {
+            color: var(--primary);
+        }
+        .stat.wrong .num {
+            color: var(--danger);
+        }
+        .stat.unanswered .num {
+            color: var(--text-muted);
+        }
+
+        /* review items */
+        .review-item {
+            background: var(--bg-card);
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+        .review-item.correct {
+            border-left-color: var(--primary);
+        }
+        .review-item.wrong {
+            border-left-color: var(--danger);
+        }
+        .review-item .r-head {
+            display: flex;
+            gap: 12px;
+            align-items: baseline;
+            flex-wrap: wrap;
+        }
+        .review-item .r-head .r-label {
+            font-weight: 600;
+            min-width: 50px;
+            color: var(--text);
+        }
+        .review-item .r-head .r-status {
+            margin-left: auto;
+            font-weight: 600;
+        }
+        .review-item .r-detail {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+        .review-item .r-exp {
+            font-size: 14px;
+            color: var(--text);
+            margin-top: 6px;
+            background: var(--bg-soft);
+            padding: 8px 14px;
+            border-radius: 8px;
+        }
+        .review-item .r-essay-answer {
+            font-size: 14px;
+            color: var(--text);
+            margin-top: 6px;
+            background: var(--bg-card);
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            white-space: pre-wrap;
+        }
+        .review-item .r-essay-answer .label {
+            font-weight: 600;
+            color: var(--text-muted);
+            font-size: 13px;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+        .mt-12 {
+            margin-top: 12px;
+        }
+        .mb-8 {
+            margin-bottom: 8px;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .flex-between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        /* ----- responsive ----- */
+        @media (max-width: 640px) {
+            .q-block {
+                padding: 14px 14px 16px;
+            }
+            .essay-block {
+                padding: 14px 14px 16px;
+            }
+            .opt {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+            .results-summary {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+            .results-summary .stats {
+                justify-content: center;
+            }
+            .app-header h1 {
+                font-size: 20px;
+            }
+            .card {
+                padding: 16px 12px;
+            }
+            .btn {
+                padding: 9px 20px;
+                font-size: 14px;
+            }
+            .scenario-wrap {
+                padding: 14px 14px 18px;
+            }
+            .scenario-wrap .s-body {
+                font-size: 13px;
+                padding: 10px 12px;
+            }
+            #app {
+                padding: 14px 10px 20px;
+            }
+            .essay-block textarea {
+                min-height: 70px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <!-- header -->
+        <header class="app-header">
+            <h1>🧬 Renal Physiology <span>Quiz</span></h1>
+            <span class="badge" id="headerBadge">Choose a topic</span>
+        </header>
+
+        <!-- breadcrumb -->
+        <!-- <nav class="breadcrumb" id="breadcrumb">
+            <button class="crumb-link" data-goto="topics">🏠 Topics</button>
+            <span class="sep">›</span>
+            <span class="current" id="bcTopic">—</span>
+            <span class="sep" id="bcSep">›</span>
+            <span class="current" id="bcLevel">—</span>
+        </nav> -->
+
+        <!-- dynamic content -->
+        <div id="content"></div>
+    </div>
+
+    <script>
+        // ========================================================================
+        //  DATA — Topics, Levels, Question Banks, Scenarios (from Renal Physiology)
+        // ========================================================================
+
+        const TOPICS = [
+            { id: 'renal_anatomy', name: 'Functional Anatomy & The Nephron', icon: '🔬', desc: 'Gross anatomy, nephron segments, filtration barrier, tubular transport' },
+            { id: 'renal_hemodynamics', name: 'Blood Flow & Haemodynamics', icon: '🩸', desc: 'Renal circulation, autoregulation, arteriolar resistance, clinical pharmacology' },
+        ];
+
+        const LEVELS = [
+            { id: 'easy', label: 'Easy', emoji: '🌱', cls: 'level-easy' },
+            { id: 'medium', label: 'Medium', emoji: '🔥', cls: 'level-medium' },
+            { id: 'challenging', label: 'Challenging', emoji: '🚀', cls: 'level-challenging' },
+        ];
+
+        // ========================================================================
+        //  MCQ BANKS
+        // ========================================================================
+
+        const BANKS = {};
+
+        // ---- TOPIC 1: RENAL ANATOMY ----
+        BANKS.renal_anatomy = {
+            easy: [
+                { q: 'Where are the kidneys located anatomically?', opts: ['Intraperitoneal, at L1-L2', 'Retroperitoneal, approximately T12-L3', 'Subperitoneal, at L4-L5', 'Suprarenal, at T10-T11'], correct: 1, exp: 'The kidneys are retroperitoneal organs located approximately at the T12-L3 vertebral level. The right kidney lies slightly lower due to the liver.' },
+                { q: 'What is the functional unit of the kidney?', opts: ['The renal lobe', 'The nephron', 'The glomerulus', 'The collecting duct'], correct: 1, exp: 'The nephron is the functional unit of the kidney. Each kidney contains approximately 1.0–1.2 million nephrons.' },
+                { q: 'What is the renal hilum?', opts: ['The outer fibrous capsule of the kidney', 'The medial opening into the renal sinus', 'The tip of the renal pyramid', 'The connection between the kidney and ureter'], correct: 1, exp: 'The renal hilum is the medial opening into the renal sinus. It contains the renal artery, renal vein, and ureter.' },
+                { q: 'Which region of the kidney contains the glomeruli and most convoluted tubules?', opts: ['The medulla', 'The cortex', 'The renal pelvis', 'The papilla'], correct: 1, exp: 'The cortex contains the glomeruli and most convoluted tubules. The medulla contains the loops of Henle and collecting ducts.' },
+                { q: 'What is the path of urine flow from the collecting duct to the ureter?', opts: ['Collecting duct → renal pelvis → minor calyx → major calyx → ureter', 'Collecting duct → papillary duct → minor calyx → major calyx → renal pelvis → ureter', 'Collecting duct → major calyx → minor calyx → renal pelvis → ureter', 'Collecting duct → renal pelvis → ureter → major calyx → minor calyx'], correct: 1, exp: 'Urine flows from the collecting duct to the papillary duct, then into the minor calyx, major calyx, renal pelvis, and finally the ureter.' },
+                { q: 'What is the glomerulus?', opts: ['A network of peritubular capillaries', 'The capillary tuft within the renal corpuscle where filtration begins', 'The collecting duct system', 'The loop of Henle'], correct: 1, exp: 'The glomerulus is the capillary tuft within the renal corpuscle that filters plasma into Bowman\'s space.' },
+                { q: 'What is Bowman\'s space?', opts: ['The space within the glomerular capillary', 'The space between the glomerular capillary tuft and Bowman\'s capsule', 'The lumen of the proximal tubule', 'The space within the collecting duct'], correct: 1, exp: 'Bowman\'s space is the space between the glomerular capillary tuft and Bowman\'s capsule into which the ultrafiltrate is collected.' },
+                { q: 'What is the primary function of the proximal tubule?', opts: ['Fine control of electrolyte excretion', 'Bulk, iso-osmotic reabsorption', 'Establishment of the medullary osmotic gradient', 'Hormone-regulated water reabsorption'], correct: 1, exp: 'The proximal tubule is responsible for bulk, iso-osmotic reabsorption of 65–70% of filtered Na⁺ and water, along with nearly all filtered glucose and amino acids.' },
+                { q: 'What is the function of the loop of Henle?', opts: ['Bulk reabsorption', 'Establishment of the medullary osmotic gradient', 'Fine control of acid-base balance', 'Hormone-regulated water reabsorption'], correct: 1, exp: 'The loop of Henle establishes the medullary osmotic gradient, which is essential for the concentration of urine.' },
+                { q: 'What is the role of the distal tubule?', opts: ['Bulk reabsorption', 'Establishment of the medullary osmotic gradient', 'Fine control of electrolytes and acid-base balance', 'Filtration of plasma'], correct: 2, exp: 'The distal tubule provides fine control of electrolytes (Na⁺, K⁺, Ca²⁺) and acid-base balance, regulated by hormones such as aldosterone, ADH, and PTH.' },
+                { q: 'What is the collecting duct?', opts: ['Part of the nephron that filters plasma', 'A structure that receives tubular fluid from many nephrons and determines final urine composition', 'The initial segment of the nephron', 'The capillary network surrounding the tubule'], correct: 1, exp: 'The collecting duct receives tubular fluid from many nephrons and is responsible for hormone-regulated final urine composition. It is not part of the nephron embryologically.' },
+                { q: 'What are cortical nephrons?', opts: ['Nephrons with long loops of Henle reaching the inner medulla', 'Nephrons with short loops of Henle located in the outer cortex', 'Nephrons that produce concentrated urine', 'Nephrons that do not have a glomerulus'], correct: 1, exp: 'Cortical nephrons have short loops of Henle and are located in the outer cortex. Their principal role is bulk reabsorption.' },
+                { q: 'What are juxtamedullary nephrons?', opts: ['Nephrons with short loops of Henle', 'Nephrons with long loops of Henle reaching the inner medulla', 'Nephrons located in the outer cortex', 'Nephrons that do not contribute to urine concentration'], correct: 1, exp: 'Juxtamedullary nephrons have long loops of Henle that reach the inner medulla. Their principal role is concentrated urine formation.' },
+                { q: 'What is the juxtaglomerular apparatus (JGA)?', opts: ['A structure that filters blood', 'A local control hub that links distal tubular NaCl delivery to afferent arteriolar tone and renin release', 'The collecting duct system', 'The capillary network around the tubule'], correct: 1, exp: 'The JGA is a local control hub that links distal tubular NaCl delivery to afferent arteriolar tone, renin release, GFR, and systemic blood pressure.' },
+                { q: 'What is the vascular pole of the renal corpuscle?', opts: ['Where Bowman\'s space becomes continuous with the proximal tubule', 'Where the afferent arteriole enters and the efferent arteriole exits', 'The site of urine formation', 'The location of the macula densa'], correct: 1, exp: 'The vascular pole is where the afferent arteriole enters and the efferent arteriole exits the glomerulus.' },
+                { q: 'What is the urinary pole of the renal corpuscle?', opts: ['Where the afferent arteriole enters', 'Where Bowman\'s space becomes continuous with the proximal tubule', 'The site of renin release', 'The location of the macula densa'], correct: 1, exp: 'The urinary pole is where Bowman\'s space becomes continuous with the proximal tubule, allowing filtrate to leave the renal corpuscle.' },
+                { q: 'What is the glomerular filtration barrier?', opts: ['A single layer of endothelial cells', 'A three-layer barrier that provides high hydraulic permeability while restricting cells and macromolecules', 'The basement membrane only', 'The podocyte layer only'], correct: 1, exp: 'The glomerular filtration barrier is a three-layer structure consisting of fenestrated capillary endothelium, the glomerular basement membrane, and podocyte filtration slits.' },
+                { q: 'What is the role of mesangial cells in the glomerulus?', opts: ['They form the filtration slits', 'They support capillary loops, clear debris, and alter filtration area', 'They produce erythropoietin', 'They reabsorb glucose'], correct: 1, exp: 'Mesangial cells support the glomerular capillary loops, clear trapped material, and dynamically regulate the filtration surface area.' },
+                { q: 'What is the renal cortex?', opts: ['The inner region of the kidney containing the loops of Henle', 'The outer region of the kidney containing the glomeruli and convoluted tubules', 'The central cavity of the kidney', 'The fibrous capsule surrounding the kidney'], correct: 1, exp: 'The renal cortex is the outer region of the kidney that contains the glomeruli and most convoluted tubules.' },
+                { q: 'What is the renal medulla?', opts: ['The outer region of the kidney', 'The inner region of the kidney containing loops of Henle and collecting ducts', 'The central cavity of the kidney', 'The blood supply to the kidney'], correct: 1, exp: 'The renal medulla is the inner region of the kidney that contains the loops of Henle and collecting ducts, which establish the osmotic gradient.' },
+            ],
+            medium: [
+                { q: 'How do cortical nephrons differ from juxtamedullary nephrons?', opts: ['Cortical nephrons have long loops; juxtamedullary have short loops', 'Cortical nephrons have short loops; juxtamedullary have long loops reaching the inner medulla', 'Cortical nephrons are located in the medulla; juxtamedullary in the cortex', 'There is no difference'], correct: 1, exp: 'Cortical nephrons have short loops of Henle and are located in the outer cortex. Juxtamedullary nephrons have long loops that reach the inner medulla and are important for concentrated urine formation.' },
+                { q: 'What is the primary function of mesangial cells?', opts: ['To form the filtration slits', 'To support capillary loops, clear debris, and regulate filtration surface area', 'To produce renin', 'To reabsorb sodium'], correct: 1, exp: 'Mesangial cells support the glomerular capillary loops, clear trapped material, and dynamically regulate the filtration surface area through their contractile properties.' },
+                { q: 'What are podocytes and what is their role?', opts: ['Cells that line the collecting duct', 'Cells that cover the outer capillary surface and form filtration slits', 'Cells that produce erythropoietin', 'Cells that reabsorb glucose'], correct: 1, exp: 'Podocytes are specialized cells that cover the outer surface of the glomerular capillaries and form filtration slits that restrict the passage of proteins.' },
+                { q: 'What is the glomerular filtration barrier composed of?', opts: ['A single layer of endothelial cells', 'Fenestrated endothelium, glomerular basement membrane, and podocyte filtration slits', 'The macula densa and granular cells', 'The proximal tubule and distal tubule'], correct: 1, exp: 'The glomerular filtration barrier consists of three layers: fenestrated capillary endothelium, the glomerular basement membrane, and podocyte filtration slits.' },
+                { q: 'What is the macula densa?', opts: ['A region of the proximal tubule', 'A group of specialized cells in the distal tubule that sense NaCl delivery', 'The capillary network around the tubule', 'The collecting duct system'], correct: 1, exp: 'The macula densa is a group of specialized cells in the distal tubule that sense NaCl delivery through the NKCC2 transporter and trigger tubuloglomerular feedback.' },
+                { q: 'What are granular cells in the juxtaglomerular apparatus?', opts: ['Cells that reabsorb sodium', 'Cells that sense afferent wall stretch and release renin', 'Cells that form the filtration slits', 'Cells that produce erythropoietin'], correct: 1, exp: 'Granular cells are modified smooth muscle cells in the afferent arteriole that sense wall stretch and release renin in response to decreased renal perfusion pressure.' },
+                { q: 'What is a renal lobe?', opts: ['One nephron', 'One pyramid plus its overlying and adjacent cortex', 'The entire kidney', 'The collecting duct system'], correct: 1, exp: 'A renal lobe consists of one pyramid plus its overlying and adjacent cortex. Each kidney contains multiple renal lobes.' },
+                { q: 'How does the proximal tubule differ from the distal tubule structurally?', opts: ['The PCT has sparse microvilli; the DCT has a dense brush border', 'The PCT has a dense brush border; the DCT has sparse or absent microvilli', 'Both have dense brush borders', 'Both have no brush border'], correct: 1, exp: 'The proximal convoluted tubule has a dense brush border (microvilli) that increases surface area for reabsorption. The distal convoluted tubule has sparse or absent microvilli.' },
+                { q: 'What is the role of the loop of Henle in urine concentration?', opts: ['It reabsorbs glucose', 'It establishes the medullary osmotic gradient through countercurrent multiplication', 'It filters plasma', 'It secretes hydrogen ions'], correct: 1, exp: 'The loop of Henle establishes the medullary osmotic gradient through countercurrent multiplication, which is essential for the kidney\'s ability to concentrate urine.' },
+                { q: 'What is the vasa recta?', opts: ['The capillary network in the cortex', 'The hairpin countercurrent vessels in the medulla that preserve the osmotic gradient', 'The afferent arteriole', 'The efferent arteriole'], correct: 1, exp: 'The vasa recta are hairpin-shaped vessels in the medulla that preserve the osmotic gradient through countercurrent exchange, allowing for efficient water reabsorption.' },
+                { q: 'What are peritubular capillaries?', opts: ['Capillaries in the medulla', 'A dense capillary mesh in the cortex that recovers reabsorbed fluid', 'The glomerular capillaries', 'The vasa recta'], correct: 1, exp: 'Peritubular capillaries are a dense capillary mesh in the renal cortex that recover reabsorbed fluid from the cortical tubules.' },
+                { q: 'What is the renal sinus?', opts: ['The outer capsule of the kidney', 'The space within the kidney that contains the renal pelvis, calyces, vessels, and fat', 'The region of the cortex', 'The medullary pyramid'], correct: 1, exp: 'The renal sinus is the space within the kidney that contains the renal pelvis, calyces, blood vessels, and fat.' },
+                { q: 'What are the major calyces?', opts: ['The first part of the nephron', 'Structures that receive urine from several minor calyces and drain into the renal pelvis', 'The glomerular capillaries', 'The collecting ducts'], correct: 1, exp: 'The major calyces receive urine from several minor calyces and drain into the renal pelvis. The minor calyces cup each papilla.' },
+                { q: 'What is the renal papilla?', opts: ['The tip of the renal pyramid where collecting ducts open', 'The outer cortex', 'The renal hilum', 'The ureteropelvic junction'], correct: 0, exp: 'The renal papilla is the tip of the renal pyramid where collecting ducts open into the minor calyx, releasing urine.' },
+                { q: 'What is the role of the collecting duct in the nephron?', opts: ['Filtration of plasma', 'Hormone-regulated final urine composition', 'Bulk reabsorption of water', 'Secretion of renin'], correct: 1, exp: 'The collecting duct is responsible for hormone-regulated final urine composition. It receives tubular fluid from many nephrons and is regulated by ADH and aldosterone.' },
+                { q: 'What is the difference between intraglomerular and extraglomerular mesangial cells?', opts: ['There is no difference', 'Intraglomerular cells are inside the tuft (structural, phagocytic, contractile); extraglomerular cells are part of the JGA and relay signals', 'Intraglomerular cells produce renin; extraglomerular cells produce erythropoietin', 'Intraglomerular cells are in the medulla; extraglomerular in the cortex'], correct: 1, exp: 'Intraglomerular mesangial cells are inside the glomerular tuft and provide structural support, phagocytosis, and contractile function. Extraglomerular mesangial cells are part of the juxtaglomerular apparatus and relay signals between the macula densa and the arterioles.' },
+                { q: 'What is the function of fenestrated capillaries in the glomerulus?', opts: ['To restrict all solutes', 'To provide a large filtration surface while restricting cells and large proteins', 'To reabsorb glucose', 'To secrete hormones'], correct: 1, exp: 'The fenestrated capillaries in the glomerulus provide a large surface area for filtration while still restricting the passage of cells and large proteins.' },
+                { q: 'What is the significance of the renal angle?', opts: ['It is the angle between the kidney and the liver', 'The angle between the 12th rib and paraspinal muscles; tenderness may suggest renal inflammation', 'The angle of the ureter', 'The angle of the renal artery'], correct: 1, exp: 'The renal angle lies between the 12th rib and the paraspinal muscles. Tenderness in this area may suggest renal inflammation or infection.' },
+                { q: 'How does the epithelial structure of the PCT differ from that of the DCT?', opts: ['The PCT has sparse microvilli and the DCT has a dense brush border', 'The PCT has a dense brush border and leaky junctions; the DCT has sparse microvilli and tighter junctions', 'Both have the same structure', 'The PCT has tighter junctions than the DCT'], correct: 1, exp: 'The PCT has a dense brush border (microvilli) and relatively leaky junctions for high-capacity reabsorption. The DCT has sparse microvilli and tighter, more selective junctions for fine control.' },
+                { q: 'What is the role of the renal corpuscle in the kidney?', opts: ['Reabsorption of solutes', 'Filtration of plasma into Bowman\'s space', 'Secretion of hormones', 'Concentration of urine'], correct: 1, exp: 'The renal corpuscle is where plasma filtration occurs. The glomerular capillary tuft filters plasma into Bowman\'s space, forming the initial ultrafiltrate.' },
+            ],
+            challenging: [
+                { q: 'How does the structure of the PCT support its high-capacity reabsorption function?', opts: ['By having tight junctions that restrict paracellular transport', 'By having a large apical surface area (brush border), high mitochondrial density, and leaky junctions', 'By having no microvilli', 'By having a thick basement membrane'], correct: 1, exp: 'The PCT has a large apical surface area (brush border) to increase transport capacity, high mitochondrial density to provide ATP for active transport, and relatively leaky junctions to allow paracellular reabsorption of solutes and water.' },
+                { q: 'What is the functional significance of the two nephron populations (cortical and juxtamedullary)?', opts: ['Both populations have the same function', 'Cortical nephrons are responsible for concentrated urine; juxtamedullary nephrons for bulk reabsorption', 'Cortical nephrons perform bulk reabsorption; juxtamedullary nephrons are essential for concentrated urine formation via long loops and vasa recta', 'Juxtamedullary nephrons are found only in the outer cortex'], correct: 2, exp: 'Cortical nephrons (short loops) perform bulk reabsorption. Juxtamedullary nephrons (long loops) establish the medullary osmotic gradient and are essential for concentrated urine formation, supported by the countercurrent exchange system of the vasa recta.' },
+                { q: 'How does the juxtaglomerular apparatus regulate GFR through tubuloglomerular feedback?', opts: ['By directly filtering plasma', 'By sensing distal tubular NaCl delivery and adjusting afferent arteriolar tone', 'By reabsorbing glucose', 'By secreting ADH'], correct: 1, exp: 'The JGA regulates GFR through tubuloglomerular feedback: the macula densa senses distal tubular NaCl delivery (via NKCC2) and signals the afferent arteriole to constrict or dilate, stabilizing GFR.' },
+                { q: 'What is the role of ADH in the collecting duct?', opts: ['It increases Na⁺ reabsorption', 'It increases water permeability by inserting aquaporin-2 channels', 'It decreases water permeability', 'It stimulates renin release'], correct: 1, exp: 'ADH (vasopressin) increases water permeability in the collecting duct by promoting the insertion of aquaporin-2 channels into the apical membrane, allowing water to be reabsorbed down the osmotic gradient.' },
+                { q: 'How does the countercurrent multiplier system work in the loop of Henle?', opts: ['By passively reabsorbing water', 'By actively transporting Na⁺ and Cl⁻ out of the ascending limb, creating a medullary osmotic gradient', 'By filtering plasma', 'By secreting hydrogen ions'], correct: 1, exp: 'The countercurrent multiplier system actively transports Na⁺ and Cl⁻ out of the thick ascending limb of the loop of Henle, creating an osmotic gradient in the medulla. This gradient is then used to concentrate urine in the collecting duct.' },
+                { q: 'What is the role of the vasa recta in countercurrent exchange?', opts: ['They actively transport NaCl', 'They preserve the medullary osmotic gradient by acting as countercurrent exchangers', 'They filter plasma', 'They reabsorb glucose'], correct: 1, exp: 'The vasa recta preserve the medullary osmotic gradient through countercurrent exchange. Their hairpin configuration allows for passive exchange of water and solutes, preventing the washout of the gradient.' },
+                { q: 'How does the glomerular filtration barrier restrict proteins while allowing water and small solutes to pass?', opts: ['By having a single layer of cells', 'Through the combination of fenestrated endothelium, negatively charged basement membrane, and podocyte filtration slits', 'By actively transporting proteins', 'By using tight junctions'], correct: 1, exp: 'The glomerular filtration barrier restricts proteins through size and charge selectivity: the fenestrated endothelium prevents cell passage, the negatively charged basement membrane repels negatively charged proteins, and the podocyte filtration slits provide size restriction.' },
+                { q: 'What is the functional role of mesangial cells in glomerular disease?', opts: ['They have no role in disease', 'Mesangial proliferation and matrix expansion occur in diabetic kidney disease and glomerulonephritides, reducing effective filtration surface', 'They only support capillaries', 'They produce hormones'], correct: 1, exp: 'In diabetic kidney disease and several glomerulonephritides, mesangial cell proliferation and matrix expansion occur, which can reduce the effective filtration surface area and impair renal function.' },
+                { q: 'How does tubular transport capacity vary along the nephron?', opts: ['It increases distally', 'It decreases distally while selectivity and hormonal control increase', 'It remains constant', 'It is highest in the collecting duct'], correct: 1, exp: 'Transport capacity decreases along the nephron from the proximal tubule to the distal segments. However, selectivity and hormonal control increase distally, allowing for fine regulation of final urine composition.' },
+                { q: 'What is the role of tight junctions in tubular transport?', opts: ['They allow free passage of all solutes', 'They determine the paracellular permeability of the epithelium, which varies along the nephron', 'They prevent all transport', 'They are only found in the glomerulus'], correct: 1, exp: 'Tight junctions determine the paracellular permeability of the tubular epithelium. In the proximal tubule, they are relatively leaky to allow paracellular transport, while in distal segments they are tighter, restricting paracellular movement.' },
+                { q: 'How does the brush border of the PCT enhance reabsorption?', opts: ['By decreasing surface area', 'By increasing surface area for membrane transporters and enzymes', 'By filtering plasma', 'By secreting hormones'], correct: 1, exp: 'The brush border (microvilli) of the PCT greatly increases the apical surface area, allowing for a high density of membrane transporters and enzymes that facilitate the reabsorption of solutes and water.' },
+                { q: 'What is the relationship between mitochondrial density and transport function in the nephron?', opts: ['There is no relationship', 'Segments with high transport capacity (like the PCT) have high mitochondrial density to support ATP-dependent transport', 'Mitochondria are only found in the glomerulus', 'High mitochondrial density indicates low transport activity'], correct: 1, exp: 'Segments with high transport capacity, such as the proximal convoluted tubule, have high mitochondrial density to provide the ATP required for active transport processes like Na⁺-K⁺-ATPase activity.' },
+                { q: 'How does the medullary osmotic gradient form and what maintains it?', opts: ['It forms by passive diffusion of water', 'It is formed by active transport of NaCl out of the thick ascending limb (countercurrent multiplication) and maintained by the vasa recta (countercurrent exchange)', 'It forms by glomerular filtration', 'It is maintained by the proximal tubule'], correct: 1, exp: 'The medullary osmotic gradient is formed by the countercurrent multiplier mechanism in the loop of Henle, which actively transports NaCl out of the thick ascending limb. It is maintained by the vasa recta through countercurrent exchange.' },
+                { q: 'What is the role of the collecting duct in final urine composition?', opts: ['It filters plasma', 'It determines final urine volume and concentration through hormone-regulated water and solute reabsorption', 'It secretes renin', 'It forms the filtration barrier'], correct: 1, exp: 'The collecting duct determines final urine composition through hormone-regulated water and solute reabsorption. ADH increases water permeability, while aldosterone increases Na⁺ reabsorption and K⁺ secretion.' },
+                { q: 'How does the juxtaglomerular apparatus respond to changes in NaCl delivery?', opts: ['By directly filtering more plasma', 'Through tubuloglomerular feedback: increased NaCl delivery constricts the afferent arteriole, reducing GFR', 'By reabsorbing glucose', 'By secreting ADH'], correct: 1, exp: 'The JGA responds to changes in NaCl delivery through tubuloglomerular feedback. Increased NaCl delivery to the macula densa triggers afferent arteriolar constriction, reducing GFR and restoring delivery to normal levels.' },
+                { q: 'What is the clinical significance of the renal angle?', opts: ['It indicates kidney size', 'Tenderness in the costovertebral angle may suggest pyelonephritis or renal inflammation', 'It marks the location of the renal artery', 'It is used to measure GFR'], correct: 1, exp: 'The renal (costovertebral) angle is the angle between the 12th rib and the paraspinal muscles. Tenderness in this area is a clinical sign that may suggest renal inflammation, pyelonephritis, or other renal pathology.' },
+                { q: 'How does the structure of the renal corpuscle change in disease states?', opts: ['It does not change', 'In diabetic kidney disease, mesangial matrix expands and the filtration barrier thickens, reducing filtration capacity', 'It becomes more permeable', 'It increases in size'], correct: 1, exp: 'In diabetic kidney disease and other glomerular diseases, mesangial matrix expansion and thickening of the glomerular basement membrane occur, reducing the effective filtration surface area and impairing renal function.' },
+                { q: 'What is the functional difference between the PCT and DCT in terms of ion transport?', opts: ['The PCT reabsorbs most filtered ions; the DCT fine-tunes electrolyte balance under hormonal control', 'The PCT secretes ions; the DCT reabsorbs ions', 'Both have identical ion transport functions', 'The PCT fine-tunes; the DCT reabsorbs bulk ions'], correct: 0, exp: 'The PCT reabsorbs 65-70% of filtered Na⁺ and water, along with nearly all glucose and amino acids. The DCT fine-tunes electrolyte balance (Na⁺, K⁺, Ca²⁺) under hormonal control (aldosterone, PTH).' },
+                { q: 'Why is the proximal tubule\'s epithelium described as "leaky" while the distal tubule\'s is "tight"?', opts: ['It refers to the basement membrane', 'The PCT has relatively leaky tight junctions allowing paracellular transport; the DCT has tighter junctions restricting paracellular movement, allowing for more selective transport', 'The PCT is leaky to water only; the DCT is tight to all solutes', 'There is no difference'], correct: 1, exp: 'The PCT has relatively leaky tight junctions that allow for paracellular transport of water and solutes, supporting high-capacity reabsorption. The DCT has tighter junctions that restrict paracellular movement, allowing for more selective transcellular transport under hormonal control.' },
+                { q: 'How does the renal medulla\'s structural organization support urine concentration?', opts: ['It has no role in urine concentration', 'The medulla contains the loops of Henle and collecting ducts arranged to establish and maintain an osmotic gradient, essential for water reabsorption and concentrated urine formation', 'It only contains blood vessels', 'It is responsible for filtration'], correct: 1, exp: 'The renal medulla contains the loops of Henle and collecting ducts, which are arranged to establish and maintain a medullary osmotic gradient. This gradient is essential for the kidney\'s ability to reabsorb water and produce concentrated urine.' },
+            ]
+        };
+
+        // ---- TOPIC 2: RENAL HEMODYNAMICS ----
+        BANKS.renal_hemodynamics = {
+            easy: [
+                { q: 'Why do the kidneys receive such a high blood flow relative to their size?', opts: ['To meet the metabolic needs of the kidney', 'To support high-volume plasma processing for filtration, volume control, and electrolyte balance', 'To produce hormones', 'To maintain body temperature'], correct: 1, exp: 'The kidneys receive a disproportionately high blood flow to support high-volume plasma processing for filtration, extracellular fluid volume control, electrolyte balance, and acid-base regulation.' },
+                { q: 'What is the typical renal blood flow in an adult?', opts: ['About 200 mL/min', 'About 1.2 L/min (approximately 20-25% of cardiac output)', 'About 5 L/min', 'About 100 mL/min'], correct: 1, exp: 'Renal blood flow is approximately 1.2 L/min, which represents about 20-25% of cardiac output, far exceeding the metabolic needs of the kidney.' },
+                { q: 'What is the route of blood flow from the renal artery to the glomerulus?', opts: ['Renal artery → interlobar arteries → arcuate arteries → cortical radiate arteries → afferent arteriole → glomerulus', 'Renal artery → arcuate arteries → interlobar arteries → glomerulus', 'Renal artery → glomerulus → afferent arteriole', 'Renal artery → cortical radiate arteries → interlobar arteries'], correct: 0, exp: 'Blood flows from the renal artery through interlobar arteries, arcuate arteries, and cortical radiate (interlobular) arteries to the afferent arteriole, which delivers blood to the glomerular capillary tuft.' },
+                { q: 'What is the efferent arteriole?', opts: ['The vessel that brings blood to the glomerulus', 'The vessel that carries blood away from the glomerulus', 'The vessel that drains into the renal vein', 'The vessel that supplies the medulla'], correct: 1, exp: 'The efferent arteriole carries blood away from the glomerulus, leading to the peritubular capillaries or vasa recta.' },
+                { q: 'What is the filtration fraction (FF)?', opts: ['The ratio of renal blood flow to cardiac output', 'The fraction of renal plasma flow that is filtered (GFR/RPF)', 'The fraction of filtered water that is reabsorbed', 'The ratio of afferent to efferent resistance'], correct: 1, exp: 'The filtration fraction (FF) is the fraction of renal plasma flow that is filtered across the glomerular capillaries. FF = GFR / RPF, normally about 0.18-0.20.' },
+                { q: 'What is the primary function of the glomerular capillaries?', opts: ['Reabsorption of solutes', 'Filtration of plasma into Bowman\'s space', 'Secretion of hormones', 'Exchange of gases'], correct: 1, exp: 'The glomerular capillaries are specialized for filtration. Their high hydrostatic pressure forces plasma water and small solutes across the filtration barrier into Bowman\'s space.' },
+                { q: 'What is the role of peritubular capillaries?', opts: ['To filter plasma', 'To reabsorb solutes and water from the renal interstitium', 'To secrete hormones', 'To deliver oxygen to the medulla'], correct: 1, exp: 'Peritubular capillaries have low hydrostatic pressure and high oncotic pressure, which favors the reabsorption of solutes and water from the renal interstitium back into the bloodstream.' },
+                { q: 'What is the myogenic response in renal autoregulation?', opts: ['A response to changes in distal NaCl delivery', 'A response to changes in arterial pressure: increased pressure causes afferent arteriolar constriction', 'A response to sympathetic stimulation', 'A response to ADH'], correct: 1, exp: 'The myogenic response is a rapid intrinsic mechanism where increased arterial pressure causes afferent arteriolar smooth muscle to constrict, preventing excessive pressure transmission to the glomerulus.' },
+                { q: 'What is tubuloglomerular feedback (TGF)?', opts: ['A feedback mechanism that regulates blood pressure', 'A mechanism by which the macula densa senses distal NaCl delivery and adjusts afferent arteriolar resistance to stabilize GFR', 'A mechanism for reabsorbing glucose', 'A response to ADH'], correct: 1, exp: 'Tubuloglomerular feedback is a mechanism in which the macula densa senses NaCl delivery in the distal tubule and signals the afferent arteriole to adjust its resistance, stabilizing GFR.' },
+                { q: 'What does the macula densa sense in tubuloglomerular feedback?', opts: ['Blood pressure', 'Distal tubular NaCl delivery via NKCC2', 'Glucose concentration', 'Oxygen tension'], correct: 1, exp: 'The macula densa senses distal tubular NaCl delivery via the NKCC2 transporter. Increased NaCl delivery triggers afferent arteriolar constriction, reducing GFR.' },
+                { q: 'What is the effect of afferent arteriolar constriction on renal blood flow (RBF) and GFR?', opts: ['RBF ↓, GFR ↓', 'RBF ↑, GFR ↑', 'RBF ↓, GFR ↑', 'RBF ↑, GFR ↓'], correct: 0, exp: 'Afferent arteriolar constriction reduces blood flow into the glomerulus (RBF ↓) and decreases glomerular capillary pressure, reducing GFR.' },
+                { q: 'What is the effect of moderate efferent arteriolar constriction on RBF and GFR?', opts: ['RBF ↓, GFR ↓', 'RBF ↓, GFR tends to be maintained or increased', 'RBF ↑, GFR ↓', 'RBF ↑, GFR ↑'], correct: 1, exp: 'Moderate efferent arteriolar constriction reduces renal blood flow (RBF ↓) but increases glomerular capillary pressure, which tends to maintain or increase GFR.' },
+                { q: 'What is the role of the renin-angiotensin-aldosterone system (RAAS) in the kidney?', opts: ['To regulate glucose metabolism', 'To maintain blood pressure and sodium balance through angiotensin II and aldosterone', 'To regulate erythrocyte production', 'To regulate calcium balance'], correct: 1, exp: 'The RAAS is a systemic hormonal system that helps maintain blood pressure and sodium balance. Renin, released from granular cells, converts angiotensinogen to angiotensin I, which is converted to angiotensin II, causing vasoconstriction and aldosterone release.' },
+                { q: 'What is the clinical effect of NSAIDs on renal hemodynamics?', opts: ['They dilate the afferent arteriole', 'They inhibit COX, reducing prostaglandin-mediated afferent dilation, which can constrict the afferent arteriole and reduce GFR', 'They have no effect', 'They dilate the efferent arteriole'], correct: 1, exp: 'NSAIDs inhibit COX, reducing prostaglandin synthesis. Prostaglandins help maintain afferent arteriolar dilation, especially in volume-depleted states. NSAIDs can remove this protective effect, leading to afferent constriction and reduced GFR.' },
+                { q: 'What is the effect of ACE inhibitors on renal hemodynamics?', opts: ['They constrict the afferent arteriole', 'They dilate the efferent arteriole by reducing angiotensin II, lowering intraglomerular pressure', 'They have no effect', 'They constrict the efferent arteriole'], correct: 1, exp: 'ACE inhibitors reduce angiotensin II production, leading to efferent arteriolar dilation. This lowers intraglomerular pressure, which can reduce GFR acutely but provides long-term protection by reducing proteinuria.' },
+                { q: 'What is the principle behind PAH clearance for measuring renal plasma flow?', opts: ['PAH is filtered but not secreted', 'PAH is filtered and avidly secreted, so most PAH delivered in one renal pass appears in urine', 'PAH is only secreted', 'PAH is not filtered or secreted'], correct: 1, exp: 'PAH (para-aminohippurate) is both filtered and avidly secreted by the proximal tubule. At low plasma concentrations, nearly all PAH delivered to the kidney is cleared in one pass, allowing estimation of renal plasma flow.' },
+                { q: 'What is the formula for estimating renal plasma flow (eRPF) using PAH clearance?', opts: ['eRPF = U_PAH × V / P_PAH', 'eRPF = P_PAH × V / U_PAH', 'eRPF = GFR × FF', 'eRPF = RBF × Hct'], correct: 0, exp: 'The estimated renal plasma flow (eRPF) using PAH clearance is calculated as: eRPF = U_PAH × V / P_PAH, where U_PAH is urine PAH concentration, V is urine flow rate, and P_PAH is plasma PAH concentration.' },
+                { q: 'What is the relationship between renal blood flow (RBF) and renal plasma flow (RPF)?', opts: ['RBF = RPF × (1 - Hct)', 'RBF = RPF / (1 - Hct)', 'RBF = RPF × Hct', 'RBF = RPF + Hct'], correct: 1, exp: 'Renal blood flow (RBF) is calculated from renal plasma flow (RPF) using the haematocrit: RBF = RPF / (1 - Hct). This accounts for the volume of red blood cells in the blood.' },
+                { q: 'What is the normal filtration fraction (FF)?', opts: ['0.10', '0.18-0.20', '0.50', '0.80'], correct: 1, exp: 'The normal filtration fraction is approximately 0.18-0.20, meaning that 18-20% of the renal plasma flow is filtered across the glomerular capillaries.' },
+                { q: 'What is the role of the vasa recta in the medulla?', opts: ['To filter plasma', 'To preserve the medullary osmotic gradient through countercurrent exchange', 'To reabsorb glucose', 'To produce erythropoietin'], correct: 1, exp: 'The vasa recta are hairpin-shaped vessels in the medulla that preserve the medullary osmotic gradient through countercurrent exchange, preventing the washout of NaCl and urea from the medullary interstitium.' },
+            ],
+            medium: [
+                { q: 'How does the distribution of resistance along the renal vasculature affect glomerular pressure?', opts: ['Resistance is evenly distributed', 'Afferent and efferent arteriolar resistance control glomerular capillary pressure; afferent resistance regulates inflow, efferent resistance regulates outflow', 'Only the afferent arteriole matters', 'Only the efferent arteriole matters'], correct: 1, exp: 'Afferent arteriolar resistance controls blood flow into the glomerulus, while efferent arteriolar resistance controls outflow. The balance between these resistances determines glomerular capillary pressure and thus GFR.' },
+                { q: 'What is the effect of increased sympathetic (α₁) activity on the renal vasculature?', opts: ['Dilation of the afferent arteriole', 'Constriction of the afferent arteriole, reducing RBF and GFR', 'Dilation of the efferent arteriole', 'No effect'], correct: 1, exp: 'Increased sympathetic α₁-adrenergic activity causes afferent arteriolar constriction, reducing renal blood flow and GFR. This is part of the body\'s response to preserve systemic blood pressure during stress or volume depletion.' },
+                { q: 'What is the effect of prostaglandins on the afferent arteriole?', opts: ['Constriction', 'Dilation', 'No effect', 'They constrict the efferent arteriole'], correct: 1, exp: 'Prostaglandins (PGE₂, PGI₂) dilate the afferent arteriole, helping to maintain renal blood flow and GFR, especially during volume depletion or stress.' },
+                { q: 'How does nitric oxide affect renal hemodynamics?', opts: ['It constricts the afferent arteriole', 'It dilates the afferent arteriole, increasing RBF and GFR', 'It has no effect', 'It constricts the efferent arteriole'], correct: 1, exp: 'Nitric oxide (NO) is a vasodilator that acts on the afferent arteriole, increasing renal blood flow and GFR. It is involved in the response to increased flow and in maintaining renal perfusion.' },
+                { q: 'What is the effect of tubuloglomerular feedback when distal tubular NaCl delivery is high?', opts: ['Afferent arteriolar dilation, increasing GFR', 'Afferent arteriolar constriction, reducing GFR', 'Efferent arteriolar dilation, reducing GFR', 'No change in GFR'], correct: 1, exp: 'When distal tubular NaCl delivery is high, the macula densa signals afferent arteriolar constriction through tubuloglomerular feedback, reducing GFR and normalizing NaCl delivery.' },
+                { q: 'What is the role of angiotensin II in the kidney?', opts: ['It dilates the afferent arteriole', 'It constricts the efferent arteriole, increasing glomerular capillary pressure and stimulating aldosterone release', 'It has no effect on the kidney', 'It decreases sodium reabsorption'], correct: 1, exp: 'Angiotensin II constricts the efferent arteriole, increasing glomerular capillary pressure and GFR. It also stimulates aldosterone release, promoting sodium reabsorption and potassium excretion.' },
+                { q: 'What is the clinical significance of using ACE inhibitors in patients with bilateral renal artery stenosis?', opts: ['It improves renal function', 'It can cause a significant fall in GFR because GFR depends on angiotensin II-mediated efferent constriction', 'It has no effect', 'It increases GFR'], correct: 1, exp: 'In patients with bilateral renal artery stenosis, GFR is maintained by angiotensin II-mediated efferent arteriolar constriction. ACE inhibitors reduce angiotensin II, causing efferent dilation and a potentially significant drop in GFR.' },
+                { q: 'What is the effect of SGLT2 inhibitors on renal hemodynamics?', opts: ['They constrict the afferent arteriole', 'They reduce proximal Na⁺-glucose reabsorption, increasing NaCl delivery to the macula densa, which restores tubuloglomerular feedback and causes relative afferent constriction', 'They dilate the efferent arteriole', 'They have no effect on hemodynamics'], correct: 1, exp: 'SGLT2 inhibitors reduce proximal tubular Na⁺-glucose reabsorption, increasing NaCl delivery to the macula densa. This restores tubuloglomerular feedback, causing relative afferent constriction and reducing intraglomerular pressure, which provides long-term nephroprotection.' },
+                { q: 'What is the relationship between renal plasma flow (RPF) and PAH extraction?', opts: ['PAH is completely extracted (100%)', 'PAH extraction is approximately 90%, so eRPF underestimates true RPF', 'PAH extraction is 50%', 'PAH is not extracted'], correct: 1, exp: 'PAH extraction is approximately 90%, meaning that about 10% of PAH remains in the renal venous blood. Therefore, eRPF (calculated from PAH clearance) underestimates true renal plasma flow. The true RPF = eRPF / extraction ratio.' },
+                { q: 'What is the effect of volume depletion on renal hemodynamics?', opts: ['It increases RBF and GFR', 'It activates the sympathetic nervous system and RAAS, leading to afferent constriction and reduced RBF; GFR may fall if compensation is insufficient', 'It has no effect', 'It dilates both afferent and efferent arterioles'], correct: 1, exp: 'Volume depletion activates the sympathetic nervous system and RAAS, causing afferent arteriolar constriction and reduced renal blood flow. Prostaglandins and angiotensin II help maintain GFR, but if compensation is insufficient, GFR may fall.' },
+                { q: 'What is the myogenic response in the renal vasculature?', opts: ['A response to changes in NaCl concentration', 'A rapid intrinsic vasoconstriction of the afferent arteriole in response to increased arterial pressure', 'A response to sympathetic stimulation', 'A response to ADH'], correct: 1, exp: 'The myogenic response is an intrinsic property of vascular smooth muscle. When arterial pressure increases, the afferent arteriole constricts, stabilizing glomerular pressure and GFR within seconds.' },
+                { q: 'What is the role of the macula densa in tubuloglomerular feedback?', opts: ['It reabsorbs sodium', 'It senses distal tubular NaCl delivery via NKCC2 and signals the afferent arteriole to adjust resistance', 'It secretes renin', 'It filters plasma'], correct: 1, exp: 'The macula densa senses distal tubular NaCl delivery via the NKCC2 transporter. When NaCl delivery changes, it signals the afferent arteriole (via the extraglomerular mesangial cells) to adjust resistance, stabilizing GFR.' },
+                { q: 'What is the clinical effect of diuretics on renal hemodynamics?', opts: ['They increase RBF and GFR', 'They reduce effective circulating volume, activating sympathetic and RAAS responses that can reduce RBF and potentially GFR', 'They have no effect', 'They dilate the afferent arteriole'], correct: 1, exp: 'Diuretics reduce effective circulating volume, which activates the sympathetic nervous system and RAAS. This leads to compensatory vasoconstriction that can reduce renal blood flow and, if compensation is insufficient, reduce GFR.' },
+                { q: 'What is the effect of efferent arteriolar constriction on the filtration fraction (FF)?', opts: ['FF decreases', 'FF increases because GFR is maintained while RPF decreases', 'FF stays the same', 'FF is not affected by efferent resistance'], correct: 1, exp: 'Efferent arteriolar constriction reduces renal plasma flow (RPF) while GFR is maintained or increased, leading to an increase in the filtration fraction (FF = GFR/RPF).' },
+                { q: 'What is the rationale for using ACE inhibitors in proteinuric chronic kidney disease?', opts: ['They increase GFR', 'They lower intraglomerular pressure and reduce proteinuria, providing long-term nephroprotection', 'They have no benefit', 'They constrict the afferent arteriole'], correct: 1, exp: 'ACE inhibitors lower intraglomerular pressure by reducing angiotensin II-mediated efferent constriction. This reduces proteinuria and slows the progression of chronic kidney disease, providing long-term nephroprotection.' },
+                { q: 'How does the kidney regulate its own blood flow and GFR despite changes in systemic arterial pressure?', opts: ['Through extrinsic hormonal control only', 'Through intrinsic autoregulation mechanisms including the myogenic response and tubuloglomerular feedback', 'Through changes in cardiac output', 'Through ADH release'], correct: 1, exp: 'The kidney uses intrinsic autoregulation mechanisms—the myogenic response (rapid, pressure-sensitive) and tubuloglomerular feedback (slower, NaCl-sensitive)—to maintain stable renal blood flow and GFR despite moderate changes in arterial pressure.' },
+                { q: 'What is the effect of low medullary blood flow on the osmotic gradient?', opts: ['It washes out the gradient', 'It protects the osmotic gradient but limits oxygen delivery, making the outer medulla vulnerable to hypoxic injury', 'It has no effect', 'It increases the gradient'], correct: 1, exp: 'Low medullary blood flow protects the medullary osmotic gradient by preventing washout of NaCl and urea. However, it also limits oxygen delivery to the outer medulla, making this region vulnerable to hypoxic acute tubular injury.' },
+                { q: 'What is the formula for calculating filtration fraction (FF)?', opts: ['FF = RPF / GFR', 'FF = GFR / RPF', 'FF = RBF / GFR', 'FF = GFR × RPF'], correct: 1, exp: 'The filtration fraction (FF) is calculated as FF = GFR / RPF, where GFR is the glomerular filtration rate and RPF is the renal plasma flow. The normal FF is about 0.18-0.20.' },
+                { q: 'What is the effect of chronic hypertension on renal autoregulation?', opts: ['It has no effect', 'Chronic hypertension shifts the autoregulatory curve to the right, requiring higher pressures to maintain RBF and GFR', 'It improves autoregulation', 'It abolishes autoregulation'], correct: 1, exp: 'Chronic hypertension shifts the renal autoregulatory curve to the right (higher pressures). This means that higher systemic pressures are required to maintain stable renal blood flow and GFR, and the kidney becomes more vulnerable to injury when pressures fall.' },
+                { q: 'What is the role of the renal venous system in the kidney?', opts: ['It has segmental veins', 'It drains blood from the kidney through cortical radiate veins → arcuate veins → interlobar veins → renal vein. There are no segmental veins.', 'It has no role', 'It filters blood'], correct: 1, exp: 'The renal venous system drains blood from the kidney through a pathway of cortical radiate veins, arcuate veins, interlobar veins, and finally the renal vein. Importantly, there are no segmental veins in the kidney.' },
+            ],
+            challenging: [
+                { q: 'How does the balance between afferent and efferent arteriolar resistance determine glomerular capillary pressure and GFR?', opts: ['Only afferent resistance matters', 'Afferent resistance controls inflow (RBF and GFR); efferent resistance controls outflow. The ratio of afferent to efferent resistance determines glomerular capillary pressure', 'Only efferent resistance matters', 'Neither resistance affects GFR'], correct: 1, exp: 'Glomerular capillary pressure is determined by the balance between afferent and efferent arteriolar resistance. Afferent resistance controls inflow (RBF and GFR directly), while efferent resistance controls outflow. Increasing efferent resistance raises glomerular pressure (up to a point), while increasing afferent resistance lowers it.' },
+                { q: 'Why does the kidney have two serial capillary beds?', opts: ['To increase oxygen delivery', 'The first bed (glomerular) forms ultrafiltrate under high pressure; the second bed (peritubular/vasa recta) recovers reabsorbed fluid under low pressure, creating a renal portal system', 'To filter blood twice', 'To increase hormone production'], correct: 1, exp: 'The kidney has two serial capillary beds separated by the efferent arteriole. The first bed (glomerular) is a high-pressure filtering system that forms ultrafiltrate. The second bed (peritubular or vasa recta) is a low-pressure reabsorptive system that recovers reabsorbed fluid from the interstitium.' },
+                { q: 'How does the vasa recta preserve the medullary osmotic gradient while delivering oxygen to the medulla?', opts: ['By actively transporting NaCl', 'Through countercurrent exchange: as blood descends, it gains solute and loses water; as it ascends, the opposite occurs, preserving the gradient', 'By avoiding the medulla', 'By filtering plasma'], correct: 1, exp: 'The vasa recta preserve the medullary osmotic gradient through countercurrent exchange. As blood descends into the hyperosmotic medulla, water leaves and solutes enter. As it ascends, water enters and solutes leave. This passive exchange preserves the gradient while delivering oxygen.' },
+                { q: 'What is the clinical significance of the relationship between NSAIDs, ACE inhibitors, and diuretics in patients with reduced effective circulating volume?', opts: ['They have no interaction', 'The combination can cause a significant fall in GFR because NSAIDs reduce afferent dilation, ACE inhibitors reduce efferent constriction, and diuretics reduce volume—all compromising GFR', 'They increase GFR', 'They only affect blood pressure'], correct: 1, exp: 'In patients with reduced effective circulating volume, NSAIDs (afferent constriction), ACE inhibitors (efferent dilation), and diuretics (volume depletion) can combine to cause a significant fall in GFR. This is particularly dangerous in elderly patients or those with CKD.' },
+                { q: 'How does the kidney\'s autoregulation respond to severe hypotension below the autoregulatory range?', opts: ['It maintains RBF and GFR', 'It cannot compensate; RBF and GFR fall proportionally with the drop in pressure', 'It increases RBF and GFR', 'It has no effect'], correct: 1, exp: 'When arterial pressure falls below the autoregulatory range (approximately 80 mmHg), the intrinsic autoregulatory mechanisms cannot compensate, and renal blood flow and GFR fall proportionally with the decrease in pressure, potentially leading to ischemic injury.' },
+                { q: 'What is the mechanism of the early eGFR dip observed with SGLT2 inhibitor therapy?', opts: ['It indicates kidney injury', 'The dip is due to restored tubuloglomerular feedback: increased NaCl delivery to the macula densa causes afferent constriction, reducing intraglomerular pressure and temporarily lowering GFR', 'It is due to volume depletion only', 'It is due to efferent dilation'], correct: 1, exp: 'SGLT2 inhibitors reduce proximal Na⁺-glucose reabsorption, increasing NaCl delivery to the macula densa. This restores tubuloglomerular feedback, causing afferent arteriolar constriction and reducing intraglomerular pressure, which results in a small, transient early eGFR dip that is haemodynamic and not indicative of ongoing kidney injury.' },
+                { q: 'What is the relationship between peritubular capillary hydrostatic pressure and reabsorption?', opts: ['High hydrostatic pressure favours reabsorption', 'Low hydrostatic pressure favours reabsorption, and postglomerular blood has high oncotic pressure, further promoting reabsorption', 'Hydrostatic pressure does not affect reabsorption', 'Oncotic pressure does not affect reabsorption'], correct: 1, exp: 'Peritubular capillaries have low hydrostatic pressure (due to the resistance of the efferent arteriole) and high oncotic pressure (due to filtration of plasma in the glomerulus). Both factors favour the reabsorption of water and solutes from the interstitium into the capillaries.' },
+                { q: 'How does angiotensin II affect both systemic and renal haemodynamics?', opts: ['It causes systemic vasodilation and renal vasoconstriction', 'It causes systemic vasoconstriction and renal efferent arteriolar constriction, increasing blood pressure and maintaining GFR', 'It has no systemic effect', 'It causes systemic vasoconstriction and afferent dilation'], correct: 1, exp: 'Angiotensin II causes systemic vasoconstriction, increasing blood pressure. In the kidney, it preferentially constricts the efferent arteriole, increasing glomerular capillary pressure and helping to maintain GFR in states of reduced renal perfusion.' },
+                { q: 'What is the physiological significance of the high glomerular capillary hydrostatic pressure?', opts: ['It is not important', 'It drives filtration across the glomerular barrier, creating the ultrafiltrate that initiates urine formation', 'It drives reabsorption', 'It maintains blood pressure'], correct: 1, exp: 'The high glomerular capillary hydrostatic pressure (approximately 45-50 mmHg) is the driving force for filtration across the glomerular barrier. This pressure is maintained by the resistance of the afferent and efferent arterioles and is essential for urine formation.' },
+                { q: 'Why is the outer medulla particularly vulnerable to hypoxic injury?', opts: ['It has high blood flow', 'It has low blood flow and high metabolic demand, creating a vulnerable balance that can be disrupted by hypotension or nephrotoxic drugs', 'It has no oxygen supply', 'It is not vulnerable'], correct: 1, exp: 'The outer medulla has low blood flow (to preserve the osmotic gradient) but high metabolic demand (due to active transport in the thick ascending limb). This creates a precarious oxygen balance, making it vulnerable to hypoxic injury during hypotension, sepsis, or nephrotoxic drug exposure.' },
+                { q: 'What is the effect of increased renal sympathetic nerve activity on the kidney?', opts: ['It dilates the afferent arteriole', 'It constricts the afferent arteriole, reducing RBF and GFR, and stimulates renin release', 'It dilates the efferent arteriole', 'It has no effect'], correct: 1, exp: 'Increased renal sympathetic nerve activity constricts the afferent arteriole (via α₁-adrenoceptors), reducing renal blood flow and GFR. It also stimulates renin release from granular cells, activating the RAAS to help restore systemic blood pressure.' },
+                { q: 'How does the kidney\'s high blood flow support its role in extracellular fluid volume regulation?', opts: ['By limiting the amount of fluid processed', 'By allowing rapid processing of large volumes of plasma, enabling the kidney to adjust electrolyte and water excretion quickly in response to changes in volume', 'By slowing down filtration', 'By reducing urine output'], correct: 1, exp: 'The high renal blood flow allows the kidney to process a large volume of plasma (approximately 180 L/day of filtrate), enabling rapid adjustments in electrolyte and water excretion in response to changes in extracellular fluid volume and composition.' },
+                { q: 'What is the relationship between the filtration fraction and peritubular capillary oncotic pressure?', opts: ['There is no relationship', 'As filtration fraction increases (more plasma filtered), the remaining blood in the efferent arteriole has higher oncotic pressure, favouring peritubular reabsorption', 'As filtration fraction increases, oncotic pressure decreases', 'Filtration fraction and oncotic pressure are inversely related'], correct: 1, exp: 'As the filtration fraction increases, a greater proportion of plasma is filtered, leaving the blood in the peritubular capillaries with a higher concentration of plasma proteins (higher oncotic pressure). This favours the reabsorption of water and solutes from the interstitium.' },
+                { q: 'How do ACE inhibitors and ARBs provide long-term renal protection in chronic kidney disease?', opts: ['By increasing GFR', 'By reducing intraglomerular pressure and proteinuria through efferent arteriolar dilation, slowing the progression of glomerular injury', 'By constricting the afferent arteriole', 'By increasing sodium reabsorption'], correct: 1, exp: 'ACE inhibitors and ARBs reduce angiotensin II levels, leading to efferent arteriolar dilation. This lowers intraglomerular pressure, reducing mechanical stress on the glomerular capillaries and decreasing proteinuria, which slows the progression of chronic kidney disease.' },
+                { q: 'What is the role of the extraglomerular mesangial cells in the juxtaglomerular apparatus?', opts: ['They reabsorb sodium', 'They relay signals between the macula densa and the arterioles, facilitating tubuloglomerular feedback', 'They secrete renin', 'They filter plasma'], correct: 1, exp: 'Extraglomerular mesangial cells are part of the juxtaglomerular apparatus. They are positioned between the macula densa and the afferent/efferent arterioles and are thought to relay signals from the macula densa to the arterioles, facilitating tubuloglomerular feedback.' },
+                { q: 'How does the renal arterial tree differ from the venous tree?', opts: ['The arterial tree has segmental arteries; the venous tree has no segmental veins', 'Both have segmental vessels', 'The venous tree has segmental veins; the arterial tree does not', 'There is no difference'], correct: 0, exp: 'The renal arterial tree includes segmental arteries, which branch into interlobar arteries. In contrast, the venous drainage system lacks segmental veins, with blood flowing from cortical radiate veins → arcuate veins → interlobar veins → renal vein.' },
+                { q: 'What is the physiological basis of the "renal portal system" concept?', opts: ['It refers to the kidney\'s blood supply from the portal vein', 'It refers to the two serial capillary beds (glomerular and peritubular/vasa recta) connected by the efferent arteriole, allowing for sequential filtration and reabsorption', 'It refers to the lymphatic drainage', 'It refers to the renal vein system'], correct: 1, exp: 'The "renal portal system" refers to the two serial capillary beds in the kidney: the glomerular capillaries (high-pressure filtration) and the peritubular capillaries/vasa recta (low-pressure reabsorption), connected by the efferent arteriole. This arrangement allows for sequential filtration and reabsorption of fluid.' },
+                { q: 'How does the kidney adjust its haemodynamics in response to high protein intake?', opts: ['It decreases GFR', 'It increases GFR through afferent arteriolar dilation, increasing filtration and urea excretion', 'It has no effect', 'It decreases renal blood flow'], correct: 1, exp: 'High protein intake increases the filtered load of amino acids, which is sensed by the tubule, leading to afferent arteriolar dilation and increased GFR (hyperfiltration). This helps increase urea excretion to maintain nitrogen balance.' },
+                { q: 'What is the role of the angiotensin II type 1 receptor (AT1R) in the kidney?', opts: ['It dilates the afferent arteriole', 'It mediates the vasoconstrictor effects of angiotensin II on the efferent arteriole and stimulates aldosterone secretion', 'It has no role', 'It stimulates renin release'], correct: 1, exp: 'The AT1 receptor mediates the vasoconstrictor effects of angiotensin II, particularly on the efferent arteriole, and stimulates aldosterone secretion from the adrenal cortex. This increases blood pressure and promotes sodium retention.' },
+                { q: 'How does the kidney\'s haemodynamic response to injury differ from its response to physiological regulation?', opts: ['In injury, the kidney cannot regulate', 'In physiological states, autoregulation maintains stable RBF and GFR. In injury (e.g., acute kidney injury), autoregulation is impaired, and RBF and GFR become pressure-dependent, increasing vulnerability to further injury', 'Injury has no effect on haemodynamics', 'Injury increases autoregulatory capacity'], correct: 1, exp: 'In healthy kidneys, autoregulation maintains stable RBF and GFR over a range of pressures. In acute kidney injury or chronic kidney disease, autoregulation is impaired, and RBF and GFR become more dependent on arterial pressure, making the kidney more vulnerable to hypotension and further injury.' },
+            ]
+        };
+
+        // ========================================================================
+        //  SCENARIOS
+        // ========================================================================
+
+        const SCENARIOS = {};
+
+        // ---- TOPIC 1: RENAL ANATOMY SCENARIOS ----
+        SCENARIOS.renal_anatomy = {
+            easy: [{
+                title: 'Case: Acute Kidney Injury with Oliguria',
+                body: 'A 60-year-old patient with a history of hypertension presents with a sudden decrease in urine output (oliguria) and elevated serum creatinine. The patient has been taking an NSAID for knee pain. Urinalysis shows muddy brown casts and renal tubular epithelial cells. The clinical team suspects acute tubular necrosis (ATN) affecting the proximal tubule.',
+                subqs: [
+                    { q: 'Which part of the nephron is primarily affected in ATN, and what is its main function?',
+                        modelAnswer: 'The proximal tubule is primarily affected in acute tubular necrosis. Its main function is bulk, iso-osmotic reabsorption of 65–70% of filtered Na⁺ and water, along with nearly all filtered glucose and amino acids.' },
+                    { q: 'What structural features of the proximal tubule support its high-capacity reabsorption function?',
+                        modelAnswer: 'The proximal tubule has a dense brush border (microvilli) that increases apical surface area, high mitochondrial density to provide ATP, and relatively leaky tight junctions that allow paracellular transport.' },
+                    { q: 'How does the structure of the glomerulus relate to its function of filtration?',
+                        modelAnswer: 'The glomerulus is a capillary tuft with fenestrated endothelial cells that allow high hydraulic permeability, supported by mesangial cells and covered by podocytes that form filtration slits, creating a barrier that filters plasma while retaining cells and proteins.' },
+                ]
+            }, {
+                title: 'Case: Glomerular Disease and Proteinuria',
+                body: 'A 45-year-old patient presents with frothy urine, periorbital oedema, and proteinuria (4 g/day). A renal biopsy shows thickening of the glomerular basement membrane and podocyte effacement. The patient is diagnosed with membranous nephropathy, a condition affecting the glomerular filtration barrier.',
+                subqs: [
+                    { q: 'What is the glomerular filtration barrier composed of, and how does it normally restrict proteins?',
+                        modelAnswer: 'The glomerular filtration barrier consists of three layers: fenestrated capillary endothelium, the glomerular basement membrane, and podocyte filtration slits. It restricts proteins through size and charge selectivity.' },
+                    { q: 'What is the role of podocytes in the glomerular filtration barrier?',
+                        modelAnswer: 'Podocytes are specialized cells that cover the outer capillary surface and form filtration slits between their foot processes. They play a key role in size selectivity and maintaining the integrity of the filtration barrier.' },
+                    { q: 'What are the two poles of the renal corpuscle and their anatomical significance?',
+                        modelAnswer: 'The vascular pole is where the afferent arteriole enters and the efferent arteriole exits the glomerulus. The urinary pole is where Bowman\'s space becomes continuous with the proximal tubule, allowing filtrate to leave the renal corpuscle.' },
+                ]
+            }],
+            medium: [{
+                title: 'Case: Diabetes and Nephron Damage',
+                body: 'A 55-year-old patient with type 2 diabetes for 15 years presents with microalbuminuria and declining eGFR. The patient has diabetic kidney disease, which affects the glomerular structure and function, particularly the mesangium and glomerular basement membrane.',
+                subqs: [
+                    { q: 'What are mesangial cells and what is their role in the glomerulus?',
+                        modelAnswer: 'Mesangial cells support the glomerular capillary loops, clear trapped material, and dynamically regulate the filtration surface area through their contractile properties. They are divided into intraglomerular (inside the tuft) and extraglomerular (part of the JGA) types.' },
+                    { q: 'How does diabetic kidney disease affect the glomerular structure?',
+                        modelAnswer: 'Diabetic kidney disease causes mesangial expansion, thickening of the glomerular basement membrane, and podocyte loss. These changes reduce the effective filtration surface area and lead to proteinuria and progressive renal dysfunction.' },
+                    { q: 'What is the role of the juxtaglomerular apparatus in regulating GFR?',
+                        modelAnswer: 'The JGA regulates GFR through tubuloglomerular feedback: the macula densa senses distal tubular NaCl delivery and signals the afferent arteriole to adjust its resistance, stabilizing GFR. Granular cells in the JGA also release renin.' },
+                ]
+            }, {
+                title: 'Case: Urinary Tract Obstruction',
+                body: 'A 70-year-old man with benign prostatic hyperplasia presents with difficulty urinating, lower abdominal discomfort, and a distended bladder. Imaging reveals bilateral hydronephrosis, indicating obstruction of the urinary outflow pathway from the kidneys.',
+                subqs: [
+                    { q: 'Trace the normal path of urine flow from the collecting duct to the ureter.',
+                        modelAnswer: 'Urine flows from the collecting duct to the papillary duct, then into the minor calyx, major calyx, renal pelvis, and finally the ureter, propelled by smooth-muscle peristalsis.' },
+                    { q: 'What is the anatomical relationship between the renal papilla and the calyces?',
+                        modelAnswer: 'The renal papilla is the tip of the renal pyramid where collecting ducts open. A minor calyx cups a single papilla, and several minor calyces drain into a major calyx, which drains into the renal pelvis.' },
+                    { q: 'How does the structure of the renal medulla support urine concentration?',
+                        modelAnswer: 'The renal medulla contains the loops of Henle and collecting ducts arranged to establish and maintain a medullary osmotic gradient, essential for water reabsorption and concentrated urine formation.' },
+                ]
+            }],
+            challenging: [{
+                title: 'Case: Complex Renal Pathology',
+                body: 'A 50-year-old patient with a history of hypertension and diabetes presents with progressive renal failure. Renal biopsy shows global glomerulosclerosis, with extensive mesangial expansion and thickening of the glomerular basement membrane. The patient has significant proteinuria and a GFR of 25 mL/min.',
+                subqs: [
+                    { q: 'What is the relationship between the structure of the nephron and its function in urine formation?',
+                        modelAnswer: 'The nephron is the functional unit of the kidney. Each segment has specialized structure: the renal corpuscle filters plasma; the proximal tubule reabsorbs bulk solutes and water; the loop of Henle establishes the medullary gradient; the distal tubule fine-tunes electrolytes; and the collecting duct determines final urine composition under hormonal control.' },
+                    { q: 'How do cortical and juxtamedullary nephrons differ in structure and function?',
+                        modelAnswer: 'Cortical nephrons have short loops of Henle and perform bulk reabsorption. Juxtamedullary nephrons have long loops reaching the inner medulla and are essential for concentrated urine formation, supported by the vasa recta countercurrent exchange system.' },
+                    { q: 'What is the functional significance of the epithelial specializations along the nephron?',
+                        modelAnswer: 'Different epithelial segments express different transport proteins. The PCT has a brush border for high-capacity reabsorption; the DCT has fewer microvilli but more selective, hormone-regulated transporters; the collecting duct has principal and intercalated cells for fine control. Structure determines transport function.' },
+                ]
+            }, {
+                title: 'Case: Assessment of Tubular Function',
+                body: 'A 40-year-old patient is being evaluated for renal tubular dysfunction. The patient has a history of recurrent kidney stones and is found to have impaired acid-base regulation and electrolyte imbalance. The clinical team suspects a defect in distal tubular function.',
+                subqs: [
+                    { q: 'What is the role of the distal tubule in electrolyte and acid-base regulation?',
+                        modelAnswer: 'The distal tubule provides fine control of electrolytes (Na⁺, K⁺, Ca²⁺) and acid-base balance, regulated by hormones such as aldosterone, ADH, and PTH. It adjusts final Na⁺, K⁺, Ca²⁺, water, and acid-base excretion.' },
+                    { q: 'How does the structure of the distal tubule differ from the proximal tubule?',
+                        modelAnswer: 'The distal tubule has sparse or absent microvilli, tighter junctions, and fewer mitochondria compared to the proximal tubule. It has a smaller transport capacity but greater selectivity and hormonal control.' },
+                    { q: 'What is the role of the collecting duct in final urine composition and how is it regulated?',
+                        modelAnswer: 'The collecting duct determines final urine composition through hormone-regulated water and solute reabsorption. ADH increases water permeability via aquaporin-2 insertion, while aldosterone increases Na⁺ reabsorption and K⁺ secretion.' },
+                ]
+            }]
+        };
+
+        // ---- TOPIC 2: RENAL HEMODYNAMICS SCENARIOS ----
+        SCENARIOS.renal_hemodynamics = {
+            easy: [{
+                title: 'Case: Hypertensive Crisis and Renal Autoregulation',
+                body: 'A 55-year-old patient with a history of uncontrolled hypertension presents with a blood pressure of 210/120 mmHg. The patient is asymptomatic but is at risk for hypertensive emergency, which can affect renal autoregulation. The clinical team needs to understand how the kidney responds to high blood pressure.',
+                subqs: [
+                    { q: 'What is renal autoregulation and what mechanisms are involved?',
+                        modelAnswer: 'Renal autoregulation is the intrinsic ability of the kidney to maintain stable renal blood flow and GFR despite changes in arterial pressure. It involves the myogenic response (rapid, pressure-sensitive) and tubuloglomerular feedback (slower, NaCl-sensitive).' },
+                    { q: 'What is the myogenic response and how does it protect the glomerulus?',
+                        modelAnswer: 'The myogenic response is an intrinsic vasoconstriction of the afferent arteriole in response to increased arterial pressure. This prevents excessive pressure transmission to the glomerular capillaries and stabilizes GFR.' },
+                    { q: 'How does tubuloglomerular feedback (TGF) regulate GFR?',
+                        modelAnswer: 'TGF is a mechanism in which the macula densa senses distal tubular NaCl delivery and signals the afferent arteriole to adjust resistance. Increased NaCl delivery causes afferent constriction, reducing GFR, while decreased NaCl delivery causes afferent dilation, increasing GFR.' },
+                ]
+            }, {
+                title: 'Case: Volume Depletion and Renal Function',
+                body: 'A 30-year-old patient with severe diarrhoea and vomiting presents with dehydration, hypotension, and decreased urine output. The patient is diagnosed with prerenal azotemia due to volume depletion affecting renal perfusion.',
+                subqs: [
+                    { q: 'What is the effect of volume depletion on renal blood flow and GFR?',
+                        modelAnswer: 'Volume depletion activates the sympathetic nervous system and RAAS, causing afferent arteriolar constriction and reduced renal blood flow. Prostaglandins and angiotensin II help maintain GFR, but if compensation is insufficient, GFR may fall.' },
+                    { q: 'What is the role of prostaglandins in maintaining renal perfusion during volume depletion?',
+                        modelAnswer: 'Prostaglandins (PGE₂, PGI₂) dilate the afferent arteriole, helping to maintain renal blood flow and GFR during volume depletion. This is why NSAIDs (which inhibit prostaglandin synthesis) can precipitate a fall in GFR in volume-depleted patients.' },
+                    { q: 'What is the effect of NSAIDs on renal haemodynamics in a volume-depleted patient?',
+                        modelAnswer: 'NSAIDs inhibit COX, reducing prostaglandin-mediated afferent dilation. This removes the protective vasodilation of the afferent arteriole, leading to afferent constriction, reduced renal blood flow, and a potential fall in GFR, especially in volume-depleted patients.' },
+                ]
+            }],
+            medium: [{
+                title: 'Case: ACE Inhibitor Therapy in CKD',
+                body: 'A 65-year-old patient with chronic kidney disease (stage 3) and proteinuria (1.5 g/day) is started on an ACE inhibitor to reduce proteinuria and slow disease progression. The patient has a baseline eGFR of 45 mL/min. After starting the ACE inhibitor, the eGFR drops to 38 mL/min.',
+                subqs: [
+                    { q: 'What is the mechanism of action of ACE inhibitors on renal haemodynamics?',
+                        modelAnswer: 'ACE inhibitors reduce angiotensin II production, leading to efferent arteriolar dilation. This lowers intraglomerular pressure, which reduces GFR acutely but provides long-term protection by reducing proteinuria and slowing CKD progression.' },
+                    { q: 'Why does the eGFR drop after starting an ACE inhibitor, and is this a cause for concern?',
+                        modelAnswer: 'The early eGFR drop is haemodynamic and expected due to efferent arteriolar dilation, which reduces intraglomerular pressure. A small drop (10-20%) is generally acceptable and not a cause for concern, provided it stabilizes. A large or progressive drop requires evaluation.' },
+                    { q: 'What is the clinical significance of using ACE inhibitors in patients with bilateral renal artery stenosis?',
+                        modelAnswer: 'In patients with bilateral renal artery stenosis, GFR is maintained by angiotensin II-mediated efferent constriction. ACE inhibitors reduce angiotensin II, causing efferent dilation and a potentially significant, sometimes irreversible, drop in GFR. This is a contraindication to ACE inhibitor use.' },
+                ]
+            }, {
+                title: 'Case: SGLT2 Inhibitor Therapy and Renal Protection',
+                body: 'A 58-year-old patient with type 2 diabetes and chronic kidney disease (eGFR 50 mL/min, albuminuria 500 mg/g) is started on an SGLT2 inhibitor to provide renal and cardiovascular protection. After one week, the eGFR drops slightly to 46 mL/min.',
+                subqs: [
+                    { q: 'What is the mechanism of action of SGLT2 inhibitors on renal haemodynamics?',
+                        modelAnswer: 'SGLT2 inhibitors reduce proximal Na⁺-glucose reabsorption, increasing NaCl delivery to the macula densa. This restores tubuloglomerular feedback, causing relative afferent constriction and reducing intraglomerular pressure, which provides long-term nephroprotection.' },
+                    { q: 'What is the significance of the early eGFR dip observed with SGLT2 inhibitor therapy?',
+                        modelAnswer: 'The early eGFR dip is a haemodynamic effect due to restored tubuloglomerular feedback, not an indication of ongoing kidney injury. It reflects the reduction in intraglomerular pressure and is generally reversible. A small dip is expected and not a cause for concern.' },
+                    { q: 'How does the reduction in intraglomerular pressure with SGLT2 inhibitors benefit the kidney in the long term?',
+                        modelAnswer: 'Reducing intraglomerular pressure decreases mechanical stress on the glomerular capillaries, reducing albuminuria and slowing the progression of glomerular injury. This is the basis for the nephroprotective effects of SGLT2 inhibitors in diabetic kidney disease.' },
+                ]
+            }],
+            challenging: [{
+                title: 'Case: Complex Hemodynamic Interactions in Critically Ill Patient',
+                body: 'A 70-year-old patient with heart failure, CKD, and sepsis is admitted to the ICU. The patient is on an ACE inhibitor, a diuretic, and is started on an NSAID for fever. The patient becomes hypotensive and oliguric, with a rapid rise in serum creatinine from 1.2 mg/dL to 2.5 mg/dL in 48 hours.',
+                subqs: [
+                    { q: 'Explain the hemodynamic interactions of ACE inhibitors, diuretics, and NSAIDs in this patient.',
+                        modelAnswer: 'The patient is at high risk for acute kidney injury due to the combination of volume depletion (diuretic), efferent arteriolar dilation (ACE inhibitor → reduced angiotensin II), and loss of afferent protective dilation (NSAID → reduced prostaglandins). This combination can cause a significant fall in GFR.' },
+                    { q: 'What is the concept of "triple whammy" in nephrotoxicity, and how does it apply here?',
+                        modelAnswer: 'The "triple whammy" refers to the combination of an ACE inhibitor/ARB, a diuretic, and an NSAID. ACE inhibitors cause efferent dilation, diuretics reduce volume, and NSAIDs cause afferent constriction. Together, they can precipitate acute kidney injury, especially in high-risk patients.' },
+                    { q: 'How should this patient\'s medications be managed to prevent further renal injury?',
+                        modelAnswer: 'The NSAID should be discontinued immediately. The ACE inhibitor and diuretic should be reviewed; the ACE inhibitor may need to be held temporarily if volume depletion is severe. Volume status should be optimized with careful fluid resuscitation, and renal function should be closely monitored.' },
+                ]
+            }, {
+                title: 'Case: Assessment of Renal Plasma Flow Using PAH',
+                body: 'A 45-year-old patient is undergoing a renal function study. PAH clearance is used to estimate renal plasma flow. The following data are obtained: urine PAH concentration = 10 mg/mL, urine flow rate = 1 mL/min, plasma PAH concentration = 0.025 mg/mL, haematocrit = 40%, and GFR = 110 mL/min.',
+                subqs: [
+                    { q: 'Calculate the estimated renal plasma flow (eRPF) using PAH clearance.',
+                        modelAnswer: 'eRPF = U_PAH × V / P_PAH = (10 mg/mL × 1 mL/min) / 0.025 mg/mL = 400 mL/min.' },
+                    { q: 'If the PAH extraction ratio is 90%, what is the true renal plasma flow (RPF)?',
+                        modelAnswer: 'True RPF = eRPF / extraction ratio = 400 / 0.90 = 444.4 mL/min.' },
+                    { q: 'Calculate the renal blood flow (RBF) and the filtration fraction (FF) using the true RPF.',
+                        modelAnswer: 'RBF = RPF / (1 - Hct) = 444.4 / (1 - 0.40) = 444.4 / 0.60 = 740.7 mL/min. FF = GFR / RPF = 110 / 444.4 = 0.248 (approximately 25%).' },
+                ]
+            }]
+        };
+
+        // ========================================================================
+        //  APP STATE
+        // ========================================================================
+
+        const state = {
+            topic: null,
+            level: null,
+            questions: null,
+            answers: {},
+            submitted: false,
+            results: null,
+            view: 'topics',
+        };
+
+        // ========================================================================
+        //  HELPERS
+        // ========================================================================
+
+        function shuffle(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function getQuestions(topicId, levelId) {
+            const mcqs = BANKS[topicId]?.[levelId] || [];
+            const shuffledMcqs = shuffle([...mcqs]);
+            const scenarios = SCENARIOS[topicId]?.[levelId] || [];
+            const shuffledScenarios = shuffle([...scenarios]).slice(0, 2);
+            const paddedScenarios = shuffledScenarios.map(sc => {
+                const subqs = shuffle([...sc.subqs]).slice(0, 3);
+                while (subqs.length < 3) {
+                    subqs.push({
+                        q: `Sub-question ${subqs.length + 1}: What is the correct approach?`,
+                        modelAnswer: 'This is a generic model answer. Please replace with a real answer.'
+                    });
+                }
+                return { ...sc, subqs };
+            });
+            return { mcqs: shuffledMcqs, scenarios: paddedScenarios };
+        }
+
+        function getTotalQuestions(q) {
+            return q.mcqs.length + q.scenarios.reduce((s, sc) => s + sc.subqs.length, 0);
+        }
+
+        function getAnsweredCount() {
+            return Object.keys(state.answers).length;
+        }
+
+        // ========================================================================
+        //  RENDER
+        // ========================================================================
+
+        const content = document.getElementById('content');
+        const bcTopic = document.getElementById('bcTopic');
+        const bcLevel = document.getElementById('bcLevel');
+        const bcSep = document.getElementById('bcSep');
+        const headerBadge = document.getElementById('headerBadge');
+
+        function render() {
+            switch (state.view) {
+                case 'topics':
+                    renderTopics();
+                    break;
+                case 'levels':
+                    renderLevels();
+                    break;
+                case 'quiz':
+                    renderQuiz();
+                    break;
+                case 'results':
+                    renderResults();
+                    break;
+                default:
+                    renderTopics();
+            }
+            updateBreadcrumb();
+        }
+
+        // ---- TOPICS ----
+        function renderTopics() {
+            headerBadge.textContent = 'Choose a topic';
+            content.innerHTML = `
+                    <h2 style="font-size:20px; font-weight:600; margin-bottom:16px; color:var(--dark);">📚 Select a Subject</h2>
+                    <div class="grid-2col">
+                        ${TOPICS.map(t => `
+                            <div class="card" data-topic="${t.id}">
+                                <span class="icon">${t.icon}</span>
+                                <div class="name">${t.name}</div>
+                                <div class="sub">${t.desc}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            content.querySelectorAll('.card').forEach(el => {
+                el.addEventListener('click', () => {
+                    const id = el.dataset.topic;
+                    const topic = TOPICS.find(t => t.id === id);
+                    state.topic = topic;
+                    state.level = null;
+                    state.questions = null;
+                    state.answers = {};
+                    state.submitted = false;
+                    state.results = null;
+                    state.view = 'levels';
+                    render();
+                });
+            });
+        }
+
+        // ---- LEVELS ----
+        function renderLevels() {
+            if (!state.topic) return;
+            headerBadge.textContent = `${state.topic.icon} ${state.topic.name}`;
+            content.innerHTML = `
+                    <h2 style="font-size:20px; font-weight:600; margin-bottom:16px; color:var(--dark);">
+                        ${state.topic.icon} ${state.topic.name} — Choose Difficulty
+                    </h2>
+                    <div class="grid-3col">
+                        ${LEVELS.map(l => `
+                            <div class="card ${l.cls}" data-level="${l.id}">
+                                <span class="icon">${l.emoji}</span>
+                                <div class="label">${l.label}</div>
+                                <div class="sub">20 MCQs · 2 Scenarios (3 essay each)</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            content.querySelectorAll('.card').forEach(el => {
+                el.addEventListener('click', () => {
+                    const id = el.dataset.level;
+                    const level = LEVELS.find(l => l.id === id);
+                    state.level = level;
+                    state.questions = getQuestions(state.topic.id, level.id);
+                    state.answers = {};
+                    state.submitted = false;
+                    state.results = null;
+                    state.view = 'quiz';
+                    render();
+                });
+            });
+        }
+
+        // ---- QUIZ ----
+        function renderQuiz() {
+            if (!state.topic || !state.level || !state.questions) return;
+            const q = state.questions;
+            const total = getTotalQuestions(q);
+            const answered = getAnsweredCount();
+            // Header badge: topic only
+            headerBadge.textContent = `${state.topic.icon} ${state.topic.name}`;
+
+            let html = `
+                <div class="quiz-header">
+                    <h2>${state.level.emoji} ${state.level.label}</h2>
+                    <span class="progress">${answered} / ${total} answered</span>
+                </div>
+                <div class="quiz-meta">
+                    <span>📝 <strong>${q.mcqs.length}</strong> MCQs</span>
+                    <span>📖 <strong>${q.scenarios.length}</strong> Scenarios · <strong>${q.scenarios.reduce((s,sc) => s + sc.subqs.length, 0)}</strong> essay questions</span>
+                </div>
+                <div id="quizContainer">
+            `;
+
+            // ---- MCQs ----
+            q.mcqs.forEach((mq, idx) => {
+                const key = `q-${idx}`;
+                const selected = state.answers[key] ?? null;
+                const isCorrect = state.submitted ? selected === mq.correct : null;
+                const blockCls = state.submitted ? (isCorrect ? 'correct' : 'wrong') : '';
+                const statusIcon = state.submitted ? (isCorrect ? ' ✅' : ' ❌') : '';
+
+                html += `
+                        <div class="q-block ${blockCls}" data-key="${key}">
+                            <div class="q-head">
+                                <span class="num">Q${idx + 1}.</span>
+                                <span>${mq.q}</span>
+                                ${statusIcon}
+                            </div>
+                            <div class="options">
+                                ${mq.opts.map((opt, oi) => {
+                                    const isSelected = selected === oi;
+                                    const isCorrectOpt = oi === mq.correct;
+                                    let cls = 'opt';
+                                    if (state.submitted) {
+                                        if (isCorrectOpt) cls += ' correct-opt';
+                                        if (isSelected && !isCorrectOpt) cls += ' wrong-opt';
+                                        cls += ' disabled';
+                                    }
+                                    const letter = String.fromCharCode(65 + oi);
+                                    return `
+                                        <label class="${cls}">
+                                            <input type="radio" name="${key}" value="${oi}" ${isSelected ? 'checked' : ''} ${state.submitted ? 'disabled' : ''} />
+                                            <span class="letter">${letter}.</span>
+                                            <span class="opt-text">${opt}</span>
+                                        </label>
+                                    `;
+                                }).join('')}
+                            </div>
+                            ${state.submitted ? `
+                                <div class="explain"><strong>💡 Explanation:</strong> ${mq.exp}</div>
+                            ` : ''}
+                        </div>
+                    `;
+            });
+
+            // ---- Scenarios (essay sub-questions) ----
+            q.scenarios.forEach((sc, si) => {
+                const sKey = `s-${si}`;
+                html += `
+                        <div class="scenario-wrap">
+                            <div class="s-title">📖 Scenario ${si + 1}: ${sc.title}</div>
+                            <div class="s-body">${sc.body}</div>
+                            <div class="sub-label">✍️ Essay Questions <span class="badge-essay">short answer</span></div>
+                    `;
+                sc.subqs.forEach((sq, qi) => {
+                    const key = `${sKey}-${qi}`;
+                    const userAnswer = state.answers[key] || '';
+                    const isSubmitted = state.submitted;
+
+                    html += `
+                            <div class="essay-block ${isSubmitted ? 'submitted' : ''}" data-key="${key}">
+                                <div class="e-head">
+                                    <span class="num">${qi + 1}.</span>
+                                    <span>${sq.q}</span>
+                                </div>
+                                ${!isSubmitted ? `
+                                    <textarea name="${key}" placeholder="Type your answer here..." rows="3">${userAnswer}</textarea>
+                                ` : `
+                                    <div class="user-answer-display">
+                                        <span class="label">📝 Your answer:</span>
+                                        ${userAnswer || '(No answer provided)'}
+                                    </div>
+                                    <div class="model-answer">
+                                        <strong>📌 Model answer:</strong> ${sq.modelAnswer}
+                                    </div>
+                                `}
+                            </div>
+                        `;
+                });
+                html += `</div>`;
+            });
+
+            html += `
+                    </div>
+                    <div class="actions">
+                        ${!state.submitted ? `
+                            <button class="btn btn-primary" id="submitBtn">✅ Submit All Answers</button>
+                        ` : `
+                            <button class="btn btn-success" id="resultsBtn">📊 View Results</button>
+                        `}
+                        <button class="btn btn-outline" id="resetBtn">🔄 Reset</button>
+                        <button class="btn btn-outline" id="backLevelsBtn">🔙 Levels</button>
+                    </div>
+                `;
+
+            content.innerHTML = html;
+
+            // ---- Event listeners for radio buttons (MCQs) ----
+            if (!state.submitted) {
+                content.querySelectorAll('input[type="radio"]').forEach(input => {
+                    input.addEventListener('change', (e) => {
+                        const name = input.name;
+                        const value = parseInt(input.value);
+                        state.answers[name] = value;
+                        updateProgress();
+                    });
+                });
+
+                // ---- Event listeners for textareas (essay) ----
+                content.querySelectorAll('.essay-block textarea').forEach(textarea => {
+                    textarea.addEventListener('input', (e) => {
+                        const name = textarea.name;
+                        state.answers[name] = textarea.value;
+                        updateProgress();
+                    });
+                });
+            }
+
+            // ---- Submit ----
+            const submitBtn = document.getElementById('submitBtn');
+            if (submitBtn) {
+                submitBtn.addEventListener('click', () => {
+                    const total = getTotalQuestions(state.questions);
+                    const answered = getAnsweredCount();
+                    if (answered < total) {
+                        if (!confirm(`You answered ${answered} out of ${total}. Submit anyway?`)) return;
+                    }
+                    state.submitted = true;
+                    render();
+                });
+            }
+
+            // ---- Results ----
+            const resultsBtn = document.getElementById('resultsBtn');
+            if (resultsBtn) {
+                resultsBtn.addEventListener('click', () => {
+                    calculateResults();
+                    state.view = 'results';
+                    render();
+                });
+            }
+
+            // ---- Reset ----
+            const resetBtn = document.getElementById('resetBtn');
+            if (resetBtn) {
+                resetBtn.addEventListener('click', () => {
+                    state.answers = {};
+                    state.submitted = false;
+                    state.results = null;
+                    render();
+                });
+            }
+
+            // ---- Back to levels ----
+            const backLevelsBtn = document.getElementById('backLevelsBtn');
+            if (backLevelsBtn) {
+                backLevelsBtn.addEventListener('click', () => {
+                    state.level = null;
+                    state.questions = null;
+                    state.answers = {};
+                    state.submitted = false;
+                    state.results = null;
+                    state.view = 'levels';
+                    render();
+                });
+            }
+        }
+
+        function updateProgress() {
+            const prog = document.querySelector('.progress');
+            if (prog) {
+                const total = getTotalQuestions(state.questions);
+                const answered = getAnsweredCount();
+                prog.textContent = `${answered} / ${total} answered`;
+            }
+        }
+
+        // ---- RESULTS ----
+        function calculateResults() {
+            const q = state.questions;
+            let total = 0,
+                correct = 0,
+                wrong = 0,
+                unanswered = 0;
+            const details = [];
+
+            // MCQs
+            q.mcqs.forEach((mq, idx) => {
+                const key = `q-${idx}`;
+                const selected = state.answers[key];
+                const isCorrect = selected === mq.correct;
+                total++;
+                if (selected === undefined) { unanswered++;
+                    details.push({ key, label: `Q${idx+1}`, type: 'mcq', selected, correct: mq.correct,
+                        isCorrect: false, answered: false, text: mq.q, opts: mq.opts, exp: mq.exp }); } else if (
+                    isCorrect) { correct++;
+                    details.push({ key, label: `Q${idx+1}`, type: 'mcq', selected, correct: mq.correct,
+                        isCorrect: true, answered: true, text: mq.q, opts: mq.opts, exp: mq.exp }); } else { wrong++;
+                    details.push({ key, label: `Q${idx+1}`, type: 'mcq', selected, correct: mq.correct,
+                        isCorrect: false, answered: true, text: mq.q, opts: mq.opts, exp: mq.exp }); }
+            });
+
+            // Scenarios (essay)
+            q.scenarios.forEach((sc, si) => {
+                sc.subqs.forEach((sq, qi) => {
+                    const key = `s-${si}-${qi}`;
+                    const userAnswer = state.answers[key] || '';
+                    const answered = userAnswer.trim().length > 0;
+                    total++;
+                    if (!answered) { unanswered++;
+                        details.push({ key, label: `S${si+1}-${qi+1}`, type: 'essay', userAnswer,
+                            modelAnswer: sq.modelAnswer, answered: false, text: sq.q }); } else { correct++;
+                        details.push({ key, label: `S${si+1}-${qi+1}`, type: 'essay', userAnswer,
+                            modelAnswer: sq.modelAnswer, answered: true, text: sq.q }); }
+                });
+            });
+
+            state.results = { total, correct, wrong, unanswered, details };
+        }
+
+        function renderResults() {
+            if (!state.results) calculateResults();
+            const r = state.results;
+            const pct = r.total > 0 ? Math.round((r.correct / r.total) * 100) : 0;
+            headerBadge.textContent = `${state.topic.icon} Results`;
+
+            let html = `
+                    <div class="results-summary">
+                        <div>
+                            <div class="big-score">${pct}% <small>Score</small></div>
+                            <div style="font-size:14px; color:var(--text-muted);">${r.correct} / ${r.total} correct</div>
+                        </div>
+                        <div class="stats">
+                            <div class="stat correct"><div class="num">${r.correct}</div><div class="lbl">✅ Correct</div></div>
+                            <div class="stat wrong"><div class="num">${r.wrong}</div><div class="lbl">❌ Wrong</div></div>
+                            <div class="stat unanswered"><div class="num">${r.unanswered}</div><div class="lbl">⏭️ Unanswered</div></div>
+                        </div>
+                    </div>
+                    <div style="display:flex; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
+                        <button class="btn btn-primary" id="reviewToggleBtn">🔍 Review Answers</button>
+                        <button class="btn btn-outline" id="retakeBtn">🔄 Retake</button>
+                        <button class="btn btn-outline" id="backTopicsBtn">🏠 Topics</button>
+                    </div>
+                    <div id="reviewArea" class="hidden">
+                        <hr style="border:1px solid var(--border); margin:16px 0;" />
+                        <h3 style="margin-bottom:12px; color:var(--dark);">📋 Detailed Review</h3>
+                        <div id="reviewContent"></div>
+                    </div>
+                `;
+
+            content.innerHTML = html;
+
+            // Review toggle
+            const reviewBtn = document.getElementById('reviewToggleBtn');
+            const reviewArea = document.getElementById('reviewArea');
+            const reviewContent = document.getElementById('reviewContent');
+            let reviewVisible = false;
+
+            if (reviewBtn && reviewArea) {
+                reviewBtn.addEventListener('click', () => {
+                    reviewVisible = !reviewVisible;
+                    if (reviewVisible) {
+                        reviewArea.classList.remove('hidden');
+                        reviewBtn.textContent = '🔍 Hide Review';
+                        let rc = '';
+                        r.details.forEach(d => {
+                            if (d.type === 'mcq') {
+                                const status = d.answered ? (d.isCorrect ? '✅' : '❌') : '⏭️';
+                                const cls = d.answered ? (d.isCorrect ? 'correct' : 'wrong') : '';
+                                rc += `
+                                        <div class="review-item ${cls}">
+                                            <div class="r-head">
+                                                <span class="r-label">${d.label}</span>
+                                                <span>${d.text}</span>
+                                                <span class="r-status">${status}</span>
+                                            </div>
+                                            <div class="r-detail">
+                                                Your answer: ${d.answered ? d.opts[d.selected] : '—'} &nbsp;|&nbsp; Correct: ${d.opts[d.correct]}
+                                            </div>
+                                            <div class="r-exp">💡 ${d.exp}</div>
+                                        </div>
+                                    `;
+                            } else {
+                                const status = d.answered ? '✅' : '⏭️';
+                                const cls = d.answered ? 'correct' : '';
+                                rc += `
+                                        <div class="review-item ${cls}">
+                                            <div class="r-head">
+                                                <span class="r-label">${d.label}</span>
+                                                <span>${d.text}</span>
+                                                <span class="r-status">${status}</span>
+                                            </div>
+                                            <div class="r-essay-answer">
+                                                <span class="label">📝 Your answer:</span>
+                                                ${d.userAnswer || '(No answer provided)'}
+                                            </div>
+                                            <div class="r-exp" style="margin-top:8px;">
+                                                <strong>📌 Model answer:</strong> ${d.modelAnswer}
+                                            </div>
+                                        </div>
+                                    `;
+                            }
+                        });
+                        reviewContent.innerHTML = rc;
+                    } else {
+                        reviewArea.classList.add('hidden');
+                        reviewBtn.textContent = '🔍 Review Answers';
+                    }
+                });
+            }
+
+            // Retake
+            const retakeBtn = document.getElementById('retakeBtn');
+            if (retakeBtn) {
+                retakeBtn.addEventListener('click', () => {
+                    state.answers = {};
+                    state.submitted = false;
+                    state.results = null;
+                    state.view = 'quiz';
+                    render();
+                });
+            }
+
+            // Back to topics
+            const backTopicsBtn = document.getElementById('backTopicsBtn');
+            if (backTopicsBtn) {
+                backTopicsBtn.addEventListener('click', () => {
+                    state.topic = null;
+                    state.level = null;
+                    state.questions = null;
+                    state.answers = {};
+                    state.submitted = false;
+                    state.results = null;
+                    state.view = 'topics';
+                    headerBadge.textContent = 'Choose a topic';
+                    render();
+                });
+            }
+        }
+
+        // ---- BREADCRUMB ----
+        function updateBreadcrumb() {
+            if (state.topic) {
+                bcTopic.textContent = `${state.topic.icon} ${state.topic.name}`;
+                bcSep.style.display = 'inline';
+                if (state.level) {
+                    bcLevel.textContent = `${state.level.emoji} ${state.level.label}`;
+                } else {
+                    bcLevel.textContent = '—';
+                }
+            } else {
+                bcTopic.textContent = '—';
+                bcSep.style.display = 'none';
+                bcLevel.textContent = '—';
+            }
+        }
+
+        // ========================================================================
+        //  BREADCRUMB NAVIGATION
+        // ========================================================================
+
+        document.querySelectorAll('.crumb-link').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const goto = btn.dataset.goto;
+                if (goto === 'topics') {
+                    state.topic = null;
+                    state.level = null;
+                    state.questions = null;
+                    state.answers = {};
+                    state.submitted = false;
+                    state.results = null;
+                    state.view = 'topics';
+                    headerBadge.textContent = 'Choose a topic';
+                    render();
+                }
+            });
+        });
+
+        // ========================================================================
+        //  INIT
+        // ========================================================================
+
+        render();
+    </script>
+
+</body>
+</html>
