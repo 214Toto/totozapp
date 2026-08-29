@@ -2734,7 +2734,7 @@
 
         // ---- USER DATA with year access ----
         const users = {
-            '2': { name: 'Doc Toto', password: 'p2', year: 2 },
+                        '2': { name: 'Doc Toto', password: 'p2', year: 2 },
             'Ruth': { name: 'Dr. Ndabala', password: '6778', year: 2 },
             'c2': { name: 'Christopher', password: 'pass2', year: 2 },
 
@@ -2751,6 +2751,7 @@
             'Chewe': { name: 'Dr. Coco', password: '9001', year: 3 },
             'Jeff': { name: 'Dr. Mweemba', password: '0060', year: 3 },
             'Kabubi': { name: 'Dr. Kabubi', password: '0101', year: 3 },
+            
             
 
             // 4th year
@@ -3598,44 +3599,49 @@
         // ---- VIDEO DATA: maps topic names to an array of video objects with YouTube URLs ----
         const videoData = {
             'Head Osteology': [
-                { title: 'Anterior and Lateral Views of the Skull',
-                    url: 'https://youtu.be/qXZ0v69ZtEQ?si=V5AxM_CT0xvVgfuS' },
-                { title: 'Posterior and Lateral Views of the Skull',
-                    url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
-                { title: 'Calvaria', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
-                { title: 'Inferior View of Base of the Skull',
-                    url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
-                { title: 'Superior View of Base of the Skull',
-                    url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
-                { title: 'Midsagittal Skull', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
-                { title: 'Ethmoid Bone', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
-                { title: 'Sphenoid Bone', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
-                { title: 'Temporal Bone', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
-                { title: 'Mandible', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' }
-            ],
-            'Head Musculature': [
-                { title: 'Masseter Muscle', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
-                { title: 'Temporal Muscle', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
-                { title: 'Muscles of Mastication', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
-                { title: 'Lateral Pterygoid Muscle', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
-                { title: 'Muscles of the Tongue', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
-                { title: 'Medial Pterygoid Muscle', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' }
+                { title: 'Views of the Skull',
+                    url: 'anatomy3/head/videos/views-brain.html' },
+                { title: 'Calvaria', url: 'anatomy3/head/videos/calvaria.html' },
+                { title: 'Ethmoid Bone', url: 'anatomy3/head/videos/ethmoid.html' },
+                { title: 'Sphenoid Bone', url: 'anatomy3/head/videos/sphenoid.html' },
+                { title: 'Temporal Bone', url: 'anatomy3/head/videos/temporal.html' },
+                { title: 'Mandible', url: 'anatomy3/head/videos/mandible.html' }
+            ], 
+            'Head Musculature': [ 
+                { title: 'Masseter Muscle', url: 'anatomy3/head/videos/Muscles_head.html' },
+                { title: 'Temporal Muscle', url: 'anatomy3/head/videos/Muscles_head.html' },
+                { title: 'Muscles of Mastication', url: 'anatomy3/head/videos/mastication.html' },
+                { title: 'Lateral Pterygoid Muscle', url: 'anatomy3/head/videos/Muscles_head.html' },
+                { title: 'Muscles of the Tongue', url: 'anatomy3/head/videos/toungue.html' },
+                { title: 'Medial Pterygoid Muscle', url: 'anatomy3/head/videos/Muscles_head.html' }
             ],
             'Head Neurovasculature': [
                 { title: 'Arteres of the Brain', url: 'anatomy3/head/videos/arteries-head.html' },
-                { title: 'Temporal Muscle', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
-                { title: 'Muscles of Mastication', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
-                { title: 'Lateral Pterygoid Muscle', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
-                { title: 'Muscles of the Tongue', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
-                { title: 'Medial Pterygoid Muscle', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' }
             ],
             'Brain': [
-                { title: 'Views of the Brains', url: 'anatomy3/head/videos/views-brain.html' },
-                { title: 'Temporal Muscle', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
-                { title: 'Muscles of Mastication', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
-                { title: 'Lateral Pterygoid Muscle', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
-                { title: 'Muscles of the Tongue', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
-                { title: 'Medial Pterygoid Muscle', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' }
+                { title: 'Medial View of the Brains', url: 'anatomy3/head/videos/medial-view.html' },
+                { title: 'Lateral View of the Brains', url: 'anatomy3/head/videos/lateral-view.html' },
+                { title: 'Horizontal View of the Brains', url: 'anatomy3/head/videos/horizontal-view.html' },
+                { title: 'Basal View of the Brains', url: 'anatomy3/head/videos/basal-view.html' },
+                { title: 'BrainStem', url: 'anatomy3/neuro/videos/brain-stem.html' },
+            ],
+            'Central Nervous System': [
+                { title: 'CSF FLOW', url: 'anatomy3/head/videos/csf.html' },
+            ],
+            'Peripheral Nervous System': [
+                { title: 'Cranial Nerves Overview', url: 'anatomy3/neuro/videos/overview.html' },
+                { title: 'Olfactory Nerve', url: 'anatomy3/neuro/videos/1.html' },
+                { title: 'Optic Nerve', url: 'anatomy3/neuro/videos/2.html' },
+                { title: 'Oculomotor, Trochlear & Abducens Nerves', url: 'anatomy3/neuro/videos/3.html' },
+                { title: 'Ophthalmic Nerve', url: 'anatomy3/neuro/videos/5a.html' },
+                { title: 'Maxillary Nerve', url: 'anatomy3/neuro/videos/5b.html' },
+                { title: 'Mandibular Nerve', url: 'anatomy3/neuro/videos/5c.html' },
+                { title: 'Facial Nerve', url: 'anatomy3/neuro/videos/7.html' },
+                { title: 'Vestibulocochlear Nerve', url: 'anatomy3/neuro/videos/8.html' },
+                { title: 'Glossopharyngeal Nerve', url: 'anatomy3/neuro/videos/9.html' },
+                { title: 'Vagus Nerve', url: 'anatomy3/neuro/videos/10.html' },
+                { title: 'Accessory Nerve', url: 'anatomy3/neuro/videos/11.html' },
+                { title: 'Hypoglossal Nerve', url: 'anatomy3/neuro/videos/12.html' },
             ],
 
 
@@ -4651,7 +4657,7 @@
             ],
             'Peripheral Nervous System': [
                 { title: 'Class Notes', url: 'https://drive.google.com/file/d/1wqq77Ql7B3RsX4_JhoXhINJON2ZrxEBT/view?usp=drive_link' },
-                { title: 'Cranial Nerves - ToToZ Collection', url: '' },
+                { title: 'Cranial Nerves - ToToZ Collection', url: 'https://drive.google.com/file/d/17G2zQ1GG7w8Q8ENnU7WXWXWh4GLr5Wjn/view?usp=drive_link' },
             ],
             'The Ear': [
                 { title: 'Class Notes', url: '' }
