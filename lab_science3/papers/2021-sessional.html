@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2021 Lab Sessional MBS340 | Past Paper</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        /* ─── ROOT & RESET ─── */
+        :root {
+            --primary: #8b2f3a;
+            --accent: #c0395a;
+            --dark: #1f1a2e;
+            --light: #fcf7f8;
+            --radius: 12px;
+            --shadow: 0 4px 14px rgba(30, 10, 20, 0.07);
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: "Segoe UI", Roboto, system-ui, sans-serif;
+            background: linear-gradient(180deg, #f5f0f2, #ede7ea);
+            color: var(--dark);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: #fff;
+            padding: 0.7rem 0;
+            box-shadow: 0 6px 18px rgba(30, 10, 20, 0.20);
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .logo i {
+            font-size: 1.5rem;
+            color: #f0a0b0;
+        }
+        .logo h1 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            margin: 0;
+            line-height: 1;
+        }
+        .badge {
+            background: rgba(255, 255, 255, 0.13);
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            color: #f0d0d8;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.25rem 2.5rem;
+        }
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1.8rem 0 1rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 3px solid rgba(139, 47, 58, 0.18);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+        .section-title i {
+            font-size: 1.1rem;
+            color: var(--accent);
+        }
+        .section-title .count {
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0.05rem 0.7rem;
+        }
+        .section-subtitle {
+            color: #5a4a52;
+            font-size: 0.92rem;
+            margin-bottom: 1.2rem;
+        }
+        .section-panel {
+            display: block;
+        }
+        .scroll-target {
+            scroll-margin-top: 90px;
+        }
+
+        /* MCQ cards */
+        .question {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.1rem 1.1rem 0.1rem 1.1rem;
+            margin-bottom: 1.1rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(139, 47, 58, 0.06);
+        }
+        .question:hover {
+            box-shadow: 0 6px 22px rgba(30, 10, 20, 0.07);
+        }
+        .question p {
+            font-weight: 600;
+            font-size: 0.97rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            line-height: 1.5;
+        }
+        .question .q-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            line-height: 1.6;
+            margin-right: 0.4rem;
+        }
+        .options label {
+            display: block;
+            background: #faf7f8;
+            border: 1px solid #e4dce0;
+            border-radius: 8px;
+            padding: 0.4rem 0.85rem;
+            margin-top: 0.4rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-weight: 450;
+            font-size: 0.93rem;
+        }
+        .options label:hover {
+            background: #f0e8ec;
+            border-color: var(--accent);
+        }
+        .options input[type="radio"] {
+            margin-right: 0.5rem;
+            accent-color: var(--primary);
+            transform: scale(1.05);
+        }
+        .question-feedback {
+            margin-top: 0.8rem;
+            padding: 0.3rem 0 0.1rem 0;
+            border-top: 1px dashed #e0d5da;
+        }
+        .answer-block strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--primary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .answer-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .answer-item {
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid #e8e0e4;
+            background: #ffffff;
+            font-weight: 500;
+            font-size: 0.88rem;
+        }
+        .answer-correct {
+            background: #ebfaf3;
+            border-color: #b5e6cc;
+            color: #065f46;
+        }
+        .answer-wrong {
+            background: #fdeeef;
+            border-color: #f7b5b5;
+            color: #8f1a2e;
+        }
+        .user-choice {
+            outline: 2px dashed rgba(0, 0, 0, 0.06);
+        }
+        .explanation {
+            margin-top: 6px;
+            padding: 7px 12px;
+            border-radius: 8px;
+            background: #f5edf0;
+            color: #4a2a35;
+            font-size: 0.89rem;
+            line-height: 1.5;
+            border-left: 4px solid var(--accent);
+        }
+        .explanation.wrong {
+            background: #fdf3f4;
+            color: #6f1a1a;
+            border-left-color: #e07a7a;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.6rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(139, 47, 58, 0.25);
+        }
+        .btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(139, 47, 58, 0.32);
+        }
+        .btn:active {
+            transform: scale(0.96);
+        }
+        .btn i {
+            font-size: 0.9rem;
+        }
+
+        .submit-wrap {
+            text-align: center;
+            margin: 1.5rem 0 2rem;
+        }
+        .result {
+            margin-top: 1.5rem;
+            padding: 1.5rem 1.5rem 1rem;
+            background: #f5edf0;
+            border-radius: var(--radius);
+            text-align: center;
+            display: none;
+            border: 1px solid #dccad2;
+        }
+        .result h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.2rem;
+        }
+        .score {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0.2rem 0 0.4rem;
+        }
+
+        @media (max-width: 700px) {
+            body {
+                padding-top: 72px;
+            }
+            .logo h1 {
+                font-size: 0.95rem;
+            }
+            .header-inner {
+                padding: 0 1rem;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.3rem;
+            }
+            .badge {
+                align-self: flex-start;
+            }
+            .question {
+                padding: 0.9rem 0.9rem 0.1rem 0.9rem;
+            }
+            .section-title {
+                font-size: 1.1rem;
+            }
+            .score {
+                font-size: 2.2rem;
+            }
+            .btn {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.85rem;
+            }
+        }
+        .small-note {
+            font-size: 0.8rem;
+            color: #6a5a62;
+            margin-top: 0.3rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <i class="fas fa-microscope"></i>
+                <h1>2021 Lab Sessional MBS340</h1>
+            </div>
+            <span class="badge"><i class="fas fa-flask"></i> &nbsp;40 MCQs</span>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- MCQs Section -->
+            <div class="section-panel active" id="tab-mcq">
+                <div class="section-title scroll-target">
+                    <i class="fas fa-list-ul"></i> Multiple Choice Questions
+                    <span class="count">40 marks</span>
+                </div>
+                <p class="section-subtitle">Choose the best option for each question (1 mark each).</p>
+                <div id="mcqContainer"></div>
+                <div class="submit-wrap">
+                    <button type="button" class="btn" onclick="submitMCQs()">
+                        <i class="fas fa-check-circle"></i> Submit MCQs
+                    </button>
+                </div>
+                <div class="result" id="mcqResult">
+                    <h3><i class="fas fa-chart-simple"></i> MCQ Score</h3>
+                    <div class="score" id="mcqScore">0 / 40</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // ─── MCQ DATA (40 questions) ───
+        const mcqData = [{
+            id: 'q1',
+            text: 'In which type of cerebral hemorrhage is there marked fall in CSF pressure after draining only small amount of CSF by lumbar puncture?',
+            options: ['A. Epidural haemorrhage', 'B. Cerebral thrombosis', 'C. Intracerebral haemorrhage',
+                'D. Subdural haemorrhage', 'E. None of the above'
+            ],
+            correct: 'd',
+            explanation: 'Subdural hemorrhage can cause a pressure gradient; draining a small amount may cause a significant drop.'
+        }, {
+            id: 'q2',
+            text: 'Surgery, rather than CSF examination finding, is of value in making a diagnosis of which one of the following intracranial hemorrhages:',
+            options: ['A. Cerebral thrombosis', 'B. Intracerebral hemorrhage', 'C. Subarachnoid hemorrhage',
+                'D. Subdural hematoma', 'E. None of the above'
+            ],
+            correct: 'd',
+            explanation: 'Subdural hematoma often requires surgical evacuation for diagnosis and treatment.'
+        }, {
+            id: 'q3',
+            text: 'What is the proportion of albumin among the proteins in normal CSF?',
+            options: ['A. 10-30%', 'B. 20-40%', 'C. 5-10%', 'D. 0-5%', 'E. 50-60%'],
+            correct: 'e',
+            explanation: 'Albumin constitutes about 50-60% of total CSF protein.'
+        }, {
+            id: 'q4',
+            text: 'What does the Dexamethasone Suppression test measure?',
+            options: ['A. Serum Prolactin levels', 'B. Serum cortisol levels', 'C. Insulin growth factor-1 levels',
+                'D. Testosterone levels', 'E. Estradiol levels'
+            ],
+            correct: 'b',
+            explanation: 'The Dexamethasone Suppression Test assesses hypothalamic-pituitary-adrenal axis function by measuring serum cortisol.'
+        }, {
+            id: 'q5',
+            text: 'Which one of the following is FALSE about biomarkers of brain tumours?',
+            options: ['A. They may be proteins from brain tumours', 'B. They may be DNA from brain tumours',
+                'C. They can be detected using ELISA', 'D. They are found in higher than normal amounts in blood',
+                'E. They can be detected by PCR'
+            ],
+            correct: 'd',
+            explanation: 'Tumour biomarkers may be present in CSF or other fluids; they are not necessarily higher in blood.'
+        }, {
+            id: 'q6',
+            text: 'How long does it take for changes in blood solute concentration to be reflected in the synovial fluid?',
+            options: ['A. 20-30 minutes', 'B. 1-2 hrs', 'C. 2-3 hrs', 'D. 4-8 hrs', 'E. None of the above'],
+            correct: 'b',
+            explanation: 'Equilibration of small molecules between blood and synovial fluid occurs within 1-2 hours.'
+        }, {
+            id: 'q7',
+            text: 'Clear yellow synovial fluid is observed in the following EXCEPT:',
+            options: ['A. Osteoarthritis', 'B. Mild Rheumatoid arthritis', 'C. Traumatic arthritis',
+                'D. Septic arthritis', 'E. None of the above'
+            ],
+            correct: 'd',
+            explanation: 'Septic arthritis typically produces purulent (turbid) fluid, not clear yellow.'
+        }, {
+            id: 'q8',
+            text: '"No clot formed" in the Mucin test is equivalent to what grade of the test?',
+            options: ['A. Very poor (Cro clot)', 'B. Poor (Fiable Clot)', 'C. Fair (Soft Clot)',
+                'D. Good (Solid clot)', 'E. None of the above'
+            ],
+            correct: 'a',
+            explanation: 'No clot formation indicates a very poor mucin clot test.'
+        }, {
+            id: 'q9',
+            text: 'The synovial fluid and blood glucose difference is similar for the following conditions EXCEPT:',
+            options: ['A. Gout', 'B. Infection', 'C. Rheumatoid arthritis', 'D. Osteoarthritis',
+                'E. None of the above'
+            ],
+            correct: 'b',
+            explanation: 'In septic arthritis, the glucose difference is significantly increased (fluid glucose is much lower than blood).'
+        }, {
+            id: 'q10',
+            text: 'Which one of the following is a CORRECT finding in the CSF of a patient with Alzheimer disease?',
+            options: ['A. Decreased Tau protein levels', 'B. Decreased Amyloid levels',
+                'C. Increased Glucose levels', 'D. Decreased Chloride levels', 'E. None of the above'
+            ],
+            correct: 'b',
+            explanation: 'Alzheimer’s shows decreased CSF Aβ42 and increased tau.'
+        }, {
+            id: 'q11',
+            text: 'In which one of the following clinical samples can prions be detected?',
+            options: ['A. Stool', 'B. Urine', 'C. CSF', 'D. Saliva', 'E. None of the above'],
+            correct: 'c',
+            explanation: 'Prions are detected in CSF in prion diseases like CJD.'
+        }, {
+            id: 'q12',
+            text: 'Which one of the following enzymes is appropriate to measure its activity in the diagnosis of Muscular dystrophies?',
+            options: ['A. Transaminases', 'B. Creatine phosphokinase or aldolase', 'C. Alkaline phosphatase',
+                'D. All of the above', 'E. None of the above'
+            ],
+            correct: 'b',
+            explanation: 'Creatine phosphokinase (CK) and aldolase are elevated in muscle damage.'
+        }, {
+            id: 'q13',
+            text: 'Genetic testing can be done on which of the following clinical specimens?',
+            options: ['A. Blood', 'B. Urine', 'C. Saliva', 'D. Body tissue', 'E. All of the above'],
+            correct: 'e',
+            explanation: 'DNA can be extracted from blood, urine, saliva, and tissue for genetic testing.'
+        }, {
+            id: 'q14',
+            text: 'One of the following is NOT a genetic testing technique:',
+            options: ['A. Microarrays', 'B. DNA sequencing', 'C. Western blot', 'D. PCR',
+                'E. None of the above'
+            ],
+            correct: 'c',
+            explanation: 'Western blot detects proteins, not genetic material.'
+        }, {
+            id: 'q15',
+            text: 'Which one of the following blood glucose reading with Fasting blood sugar test indicates Prediabetes?',
+            options: ['A. 8 mmol/L', 'B. 6 mmol/L', 'C. 4 mmol/L', 'D. 3 mmol/L', 'E. None of the above'],
+            correct: 'b',
+            explanation: 'Fasting glucose 5.6–6.9 mmol/L indicates prediabetes; 6 mmol/L falls in that range.'
+        }, {
+            id: 'q16',
+            text: 'Which blood glucose test is not done to make a diagnosis of Diabetes Mellitus?',
+            options: ['A. Random blood sugar test', 'B. Fasting blood sugar test',
+                'C. Glucose tolerance test', 'D. Glycosylated haemoglobin test', 'E. None of the above'
+            ],
+            correct: 'e',
+            explanation: 'All listed tests (including HbA1c) are used for diabetes diagnosis.'
+        }, {
+            id: 'q17',
+            text: 'One of the following is a CORRECT finding in Hypothyroidism:',
+            options: ['A. Raised Protein bound Iodine levels', 'B. Raised total T4 levels',
+                'C. Raised Direct T4 levels', 'D. Decreased TSH levels', 'E. None of the above'
+            ],
+            correct: 'e',
+            explanation: 'In hypothyroidism, TSH is increased, and T4 is decreased. None of the options are correct.'
+        }, {
+            id: 'q18',
+            text: 'When do HCG levels peak in blood during pregnancy?',
+            options: ['A. 5 weeks', 'B. 6 weeks', 'C. 7 weeks', 'D. 9 weeks', 'E. 12 weeks'],
+            correct: 'd',
+            explanation: 'hCG peaks at about 8–10 weeks (around 9 weeks) of gestation.'
+        }, {
+            id: 'q19',
+            text: 'Which one of the following hormones is useful in detecting placental insufficiency in the 3rd trimester of pregnancy?',
+            options: ['A. HCG', 'B. Prolactin', 'C. Luteinizing hormone', 'D. Pregnanediol',
+                'E. None of the above'
+            ],
+            correct: 'd',
+            explanation: 'Low pregnanediol (progesterone metabolite) indicates placental insufficiency.'
+        }, {
+            id: 'q20',
+            text: 'Ovarian function tests comprise the following hormonal assays EXCEPT:',
+            options: ['A. Prolactin', 'B. Follicle Stimulating Hormone', 'C. Estradiol', 'D. Inhibin B',
+                'E. None of the above'
+            ],
+            correct: 'a',
+            explanation: 'Prolactin is a pituitary hormone; ovarian function tests include FSH, estradiol, inhibin B, and progesterone.'
+        }, {
+            id: 'q21',
+            text: 'Which one of the following is the correct action of Vitamin D in calcium and phosphorus metabolism?',
+            options: ['A. It causes Hyperphosphaturia on the kidneys', 'B. It decreases resorption on the bones',
+                'C. It decreases Calcium absorption on the Gastro-Intestinal tract', 'D. All of the above',
+                'E. None of the above'
+            ],
+            correct: 'e',
+            explanation: 'Vitamin D increases calcium absorption, bone resorption, and phosphate reabsorption; none of the listed actions are correct.'
+        }, {
+            id: 'q22',
+            text: 'Levels of activity of Serum Alkaline phosphatase are increased in the following conditions EXCEPT:',
+            options: ['A. Osteomalacia', 'B. Rickets', 'C. Rapid bone growth', 'D. Hypoparathyroidism',
+                'E. None of the above'
+            ],
+            correct: 'd',
+            explanation: 'ALP is elevated in bone turnover states; in hypoparathyroidism it is normal or decreased.'
+        }, {
+            id: 'q23',
+            text: 'Which test measures collagen breakdown/bone resorption?',
+            options: ['A. Serum alkaline phosphatase activity', 'B. Urinary hydroxyproline levels',
+                'C. ESR', 'D. All of the above', 'E. None of the above'
+            ],
+            correct: 'b',
+            explanation: 'Urinary hydroxyproline is a marker of bone resorption (collagen breakdown).'
+        }, {
+            id: 'q24',
+            text: 'What is the sensitivity of Rheumatoid Factor test in the diagnosis of Rheumatoid Arthritis?',
+            options: ['A. 50%', 'B. 60%', 'C. 70%', 'D. 80%', 'E. 90%'],
+            correct: 'd',
+            explanation: 'The sensitivity of RF in RA is approximately 70–80%; 80% is a commonly cited figure.'
+        }, {
+            id: 'q25',
+            text: 'Miniature Anion Exchange Centrifugation Technique is used in the diagnosis of which of the following parasitic infections?',
+            options: ['A. Malaria', 'B. Leishmaniasis', 'C. Toxoplasmosis', 'D. Human African Trypanosomiasis',
+                'E. None of the above'
+            ],
+            correct: 'd',
+            explanation: 'MAECT is used for detection of trypanosomes in CSF for HAT diagnosis.'
+        }, {
+            id: 'q26',
+            text: 'Glycerrhachia means presence of glucose in:',
+            options: ['A. Blood', 'B. Urine', 'C. CSF', 'D. Synovial fluid', 'E. None of the above'],
+            correct: 'c',
+            explanation: 'Glycerrhachia refers to glucose in the cerebrospinal fluid.'
+        }, {
+            id: 'q27',
+            text: 'Cartilage cells are detected in which clinical specimen?',
+            options: ['A. CSF', 'B. Peritoneal fluid', 'C. Saliva', 'D. Synovial fluid', 'E. Semen'],
+            correct: 'd',
+            explanation: 'Chondrocytes (cartilage cells) may be found in synovial fluid.'
+        }, {
+            id: 'q28',
+            text: 'Laboratory investigations of viral infections:',
+            options: ['A. Can distinguish between oral and genital herpes',
+                'B. Cannot indicate infection\'s presence or timing',
+                'C. Can detect IgM antibodies 7-10 days after infection',
+                'D. Can distinguish herpes simplex virus 1 and 2 using IgG antibodies.'
+            ],
+            correct: 'c',
+            explanation: 'IgM antibodies appear 7–10 days after primary infection; serology can differentiate HSV-1 and -2 using type-specific IgG.'
+        }, {
+            id: 'q29',
+            text: 'Which of the following laboratory diagnostic methods cannot be used for confirming human papillomavirus infection?',
+            options: ['A. Culturing', 'B. Serology', 'C. Molecular testing', 'D. Pap test'],
+            correct: 'a',
+            explanation: 'HPV cannot be cultured in routine laboratories; serology is not reliable; molecular testing and Pap test are used.'
+        }, {
+            id: 'q30',
+            text: 'The following method can be used to detect Nucleic acid in CNS Viral infections',
+            options: ['A. Western blot', 'B. Plaque assay', 'C. PCR', 'D. Northern blot', 'E. Southern blot'],
+            correct: 'c',
+            explanation: 'PCR is the most common and sensitive method for detecting viral nucleic acids in CSF.'
+        }, {
+            id: 'q31',
+            text: 'The following method is applicable determine cytopathic effect in viral infections',
+            options: ['A. Cell culture', 'B. Virus isolation', 'C. Antibody', 'D. Southern blot',
+                'E. Microscopy'
+            ],
+            correct: 'a',
+            explanation: 'Cytopathic effects are observed directly in cell culture.'
+        }, {
+            id: 'q32',
+            text: 'Lowenstein-Jensen agar medium is used for isolating',
+            options: ['A. Listeria monocytogenes', 'B. Mycobacterium tuberculosis',
+                'C. Bordetella pertussis', 'D. Escherichia coli', 'E. Brucella abortus'
+            ],
+            correct: 'b',
+            explanation: 'Lowenstein-Jensen medium is selective for Mycobacterium tuberculosis.'
+        }, {
+            id: 'q33',
+            text: 'Fungus morphology is best identified by?',
+            options: ['A. PCR', 'B. Albert stain', 'C. Potassium hydroxide wet mount', 'D. RIA',
+                'E. Negative stain'
+            ],
+            correct: 'c',
+            explanation: 'KOH wet mount allows visualization of fungal hyphae and spores.'
+        }, {
+            id: 'q34',
+            text: 'The most common cause of bacterial skin infections is',
+            options: ['A. Streptococcus pyogenes', 'B. Staphylococcus aureus',
+                'C. Clostridium perfringens', 'D. Propionibacteria', 'E. Staphylococcus epidermidis'
+            ],
+            correct: 'b',
+            explanation: 'Staphylococcus aureus is the most frequent cause of bacterial skin infections.'
+        }, {
+            id: 'q35',
+            text: 'Which type of leprosy is associated with a thickened dermis and disfiguring skin lesions?',
+            options: ['A. Primary', 'B. Superficial', 'C. Lepromatous', 'D. Tuberculoid',
+                'E. Pausibacillary'
+            ],
+            correct: 'c',
+            explanation: 'Lepromatous leprosy causes diffuse skin thickening and disfiguring nodules.'
+        }, {
+            id: 'q36',
+            text: 'Regarding infections of the musculoskeletal system:',
+            options: [
+                'A. Borrelia burgdorferi is a gram negative spirochete that is tick-borne.',
+                'B. Tetanus is caused by a gram negative, spore forming and toxin producing cocci.',
+                'C. Among the species associated with extrapulmonary tuberculosis, Mycobacterium avium is part of the Mycobacterium tuberculosis complex (MTB).',
+                'D. Poliomyelitis can only be diagnosed through tissue culture.',
+                'E. All of the above statements are correct.'
+            ],
+            correct: 'a',
+            explanation: 'B. burgdorferi is a Gram-negative spirochete transmitted by ticks. The other statements are false.'
+        }, {
+            id: 'q37',
+            text: 'The following statements on Streptococcus pneumoniae are correct except:',
+            options: [
+                'A. It is the single most common cause of community acquired meningitis.',
+                'B. The organism produces alpha-hemolytic colonies on blood agar plates.',
+                'C. Although a vaccine is available to prevent childhood infection, it is not routinely administered in Zambia.',
+                'D. The microorganisms have a distinctive lancet-shape diplococci appearance under microscopy.',
+                'E. The microorganism is optochin sensitive.'
+            ],
+            correct: 'c',
+            explanation: 'Pneumococcal vaccine is part of routine childhood immunization in Zambia, making C false.'
+        }, {
+            id: 'q38',
+            text: 'Regarding Hemophilus influenza type B:',
+            options: [
+                'A. It is a gram positive bacilli that is rarely associated with meningitis.',
+                'B. Vaccination is not efficient in preventing infection.',
+                'C. Detection of capsular polysaccharide using ELISA is not sensitive and therefore not recommended for diagnosis.',
+                'D. The capsule has little to no virulence.',
+                'E. Non-typable strains rarely cause meningitis and can exist as normal flora.'
+            ],
+            correct: 'e',
+            explanation: 'Non-typable H. influenzae are normal flora and rarely cause meningitis; the other options are false.'
+        }, {
+            id: 'q39',
+            text: 'The following statements on fungal infections of the CNS are correct, except:',
+            options: [
+                'A. Cryptococcus neoformans is monomorphic.',
+                'B. The Sabouraud dextrose agar is specific for fungi, however most fungi will grown on bacterial culture media.',
+                'C. Aspergillus fumigatus colonies typically appear 48 hours following inoculation on culture media.',
+                'D. Serology based identification of Coccidioides immitis is more sensitive than culture.',
+                'E. The morphological features of Candida albicans can be identified using microscopy following gram staining.'
+            ],
+            correct: 'b',
+            explanation: 'Sabouraud agar is not specific for fungi, and most fungi do not grow well on bacterial media.'
+        }, {
+            id: 'q40',
+            text: 'Which of the following statements on Cryptococcus species is correct?',
+            options: [
+                'A. Microscopic analysis following India ink staining has a higher sensitivity in immunocompetent patients.',
+                'B. Culture on sabouraud dextrose agar produces white mucoid colonies 48 to 72 hours after incubation.',
+                'C. The commonly used serology tests detect serum antibodies specific to the capsular antigens.',
+                'D. The serotypes B and C belong to C. neoformans variant.',
+                'E. Species do not grow on bacterial culture media.'
+            ],
+            correct: 'b',
+            explanation: 'Cryptococcus produces white mucoid colonies on Sabouraud agar; India ink sensitivity is low; serology detects antigen, not antibody; serotypes B/C are C. gattii.'
+        }];
+
+        // ─── RENDER MCQs ───
+        const mcqContainer = document.getElementById('mcqContainer');
+        let mcqHtml = '<form id="mcqForm">';
+        mcqData.forEach(q => {
+            mcqHtml += `<div class="question" id="mcq-${q.id}">`;
+            mcqHtml += `<p><span class="q-badge">${q.id.replace('q','')}</span> ${q.text}</p>`;
+            mcqHtml += `<div class="options">`;
+            q.options.forEach((opt, idx) => {
+                const val = String.fromCharCode(97 + idx);
+                mcqHtml += `<label><input type="radio" name="${q.id}" value="${val}"> ${opt}</label>`;
+            });
+            mcqHtml += `</div>`;
+            mcqHtml += `<div class="question-feedback" id="mcq-feedback-${q.id}"></div>`;
+            mcqHtml += `</div>`;
+        });
+        mcqHtml += '</form>';
+        mcqContainer.innerHTML = mcqHtml;
+
+        // ─── SUBMIT MCQs ───
+        function submitMCQs() {
+            let earned = 0;
+            const total = mcqData.length;
+
+            mcqData.forEach(q => {
+                const radios = document.querySelectorAll(`#mcqForm input[name="${q.id}"]`);
+                const selected = Array.from(radios).find(r => r.checked);
+                const correct = q.correct;
+                const feedbackEl = document.getElementById(`mcq-feedback-${q.id}`);
+                let html = `<div class="answer-block"><strong>Q${q.id.replace('q','')}</strong><div class="answer-list">`;
+
+                radios.forEach(r => {
+                    const label = r.parentElement;
+                    const text = label ? label.textContent.trim() : r.value;
+                    const classes = ['answer-item'];
+                    if (r.value === correct) classes.push('answer-correct');
+                    if (r.checked && r.value !== correct) classes.push('answer-wrong', 'user-choice');
+                    if (r.checked && r.value === correct) classes.push('user-choice');
+                    html += `<div class="${classes.join(' ')}">${text}${r.checked ? ' ◀' : ''}</div>`;
+                });
+                html += `</div>`;
+                const correctRadio = Array.from(radios).find(rr => rr.value === correct);
+                const correctText = correctRadio ? correctRadio.parentElement.textContent.trim() : correct;
+                let isCorrect = false;
+                if (selected && selected.value === correct) {
+                    earned += 1;
+                    isCorrect = true;
+                }
+                const status = isCorrect ? '✅ Correct' : '❌ Incorrect';
+                const statusClass = isCorrect ? '' : 'wrong';
+                html += `<div class="explanation ${statusClass}">${status}. Correct answer: <strong>${correctText}</strong>. ${q.explanation}</div>`;
+                html += `</div>`;
+                feedbackEl.innerHTML = html;
+            });
+
+            document.querySelectorAll('#mcqForm input[type="radio"]').forEach(i => i.disabled = true);
+            document.getElementById('mcqResult').style.display = 'block';
+            document.getElementById('mcqScore').innerText = `${earned} / ${total}`;
+        }
+
+        // ─── KEYBOARD SUPPORT ───
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    btn.click();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

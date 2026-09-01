@@ -53,6 +53,20 @@
                 transform: translateY(0);
             }
         }
+        .topic-header {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #0a2b4a;
+    text-align: center;
+    margin: 1.2rem 0 0.6rem 0;
+    padding: 0.4rem 1.5rem;
+    background: rgba(45, 123, 158, 0.12);
+    border-radius: 30px;
+    display: inline-block;
+    width: 100%;
+    letter-spacing: 0.5px;
+    border: 1px dashed rgba(45, 123, 158, 0.25);
+}
         .logo {
             display: flex;
             align-items: center;
@@ -967,6 +981,31 @@
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
             width: 100%;
         }
+        .signup-box .hidden {
+            display: none !important;
+        }
+        .signup-box #loginForm {
+            display: block;
+        }
+        .signup-box #loginForm.hidden {
+            display: none;
+        }
+        .signup-box #signupFlow {
+            display: none;
+        }
+        .signup-box #signupFlow.visible {
+            display: block;
+        }
+        .signup-box #signupFlow .btn-primary {
+            background: #25D366;
+            border: none;
+        }
+        .signup-box #signupFlow .btn-primary:hover {
+            background: #1da851;
+        }
+        .signup-box #signupFlow .btn-primary i {
+            margin-right: 8px;
+        }
         .ppq-btn i {
             font-size: 1.4rem;
         }
@@ -1743,21 +1782,48 @@
         <div class="shape"></div>
     </div>
 
-    <!-- SIGNUP OVERLAY -->
+        <!-- SIGNUP OVERLAY -->
     <div class="signup-overlay" id="signupOverlay">
         <div class="signup-box">
             <h2><i class="fas fa-user-graduate" style="color:#2d7b9e;"></i> ToToZ</h2>
-            <p>Enter your credentials to access your courses</p>
-            <div class="form-group">
-                <label for="usernameInput">Username</label>
-                <input type="text" id="usernameInput" placeholder="Enter username" />
+            
+            <!-- LOGIN FORM -->
+            <div id="loginForm">
+                <p>Enter your credentials to access your courses</p>
+                <div class="form-group">
+                    <label for="usernameInput">Username</label>
+                    <input type="text" id="usernameInput" placeholder="Enter username" />
+                </div>
+                <div class="form-group">
+                    <label for="passwordInput">Password</label>
+                    <input type="password" id="passwordInput" placeholder="Enter password" />
+                </div>
+                <button class="btn-primary" id="signinBtn"><i class="fas fa-sign-in-alt"></i> Sign In</button>
+                <div class="error-msg" id="errorMsg"></div>
+                <p style="margin-top:0.8rem; font-size:0.9rem;">
+                    New user? <a href="#" id="showSignUpLink" style="color:#2d7b9e; font-weight:600;">Sign Up</a>
+                </p>
             </div>
-            <div class="form-group">
-                <label for="passwordInput">Password</label>
-                <input type="password" id="passwordInput" placeholder="Enter password" />
+
+            <!-- SIGN UP / PAYMENT FLOW -->
+            <div id="signupFlow" class="hidden">
+                <p style="font-size:1.1rem; font-weight:600; color:#0a2b4a;">
+                    <i class="fas fa-unlock-alt" style="color:#2d7b9e;"></i> Get Full Access
+                </p>
+                <p style="margin:0.5rem 0 1.2rem 0; color:#3c4d66; line-height:1.6;">
+                    Kindly pay a <strong>$1.05 USD</strong> course fee to unlock unlimited access to notes, audio lectures, videos, and quizzes for your course topics.
+                </p>
+                <a href="https://wa.me/260961252100?text=Hello%20ToToZ%2C%20I%20want%20to%20pay%20%241.05%20for%20course%20access." 
+                target="_blank" class="btn-primary" style="width:100%; justify-content:center; background:#25D366; box-shadow:0 4px 12px rgba(37,211,102,0.4);">
+                    <i class="fab fa-whatsapp"></i> Pay via WhatsApp
+                </a>
+                <p style="margin-top:1rem; font-size:0.85rem; color:#7a8ca0;">
+                    <a href="#" id="backToLoginLink" style="color:#2d7b9e;">← Back to Sign In</a>
+                </p>
+                <div class="hint" style="margin-top:0.5rem; border-top:1px solid #eef2f7; padding-top:0.8rem;">
+                    After payment, we'll send you your login credentials.
+                </div>
             </div>
-            <button class="btn-primary" id="signupBtn"><i class="fas fa-sign-in-alt"></i> Sign In</button>
-            <div class="error-msg" id="errorMsg"></div>
         </div>
     </div>
 
@@ -2405,6 +2471,103 @@
                 ]
             },
 
+        // Lab Science 
+            {
+            
+                id: 'lab_science',
+                name: 'Lab Science',
+                icon: 'fa-flask',
+                year: 3,
+                type: 'preclinical',
+                desc: 'Study gametogene',
+                terms: [
+    {
+        name: 'Term 1',
+        topics: [
+            'Laboratory Diagnosis of Disorders of the Testes',
+            'Laboratory Diagnosis of Non-Infectious Disorders Male',
+            'Laboratory Investigations for Infectious Diseases of the Male Reproductive System Part 2',
+            'Laboratory Investigations for Infectious Diseases of the Male Reproductive System',
+            'Laboratory Diagnosis of Disorders of the Pituitary Gland',
+            'Laboratory Diagnosis of Non-Infectious Diseases of Female Reproductive System',
+            'Principles of Hormonal Assays'
+        ]
+    },
+    {
+        name: 'Term 2',
+        topics: [
+            'Examination of the Synovial Fluid',
+            'Laboratory Investigations for Non-Infectious Diseases of the Skin',
+            'Laboratory Investigations in Non-Infectious Diseases of the Musculoskeletal System',
+            'Parasitic Infections of the CNS',
+            'The Cerebral Spinal Fluid Examination',
+            'Laboratory Investigation of Infectious Diseases of the Skin',
+            'Laboratory Investigations for Bacterial and Fungal Infections'
+        ]
+    },
+    {
+        name: 'Term 3',
+        topics: [
+            'Laboratory Investigations for Bacterial and Fungal Infections Part 2',
+            'Laboratory Investigations for Infections of the Musculoskeletal System',
+            'Malignant and Hemorrhagic Conditions of the CNS',
+            'Non-Infectious and Degenerative CNS Conditions',
+            'Reticuloendothelial System and Parasitic Infections Laboratory'
+        ]
+    },
+    {
+    name: 'Lab Science 3rd Year Past Papers',
+    topics: [
+        '## Test 1',
+        '2015 lab science test 1',
+        '2016 lab science test 1',
+        '2017 lab science test 1',
+        '2019 lab_science_term_1',
+        '2020 Lab science test 1',
+        '2021 lab science T1',
+        '2022 Lab Science Test 1 -',
+        '2023 Lab Science Test 1',
+        'Lab Science 1',
+        'LAB SCIENCE TEST 1 COLLECTION',
+        '## Test 2',
+        '2013 lab science Test 2',
+        '2014 Lab Science Term 2 Past Papers',
+        '2017 lab_science_term_2',
+        '2018 lab_science_term_2',
+        '2019 lab_science_term_2',
+        '2020 Lab Science test 2',
+        '2021 Lab Science test 2 (2)',
+        '2021 Lab science Test 2',
+        '2022 lab science test 2',
+        '2023 Lab Science Test 2',
+        'Lab science possible essay questions term 2',
+        'lab science test 2',
+        '## Test 3',
+        '2015 lab_science_term_3',
+        '2016 lab_science_term_3',
+        '2017 lab science term 2',
+        '2017 lab_science_term_3',
+        '2018 Lab_Science_term_3',
+        '2019 lab_science_term_3',
+        '2020 Lab science term 2',
+        '2021 lab science test 3  ✅',
+        '2022 test 3 lab science ✅',
+        '2023 Lab Science Test 3 ✅',
+        'Lab Science Term 3 possible essays',
+        '## Sessional',
+        '2017 Lab Science sessional',
+        '2018 lab Science Differed Sessional',
+        '2018 Lab Science Sessional',
+        '2019 Lab Science deffered sessional',
+        '2019 Lab Science Sessional',
+        '2020 lab science sessional',
+        '2021 Lab Science Sessional ✅',
+        '2021 lab science sup',
+        '2022 and 2020 differed sessional lab science'
+    ]
+}
+]
+            },
             // physioogy 3dr year 
             {
                 id: 'physiology_3',
@@ -2423,7 +2586,7 @@
                         ] },
                     { name: 'Term 3',
                         topics: ['Renal Function, Anatomy and Blood Flow', 'Mechanism of Urine Formation',
-                            'Concentration, Dilution and Acidification'
+                            'Concentration, Dilution and Acidification', 'Acid-Base Balance', 'Physiology of Micturation'
                         ] }
                 ]
             },
@@ -3443,6 +3606,14 @@
             'Therapeutics week 3 Test ✅': 'therap-3/past-papers/term_3_test.html',
             '2024 Therapeutics (MBS 330) Test 1': 'https://drive.google.com/file/d/1lbLpcjW1XfVZ5OWeYVUWqWaK7YS4c0D8/view?usp=drive_link',
             '2024 Therapeutics MBS330 test 2 ✅': 'therap-3/past-papers/2024_therap3_T2.html',
+
+
+            // 3rd Year lab science 
+            '2023 Lab Science Test 3 ✅': 'lab_science3/papers/2023-test3.html',
+            '2022 test 3 lab science ✅': 'lab_science3/papers/2022-test3.html',
+            '2021 lab science test 3  ✅': 'lab_science3/papers/2021-test3.html',
+            '2021 Lab Science Sessional ✅': 'lab_science3/papers/2021-sessional.html',
+
         }
 
         const quizLinks = {
@@ -3452,6 +3623,8 @@
             'Drugs acting on Cough': 'therap-2/quiz/cough_quiz.html',
             'Use of Steroids in Respiratory Disorders': 'therap-2/quiz/antifugal_quiz.html',
             'Anti-fungal': 'therap-2/quiz/antifugal_quiz.html',
+
+
 
             // 3r year biochem
             'Nucleotide Metabolism': 'biochem-3rd-year/nucleotide-quiz.html',
@@ -3464,6 +3637,51 @@
 
 
         const pdfLinks = {
+
+
+
+            '2015 lab science test 1': 'https://drive.google.com/file/d/19zMmuuOpNKThNcEJcIVLbKOe3p_c8jNA/view?usp=drive_link',
+            '2016 lab science test 1': '',
+            '2017 lab science test 1': '',
+            '2019 lab_science_term_1': '',
+            '2020 Lab science test 1': '',
+            '2021 lab science T1': '',
+            '2022 Lab Science Test 1 -': '',
+            '2023 Lab Science Test 1': '',
+            'Lab Science 1': '',
+            'LAB SCIENCE TEST 1 COLLECTION': '',
+            '2013 lab science Test 2': '',
+            '2014 Lab Science Term 2 Past Papers': '',
+            '2017 lab_science_term_2': '',
+            '2018 lab_science_term_2': '',
+            '2019 lab_science_term_2': '',
+            '2020 Lab Science test 2': '',
+            '2021 Lab Science test 2 ': '',
+            '2021 Lab science Test 2': '',
+            '2022 lab science test 2': '',
+            '2023 Lab Science Test 2': '',
+            'Lab science possible essay questions term 2': '',
+            'lab science test 2': '',
+            '2015 lab_science_term_3': 'https://drive.google.com/file/d/1SKD8C72JNlXjUZfWmEglTkg6xZnZpOfp/view?usp=drive_link',
+            '2016 lab_science_term_3': 'https://drive.google.com/file/d/1sNN67o47Klt8ppQ75EKqJtASvfT9v0wF/view?usp=drive_link',
+            '2017 lab science term 2': 'https://drive.google.com/file/d/1USc8DqRsbR3bJyBwVFh9jrTDMTnImLQH/view?usp=drive_link',
+            '2017 lab_science_term_3': 'https://drive.google.com/file/d/1Bbgbm-mnqsZkUhmmVeZMH8NWzGICHszb/view?usp=drive_link',
+            '2018 Lab_Science_term_3': 'https://drive.google.com/file/d/1uUULIRlH_UdpnqUX8Hl5ql8i7RYLes1L/view?usp=drive_link',
+            '2019 lab_science_term_3': 'https://drive.google.com/file/d/12dVoteZwIkqZM9Mk3giZX_s4VmI_Yh-c/view?usp=drive_link',
+            '2020 Lab science term 2': 'https://drive.google.com/file/d/1S4olfpmKjrRgEIPCsNj26YXys7hTrJ7O/view?usp=drive_link',
+            '2021 lab science test 3  ✅': 'https://drive.google.com/file/d/1vwo_K4auI4aUmlprdCr7ORhRa2zLC2Jr/view?usp=drive_link',
+            '2022 test 3 lab science ✅': 'https://drive.google.com/file/d/1kfiVT0UNLcL6nIXIw1nsLQ03iDTd_7zd/view?usp=drive_link',
+            '2023 Lab Science Test 3 ✅': 'https://drive.google.com/file/d/1d60XWXisMRPpkqA2lat7PK66YtpWY4rW/view?usp=drive_link',
+            'Lab Science Term 3 possible essays': 'https://drive.google.com/file/d/19GeZA7JXFnqzjmTBF-lER6g6PI-HNf3j/view?usp=drive_link',
+            '2017 Lab Science sessional': 'https://drive.google.com/file/d/161-ocbFFtyIyfLJ4WeJxKtY2WuE048_0/view?usp=drive_link',
+            '2018 lab Science Differed Sessional': 'https://drive.google.com/file/d/1gveMzYJpOYBxCu_fkfvQq47Mkq_rhn5x/view?usp=drive_link',
+            '2018 Lab Science Sessional': 'https://drive.google.com/file/d/1SeKFZdxYnt7KRSu1lNMKZoanQye-M7_m/view?usp=drive_link',
+            '2019 Lab Science deffered sessional': 'https://drive.google.com/file/d/158IQFw_DFD8GMhYBtW60jE7z8skQHomn/view?usp=drive_link',
+            '2019 Lab Science Sessional': 'https://drive.google.com/file/d/1fyHjWVQcLo8DzCH1WRdzaQBWUPhoEuFu/view?usp=drive_link',
+            '2020 lab science sessional': 'https://drive.google.com/file/d/15OWMwGGgedUzxVyVdbK5fQSPsOohzsc8/view?usp=drive_link',
+            '2021 Lab Science Sessional ✅': 'https://drive.google.com/file/d/1pf3hNfeDPsYZV_Nqg-xRKRJvQcl-MuIg/view?usp=drive_link',
+            '2021 lab science sup': 'https://drive.google.com/file/d/1CkJZgAWjLB4iNj9u0pQNl8KNnC101YpF/view?usp=drive_link',
+            '2022 and 2020 differed sessional lab science': 'https://drive.google.com/file/d/1N905aAmUN0TAoeeJucomTfATXnXdScyu/view?usp=drive_link',
 
             // 4th year Public HEalth
             '2020 Test': 'https://drive.google.com/file/d/1KaKOHuD-BhXyCNnyo_ezk1CdE3EAKkD9/view?usp=drive_link',
@@ -4455,6 +4673,29 @@
 
         // ---- AUDIO DATA: maps topic names to an array of audio objects ----
         const audioData = {
+
+            
+            'Mechanism of Urine Formation': [
+                { title: 'Audio Lecture',
+                    url: 'https://drive.google.com/file/d/10mXt_orOdy18XyuIjVDucKmbk2fbcMPY/view?usp=drive_link' },
+            ],
+            'Renal Function, Anatomy and Blood Flow': [
+                { title: 'Audio Lecture',
+                    url: 'https://drive.google.com/file/d/1ZKYYCNky8AOZw8G-tDMBZG7aFvdhJUse/view?usp=drive_link' },
+            ],
+            'Concentration, Dilution and Acidification': [
+                { title: 'Audio Lecture',
+                    url: 'https://drive.google.com/file/d/160ARR6zy0wzjlI1H4pBhnOlZkmQ7IBmP/view?usp=drive_link' },
+            ],
+            'Acid-Base Balance': [
+                { title: 'Audio Lecture',
+                    url: 'https://drive.google.com/file/d/1u8SStbNjXHRadq2wXhF8tJ5MIFIceom2/view?usp=drive_link' },
+            ],
+            'Physiology of Micturation': [
+                { title: 'Audio Lecture',
+                    url: 'https://drive.google.com/file/d/1BGzU2XfZ-dTtIzSWgf1abftBF4Wx4FGV/view?usp=drive_link' },
+            ],
+
             // 2nd Year Therapeutics
             'Common Terminologies Used in Pharmacology': [
                 { title: 'Pharmacology Terms – Audio Lecture',
@@ -4602,6 +4843,65 @@
 
         // ---- DOCUMENT DATA: maps topic names to an array of document objects ----
         const docData = {
+
+
+            'Laboratory Diagnosis of Disorders of the Testes': [
+    { title: 'Class Notes', url: 'https://drive.google.com/file/d/1IFRnbBDp3BttaLd8m9kIYjzx9v4OnURL/view?usp=drive_link' },
+],
+'Laboratory Diagnosis of Non-Infectious Disorders Male': [
+    { title: 'Class Notes', url: 'https://drive.google.com/file/d/1S6w8Py8leXy24D_nG3Pa13eoxia5a4Ux/view?usp=drive_link' },
+],
+'Laboratory Investigations for Infectious Diseases of the Male Reproductive System Part 2': [
+    { title: 'Class Notes', url: 'https://drive.google.com/file/d/1L-PKUcII0Zg0MpwG1puZZkoZnIm3aVSe/view?usp=drive_link' },
+],
+'Laboratory Investigations for Infectious Diseases of the Male Reproductive System': [
+    { title: 'Class Notes', url: '' },
+],
+'Laboratory Diagnosis of Disorders of the Pituitary Gland': [
+    { title: 'Class Notes', url: 'https://drive.google.com/file/d/1s55BP2NDdvG1e1TZHwuJHqGTjE5CRWE4/view?usp=drive_link' },
+],
+'Laboratory Diagnosis of Non-Infectious Diseases of Female Reproductive System': [
+    { title: 'Class Notes', url: 'https://drive.google.com/file/d/1Elm2CLN8rKJaMtKXR6b-UbtmixM6ZlKi/view?usp=drive_link' },
+],
+'Principles of Hormonal Assays': [
+    { title: 'Class Notes', url: 'https://drive.google.com/file/d/14Nwgm206iclZQS5ZFIKTsBLSnNoqznAp/view?usp=drive_link' },
+],
+'Examination of the Synovial Fluid': [
+    { title: 'Class Notes', url: 'https://drive.google.com/file/d/1wKAHl4KcuCUeb73nvDzZ3tYNzPrzrUX9/view?usp=drive_link' },
+],
+'Laboratory Investigations for Non-Infectious Diseases of the Skin': [
+    { title: 'Class Notes', url: 'https://drive.google.com/file/d/1hWmVfrjSca_obw1BnRahFRNTQijMmn03/view?usp=drive_link' },
+],
+'Laboratory Investigations in Non-Infectious Diseases of the Musculoskeletal System': [
+    { title: 'Class Notes', url: 'https://drive.google.com/file/d/1tg_VV0RCgW2SJWd7ZM-ZBl9ffEl50Ycg/view?usp=drive_link' },
+],
+'Parasitic Infections of the CNS': [
+    { title: 'Class Notes', url: 'https://drive.google.com/file/d/10Ge2d2MXtC8nN0cmNn1nReM6CX417ifh/view?usp=drive_link' },
+],
+'The Cerebral Spinal Fluid Examination': [
+    { title: 'Class Notes', url: 'https://drive.google.com/file/d/1_SFpeQXWm9Z5b7l-2HZ_GqmuIII1E-et/view?usp=drive_link' },
+],
+'Laboratory Investigation of Infectious Diseases of the Skin': [
+    { title: 'Class Notes', url: 'https://docs.google.com/presentation/d/1v3qrfJLZzPNv1_bwTpQNkg1Dy4lFFivr/edit?usp=drive_link&ouid=110700472908024825820&rtpof=true&sd=true' },
+],
+'Laboratory Investigations for Bacterial and Fungal Infections': [
+    { title: 'Class Notes', url: 'https://docs.google.com/presentation/d/1J1-9NlSMCMkoIOwYVlwZ4TxYYiaUbfC5/edit?usp=drive_link&ouid=110700472908024825820&rtpof=true&sd=true' },
+],
+'Laboratory Investigations for Bacterial and Fungal Infections Part 2': [
+    { title: 'Class Notes', url: '' },
+],
+'Laboratory Investigations for Infections of the Musculoskeletal System': [
+    { title: 'Class Notes', url: 'https://drive.google.com/file/d/12QNmO0d_v7soJVHSsgQ49IylxMjmhReQ/view?usp=drive_link' },
+],
+'Malignant and Hemorrhagic Conditions of the CNS': [
+    { title: 'Class Notes', url: 'https://drive.google.com/file/d/1FZJVHFdHJO3JQ3CnUxiSqjEG610vnInl/view?usp=drive_link' },
+],
+'Non-Infectious and Degenerative CNS Conditions': [
+    { title: 'Class Notes', url: 'https://drive.google.com/file/d/13SjKPmqkNF7TQQeAjCFOc8lQGWXnrp_y/view?usp=drive_link' },
+],
+'Reticuloendothelial System and Parasitic Infections Laboratory': [
+    { title: 'Class Notes', url: 'https://drive.google.com/file/d/1fg9WBojhFBGx6WV6H4xWIWJnVpSVZ_8Z/view?usp=drive_link' },
+],
 
             // 3rd Year anatomy 
             'Pelvic Osteology': [
@@ -5530,6 +5830,14 @@
                 { title: 'Class Notes',
                     url: 'https://drive.google.com/file/d/1pUtNVOTUzyb8HuSMoNWBRC1YAXDGajMu/view?usp=drive_link' },
             ],
+            'Acid-Base Balance': [
+                { title: 'Class Notes',
+                    url: 'https://drive.google.com/file/d/1nO_y4owbkuI-Gs19LSi98yGosS_b6XZ_/view?usp=drive_link' },
+            ],
+            'Physiology of Micturation': [
+                { title: 'Class Notes',
+                    url: 'https://drive.google.com/file/d/1Usw4T_sYulovjFUObY4Uiw38sGAyCe0O/view?usp=drive_link' },
+            ],
 
             // ========== 3rd Year Biochemistry ==========
             'Overview of metabolism (metabolic pathways)': [
@@ -6042,7 +6350,7 @@
             currentTopicIndex = null;
         }
 
-        document.getElementById('signupBtn').addEventListener('click', function() {
+        document.getElementById('signinBtn').addEventListener('click', function() {
             const username = document.getElementById('usernameInput').value.trim();
             const password = document.getElementById('passwordInput').value.trim();
             const errorMsg = document.getElementById('errorMsg');
@@ -6073,6 +6381,28 @@
                 errorMsg.textContent = 'Invalid username or password. Please try again.';
             }
         });
+
+        // --- Sign Up / Payment Flow ---
+const loginForm = document.getElementById('loginForm');
+const signupFlow = document.getElementById('signupFlow');
+const showSignUpLink = document.getElementById('showSignUpLink');
+const backToLoginLink = document.getElementById('backToLoginLink');
+
+// Show signup flow
+showSignUpLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    loginForm.classList.add('hidden');
+    signupFlow.classList.add('visible');
+    signupFlow.classList.remove('hidden');
+});
+
+// Back to login
+backToLoginLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    loginForm.classList.remove('hidden');
+    signupFlow.classList.remove('visible');
+    signupFlow.classList.add('hidden');
+});
 
         document.querySelectorAll('.site-btn').forEach(btn => {
             btn.addEventListener('click', function() {
@@ -6328,9 +6658,14 @@
                     `<h5><button class="back-btn" onclick="selectTerm('${courseId}', null)"><i class="fas fa-arrow-left"></i></button> ${term.name} – Topics</h5>`;
                 html += `<div class="topic-list">`;
                 term.topics.forEach((topic, j) => {
-                    html +=
-                        `<span class="topic-item" onclick="selectTopic('${courseId}', ${termIdx}, ${j})">${topic}</span>`;
-                });
+    if (topic.startsWith('## ')) {
+        // This is a header — render as a styled heading, NOT clickable
+        const headerText = topic.replace('## ', '');
+        html += `<div class="topic-header">${headerText}</div>`;
+    } else {
+        html += `<span class="topic-item" onclick="selectTopic('${courseId}', ${termIdx}, ${j})">${topic}</span>`;
+    }
+});
                 html += `</div><p class="info-text">${currentUser}, click a topic to access its resources.</p></div>`;
             } else {
                 const term = course.terms[termIdx];

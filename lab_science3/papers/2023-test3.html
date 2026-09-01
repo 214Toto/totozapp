@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2023 Lab Science MBS340 Test 3 | Past Paper</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        /* ─────────── ROOT & RESET ─────────── */
+        :root {
+            --primary: #8b2f3a;
+            --accent: #c0395a;
+            --dark: #1f1a2e;
+            --light: #fcf7f8;
+            --radius: 12px;
+            --shadow: 0 4px 14px rgba(30, 10, 20, 0.07);
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: "Segoe UI", Roboto, system-ui, sans-serif;
+            background: linear-gradient(180deg, #f5f0f2, #ede7ea);
+            color: var(--dark);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: #fff;
+            padding: 0.7rem 0;
+            box-shadow: 0 6px 18px rgba(30, 10, 20, 0.20);
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .logo i {
+            font-size: 1.5rem;
+            color: #f0a0b0;
+        }
+        .logo h1 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            margin: 0;
+            line-height: 1;
+        }
+        .badge {
+            background: rgba(255, 255, 255, 0.13);
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            color: #f0d0d8;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.25rem 2.5rem;
+        }
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1.8rem 0 1rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 3px solid rgba(139, 47, 58, 0.18);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+        .section-title i {
+            font-size: 1.1rem;
+            color: var(--accent);
+        }
+        .section-title .count {
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0.05rem 0.7rem;
+        }
+        .section-subtitle {
+            color: #5a4a52;
+            font-size: 0.92rem;
+            margin-bottom: 1.2rem;
+        }
+        .section-panel {
+            display: none;
+        }
+        .section-panel.active {
+            display: block;
+        }
+        .scroll-target {
+            scroll-margin-top: 90px;
+        }
+
+        /* Tab navigation */
+        .tab-nav {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin: 1rem 0 1.5rem;
+        }
+        .tab-btn {
+            background: #ede5e8;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--dark);
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .tab-btn:hover {
+            background: #dacfd4;
+        }
+        .tab-btn.active {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 4px 10px rgba(139, 47, 58, 0.25);
+        }
+        .tab-btn i {
+            font-size: 0.9rem;
+        }
+        .tab-btn .tab-count {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 40px;
+            padding: 0.05rem 0.6rem;
+            font-size: 0.7rem;
+        }
+        .tab-btn.active .tab-count {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        /* MCQ cards */
+        .question {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.1rem 1.1rem 0.1rem 1.1rem;
+            margin-bottom: 1.1rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(139, 47, 58, 0.06);
+        }
+        .question:hover {
+            box-shadow: 0 6px 22px rgba(30, 10, 20, 0.07);
+        }
+        .question p {
+            font-weight: 600;
+            font-size: 0.97rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            line-height: 1.5;
+        }
+        .question .q-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            line-height: 1.6;
+            margin-right: 0.4rem;
+        }
+        .options label {
+            display: block;
+            background: #faf7f8;
+            border: 1px solid #e4dce0;
+            border-radius: 8px;
+            padding: 0.4rem 0.85rem;
+            margin-top: 0.4rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-weight: 450;
+            font-size: 0.93rem;
+        }
+        .options label:hover {
+            background: #f0e8ec;
+            border-color: var(--accent);
+        }
+        .options input[type="radio"] {
+            margin-right: 0.5rem;
+            accent-color: var(--primary);
+            transform: scale(1.05);
+        }
+        .question-feedback {
+            margin-top: 0.8rem;
+            padding: 0.3rem 0 0.1rem 0;
+            border-top: 1px dashed #e0d5da;
+        }
+        .answer-block strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--primary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .answer-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .answer-item {
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid #e8e0e4;
+            background: #ffffff;
+            font-weight: 500;
+            font-size: 0.88rem;
+        }
+        .answer-correct {
+            background: #ebfaf3;
+            border-color: #b5e6cc;
+            color: #065f46;
+        }
+        .answer-wrong {
+            background: #fdeeef;
+            border-color: #f7b5b5;
+            color: #8f1a2e;
+        }
+        .user-choice {
+            outline: 2px dashed rgba(0, 0, 0, 0.06);
+        }
+        .explanation {
+            margin-top: 6px;
+            padding: 7px 12px;
+            border-radius: 8px;
+            background: #f5edf0;
+            color: #4a2a35;
+            font-size: 0.89rem;
+            line-height: 1.5;
+            border-left: 4px solid var(--accent);
+        }
+        .explanation.wrong {
+            background: #fdf3f4;
+            color: #6f1a1a;
+            border-left-color: #e07a7a;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.6rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(139, 47, 58, 0.25);
+        }
+        .btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(139, 47, 58, 0.32);
+        }
+        .btn:active {
+            transform: scale(0.96);
+        }
+        .btn i {
+            font-size: 0.9rem;
+        }
+
+        .submit-wrap {
+            text-align: center;
+            margin: 1.5rem 0 2rem;
+        }
+        .result {
+            margin-top: 1.5rem;
+            padding: 1.5rem 1.5rem 1rem;
+            background: #f5edf0;
+            border-radius: var(--radius);
+            text-align: center;
+            display: none;
+            border: 1px solid #dccad2;
+        }
+        .result h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.2rem;
+        }
+        .score {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0.2rem 0 0.4rem;
+        }
+
+        /* Essay cards */
+        .essay-card {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(139, 47, 58, 0.06);
+        }
+        .essay-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 0 0 0.5rem 0;
+            line-height: 1.5;
+        }
+        .essay-card .sub {
+            font-weight: 600;
+            margin-top: 0.5rem;
+            color: var(--primary);
+        }
+        .essay-actions {
+            margin-top: 0.8rem;
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .essay-answers {
+            display: none;
+            margin-top: 1rem;
+            background: #f5edf0;
+            border-radius: 8px;
+            padding: 1rem 1.2rem;
+            border: 1px solid #dccad2;
+            color: var(--dark);
+        }
+        .essay-answers.visible {
+            display: block;
+            animation: fadeSlide 0.25s ease;
+        }
+        .essay-answers h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: var(--primary);
+            margin: 0 0 0.5rem 0;
+        }
+        .essay-answers p,
+        .essay-answers li {
+            font-size: 0.94rem;
+            line-height: 1.6;
+        }
+        .essay-answers ul {
+            padding-left: 1.2rem;
+            margin: 0.3rem 0 0.5rem;
+        }
+        .essay-answers .diagram-note {
+            background: #faf5f7;
+            border: 1px dashed var(--accent);
+            border-radius: 6px;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem 0;
+            font-style: italic;
+            color: #5a3a44;
+        }
+        @keyframes fadeSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(-6px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 700px) {
+            body {
+                padding-top: 72px;
+            }
+            .logo h1 {
+                font-size: 0.95rem;
+            }
+            .header-inner {
+                padding: 0 1rem;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.3rem;
+            }
+            .badge {
+                align-self: flex-start;
+            }
+            .question {
+                padding: 0.9rem 0.9rem 0.1rem 0.9rem;
+            }
+            .section-title {
+                font-size: 1.1rem;
+            }
+            .score {
+                font-size: 2.2rem;
+            }
+            .btn {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.85rem;
+            }
+            .tab-btn {
+                padding: 0.4rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+        .text-muted {
+            color: #5a4a52;
+            font-size: 0.9rem;
+        }
+        .mt-1 {
+            margin-top: 0.8rem;
+        }
+        .hidden {
+            display: none !important;
+        }
+        .small-note {
+            font-size: 0.8rem;
+            color: #6a5a62;
+            margin-top: 0.3rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <i class="fas fa-microscope"></i>
+                <h1>2023 Lab Science MBS340 Test 3</h1>
+            </div>
+            <span class="badge"><i class="fas fa-flask"></i> &nbsp;MCQ + Essay</span>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- Tab Navigation -->
+            <div class="tab-nav">
+                <button class="tab-btn active" data-tab="tab-mcq"><i class="fas fa-list-ul"></i> MCQs <span class="tab-count">20</span></button>
+                <button class="tab-btn" data-tab="tab-sectionB"><i class="fas fa-pen-fancy"></i> Section B <span class="tab-count">5</span></button>
+            </div>
+
+            <!-- ─── TAB 1: MCQs ─── -->
+            <div class="section-panel active" id="tab-mcq">
+                <div class="section-title scroll-target">
+                    <i class="fas fa-list-ul"></i> Multiple Choice Questions
+                    <span class="count">20 marks</span>
+                </div>
+                <p class="section-subtitle">Choose the best option for each question (1 mark each).</p>
+                <div id="mcqContainer"></div>
+                <div class="submit-wrap">
+                    <button type="button" class="btn" onclick="submitMCQs()">
+                        <i class="fas fa-check-circle"></i> Submit MCQs
+                    </button>
+                </div>
+                <div class="result" id="mcqResult">
+                    <h3><i class="fas fa-chart-simple"></i> MCQ Score</h3>
+                    <div class="score" id="mcqScore">0 / 20</div>
+                </div>
+            </div>
+
+            <!-- ─── TAB 2: Section B ─── -->
+            <div class="section-panel" id="tab-sectionB">
+                <div class="section-title scroll-target">
+                    <i class="fas fa-pen-fancy"></i> Section B – Short Notes
+                    <span class="count">5 questions (answer 3)</span>
+                </div>
+                <p class="section-subtitle">Click "Show Model Answer" to reveal suggested responses.</p>
+
+                <!-- B1 -->
+                <div class="essay-card">
+                    <h3>B1. With the aid of a diagram, describe the stages of viral pathogenesis. [10 Marks]</h3>
+                    <div class="essay-actions">
+                        <button class="btn" onclick="toggleEssay('essayB1')"><i class="fas fa-paper-plane"></i> Show Model Answer</button>
+                    </div>
+                    <div class="essay-answers" id="essayB1">
+                        <h4>Model Answer</h4>
+                        <div class="diagram-note">
+                            <i class="fas fa-project-diagram"></i> <strong>Diagram:</strong> A flowchart showing: Entry → Primary replication → Viral spread (viremia) → Secondary replication in target organs → Immune response → Clearance or persistence → Disease outcome.
+                        </div>
+                        <p><strong>Stages of viral pathogenesis:</strong></p>
+                        <ul>
+                            <li><strong>Entry:</strong> Virus enters the host through portals (respiratory, GI, skin, etc.)</li>
+                            <li><strong>Primary replication:</strong> Initial replication at the site of entry (e.g., respiratory epithelium for influenza).</li>
+                            <li><strong>Local spread &amp; viremia:</strong> Virus spreads locally or via blood/lymphatics to secondary sites.</li>
+                            <li><strong>Secondary replication:</strong> Replication in target organs (e.g., liver for hepatitis viruses, CNS for poliovirus).</li>
+                            <li><strong>Immune response:</strong> Host immune system responds — innate (IFN, NK cells) then adaptive (antibodies, CTLs).</li>
+                            <li><strong>Viral clearance or persistence:</strong> Virus is cleared (e.g., influenza) or persists (e.g., HIV, HSV).</li>
+                            <li><strong>Tissue damage &amp; disease:</strong> Direct cytopathic effects or immunopathology cause clinical disease.</li>
+                            <li><strong>Outcome:</strong> Recovery, chronic infection, or death.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- B2 -->
+                <div class="essay-card">
+                    <h3>B2. Describe briefly the condition called Polycythemia vera. List the laboratory investigations you would request to make a diagnosis. Indicate the positive findings confirming the diagnosis. [10 Marks]</h3>
+                    <div class="essay-actions">
+                        <button class="btn" onclick="toggleEssay('essayB2')"><i class="fas fa-paper-plane"></i> Show Model Answer</button>
+                    </div>
+                    <div class="essay-answers" id="essayB2">
+                        <h4>Model Answer</h4>
+                        <p><strong>Polycythemia vera (PV):</strong> A myeloproliferative neoplasm characterized by increased red cell mass, often with elevated white cells and platelets. It is associated with a JAK2 V617F mutation in most cases.</p>
+                        <p><strong>Laboratory investigations:</strong></p>
+                        <ul>
+                            <li><strong>Full blood count (FBC):</strong> Elevated Hb, Hct, RBC count.</li>
+                            <li><strong>Red cell mass:</strong> Increased (gold standard).</li>
+                            <li><strong>Serum erythropoietin (EPO):</strong> Low or inappropriately normal.</li>
+                            <li><strong>JAK2 V617F mutation analysis:</strong> Positive in &gt;95% of PV cases.</li>
+                            <li><strong>Bone marrow biopsy:</strong> Hypercellular with panmyelosis.</li>
+                            <li><strong>Serum vitamin B12 &amp; B12 binding capacity:</strong> Often elevated.</li>
+                        </ul>
+                        <p><strong>Positive findings confirming diagnosis:</strong></p>
+                        <ul>
+                            <li>Elevated Hb (&gt;16.5 g/dL in men, &gt;16.0 g/dL in women) or Hct (&gt;49% in men, &gt;48% in women).</li>
+                            <li>Presence of JAK2 V617F mutation.</li>
+                            <li>Low serum EPO level.</li>
+                            <li>Hypercellular bone marrow with erythroid, granulocytic, and megakaryocytic hyperplasia.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- B3 -->
+                <div class="essay-card">
+                    <h3>B3. Explain the morphology, clinical features and laboratory diagnosis of <em>Neisseria meningitidis</em>. [10 Marks]</h3>
+                    <div class="essay-actions">
+                        <button class="btn" onclick="toggleEssay('essayB3')"><i class="fas fa-paper-plane"></i> Show Model Answer</button>
+                    </div>
+                    <div class="essay-answers" id="essayB3">
+                        <h4>Model Answer</h4>
+                        <p><strong>Morphology:</strong> <em>Neisseria meningitidis</em> is a Gram-negative diplococcus (kidney-bean shaped), capsulated, and often found intracellularly in CSF. It is oxidase-positive and catalase-positive.</p>
+                        <p><strong>Clinical features:</strong></p>
+                        <ul>
+                            <li><strong>Meningitis:</strong> Fever, headache, neck stiffness, photophobia, altered mental status.</li>
+                            <li><strong>Meningococcemia:</strong> Petechial/purpuric rash, hypotension, DIC, adrenal hemorrhage (Waterhouse-Friderichsen syndrome).</li>
+                            <li><strong>Septic arthritis</strong> (less common).</li>
+                            <li><strong>Transmission:</strong> Respiratory droplets; colonizes nasopharynx.</li>
+                        </ul>
+                        <p><strong>Laboratory diagnosis:</strong></p>
+                        <ul>
+                            <li><strong>CSF analysis:</strong> Turbid CSF, elevated WBC (polymorphonuclear predominance), elevated protein, decreased glucose.</li>
+                            <li><strong>Gram stain of CSF:</strong> Gram-negative intracellular diplococci.</li>
+                            <li><strong>Culture:</strong> CSF, blood, or skin lesions. Grow on chocolate agar or blood agar (with CO₂).</li>
+                            <li><strong>Latex agglutination:</strong> Detects capsular antigen in CSF.</li>
+                            <li><strong>PCR:</strong> Rapid detection of meningococcal DNA.</li>
+                            <li><strong>Blood culture:</strong> Positive in bacteremic cases.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- B4 -->
+                <div class="essay-card">
+                    <h3>B4. A patient presents with generalized lymphadenopathy. Define what generalized lymphadenopathy is. How else does lymphadenopathy present? List the investigations that you would request to arrive at the diagnosis of a non-infectious cause of generalized lymphadenopathy. [10 Marks]</h3>
+                    <div class="essay-actions">
+                        <button class="btn" onclick="toggleEssay('essayB4')"><i class="fas fa-paper-plane"></i> Show Model Answer</button>
+                    </div>
+                    <div class="essay-answers" id="essayB4">
+                        <h4>Model Answer</h4>
+                        <p><strong>Generalized lymphadenopathy:</strong> Enlargement of lymph nodes in two or more non-contiguous lymph node groups (e.g., cervical, axillary, and inguinal).</p>
+                        <p><strong>Other presentations of lymphadenopathy:</strong></p>
+                        <ul>
+                            <li><strong>Localized:</strong> Single group of nodes (e.g., cervical only) — often due to local infection.</li>
+                            <li><strong>Regional:</strong> Multiple nodes in one region (e.g., axillary in breast infection).</li>
+                            <li><strong>Generalized:</strong> As defined above, often systemic disease.</li>
+                            <li><strong>Size:</strong> Can be tender (infectious) or non-tender (malignancy).</li>
+                            <li><strong>Consistency:</strong> Soft (infection), firm (lymphoma), or hard/irregular (metastatic).</li>
+                        </ul>
+                        <p><strong>Investigations for non-infectious cause of generalized lymphadenopathy:</strong></p>
+                        <ul>
+                            <li><strong>Full blood count &amp; peripheral smear:</strong> For leukemia/lymphoma.</li>
+                            <li><strong>ESR &amp; CRP:</strong> Inflammatory markers.</li>
+                            <li><strong>Lymph node biopsy (excisional):</strong> Histopathology and immunohistochemistry for lymphoma.</li>
+                            <li><strong>Chest X-ray/CT:</strong> For mediastinal lymphadenopathy (sarcoidosis, lymphoma).</li>
+                            <li><strong>Serum LDH:</strong> Elevated in lymphoma.</li>
+                            <li><strong>Serum ACE:</strong> For sarcoidosis.</li>
+                            <li><strong>Autoimmune screen (ANA, RF):</strong> For connective tissue diseases.</li>
+                            <li><strong>HIV serology:</strong> As HIV can cause generalized lymphadenopathy.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- B5 -->
+                <div class="essay-card">
+                    <h3>B5. What is genetic testing? How is it done? Describe the different techniques for genetic testing. [10 Marks]</h3>
+                    <div class="essay-actions">
+                        <button class="btn" onclick="toggleEssay('essayB5')"><i class="fas fa-paper-plane"></i> Show Model Answer</button>
+                    </div>
+                    <div class="essay-answers" id="essayB5">
+                        <h4>Model Answer</h4>
+                        <p><strong>Genetic testing:</strong> The analysis of DNA, RNA, chromosomes, proteins, or metabolites to detect heritable or acquired mutations, used for diagnosis, prognosis, carrier screening, and pharmacogenetics.</p>
+                        <p><strong>How it is done:</strong> Specimen (blood, saliva, tissue) → DNA extraction → Amplification (PCR) → Analysis using various techniques → Interpretation.</p>
+                        <p><strong>Techniques for genetic testing:</strong></p>
+                        <ul>
+                            <li><strong>PCR (Polymerase Chain Reaction):</strong> Amplifies specific DNA sequences for detection of mutations, used for single-gene disorders.</li>
+                            <li><strong>Sanger sequencing:</strong> Determines nucleotide sequence of a DNA fragment — gold standard for single gene variants.</li>
+                            <li><strong>Next-Generation Sequencing (NGS):</strong> High-throughput sequencing of entire genomes or exomes for multi-gene panels or unknown mutations.</li>
+                            <li><strong>MLPA (Multiplex Ligation-dependent Probe Amplification):</strong> Detects copy number variations (deletions/duplications).</li>
+                            <li><strong>Chromosomal microarray (CMA):</strong> Detects submicroscopic chromosomal gains/losses (CNVs).</li>
+                            <li><strong>Karyotyping:</strong> Visualizes whole chromosomes for aneuploidy and large structural rearrangements.</li>
+                            <li><strong>FISH (Fluorescence In Situ Hybridization):</strong> Uses fluorescent probes to detect specific chromosomal abnormalities.</li>
+                            <li><strong>Southern blotting:</strong> Detects large DNA rearrangements (e.g., trinucleotide repeats).</li>
+                            <li><strong>Mass spectrometry:</strong> For detecting inborn errors of metabolism via metabolite analysis.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="small-note" style="margin-top:1.5rem;padding:0.8rem 1rem;background:#f5edf0;border-radius:8px;">
+                    <i class="fas fa-info-circle" style="color:var(--accent);"></i> Section B: Answer any <strong>3</strong> of the 5 questions. Each question carries 10 marks.
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // ─── TAB SWITCHING ───
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const target = this.dataset.tab;
+                document.querySelectorAll('.section-panel').forEach(p => p.classList.remove('active'));
+                document.getElementById(target).classList.add('active');
+                document.getElementById(target).scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // ─── MCQ DATA (20 questions) ───
+        const mcqData = [{
+            id: 'q1',
+            text: 'Which class of drugs is not associated with destruction of neurons?',
+            options: ['A. Narcotics', 'B. Anticonvulsants', 'C. Antibiotics', 'D. Antidepressants',
+                'E. None of the above'
+            ],
+            correct: 'c',
+            explanation: 'Antibiotics are not typically associated with destruction of neurons. Narcotics, anticonvulsants, and antidepressants can affect neuronal function or cause neurotoxicity in certain contexts.'
+        }, {
+            id: 'q2',
+            text: 'Lecanemab is a new drug in the management of which degenerative disease of the CNS?',
+            options: ['A. Prion diseases', 'B. Motor neuron disease', 'C. Spinocerebellar Ataxia',
+                'D. Alzheimer disease', 'E. All of the above'
+            ],
+            correct: 'd',
+            explanation: 'Lecanemab is a monoclonal antibody targeting amyloid-β plaques, used in the management of Alzheimer disease.'
+        }, {
+            id: 'q3',
+            text: 'Which laboratory test gives a definitive diagnosis of Amyotrophic lateral sclerosis?',
+            options: ['A. 14-3-3-protein in CSF', 'B. EEG', 'C. Genetic testing', 'D. Any of the above',
+                'E. None of the above'
+            ],
+            correct: 'e',
+            explanation: 'ALS is a clinical diagnosis supported by EMG/NCS findings. No single laboratory test provides a definitive diagnosis. Genetic testing can confirm familial cases but not sporadic ALS.'
+        }, {
+            id: 'q4',
+            text: 'One of the following cells is NOT an antigen presenting cell:',
+            options: ['A. Macrophages', 'B. Neutrophils', 'C. Dendritic cells', 'D. B-cells',
+                'E. None of the above'
+            ],
+            correct: 'b',
+            explanation: 'Neutrophils are not antigen presenting cells. Macrophages, dendritic cells, and B-cells are professional APCs.'
+        }, {
+            id: 'q5',
+            text: 'In Hyper reactive malarial splenomegaly, black appearance of the spleen is due to:',
+            options: ['A. Splenic hemorrhage', 'B. Malaria parasite infected red blood cells',
+                'C. Malaria pigment', 'D. B-cells', 'E. None of the above'
+            ],
+            correct: 'c',
+            explanation: 'The black appearance of the spleen in hyper-reactive malarial splenomegaly (HMS) is due to the accumulation of malaria pigment (hemozoin).'
+        }, {
+            id: 'q6',
+            text: 'Raised specific antimalarial antibodies in Tropical Splenomegaly syndrome belong to which class?',
+            options: ['A. Ig M', 'B. Ig E', 'C. Ig A', 'D. Ig G', 'E. None of the above'],
+            correct: 'a',
+            explanation: 'Tropical splenomegaly syndrome (TSS) is characterized by markedly elevated serum IgM levels with high titres of specific antimalarial antibodies.'
+        }, {
+            id: 'q7',
+            text: 'The stain used in sabin-Feldeman dye test is:',
+            options: ['A. Eosin', 'B. Malachite green', 'C. Methylene blue', 'D. Orange G',
+                'E. Any of the above'
+            ],
+            correct: 'c',
+            explanation: 'The Sabin-Feldman dye test (for toxoplasmosis) uses methylene blue as the dye. Live tachyzoites take up the dye, while antibody-coated ones do not.'
+        }, {
+            id: 'q8',
+            text: 'Hypersplenism is characterized by the following EXCEPT:',
+            options: ['A. Anemia', 'B. Always splenomegaly', 'C. Hyper cellularity of the bone marrow',
+                'D. Decreased blood cell count', 'E. None of the above'
+            ],
+            correct: 'b',
+            explanation: 'Hypersplenism is characterized by anemia, hypercellular bone marrow, and decreased blood cell counts. While splenomegaly is common, it is not "always" present, making B the exception.'
+        }, {
+            id: 'q9',
+            text: 'What is the correct finding among Red blood cell Indices in severe form of hereditary spherocytosis?',
+            options: ['A. Mean cell volume is increased', 'B. Mean cell hemoglobin concentration',
+                'C. Red blood cell distribution width is decreased', 'D. any of the above',
+                'E. none of the above'
+            ],
+            correct: 'b',
+            explanation: 'In hereditary spherocytosis, the Mean Cell Hemoglobin Concentration (MCHC) is increased due to cellular dehydration. MCV is normal or slightly decreased, and RDW is increased.'
+        }, {
+            id: 'q10',
+            text: 'In conditions of enhanced red blood cell destruction which one of the following is correct finding?',
+            options: ['A. Increased serum haptoglobin levels', 'B. Decreased urinary urobilinogen levels',
+                'C. Decreased serum haptoglobin levels', 'D. Decreased plasma bilirubin levels',
+                'E. None of the above.'
+            ],
+            correct: 'c',
+            explanation: 'In hemolysis (enhanced RBC destruction), serum haptoglobin levels are decreased (consumed), urinary urobilinogen is increased, and plasma bilirubin is increased.'
+        }, {
+            id: 'q11',
+            text: 'In Myelography the contrast medium is introduced into which space?',
+            options: ['A. Epidural space', 'B. Subarachnoid space', 'C. Subdural space', 'D. Pleural space',
+                'E. None of the above'
+            ],
+            correct: 'b',
+            explanation: 'In myelography, the contrast medium is introduced into the subarachnoid space (via lumbar puncture) to visualize the spinal cord and nerve roots.'
+        }, {
+            id: 'q12',
+            text: 'Listeria monocytogenes is a:',
+            options: ['A. Gram positive diplococci', 'B. Gram negative diplococci',
+                'C. Gram positive bacillus', 'D. Gram negative bacillus'
+            ],
+            correct: 'c',
+            explanation: 'Listeria monocytogenes is a Gram-positive bacillus (rod-shaped bacterium).'
+        }, {
+            id: 'q13',
+            text: 'Which of the following bacteria cannot be grown in the culture medium?',
+            options: ['A. Brucella abortus', 'B. Listeria monocytogenes', 'C. Mycobacterium tuberculosis',
+                'D. Mycobacterium leprae'
+            ],
+            correct: 'd',
+            explanation: 'Mycobacterium leprae cannot be grown in artificial culture media. It is grown in animal models (armadillos) or mouse footpads. The others can be cultured.'
+        }, {
+            id: 'q14',
+            text: 'The tuberculin test reaction is read after:',
+            options: ['A. 14 hours', 'B. 24 hours', 'C. 32 hours', 'D. 48 hours'],
+            correct: 'd',
+            explanation: 'The tuberculin skin test (Mantoux) is read 48-72 hours after injection, with 48 hours being the standard minimum reading time.'
+        }, {
+            id: 'q15',
+            text: 'Which of the following bacteria produces beta hemolysis on blood agar media?',
+            options: ['A. Neisseria meningitidis', 'B. Listeria monocytogenes',
+                'C. Streptococcus pneumoniae', 'D. Mycobacterium leprae'
+            ],
+            correct: 'b',
+            explanation: 'Listeria monocytogenes produces beta-hemolysis (clear zones) on blood agar. N. meningitidis does not, S. pneumoniae produces alpha-hemolysis, and M. leprae cannot be cultured.'
+        }, {
+            id: 'q16',
+            text: 'Regarding CSF findings in a viral infection of the CNS:',
+            options: ['A. The opening pressure is increased.', 'B. Glucose is decreased.',
+                'C. Protein levels are normal.', 'D. Neutrophils predominate.'
+            ],
+            correct: 'a',
+            explanation: 'In viral CNS infections (viral meningitis/encephalitis), opening pressure is often increased, glucose is normal (or slightly decreased), protein is elevated, and lymphocytes predominate (not neutrophils).'
+        }, {
+            id: 'q17',
+            text: 'The following statements on the structure of viruses are correct except?',
+            options: [
+                'A. Enveloped viruses are also referred to as "naked".',
+                'B. A capsid is a protein shell that protects the genetic material.',
+                'C. Viral genome can either be DNA or RNA but never both.',
+                'D. Viruses do not contain biochemical machinery required for their replication.'
+            ],
+            correct: 'a',
+            explanation: 'Enveloped viruses are NOT referred to as "naked". "Naked" viruses are those without a lipid envelope. The other statements are correct.'
+        }, {
+            id: 'q18',
+            text: 'Which of the following is the most significant factor that affects disease progression once a virus infects the host?',
+            options: ['A. The viral dose.', 'B. Host genetics.', 'C. Host immune status.',
+                'D. Site of infection.'
+            ],
+            correct: 'c',
+            explanation: 'Host immune status is the most significant factor determining disease progression. Immunocompromised individuals have worse outcomes. Viral dose, genetics, and site of infection also matter but to a lesser degree.'
+        }, {
+            id: 'q19',
+            text: 'The listed viruses are commonly associated with infection of the CNS leading to paralysis except?',
+            options: ['A. Poliovirus.', 'B. Mumps virus.', 'C. Coxsackieviruses.',
+                'D. Enteroviruses 70 and 71.'
+            ],
+            correct: 'b',
+            explanation: 'Mumps virus typically causes parotitis and aseptic meningitis, but does NOT commonly cause paralysis. Poliovirus, Coxsackieviruses, and Enteroviruses 70/71 can cause paralytic illness.'
+        }, {
+            id: 'q20',
+            text: 'Regarding the rabies virus:',
+            options: ['A. It is a DNA virus.', 'B. Humans are the only known reservoir.',
+                'C. Infection is typically self limiting.', 'D. It has an incubation period of up to 100 days.'
+            ],
+            correct: 'd',
+            explanation: 'Rabies virus is an RNA virus (not DNA), has animal reservoirs (not humans), is almost always fatal once symptoms appear (not self-limiting), and has an incubation period ranging from days to over a year, with up to 100 days being typical.'
+        }];
+
+        // ─── RENDER MCQs ───
+        const mcqContainer = document.getElementById('mcqContainer');
+        let mcqHtml = '<form id="mcqForm">';
+        mcqData.forEach(q => {
+            mcqHtml += `<div class="question" id="mcq-${q.id}">`;
+            mcqHtml += `<p><span class="q-badge">${q.id.replace('q','')}</span> ${q.text}</p>`;
+            mcqHtml += `<div class="options">`;
+            q.options.forEach((opt, idx) => {
+                const val = String.fromCharCode(97 + idx);
+                mcqHtml += `<label><input type="radio" name="${q.id}" value="${val}"> ${opt}</label>`;
+            });
+            mcqHtml += `</div>`;
+            mcqHtml += `<div class="question-feedback" id="mcq-feedback-${q.id}"></div>`;
+            mcqHtml += `</div>`;
+        });
+        mcqHtml += '</form>';
+        mcqContainer.innerHTML = mcqHtml;
+
+        // ─── SUBMIT MCQs ───
+        function submitMCQs() {
+            let earned = 0;
+            const total = mcqData.length;
+
+            mcqData.forEach(q => {
+                const radios = document.querySelectorAll(`#mcqForm input[name="${q.id}"]`);
+                const selected = Array.from(radios).find(r => r.checked);
+                const correct = q.correct;
+                const feedbackEl = document.getElementById(`mcq-feedback-${q.id}`);
+                let html = `<div class="answer-block"><strong>Q${q.id.replace('q','')}</strong><div class="answer-list">`;
+
+                radios.forEach(r => {
+                    const label = r.parentElement;
+                    const text = label ? label.textContent.trim() : r.value;
+                    const classes = ['answer-item'];
+                    if (r.value === correct) classes.push('answer-correct');
+                    if (r.checked && r.value !== correct) classes.push('answer-wrong', 'user-choice');
+                    if (r.checked && r.value === correct) classes.push('user-choice');
+                    html += `<div class="${classes.join(' ')}">${text}${r.checked ? ' ◀' : ''}</div>`;
+                });
+                html += `</div>`;
+                const correctRadio = Array.from(radios).find(rr => rr.value === correct);
+                const correctText = correctRadio ? correctRadio.parentElement.textContent.trim() : correct;
+                let isCorrect = false;
+                if (selected && selected.value === correct) {
+                    earned += 1;
+                    isCorrect = true;
+                }
+                const status = isCorrect ? '✅ Correct' : '❌ Incorrect';
+                const statusClass = isCorrect ? '' : 'wrong';
+                html += `<div class="explanation ${statusClass}">${status}. Correct answer: <strong>${correctText}</strong>. ${q.explanation}</div>`;
+                html += `</div>`;
+                feedbackEl.innerHTML = html;
+            });
+
+            document.querySelectorAll('#mcqForm input[type="radio"]').forEach(i => i.disabled = true);
+            document.getElementById('mcqResult').style.display = 'block';
+            document.getElementById('mcqScore').innerText = `${earned} / ${total}`;
+        }
+
+        // ─── ESSAY TOGGLE ───
+        function toggleEssay(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.classList.toggle('visible');
+                if (el.classList.contains('visible')) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        }
+
+        // ─── KEYBOARD SUPPORT ───
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    btn.click();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
