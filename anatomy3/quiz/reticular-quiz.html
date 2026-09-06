@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reticular Formation Quiz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        /* ─────────── ROOT & RESET ─────────── */
+        :root {
+            --primary: #1a5276;
+            --accent: #5dade2;
+            --dark: #17252a;
+            --light: #f8f9fa;
+            --radius: 12px;
+            --shadow: 0 4px 14px rgba(18, 38, 63, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Roboto, system-ui, sans-serif;
+            background: linear-gradient(180deg, #f5f7fb, #eef2f7);
+            color: var(--dark);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--primary), #0e2a3f);
+            color: #fff;
+            padding: 0.8rem 0;
+            box-shadow: 0 6px 18px rgba(11, 36, 36, 0.18);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .logo i {
+            font-size: 1.6rem;
+            color: var(--accent);
+        }
+        .logo h1 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 0.25rem 1rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            color: #d4e8f0;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0.3rem;
+            flex-wrap: wrap;
+        }
+        .nav-tabs .tab-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: none;
+            color: #d4e8f0;
+            padding: 0.3rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .nav-tabs .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #fff;
+        }
+        .nav-tabs .tab-btn.active {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 1.25rem 2.5rem;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1.8rem 0 1rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 3px solid rgba(26, 82, 118, 0.20);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+        .section-title i {
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+        .section-title .count {
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0.05rem 0.7rem;
+        }
+
+        .section-subtitle {
+            color: #5f7a7a;
+            font-size: 0.92rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .section-panel {
+            display: block;
+        }
+        .section-panel.hidden {
+            display: none;
+        }
+
+        /* ─────────── MCQ CARDS ─────────── */
+        .question {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.2rem 1.2rem 0.2rem 1.2rem;
+            margin-bottom: 1.2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(26, 82, 118, 0.06);
+            transition: box-shadow 0.2s;
+        }
+        .question:hover {
+            box-shadow: 0 6px 22px rgba(18, 38, 63, 0.07);
+        }
+        .question p {
+            font-weight: 600;
+            font-size: 0.98rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        .question .q-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            line-height: 1.6;
+            margin-right: 0.4rem;
+        }
+
+        .options label {
+            display: block;
+            background: #fafcfd;
+            border: 1px solid #e0e8ef;
+            border-radius: 8px;
+            padding: 0.45rem 0.9rem;
+            margin-top: 0.45rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-weight: 450;
+            font-size: 0.94rem;
+        }
+        .options label:hover {
+            background: #e8f0f5;
+            border-color: var(--accent);
+        }
+        .options input[type="radio"] {
+            margin-right: 0.5rem;
+            accent-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .question-feedback {
+            margin-top: 0.9rem;
+            padding: 0.4rem 0 0.1rem 0;
+            border-top: 1px dashed #dce6ed;
+        }
+        .answer-block strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--primary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .answer-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .answer-item {
+            padding: 5px 10px;
+            border-radius: 6px;
+            border: 1px solid #e6eef3;
+            background: #ffffff;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .answer-correct {
+            background: #ecfdf5;
+            border-color: #bbf7d0;
+            color: #065f46;
+        }
+        .answer-wrong {
+            background: #fff1f2;
+            border-color: #fca5a5;
+            color: #9f1239;
+        }
+        .user-choice {
+            outline: 2px dashed rgba(0, 0, 0, 0.06);
+        }
+        .explanation {
+            margin-top: 6px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            background: #f1f6fa;
+            color: #1a3a4f;
+            font-size: 0.92rem;
+            line-height: 1.6;
+            border-left: 4px solid var(--accent);
+        }
+        .explanation.wrong {
+            background: #fff5f5;
+            color: #7f1d1d;
+            border-left-color: #f87171;
+        }
+
+        /* ─────────── BUTTONS ─────────── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.6rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(26, 82, 118, 0.22);
+        }
+        .btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(26, 82, 118, 0.30);
+        }
+        .btn:active {
+            transform: scale(0.96);
+        }
+        .btn i {
+            font-size: 0.9rem;
+        }
+
+        .submit-wrap,
+        .tf-submit-wrap {
+            text-align: center;
+            margin: 1.5rem 0 2rem;
+        }
+
+        /* ─────────── RESULT BOX ─────────── */
+        .result,
+        .tf-result {
+            margin-top: 1.5rem;
+            padding: 1.5rem 1.5rem 1rem;
+            background: #f1f6fa;
+            border-radius: var(--radius);
+            text-align: center;
+            display: none;
+            border: 1px solid #c5dce3;
+        }
+        .result h3,
+        .tf-result h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.2rem;
+        }
+        .score {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0.2rem 0 0.4rem;
+        }
+
+        /* ─────────── T/F SECTION ─────────── */
+        .tf-group {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.2rem 1.2rem 0.2rem 1.2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(26, 82, 118, 0.06);
+        }
+        .tf-group h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .tf-group h3 .tf-badge {
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.7rem;
+            line-height: 1.6;
+            font-weight: 700;
+        }
+
+        .tf-statement {
+            background: #fafcfd;
+            border: 1px solid #e0e8ef;
+            border-radius: 8px;
+            padding: 0.6rem 0.9rem;
+            margin-top: 0.6rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            transition: background 0.15s;
+        }
+        .tf-statement .tf-label {
+            font-weight: 600;
+            color: var(--primary);
+            min-width: 1.8rem;
+            font-size: 0.9rem;
+        }
+        .tf-statement .tf-text {
+            flex: 1;
+            font-size: 0.94rem;
+            line-height: 1.4;
+            min-width: 200px;
+        }
+        .tf-statement .tf-options {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .tf-statement .tf-options label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.2rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 0.1rem 0.5rem;
+            border-radius: 4px;
+            transition: background 0.15s;
+        }
+        .tf-statement .tf-options label:hover {
+            background: #e8f0f5;
+        }
+        .tf-statement .tf-options input[type="radio"] {
+            accent-color: var(--primary);
+            transform: scale(1.0);
+            margin: 0;
+        }
+
+        .tf-feedback {
+            margin-top: 0.4rem;
+            padding: 0.4rem 0 0.1rem 0;
+            border-top: 1px dashed #dce6ed;
+            width: 100%;
+        }
+        .tf-feedback .tf-explain {
+            margin-top: 4px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            background: #f1f6fa;
+            color: #1a3a4f;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border-left: 4px solid var(--accent);
+        }
+        .tf-feedback .tf-explain.wrong {
+            background: #fff5f5;
+            color: #7f1d1d;
+            border-left-color: #f87171;
+        }
+        .tf-feedback .tf-explain .tf-result-label {
+            font-weight: 700;
+        }
+
+        /* ─────────── RESPONSIVE ─────────── */
+        @media (max-width: 700px) {
+            body {
+                padding-top: 72px;
+            }
+            .logo h1 {
+                font-size: 1rem;
+            }
+            .header-inner {
+                padding: 0 1rem;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.3rem;
+            }
+            .badge {
+                align-self: flex-start;
+            }
+            .nav-tabs {
+                justify-content: center;
+            }
+            .nav-tabs .tab-btn {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.7rem;
+            }
+            .question,
+            .tf-group {
+                padding: 1rem 1rem 0.1rem 1rem;
+            }
+            .section-title {
+                font-size: 1.1rem;
+            }
+            .score {
+                font-size: 2.2rem;
+            }
+            .btn {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.85rem;
+            }
+            .tf-statement {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.3rem;
+            }
+            .tf-statement .tf-options {
+                justify-content: flex-start;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .logo h1 {
+                font-size: 0.85rem;
+            }
+            .logo i {
+                font-size: 1.2rem;
+            }
+            .options label {
+                font-size: 0.87rem;
+                padding: 0.4rem 0.7rem;
+            }
+        }
+
+        .text-muted {
+            color: #5f7a7a;
+            font-size: 0.9rem;
+        }
+        .hidden {
+            display: none !important;
+        }
+        .scroll-target {
+            scroll-margin-top: 90px;
+        }
+        .mt-1 {
+            margin-top: 0.8rem;
+        }
+        .mb-1 {
+            margin-bottom: 0.8rem;
+        }
+        .flex-center {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════ HEADER ═══════ -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <i class="fas fa-brain"></i>
+                <h1>Reticular Formation Quiz</h1>
+            </div>
+            <span class="badge"><i class="fas fa-pencil-alt"></i> &nbsp;20 MCQs + 4 T/F Sets</span>
+            <div class="nav-tabs">
+                <button class="tab-btn active" data-section="mcq">MCQs</button>
+                <button class="tab-btn" data-section="tf">True / False</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══════ MAIN ═══════ -->
+    <main>
+
+        <!-- ──── SECTION 1: MCQs ──── -->
+        <section class="container section-panel" id="section-mcq">
+            <div class="section-title scroll-target" id="mcq-top">
+                <i class="fas fa-list-ul"></i> Multiple Choice Questions
+                <span class="count">20</span>
+            </div>
+            <p class="section-subtitle">Select the best answer for each question, then click <strong>Submit All MCQs</strong>.</p>
+
+            <form id="quizForm">
+
+                <!-- Q1 -->
+                <div class="question">
+                    <p><span class="q-badge">1</span> The term "reticular" refers to the structure resembling a:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="a"> A. Tree</label>
+                        <label><input type="radio" name="q1" value="b"> B. Net</label>
+                        <label><input type="radio" name="q1" value="c"> C. Column</label>
+                        <label><input type="radio" name="q1" value="d"> D. Layer</label>
+                        <label><input type="radio" name="q1" value="e"> E. Ring</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q1"></div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="question">
+                    <p><span class="q-badge">2</span> The reticular formation extends through the axis of the central nervous system from the:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="a"> A. Cerebellum to the brainstem</label>
+                        <label><input type="radio" name="q2" value="b"> B. Spinal cord to the cerebrum</label>
+                        <label><input type="radio" name="q2" value="c"> C. Thalamus to the hypothalamus</label>
+                        <label><input type="radio" name="q2" value="d"> D. Medulla oblongata to the pons only</label>
+                        <label><input type="radio" name="q2" value="e"> E. Midbrain to the subthalamus only</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q2"></div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question">
+                    <p><span class="q-badge">3</span> Which neuronal feature allows the reticular formation to receive input from widely placed ascending and descending pathways?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="a"> A. Exceptionally long dendrites</label>
+                        <label><input type="radio" name="q3" value="b"> B. Short unmyelinated axons</label>
+                        <label><input type="radio" name="q3" value="c"> C. Absence of synaptic connections</label>
+                        <label><input type="radio" name="q3" value="d"> D. Single-column arrangement</label>
+                        <label><input type="radio" name="q3" value="e"> E. Myelinated sheath coverings</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q3"></div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="question">
+                    <p><span class="q-badge">4</span> In the general arrangement, the median column of the reticular formation occupies the median plane and consists of:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="a"> A. Small neurons</label>
+                        <label><input type="radio" name="q4" value="b"> B. Large neurons</label>
+                        <label><input type="radio" name="q4" value="c"> C. Intermediate-size neurons</label>
+                        <label><input type="radio" name="q4" value="d"> D. Purkinje cells</label>
+                        <label><input type="radio" name="q4" value="e"> E. Granule cells</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q4"></div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="question">
+                    <p><span class="q-badge">5</span> Which longitudinal column of the reticular formation contains predominantly large neurons?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="a"> A. Median column</label>
+                        <label><input type="radio" name="q5" value="b"> B. Medial column</label>
+                        <label><input type="radio" name="q5" value="c"> C. Lateral column</label>
+                        <label><input type="radio" name="q5" value="d"> D. Posterior column</label>
+                        <label><input type="radio" name="q5" value="e"> E. Anterior column</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q5"></div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="question">
+                    <p><span class="q-badge">6</span> The lateral column of the reticular formation consists mainly of:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="a"> A. Intermediate-size neurons</label>
+                        <label><input type="radio" name="q6" value="b"> B. Large neurons</label>
+                        <label><input type="radio" name="q6" value="c"> C. Small neurons</label>
+                        <label><input type="radio" name="q6" value="d"> D. Pseudounipolar neurons</label>
+                        <label><input type="radio" name="q6" value="e"> E. Bipolar neurons</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q6"></div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="question">
+                    <p><span class="q-badge">7</span> Inferiorly, the reticular formation is continuous with the interneurons of the gray matter of the:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="a"> A. Cerebral cortex</label>
+                        <label><input type="radio" name="q7" value="b"> B. Thalamus</label>
+                        <label><input type="radio" name="q7" value="c"> C. Spinal cord</label>
+                        <label><input type="radio" name="q7" value="d"> D. Cerebellum</label>
+                        <label><input type="radio" name="q7" value="e"> E. Corpus striatum</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q7"></div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="question">
+                    <p><span class="q-badge">8</span> Superiorly, impulses from the reticular formation are relayed to the:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="a"> A. Spinal cord gray matter</label>
+                        <label><input type="radio" name="q8" value="b"> B. Cerebral cortex</label>
+                        <label><input type="radio" name="q8" value="c"> C. Substantia nigra</label>
+                        <label><input type="radio" name="q8" value="d"> D. Red nucleus</label>
+                        <label><input type="radio" name="q8" value="e"> E. Tectum</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q8"></div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="question">
+                    <p><span class="q-badge">9</span> Which of the following afferent pathways to the reticular formation arises from the spinal cord?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="a"> A. Cerebelloreticular pathway</label>
+                        <label><input type="radio" name="q9" value="b"> B. Spinoreticular tracts</label>
+                        <label><input type="radio" name="q9" value="c"> C. Corticospinal tracts</label>
+                        <label><input type="radio" name="q9" value="d"> D. Reticulospinal tracts</label>
+                        <label><input type="radio" name="q9" value="e"> E. Vestibulospinal tracts</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q9"></div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="question">
+                    <p><span class="q-badge">10</span> Afferent fibers from the cranial nerve nuclei projecting to the reticular formation include:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="a"> A. Spinothalamic pathways</label>
+                        <label><input type="radio" name="q10" value="b"> B. Medial lemniscus</label>
+                        <label><input type="radio" name="q10" value="c"> C. Vestibular, acoustic, and visual pathways</label>
+                        <label><input type="radio" name="q10" value="d"> D. Reticulobulbar pathways</label>
+                        <label><input type="radio" name="q10" value="e"> E. Corticobulbar pathways</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q10"></div>
+                </div>
+
+                <!-- Q11 -->
+                <div class="question">
+                    <p><span class="q-badge">11</span> Important cortical afferent fibers to the reticular formation arise from the primary motor cortex of the frontal lobe and from the:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q11" value="a"> A. Temporal lobe</label>
+                        <label><input type="radio" name="q11" value="b"> B. Occipital lobe</label>
+                        <label><input type="radio" name="q11" value="c"> C. Parietal lobe</label>
+                        <label><input type="radio" name="q11" value="d"> D. Insular lobe</label>
+                        <label><input type="radio" name="q11" value="e"> E. Limbic lobe</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q11"></div>
+                </div>
+
+                <!-- Q12 -->
+                <div class="question">
+                    <p><span class="q-badge">12</span> Multiple efferent projections extend down to the brainstem and spinal cord through which two tracts?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q12" value="a"> A. Spinothalamic and spinoreticular tracts</label>
+                        <label><input type="radio" name="q12" value="b"> B. Reticulobulbar and reticulospinal tracts</label>
+                        <label><input type="radio" name="q12" value="c"> C. Corticospinal and corticobulbar tracts</label>
+                        <label><input type="radio" name="q12" value="d"> D. Vestibulospinal and tectospinal tracts</label>
+                        <label><input type="radio" name="q12" value="e"> E. Rubrospinal and olivospinal tracts</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q12"></div>
+                </div>
+
+                <!-- Q13 -->
+                <div class="question">
+                    <p><span class="q-badge">13</span> Downwards efferent projections from the reticular formation reach motor nuclei of cranial nerves and:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q13" value="a"> A. Posterior horn cells of the spinal cord</label>
+                        <label><input type="radio" name="q13" value="b"> B. Anterior horn cells of the spinal cord</label>
+                        <label><input type="radio" name="q13" value="c"> C. Lateral column sensory fibers</label>
+                        <label><input type="radio" name="q13" value="d"> D. Dorsal root ganglia</label>
+                        <label><input type="radio" name="q13" value="e"> E. Sympathetic chain ganglia only</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q13"></div>
+                </div>
+
+                <!-- Q14 -->
+                <div class="question">
+                    <p><span class="q-badge">14</span> Descending efferent pathways extend to which divisions of the autonomic nervous system?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q14" value="a"> A. Sympathetic outflow only</label>
+                        <label><input type="radio" name="q14" value="b"> B. Craniosacral parasympathetic outflow only</label>
+                        <label><input type="radio" name="q14" value="c"> C. Both sympathetic outflow and craniosacral parasympathetic outflow</label>
+                        <label><input type="radio" name="q14" value="d"> D. Enteric nervous system only</label>
+                        <label><input type="radio" name="q14" value="e"> E. Somatosensory motor units only</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q14"></div>
+                </div>
+
+                <!-- Q15 -->
+                <div class="question">
+                    <p><span class="q-badge">15</span> Skeletal muscle control by the reticular formation is mediated through the:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q15" value="a"> A. Medial lemniscus and spinothalamic tracts</label>
+                        <label><input type="radio" name="q15" value="b"> B. Reticulospinal and reticulobulbar tracts</label>
+                        <label><input type="radio" name="q15" value="c"> C. Cerebelloreticular pathway</label>
+                        <label><input type="radio" name="q15" value="d"> D. Hypothalamic releasing factors</label>
+                        <label><input type="radio" name="q15" value="e"> E. Vestibular pathways</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q15"></div>
+                </div>
+
+                <!-- Q16 -->
+                <div class="question">
+                    <p><span class="q-badge">16</span> Which brainstem structures responsible for controlling respiratory muscles are considered part of the reticular formation?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q16" value="a"> A. Primary motor cortex</label>
+                        <label><input type="radio" name="q16" value="b"> B. Respiratory centres</label>
+                        <label><input type="radio" name="q16" value="c"> C. Corpus striatum</label>
+                        <label><input type="radio" name="q16" value="d"> D. Substantia nigra</label>
+                        <label><input type="radio" name="q16" value="e"> E. Tectum</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q16"></div>
+                </div>
+
+                <!-- Q17 -->
+                <div class="question">
+                    <p><span class="q-badge">17</span> When associated with emotion, the reticular formation is important in controlling muscles of:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q17" value="a"> A. Mastication</label>
+                        <label><input type="radio" name="q17" value="b"> B. Facial expression</label>
+                        <label><input type="radio" name="q17" value="c"> C. Deglutition</label>
+                        <label><input type="radio" name="q17" value="d"> D. Respiration only</label>
+                        <label><input type="radio" name="q17" value="e"> E. Ocular movement</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q17"></div>
+                </div>
+
+                <!-- Q18 -->
+                <div class="question">
+                    <p><span class="q-badge">18</span> Regarding pain perception, the reticular formation may play a key role in the:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q18" value="a"> A. Synthesis of releasing-inhibiting factors</label>
+                        <label><input type="radio" name="q18" value="b"> B. "Gating mechanism"</label>
+                        <label><input type="radio" name="q18" value="c"> C. Direct inhibition of cranial nerve I</label>
+                        <label><input type="radio" name="q18" value="d"> D. Direct excitation of lower motor neurons</label>
+                        <label><input type="radio" name="q18" value="e"> E. Secondary visual feedback pathway</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q18"></div>
+                </div>
+
+                <!-- Q19 -->
+                <div class="question">
+                    <p><span class="q-badge">19</span> The reticular formation can influence the synthesis or release of factors from the endocrine system either directly or indirectly through the:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q19" value="a"> A. Red nucleus</label>
+                        <label><input type="radio" name="q19" value="b"> B. Substantia nigra</label>
+                        <label><input type="radio" name="q19" value="c"> C. Hypothalamic nuclei</label>
+                        <label><input type="radio" name="q19" value="d"> D. Cerebellum</label>
+                        <label><input type="radio" name="q19" value="e"> E. Thalamus</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q19"></div>
+                </div>
+
+                <!-- Q20 -->
+                <div class="question">
+                    <p><span class="q-badge">20</span> Higher control of the autonomic nervous system from the cerebral cortex and hypothalamus is exerted via descending:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q20" value="a"> A. Spinothalamic tracts</label>
+                        <label><input type="radio" name="q20" value="b"> B. Reticulobulbar and reticulospinal tracts</label>
+                        <label><input type="radio" name="q20" value="c"> C. Cerebelloreticular pathways</label>
+                        <label><input type="radio" name="q20" value="d"> D. Acoustic and visual pathways</label>
+                        <label><input type="radio" name="q20" value="e"> E. Medial lemniscus</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q20"></div>
+                </div>
+
+                <div class="submit-wrap">
+                    <button type="button" class="btn" onclick="submitMCQ()">
+                        <i class="fas fa-check-circle"></i> Submit All MCQs
+                    </button>
+                </div>
+
+            </form>
+
+            <div class="result" id="resultBox">
+                <h3><i class="fas fa-chart-simple"></i> Your Score</h3>
+                <div class="score" id="score">0%</div>
+                <p class="text-muted" style="font-size:0.9rem;">Review the feedback below each question.</p>
+            </div>
+        </section>
+
+        <!-- ──── SECTION 2: TRUE / FALSE ──── -->
+        <section class="container section-panel hidden" id="section-tf">
+            <div class="section-title scroll-target" id="tf-top">
+                <i class="fas fa-check-double"></i> True / False Questions
+                <span class="count">4 sets</span>
+            </div>
+            <p class="section-subtitle">For each statement, select <strong>True</strong> or <strong>False</strong>. Click <strong>Submit T/F</strong> to check your answers.</p>
+
+            <form id="tfForm">
+
+                <!-- ─── TF GROUP 1 ─── -->
+                <div class="tf-group">
+                    <h3><span class="tf-badge">Set 1</span> General Features and Location of the Reticular Formation</h3>
+
+                    <div class="tf-statement" id="tf1a">
+                        <span class="tf-label">(a)</span>
+                        <span class="tf-text">The reticular formation extends continuous network of nerve cells from the spinal cord through the medulla, pons, midbrain, subthalamus, hypothalamus, and thalamus.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf1a" value="true"> True</label>
+                            <label><input type="radio" name="tf1a" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf1a"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf1b">
+                        <span class="tf-label">(b)</span>
+                        <span class="tf-text">The reticular formation receives input from only a single specific sensory system.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf1b" value="true"> True</label>
+                            <label><input type="radio" name="tf1b" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf1b"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf1c">
+                        <span class="tf-label">(c)</span>
+                        <span class="tf-text">The reticular formation can influence the level of consciousness.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf1c" value="true"> True</label>
+                            <label><input type="radio" name="tf1c" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf1c"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf1d">
+                        <span class="tf-label">(d)</span>
+                        <span class="tf-text">Efferent fibers from the reticular formation descend and influence nerve cells at all levels of the CNS.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf1d" value="true"> True</label>
+                            <label><input type="radio" name="tf1d" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf1d"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf1e">
+                        <span class="tf-label">(e)</span>
+                        <span class="tf-text">Long dendrites of reticular neurons restrict incoming signals to local pathways.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf1e" value="true"> True</label>
+                            <label><input type="radio" name="tf1e" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf1e"></div>
+                    </div>
+                </div>
+
+                <!-- ─── TF GROUP 2 ─── -->
+                <div class="tf-group">
+                    <h3><span class="tf-badge">Set 2</span> Organization and Cytochemistry</h3>
+
+                    <div class="tf-statement" id="tf2a">
+                        <span class="tf-label">(a)</span>
+                        <span class="tf-text">The reticular formation is divided into three longitudinal columns: median, medial, and lateral.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf2a" value="true"> True</label>
+                            <label><input type="radio" name="tf2a" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf2a"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf2b">
+                        <span class="tf-label">(b)</span>
+                        <span class="tf-text">The medial column consists primarily of small-sized neurons.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf2b" value="true"> True</label>
+                            <label><input type="radio" name="tf2b" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf2b"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf2c">
+                        <span class="tf-label">(c)</span>
+                        <span class="tf-text">The reticular formation contains groups of transmitter-specific cells that influence specific CNS functions.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf2c" value="true"> True</label>
+                            <label><input type="radio" name="tf2c" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf2c"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf2d">
+                        <span class="tf-label">(d)</span>
+                        <span class="tf-text">Pathways within the reticular formation are strictly monosynaptic and uncrossed.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf2d" value="true"> True</label>
+                            <label><input type="radio" name="tf2d" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf2d"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf2e">
+                        <span class="tf-label">(e)</span>
+                        <span class="tf-text">Pathways in the reticular formation involve neurons serving both somatic and visceral functions.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf2e" value="true"> True</label>
+                            <label><input type="radio" name="tf2e" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf2e"></div>
+                    </div>
+                </div>
+
+                <!-- ─── TF GROUP 3 ─── -->
+                <div class="tf-group">
+                    <h3><span class="tf-badge">Set 3</span> Afferent and Efferent Projections</h3>
+
+                    <div class="tf-statement" id="tf3a">
+                        <span class="tf-label">(a)</span>
+                        <span class="tf-text">Afferent pathways project to the reticular formation from the spinothalamic tracts and medial lemniscus.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf3a" value="true"> True</label>
+                            <label><input type="radio" name="tf3a" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf3a"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf3b">
+                        <span class="tf-label">(b)</span>
+                        <span class="tf-text">The cerebelloreticular pathway provides afferent inputs from the cerebellum to the reticular formation.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf3b" value="true"> True</label>
+                            <label><input type="radio" name="tf3b" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf3b"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf3c">
+                        <span class="tf-label">(c)</span>
+                        <span class="tf-text">No afferent fibers originate from the limbic system or corpus striatum.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf3c" value="true"> True</label>
+                            <label><input type="radio" name="tf3c" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf3c"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf3d">
+                        <span class="tf-label">(d)</span>
+                        <span class="tf-text">A substantial projection of fibers leaves the reticular formation to enter the cerebellum.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf3d" value="true"> True</label>
+                            <label><input type="radio" name="tf3d" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf3d"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf3e">
+                        <span class="tf-label">(e)</span>
+                        <span class="tf-text">Most regions of the cerebral cortex receive efferent fibers from the reticular formation.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf3e" value="true"> True</label>
+                            <label><input type="radio" name="tf3e" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf3e"></div>
+                    </div>
+                </div>
+
+                <!-- ─── TF GROUP 4 ─── -->
+                <div class="tf-group">
+                    <h3><span class="tf-badge">Set 4</span> Functional Roles</h3>
+
+                    <div class="tf-statement" id="tf4a">
+                        <span class="tf-label">(a)</span>
+                        <span class="tf-text">The reticular formation can exert both facilitative and inhibitory influences on ascending pathways.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf4a" value="true"> True</label>
+                            <label><input type="radio" name="tf4a" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf4a"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf4b">
+                        <span class="tf-label">(b)</span>
+                        <span class="tf-text">The reticular formation has no role in controlling somatic or visceral sensations.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf4b" value="true"> True</label>
+                            <label><input type="radio" name="tf4b" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf4b"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf4c">
+                        <span class="tf-label">(c)</span>
+                        <span class="tf-text">Respiratory centers of the brainstem are now considered part of the reticular formation.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf4c" value="true"> True</label>
+                            <label><input type="radio" name="tf4c" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf4c"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf4d">
+                        <span class="tf-label">(d)</span>
+                        <span class="tf-text">Autonomic nervous system control by reticular tracts affects both sympathetic and parasympathetic craniosacral outflows.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf4d" value="true"> True</label>
+                            <label><input type="radio" name="tf4d" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf4d"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf4e">
+                        <span class="tf-label">(e)</span>
+                        <span class="tf-text">The reticular formation cannot influence releasing or release-inhibiting factors of the endocrine system.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf4e" value="true"> True</label>
+                            <label><input type="radio" name="tf4e" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf4e"></div>
+                    </div>
+                </div>
+
+                <div class="tf-submit-wrap">
+                    <button type="button" class="btn" onclick="submitTF()">
+                        <i class="fas fa-check-circle"></i> Submit T/F
+                    </button>
+                </div>
+
+            </form>
+
+            <div class="tf-result" id="tfResultBox">
+                <h3><i class="fas fa-chart-simple"></i> T/F Score</h3>
+                <div class="score" id="tfScore">0%</div>
+                <p class="text-muted" style="font-size:0.9rem;">Review the feedback below each statement.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ═══════ JAVASCRIPT ═══════ -->
+    <script>
+        // ─── TAB NAVIGATION ───
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const section = this.dataset.section;
+                document.querySelectorAll('.section-panel').forEach(p => p.classList.add('hidden'));
+                document.getElementById('section-' + section).classList.remove('hidden');
+                const topEl = document.getElementById(section + '-top');
+                if (topEl) topEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // ─── MCQ DATA ───
+        const correctMCQ = {
+            q1: "b", q2: "b", q3: "a", q4: "c", q5: "b",
+            q6: "c", q7: "c", q8: "b", q9: "b", q10: "c",
+            q11: "c", q12: "b", q13: "b", q14: "c", q15: "b",
+            q16: "b", q17: "b", q18: "b", q19: "c", q20: "b"
+        };
+
+        const mcqExplanations = {
+            q1: "The term 'reticular' comes from the Latin word 'reticulum' meaning 'little net', reflecting the diffuse network of neurons and fibers that characterizes this formation. It is not tree-like (arbor), columnar, layered, or ring-shaped.",
+            q2: "The reticular formation is a continuous network extending from the spinal cord (inferiorly) through the brainstem and subthalamus, hypothalamus, and thalamus up to the cerebrum (superiorly). It is not limited to the brainstem alone.",
+            q3: "Reticular neurons have exceptionally long dendrites that extend over a wide area, allowing them to receive inputs from numerous ascending and descending pathways that are widely separated. Short axons or absence of synapses would not facilitate this.",
+            q4: "The median column occupies the median plane and consists of intermediate-size neurons, unlike the medial column (large neurons) and lateral column (small neurons). This is a key histological distinction.",
+            q5: "The medial column contains predominantly large neurons, which are involved in motor and descending control. The median column has intermediate-size neurons, and the lateral column has small neurons.",
+            q6: "The lateral column consists mainly of small neurons, which are often involved in sensory and ascending functions. The medial column has large neurons, and the median column has intermediate-size neurons.",
+            q7: "Inferiorly, the reticular formation is continuous with the interneurons of the gray matter of the spinal cord, allowing it to integrate spinal reflexes and ascending information. It does not connect directly to the cerebral cortex or cerebellum at this level.",
+            q8: "Superiorly, impulses from the reticular formation are relayed to the cerebral cortex, particularly through the thalamus and other pathways, influencing consciousness, arousal, and cortical activity. It does not directly project to the substantia nigra or red nucleus for this purpose.",
+            q9: "The spinoreticular tracts are ascending pathways from the spinal cord that project to the reticular formation, conveying pain and other sensory information. Other options are either descending tracts or afferents from other regions.",
+            q10: "Afferent fibers from cranial nerve nuclei include vestibular, acoustic (auditory), and visual pathways that project to the reticular formation. These are important for integrating sensory information for motor control and arousal.",
+            q11: "Important cortical afferents arise from the primary motor cortex (frontal lobe) and the parietal lobe (somatosensory association areas). The other lobes (temporal, occipital, insular, limbic) also have projections, but the question specifies the primary motor and parietal cortex.",
+            q12: "Efferent projections from the reticular formation descend through the reticulobulbar tracts (to brainstem) and reticulospinal tracts (to spinal cord). These are the major descending pathways for motor and autonomic control.",
+            q13: "Downwards efferent projections reach motor nuclei of cranial nerves and anterior horn cells of the spinal cord, which are the final common pathway for somatic motor control. They do not synapse on posterior horn cells or dorsal root ganglia.",
+            q14: "Descending efferent pathways extend to both sympathetic outflow (thoracolumbar) and craniosacral parasympathetic outflow, allowing the reticular formation to modulate both divisions of the autonomic nervous system.",
+            q15: "Skeletal muscle control is mediated through the reticulospinal and reticulobulbar tracts, which directly influence motor neurons. Other options like medial lemniscus are sensory; cerebellar and vestibular pathways are separate.",
+            q16: "Respiratory centers in the brainstem (e.g., medullary respiratory groups) are now considered part of the reticular formation because they consist of diffusely organized neurons intermingled with other reticular elements.",
+            q17: "When associated with emotion, the reticular formation is important in controlling muscles of facial expression, as these muscles are influenced by emotional states via reticular pathways. It also affects other muscles but the slide specifically mentions facial expression.",
+            q18: "Regarding pain perception, the reticular formation may play a key role in the 'gating mechanism' (as in the gate control theory of pain), modulating pain transmission at the spinal cord level. It does not directly synthesize releasing factors or inhibit cranial nerve I.",
+            q19: "The reticular formation can influence endocrine factors indirectly through its connections with hypothalamic nuclei, which control the release of releasing and inhibiting hormones from the pituitary. Other structures like red nucleus or cerebellum are not directly involved.",
+            q20: "Higher control of the autonomic nervous system from the cortex and hypothalamus is exerted via descending reticulobulbar and reticulospinal tracts, which synapse on preganglionic autonomic neurons. Other tracts are not the primary descending autonomic pathways."
+        };
+
+        // ─── MCQ SUBMIT ───
+        function submitMCQ() {
+            let score = 0;
+            const total = Object.keys(correctMCQ).length;
+
+            document.querySelectorAll('.question-feedback').forEach(el => el.innerHTML = '');
+
+            for (let key in correctMCQ) {
+                const radios = Array.from(document.querySelectorAll(`input[name="${key}"]`));
+                const selected = radios.find(r => r.checked);
+                const correct = correctMCQ[key];
+
+                if (selected && selected.value === correct) score++;
+
+                const feedbackEl = document.getElementById(`feedback-${key}`);
+                if (!feedbackEl) continue;
+
+                let html = `<div class="answer-block"><strong>Q${key.replace(/^q/, '')}</strong><div class="answer-list">`;
+
+                radios.forEach(r => {
+                    const label = r.parentElement;
+                    const text = label ? label.textContent.trim() : r.value;
+                    const classes = ['answer-item'];
+                    if (r.value === correct) classes.push('answer-correct');
+                    if (r.checked && r.value !== correct) classes.push('answer-wrong', 'user-choice');
+                    if (r.checked && r.value === correct) classes.push('user-choice');
+                    html += `<div class="${classes.join(' ')}">${text}${r.checked ? ' ◀' : ''}</div>`;
+                });
+
+                html += `</div>`;
+
+                const correctRadio = radios.find(rr => rr.value === correct);
+                const correctText = correctRadio && correctRadio.parentElement ? correctRadio.parentElement.textContent.trim() : correct;
+                const explanationText = mcqExplanations[key] || '';
+
+                if (selected) {
+                    if (selected.value === correct) {
+                        html += `<div class="explanation">✅ Correct — ${explanationText}</div>`;
+                    } else {
+                        html += `<div class="explanation wrong">❌ Incorrect. Correct answer: <strong>${correctText}</strong>. ${explanationText}</div>`;
+                    }
+                } else {
+                    html += `<div class="explanation wrong">No answer selected. Correct answer: <strong>${correctText}</strong>. ${explanationText}</div>`;
+                }
+
+                html += `</div>`;
+                feedbackEl.innerHTML = html;
+            }
+
+            const percentage = Math.round((score / total) * 100);
+            const resultBox = document.getElementById('resultBox');
+            resultBox.style.display = 'block';
+
+            let start = 0;
+            const timer = setInterval(() => {
+                if (start >= percentage) clearInterval(timer);
+                document.getElementById('score').innerText = start + '%';
+                start++;
+            }, 20);
+
+            document.querySelectorAll('#quizForm input[type="radio"]').forEach(i => i.disabled = true);
+        }
+
+        // ─── T/F DATA ───
+        const correctTF = {
+            tf1a: true, tf1b: false, tf1c: true, tf1d: true, tf1e: false,
+            tf2a: true, tf2b: false, tf2c: true, tf2d: false, tf2e: true,
+            tf3a: true, tf3b: true, tf3c: false, tf3d: true, tf3e: true,
+            tf4a: true, tf4b: false, tf4c: true, tf4d: true, tf4e: false
+        };
+
+        const tfExplanations = {
+            tf1a: "The reticular formation extends as a continuous network from the spinal cord through the medulla, pons, midbrain, subthalamus, hypothalamus, and thalamus. This is correct based on the lecture content.",
+            tf1b: "The reticular formation receives input from most sensory systems, not just a single one. It integrates multisensory information. Hence, 'only a single specific sensory system' is false.",
+            tf1c: "The reticular formation is well-known for its role in regulating arousal and consciousness via the ascending reticular activating system (ARAS). Therefore, it can influence the level of consciousness.",
+            tf1d: "Efferent fibers from the reticular formation descend and influence nerve cells at all levels of the CNS, from the brainstem to the spinal cord, through reticulobulbar and reticulospinal tracts.",
+            tf1e: "Exceptionally long dendrites of reticular neurons permit input from widely placed pathways, not restrict them. Thus, the statement that they restrict signals is false.",
+            tf2a: "The reticular formation is divided into three longitudinal columns: median (intermediate-size neurons), medial (large neurons), and lateral (small neurons). This is correct.",
+            tf2b: "The medial column contains large neurons, not small. The lateral column contains small neurons. Thus, 'primarily of small-sized neurons' is false for the medial column.",
+            tf2c: "The reticular formation contains groups of transmitter-specific cells (e.g., serotonergic, noradrenergic, dopaminergic) that influence specific CNS functions like sleep-wake cycle and mood. This is correct.",
+            tf2d: "Pathways within the reticular formation are polysynaptic and involve both crossed and uncrossed connections. They are not strictly monosynaptic and uncrossed. So this is false.",
+            tf2e: "Pathways in the reticular formation involve neurons serving both somatic (motor and sensory) and visceral (autonomic) functions, reflecting its integrative role.",
+            tf3a: "Afferent pathways project from the spinothalamic tracts and medial lemniscus to the reticular formation, conveying pain, temperature, and discriminative touch information.",
+            tf3b: "The cerebelloreticular pathway provides afferent inputs from the cerebellum to the reticular formation, contributing to motor coordination and feedback.",
+            tf3c: "Afferent fibers do originate from the limbic system (emotional) and corpus striatum (motor), so the statement that no afferents originate from these is false.",
+            tf3d: "A substantial projection of fibers leaves the reticular formation to enter the cerebellum, forming part of the cerebellar peduncles and influencing cerebellar activity.",
+            tf3e: "Most regions of the cerebral cortex receive efferent fibers from the reticular formation, particularly via the thalamus, for arousal and attention.",
+            tf4a: "The reticular formation can exert both facilitative (excitatory) and inhibitory influences on ascending pathways, modulating sensory transmission.",
+            tf4b: "The reticular formation does play a role in controlling somatic and visceral sensations, including modulation of pain perception and visceral reflexes. So 'has no role' is false.",
+            tf4c: "Respiratory centers of the brainstem (e.g., dorsal and ventral respiratory groups) are indeed considered part of the reticular formation, as they are diffusely organized.",
+            tf4d: "Autonomic nervous system control by reticular tracts affects both sympathetic outflow and craniosacral parasympathetic outflow, as the reticular formation regulates both divisions.",
+            tf4e: "The reticular formation can influence releasing or release-inhibiting factors of the endocrine system indirectly through its connections with hypothalamic nuclei. So 'cannot influence' is false."
+        };
+
+        // ─── T/F SUBMIT ───
+        function submitTF() {
+            let correctCount = 0;
+            const total = Object.keys(correctTF).length;
+
+            document.querySelectorAll('.tf-feedback').forEach(el => el.innerHTML = '');
+
+            for (let key in correctTF) {
+                const radios = Array.from(document.querySelectorAll(`input[name="${key}"]`));
+                const selected = radios.find(r => r.checked);
+                const correct = correctTF[key];
+
+                if (selected && selected.value === (correct ? 'true' : 'false')) correctCount++;
+
+                const feedbackEl = document.getElementById(`feedback-${key}`);
+                if (!feedbackEl) continue;
+
+                const statementEl = document.getElementById(key);
+                const textEl = statementEl ? statementEl.querySelector('.tf-text') : null;
+                const statementText = textEl ? textEl.textContent.trim() : key;
+
+                const correctStr = correct ? 'True' : 'False';
+                const explanation = tfExplanations[key] || '';
+
+                let html = '';
+
+                if (selected) {
+                    const isCorrect = selected.value === (correct ? 'true' : 'false');
+                    const icon = isCorrect ? '✅' : '❌';
+                    const cls = isCorrect ? '' : ' wrong';
+                    html += `<div class="tf-explain${cls}">
+                                <span class="tf-result-label">${icon} ${isCorrect ? 'Correct' : 'Incorrect'}</span>
+                                — Correct answer: <strong>${correctStr}</strong>.
+                                ${explanation}
+                             </div>`;
+                } else {
+                    html += `<div class="tf-explain wrong">
+                                <span class="tf-result-label">⚠️ No answer selected</span>
+                                — Correct answer: <strong>${correctStr}</strong>.
+                                ${explanation}
+                             </div>`;
+                }
+
+                feedbackEl.innerHTML = html;
+            }
+
+            const percentage = Math.round((correctCount / total) * 100);
+            const resultBox = document.getElementById('tfResultBox');
+            resultBox.style.display = 'block';
+
+            let start = 0;
+            const timer = setInterval(() => {
+                if (start >= percentage) clearInterval(timer);
+                document.getElementById('tfScore').innerText = start + '%';
+                start++;
+            }, 20);
+
+            document.querySelectorAll('#tfForm input[type="radio"]').forEach(i => i.disabled = true);
+        }
+    </script>
+
+</body>
+</html>

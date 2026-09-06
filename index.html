@@ -712,6 +712,16 @@
             border-color: #2d7b9e;
             color: white;
         }
+        .topic-actions .btn-sm.quiz-btn {
+            background: #fff0e8;
+            border-color: #d4a08a;
+            color: #7a3a1a;
+        }
+        .topic-actions .btn-sm.quiz-btn:hover {
+            background: #2d7b9e;
+            border-color: #2d7b9e;
+            color: white;
+        }
         .info-text {
             margin-top: 1.2rem;
             color: #3c4d66;
@@ -1688,37 +1698,213 @@
             margin-right: 4px;
         }
 
+        /* ---- QUIZ POPUP STYLES ---- */
+        .quiz-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(12px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 3300;
+            animation: fadeInOverlay 0.3s ease;
+            padding: 1.5rem;
+        }
+        .quiz-overlay.active {
+            display: flex;
+        }
+        .quiz-box {
+            background: white;
+            border-radius: 44px;
+            max-width: 640px;
+            width: 100%;
+            max-height: 80vh;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            animation: scaleIn 0.3s ease;
+        }
+        .quiz-box .quiz-header {
+            padding: 1.5rem 2rem 0.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eef2f7;
+            flex-shrink: 0;
+        }
+        .quiz-box .quiz-header h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #0a2b4a;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .quiz-box .quiz-header h3 i {
+            color: #2d7b9e;
+        }
+        .quiz-box .quiz-header .close-quiz {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: #8a9bb0;
+            cursor: pointer;
+            transition: 0.2s;
+            padding: 0.2rem 0.5rem;
+            line-height: 1;
+        }
+        .quiz-box .quiz-header .close-quiz:hover {
+            color: #0a2b4a;
+            transform: rotate(90deg);
+        }
+        .quiz-box .quiz-topic-badge {
+            padding: 0.2rem 2rem;
+            font-size: 0.85rem;
+            color: #2d7b9e;
+            font-weight: 600;
+            background: #eef4fa;
+            display: inline-block;
+            border-radius: 30px;
+            margin: 0.2rem 2rem 0.8rem 2rem;
+            flex-shrink: 0;
+            text-align: center;
+        }
+        .quiz-box .quiz-list {
+            padding: 0.5rem 2rem 2rem 2rem;
+            overflow-y: auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+        .quiz-box .quiz-list .quiz-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.9rem 1.4rem;
+            background: #f8fafc;
+            border-radius: 16px;
+            border: 1px solid #e8edf4;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            color: #1f2a41;
+        }
+        .quiz-box .quiz-list .quiz-item:hover {
+            background: #2d7b9e;
+            border-color: #2d7b9e;
+            color: white;
+            transform: translateX(6px);
+            box-shadow: 0 8px 24px rgba(45, 123, 158, 0.2);
+        }
+        .quiz-box .quiz-list .quiz-item i {
+            font-size: 1.6rem;
+            color: #2d7b9e;
+            transition: 0.2s;
+            flex-shrink: 0;
+            width: 2rem;
+            text-align: center;
+        }
+        .quiz-box .quiz-list .quiz-item:hover i {
+            color: white;
+        }
+        .quiz-box .quiz-list .quiz-item .quiz-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .quiz-box .quiz-list .quiz-item .quiz-info .quiz-title {
+            font-weight: 600;
+            font-size: 1rem;
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .quiz-box .quiz-list .quiz-item .quiz-info .quiz-sub {
+            font-size: 0.8rem;
+            color: #7a8ca0;
+            display: block;
+            transition: 0.2s;
+        }
+        .quiz-box .quiz-list .quiz-item:hover .quiz-info .quiz-sub {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        .quiz-box .quiz-list .quiz-item .quiz-play {
+            font-size: 1.2rem;
+            color: #2d7b9e;
+            transition: 0.2s;
+            flex-shrink: 0;
+        }
+        .quiz-box .quiz-list .quiz-item:hover .quiz-play {
+            color: white;
+        }
+        .quiz-box .quiz-empty {
+            padding: 2rem 2rem 2.5rem;
+            text-align: center;
+            color: #7a8ca0;
+        }
+        .quiz-box .quiz-empty i {
+            font-size: 3rem;
+            color: #dce6ef;
+            display: block;
+            margin-bottom: 0.8rem;
+        }
+        .quiz-box .quiz-footer {
+            padding: 0.8rem 2rem 1.2rem;
+            border-top: 1px solid #eef2f7;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #8a9bb0;
+            flex-shrink: 0;
+        }
+        .quiz-box .quiz-footer i {
+            color: #2d7b9e;
+            margin-right: 4px;
+        }
+
         @media (max-width: 480px) {
             .video-box,
             .document-box,
-            .audio-box {
+            .audio-box,
+            .quiz-box {
                 max-width: 100%;
                 border-radius: 28px;
                 max-height: 90vh;
             }
             .video-box .video-header,
             .document-box .doc-header,
-            .audio-box .audio-header {
+            .audio-box .audio-header,
+            .quiz-box .quiz-header {
                 padding: 1rem 1.2rem 0.3rem 1.2rem;
             }
             .video-box .video-header h3,
             .document-box .doc-header h3,
-            .audio-box .audio-header h3 {
+            .audio-box .audio-header h3,
+            .quiz-box .quiz-header h3 {
                 font-size: 1.1rem;
             }
             .video-box .video-list,
             .document-box .doc-list,
-            .audio-box .audio-list {
+            .audio-box .audio-list,
+            .quiz-box .quiz-list {
                 padding: 0.3rem 1.2rem 1.2rem 1.2rem;
             }
             .video-box .video-list .video-item,
             .document-box .doc-list .doc-item,
-            .audio-box .audio-list .audio-item {
+            .audio-box .audio-list .audio-item,
+            .quiz-box .quiz-list .quiz-item {
                 padding: 0.7rem 1rem;
             }
             .video-box .video-topic-badge,
             .document-box .doc-topic-badge,
-            .audio-box .audio-topic-badge {
+            .audio-box .audio-topic-badge,
+            .quiz-box .quiz-topic-badge {
                 padding: 0.1rem 1.2rem;
                 font-size: 0.75rem;
                 margin: 0.1rem 1.2rem 0.4rem 1.2rem;
@@ -1740,37 +1926,6 @@
         .audio-box #audioPlayer::-webkit-media-controls-panel {
             background: #eef4fa;
             border-radius: 20px;
-        }
-
-        @media (max-width: 480px) {
-            .video-box,
-            .document-box {
-                max-width: 100%;
-                border-radius: 28px;
-                max-height: 90vh;
-            }
-            .video-box .video-header,
-            .document-box .doc-header {
-                padding: 1rem 1.2rem 0.3rem 1.2rem;
-            }
-            .video-box .video-header h3,
-            .document-box .doc-header h3 {
-                font-size: 1.1rem;
-            }
-            .video-box .video-list,
-            .document-box .doc-list {
-                padding: 0.3rem 1.2rem 1.2rem 1.2rem;
-            }
-            .video-box .video-list .video-item,
-            .document-box .doc-list .doc-item {
-                padding: 0.7rem 1rem;
-            }
-            .video-box .video-topic-badge,
-            .document-box .doc-topic-badge {
-                padding: 0.1rem 1.2rem;
-                font-size: 0.75rem;
-                margin: 0.1rem 1.2rem 0.4rem 1.2rem;
-            }
         }
     </style>
 </head>
@@ -1924,6 +2079,21 @@
             <div class="audio-list" id="audioListContainer"></div>
             <div class="audio-footer">
                 <i class="fas fa-music"></i> Click any audio to open the Google Drive Link
+            </div>
+        </div>
+    </div>
+
+    <!-- QUIZ POPUP OVERLAY -->
+    <div class="quiz-overlay" id="quizOverlay">
+        <div class="quiz-box">
+            <div class="quiz-header">
+                <h3><i class="fas fa-pencil-alt"></i> <span id="quizPopupTitle">Quizzes</span></h3>
+                <button class="close-quiz" id="closeQuizPopup"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="quiz-topic-badge" id="quizPopupTopic">Topic</div>
+            <div class="quiz-list" id="quizListContainer"></div>
+            <div class="quiz-footer">
+                <i class="fas fa-graduation-cap"></i> Click a quiz to open it in a new tab
             </div>
         </div>
     </div>
@@ -3708,6 +3878,13 @@
         }
 
         const quizLinks = {
+
+            // 3rd year anatomy quiz
+
+            'Anti-asthmatic Drugs': 'therap-2/quiz/asthma_quiz.html',
+            'Anti-asthmatic Drugs': 'therap-2/quiz/asthma_quiz.html',
+            
+            // 2nd year therapeutcs
             'Anti-asthmatic Drugs': 'therap-2/quiz/asthma_quiz.html',
             'Drugs used in the Treatment of TB': 'therap-2/quiz/TB_quiz.html',
             'Drugs used to Treat Common Cold': 'therap-2/quiz/common_cold_quiz.html',
@@ -3726,6 +3903,37 @@
             'Concentration, Dilution and Acidification': 'physio3/quiz/conc-quiz.html',
         }
 
+        // ---- NEW: MULTIPLE QUIZZES PER TOPIC ----
+        // ✅ IMPORTANT: Make sure there are NO trailing commas after the last entry!
+        const quizData = {
+            // Example topics with multiple quizzes
+            'Anti-asthmatic Drugs': [
+                { title: 'Quiz 1 – Basics of Asthma Pharmacology', url: 'therap-2/quiz/asthma_quiz.html' },
+                { title: 'Quiz 2 – Drug Interactions & Side Effects', url: 'therap-2/quiz/asthma_quiz2.html' },
+                { title: 'Quiz 3 – Clinical Case Scenarios', url: 'therap-2/quiz/asthma_quiz3.html' }
+            ],
+            'Nucleotide Metabolism': [
+                { title: 'Quiz 1 – Nucleotide Synthesis', url: 'biochem-3rd-year/nucleotide-quiz.html' },
+                { title: 'Quiz 2 – Degradation & Salvage Pathways', url: 'biochem-3rd-year/nucleotide-quiz2.html' }
+            ],
+            'Renal Function, Anatomy and Blood Flow': [
+                { title: 'Quiz 1 – Renal Anatomy & Blood Flow', url: 'physio3/quiz/renal-functional-quiz.html' },
+                { title: 'Quiz 2 – Renal Autoregulation', url: 'physio3/quiz/renal-autoregulation-quiz.html' }
+            ],
+            // ✅ CORRECT: Add Head Osteology with proper syntax (NO trailing comma after the last item inside the array!)
+            'Head Osteology': [
+                { title: 'Quiz 1', url: 'anatomy3/quiz/osteology-quiz1.html' },
+                { title: 'Quiz 2', url: 'anatomy3/quiz/osteology-quiz2.html' }
+            ],
+            'Peripheral Nervous System': [
+                { title: 'Quiz 1', url: 'anatomy3/quiz/peripheral-quiz.html' },
+            ],
+            'Central Nervous System': [
+                { title: 'Cerebellar Quiz', url: 'anatomy3/quiz/cerebellum-quiz.html' },
+                { title: 'Reticular & Limbic System', url: 'anatomy3/quiz/reticular-quiz.html' },
+            ]
+            // ⚠️ IMPORTANT: NO trailing comma after the last entry!
+        };
 
         const pdfLinks = {
 
@@ -5606,13 +5814,13 @@
                     url: 'https://drive.google.com/file/d/10zcdGTqy3kqGqYEpglu-L5XhxEVzMzz2/view?usp=drive_link' },
                 { title: 'Class Notes 2025',
                     url: 'https://drive.google.com/file/d/17SRKUVhzqUvsMDTrtHn6tOhxbk7osLDJ/view?usp=drive_link' },
-                { title: 'Class Notes 2026',
+                { title: '2026 Class Notes',
                     url: 'https://drive.google.com/file/d/1PKo0TsAbLMIeHcq_HIMqX4llPZo2YrR4/view?usp=drive_link' },
             ],
             'Physiological Changes in Pregnancy': [
                 { title: 'Class Notes',
                     url: 'https://drive.google.com/file/d/1UsO0XBEFyH6uUUBqpclOcaP-QamWM1UX/view?usp=drive_link' },
-                { title: 'Class Notes 2026',
+                { title: '2026 Class Notes',
                     url: 'https://drive.google.com/file/d/15f_vZpiWwTVJthRixD2p7g7UUvVmgGjX/view?usp=drive_link' },
             ],
             'Disorders of the Menstrual Cycle': [
@@ -5620,16 +5828,16 @@
                     url: 'https://drive.google.com/file/d/1QpTbFY60R5QuUJjIQ68Fzgkswk7nc2l8/view?usp=drive_link' },
             ],
             'PROM': [
-                { title: 'Class Notes',
-                    url: 'https://docs.google.com/presentation/d/1Ld_xBUJGPdXalKFecImrtppvw3dNbFAi/edit?usp=drive_link&ouid=110700472908024825820&rtpof=true&sd=true' },
+                { title: '2026 Class Notes',
+                    url: 'https://drive.google.com/file/d/1-a4c13Ev9IeL2PuDbe8t9GJLWfuhCPmp/view?usp=drive_link' },
             ],
             'Abnormal Uterine Bleeding': [
                 { title: 'Class Notes',
                     url: 'https://drive.google.com/file/d/1oAe47QUKPpIr7eIZzsqOarxvPNV-hmZf/view?usp=drive_link' },
             ],
             'Abortions (Miscarriages)': [
-                { title: 'Class Notes',
-                    url: 'https://docs.google.com/presentation/d/1HhIzJ_hnIXuK8FrUZo-c4mrMF-kOZFiQ/edit?usp=drive_link&ouid=110700472908024825820&rtpof=true&sd=true' },
+                { title: '2026 Class Notes',
+                    url: 'https://drive.google.com/file/d/14SsGtF7EWWghRUhJVql2G6BJD-XdKtYY/view?usp=drive_link' },
             ],
             'Obstetric Haemorrhage': [
                 { title: 'Class Notes 2023', url: 'https://drive.google.com/file/d/1Jkz_7WCdp_2_oFDx-MMENmkg_vOU2BDY/view?usp=drive_link' },
@@ -6442,6 +6650,75 @@
             };
         }
 
+        // ---- QUIZ POPUP FUNCTIONS (with error handling) ----
+        const quizOverlay = document.getElementById('quizOverlay');
+        const quizListContainer = document.getElementById('quizListContainer');
+        const quizPopupTitle = document.getElementById('quizPopupTitle');
+        const quizPopupTopic = document.getElementById('quizPopupTopic');
+        const closeQuizBtn = document.getElementById('closeQuizPopup');
+
+        function openQuizPopup(topic) {
+            try {
+                let quizzes = quizData[topic] || [];
+                // Ensure quizzes is an array
+                if (!Array.isArray(quizzes)) {
+                    console.warn(`quizData["${topic}"] is not an array, treating as empty.`);
+                    quizzes = [];
+                }
+
+                quizPopupTitle.textContent = 'Quizzes';
+                quizPopupTopic.textContent = topic;
+
+                let html = '';
+                if (quizzes.length > 0) {
+                    quizzes.forEach((quiz, index) => {
+                        const url = quiz.url || '#';
+                        const title = quiz.title || `Quiz ${index + 1}`;
+                        const displayTitle = title.length > 60 ? title.substring(0, 57) + '…' : title;
+                        html += `
+                            <a href="${url}" target="_blank" class="quiz-item" data-index="${index}">
+                                <i class="fas fa-pencil-alt"></i>
+                                <div class="quiz-info">
+                                    <span class="quiz-title">${displayTitle}</span>
+                                    <span class="quiz-sub">Click to open quiz</span>
+                                </div>
+                                <span class="quiz-play"><i class="fas fa-arrow-right"></i></span>
+                            </a>
+                        `;
+                    });
+                } else {
+                    html = `
+                        <div class="quiz-empty">
+                            <i class="fas fa-pencil-alt"></i>
+                            <p>No quizzes available for this topic yet.</p>
+                            <p style="font-size:0.85rem;margin-top:0.3rem;">Check back later for updates.</p>
+                        </div>
+                    `;
+                }
+
+                quizListContainer.innerHTML = html;
+                quizOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                quizListContainer.scrollTop = 0;
+            } catch (e) {
+                console.error('Error opening quiz popup:', e);
+                alert('An error occurred while loading the quiz list. Please check the console for details.');
+            }
+        }
+
+        function closeQuizPopup() {
+            quizOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        closeQuizBtn.addEventListener('click', closeQuizPopup);
+        quizOverlay.addEventListener('click', function(e) {
+            if (e.target === quizOverlay) closeQuizPopup();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && quizOverlay.classList.contains('active')) closeQuizPopup();
+        });
+
         // ---- state ----
         let currentUser = null;
         let currentUserYear = null;
@@ -6570,26 +6847,24 @@
         });
 
         // --- Sign Up / Payment Flow ---
-const loginForm = document.getElementById('loginForm');
-const signupFlow = document.getElementById('signupFlow');
-const showSignUpLink = document.getElementById('showSignUpLink');
-const backToLoginLink = document.getElementById('backToLoginLink');
+        const loginForm = document.getElementById('loginForm');
+        const signupFlow = document.getElementById('signupFlow');
+        const showSignUpLink = document.getElementById('showSignUpLink');
+        const backToLoginLink = document.getElementById('backToLoginLink');
 
-// Show signup flow
-showSignUpLink.addEventListener('click', function(e) {
-    e.preventDefault();
-    loginForm.classList.add('hidden');
-    signupFlow.classList.add('visible');
-    signupFlow.classList.remove('hidden');
-});
+        showSignUpLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            loginForm.classList.add('hidden');
+            signupFlow.classList.add('visible');
+            signupFlow.classList.remove('hidden');
+        });
 
-// Back to login
-backToLoginLink.addEventListener('click', function(e) {
-    e.preventDefault();
-    loginForm.classList.remove('hidden');
-    signupFlow.classList.remove('visible');
-    signupFlow.classList.add('hidden');
-});
+        backToLoginLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            loginForm.classList.remove('hidden');
+            signupFlow.classList.remove('visible');
+            signupFlow.classList.add('hidden');
+        });
 
         document.querySelectorAll('.site-btn').forEach(btn => {
             btn.addEventListener('click', function() {
@@ -6651,13 +6926,10 @@ backToLoginLink.addEventListener('click', function(e) {
 
         function extractYoutubeId(url) {
             if (!url) return null;
-            // Handle youtu.be format
             const match = url.match(/youtu\.be\/([a-zA-Z0-9_-]{11})/);
             if (match) return match[1];
-            // Handle youtube.com/watch?v= format
             const match2 = url.match(/watch\?v=([a-zA-Z0-9_-]{11})/);
             if (match2) return match2[1];
-            // Handle youtube.com/embed/ format
             const match3 = url.match(/embed\/([a-zA-Z0-9_-]{11})/);
             if (match3) return match3[1];
             return null;
@@ -6671,7 +6943,6 @@ backToLoginLink.addEventListener('click', function(e) {
                 playerOverlay.classList.add('active');
                 document.body.style.overflow = 'hidden';
             } else {
-                // Fallback: open in new tab if not a YouTube URL
                 window.open(videoUrl, '_blank');
             }
         }
@@ -6845,14 +7116,13 @@ backToLoginLink.addEventListener('click', function(e) {
                     `<h5><button class="back-btn" onclick="selectTerm('${courseId}', null)"><i class="fas fa-arrow-left"></i></button> ${term.name} – Topics</h5>`;
                 html += `<div class="topic-list">`;
                 term.topics.forEach((topic, j) => {
-    if (topic.startsWith('## ')) {
-        // This is a header — render as a styled heading, NOT clickable
-        const headerText = topic.replace('## ', '');
-        html += `<div class="topic-header">${headerText}</div>`;
-    } else {
-        html += `<span class="topic-item" onclick="selectTopic('${courseId}', ${termIdx}, ${j})">${topic}</span>`;
-    }
-});
+                    if (topic.startsWith('## ')) {
+                        const headerText = topic.replace('## ', '');
+                        html += `<div class="topic-header">${headerText}</div>`;
+                    } else {
+                        html += `<span class="topic-item" onclick="selectTopic('${courseId}', ${termIdx}, ${j})">${topic}</span>`;
+                    }
+                });
                 html += `</div><p class="info-text">${currentUser}, click a topic to access its resources.</p></div>`;
             } else {
                 const term = course.terms[termIdx];
@@ -6888,6 +7158,9 @@ backToLoginLink.addEventListener('click', function(e) {
                 const hasVideos = videoData[topic] && videoData[topic].length > 0;
                 const hasDocs = docData[topic] && docData[topic].length > 0;
                 const hasAudios = audioData[topic] && audioData[topic].length > 0;
+                
+                // SAFE: Check if quizData[topic] exists and is an array
+                const hasQuizzes = quizData[topic] && Array.isArray(quizData[topic]) && quizData[topic].length > 0;
 
                 html +=
                     `<h5><button class="back-btn" onclick="selectTopic('${courseId}', ${termIdx}, null)"><i class="fas fa-arrow-left"></i></button> ${term.name} → ${topic}</h5>`;
@@ -6908,8 +7181,14 @@ backToLoginLink.addEventListener('click', function(e) {
                 html +=
                     `<button class="btn-sm audio-btn" onclick="${audioClickHandler}"><i class="fas fa-headphones"></i> Audio ${hasAudios ? '(' + audioData[topic].length + ')' : ''}</button>`;
 
-                // Quiz button
-                html += `<a href="${links.quiz}" target="_blank" class="btn-sm"><i class="fas fa-pencil-alt"></i> Quiz</a>`;
+                // Quiz button - uses the new quiz popup if multiple quizzes exist
+                if (hasQuizzes) {
+                    html += `<button class="btn-sm quiz-btn" onclick="openQuizPopup('${topic.replace(/'/g, "\\'")}')"><i class="fas fa-pencil-alt"></i> Quizzes (${quizData[topic].length})</button>`;
+                } else if (links.quiz && links.quiz !== '#') {
+                    // Fallback to single quiz link from quizLinks
+                    html += `<a href="${links.quiz}" target="_blank" class="btn-sm"><i class="fas fa-pencil-alt"></i> Quiz</a>`;
+                }
+
                 html += `</div>`;
 
                 // Show info counts
@@ -6917,6 +7196,7 @@ backToLoginLink.addEventListener('click', function(e) {
                 if (hasDocs) infoParts.push(`📄 ${docData[topic].length} document(s)`);
                 if (hasVideos) infoParts.push(`🎬 ${videoData[topic].length} video(s)`);
                 if (hasAudios) infoParts.push(`🎧 ${audioData[topic].length} audio(s)`);
+                if (hasQuizzes) infoParts.push(`📝 ${quizData[topic].length} quiz(zes)`);
 
                 html +=
                     `<p class="info-text">${currentUser}, click any button above to access the resources. ${infoParts.length > 0 ? 'Available: ' + infoParts.join(' · ') : ''}</p></div>`;
@@ -7028,6 +7308,8 @@ backToLoginLink.addEventListener('click', function(e) {
 
         console.log('✅ ToToZ — In-app YouTube player loaded!');
         console.log('🎬 Click any video in the video list to watch it inside the app.');
+        console.log('📝 Multiple quizzes per topic now supported via the Quiz popup.');
+        console.log('ℹ️ If topics become unclickable, check the browser console (F12) for errors.');
     </script>
 </body>
 </html>

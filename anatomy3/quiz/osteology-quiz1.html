@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anatomy Quiz | Skull, Neck & Fossae</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        /* ─────────── ROOT & RESET ─────────── */
+        :root {
+            --primary: #1a5276;
+            --accent: #5dade2;
+            --dark: #17252a;
+            --light: #f8f9fa;
+            --radius: 12px;
+            --shadow: 0 4px 14px rgba(18, 38, 63, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Roboto, system-ui, sans-serif;
+            background: linear-gradient(180deg, #f5f7fb, #eef2f7);
+            color: var(--dark);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--primary), #0e2a3f);
+            color: #fff;
+            padding: 0.8rem 0;
+            box-shadow: 0 6px 18px rgba(11, 36, 36, 0.18);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .logo i {
+            font-size: 1.6rem;
+            color: var(--accent);
+        }
+        .logo h1 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 0.25rem 1rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            color: #d4e8f0;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0.3rem;
+            flex-wrap: wrap;
+        }
+        .nav-tabs .tab-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: none;
+            color: #d4e8f0;
+            padding: 0.3rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .nav-tabs .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #fff;
+        }
+        .nav-tabs .tab-btn.active {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 1.25rem 2.5rem;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1.8rem 0 1rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 3px solid rgba(26, 82, 118, 0.20);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+        .section-title i {
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+        .section-title .count {
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0.05rem 0.7rem;
+        }
+
+        .section-subtitle {
+            color: #5f7a7a;
+            font-size: 0.92rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .section-panel {
+            display: block;
+        }
+        .section-panel.hidden {
+            display: none;
+        }
+
+        /* ─────────── MCQ CARDS ─────────── */
+        .question {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.2rem 1.2rem 0.2rem 1.2rem;
+            margin-bottom: 1.2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(26, 82, 118, 0.06);
+            transition: box-shadow 0.2s;
+        }
+        .question:hover {
+            box-shadow: 0 6px 22px rgba(18, 38, 63, 0.07);
+        }
+        .question p {
+            font-weight: 600;
+            font-size: 0.98rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        .question .q-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            line-height: 1.6;
+            margin-right: 0.4rem;
+        }
+
+        .options label {
+            display: block;
+            background: #fafcfd;
+            border: 1px solid #e0e8ef;
+            border-radius: 8px;
+            padding: 0.45rem 0.9rem;
+            margin-top: 0.45rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-weight: 450;
+            font-size: 0.94rem;
+        }
+        .options label:hover {
+            background: #e8f0f5;
+            border-color: var(--accent);
+        }
+        .options input[type="radio"] {
+            margin-right: 0.5rem;
+            accent-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .question-feedback {
+            margin-top: 0.9rem;
+            padding: 0.4rem 0 0.1rem 0;
+            border-top: 1px dashed #dce6ed;
+        }
+        .answer-block strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--primary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .answer-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .answer-item {
+            padding: 5px 10px;
+            border-radius: 6px;
+            border: 1px solid #e6eef3;
+            background: #ffffff;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .answer-correct {
+            background: #ecfdf5;
+            border-color: #bbf7d0;
+            color: #065f46;
+        }
+        .answer-wrong {
+            background: #fff1f2;
+            border-color: #fca5a5;
+            color: #9f1239;
+        }
+        .user-choice {
+            outline: 2px dashed rgba(0, 0, 0, 0.06);
+        }
+        .explanation {
+            margin-top: 6px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            background: #f1f6fa;
+            color: #1a3a4f;
+            font-size: 0.92rem;
+            line-height: 1.6;
+            border-left: 4px solid var(--accent);
+        }
+        .explanation.wrong {
+            background: #fff5f5;
+            color: #7f1d1d;
+            border-left-color: #f87171;
+        }
+
+        /* ─────────── BUTTONS ─────────── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.6rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(26, 82, 118, 0.22);
+        }
+        .btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(26, 82, 118, 0.30);
+        }
+        .btn:active {
+            transform: scale(0.96);
+        }
+        .btn i {
+            font-size: 0.9rem;
+        }
+
+        .submit-wrap,
+        .tf-submit-wrap {
+            text-align: center;
+            margin: 1.5rem 0 2rem;
+        }
+
+        /* ─────────── RESULT BOX ─────────── */
+        .result,
+        .tf-result {
+            margin-top: 1.5rem;
+            padding: 1.5rem 1.5rem 1rem;
+            background: #f1f6fa;
+            border-radius: var(--radius);
+            text-align: center;
+            display: none;
+            border: 1px solid #c5dce3;
+        }
+        .result h3,
+        .tf-result h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.2rem;
+        }
+        .score {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0.2rem 0 0.4rem;
+        }
+
+        /* ─────────── T/F SECTION ─────────── */
+        .tf-group {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.2rem 1.2rem 0.2rem 1.2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(26, 82, 118, 0.06);
+        }
+        .tf-group h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .tf-group h3 .tf-badge {
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.7rem;
+            line-height: 1.6;
+            font-weight: 700;
+        }
+
+        .tf-statement {
+            background: #fafcfd;
+            border: 1px solid #e0e8ef;
+            border-radius: 8px;
+            padding: 0.6rem 0.9rem;
+            margin-top: 0.6rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            transition: background 0.15s;
+        }
+        .tf-statement .tf-label {
+            font-weight: 600;
+            color: var(--primary);
+            min-width: 1.8rem;
+            font-size: 0.9rem;
+        }
+        .tf-statement .tf-text {
+            flex: 1;
+            font-size: 0.94rem;
+            line-height: 1.4;
+            min-width: 200px;
+        }
+        .tf-statement .tf-options {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .tf-statement .tf-options label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.2rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 0.1rem 0.5rem;
+            border-radius: 4px;
+            transition: background 0.15s;
+        }
+        .tf-statement .tf-options label:hover {
+            background: #e8f0f5;
+        }
+        .tf-statement .tf-options input[type="radio"] {
+            accent-color: var(--primary);
+            transform: scale(1.0);
+            margin: 0;
+        }
+
+        .tf-feedback {
+            margin-top: 0.4rem;
+            padding: 0.4rem 0 0.1rem 0;
+            border-top: 1px dashed #dce6ed;
+            width: 100%;
+        }
+        .tf-feedback .tf-explain {
+            margin-top: 4px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            background: #f1f6fa;
+            color: #1a3a4f;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border-left: 4px solid var(--accent);
+        }
+        .tf-feedback .tf-explain.wrong {
+            background: #fff5f5;
+            color: #7f1d1d;
+            border-left-color: #f87171;
+        }
+        .tf-feedback .tf-explain .tf-result-label {
+            font-weight: 700;
+        }
+
+        /* ─────────── RESPONSIVE ─────────── */
+        @media (max-width: 700px) {
+            body {
+                padding-top: 72px;
+            }
+            .logo h1 {
+                font-size: 1rem;
+            }
+            .header-inner {
+                padding: 0 1rem;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.3rem;
+            }
+            .badge {
+                align-self: flex-start;
+            }
+            .nav-tabs {
+                justify-content: center;
+            }
+            .nav-tabs .tab-btn {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.7rem;
+            }
+            .question,
+            .tf-group {
+                padding: 1rem 1rem 0.1rem 1rem;
+            }
+            .section-title {
+                font-size: 1.1rem;
+            }
+            .score {
+                font-size: 2.2rem;
+            }
+            .btn {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.85rem;
+            }
+            .tf-statement {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.3rem;
+            }
+            .tf-statement .tf-options {
+                justify-content: flex-start;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .logo h1 {
+                font-size: 0.85rem;
+            }
+            .logo i {
+                font-size: 1.2rem;
+            }
+            .options label {
+                font-size: 0.87rem;
+                padding: 0.4rem 0.7rem;
+            }
+        }
+
+        .text-muted {
+            color: #5f7a7a;
+            font-size: 0.9rem;
+        }
+        .hidden {
+            display: none !important;
+        }
+        .scroll-target {
+            scroll-margin-top: 90px;
+        }
+        .mt-1 {
+            margin-top: 0.8rem;
+        }
+        .mb-1 {
+            margin-bottom: 0.8rem;
+        }
+        .flex-center {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════ HEADER ═══════ -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <i class="fas fa-skull"></i>
+                <h1>Anatomy &bull; Skull, Neck &amp; Fossae</h1>
+            </div>
+            <span class="badge"><i class="fas fa-pencil-alt"></i> &nbsp;30 MCQs + 6 T/F Sets</span>
+            <div class="nav-tabs">
+                <button class="tab-btn active" data-section="mcq">MCQs</button>
+                <button class="tab-btn" data-section="tf">True / False</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══════ MAIN ═══════ -->
+    <main>
+
+        <!-- ──── SECTION 1: MCQs ──── -->
+        <section class="container section-panel" id="section-mcq">
+            <div class="section-title scroll-target" id="mcq-top">
+                <i class="fas fa-list-ul"></i> Multiple Choice Questions
+                <span class="count">30</span>
+            </div>
+            <p class="section-subtitle">Select the best answer for each question, then click <strong>Submit All MCQs</strong>.</p>
+
+            <form id="quizForm">
+                <!-- Q1 -->
+                <div class="question">
+                    <p><span class="q-badge">1</span> Which major division of the trigeminal nerve passes through the infratemporal fossa between the cranial and oral cavities?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="a"> A. Ophthalmic nerve [V1]</label>
+                        <label><input type="radio" name="q1" value="b"> B. Maxillary nerve [V2]</label>
+                        <label><input type="radio" name="q1" value="c"> C. Mandibular nerve [V3]</label>
+                        <label><input type="radio" name="q1" value="d"> D. Optic nerve</label>
+                        <label><input type="radio" name="q1" value="e"> E. Facial nerve</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q1"></div>
+                </div>
+                <!-- Q2 -->
+                <div class="question">
+                    <p><span class="q-badge">2</span> The pterygopalatine fossa serves as a passage for which major nerve?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="a"> A. Oculomotor nerve</label>
+                        <label><input type="radio" name="q2" value="b"> B. Trochlear nerve</label>
+                        <label><input type="radio" name="q2" value="c"> C. Ophthalmic nerve</label>
+                        <label><input type="radio" name="q2" value="d"> D. Maxillary nerve [V2]</label>
+                        <label><input type="radio" name="q2" value="e"> E. Mandibular nerve [V3]</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q2"></div>
+                </div>
+                <!-- Q3 -->
+                <div class="question">
+                    <p><span class="q-badge">3</span> In the inferior limit of the neck, which spinous process is prominent and easily palpable posteriorly?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="a"> A. C1</label>
+                        <label><input type="radio" name="q3" value="b"> B. C2</label>
+                        <label><input type="radio" name="q3" value="c"> C. C5</label>
+                        <label><input type="radio" name="q3" value="d"> D. C7</label>
+                        <label><input type="radio" name="q3" value="e"> E. T2</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q3"></div>
+                </div>
+                <!-- Q4 -->
+                <div class="question">
+                    <p><span class="q-badge">4</span> Which compartment of the neck contains the cervical vertebrae and associated postural muscles?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="a"> A. Visceral compartment</label>
+                        <label><input type="radio" name="q4" value="b"> B. Vertebral compartment</label>
+                        <label><input type="radio" name="q4" value="c"> C. Vascular compartment</label>
+                        <label><input type="radio" name="q4" value="d"> D. Submandibular compartment</label>
+                        <label><input type="radio" name="q4" value="e"> E. Musculofascial collar</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q4"></div>
+                </div>
+                <!-- Q5 -->
+                <div class="question">
+                    <p><span class="q-badge">5</span> Which major structures are housed within the vascular compartments of the neck?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="a"> A. Thyroid and parathyroid glands</label>
+                        <label><input type="radio" name="q5" value="b"> B. Major blood vessels and the vagus nerve</label>
+                        <label><input type="radio" name="q5" value="c"> C. Cervical vertebrae and postural muscles</label>
+                        <label><input type="radio" name="q5" value="d"> D. Trachea and larynx</label>
+                        <label><input type="radio" name="q5" value="e"> E. Pharynx and esophagus</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q5"></div>
+                </div>
+                <!-- Q6 -->
+                <div class="question">
+                    <p><span class="q-badge">6</span> Excluding the ossicles of the ear, how many total bones make up the human skull?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="a"> A. 14</label>
+                        <label><input type="radio" name="q6" value="b"> B. 20</label>
+                        <label><input type="radio" name="q6" value="c"> C. 22</label>
+                        <label><input type="radio" name="q6" value="d"> D. 26</label>
+                        <label><input type="radio" name="q6" value="e"> E. 28</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q6"></div>
+                </div>
+                <!-- Q7 -->
+                <div class="question">
+                    <p><span class="q-badge">7</span> Except for which bone, all bones of the skull are attached to each other by immobile sutures to form the cranium?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="a"> A. Maxilla</label>
+                        <label><input type="radio" name="q7" value="b"> B. Frontal bone</label>
+                        <label><input type="radio" name="q7" value="c"> C. Mandible</label>
+                        <label><input type="radio" name="q7" value="d"> D. Hyoid bone</label>
+                        <label><input type="radio" name="q7" value="e"> E. Sphenoid bone</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q7"></div>
+                </div>
+                <!-- Q8 -->
+                <div class="question">
+                    <p><span class="q-badge">8</span> Which of the following is an unpaired bone of the facial skeleton (viscerocranium)?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="a"> A. Nasal bone</label>
+                        <label><input type="radio" name="q8" value="b"> B. Palatine bone</label>
+                        <label><input type="radio" name="q8" value="c"> C. Lacrimal bone</label>
+                        <label><input type="radio" name="q8" value="d"> D. Zygomatic bone</label>
+                        <label><input type="radio" name="q8" value="e"> E. Vomer</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q8"></div>
+                </div>
+                <!-- Q9 -->
+                <div class="question">
+                    <p><span class="q-badge">9</span> The infra-orbital foramen is located on the anterior surface of which bone?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="a"> A. Frontal bone</label>
+                        <label><input type="radio" name="q9" value="b"> B. Zygomatic bone</label>
+                        <label><input type="radio" name="q9" value="c"> C. Body of the maxilla</label>
+                        <label><input type="radio" name="q9" value="d"> D. Body of the mandible</label>
+                        <label><input type="radio" name="q9" value="e"> E. Sphenoid bone</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q9"></div>
+                </div>
+                <!-- Q10 -->
+                <div class="question">
+                    <p><span class="q-badge">10</span> When teeth are removed, which part of the mandible is resorbed?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="a"> A. Ramus</label>
+                        <label><input type="radio" name="q10" value="b"> B. Angle</label>
+                        <label><input type="radio" name="q10" value="c"> C. Alveolar part</label>
+                        <label><input type="radio" name="q10" value="d"> D. Mental protuberance</label>
+                        <label><input type="radio" name="q10" value="e"> E. Coronoid process</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q10"></div>
+                </div>
+                <!-- Q11 -->
+                <div class="question">
+                    <p><span class="q-badge">11</span> The zygomatic arch is formed by the union of the zygomatic process of the temporal bone and the:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q11" value="a"> A. Frontal process of the maxilla</label>
+                        <label><input type="radio" name="q11" value="b"> B. Temporal process of the zygomatic bone</label>
+                        <label><input type="radio" name="q11" value="c"> C. Styloid process</label>
+                        <label><input type="radio" name="q11" value="d"> D. Mastoid process</label>
+                        <label><input type="radio" name="q11" value="e"> E. Greater wing of sphenoid</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q11"></div>
+                </div>
+                <!-- Q12 -->
+                <div class="question">
+                    <p><span class="q-badge">12</span> The most prominent point of the external occipital protuberance is designated as the:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q12" value="a"> A. Nasion</label>
+                        <label><input type="radio" name="q12" value="b"> B. Bregma</label>
+                        <label><input type="radio" name="q12" value="c"> C. Lambda</label>
+                        <label><input type="radio" name="q12" value="d"> D. Inion</label>
+                        <label><input type="radio" name="q12" value="e"> E. Glabella</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q12"></div>
+                </div>
+                <!-- Q13 -->
+                <div class="question">
+                    <p><span class="q-badge">13</span> The coronal suture represents the articulation between the:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q13" value="a"> A. Two parietal bones</label>
+                        <label><input type="radio" name="q13" value="b"> B. Parietal bones and the occipital bone</label>
+                        <label><input type="radio" name="q13" value="c"> C. Unpaired frontal bone and the paired parietal bones</label>
+                        <label><input type="radio" name="q13" value="d"> D. Temporal bone and occipital bone</label>
+                        <label><input type="radio" name="q13" value="e"> E. Sphenoid bone and frontal bone</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q13"></div>
+                </div>
+                <!-- Q14 -->
+                <div class="question">
+                    <p><span class="q-badge">14</span> The junction where the sagittal and coronal sutures meet is called the:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q14" value="a"> A. Lambda</label>
+                        <label><input type="radio" name="q14" value="b"> B. Inion</label>
+                        <label><input type="radio" name="q14" value="c"> C. Bregma</label>
+                        <label><input type="radio" name="q14" value="d"> D. Nasion</label>
+                        <label><input type="radio" name="q14" value="e"> E. Pterion</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q14"></div>
+                </div>
+                <!-- Q15 -->
+                <div class="question">
+                    <p><span class="q-badge">15</span> The junction of the sagittal and lambdoid sutures is defined as the:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q15" value="a"> A. Bregma</label>
+                        <label><input type="radio" name="q15" value="b"> B. Lambda</label>
+                        <label><input type="radio" name="q15" value="c"> C. Inion</label>
+                        <label><input type="radio" name="q15" value="d"> D. Glabella</label>
+                        <label><input type="radio" name="q15" value="e"> E. Nasion</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q15"></div>
+                </div>
+                <!-- Q16 -->
+                <div class="question">
+                    <p><span class="q-badge">16</span> The layer of spongy bone separating the internal and external tables of compact bone in the calvaria is called the:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q16" value="a"> A. Pericranium</label>
+                        <label><input type="radio" name="q16" value="b"> B. Dura</label>
+                        <label><input type="radio" name="q16" value="c"> C. Diploë</label>
+                        <label><input type="radio" name="q16" value="d"> D. Galea</label>
+                        <label><input type="radio" name="q16" value="e"> E. Endosteum</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q16"></div>
+                </div>
+                <!-- Q17 -->
+                <div class="question">
+                    <p><span class="q-badge">17</span> Which part of the skull base extends posteriorly from behind the hard palate to the anterior margin of the foramen magnum?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q17" value="a"> A. Anterior part</label>
+                        <label><input type="radio" name="q17" value="b"> B. Middle part</label>
+                        <label><input type="radio" name="q17" value="c"> C. Posterior part</label>
+                        <label><input type="radio" name="q17" value="d"> D. Lateral part</label>
+                        <label><input type="radio" name="q17" value="e"> E. Superior part</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q17"></div>
+                </div>
+                <!-- Q18 -->
+                <div class="question">
+                    <p><span class="q-badge">18</span> The dome-shaped roof that protects the superior aspect of the brain is the:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q18" value="a"> A. Viscerocranium</label>
+                        <label><input type="radio" name="q18" value="b"> B. Calvaria</label>
+                        <label><input type="radio" name="q18" value="c"> C. Cranial fossa</label>
+                        <label><input type="radio" name="q18" value="d"> D. Hard palate</label>
+                        <label><input type="radio" name="q18" value="e"> E. Base of skull</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q18"></div>
+                </div>
+                <!-- Q19 -->
+                <div class="question">
+                    <p><span class="q-badge">19</span> Which bones form the floor of the anterior cranial fossa in the midline?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q19" value="a"> A. Frontal bone</label>
+                        <label><input type="radio" name="q19" value="b"> B. Ethmoid bone</label>
+                        <label><input type="radio" name="q19" value="c"> C. Parietal bone</label>
+                        <label><input type="radio" name="q19" value="d"> D. Temporal bone</label>
+                        <label><input type="radio" name="q19" value="e"> E. Occipital bone</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q19"></div>
+                </div>
+                <!-- Q20 -->
+                <div class="question">
+                    <p><span class="q-badge">20</span> Which structure transmits the olfactory nerves through the floor of the anterior cranial fossa?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q20" value="a"> A. Foramen caecum</label>
+                        <label><input type="radio" name="q20" value="b"> B. Optic canal</label>
+                        <label><input type="radio" name="q20" value="c"> C. Olfactory foramina in the cribriform plate</label>
+                        <label><input type="radio" name="q20" value="d"> D. Superior orbital fissure</label>
+                        <label><input type="radio" name="q20" value="e"> E. Foramen rotundum</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q20"></div>
+                </div>
+                <!-- Q21 -->
+                <div class="question">
+                    <p><span class="q-badge">21</span> Which nerves pass through the superior orbital fissure?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q21" value="a"> A. CN I, II, III</label>
+                        <label><input type="radio" name="q21" value="b"> B. CN III, IV, V1, VI</label>
+                        <label><input type="radio" name="q21" value="c"> C. CN V2, V3, VII</label>
+                        <label><input type="radio" name="q21" value="d"> D. CN VII, VIII, IX</label>
+                        <label><input type="radio" name="q21" value="e"> E. CN IX, X, XI</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q21"></div>
+                </div>
+                <!-- Q22 -->
+                <div class="question">
+                    <p><span class="q-badge">22</span> Through which opening does the mandibular division of the trigeminal nerve [V3] pass?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q22" value="a"> A. Foramen rotundum</label>
+                        <label><input type="radio" name="q22" value="b"> B. Foramen spinosum</label>
+                        <label><input type="radio" name="q22" value="c"> C. Foramen ovale</label>
+                        <label><input type="radio" name="q22" value="d"> D. Superior orbital fissure</label>
+                        <label><input type="radio" name="q22" value="e"> E. Optic canal</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q22"></div>
+                </div>
+                <!-- Q23 -->
+                <div class="question">
+                    <p><span class="q-badge">23</span> The greater petrosal nerve passes through which skull feature?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q23" value="a"> A. Foramen spinosum</label>
+                        <label><input type="radio" name="q23" value="b"> B. Hiatus for the greater petrosal nerve</label>
+                        <label><input type="radio" name="q23" value="c"> C. Foramen ovale</label>
+                        <label><input type="radio" name="q23" value="d"> D. Foramen rotundum</label>
+                        <label><input type="radio" name="q23" value="e"> E. Carotid canal</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q23"></div>
+                </div>
+                <!-- Q24 -->
+                <div class="question">
+                    <p><span class="q-badge">24</span> The middle cranial fossa consists primarily of parts of which two bones?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q24" value="a"> A. Frontal and ethmoid bones</label>
+                        <label><input type="radio" name="q24" value="b"> B. Sphenoid and temporal bones</label>
+                        <label><input type="radio" name="q24" value="c"> C. Temporal and occipital bones</label>
+                        <label><input type="radio" name="q24" value="d"> D. Parietal and frontal bones</label>
+                        <label><input type="radio" name="q24" value="e"> E. Sphenoid and occipital bones</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q24"></div>
+                </div>
+                <!-- Q25 -->
+                <div class="question">
+                    <p><span class="q-badge">25</span> The visceral compartment of the neck contains which of the following structures?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q25" value="a"> A. Cervical vertebrae</label>
+                        <label><input type="radio" name="q25" value="b"> B. Postural muscles</label>
+                        <label><input type="radio" name="q25" value="c"> C. Thyroid, parathyroid, and thymus glands</label>
+                        <label><input type="radio" name="q25" value="d"> D. Internal jugular vein</label>
+                        <label><input type="radio" name="q25" value="e"> E. Carotid artery</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q25"></div>
+                </div>
+                <!-- Q26 -->
+                <div class="question">
+                    <p><span class="q-badge">26</span> Which of the following forms the superior boundary of the neck?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q26" value="a"> A. Top of the sternum</label>
+                        <label><input type="radio" name="q26" value="b"> B. Clavicle</label>
+                        <label><input type="radio" name="q26" value="c"> C. Inferior margins of the mandible and bone features on the posterior skull</label>
+                        <label><input type="radio" name="q26" value="d"> D. Acromion</label>
+                        <label><input type="radio" name="q26" value="e"> E. Spinous process of CVII</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q26"></div>
+                </div>
+                <!-- Q27 -->
+                <div class="question">
+                    <p><span class="q-badge">27</span> Small islands of bone found along the lambdoid suture are called:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q27" value="a"> A. Sesamoidean bones</label>
+                        <label><input type="radio" name="q27" value="b"> B. Sutural (Wormian) bones</label>
+                        <label><input type="radio" name="q27" value="c"> C. Epiphyseal bones</label>
+                        <label><input type="radio" name="q27" value="d"> D. Diploiic bones</label>
+                        <label><input type="radio" name="q27" value="e"> E. Calvarial processes</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q27"></div>
+                </div>
+                <!-- Q28 -->
+                <div class="question">
+                    <p><span class="q-badge">28</span> Which structure passes through the lesser petrosal hiatus?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q28" value="a"> A. Greater petrosal nerve</label>
+                        <label><input type="radio" name="q28" value="b"> B. Lesser petrosal nerve</label>
+                        <label><input type="radio" name="q28" value="c"> C. Middle meningeal artery</label>
+                        <label><input type="radio" name="q28" value="d"> D. Maxillary nerve</label>
+                        <label><input type="radio" name="q28" value="e"> E. Ophthalmic vein</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q28"></div>
+                </div>
+                <!-- Q29 -->
+                <div class="question">
+                    <p><span class="q-badge">29</span> The posterior limit of the inferior boundary of the neck is approximated by a line between the acromion and the:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q29" value="a"> A. Mastoid process</label>
+                        <label><input type="radio" name="q29" value="b"> B. External occipital protuberance</label>
+                        <label><input type="radio" name="q29" value="c"> C. Spinous process of vertebra CVII</label>
+                        <label><input type="radio" name="q29" value="d"> D. Mandibular angle</label>
+                        <label><input type="radio" name="q29" value="e"> E. Superior nuchal line</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q29"></div>
+                </div>
+                <!-- Q30 -->
+                <div class="question">
+                    <p><span class="q-badge">30</span> Which two specialized structures associated with the digestive and respiratory tracts are contained within the neck?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q30" value="a"> A. Esophagus and stomach</label>
+                        <label><input type="radio" name="q30" value="b"> B. Larynx and pharynx</label>
+                        <label><input type="radio" name="q30" value="c"> C. Trachea and bronchi</label>
+                        <label><input type="radio" name="q30" value="d"> D. Nasal cavity and oral cavity</label>
+                        <label><input type="radio" name="q30" value="e"> E. Thyroid and parathyroid</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q30"></div>
+                </div>
+
+                <div class="submit-wrap">
+                    <button type="button" class="btn" onclick="submitMCQ()">
+                        <i class="fas fa-check-circle"></i> Submit All MCQs
+                    </button>
+                </div>
+
+            </form>
+
+            <div class="result" id="resultBox">
+                <h3><i class="fas fa-chart-simple"></i> Your Score</h3>
+                <div class="score" id="score">0%</div>
+                <p class="text-muted" style="font-size:0.9rem;">Review the feedback below each question.</p>
+            </div>
+        </section>
+
+        <!-- ──── SECTION 2: TRUE / FALSE ──── -->
+        <section class="container section-panel hidden" id="section-tf">
+            <div class="section-title scroll-target" id="tf-top">
+                <i class="fas fa-check-double"></i> True / False Questions
+                <span class="count">6 sets</span>
+            </div>
+            <p class="section-subtitle">For each statement, select <strong>True</strong> or <strong>False</strong>. Click <strong>Submit T/F</strong> to check your answers.</p>
+
+            <form id="tfForm">
+
+                <!-- ─── TF GROUP 1 ─── -->
+                <div class="tf-group">
+                    <h3><span class="tf-badge">Set 1</span> Concerning the Boundaries and Anatomy of the Neck</h3>
+
+                    <div class="tf-statement" id="tf1a">
+                        <span class="tf-label">(a)</span>
+                        <span class="tf-text">The posterior neck is higher than the anterior neck to connect cervical viscera with the posterior openings of the nasal and oral cavities.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf1a" value="true"> True</label>
+                            <label><input type="radio" name="tf1a" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf1a"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf1b">
+                        <span class="tf-label">(b)</span>
+                        <span class="tf-text">The inferior boundary of the neck extends anteriorly along the top of the sternum and clavicle.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf1b" value="true"> True</label>
+                            <label><input type="radio" name="tf1b" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf1b"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf1c">
+                        <span class="tf-label">(c)</span>
+                        <span class="tf-text">The neck contains three major compartments enclosed by an outer musculofascial collar.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf1c" value="true"> True</label>
+                            <label><input type="radio" name="tf1c" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf1c"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf1d">
+                        <span class="tf-label">(d)</span>
+                        <span class="tf-text">The vertebral compartment contains major blood vessels and the vagus nerve.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf1d" value="true"> True</label>
+                            <label><input type="radio" name="tf1d" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf1d"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf1e">
+                        <span class="tf-label">(e)</span>
+                        <span class="tf-text">The inferior border of the neck encloses the base of the neck.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf1e" value="true"> True</label>
+                            <label><input type="radio" name="tf1e" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf1e"></div>
+                    </div>
+                </div>
+
+                <!-- ─── TF GROUP 2 ─── -->
+                <div class="tf-group">
+                    <h3><span class="tf-badge">Set 2</span> Regarding the Infratemporal and Pterygopalatine Fossae</h3>
+
+                    <div class="tf-statement" id="tf2a">
+                        <span class="tf-label">(a)</span>
+                        <span class="tf-text">The infratemporal fossa lies between the posterior aspect of the ramus of the mandible and the lateral plate of the pterygoid process.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf2a" value="true"> True</label>
+                            <label><input type="radio" name="tf2a" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf2a"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf2b">
+                        <span class="tf-label">(b)</span>
+                        <span class="tf-text">The mandibular nerve [V3] passes through the infratemporal fossa.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf2b" value="true"> True</label>
+                            <label><input type="radio" name="tf2b" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf2b"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf2c">
+                        <span class="tf-label">(c)</span>
+                        <span class="tf-text">The pterygopalatine fossa is located anterior to the upper jaw.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf2c" value="true"> True</label>
+                            <label><input type="radio" name="tf2c" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf2c"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf2d">
+                        <span class="tf-label">(d)</span>
+                        <span class="tf-text">The pterygopalatine fossa communicates with the cranial cavity, infratemporal fossa, orbit, nasal cavity, and oral cavity.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf2d" value="true"> True</label>
+                            <label><input type="radio" name="tf2d" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf2d"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf2e">
+                        <span class="tf-label">(e)</span>
+                        <span class="tf-text">The major structure passing through the pterygopalatine fossa is the ophthalmic nerve [V1].</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf2e" value="true"> True</label>
+                            <label><input type="radio" name="tf2e" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf2e"></div>
+                    </div>
+                </div>
+
+                <!-- ─── TF GROUP 3 ─── -->
+                <div class="tf-group">
+                    <h3><span class="tf-badge">Set 3</span> Concerning the Bones of the Skull and Calvaria</h3>
+
+                    <div class="tf-statement" id="tf3a">
+                        <span class="tf-label">(a)</span>
+                        <span class="tf-text">The skull consists of 22 bones, excluding the ear ossicles.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf3a" value="true"> True</label>
+                            <label><input type="radio" name="tf3a" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf3a"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf3b">
+                        <span class="tf-label">(b)</span>
+                        <span class="tf-text">The bones forming the calvaria are mainly paired temporal and parietal, and parts of the unpaired frontal, sphenoid, and occipital bones.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf3b" value="true"> True</label>
+                            <label><input type="radio" name="tf3b" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf3b"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf3c">
+                        <span class="tf-label">(c)</span>
+                        <span class="tf-text">The vomer is a paired bone of the facial skeleton.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf3c" value="true"> True</label>
+                            <label><input type="radio" name="tf3c" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf3c"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf3d">
+                        <span class="tf-label">(d)</span>
+                        <span class="tf-text">The two parietal bones articulate with each other in the midline at the sagittal suture.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf3d" value="true"> True</label>
+                            <label><input type="radio" name="tf3d" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf3d"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf3e">
+                        <span class="tf-label">(e)</span>
+                        <span class="tf-text">The diploë is composed of dense compact bone.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf3e" value="true"> True</label>
+                            <label><input type="radio" name="tf3e" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf3e"></div>
+                    </div>
+                </div>
+
+                <!-- ─── TF GROUP 4 ─── -->
+                <div class="tf-group">
+                    <h3><span class="tf-badge">Set 4</span> Regarding the Anterior and Posterior Views of the Skull</h3>
+
+                    <div class="tf-statement" id="tf4a">
+                        <span class="tf-label">(a)</span>
+                        <span class="tf-text">The glabella and superciliary arches are features of the frontal bone.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf4a" value="true"> True</label>
+                            <label><input type="radio" name="tf4a" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf4a"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf4b">
+                        <span class="tf-label">(b)</span>
+                        <span class="tf-text">The frontal process of each maxilla articulates with the zygomatic bone laterally.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf4b" value="true"> True</label>
+                            <label><input type="radio" name="tf4b" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf4b"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf4c">
+                        <span class="tf-label">(c)</span>
+                        <span class="tf-text">The alveolar part of the maxilla contains the upper teeth.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf4c" value="true"> True</label>
+                            <label><input type="radio" name="tf4c" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf4c"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf4d">
+                        <span class="tf-label">(d)</span>
+                        <span class="tf-text">The mastoid process forms the most anterior part of the temporal bone.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf4d" value="true"> True</label>
+                            <label><input type="radio" name="tf4d" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf4d"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf4e">
+                        <span class="tf-label">(e)</span>
+                        <span class="tf-text">The styloid process projects from the lower border of the temporal bone.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf4e" value="true"> True</label>
+                            <label><input type="radio" name="tf4e" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf4e"></div>
+                    </div>
+                </div>
+
+                <!-- ─── TF GROUP 5 ─── -->
+                <div class="tf-group">
+                    <h3><span class="tf-badge">Set 5</span> Concerning the Inferior View and Cranial Cavity Roof</h3>
+
+                    <div class="tf-statement" id="tf5a">
+                        <span class="tf-label">(a)</span>
+                        <span class="tf-text">The base of the skull extends anteriorly from the middle incisor teeth posteriorly to the superior nuchal lines.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf5a" value="true"> True</label>
+                            <label><input type="radio" name="tf5a" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf5a"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf5b">
+                        <span class="tf-label">(b)</span>
+                        <span class="tf-text">The anterior part of the skull base includes the hard palate and teeth.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf5b" value="true"> True</label>
+                            <label><input type="radio" name="tf5b" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf5b"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf5c">
+                        <span class="tf-label">(c)</span>
+                        <span class="tf-text">The posterior part of the skull base extends from behind the hard palate to the anterior margin of the foramen magnum.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf5c" value="true"> True</label>
+                            <label><input type="radio" name="tf5c" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf5c"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf5d">
+                        <span class="tf-label">(d)</span>
+                        <span class="tf-text">The calvaria consists mainly of the frontal bone anteriorly, paired parietal bones in the middle, and occipital bone posteriorly.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf5d" value="true"> True</label>
+                            <label><input type="radio" name="tf5d" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf5d"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf5e">
+                        <span class="tf-label">(e)</span>
+                        <span class="tf-text">The cranial cavity contains the brain, meninges, proximal parts of cranial nerves, blood vessels, and venous sinuses.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf5e" value="true"> True</label>
+                            <label><input type="radio" name="tf5e" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf5e"></div>
+                    </div>
+                </div>
+
+                <!-- ─── TF GROUP 6 ─── -->
+                <div class="tf-group">
+                    <h3><span class="tf-badge">Set 6</span> Regarding the Foramina of the Cranial Fossae</h3>
+
+                    <div class="tf-statement" id="tf6a">
+                        <span class="tf-label">(a)</span>
+                        <span class="tf-text">The foramen caecum is located in the anterior cranial fossa and transmits emissary veins.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf6a" value="true"> True</label>
+                            <label><input type="radio" name="tf6a" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf6a"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf6b">
+                        <span class="tf-label">(b)</span>
+                        <span class="tf-text">The optic canal transmits the optic nerve and ophthalmic vein.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf6b" value="true"> True</label>
+                            <label><input type="radio" name="tf6b" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf6b"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf6c">
+                        <span class="tf-label">(c)</span>
+                        <span class="tf-text">The foramen rotundum transmits the maxillary division of the trigeminal nerve [V2].</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf6c" value="true"> True</label>
+                            <label><input type="radio" name="tf6c" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf6c"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf6d">
+                        <span class="tf-label">(d)</span>
+                        <span class="tf-text">The foramen spinosum transmits the middle meningeal artery.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf6d" value="true"> True</label>
+                            <label><input type="radio" name="tf6d" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf6d"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf6e">
+                        <span class="tf-label">(e)</span>
+                        <span class="tf-text">The lesser petrosal nerve passes through the foramen ovale as well as its own hiatus.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf6e" value="true"> True</label>
+                            <label><input type="radio" name="tf6e" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf6e"></div>
+                    </div>
+                </div>
+
+                <div class="tf-submit-wrap">
+                    <button type="button" class="btn" onclick="submitTF()">
+                        <i class="fas fa-check-circle"></i> Submit T/F
+                    </button>
+                </div>
+
+            </form>
+
+            <div class="tf-result" id="tfResultBox">
+                <h3><i class="fas fa-chart-simple"></i> T/F Score</h3>
+                <div class="score" id="tfScore">0%</div>
+                <p class="text-muted" style="font-size:0.9rem;">Review the feedback below each statement.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ═══════ JAVASCRIPT ═══════ -->
+    <script>
+        // ─── TAB NAVIGATION ───
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const section = this.dataset.section;
+                document.querySelectorAll('.section-panel').forEach(p => p.classList.add('hidden'));
+                document.getElementById('section-' + section).classList.remove('hidden');
+                const topEl = document.getElementById(section + '-top');
+                if (topEl) topEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // ─── MCQ DATA ───
+        const correctMCQ = {
+            q1: "c", q2: "d", q3: "d", q4: "b", q5: "b",
+            q6: "c", q7: "c", q8: "e", q9: "c", q10: "c",
+            q11: "b", q12: "d", q13: "c", q14: "c", q15: "b",
+            q16: "c", q17: "b", q18: "b", q19: "b", q20: "c",
+            q21: "b", q22: "c", q23: "b", q24: "b", q25: "c",
+            q26: "c", q27: "b", q28: "b", q29: "c", q30: "b"
+        };
+
+        const mcqExplanations = {
+            q1: "The mandibular nerve [V3] passes through the infratemporal fossa between the cranial cavity and the oral cavity. It exits the skull through the foramen ovale and then enters the infratemporal fossa, where it branches to supply the muscles of mastication and sensation to the lower face, mandible, and anterior two-thirds of the tongue (general sensation). The ophthalmic [V1] and maxillary [V2] divisions do not pass through this fossa.",
+            q2: "The pterygopalatine fossa serves as a major passage for the maxillary nerve [V2]. This nerve enters the fossa via the foramen rotundum and gives off branches to the orbit, nasal cavity, palate, and pharynx before continuing as the infraorbital nerve. The pterygopalatine fossa is a key distribution center for V2.",
+            q3: "The spinous process of C7 is prominent and easily palpable posteriorly, often referred to as the 'vertebra prominens'. It is a useful landmark for counting vertebrae. C1 and C2 are not palpable posteriorly due to their small spinous processes; C5 is not as prominent. T2 is lower and usually not easily palpated.",
+            q4: "The vertebral compartment of the neck contains the cervical vertebrae, the associated postural muscles (e.g., deep back muscles, scalenes), and the spinal cord. The visceral compartment contains the thyroid, pharynx, etc.; the vascular compartment contains the great vessels and vagus nerve.",
+            q5: "The vascular compartments of the neck contain the major blood vessels (common carotid artery, internal jugular vein) and the vagus nerve [CN X]. They are enclosed by the carotid sheath. The visceral compartment contains the thyroid and parathyroid glands; the vertebral compartment contains the vertebrae and muscles.",
+            q6: "The human skull consists of 22 bones (excluding the 6 ossicles of the ear). These include 8 cranial bones and 14 facial bones. The cranial bones are: frontal, 2 parietal, 2 temporal, occipital, sphenoid, ethmoid. The facial bones include paired and unpaired bones.",
+            q7: "The mandible is the only bone of the skull that is attached by a freely movable synovial joint (the temporomandibular joint), not by immobile sutures. All other bones are connected by sutures except the hyoid, which is not part of the skull (it is in the neck and does not articulate with any other bone). The hyoid is not part of the cranium, so the exception is the mandible.",
+            q8: "The vomer is an unpaired bone of the facial skeleton. It forms the posterior-inferior part of the nasal septum. All other options are paired bones: nasal, palatine, lacrimal, and zygomatic bones are bilaterally paired.",
+            q9: "The infra-orbital foramen is located on the anterior surface of the body of the maxilla, inferior to the orbital rim. It transmits the infraorbital nerve (continuation of V2) and vessels. It is a clinically important landmark for nerve blocks in facial surgery.",
+            q10: "When teeth are removed, the alveolar part of the mandible (or maxilla) undergoes resorption. The alveolar process is the part of the bone that contains the tooth sockets (alveoli). Without teeth, it no longer receives functional stimulation and gradually atrophies, leading to a loss of alveolar bone height.",
+            q11: "The zygomatic arch is formed by the union of the zygomatic process of the temporal bone (posteriorly) and the temporal process of the zygomatic bone (anteriorly). These two processes meet at the zygomaticotemporal suture. The frontal process of the maxilla forms part of the orbital rim, not the arch.",
+            q12: "The most prominent point of the external occipital protuberance is called the inion. It is a bony landmark used in craniometry and is the attachment point for the ligamentum nuchae. The nasion is the midpoint of the frontonasal suture; bregma is the junction of coronal and sagittal sutures; lambda is the junction of sagittal and lambdoid sutures; glabella is the smooth prominence between the eyebrows.",
+            q13: "The coronal suture is the articulation between the unpaired frontal bone and the paired parietal bones. It runs from one pterion to the other, separating the frontal bone from the two parietal bones. The sagittal suture separates the two parietal bones; the lambdoid suture separates the parietal bones from the occipital bone.",
+            q14: "The junction where the sagittal and coronal sutures meet is the bregma. It is a landmark on the skull that in infants corresponds to the anterior fontanelle. Lambda is the junction of sagittal and lambdoid sutures; pterion is the junction of frontal, parietal, sphenoid, and temporal bones; nasion is the midpoint of the frontonasal suture.",
+            q15: "The junction of the sagittal and lambdoid sutures is the lambda. It is located at the midline on the posterior aspect of the skull. Bregma is anterior; inion is the external occipital protuberance, not a suture junction; glabella and nasion are anterior midline points.",
+            q16: "The diploë is the spongy bone layer (trabecular bone) that separates the outer (external) and inner (internal) tables of compact bone in the calvaria. It contains red bone marrow and diploic veins. The other terms refer to periosteum (pericranium), dura mater (dura), aponeurosis (galea), or endosteum.",
+            q17: "The middle part of the skull base extends from behind the hard palate to the anterior margin of the foramen magnum. The anterior part includes the hard palate and the teeth; the posterior part is behind the foramen magnum. This part contains the sella turcica and other structures.",
+            q18: "The calvaria (skull cap) is the dome-shaped roof that protects the superior aspect of the brain. It is composed of the frontal, parietal, and occipital bones. The viscerocranium is the facial skeleton; the cranial fossae are the floors; the hard palate is the bony roof of the mouth.",
+            q19: "In the midline, the floor of the anterior cranial fossa is formed by the ethmoid bone (specifically the cribriform plate). The orbital part of the frontal bone forms the lateral parts of the floor. The ethmoid bone lies between the two frontal bones in the midline. The sphenoid bone contributes to the middle cranial fossa.",
+            q20: "The olfactory nerves (CN I) pass through the olfactory foramina in the cribriform plate of the ethmoid bone, which is part of the floor of the anterior cranial fossa. The foramen caecum transmits an emissary vein; the optic canal transmits CN II; the superior orbital fissure transmits nerves to the orbit; foramen rotundum transmits V2.",
+            q21: "The superior orbital fissure transmits cranial nerves III (oculomotor), IV (trochlear), V1 (ophthalmic division of trigeminal), and VI (abducent), along with the ophthalmic veins. This is a common pathway for structures entering the orbit. The other nerves listed do not pass through this fissure.",
+            q22: "The mandibular division [V3] passes through the foramen ovale in the greater wing of the sphenoid bone. The foramen rotundum carries V2; the foramen spinosum carries the middle meningeal artery; the superior orbital fissure carries V1; the optic canal carries CN II.",
+            q23: "The greater petrosal nerve passes through the hiatus for the greater petrosal nerve on the anterior surface of the petrous part of the temporal bone. This hiatus is a small opening that leads to a groove on the petrous bone. The nerve is a branch of the facial nerve and carries parasympathetic fibers to the pterygopalatine ganglion.",
+            q24: "The middle cranial fossa consists primarily of the sphenoid bone (body, greater wings, lesser wings) and the temporal bones (petrous and squamous parts). The frontal and ethmoid bones form the anterior cranial fossa; the occipital and temporal bones form the posterior cranial fossa. The parietal bones form the calvaria but not the fossae.",
+            q25: "The visceral compartment of the neck contains the thyroid, parathyroid, and thymus glands, as well as the pharynx, larynx, trachea, and esophagus. It is a midline compartment enclosed by the pretracheal fascia. The vascular compartment contains major vessels; the vertebral compartment contains vertebrae and muscles.",
+            q26: "The superior boundary of the neck is formed by the inferior margins of the mandible and the bone features on the posterior skull (e.g., mastoid process, superior nuchal line, external occipital protuberance). The inferior boundary is the top of the sternum and clavicle, acromion, and spinous process of C7.",
+            q27: "Small islands of bone found along the lambdoid suture (and occasionally other sutures) are called sutural or Wormian bones. They are accessory bones that develop within the sutures. They are considered normal variations and may be more common in certain conditions like osteogenesis imperfecta.",
+            q28: "The lesser petrosal nerve passes through the lesser petrosal hiatus, a small opening on the anterior surface of the petrous temporal bone. It then enters the middle cranial fossa and joins the tympanic plexus. The greater petrosal nerve passes through its own hiatus; the middle meningeal artery passes through foramen spinosum.",
+            q29: "The posterior limit of the inferior boundary of the neck is approximated by a line from the acromion to the spinous process of vertebra CVII (C7). This line defines the level of the base of the neck posteriorly. The mastoid process is above the neck; the external occipital protuberance is the superior limit.",
+            q30: "The neck contains the larynx (respiratory) and pharynx (both digestive and respiratory). The esophagus and trachea also pass through the neck, but the question asks for specialized structures associated with both tracts. The larynx is specialized for respiration and phonation; the pharynx is a common passageway for food and air. The other options are either not in the neck or not specialized for both."
+        };
+
+        // ─── MCQ SUBMIT ───
+        function submitMCQ() {
+            let score = 0;
+            const total = Object.keys(correctMCQ).length;
+
+            document.querySelectorAll('.question-feedback').forEach(el => el.innerHTML = '');
+
+            for (let key in correctMCQ) {
+                const radios = Array.from(document.querySelectorAll(`input[name="${key}"]`));
+                const selected = radios.find(r => r.checked);
+                const correct = correctMCQ[key];
+
+                if (selected && selected.value === correct) score++;
+
+                const feedbackEl = document.getElementById(`feedback-${key}`);
+                if (!feedbackEl) continue;
+
+                let html = `<div class="answer-block"><strong>Q${key.replace(/^q/, '')}</strong><div class="answer-list">`;
+
+                radios.forEach(r => {
+                    const label = r.parentElement;
+                    const text = label ? label.textContent.trim() : r.value;
+                    const classes = ['answer-item'];
+                    if (r.value === correct) classes.push('answer-correct');
+                    if (r.checked && r.value !== correct) classes.push('answer-wrong', 'user-choice');
+                    if (r.checked && r.value === correct) classes.push('user-choice');
+                    html += `<div class="${classes.join(' ')}">${text}${r.checked ? ' ◀' : ''}</div>`;
+                });
+
+                html += `</div>`;
+
+                const correctRadio = radios.find(rr => rr.value === correct);
+                const correctText = correctRadio && correctRadio.parentElement ? correctRadio.parentElement.textContent.trim() : correct;
+                const explanationText = mcqExplanations[key] || '';
+
+                if (selected) {
+                    if (selected.value === correct) {
+                        html += `<div class="explanation">✅ Correct — ${explanationText}</div>`;
+                    } else {
+                        html += `<div class="explanation wrong">❌ Incorrect. Correct answer: <strong>${correctText}</strong>. ${explanationText}</div>`;
+                    }
+                } else {
+                    html += `<div class="explanation wrong">No answer selected. Correct answer: <strong>${correctText}</strong>. ${explanationText}</div>`;
+                }
+
+                html += `</div>`;
+                feedbackEl.innerHTML = html;
+            }
+
+            const percentage = Math.round((score / total) * 100);
+            const resultBox = document.getElementById('resultBox');
+            resultBox.style.display = 'block';
+
+            let start = 0;
+            const timer = setInterval(() => {
+                if (start >= percentage) clearInterval(timer);
+                document.getElementById('score').innerText = start + '%';
+                start++;
+            }, 20);
+
+            document.querySelectorAll('#quizForm input[type="radio"]').forEach(i => i.disabled = true);
+        }
+
+        // ─── T/F DATA ───
+        const correctTF = {
+            tf1a: true, tf1b: true, tf1c: false, tf1d: false, tf1e: true,
+            tf2a: true, tf2b: true, tf2c: false, tf2d: true, tf2e: false,
+            tf3a: true, tf3b: true, tf3c: false, tf3d: true, tf3e: false,
+            tf4a: true, tf4b: false, tf4c: true, tf4d: false, tf4e: true,
+            tf5a: true, tf5b: true, tf5c: false, tf5d: true, tf5e: true,
+            tf6a: true, tf6b: false, tf6c: true, tf6d: true, tf6e: true
+        };
+
+        const tfExplanations = {
+            tf1a: "The posterior neck is indeed higher than the anterior neck to accommodate the cervical viscera (pharynx, larynx, esophagus) and connect them to the posterior openings of the nasal and oral cavities (nasopharynx and oropharynx). This is a key anatomical feature.",
+            tf1b: "The inferior boundary of the neck extends anteriorly along the top of the sternum (manubrium) and the clavicle. It also extends laterally to the acromion and posteriorly to the spinous process of C7. This forms the base of the neck.",
+            tf1c: "False. The neck contains four major compartments: visceral, vertebral, and two vascular compartments (right and left), all enclosed by an outer musculofascial collar (investing fascia). So there are four compartments, not three.",
+            tf1d: "False. The vertebral compartment contains the cervical vertebrae, spinal cord, and postural muscles. The vascular compartments contain the major blood vessels and the vagus nerve.",
+            tf1e: "True. The inferior border (base of the neck) encloses the base of the neck, which is the region where the neck meets the thorax. It is bounded by the sternum, clavicles, acromion, and C7.",
+            tf2a: "True. The infratemporal fossa is located deep to the ramus of the mandible and between the ramus and the lateral pterygoid plate. It contains the medial and lateral pterygoid muscles, maxillary artery, and mandibular nerve.",
+            tf2b: "True. The mandibular nerve [V3] passes through the infratemporal fossa after exiting the foramen ovale. It gives off branches to the muscles of mastication and sensory branches to the lower face.",
+            tf2c: "False. The pterygopalatine fossa is located posterior to the upper jaw (maxilla), between the pterygoid process and the maxilla. It is a small space deep to the infratemporal fossa.",
+            tf2d: "True. The pterygopalatine fossa communicates with multiple regions: the cranial cavity (via foramen rotundum), infratemporal fossa (via pterygomaxillary fissure), orbit (via inferior orbital fissure), nasal cavity (via sphenopalatine foramen), and oral cavity (via palatine canals).",
+            tf2e: "False. The major structure passing through the pterygopalatine fossa is the maxillary nerve [V2], not the ophthalmic nerve [V1]. The ophthalmic nerve passes through the superior orbital fissure. V2 gives off branches in this fossa.",
+            tf3a: "True. The adult skull consists of 22 bones, not counting the 6 ear ossicles. This includes 8 cranial and 14 facial bones.",
+            tf3b: "True. The calvaria (skull cap) is formed by the paired temporal and parietal bones, and parts of the unpaired frontal, sphenoid, and occipital bones. The squamous parts of the temporal bones, the frontal squama, and the occipital squama contribute.",
+            tf3c: "False. The vomer is an unpaired bone of the facial skeleton. It is the single midline bone that forms the posterior part of the nasal septum. The paired bones include maxillae, nasal, lacrimal, zygomatic, palatine, and inferior conchae.",
+            tf3d: "True. The two parietal bones articulate with each other in the midline at the sagittal suture. This suture runs from the bregma to the lambda.",
+            tf3e: "False. The diploë is the spongy (cancellous) bone between the inner and outer tables of compact bone. It is not compact bone; it contains marrow and diploic veins.",
+            tf4a: "True. The glabella and superciliary arches (brow ridges) are features of the frontal bone. The glabella is the smooth area between the eyebrows; the superciliary arches are the ridges above the orbits.",
+            tf4b: "False. The frontal process of the maxilla articulates medially with the frontal bone and laterally with the lacrimal bone, not directly with the zygomatic bone. The zygomatic process of the maxilla articulates with the zygomatic bone.",
+            tf4c: "True. The alveolar part of the maxilla (and mandible) contains the alveoli (tooth sockets) for the upper teeth. This part is subject to resorption after tooth loss.",
+            tf4d: "False. The mastoid process is the most posterior part of the temporal bone, not the most anterior. The anterior part of the temporal bone includes the zygomatic process and the mandibular fossa.",
+            tf4e: "True. The styloid process projects from the lower border of the temporal bone, specifically from the petrous part, anterior to the mastoid process. It serves as an attachment for several muscles and ligaments.",
+            tf5a: "True. The base of the skull (external aspect) extends from the middle incisor teeth anteriorly to the superior nuchal lines posteriorly, encompassing the entire inferior surface of the skull. This is a standard definition.",
+            tf5b: "True. The anterior part of the skull base includes the hard palate (formed by the maxillae and palatine bones) and the teeth. This region forms the roof of the oral cavity.",
+            tf5c: "False. The middle part of the skull base extends from behind the hard palate to the anterior margin of the foramen magnum. The posterior part extends behind the foramen magnum to the superior nuchal lines.",
+            tf5d: "True. The calvaria (skull cap) is composed of the frontal bone anteriorly, the paired parietal bones in the middle, and the occipital bone posteriorly. The temporal and sphenoid bones contribute to the lateral and inferior parts.",
+            tf5e: "True. The cranial cavity contains the brain, its meninges (dura, arachnoid, pia), proximal parts of the cranial nerves, major blood vessels (arteries and veins), and venous sinuses (dural sinuses).",
+            tf6a: "True. The foramen caecum is located in the anterior cranial fossa at the junction of the frontal and ethmoid bones. It transmits a small emissary vein connecting the nasal cavity to the superior sagittal sinus.",
+            tf6b: "False. The optic canal transmits the optic nerve [CN II] and the ophthalmic artery, not the ophthalmic vein. The ophthalmic veins pass through the superior orbital fissure.",
+            tf6c: "True. The foramen rotundum, located in the sphenoid bone, transmits the maxillary division of the trigeminal nerve [V2] from the middle cranial fossa to the pterygopalatine fossa.",
+            tf6d: "True. The foramen spinosum, a small foramen in the sphenoid bone, transmits the middle meningeal artery, which supplies the dura mater. It is clinically relevant for epidural hematomas.",
+            tf6e: "True. The lesser petrosal nerve, after arising from the tympanic plexus, passes through the lesser petrosal hiatus on the petrous temporal bone, then courses through the middle cranial fossa and exits via the foramen ovale to synapse in the otic ganglion."
+        };
+
+        // ─── T/F SUBMIT ───
+        function submitTF() {
+            let correctCount = 0;
+            const total = Object.keys(correctTF).length;
+
+            document.querySelectorAll('.tf-feedback').forEach(el => el.innerHTML = '');
+
+            for (let key in correctTF) {
+                const radios = Array.from(document.querySelectorAll(`input[name="${key}"]`));
+                const selected = radios.find(r => r.checked);
+                const correct = correctTF[key];
+
+                if (selected && selected.value === (correct ? 'true' : 'false')) correctCount++;
+
+                const feedbackEl = document.getElementById(`feedback-${key}`);
+                if (!feedbackEl) continue;
+
+                const statementEl = document.getElementById(key);
+                const textEl = statementEl ? statementEl.querySelector('.tf-text') : null;
+                const statementText = textEl ? textEl.textContent.trim() : key;
+
+                const correctStr = correct ? 'True' : 'False';
+                const explanation = tfExplanations[key] || '';
+
+                let html = '';
+
+                if (selected) {
+                    const isCorrect = selected.value === (correct ? 'true' : 'false');
+                    const icon = isCorrect ? '✅' : '❌';
+                    const cls = isCorrect ? '' : ' wrong';
+                    html += `<div class="tf-explain${cls}">
+                                <span class="tf-result-label">${icon} ${isCorrect ? 'Correct' : 'Incorrect'}</span>
+                                — Correct answer: <strong>${correctStr}</strong>.
+                                ${explanation}
+                             </div>`;
+                } else {
+                    html += `<div class="tf-explain wrong">
+                                <span class="tf-result-label">⚠️ No answer selected</span>
+                                — Correct answer: <strong>${correctStr}</strong>.
+                                ${explanation}
+                             </div>`;
+                }
+
+                feedbackEl.innerHTML = html;
+            }
+
+            const percentage = Math.round((correctCount / total) * 100);
+            const resultBox = document.getElementById('tfResultBox');
+            resultBox.style.display = 'block';
+
+            let start = 0;
+            const timer = setInterval(() => {
+                if (start >= percentage) clearInterval(timer);
+                document.getElementById('tfScore').innerText = start + '%';
+                start++;
+            }, 20);
+
+            document.querySelectorAll('#tfForm input[type="radio"]').forEach(i => i.disabled = true);
+        }
+    </script>
+
+</body>
+</html>

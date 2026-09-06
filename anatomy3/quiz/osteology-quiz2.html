@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anatomy Quiz | Skull Base &amp; Neck</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        /* ─────────── ROOT & RESET ─────────── */
+        :root {
+            --primary: #1a5276;
+            --accent: #5dade2;
+            --dark: #17252a;
+            --light: #f8f9fa;
+            --radius: 12px;
+            --shadow: 0 4px 14px rgba(18, 38, 63, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Roboto, system-ui, sans-serif;
+            background: linear-gradient(180deg, #f5f7fb, #eef2f7);
+            color: var(--dark);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--primary), #0e2a3f);
+            color: #fff;
+            padding: 0.8rem 0;
+            box-shadow: 0 6px 18px rgba(11, 36, 36, 0.18);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .logo i {
+            font-size: 1.6rem;
+            color: var(--accent);
+        }
+        .logo h1 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 0.25rem 1rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            color: #d4e8f0;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0.3rem;
+            flex-wrap: wrap;
+        }
+        .nav-tabs .tab-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: none;
+            color: #d4e8f0;
+            padding: 0.3rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .nav-tabs .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #fff;
+        }
+        .nav-tabs .tab-btn.active {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 1.25rem 2.5rem;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1.8rem 0 1rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 3px solid rgba(26, 82, 118, 0.20);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+        .section-title i {
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+        .section-title .count {
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0.05rem 0.7rem;
+        }
+
+        .section-subtitle {
+            color: #5f7a7a;
+            font-size: 0.92rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .section-panel {
+            display: block;
+        }
+        .section-panel.hidden {
+            display: none;
+        }
+
+        /* ─────────── MCQ CARDS ─────────── */
+        .question {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.2rem 1.2rem 0.2rem 1.2rem;
+            margin-bottom: 1.2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(26, 82, 118, 0.06);
+            transition: box-shadow 0.2s;
+        }
+        .question:hover {
+            box-shadow: 0 6px 22px rgba(18, 38, 63, 0.07);
+        }
+        .question p {
+            font-weight: 600;
+            font-size: 0.98rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        .question .q-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            line-height: 1.6;
+            margin-right: 0.4rem;
+        }
+
+        .options label {
+            display: block;
+            background: #fafcfd;
+            border: 1px solid #e0e8ef;
+            border-radius: 8px;
+            padding: 0.45rem 0.9rem;
+            margin-top: 0.45rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-weight: 450;
+            font-size: 0.94rem;
+        }
+        .options label:hover {
+            background: #e8f0f5;
+            border-color: var(--accent);
+        }
+        .options input[type="radio"] {
+            margin-right: 0.5rem;
+            accent-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .question-feedback {
+            margin-top: 0.9rem;
+            padding: 0.4rem 0 0.1rem 0;
+            border-top: 1px dashed #dce6ed;
+        }
+        .answer-block strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--primary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .answer-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .answer-item {
+            padding: 5px 10px;
+            border-radius: 6px;
+            border: 1px solid #e6eef3;
+            background: #ffffff;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .answer-correct {
+            background: #ecfdf5;
+            border-color: #bbf7d0;
+            color: #065f46;
+        }
+        .answer-wrong {
+            background: #fff1f2;
+            border-color: #fca5a5;
+            color: #9f1239;
+        }
+        .user-choice {
+            outline: 2px dashed rgba(0, 0, 0, 0.06);
+        }
+        .explanation {
+            margin-top: 6px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            background: #f1f6fa;
+            color: #1a3a4f;
+            font-size: 0.92rem;
+            line-height: 1.6;
+            border-left: 4px solid var(--accent);
+        }
+        .explanation.wrong {
+            background: #fff5f5;
+            color: #7f1d1d;
+            border-left-color: #f87171;
+        }
+
+        /* ─────────── BUTTONS ─────────── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.6rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(26, 82, 118, 0.22);
+        }
+        .btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(26, 82, 118, 0.30);
+        }
+        .btn:active {
+            transform: scale(0.96);
+        }
+        .btn i {
+            font-size: 0.9rem;
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            box-shadow: none;
+        }
+        .btn-outline:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .submit-wrap {
+            text-align: center;
+            margin: 1.5rem 0 2rem;
+        }
+
+        /* ─────────── RESULT BOX ─────────── */
+        .result {
+            margin-top: 1.5rem;
+            padding: 1.5rem 1.5rem 1rem;
+            background: #f1f6fa;
+            border-radius: var(--radius);
+            text-align: center;
+            display: none;
+            border: 1px solid #c5dce3;
+        }
+        .result h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.2rem;
+        }
+        .score {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0.2rem 0 0.4rem;
+        }
+
+        /* ─────────── T/F SECTION ─────────── */
+        .tf-group {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.2rem 1.2rem 0.2rem 1.2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(26, 82, 118, 0.06);
+        }
+        .tf-group h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .tf-group h3 .tf-badge {
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.7rem;
+            line-height: 1.6;
+            font-weight: 700;
+        }
+
+        .tf-statement {
+            background: #fafcfd;
+            border: 1px solid #e0e8ef;
+            border-radius: 8px;
+            padding: 0.6rem 0.9rem;
+            margin-top: 0.6rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            transition: background 0.15s;
+        }
+        .tf-statement .tf-label {
+            font-weight: 600;
+            color: var(--primary);
+            min-width: 1.8rem;
+            font-size: 0.9rem;
+        }
+        .tf-statement .tf-text {
+            flex: 1;
+            font-size: 0.94rem;
+            line-height: 1.4;
+            min-width: 200px;
+        }
+        .tf-statement .tf-options {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .tf-statement .tf-options label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.2rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 0.1rem 0.5rem;
+            border-radius: 4px;
+            transition: background 0.15s;
+        }
+        .tf-statement .tf-options label:hover {
+            background: #e8f0f5;
+        }
+        .tf-statement .tf-options input[type="radio"] {
+            accent-color: var(--primary);
+            transform: scale(1.0);
+            margin: 0;
+        }
+
+        .tf-feedback {
+            margin-top: 0.4rem;
+            padding: 0.4rem 0 0.1rem 0;
+            border-top: 1px dashed #dce6ed;
+            width: 100%;
+        }
+        .tf-feedback .tf-explain {
+            margin-top: 4px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            background: #f1f6fa;
+            color: #1a3a4f;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border-left: 4px solid var(--accent);
+        }
+        .tf-feedback .tf-explain.wrong {
+            background: #fff5f5;
+            color: #7f1d1d;
+            border-left-color: #f87171;
+        }
+        .tf-feedback .tf-explain .tf-result-label {
+            font-weight: 700;
+        }
+
+        .tf-submit-wrap {
+            text-align: center;
+            margin: 1rem 0 1.5rem;
+        }
+
+        .tf-result {
+            margin-top: 1.5rem;
+            padding: 1.5rem 1.5rem 1rem;
+            background: #f1f6fa;
+            border-radius: var(--radius);
+            text-align: center;
+            display: none;
+            border: 1px solid #c5dce3;
+        }
+        .tf-result .score {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0.2rem 0 0.4rem;
+        }
+
+        /* ─────────── RESPONSIVE ─────────── */
+        @media (max-width: 700px) {
+            body {
+                padding-top: 72px;
+            }
+            .logo h1 {
+                font-size: 1rem;
+            }
+            .header-inner {
+                padding: 0 1rem;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.3rem;
+            }
+            .badge {
+                align-self: flex-start;
+            }
+            .nav-tabs {
+                justify-content: center;
+            }
+            .nav-tabs .tab-btn {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.7rem;
+            }
+            .question,
+            .tf-group {
+                padding: 1rem 1rem 0.1rem 1rem;
+            }
+            .section-title {
+                font-size: 1.1rem;
+            }
+            .score {
+                font-size: 2.2rem;
+            }
+            .btn {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.85rem;
+            }
+            .tf-statement {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.3rem;
+            }
+            .tf-statement .tf-options {
+                justify-content: flex-start;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .logo h1 {
+                font-size: 0.85rem;
+            }
+            .logo i {
+                font-size: 1.2rem;
+            }
+            .options label {
+                font-size: 0.87rem;
+                padding: 0.4rem 0.7rem;
+            }
+        }
+
+        .text-muted {
+            color: #5f7a7a;
+            font-size: 0.9rem;
+        }
+        .hidden {
+            display: none !important;
+        }
+        .scroll-target {
+            scroll-margin-top: 90px;
+        }
+        .mt-1 {
+            margin-top: 0.8rem;
+        }
+        .mb-1 {
+            margin-bottom: 0.8rem;
+        }
+        .flex-center {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════ HEADER ═══════ -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <i class="fas fa-skull"></i>
+                <h1>Anatomy &bull; Skull Base &amp; Neck</h1>
+            </div>
+            <span class="badge"><i class="fas fa-pencil-alt"></i> &nbsp;20 MCQs + 4 T/F Sets</span>
+            <div class="nav-tabs">
+                <button class="tab-btn active" data-section="mcq">MCQs</button>
+                <button class="tab-btn" data-section="tf">True / False</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══════ MAIN ═══════ -->
+    <main>
+
+        <!-- ──── SECTION 1: MCQs ──── -->
+        <section class="container section-panel" id="section-mcq">
+            <div class="section-title scroll-target" id="mcq-top">
+                <i class="fas fa-list-ul"></i> Multiple Choice Questions
+                <span class="count">20</span>
+            </div>
+            <p class="section-subtitle">Select the best answer for each question, then click <strong>Submit All MCQs</strong>.</p>
+
+            <form id="quizForm">
+
+                <!-- Q1 -->
+                <div class="question">
+                    <p><span class="q-badge">1</span> Which bone forms the floor in the midline of the middle cranial fossa?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="a"> A. Frontal bone</label>
+                        <label><input type="radio" name="q1" value="b"> B. Body of the sphenoid bone</label>
+                        <label><input type="radio" name="q1" value="c"> C. Ethmoid bone</label>
+                        <label><input type="radio" name="q1" value="d"> D. Occipital bone</label>
+                        <label><input type="radio" name="q1" value="e"> E. Parietal bone</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q1"></div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="question">
+                    <p><span class="q-badge">2</span> Which structure transmits the middle meningeal artery?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="a"> A. Foramen ovale</label>
+                        <label><input type="radio" name="q2" value="b"> B. Foramen rotundum</label>
+                        <label><input type="radio" name="q2" value="c"> C. Foramen spinosum</label>
+                        <label><input type="radio" name="q2" value="d"> D. Optic canal</label>
+                        <label><input type="radio" name="q2" value="e"> E. Jugular foramen</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q2"></div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question">
+                    <p><span class="q-badge">3</span> The maxillary division of the trigeminal nerve [V2] passes through which opening?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="a"> A. Superior orbital fissure</label>
+                        <label><input type="radio" name="q3" value="b"> B. Foramen spinosum</label>
+                        <label><input type="radio" name="q3" value="c"> C. Foramen ovale</label>
+                        <label><input type="radio" name="q3" value="d"> D. Foramen rotundum</label>
+                        <label><input type="radio" name="q3" value="e"> E. Hypoglossal canal</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q3"></div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="question">
+                    <p><span class="q-badge">4</span> Which cranial nerve passes through the optic canal along with the ophthalmic artery?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="a"> A. Oculomotor nerve [III]</label>
+                        <label><input type="radio" name="q4" value="b"> B. Optic nerve [CN II]</label>
+                        <label><input type="radio" name="q4" value="c"> C. Trochlear nerve [IV]</label>
+                        <label><input type="radio" name="q4" value="d"> D. Abducent nerve [VI]</label>
+                        <label><input type="radio" name="q4" value="e"> E. Facial nerve [VII]</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q4"></div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="question">
+                    <p><span class="q-badge">5</span> Which of the following passes through the foramen magnum?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="a"> A. Glossopharyngeal nerve [IX]</label>
+                        <label><input type="radio" name="q5" value="b"> B. Maxillary nerve [V2]</label>
+                        <label><input type="radio" name="q5" value="c"> C. End of brainstem / beginning of spinal cord</label>
+                        <label><input type="radio" name="q5" value="d"> D. Labyrinthine artery</label>
+                        <label><input type="radio" name="q5" value="e"> E. Middle meningeal artery</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q5"></div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="question">
+                    <p><span class="q-badge">6</span> The jugular foramen transmits which set of cranial nerves?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="a"> A. CN III, IV, V1, VI</label>
+                        <label><input type="radio" name="q6" value="b"> B. CN VII, VIII</label>
+                        <label><input type="radio" name="q6" value="c"> C. CN IX, X, XI</label>
+                        <label><input type="radio" name="q6" value="d"> D. CN XII only</label>
+                        <label><input type="radio" name="q6" value="e"> E. CN I only</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q6"></div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="question">
+                    <p><span class="q-badge">7</span> The hypoglossal canal transmits which structure?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="a"> A. Hypoglossal nerve [XII]</label>
+                        <label><input type="radio" name="q7" value="b"> B. Vagus nerve [X]</label>
+                        <label><input type="radio" name="q7" value="c"> C. Accessory nerve [XI]</label>
+                        <label><input type="radio" name="q7" value="d"> D. Glossopharyngeal nerve [IX]</label>
+                        <label><input type="radio" name="q7" value="e"> E. Facial nerve [VII]</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q7"></div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="question">
+                    <p><span class="q-badge">8</span> Which layer of the scalp contains the main arteries, veins, and nerves supplying the scalp?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="a"> A. Skin</label>
+                        <label><input type="radio" name="q8" value="b"> B. Dense connective tissue</label>
+                        <label><input type="radio" name="q8" value="c"> C. Aponeurotic layer</label>
+                        <label><input type="radio" name="q8" value="d"> D. Loose connective tissue</label>
+                        <label><input type="radio" name="q8" value="e"> E. Pericranium</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q8"></div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="question">
+                    <p><span class="q-badge">9</span> The epicranial aponeurosis (galea aponeurotica) connects which two muscle bellies?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="a"> A. Frontal and mentalis bellies</label>
+                        <label><input type="radio" name="q9" value="b"> B. Frontal and occipital bellies</label>
+                        <label><input type="radio" name="q9" value="c"> C. Temporalis and masseter bellies</label>
+                        <label><input type="radio" name="q9" value="d"> D. Buccinator and orbicularis oris bellies</label>
+                        <label><input type="radio" name="q9" value="e"> E. Superior and inferior bellies</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q9"></div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="question">
+                    <p><span class="q-badge">10</span> Which layer of the scalp is known as the pericranium?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="a"> A. Epidermis</label>
+                        <label><input type="radio" name="q10" value="b"> B. Deep fascia</label>
+                        <label><input type="radio" name="q10" value="c"> C. Periosteum on the outer surface of the calvaria</label>
+                        <label><input type="radio" name="q10" value="d"> D. Endosteum of the cranial vault</label>
+                        <label><input type="radio" name="q10" value="e"> E. Subcutaneous adipose tissue</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q10"></div>
+                </div>
+
+                <!-- Q11 -->
+                <div class="question">
+                    <p><span class="q-badge">11</span> Infections tend to localize and spread easily through which layer of the scalp due to its consistency?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q11" value="a"> A. Skin</label>
+                        <label><input type="radio" name="q11" value="b"> B. Dense connective tissue</label>
+                        <label><input type="radio" name="q11" value="c"> C. Aponeurotic layer</label>
+                        <label><input type="radio" name="q11" value="d"> D. Loose connective tissue</label>
+                        <label><input type="radio" name="q11" value="e"> E. Pericranium</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q11"></div>
+                </div>
+
+                <!-- Q12 -->
+                <div class="question">
+                    <p><span class="q-badge">12</span> The posterior boundary of the scalp is formed by the:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q12" value="a"> A. Superciliary arches</label>
+                        <label><input type="radio" name="q12" value="b"> B. Zygomatic arch</label>
+                        <label><input type="radio" name="q12" value="c"> C. External occipital protuberance and superior nuchal lines</label>
+                        <label><input type="radio" name="q12" value="d"> D. Mastoid processes</label>
+                        <label><input type="radio" name="q12" value="e"> E. Inferior nuchal lines</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q12"></div>
+                </div>
+
+                <!-- Q13 -->
+                <div class="question">
+                    <p><span class="q-badge">13</span> Which characteristic feature uniquely distinguishes cervical vertebrae from other vertebrae?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q13" value="a"> A. Large lumbar-like bodies</label>
+                        <label><input type="radio" name="q13" value="b"> B. Presence of costal facets on the body</label>
+                        <label><input type="radio" name="q13" value="c"> C. Transverse processes containing a foramen transversarium</label>
+                        <label><input type="radio" name="q13" value="d"> D. Unsplit single spinous process</label>
+                        <label><input type="radio" name="q13" value="e"> E. Fusion of all vertebral bodies</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q13"></div>
+                </div>
+
+                <!-- Q14 -->
+                <div class="question">
+                    <p><span class="q-badge">14</span> What structures pass through the passage formed by the foramina transversaria?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q14" value="a"> A. Internal carotid artery</label>
+                        <label><input type="radio" name="q14" value="b"> B. Vertebral artery and veins</label>
+                        <label><input type="radio" name="q14" value="c"> C. External jugular vein</label>
+                        <label><input type="radio" name="q14" value="d"> D. Spinal accessory nerve</label>
+                        <label><input type="radio" name="q14" value="e"> E. Vagus nerve</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q14"></div>
+                </div>
+
+                <!-- Q15 -->
+                <div class="question">
+                    <p><span class="q-badge">15</span> Which two cervical vertebrae are specially modified for moving the head?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q15" value="a"> A. C3 and C4</label>
+                        <label><input type="radio" name="q15" value="b"> B. C5 and C6</label>
+                        <label><input type="radio" name="q15" value="c"> C. C1 (Atlas) and C2 (Axis)</label>
+                        <label><input type="radio" name="q15" value="d"> D. C6 and C7</label>
+                        <label><input type="radio" name="q15" value="e"> E. C4 and C5</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q15"></div>
+                </div>
+
+                <!-- Q16 -->
+                <div class="question">
+                    <p><span class="q-badge">16</span> The hyoid bone is located:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q16" value="a"> A. Posterior to the pharynx</label>
+                        <label><input type="radio" name="q16" value="b"> B. Inferior to the larynx</label>
+                        <label><input type="radio" name="q16" value="c"> C. Superior to the larynx</label>
+                        <label><input type="radio" name="q16" value="d"> D. Directly articulated with the mandible</label>
+                        <label><input type="radio" name="q16" value="e"> E. Directly articulated with C1</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q16"></div>
+                </div>
+
+                <!-- Q17 -->
+                <div class="question">
+                    <p><span class="q-badge">17</span> Which part of the hyoid bone forms the anterior base of its U-shape?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q17" value="a"> A. Greater horn</label>
+                        <label><input type="radio" name="q17" value="b"> B. Lesser horn</label>
+                        <label><input type="radio" name="q17" value="c"> C. Body</label>
+                        <label><input type="radio" name="q17" value="d"> D. Styloid process</label>
+                        <label><input type="radio" name="q17" value="e"> E. Thyroid cartilage</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q17"></div>
+                </div>
+
+                <!-- Q18 -->
+                <div class="question">
+                    <p><span class="q-badge">18</span> The hyoid bone is unique because it:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q18" value="a"> A. Has no foramen transversarium</label>
+                        <label><input type="radio" name="q18" value="b"> B. Does not articulate directly with any other skeletal elements in the head and neck</label>
+                        <label><input type="radio" name="q18" value="c"> C. Forms part of the posterior cranial fossa</label>
+                        <label><input type="radio" name="q18" value="d"> D. Contains the middle meningeal artery</label>
+                        <label><input type="radio" name="q18" value="e"> E. Is fused directly to the atlas</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q18"></div>
+                </div>
+
+                <!-- Q19 -->
+                <div class="question">
+                    <p><span class="q-badge">19</span> Superiorly, the hyoid bone is attached to the:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q19" value="a"> A. Larynx</label>
+                        <label><input type="radio" name="q19" value="b"> B. Floor of the oral cavity</label>
+                        <label><input type="radio" name="q19" value="c"> C. Pharynx</label>
+                        <label><input type="radio" name="q19" value="d"> D. Thyroid gland</label>
+                        <label><input type="radio" name="q19" value="e"> E. Clavicle</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q19"></div>
+                </div>
+
+                <!-- Q20 -->
+                <div class="question">
+                    <p><span class="q-badge">20</span> The cribriform plate is part of which bone in the anterior cranial fossa?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q20" value="a"> A. Sphenoid bone</label>
+                        <label><input type="radio" name="q20" value="b"> B. Frontal bone</label>
+                        <label><input type="radio" name="q20" value="c"> C. Ethmoid bone</label>
+                        <label><input type="radio" name="q20" value="d"> D. Occipital bone</label>
+                        <label><input type="radio" name="q20" value="e"> E. Temporal bone</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q20"></div>
+                </div>
+
+                <div class="submit-wrap">
+                    <button type="button" class="btn" onclick="submitMCQ()">
+                        <i class="fas fa-check-circle"></i> Submit All MCQs
+                    </button>
+                </div>
+
+            </form>
+
+            <div class="result" id="resultBox">
+                <h3><i class="fas fa-chart-simple"></i> Your Score</h3>
+                <div class="score" id="score">0%</div>
+                <p class="text-muted" style="font-size:0.9rem;">Review the feedback below each question.</p>
+            </div>
+        </section>
+
+        <!-- ──── SECTION 2: TRUE / FALSE ──── -->
+        <section class="container section-panel hidden" id="section-tf">
+            <div class="section-title scroll-target" id="tf-top">
+                <i class="fas fa-check-double"></i> True / False Questions
+                <span class="count">4 sets</span>
+            </div>
+            <p class="section-subtitle">For each statement, select <strong>True</strong> or <strong>False</strong>. Click <strong>Submit T/F</strong> to check your answers.</p>
+
+            <form id="tfForm">
+
+                <!-- ─── TF GROUP 1 ─── -->
+                <div class="tf-group">
+                    <h3><span class="tf-badge">Set 1</span> Concerning the Cranial Fossae</h3>
+
+                    <div class="tf-statement" id="tf1a">
+                        <span class="tf-label">(a)</span>
+                        <span class="tf-text">The anterior cranial fossa contains the cribriform plate of the ethmoid bone.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf1a" value="true"> True</label>
+                            <label><input type="radio" name="tf1a" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf1a"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf1b">
+                        <span class="tf-label">(b)</span>
+                        <span class="tf-text">The middle cranial fossa is formed partly by the greater wing of the sphenoid bone.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf1b" value="true"> True</label>
+                            <label><input type="radio" name="tf1b" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf1b"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf1c">
+                        <span class="tf-label">(c)</span>
+                        <span class="tf-text">The posterior cranial fossa is the smallest and most superficial cranial fossa.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf1c" value="true"> True</label>
+                            <label><input type="radio" name="tf1c" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf1c"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf1d">
+                        <span class="tf-label">(d)</span>
+                        <span class="tf-text">The optic canal is located in the posterior cranial fossa.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf1d" value="true"> True</label>
+                            <label><input type="radio" name="tf1d" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf1d"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf1e">
+                        <span class="tf-label">(e)</span>
+                        <span class="tf-text">The posterior cranial fossa contains the brainstem and cerebellum.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf1e" value="true"> True</label>
+                            <label><input type="radio" name="tf1e" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf1e"></div>
+                    </div>
+                </div>
+
+                <!-- ─── TF GROUP 2 ─── -->
+                <div class="tf-group">
+                    <h3><span class="tf-badge">Set 2</span> Regarding the Foramina of the Skull Base</h3>
+
+                    <div class="tf-statement" id="tf2a">
+                        <span class="tf-label">(a)</span>
+                        <span class="tf-text">The foramen caecum transmits emissary veins.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf2a" value="true"> True</label>
+                            <label><input type="radio" name="tf2a" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf2a"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf2b">
+                        <span class="tf-label">(b)</span>
+                        <span class="tf-text">The superior orbital fissure transmits the mandibular nerve [V3].</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf2b" value="true"> True</label>
+                            <label><input type="radio" name="tf2b" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf2b"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf2c">
+                        <span class="tf-label">(c)</span>
+                        <span class="tf-text">The foramen ovale transmits the maxillary division of the trigeminal nerve [V2].</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf2c" value="true"> True</label>
+                            <label><input type="radio" name="tf2c" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf2c"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf2d">
+                        <span class="tf-label">(d)</span>
+                        <span class="tf-text">The internal acoustic meatus transmits the facial nerve [VII] and vestibulocochlear nerve [VIII].</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf2d" value="true"> True</label>
+                            <label><input type="radio" name="tf2d" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf2d"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf2e">
+                        <span class="tf-label">(e)</span>
+                        <span class="tf-text">The condylar canal transmits an emissary vein.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf2e" value="true"> True</label>
+                            <label><input type="radio" name="tf2e" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf2e"></div>
+                    </div>
+                </div>
+
+                <!-- ─── TF GROUP 3 ─── -->
+                <div class="tf-group">
+                    <h3><span class="tf-badge">Set 3</span> Concerning the Scalp Layers</h3>
+
+                    <div class="tf-statement" id="tf3a">
+                        <span class="tf-label">(a)</span>
+                        <span class="tf-text">The dense connective tissue layer anchors the skin to the aponeurotic layer.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf3a" value="true"> True</label>
+                            <label><input type="radio" name="tf3a" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf3a"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf3b">
+                        <span class="tf-label">(b)</span>
+                        <span class="tf-text">Wounds in the dense connective tissue layer rarely bleed due to fast vessel constriction.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf3b" value="true"> True</label>
+                            <label><input type="radio" name="tf3b" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf3b"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf3c">
+                        <span class="tf-label">(c)</span>
+                        <span class="tf-text">The epicranial aponeurosis connects the frontal and occipital bellies of the occipitofrontalis muscle.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf3c" value="true"> True</label>
+                            <label><input type="radio" name="tf3c" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf3c"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf3d">
+                        <span class="tf-label">(d)</span>
+                        <span class="tf-text">The loose connective tissue separates the aponeurotic layer from the pericranium.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf3d" value="true"> True</label>
+                            <label><input type="radio" name="tf3d" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf3d"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf3e">
+                        <span class="tf-label">(e)</span>
+                        <span class="tf-text">The pericranium is tightly attached to the bones across the entire calvaria and cannot be removed at sutures.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf3e" value="true"> True</label>
+                            <label><input type="radio" name="tf3e" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf3e"></div>
+                    </div>
+                </div>
+
+                <!-- ─── TF GROUP 4 ─── -->
+                <div class="tf-group">
+                    <h3><span class="tf-badge">Set 4</span> Regarding Cervical Vertebrae and the Hyoid Bone</h3>
+
+                    <div class="tf-statement" id="tf4a">
+                        <span class="tf-label">(a)</span>
+                        <span class="tf-text">Cervical vertebrae are characterized by having small bodies and bifid spinous processes.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf4a" value="true"> True</label>
+                            <label><input type="radio" name="tf4a" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf4a"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf4b">
+                        <span class="tf-label">(b)</span>
+                        <span class="tf-text">The foramina transversaria are found in the spinous processes of cervical vertebrae.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf4b" value="true"> True</label>
+                            <label><input type="radio" name="tf4b" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf4b"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf4c">
+                        <span class="tf-label">(c)</span>
+                        <span class="tf-text">The atlas is C1 and the axis is C2.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf4c" value="true"> True</label>
+                            <label><input type="radio" name="tf4c" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf4c"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf4d">
+                        <span class="tf-label">(d)</span>
+                        <span class="tf-text">The greater horns of the hyoid bone project anteriorly from the body.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf4d" value="true"> True</label>
+                            <label><input type="radio" name="tf4d" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf4d"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf4e">
+                        <span class="tf-label">(e)</span>
+                        <span class="tf-text">Inferiorly, the hyoid bone is attached to the larynx.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf4e" value="true"> True</label>
+                            <label><input type="radio" name="tf4e" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf4e"></div>
+                    </div>
+                </div>
+
+                <div class="tf-submit-wrap">
+                    <button type="button" class="btn" onclick="submitTF()">
+                        <i class="fas fa-check-circle"></i> Submit T/F
+                    </button>
+                </div>
+
+            </form>
+
+            <div class="tf-result" id="tfResultBox">
+                <h3><i class="fas fa-chart-simple"></i> T/F Score</h3>
+                <div class="score" id="tfScore">0%</div>
+                <p class="text-muted" style="font-size:0.9rem;">Review the feedback below each statement.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ═══════ JAVASCRIPT ═══════ -->
+    <script>
+        // ─── TAB NAVIGATION ───
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const section = this.dataset.section;
+                document.querySelectorAll('.section-panel').forEach(p => p.classList.add('hidden'));
+                document.getElementById('section-' + section).classList.remove('hidden');
+                const topEl = document.getElementById(section + '-top');
+                if (topEl) topEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // ─── MCQ DATA ───
+        const correctMCQ = {
+            q1: "b",
+            q2: "c",
+            q3: "d",
+            q4: "b",
+            q5: "c",
+            q6: "c",
+            q7: "a",
+            q8: "b",
+            q9: "b",
+            q10: "c",
+            q11: "d",
+            q12: "c",
+            q13: "c",
+            q14: "b",
+            q15: "c",
+            q16: "c",
+            q17: "c",
+            q18: "b",
+            q19: "b",
+            q20: "c"
+        };
+
+        const mcqExplanations = {
+            q1: "The body of the sphenoid bone forms the midline floor of the middle cranial fossa. The sphenoid bone is a complex, butterfly-shaped bone that contributes to the base of the skull. Its body contains the sphenoid sinuses and serves as the central keystone of the cranial base, articulating with all other cranial bones.",
+            q2: "The foramen spinosum transmits the middle meningeal artery. This small foramen is located in the greater wing of the sphenoid bone, posterior and lateral to the foramen ovale. The middle meningeal artery is a branch of the maxillary artery and supplies the dura mater; it is clinically significant because epidural hematomas often result from injury to this artery.",
+            q3: "The maxillary division of the trigeminal nerve [V2] passes through the foramen rotundum. This foramen is located in the greater wing of the sphenoid bone and transmits V2 from the middle cranial fossa to the pterygopalatine fossa. It is a purely sensory nerve that provides sensation to the maxillary region of the face, including the cheek, upper lip, and nasal cavity.",
+            q4: "The optic nerve [CN II] passes through the optic canal along with the ophthalmic artery. The optic canal is located in the lesser wing of the sphenoid bone and transmits the optic nerve and ophthalmic artery from the orbit to the middle cranial fossa. The optic nerve is responsible for vision, and the ophthalmic artery is a branch of the internal carotid artery that supplies the eye.",
+            q5: "The foramen magnum transmits the end of the brainstem / beginning of the spinal cord. This large opening in the occipital bone also transmits the vertebral arteries, the spinal roots of the accessory nerve [XI], and the meninges. It is the largest foramen in the skull and connects the cranial cavity with the vertebral canal.",
+            q6: "The jugular foramen transmits cranial nerves IX (glossopharyngeal), X (vagus), and XI (accessory). This large foramen is located between the temporal and occipital bones. It also transmits the internal jugular vein and the inferior petrosal sinus. Damage to this area can cause jugular foramen syndrome (Vernet syndrome) with paralysis of these nerves.",
+            q7: "The hypoglossal canal transmits the hypoglossal nerve [XII]. This canal is located in the occipital bone, superior to the foramen magnum, and transmits CN XII from the posterior cranial fossa to the neck. The hypoglossal nerve innervates all intrinsic and extrinsic muscles of the tongue (except palatoglossus, which is innervated by the vagus nerve).",
+            q8: "The dense connective tissue layer (also called the superficial fascia or the second layer of the scalp) contains the main arteries, veins, and nerves supplying the scalp. This layer is richly vascularized and innervated, which accounts for the significant bleeding that occurs with scalp lacerations. The vessels in this layer are anchored to the connective tissue and do not constrict well when cut.",
+            q9: "The epicranial aponeurosis (galea aponeurotica) connects the frontal and occipital bellies of the occipitofrontalis muscle. This tough fibrous sheet covers the calvaria and provides attachment for the muscles of facial expression. The frontal belly elevates the eyebrows and wrinkles the forehead, while the occipital belly retracts the scalp.",
+            q10: "The pericranium is the periosteum on the outer surface of the calvaria (the fifth and deepest layer of the scalp). It is firmly attached to the bones of the skull, especially at the sutures. Unlike the other layers, the pericranium is a true periosteum that covers the external surface of the cranial bones and provides nourishment to the bone.",
+            q11: "The loose connective tissue layer (also called the areolar layer or the fourth layer of the scalp) allows infections to localize and spread easily due to its loose, areolar consistency. This layer is also known as the 'danger zone' of the scalp because infections can spread through it via emissary veins to the intracranial venous sinuses, potentially causing meningitis or cavernous sinus thrombosis.",
+            q12: "The posterior boundary of the scalp is formed by the external occipital protuberance and superior nuchal lines. These bony landmarks mark the attachment of the occipital belly of the occipitofrontalis muscle. The scalp extends from the superciliary arches anteriorly to the external occipital protuberance and superior nuchal lines posteriorly, and laterally to the zygomatic arches.",
+            q13: "Cervical vertebrae are uniquely characterized by transverse processes containing a foramen transversarium. These foramina transmit the vertebral artery and veins in the upper six cervical vertebrae (C1–C6). In C7, the foramen transversarium transmits the vertebral vein but not the artery (the artery typically enters at C6). This feature is unique to cervical vertebrae and is a key identifying characteristic.",
+            q14: "The vertebral artery and veins pass through the foramina transversaria. The vertebral artery enters the foramen transversarium at C6 and passes superiorly through all cervical vertebrae to enter the skull through the foramen magnum. The vertebral veins accompany the artery and drain into the vertebral plexus. These structures are critical for the vascular supply to the posterior cranial fossa and the brainstem.",
+            q15: "C1 (Atlas) and C2 (Axis) are specially modified for moving the head. The Atlas lacks a body and spinous process, consisting of anterior and posterior arches with lateral masses. The Axis has the dens (odontoid process) that articulates with the Atlas, allowing rotation of the head. Together, they enable the nodding (flexion/extension) and rotational movements of the head.",
+            q16: "The hyoid bone is located superior to the larynx. It is a U-shaped bone situated in the anterior neck at the level of C3, suspended by muscles and ligaments. It provides attachment for the muscles of the tongue, pharynx, and larynx, playing a crucial role in swallowing, speech, and maintaining the patency of the airway.",
+            q17: "The body of the hyoid bone forms the anterior base of its U-shape. The greater horns (cornua) project posteriorly and superiorly from the body, while the lesser horns project superiorly from the junction of the body and greater horns. The body is the central, anterior portion of the bone and provides attachment for the mylohyoid and geniohyoid muscles.",
+            q18: "The hyoid bone is unique because it does not articulate directly with any other skeletal elements in the head and neck. It is suspended by muscles and ligaments, making it the only bone in the human body that does not form a joint with any other bone. This allows for the complex movements required for swallowing and speech.",
+            q19: "Superiorly, the hyoid bone is attached to the floor of the oral cavity. The mylohyoid muscle forms the floor of the oral cavity and attaches to the hyoid bone. The hyoid also provides attachment for the geniohyoid, stylohyoid, and digastric muscles, which are involved in swallowing and stabilizing the larynx during speech.",
+            q20: "The cribriform plate is part of the ethmoid bone in the anterior cranial fossa. It forms the roof of the nasal cavity and transmits the olfactory nerves [CN I] through its numerous small foramina. The cribriform plate is thin and fragile, making it susceptible to fracture from head trauma, which can result in CSF rhinorrhea and anosmia (loss of smell)."
+        };
+
+        // ─── MCQ SUBMIT ───
+        function submitMCQ() {
+            let score = 0;
+            const total = Object.keys(correctMCQ).length;
+
+            document.querySelectorAll('.question-feedback').forEach(el => el.innerHTML = '');
+
+            for (let key in correctMCQ) {
+                const radios = Array.from(document.querySelectorAll(`input[name="${key}"]`));
+                const selected = radios.find(r => r.checked);
+                const correct = correctMCQ[key];
+
+                if (selected && selected.value === correct) score++;
+
+                const feedbackEl = document.getElementById(`feedback-${key}`);
+                if (!feedbackEl) continue;
+
+                let html = `<div class="answer-block"><strong>Q${key.replace(/^q/, '')}</strong><div class="answer-list">`;
+
+                radios.forEach(r => {
+                    const label = r.parentElement;
+                    const text = label ? label.textContent.trim() : r.value;
+                    const classes = ['answer-item'];
+                    if (r.value === correct) classes.push('answer-correct');
+                    if (r.checked && r.value !== correct) classes.push('answer-wrong', 'user-choice');
+                    if (r.checked && r.value === correct) classes.push('user-choice');
+                    html += `<div class="${classes.join(' ')}">${text}${r.checked ? ' ◀' : ''}</div>`;
+                });
+
+                html += `</div>`;
+
+                const correctRadio = radios.find(rr => rr.value === correct);
+                const correctText = correctRadio && correctRadio.parentElement ? correctRadio.parentElement.textContent
+                    .trim() : correct;
+                const explanationText = mcqExplanations[key] || '';
+
+                if (selected) {
+                    if (selected.value === correct) {
+                        html += `<div class="explanation">✅ Correct — ${explanationText}</div>`;
+                    } else {
+                        html +=
+                            `<div class="explanation wrong">❌ Incorrect. Correct answer: <strong>${correctText}</strong>. ${explanationText}</div>`;
+                    }
+                } else {
+                    html +=
+                        `<div class="explanation wrong">No answer selected. Correct answer: <strong>${correctText}</strong>. ${explanationText}</div>`;
+                }
+
+                html += `</div>`;
+                feedbackEl.innerHTML = html;
+            }
+
+            const percentage = Math.round((score / total) * 100);
+            const resultBox = document.getElementById('resultBox');
+            resultBox.style.display = 'block';
+
+            let start = 0;
+            const timer = setInterval(() => {
+                if (start >= percentage) clearInterval(timer);
+                document.getElementById('score').innerText = start + '%';
+                start++;
+            }, 20);
+
+            document.querySelectorAll('#quizForm input[type="radio"]').forEach(i => i.disabled = true);
+        }
+
+        // ─── T/F DATA ───
+        const correctTF = {
+            tf1a: true,
+            tf1b: true,
+            tf1c: false,
+            tf1d: false,
+            tf1e: true,
+            tf2a: true,
+            tf2b: false,
+            tf2c: false,
+            tf2d: true,
+            tf2e: true,
+            tf3a: true,
+            tf3b: false,
+            tf3c: true,
+            tf3d: true,
+            tf3e: false,
+            tf4a: true,
+            tf4b: false,
+            tf4c: true,
+            tf4d: false,
+            tf4e: true
+        };
+
+        const tfExplanations = {
+            tf1a: "The anterior cranial fossa contains the cribriform plate of the ethmoid bone. This is correct — the cribriform plate forms the roof of the nasal cavity and transmits the olfactory nerves [CN I] through its perforations.",
+            tf1b: "The middle cranial fossa is formed partly by the greater wing of the sphenoid bone. This is correct — the greater wing of the sphenoid contributes significantly to the floor and lateral walls of the middle cranial fossa.",
+            tf1c: "The posterior cranial fossa is the smallest and most superficial cranial fossa. This is false — the posterior cranial fossa is the largest and deepest of the three cranial fossae, accommodating the cerebellum, pons, and medulla oblongata.",
+            tf1d: "The optic canal is located in the posterior cranial fossa. This is false — the optic canal is located in the middle cranial fossa, specifically in the lesser wing of the sphenoid bone, transmitting the optic nerve [CN II] and ophthalmic artery.",
+            tf1e: "The posterior cranial fossa contains the brainstem and cerebellum. This is correct — the posterior cranial fossa houses the cerebellum, pons, and medulla oblongata (parts of the brainstem), as well as the fourth ventricle.",
+            tf2a: "The foramen caecum transmits emissary veins. This is correct — the foramen caecum is a small opening in the frontal bone at the junction with the ethmoid bone that transmits an emissary vein connecting the nasal cavity to the superior sagittal sinus.",
+            tf2b: "The superior orbital fissure transmits the mandibular nerve [V3]. This is false — the superior orbital fissure transmits the oculomotor [III], trochlear [IV], abducent [VI], and ophthalmic division of the trigeminal nerve [V1]. The mandibular nerve [V3] passes through the foramen ovale.",
+            tf2c: "The foramen ovale transmits the maxillary division of the trigeminal nerve [V2]. This is false — the foramen ovale transmits the mandibular division of the trigeminal nerve [V3]. The maxillary division [V2] passes through the foramen rotundum.",
+            tf2d: "The internal acoustic meatus transmits the facial nerve [VII] and vestibulocochlear nerve [VIII]. This is correct — the internal acoustic meatus (or internal auditory canal) transmits the facial nerve and vestibulocochlear nerve from the posterior cranial fossa to the inner ear. It also transmits the labyrinthine artery.",
+            tf2e: "The condylar canal transmits an emissary vein. This is correct — the condylar canal is located in the occipital bone and transmits an emissary vein connecting the sigmoid sinus to the vertebral venous plexus. This provides an alternate pathway for venous drainage.",
+            tf3a: "The dense connective tissue layer anchors the skin to the aponeurotic layer. This is correct — the dense connective tissue layer (second layer of the scalp) firmly anchors the skin to the underlying aponeurotic layer (galea aponeurotica), making the scalp a cohesive unit.",
+            tf3b: "Wounds in the dense connective tissue layer rarely bleed due to fast vessel constriction. This is false — the dense connective tissue layer is richly vascularized and the vessels are anchored to the connective tissue, preventing them from constricting. Consequently, scalp wounds bleed profusely.",
+            tf3c: "The epicranial aponeurosis connects the frontal and occipital bellies of the occipitofrontalis muscle. This is correct — the epicranial aponeurosis (galea aponeurotica) connects the frontal belly and occipital belly of the occipitofrontalis muscle, forming a continuous muscular-aponeurotic layer.",
+            tf3d: "The loose connective tissue separates the aponeurotic layer from the pericranium. This is correct — the loose connective tissue (fourth layer) separates the aponeurotic layer (third layer) from the pericranium (fifth layer). Its loose consistency allows the scalp to move freely over the calvaria.",
+            tf3e: "The pericranium is tightly attached to the bones across the entire calvaria and cannot be removed at sutures. This is false — the pericranium is firmly attached to the bones but can be elevated from the calvaria. It is especially adherent at the sutures, but it can be removed with difficulty.",
+            tf4a: "Cervical vertebrae are characterized by having small bodies and bifid spinous processes. This is correct — cervical vertebrae have small, rectangular bodies and typically have bifid (forked) spinous processes (except C1, which lacks a spinous process, and C7, which has a long, non-bifid spinous process).",
+            tf4b: "The foramina transversaria are found in the spinous processes of cervical vertebrae. This is false — the foramina transversaria are found in the transverse processes of cervical vertebrae, not the spinous processes. They transmit the vertebral artery and veins.",
+            tf4c: "The atlas is C1 and the axis is C2. This is correct — the atlas (C1) lacks a body and spinous process, consisting of anterior and posterior arches. The axis (C2) has a peg-like dens (odontoid process) that articulates with the atlas. Together they form the atlantoaxial and atlanto-occipital joints.",
+            tf4d: "The greater horns of the hyoid bone project anteriorly from the body. This is false — the greater horns (cornua) of the hyoid bone project posteriorly and superiorly from the body. The lesser horns project superiorly from the junction of the body and greater horns.",
+            tf4e: "Inferiorly, the hyoid bone is attached to the larynx. This is correct — the hyoid bone is connected inferiorly to the larynx via the thyrohyoid membrane and the thyrohyoid muscle. This connection allows the hyoid to elevate the larynx during swallowing and speech."
+        };
+
+        // ─── T/F SUBMIT ───
+        function submitTF() {
+            let correctCount = 0;
+            const total = Object.keys(correctTF).length;
+
+            // Clear all previous feedback
+            document.querySelectorAll('.tf-feedback').forEach(el => el.innerHTML = '');
+
+            for (let key in correctTF) {
+                const radios = Array.from(document.querySelectorAll(`input[name="${key}"]`));
+                const selected = radios.find(r => r.checked);
+                const correct = correctTF[key];
+
+                if (selected && selected.value === (correct ? 'true' : 'false')) correctCount++;
+
+                const feedbackEl = document.getElementById(`feedback-${key}`);
+                if (!feedbackEl) continue;
+
+                const statementEl = document.getElementById(key);
+                const textEl = statementEl ? statementEl.querySelector('.tf-text') : null;
+                const statementText = textEl ? textEl.textContent.trim() : key;
+
+                const correctStr = correct ? 'True' : 'False';
+                const explanation = tfExplanations[key] || '';
+
+                let html = '';
+
+                if (selected) {
+                    const isCorrect = selected.value === (correct ? 'true' : 'false');
+                    const icon = isCorrect ? '✅' : '❌';
+                    const cls = isCorrect ? '' : ' wrong';
+                    html += `<div class="tf-explain${cls}">
+                                <span class="tf-result-label">${icon} ${isCorrect ? 'Correct' : 'Incorrect'}</span>
+                                — Correct answer: <strong>${correctStr}</strong>.
+                                ${explanation}
+                             </div>`;
+                } else {
+                    html += `<div class="tf-explain wrong">
+                                <span class="tf-result-label">⚠️ No answer selected</span>
+                                — Correct answer: <strong>${correctStr}</strong>.
+                                ${explanation}
+                             </div>`;
+                }
+
+                feedbackEl.innerHTML = html;
+            }
+
+            const percentage = Math.round((correctCount / total) * 100);
+            const resultBox = document.getElementById('tfResultBox');
+            resultBox.style.display = 'block';
+
+            let start = 0;
+            const timer = setInterval(() => {
+                if (start >= percentage) clearInterval(timer);
+                document.getElementById('tfScore').innerText = start + '%';
+                start++;
+            }, 20);
+
+            document.querySelectorAll('#tfForm input[type="radio"]').forEach(i => i.disabled = true);
+        }
+    </script>
+
+</body>
+</html>

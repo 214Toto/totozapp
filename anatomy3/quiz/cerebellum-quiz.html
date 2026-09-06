@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anatomy Quiz | Cerebellum</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        /* ─────────── ROOT & RESET ─────────── */
+        :root {
+            --primary: #1a5276;
+            --accent: #5dade2;
+            --dark: #17252a;
+            --light: #f8f9fa;
+            --radius: 12px;
+            --shadow: 0 4px 14px rgba(18, 38, 63, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Roboto, system-ui, sans-serif;
+            background: linear-gradient(180deg, #f5f7fb, #eef2f7);
+            color: var(--dark);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--primary), #0e2a3f);
+            color: #fff;
+            padding: 0.8rem 0;
+            box-shadow: 0 6px 18px rgba(11, 36, 36, 0.18);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .logo i {
+            font-size: 1.6rem;
+            color: var(--accent);
+        }
+        .logo h1 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 0.25rem 1rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            color: #d4e8f0;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0.3rem;
+            flex-wrap: wrap;
+        }
+        .nav-tabs .tab-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: none;
+            color: #d4e8f0;
+            padding: 0.3rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .nav-tabs .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #fff;
+        }
+        .nav-tabs .tab-btn.active {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 1.25rem 2.5rem;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1.8rem 0 1rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 3px solid rgba(26, 82, 118, 0.20);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+        .section-title i {
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+        .section-title .count {
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0.05rem 0.7rem;
+        }
+
+        .section-subtitle {
+            color: #5f7a7a;
+            font-size: 0.92rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .section-panel {
+            display: block;
+        }
+        .section-panel.hidden {
+            display: none;
+        }
+
+        /* ─────────── MCQ CARDS ─────────── */
+        .question {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.2rem 1.2rem 0.2rem 1.2rem;
+            margin-bottom: 1.2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(26, 82, 118, 0.06);
+            transition: box-shadow 0.2s;
+        }
+        .question:hover {
+            box-shadow: 0 6px 22px rgba(18, 38, 63, 0.07);
+        }
+        .question p {
+            font-weight: 600;
+            font-size: 0.98rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        .question .q-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            line-height: 1.6;
+            margin-right: 0.4rem;
+        }
+
+        .options label {
+            display: block;
+            background: #fafcfd;
+            border: 1px solid #e0e8ef;
+            border-radius: 8px;
+            padding: 0.45rem 0.9rem;
+            margin-top: 0.45rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-weight: 450;
+            font-size: 0.94rem;
+        }
+        .options label:hover {
+            background: #e8f0f5;
+            border-color: var(--accent);
+        }
+        .options input[type="radio"] {
+            margin-right: 0.5rem;
+            accent-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .question-feedback {
+            margin-top: 0.9rem;
+            padding: 0.4rem 0 0.1rem 0;
+            border-top: 1px dashed #dce6ed;
+        }
+        .answer-block strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--primary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .answer-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .answer-item {
+            padding: 5px 10px;
+            border-radius: 6px;
+            border: 1px solid #e6eef3;
+            background: #ffffff;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .answer-correct {
+            background: #ecfdf5;
+            border-color: #bbf7d0;
+            color: #065f46;
+        }
+        .answer-wrong {
+            background: #fff1f2;
+            border-color: #fca5a5;
+            color: #9f1239;
+        }
+        .user-choice {
+            outline: 2px dashed rgba(0, 0, 0, 0.06);
+        }
+        .explanation {
+            margin-top: 6px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            background: #f1f6fa;
+            color: #1a3a4f;
+            font-size: 0.92rem;
+            line-height: 1.6;
+            border-left: 4px solid var(--accent);
+        }
+        .explanation.wrong {
+            background: #fff5f5;
+            color: #7f1d1d;
+            border-left-color: #f87171;
+        }
+
+        /* ─────────── BUTTONS ─────────── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.6rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(26, 82, 118, 0.22);
+        }
+        .btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(26, 82, 118, 0.30);
+        }
+        .btn:active {
+            transform: scale(0.96);
+        }
+        .btn i {
+            font-size: 0.9rem;
+        }
+
+        .submit-wrap,
+        .tf-submit-wrap {
+            text-align: center;
+            margin: 1.5rem 0 2rem;
+        }
+
+        /* ─────────── RESULT BOX ─────────── */
+        .result,
+        .tf-result {
+            margin-top: 1.5rem;
+            padding: 1.5rem 1.5rem 1rem;
+            background: #f1f6fa;
+            border-radius: var(--radius);
+            text-align: center;
+            display: none;
+            border: 1px solid #c5dce3;
+        }
+        .result h3,
+        .tf-result h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.2rem;
+        }
+        .score {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0.2rem 0 0.4rem;
+        }
+
+        /* ─────────── T/F SECTION ─────────── */
+        .tf-group {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.2rem 1.2rem 0.2rem 1.2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(26, 82, 118, 0.06);
+        }
+        .tf-group h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .tf-group h3 .tf-badge {
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.7rem;
+            line-height: 1.6;
+            font-weight: 700;
+        }
+
+        .tf-statement {
+            background: #fafcfd;
+            border: 1px solid #e0e8ef;
+            border-radius: 8px;
+            padding: 0.6rem 0.9rem;
+            margin-top: 0.6rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            transition: background 0.15s;
+        }
+        .tf-statement .tf-label {
+            font-weight: 600;
+            color: var(--primary);
+            min-width: 1.8rem;
+            font-size: 0.9rem;
+        }
+        .tf-statement .tf-text {
+            flex: 1;
+            font-size: 0.94rem;
+            line-height: 1.4;
+            min-width: 200px;
+        }
+        .tf-statement .tf-options {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .tf-statement .tf-options label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.2rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 0.1rem 0.5rem;
+            border-radius: 4px;
+            transition: background 0.15s;
+        }
+        .tf-statement .tf-options label:hover {
+            background: #e8f0f5;
+        }
+        .tf-statement .tf-options input[type="radio"] {
+            accent-color: var(--primary);
+            transform: scale(1.0);
+            margin: 0;
+        }
+
+        .tf-feedback {
+            margin-top: 0.4rem;
+            padding: 0.4rem 0 0.1rem 0;
+            border-top: 1px dashed #dce6ed;
+            width: 100%;
+        }
+        .tf-feedback .tf-explain {
+            margin-top: 4px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            background: #f1f6fa;
+            color: #1a3a4f;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border-left: 4px solid var(--accent);
+        }
+        .tf-feedback .tf-explain.wrong {
+            background: #fff5f5;
+            color: #7f1d1d;
+            border-left-color: #f87171;
+        }
+        .tf-feedback .tf-explain .tf-result-label {
+            font-weight: 700;
+        }
+
+        /* ─────────── RESPONSIVE ─────────── */
+        @media (max-width: 700px) {
+            body {
+                padding-top: 72px;
+            }
+            .logo h1 {
+                font-size: 1rem;
+            }
+            .header-inner {
+                padding: 0 1rem;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.3rem;
+            }
+            .badge {
+                align-self: flex-start;
+            }
+            .nav-tabs {
+                justify-content: center;
+            }
+            .nav-tabs .tab-btn {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.7rem;
+            }
+            .question,
+            .tf-group {
+                padding: 1rem 1rem 0.1rem 1rem;
+            }
+            .section-title {
+                font-size: 1.1rem;
+            }
+            .score {
+                font-size: 2.2rem;
+            }
+            .btn {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.85rem;
+            }
+            .tf-statement {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.3rem;
+            }
+            .tf-statement .tf-options {
+                justify-content: flex-start;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .logo h1 {
+                font-size: 0.85rem;
+            }
+            .logo i {
+                font-size: 1.2rem;
+            }
+            .options label {
+                font-size: 0.87rem;
+                padding: 0.4rem 0.7rem;
+            }
+        }
+
+        .text-muted {
+            color: #5f7a7a;
+            font-size: 0.9rem;
+        }
+        .hidden {
+            display: none !important;
+        }
+        .scroll-target {
+            scroll-margin-top: 90px;
+        }
+        .mt-1 {
+            margin-top: 0.8rem;
+        }
+        .mb-1 {
+            margin-bottom: 0.8rem;
+        }
+        .flex-center {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════ HEADER ═══════ -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <i class="fas fa-brain"></i>
+                <h1>Cerebellum Anatomy Quiz</h1>
+            </div>
+            <span class="badge"><i class="fas fa-pencil-alt"></i> &nbsp;20 MCQs + 4 T/F Sets</span>
+            <div class="nav-tabs">
+                <button class="tab-btn active" data-section="mcq">MCQs</button>
+                <button class="tab-btn" data-section="tf">True / False</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══════ MAIN ═══════ -->
+    <main>
+
+        <!-- ──── SECTION 1: MCQs ──── -->
+        <section class="container section-panel" id="section-mcq">
+            <div class="section-title scroll-target" id="mcq-top">
+                <i class="fas fa-list-ul"></i> Multiple Choice Questions
+                <span class="count">20</span>
+            </div>
+            <p class="section-subtitle">Select the best answer for each question, then click <strong>Submit All MCQs</strong>.</p>
+
+            <form id="quizForm">
+
+                <!-- Q1 -->
+                <div class="question">
+                    <p><span class="q-badge">1</span> Where is the cerebellum situated within the cranial cavity?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="a"> A. Anterior cranial fossa</label>
+                        <label><input type="radio" name="q1" value="b"> B. Middle cranial fossa</label>
+                        <label><input type="radio" name="q1" value="c"> C. Posterior cranial fossa</label>
+                        <label><input type="radio" name="q1" value="d"> D. Subdural space</label>
+                        <label><input type="radio" name="q1" value="e"> E. Epidural space</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q1"></div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="question">
+                    <p><span class="q-badge">2</span> Which structure superiorly covers the cerebellum?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="a"> A. Falx cerebri</label>
+                        <label><input type="radio" name="q2" value="b"> B. Tentorium cerebelli</label>
+                        <label><input type="radio" name="q2" value="c"> C. Corpus callosum</label>
+                        <label><input type="radio" name="q2" value="d"> D. Vermis</label>
+                        <label><input type="radio" name="q2" value="e"> E. Arbor vitae</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q2"></div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question">
+                    <p><span class="q-badge">3</span> Each cerebellar hemisphere controls voluntary muscular movements on which side of the body?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="a"> A. The contralateral (opposite) side</label>
+                        <label><input type="radio" name="q3" value="b"> B. The ipsilateral (same) side</label>
+                        <label><input type="radio" name="q3" value="c"> C. Bilaterally in all instances</label>
+                        <label><input type="radio" name="q3" value="d"> D. Neither side directly or indirectly</label>
+                        <label><input type="radio" name="q3" value="e"> E. Exclusively the axial trunk</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q3"></div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="question">
+                    <p><span class="q-badge">4</span> Which structure joins the two cerebellar hemispheres along the median plane?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="a"> A. Primary fissure</label>
+                        <label><input type="radio" name="q4" value="b"> B. Uvulonodular fissure</label>
+                        <label><input type="radio" name="q4" value="c"> C. Horizontal fissure</label>
+                        <label><input type="radio" name="q4" value="d"> D. Vermis</label>
+                        <label><input type="radio" name="q4" value="e"> E. Tentorium cerebelli</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q4"></div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="question">
+                    <p><span class="q-badge">5</span> The primary fissure separates which two lobes of the cerebellum?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="a"> A. Anterior lobe and middle lobe</label>
+                        <label><input type="radio" name="q5" value="b"> B. Middle lobe and flocculonodular lobe</label>
+                        <label><input type="radio" name="q5" value="c"> C. Anterior lobe and flocculonodular lobe</label>
+                        <label><input type="radio" name="q5" value="d"> D. Vermis and cerebellar hemisphere</label>
+                        <label><input type="radio" name="q5" value="e"> E. Superior surface and inferior surface</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q5"></div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="question">
+                    <p><span class="q-badge">6</span> Which lobe is considered the largest part of the cerebellum?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="a"> A. Anterior lobe</label>
+                        <label><input type="radio" name="q6" value="b"> B. Flocculonodular lobe</label>
+                        <label><input type="radio" name="q6" value="c"> C. Middle (posterior) lobe</label>
+                        <label><input type="radio" name="q6" value="d"> D. Vermis</label>
+                        <label><input type="radio" name="q6" value="e"> E. Lingula</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q6"></div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="question">
+                    <p><span class="q-badge">7</span> What separates the superior surface of the cerebellum from its inferior surface?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="a"> A. Primary fissure</label>
+                        <label><input type="radio" name="q7" value="b"> B. Uvulonodular fissure</label>
+                        <label><input type="radio" name="q7" value="c"> C. Deep horizontal fissure</label>
+                        <label><input type="radio" name="q7" value="d"> D. Median fissure</label>
+                        <label><input type="radio" name="q7" value="e"> E. Transverse fissure</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q7"></div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="question">
+                    <p><span class="q-badge">8</span> A sagittal-like section parallel to the median plane reveals a branched tree-like appearance of white matter termed:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="a"> A. Folia</label>
+                        <label><input type="radio" name="q8" value="b"> B. Arbor vitae</label>
+                        <label><input type="radio" name="q8" value="c"> C. Intracerebellar nuclei</label>
+                        <label><input type="radio" name="q8" value="d"> D. Peduncles</label>
+                        <label><input type="radio" name="q8" value="e"> E. Vermis</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q8"></div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="question">
+                    <p><span class="q-badge">9</span> Which of the following layers forms the middle layer of the cerebellar cortex?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="a"> A. Molecular layer</label>
+                        <label><input type="radio" name="q9" value="b"> B. Granular layer</label>
+                        <label><input type="radio" name="q9" value="c"> C. Purkinje cell layer</label>
+                        <label><input type="radio" name="q9" value="d"> D. White matter core</label>
+                        <label><input type="radio" name="q9" value="e"> E. Stellate layer</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q9"></div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="question">
+                    <p><span class="q-badge">10</span> Which two types of neurons are located within the molecular layer of the cerebellar cortex?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="a"> A. Granule cells and Golgi cells</label>
+                        <label><input type="radio" name="q10" value="b"> B. Stellate cells and basket cells</label>
+                        <label><input type="radio" name="q10" value="c"> C. Purkinje cells and pyramidal cells</label>
+                        <label><input type="radio" name="q10" value="d"> D. Mossy fibers and climbing fibers</label>
+                        <label><input type="radio" name="q10" value="e"> E. Multipolar motor neurons and unipolar sensory neurons</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q10"></div>
+                </div>
+
+                <!-- Q11 -->
+                <div class="question">
+                    <p><span class="q-badge">11</span> Purkinje cell dendrites branch profusely into which layer of the cerebellar cortex?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q11" value="a"> A. Granular layer</label>
+                        <label><input type="radio" name="q11" value="b"> B. Molecular layer</label>
+                        <label><input type="radio" name="q11" value="c"> C. White matter</label>
+                        <label><input type="radio" name="q11" value="d"> D. Intracerebellar nuclei</label>
+                        <label><input type="radio" name="q11" value="e"> E. Deep cerebellar cortex</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q11"></div>
+                </div>
+
+                <!-- Q12 -->
+                <div class="question">
+                    <p><span class="q-badge">12</span> The axons of granule cells ascend into the molecular layer, bifurcate at a T-junction, and form:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q12" value="a"> A. Climbing fibers</label>
+                        <label><input type="radio" name="q12" value="b"> B. Mossy fibers</label>
+                        <label><input type="radio" name="q12" value="c"> C. Parallel fibers</label>
+                        <label><input type="radio" name="q12" value="d"> D. Intrinsic fibers</label>
+                        <label><input type="radio" name="q12" value="e"> E. Efferent fibers</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q12"></div>
+                </div>
+
+                <!-- Q13 -->
+                <div class="question">
+                    <p><span class="q-badge">13</span> Which cell type is scattered throughout the granular layer and has dendrites that ramify in the molecular layer?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q13" value="a"> A. Basket cell</label>
+                        <label><input type="radio" name="q13" value="b"> B. Stellate cell</label>
+                        <label><input type="radio" name="q13" value="c"> C. Purkinje cell</label>
+                        <label><input type="radio" name="q13" value="d"> D. Golgi cell</label>
+                        <label><input type="radio" name="q13" value="e"> E. Microglial cell</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q13"></div>
+                </div>
+
+                <!-- Q14 -->
+                <div class="question">
+                    <p><span class="q-badge">14</span> Arranged from lateral to medial, what is the correct order of the intracerebellar nuclei?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q14" value="a"> A. Fastigial, Globose, Emboliform, Dentate</label>
+                        <label><input type="radio" name="q14" value="b"> B. Dentate, Emboliform, Globose, Fastigial</label>
+                        <label><input type="radio" name="q14" value="c"> C. Emboliform, Dentate, Fastigial, Globose</label>
+                        <label><input type="radio" name="q14" value="d"> D. Globose, Fastigial, Dentate, Emboliform</label>
+                        <label><input type="radio" name="q14" value="e"> E. Dentate, Fastigial, Globose, Emboliform</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q14"></div>
+                </div>
+
+                <!-- Q15 -->
+                <div class="question">
+                    <p><span class="q-badge">15</span> Which intracerebellar nucleus is the largest?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q15" value="a"> A. Emboliform nucleus</label>
+                        <label><input type="radio" name="q15" value="b"> B. Globose nucleus</label>
+                        <label><input type="radio" name="q15" value="c"> C. Fastigial nucleus</label>
+                        <label><input type="radio" name="q15" value="d"> D. Dentate nucleus</label>
+                        <label><input type="radio" name="q15" value="e"> E. Red nucleus</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q15"></div>
+                </div>
+
+                <!-- Q16 -->
+                <div class="question">
+                    <p><span class="q-badge">16</span> Which intracerebellar nucleus lies near the midline in the vermis, close to the roof of the fourth ventricle?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q16" value="a"> A. Dentate nucleus</label>
+                        <label><input type="radio" name="q16" value="b"> B. Emboliform nucleus</label>
+                        <label><input type="radio" name="q16" value="c"> C. Globose nucleus</label>
+                        <label><input type="radio" name="q16" value="d"> D. Fastigial nucleus</label>
+                        <label><input type="radio" name="q16" value="e"> E. Red nucleus</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q16"></div>
+                </div>
+
+                <!-- Q17 -->
+                <div class="question">
+                    <p><span class="q-badge">17</span> Fibers that do not leave the cerebellum but connect different regions or different hemispheres are classified as:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q17" value="a"> A. Afferent fibers</label>
+                        <label><input type="radio" name="q17" value="b"> B. Efferent fibers</label>
+                        <label><input type="radio" name="q17" value="c"> C. Intrinsic fibers</label>
+                        <label><input type="radio" name="q17" value="d"> D. Climbing fibers</label>
+                        <label><input type="radio" name="q17" value="e"> E. Mossy fibers</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q17"></div>
+                </div>
+
+                <!-- Q18 -->
+                <div class="question">
+                    <p><span class="q-badge">18</span> Through which cerebellar peduncles do the majority of afferent fibers enter the cerebellum?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q18" value="a"> A. Superior and middle cerebellar peduncles</label>
+                        <label><input type="radio" name="q18" value="b"> B. Inferior and middle cerebellar peduncles</label>
+                        <label><input type="radio" name="q18" value="c"> C. Superior and inferior cerebellar peduncles</label>
+                        <label><input type="radio" name="q18" value="d"> D. Superior cerebellar peduncle only</label>
+                        <label><input type="radio" name="q18" value="e"> E. Middle cerebellar peduncle only</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q18"></div>
+                </div>
+
+                <!-- Q19 -->
+                <div class="question">
+                    <p><span class="q-badge">19</span> The output (efferent fibers) of the cerebellar cortex commences as the axons of which cells?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q19" value="a"> A. Granule cells</label>
+                        <label><input type="radio" name="q19" value="b"> B. Stellate cells</label>
+                        <label><input type="radio" name="q19" value="c"> C. Purkinje cells</label>
+                        <label><input type="radio" name="q19" value="d"> D. Basket cells</label>
+                        <label><input type="radio" name="q19" value="e"> E. Golgi cells</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q19"></div>
+                </div>
+
+                <!-- Q20 -->
+                <div class="question">
+                    <p><span class="q-badge">20</span> Efferent fibers originating from the fastigial nucleus leave the cerebellum through which structure?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q20" value="a"> A. Superior cerebellar peduncle</label>
+                        <label><input type="radio" name="q20" value="b"> B. Middle cerebellar peduncle</label>
+                        <label><input type="radio" name="q20" value="c"> C. Inferior cerebellar peduncle</label>
+                        <label><input type="radio" name="q20" value="d"> D. Anterior commissure</label>
+                        <label><input type="radio" name="q20" value="e"> E. Tentorium cerebelli</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q20"></div>
+                </div>
+
+                <div class="submit-wrap">
+                    <button type="button" class="btn" onclick="submitMCQ()">
+                        <i class="fas fa-check-circle"></i> Submit All MCQs
+                    </button>
+                </div>
+
+            </form>
+
+            <div class="result" id="resultBox">
+                <h3><i class="fas fa-chart-simple"></i> Your Score</h3>
+                <div class="score" id="score">0%</div>
+                <p class="text-muted" style="font-size:0.9rem;">Review the feedback below each question.</p>
+            </div>
+        </section>
+
+        <!-- ──── SECTION 2: TRUE / FALSE ──── -->
+        <section class="container section-panel hidden" id="section-tf">
+            <div class="section-title scroll-target" id="tf-top">
+                <i class="fas fa-check-double"></i> True / False Questions
+                <span class="count">4 sets</span>
+            </div>
+            <p class="section-subtitle">For each statement, select <strong>True</strong> or <strong>False</strong>. Click <strong>Submit T/F</strong> to check your answers.</p>
+
+            <form id="tfForm">
+
+                <!-- ─── TF GROUP 1 ─── -->
+                <div class="tf-group">
+                    <h3><span class="tf-badge">Set 1</span> Cerebellum Location and Gross Structure</h3>
+
+                    <div class="tf-statement" id="tf1a">
+                        <span class="tf-label">(a)</span>
+                        <span class="tf-text">The cerebellum is situated in the posterior cranial fossa, inferior to the tentorium cerebelli.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf1a" value="true"> True</label>
+                            <label><input type="radio" name="tf1a" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf1a"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf1b">
+                        <span class="tf-label">(b)</span>
+                        <span class="tf-text">The tentorium cerebelli is a dural fold that separates the cerebellum from the occipital lobes of the cerebrum.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf1b" value="true"> True</label>
+                            <label><input type="radio" name="tf1b" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf1b"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf1c">
+                        <span class="tf-label">(c)</span>
+                        <span class="tf-text">Each cerebellar hemisphere controls voluntary movements on the contralateral side of the body.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf1c" value="true"> True</label>
+                            <label><input type="radio" name="tf1c" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf1c"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf1d">
+                        <span class="tf-label">(d)</span>
+                        <span class="tf-text">The vermis is a midline structure that joins the two cerebellar hemispheres.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf1d" value="true"> True</label>
+                            <label><input type="radio" name="tf1d" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf1d"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf1e">
+                        <span class="tf-label">(e)</span>
+                        <span class="tf-text">The cerebellum is entirely covered by the cerebral hemispheres and is not visible from the posterior view of the brain.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf1e" value="true"> True</label>
+                            <label><input type="radio" name="tf1e" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf1e"></div>
+                    </div>
+                </div>
+
+                <!-- ─── TF GROUP 2 ─── -->
+                <div class="tf-group">
+                    <h3><span class="tf-badge">Set 2</span> Cerebellar Lobes, Fissures and Arbor Vitae</h3>
+
+                    <div class="tf-statement" id="tf2a">
+                        <span class="tf-label">(a)</span>
+                        <span class="tf-text">The primary fissure separates the anterior lobe from the middle (posterior) lobe of the cerebellum.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf2a" value="true"> True</label>
+                            <label><input type="radio" name="tf2a" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf2a"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf2b">
+                        <span class="tf-label">(b)</span>
+                        <span class="tf-text">The middle (posterior) lobe is the smallest lobe of the cerebellum.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf2b" value="true"> True</label>
+                            <label><input type="radio" name="tf2b" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf2b"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf2c">
+                        <span class="tf-label">(c)</span>
+                        <span class="tf-text">A deep horizontal fissure separates the superior surface of the cerebellum from its inferior surface.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf2c" value="true"> True</label>
+                            <label><input type="radio" name="tf2c" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf2c"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf2d">
+                        <span class="tf-label">(d)</span>
+                        <span class="tf-text">The arbor vitae is the branched, tree-like appearance of gray matter seen on sagittal sections of the cerebellum.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf2d" value="true"> True</label>
+                            <label><input type="radio" name="tf2d" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf2d"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf2e">
+                        <span class="tf-label">(e)</span>
+                        <span class="tf-text">The flocculonodular lobe is separated from the middle lobe by the primary fissure.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf2e" value="true"> True</label>
+                            <label><input type="radio" name="tf2e" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf2e"></div>
+                    </div>
+                </div>
+
+                <!-- ─── TF GROUP 3 ─── -->
+                <div class="tf-group">
+                    <h3><span class="tf-badge">Set 3</span> Cerebellar Cortex Layers and Cells</h3>
+
+                    <div class="tf-statement" id="tf3a">
+                        <span class="tf-label">(a)</span>
+                        <span class="tf-text">The cerebellar cortex consists of three layers: molecular layer, Purkinje cell layer, and granular layer.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf3a" value="true"> True</label>
+                            <label><input type="radio" name="tf3a" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf3a"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf3b">
+                        <span class="tf-label">(b)</span>
+                        <span class="tf-text">The molecular layer contains stellate cells and basket cells, which are inhibitory interneurons.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf3b" value="true"> True</label>
+                            <label><input type="radio" name="tf3b" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf3b"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf3c">
+                        <span class="tf-label">(c)</span>
+                        <span class="tf-text">Purkinje cells are the largest neurons in the cerebellum and their dendrites branch profusely into the molecular layer.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf3c" value="true"> True</label>
+                            <label><input type="radio" name="tf3c" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf3c"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf3d">
+                        <span class="tf-label">(d)</span>
+                        <span class="tf-text">Granule cell axons ascend into the molecular layer and bifurcate to form climbing fibers.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf3d" value="true"> True</label>
+                            <label><input type="radio" name="tf3d" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf3d"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf3e">
+                        <span class="tf-label">(e)</span>
+                        <span class="tf-text">Golgi cells are scattered throughout the granular layer and have dendrites that ramify in the molecular layer.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf3e" value="true"> True</label>
+                            <label><input type="radio" name="tf3e" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf3e"></div>
+                    </div>
+                </div>
+
+                <!-- ─── TF GROUP 4 ─── -->
+                <div class="tf-group">
+                    <h3><span class="tf-badge">Set 4</span> Cerebellar Nuclei, Peduncles and Fiber Connections</h3>
+
+                    <div class="tf-statement" id="tf4a">
+                        <span class="tf-label">(a)</span>
+                        <span class="tf-text">From lateral to medial, the intracerebellar nuclei are arranged as: dentate, emboliform, globose, and fastigial.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf4a" value="true"> True</label>
+                            <label><input type="radio" name="tf4a" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf4a"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf4b">
+                        <span class="tf-label">(b)</span>
+                        <span class="tf-text">The dentate nucleus is the smallest of the cerebellar nuclei.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf4b" value="true"> True</label>
+                            <label><input type="radio" name="tf4b" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf4b"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf4c">
+                        <span class="tf-label">(c)</span>
+                        <span class="tf-text">Afferent fibers enter the cerebellum mainly through the inferior and middle cerebellar peduncles.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf4c" value="true"> True</label>
+                            <label><input type="radio" name="tf4c" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf4c"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf4d">
+                        <span class="tf-label">(d)</span>
+                        <span class="tf-text">The efferent fibers of the cerebellar cortex commence as the axons of Purkinje cells.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf4d" value="true"> True</label>
+                            <label><input type="radio" name="tf4d" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf4d"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf4e">
+                        <span class="tf-label">(e)</span>
+                        <span class="tf-text">Fibers from the fastigial nucleus leave the cerebellum through the superior cerebellar peduncle.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf4e" value="true"> True</label>
+                            <label><input type="radio" name="tf4e" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf4e"></div>
+                    </div>
+                </div>
+
+                <div class="tf-submit-wrap">
+                    <button type="button" class="btn" onclick="submitTF()">
+                        <i class="fas fa-check-circle"></i> Submit T/F
+                    </button>
+                </div>
+
+            </form>
+
+            <div class="tf-result" id="tfResultBox">
+                <h3><i class="fas fa-chart-simple"></i> T/F Score</h3>
+                <div class="score" id="tfScore">0%</div>
+                <p class="text-muted" style="font-size:0.9rem;">Review the feedback below each statement.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ═══════ JAVASCRIPT ═══════ -->
+    <script>
+        // ─── TAB NAVIGATION ───
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const section = this.dataset.section;
+                document.querySelectorAll('.section-panel').forEach(p => p.classList.add('hidden'));
+                document.getElementById('section-' + section).classList.remove('hidden');
+                const topEl = document.getElementById(section + '-top');
+                if (topEl) topEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // ─── MCQ DATA ───
+        const correctMCQ = {
+            q1: "c", q2: "b", q3: "b", q4: "d", q5: "a",
+            q6: "c", q7: "c", q8: "b", q9: "c", q10: "b",
+            q11: "b", q12: "c", q13: "d", q14: "b", q15: "d",
+            q16: "d", q17: "c", q18: "b", q19: "c", q20: "c"
+        };
+
+        const mcqExplanations = {
+            q1: "The cerebellum is situated in the posterior cranial fossa, which is the largest and deepest of the three cranial fossae. It lies inferior to the tentorium cerebelli and posterior to the brainstem. The anterior cranial fossa contains the frontal lobes, and the middle cranial fossa contains the temporal lobes.",
+            q2: "The cerebellum is covered superiorly by the tentorium cerebelli, a dural fold that separates the cerebellum from the occipital lobes of the cerebrum. The falx cerebri separates the cerebral hemispheres; the corpus callosum is a white matter tract connecting the hemispheres; the vermis is the median part of the cerebellum; the arbor vitae is the branching white matter of the cerebellum.",
+            q3: "Each cerebellar hemisphere controls voluntary movements on the ipsilateral (same) side of the body. This is because the cerebellum receives proprioceptive and motor information from the same side and outputs back to the same side, unlike the cerebrum which is contralateral. This ipsilateral control is a key functional distinction.",
+            q4: "The two cerebellar hemispheres are joined along the median plane by a narrow midline structure called the vermis. The vermis is a distinctive feature of the cerebellum and separates the hemispheres. It is visible on both the superior and inferior surfaces of the cerebellum.",
+            q5: "The primary fissure separates the anterior lobe from the middle (posterior) lobe of the cerebellum. This fissure is located on the superior surface of the cerebellum and is the deepest fissure. The uvulonodular fissure separates the middle lobe from the flocculonodular lobe.",
+            q6: "The middle (posterior) lobe is the largest part of the cerebellum. It is also called the neocerebellum and is involved in fine motor coordination and motor learning. The anterior lobe is smaller, and the flocculonodular lobe is the smallest and oldest part of the cerebellum.",
+            q7: "A deep horizontal fissure separates the superior surface of the cerebellum from its inferior surface. This fissure runs along the lateral margins of the cerebellum and is visible on a lateral view. The primary fissure separates lobes, not surfaces.",
+            q8: "A sagittal-like section parallel to the median plane reveals a branched tree-like appearance of white matter called the arbor vitae (tree of life). This pattern is formed by the radiating white matter tracts that carry information to and from the cerebellar cortex. The gray matter is the outer cortex and the deep nuclei.",
+            q9: "The cerebellar cortex consists of three layers: the outermost molecular layer, the middle Purkinje cell layer, and the innermost granular layer. The Purkinje cell layer is a thin, single-cell-thick layer that contains the large Purkinje cell bodies. This layered organization is characteristic of the cerebellar cortex.",
+            q10: "The molecular layer contains two types of neurons: stellate cells (outer) and basket cells (inner). These are inhibitory interneurons that synapse with Purkinje cell dendrites. Granule cells and Golgi cells are found in the granular layer; Purkinje cells form the middle layer; mossy and climbing fibers are afferent fibers.",
+            q11: "Purkinje cell dendrites branch profusely into the molecular layer, where they receive excitatory inputs from parallel fibers (axons of granule cells) and climbing fibers. The dendritic arbors are extensive and are oriented perpendicular to the parallel fibers, forming a characteristic lattice-like pattern.",
+            q12: "The axons of granule cells ascend into the molecular layer, bifurcate at a T-junction, and form parallel fibers. These parallel fibers run parallel to the long axis of the cerebellar folia and synapse with Purkinje cell dendrites. This arrangement is unique to the cerebellum and is critical for its function.",
+            q13: "Golgi cells are scattered throughout the granular layer and have dendrites that ramify in the molecular layer. They are inhibitory interneurons that receive inputs from parallel fibers and provide feedback inhibition to granule cells. Basket cells and stellate cells are in the molecular layer.",
+            q14: "Arranged from lateral to medial, the correct order of the intracerebellar nuclei is: dentate, emboliform, globose, fastigial. These nuclei are embedded within the white matter and are the main output structures of the cerebellum. The mnemonic 'Don't Eat Greasy Fries' can help remember the order.",
+            q15: "The dentate nucleus is the largest of the cerebellar nuclei. It is the most lateral nucleus and is involved in planning, initiation, and coordination of voluntary movements. It receives inputs mainly from the lateral hemispheres (neocerebellum) and projects to the contralateral red nucleus and thalamus.",
+            q16: "The fastigial nucleus lies near the midline in the vermis, close to the roof of the fourth ventricle. It is the most medial of the cerebellar nuclei and is involved in balance and eye movements. It receives inputs from the vermis and flocculonodular lobe (archicerebellum).",
+            q17: "Intrinsic fibers are fibers that do not leave the cerebellum but connect different regions or different hemispheres. They are responsible for the internal communication within the cerebellum. Afferent fibers enter the cerebellum; efferent fibers leave it; climbing and mossy fibers are specific types of afferent fibers.",
+            q18: "The majority of afferent fibers enter the cerebellum through the inferior and middle cerebellar peduncles. The inferior cerebellar peduncle (restiform body) carries proprioceptive and vestibular information; the middle cerebellar peduncle (brachium pontis) carries corticopontine fibers. The superior peduncle mainly carries efferent fibers.",
+            q19: "The output (efferent fibers) of the cerebellar cortex commences as the axons of Purkinje cells. These are the only output cells of the cerebellar cortex. They project to the intracerebellar nuclei and, in some cases, directly to vestibular nuclei. Granule cells are excitatory interneurons; stellate and basket cells are inhibitory interneurons.",
+            q20: "Efferent fibers originating from the fastigial nucleus leave the cerebellum through the inferior cerebellar peduncle. The fastigial nucleus projects to vestibular nuclei and reticular formation via the uncinate fasciculus, which travels through the inferior peduncle. The superior and middle peduncles carry other connections."
+        };
+
+        // ─── MCQ SUBMIT ───
+        function submitMCQ() {
+            let score = 0;
+            const total = Object.keys(correctMCQ).length;
+
+            document.querySelectorAll('.question-feedback').forEach(el => el.innerHTML = '');
+
+            for (let key in correctMCQ) {
+                const radios = Array.from(document.querySelectorAll(`input[name="${key}"]`));
+                const selected = radios.find(r => r.checked);
+                const correct = correctMCQ[key];
+
+                if (selected && selected.value === correct) score++;
+
+                const feedbackEl = document.getElementById(`feedback-${key}`);
+                if (!feedbackEl) continue;
+
+                let html = `<div class="answer-block"><strong>Q${key.replace(/^q/, '')}</strong><div class="answer-list">`;
+
+                radios.forEach(r => {
+                    const label = r.parentElement;
+                    const text = label ? label.textContent.trim() : r.value;
+                    const classes = ['answer-item'];
+                    if (r.value === correct) classes.push('answer-correct');
+                    if (r.checked && r.value !== correct) classes.push('answer-wrong', 'user-choice');
+                    if (r.checked && r.value === correct) classes.push('user-choice');
+                    html += `<div class="${classes.join(' ')}">${text}${r.checked ? ' ◀' : ''}</div>`;
+                });
+
+                html += `</div>`;
+
+                const correctRadio = radios.find(rr => rr.value === correct);
+                const correctText = correctRadio && correctRadio.parentElement ? correctRadio.parentElement.textContent.trim() : correct;
+                const explanationText = mcqExplanations[key] || '';
+
+                if (selected) {
+                    if (selected.value === correct) {
+                        html += `<div class="explanation">✅ Correct — ${explanationText}</div>`;
+                    } else {
+                        html += `<div class="explanation wrong">❌ Incorrect. Correct answer: <strong>${correctText}</strong>. ${explanationText}</div>`;
+                    }
+                } else {
+                    html += `<div class="explanation wrong">No answer selected. Correct answer: <strong>${correctText}</strong>. ${explanationText}</div>`;
+                }
+
+                html += `</div>`;
+                feedbackEl.innerHTML = html;
+            }
+
+            const percentage = Math.round((score / total) * 100);
+            const resultBox = document.getElementById('resultBox');
+            resultBox.style.display = 'block';
+
+            let start = 0;
+            const timer = setInterval(() => {
+                if (start >= percentage) clearInterval(timer);
+                document.getElementById('score').innerText = start + '%';
+                start++;
+            }, 20);
+
+            document.querySelectorAll('#quizForm input[type="radio"]').forEach(i => i.disabled = true);
+        }
+
+        // ─── T/F DATA ───
+        const correctTF = {
+            tf1a: true, tf1b: true, tf1c: false, tf1d: true, tf1e: false,
+            tf2a: true, tf2b: false, tf2c: true, tf2d: false, tf2e: false,
+            tf3a: true, tf3b: true, tf3c: true, tf3d: false, tf3e: true,
+            tf4a: true, tf4b: false, tf4c: true, tf4d: true, tf4e: false
+        };
+
+        const tfExplanations = {
+            tf1a: "The cerebellum is situated in the posterior cranial fossa, inferior to the tentorium cerebelli. This is correct. The posterior cranial fossa is the most inferior of the three cranial fossae and houses the cerebellum, pons, and medulla oblongata.",
+            tf1b: "The tentorium cerebelli is a dural fold that separates the cerebellum from the occipital lobes of the cerebrum. This is correct. It forms a horizontal shelf that covers the cerebellum, creating a partition between the supratentorial and infratentorial compartments.",
+            tf1c: "Each cerebellar hemisphere controls voluntary movements on the contralateral side of the body. This is false. The cerebellum controls movements on the ipsilateral (same) side of the body, unlike the cerebrum which is contralateral. This is a key clinical distinction.",
+            tf1d: "The vermis is a midline structure that joins the two cerebellar hemispheres. This is correct. The vermis is a narrow, unpaired structure that connects the hemispheres and is visible on both the superior and inferior surfaces.",
+            tf1e: "The cerebellum is entirely covered by the cerebral hemispheres and is not visible from the posterior view. This is false. The cerebellum is visible on the posterior and inferior aspects of the brain, protruding below the occipital lobes. It is partially covered by the occipital lobes superiorly but is clearly visible inferiorly.",
+            tf2a: "The primary fissure separates the anterior lobe from the middle (posterior) lobe of the cerebellum. This is correct. The primary fissure is located on the superior surface of the cerebellum and is the deepest fissure, dividing the anterior and posterior lobes.",
+            tf2b: "The middle (posterior) lobe is the smallest lobe of the cerebellum. This is false. The middle lobe is the largest lobe of the cerebellum. The flocculonodular lobe is the smallest and most primitive part.",
+            tf2c: "A deep horizontal fissure separates the superior surface of the cerebellum from its inferior surface. This is correct. The horizontal fissure runs along the lateral margins and is visible on a lateral view of the cerebellum.",
+            tf2d: "The arbor vitae is the branched, tree-like appearance of gray matter seen on sagittal sections of the cerebellum. This is false. The arbor vitae is the tree-like appearance of white matter, not gray matter. The gray matter is the outer cortex and the deep nuclei.",
+            tf2e: "The flocculonodular lobe is separated from the middle lobe by the primary fissure. This is false. The flocculonodular lobe is separated from the middle lobe by the uvulonodular fissure. The primary fissure separates the anterior and middle lobes.",
+            tf3a: "The cerebellar cortex consists of three layers: molecular layer, Purkinje cell layer, and granular layer. This is correct. These three layers are arranged from superficial to deep. The molecular layer is outermost, the Purkinje cell layer is the middle single-cell layer, and the granular layer is the innermost.",
+            tf3b: "The molecular layer contains stellate cells and basket cells, which are inhibitory interneurons. This is correct. Stellate cells are located in the outer part of the molecular layer, while basket cells are in the inner part. Both provide inhibitory input to Purkinje cells.",
+            tf3c: "Purkinje cells are the largest neurons in the cerebellum and their dendrites branch profusely into the molecular layer. This is correct. Purkinje cells are distinctive, large neurons with highly branched dendritic trees that extend into the molecular layer, where they receive synaptic inputs.",
+            tf3d: "Granule cell axons ascend into the molecular layer and bifurcate to form climbing fibers. This is false. Granule cell axons form parallel fibers, not climbing fibers. Climbing fibers are afferent fibers that originate from the inferior olive and synapse directly with Purkinje cells.",
+            tf3e: "Golgi cells are scattered throughout the granular layer and have dendrites that ramify in the molecular layer. This is correct. Golgi cells are inhibitory interneurons located in the granular layer. Their dendrites extend into the molecular layer, where they receive input from parallel fibers.",
+            tf4a: "From lateral to medial, the intracerebellar nuclei are arranged as: dentate, emboliform, globose, and fastigial. This is correct. The mnemonic 'Don't Eat Greasy Fries' helps remember the order from lateral to medial: Dentate, Emboliform, Globose, Fastigial.",
+            tf4b: "The dentate nucleus is the smallest of the cerebellar nuclei. This is false. The dentate nucleus is the largest of the cerebellar nuclei. The fastigial nucleus is the smallest (or the globose and emboliform are smaller).",
+            tf4c: "Afferent fibers enter the cerebellum mainly through the inferior and middle cerebellar peduncles. This is correct. The inferior cerebellar peduncle carries proprioceptive and vestibular information; the middle cerebellar peduncle carries corticopontine fibers. The superior peduncle is mainly efferent.",
+            tf4d: "The efferent fibers of the cerebellar cortex commence as the axons of Purkinje cells. This is correct. Purkinje cells are the only output neurons of the cerebellar cortex. Their axons project to the intracerebellar nuclei and, in some cases, directly to vestibular nuclei.",
+            tf4e: "Fibers from the fastigial nucleus leave the cerebellum through the superior cerebellar peduncle. This is false. Fibers from the fastigial nucleus leave through the inferior cerebellar peduncle. The superior cerebellar peduncle carries efferents from the dentate and interposed nuclei (emboliform and globose)."
+        };
+
+        // ─── T/F SUBMIT ───
+        function submitTF() {
+            let correctCount = 0;
+            const total = Object.keys(correctTF).length;
+
+            document.querySelectorAll('.tf-feedback').forEach(el => el.innerHTML = '');
+
+            for (let key in correctTF) {
+                const radios = Array.from(document.querySelectorAll(`input[name="${key}"]`));
+                const selected = radios.find(r => r.checked);
+                const correct = correctTF[key];
+
+                if (selected && selected.value === (correct ? 'true' : 'false')) correctCount++;
+
+                const feedbackEl = document.getElementById(`feedback-${key}`);
+                if (!feedbackEl) continue;
+
+                const statementEl = document.getElementById(key);
+                const textEl = statementEl ? statementEl.querySelector('.tf-text') : null;
+                const statementText = textEl ? textEl.textContent.trim() : key;
+
+                const correctStr = correct ? 'True' : 'False';
+                const explanation = tfExplanations[key] || '';
+
+                let html = '';
+
+                if (selected) {
+                    const isCorrect = selected.value === (correct ? 'true' : 'false');
+                    const icon = isCorrect ? '✅' : '❌';
+                    const cls = isCorrect ? '' : ' wrong';
+                    html += `<div class="tf-explain${cls}">
+                                <span class="tf-result-label">${icon} ${isCorrect ? 'Correct' : 'Incorrect'}</span>
+                                — Correct answer: <strong>${correctStr}</strong>.
+                                ${explanation}
+                             </div>`;
+                } else {
+                    html += `<div class="tf-explain wrong">
+                                <span class="tf-result-label">⚠️ No answer selected</span>
+                                — Correct answer: <strong>${correctStr}</strong>.
+                                ${explanation}
+                             </div>`;
+                }
+
+                feedbackEl.innerHTML = html;
+            }
+
+            const percentage = Math.round((correctCount / total) * 100);
+            const resultBox = document.getElementById('tfResultBox');
+            resultBox.style.display = 'block';
+
+            let start = 0;
+            const timer = setInterval(() => {
+                if (start >= percentage) clearInterval(timer);
+                document.getElementById('tfScore').innerText = start + '%';
+                start++;
+            }, 20);
+
+            document.querySelectorAll('#tfForm input[type="radio"]').forEach(i => i.disabled = true);
+        }
+    </script>
+
+</body>
+</html>

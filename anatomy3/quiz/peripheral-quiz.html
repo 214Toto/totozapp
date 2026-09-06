@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anatomy Quiz | Spinal Nerves, Cranial Nerves & ANS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        /* ─────────── ROOT & RESET ─────────── */
+        :root {
+            --primary: #1a5276;
+            --accent: #5dade2;
+            --dark: #17252a;
+            --light: #f8f9fa;
+            --radius: 12px;
+            --shadow: 0 4px 14px rgba(18, 38, 63, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Roboto, system-ui, sans-serif;
+            background: linear-gradient(180deg, #f5f7fb, #eef2f7);
+            color: var(--dark);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--primary), #0e2a3f);
+            color: #fff;
+            padding: 0.8rem 0;
+            box-shadow: 0 6px 18px rgba(11, 36, 36, 0.18);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .logo i {
+            font-size: 1.6rem;
+            color: var(--accent);
+        }
+        .logo h1 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 0.25rem 1rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            color: #d4e8f0;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0.3rem;
+            flex-wrap: wrap;
+        }
+        .nav-tabs .tab-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: none;
+            color: #d4e8f0;
+            padding: 0.3rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .nav-tabs .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #fff;
+        }
+        .nav-tabs .tab-btn.active {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 1.25rem 2.5rem;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1.8rem 0 1rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 3px solid rgba(26, 82, 118, 0.20);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+        .section-title i {
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+        .section-title .count {
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0.05rem 0.7rem;
+        }
+
+        .section-subtitle {
+            color: #5f7a7a;
+            font-size: 0.92rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .section-panel {
+            display: block;
+        }
+        .section-panel.hidden {
+            display: none;
+        }
+
+        /* ─────────── MCQ CARDS ─────────── */
+        .question {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.2rem 1.2rem 0.2rem 1.2rem;
+            margin-bottom: 1.2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(26, 82, 118, 0.06);
+            transition: box-shadow 0.2s;
+        }
+        .question:hover {
+            box-shadow: 0 6px 22px rgba(18, 38, 63, 0.07);
+        }
+        .question p {
+            font-weight: 600;
+            font-size: 0.98rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        .question .q-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            line-height: 1.6;
+            margin-right: 0.4rem;
+        }
+
+        .options label {
+            display: block;
+            background: #fafcfd;
+            border: 1px solid #e0e8ef;
+            border-radius: 8px;
+            padding: 0.45rem 0.9rem;
+            margin-top: 0.45rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-weight: 450;
+            font-size: 0.94rem;
+        }
+        .options label:hover {
+            background: #e8f0f5;
+            border-color: var(--accent);
+        }
+        .options input[type="radio"] {
+            margin-right: 0.5rem;
+            accent-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .question-feedback {
+            margin-top: 0.9rem;
+            padding: 0.4rem 0 0.1rem 0;
+            border-top: 1px dashed #dce6ed;
+        }
+        .answer-block strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--primary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .answer-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .answer-item {
+            padding: 5px 10px;
+            border-radius: 6px;
+            border: 1px solid #e6eef3;
+            background: #ffffff;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .answer-correct {
+            background: #ecfdf5;
+            border-color: #bbf7d0;
+            color: #065f46;
+        }
+        .answer-wrong {
+            background: #fff1f2;
+            border-color: #fca5a5;
+            color: #9f1239;
+        }
+        .user-choice {
+            outline: 2px dashed rgba(0, 0, 0, 0.06);
+        }
+        .explanation {
+            margin-top: 6px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            background: #f1f6fa;
+            color: #1a3a4f;
+            font-size: 0.92rem;
+            line-height: 1.6;
+            border-left: 4px solid var(--accent);
+        }
+        .explanation.wrong {
+            background: #fff5f5;
+            color: #7f1d1d;
+            border-left-color: #f87171;
+        }
+
+        /* ─────────── BUTTONS ─────────── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.6rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(26, 82, 118, 0.22);
+        }
+        .btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(26, 82, 118, 0.30);
+        }
+        .btn:active {
+            transform: scale(0.96);
+        }
+        .btn i {
+            font-size: 0.9rem;
+        }
+
+        .submit-wrap,
+        .tf-submit-wrap {
+            text-align: center;
+            margin: 1.5rem 0 2rem;
+        }
+
+        /* ─────────── RESULT BOX ─────────── */
+        .result,
+        .tf-result {
+            margin-top: 1.5rem;
+            padding: 1.5rem 1.5rem 1rem;
+            background: #f1f6fa;
+            border-radius: var(--radius);
+            text-align: center;
+            display: none;
+            border: 1px solid #c5dce3;
+        }
+        .result h3,
+        .tf-result h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.2rem;
+        }
+        .score {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0.2rem 0 0.4rem;
+        }
+
+        /* ─────────── T/F SECTION ─────────── */
+        .tf-group {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.2rem 1.2rem 0.2rem 1.2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(26, 82, 118, 0.06);
+        }
+        .tf-group h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .tf-group h3 .tf-badge {
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            font-size: 0.7rem;
+            line-height: 1.6;
+            font-weight: 700;
+        }
+
+        .tf-statement {
+            background: #fafcfd;
+            border: 1px solid #e0e8ef;
+            border-radius: 8px;
+            padding: 0.6rem 0.9rem;
+            margin-top: 0.6rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            transition: background 0.15s;
+        }
+        .tf-statement .tf-label {
+            font-weight: 600;
+            color: var(--primary);
+            min-width: 1.8rem;
+            font-size: 0.9rem;
+        }
+        .tf-statement .tf-text {
+            flex: 1;
+            font-size: 0.94rem;
+            line-height: 1.4;
+            min-width: 200px;
+        }
+        .tf-statement .tf-options {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .tf-statement .tf-options label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.2rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 0.1rem 0.5rem;
+            border-radius: 4px;
+            transition: background 0.15s;
+        }
+        .tf-statement .tf-options label:hover {
+            background: #e8f0f5;
+        }
+        .tf-statement .tf-options input[type="radio"] {
+            accent-color: var(--primary);
+            transform: scale(1.0);
+            margin: 0;
+        }
+
+        .tf-feedback {
+            margin-top: 0.4rem;
+            padding: 0.4rem 0 0.1rem 0;
+            border-top: 1px dashed #dce6ed;
+            width: 100%;
+        }
+        .tf-feedback .tf-explain {
+            margin-top: 4px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            background: #f1f6fa;
+            color: #1a3a4f;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border-left: 4px solid var(--accent);
+        }
+        .tf-feedback .tf-explain.wrong {
+            background: #fff5f5;
+            color: #7f1d1d;
+            border-left-color: #f87171;
+        }
+        .tf-feedback .tf-explain .tf-result-label {
+            font-weight: 700;
+        }
+
+        /* ─────────── RESPONSIVE ─────────── */
+        @media (max-width: 700px) {
+            body {
+                padding-top: 72px;
+            }
+            .logo h1 {
+                font-size: 1rem;
+            }
+            .header-inner {
+                padding: 0 1rem;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.3rem;
+            }
+            .badge {
+                align-self: flex-start;
+            }
+            .nav-tabs {
+                justify-content: center;
+            }
+            .nav-tabs .tab-btn {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.7rem;
+            }
+            .question,
+            .tf-group {
+                padding: 1rem 1rem 0.1rem 1rem;
+            }
+            .section-title {
+                font-size: 1.1rem;
+            }
+            .score {
+                font-size: 2.2rem;
+            }
+            .btn {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.85rem;
+            }
+            .tf-statement {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.3rem;
+            }
+            .tf-statement .tf-options {
+                justify-content: flex-start;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .logo h1 {
+                font-size: 0.85rem;
+            }
+            .logo i {
+                font-size: 1.2rem;
+            }
+            .options label {
+                font-size: 0.87rem;
+                padding: 0.4rem 0.7rem;
+            }
+        }
+
+        .text-muted {
+            color: #5f7a7a;
+            font-size: 0.9rem;
+        }
+        .hidden {
+            display: none !important;
+        }
+        .scroll-target {
+            scroll-margin-top: 90px;
+        }
+        .mt-1 {
+            margin-top: 0.8rem;
+        }
+        .mb-1 {
+            margin-bottom: 0.8rem;
+        }
+        .flex-center {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════ HEADER ═══════ -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <i class="fas fa-brain"></i>
+                <h1>Neuroanatomy Quiz</h1>
+            </div>
+            <span class="badge"><i class="fas fa-pencil-alt"></i> &nbsp;30 MCQs + 6 T/F Sets</span>
+            <div class="nav-tabs">
+                <button class="tab-btn active" data-section="mcq">MCQs</button>
+                <button class="tab-btn" data-section="tf">True / False</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══════ MAIN ═══════ -->
+    <main>
+
+        <!-- ──── SECTION 1: MCQs ──── -->
+        <section class="container section-panel" id="section-mcq">
+            <div class="section-title scroll-target" id="mcq-top">
+                <i class="fas fa-list-ul"></i> Multiple Choice Questions
+                <span class="count">30</span>
+            </div>
+            <p class="section-subtitle">Select the best answer for each question, then click <strong>Submit All MCQs</strong>.</p>
+
+            <form id="quizForm">
+
+                <!-- Q1 -->
+                <div class="question">
+                    <p><span class="q-badge">1</span> Spinal nerves are considered part of which division of the nervous system?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="a"> A. Central nervous system</label>
+                        <label><input type="radio" name="q1" value="b"> B. Peripheral nervous system</label>
+                        <label><input type="radio" name="q1" value="c"> C. Autonomic nervous system only</label>
+                        <label><input type="radio" name="q1" value="d"> D. Enteric nervous system</label>
+                        <label><input type="radio" name="q1" value="e"> E. Sympathetic chain only</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q1"></div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="question">
+                    <p><span class="q-badge">2</span> How many total pairs of spinal nerves attach to the spinal cord?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="a"> A. 12</label>
+                        <label><input type="radio" name="q2" value="b"> B. 24</label>
+                        <label><input type="radio" name="q2" value="c"> C. 31</label>
+                        <label><input type="radio" name="q2" value="d"> D. 33</label>
+                        <label><input type="radio" name="q2" value="e"> E. 38</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q2"></div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question">
+                    <p><span class="q-badge">3</span> Through which openings do spinal nerves pass as they exit the vertebral canal?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="a"> A. Foramen magnum</label>
+                        <label><input type="radio" name="q3" value="b"> B. Vertebral foramina</label>
+                        <label><input type="radio" name="q3" value="c"> C. Intervertebral foramina</label>
+                        <label><input type="radio" name="q3" value="d"> D. Transverse foramina</label>
+                        <label><input type="radio" name="q3" value="e"> E. Mental foramina</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q3"></div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="question">
+                    <p><span class="q-badge">4</span> Which statement correctly describes all spinal nerves?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="a"> A. Purely motor</label>
+                        <label><input type="radio" name="q4" value="b"> B. Purely sensory</label>
+                        <label><input type="radio" name="q4" value="c"> C. Purely parasympathetic</label>
+                        <label><input type="radio" name="q4" value="d"> D. Mixed nerves</label>
+                        <label><input type="radio" name="q4" value="e"> E. Purely sympathetic</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q4"></div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="question">
+                    <p><span class="q-badge">5</span> How many pairs of cervical spinal nerves exist in the human body?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="a"> A. 7</label>
+                        <label><input type="radio" name="q5" value="b"> B. 8</label>
+                        <label><input type="radio" name="q5" value="c"> C. 12</label>
+                        <label><input type="radio" name="q5" value="d"> D. 5</label>
+                        <label><input type="radio" name="q5" value="e"> E. 1</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q5"></div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="question">
+                    <p><span class="q-badge">6</span> Dorsal roots of spinal nerves contain which type of nerve fibers?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="a"> A. Motor fibers</label>
+                        <label><input type="radio" name="q6" value="b"> B. Sensory fibers</label>
+                        <label><input type="radio" name="q6" value="c"> C. Autonomic motor fibers only</label>
+                        <label><input type="radio" name="q6" value="d"> D. Sympathetic postganglionic fibers only</label>
+                        <label><input type="radio" name="q6" value="e"> E. Enteric motor fibers</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q6"></div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="question">
+                    <p><span class="q-badge">7</span> Where are the cell bodies of sensory fibers in the dorsal root located?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="a"> A. Anterior gray horn</label>
+                        <label><input type="radio" name="q7" value="b"> B. Lateral gray horn</label>
+                        <label><input type="radio" name="q7" value="c"> C. Dorsal root ganglia</label>
+                        <label><input type="radio" name="q7" value="d"> D. Sympathetic chain ganglia</label>
+                        <label><input type="radio" name="q7" value="e"> E. Prevertebral ganglia</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q7"></div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="question">
+                    <p><span class="q-badge">8</span> Ventral roots arise from motor fibers originating in which region of the spinal cord?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="a"> A. Posterior white column</label>
+                        <label><input type="radio" name="q8" value="b"> B. Anterior gray column</label>
+                        <label><input type="radio" name="q8" value="c"> C. Dorsal root ganglion</label>
+                        <label><input type="radio" name="q8" value="d"> D. Filum terminale</label>
+                        <label><input type="radio" name="q8" value="e"> E. Cauda equina</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q8"></div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="question">
+                    <p><span class="q-badge">9</span> Cervical spinal nerve 1 (C1) exits from:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="a"> A. Below C1 vertebra</label>
+                        <label><input type="radio" name="q9" value="b"> B. Above C1 vertebra</label>
+                        <label><input type="radio" name="q9" value="c"> C. Below C7 vertebra</label>
+                        <label><input type="radio" name="q9" value="d"> D. Between C1 and C2 vertebrae</label>
+                        <label><input type="radio" name="q9" value="e"> E. Through C1 transverse foramen</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q9"></div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="question">
+                    <p><span class="q-badge">10</span> Outside the intervertebral foramen, spinal nerves re-branch into:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="a"> A. Roots</label>
+                        <label><input type="radio" name="q10" value="b"> B. Rami</label>
+                        <label><input type="radio" name="q10" value="c"> C. Tracts</label>
+                        <label><input type="radio" name="q10" value="d"> D. Columns</label>
+                        <label><input type="radio" name="q10" value="e"> E. Fascicles</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q10"></div>
+                </div>
+
+                <!-- Q11 -->
+                <div class="question">
+                    <p><span class="q-badge">11</span> Visceral branches re-branching outside the intervertebral foramen are known as:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q11" value="a"> A. Dorsal rami</label>
+                        <label><input type="radio" name="q11" value="b"> B. Ventral rami</label>
+                        <label><input type="radio" name="q11" value="c"> C. Rami communicantes</label>
+                        <label><input type="radio" name="q11" value="d"> D. Intercostal nerves</label>
+                        <label><input type="radio" name="q11" value="e"> E. Terminal branches</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q11"></div>
+                </div>
+
+                <!-- Q12 -->
+                <div class="question">
+                    <p><span class="q-badge">12</span> The muscles and skin of the posterior trunk (back) are innervated by the:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q12" value="a"> A. Ventral rami</label>
+                        <label><input type="radio" name="q12" value="b"> B. Dorsal rami</label>
+                        <label><input type="radio" name="q12" value="c"> C. Rami communicantes</label>
+                        <label><input type="radio" name="q12" value="d"> D. Cranial nerves</label>
+                        <label><input type="radio" name="q12" value="e"> E. Pelvic splanchnic nerves</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q12"></div>
+                </div>
+
+                <!-- Q13 -->
+                <div class="question">
+                    <p><span class="q-badge">13</span> In the thorax, ventral rami continue directly as:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q13" value="a"> A. Splanchnic nerves</label>
+                        <label><input type="radio" name="q13" value="b"> B. Intercostal nerves</label>
+                        <label><input type="radio" name="q13" value="c"> C. Sympathetic trunks</label>
+                        <label><input type="radio" name="q13" value="d"> D. Brachial plexus</label>
+                        <label><input type="radio" name="q13" value="e"> E. Lumbar plexus</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q13"></div>
+                </div>
+
+                <!-- Q14 -->
+                <div class="question">
+                    <p><span class="q-badge">14</span> Nerve plexuses are formed by networks of exchange fibers from which structures?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q14" value="a"> A. Dorsal roots</label>
+                        <label><input type="radio" name="q14" value="b"> B. Dorsal rami</label>
+                        <label><input type="radio" name="q14" value="c"> C. Ventral rami</label>
+                        <label><input type="radio" name="q14" value="d"> D. Ventral roots</label>
+                        <label><input type="radio" name="q14" value="e"> E. Rami communicantes</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q14"></div>
+                </div>
+
+                <!-- Q15 -->
+                <div class="question">
+                    <p><span class="q-badge">15</span> Which ventral rami DO NOT form nerve plexuses?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q15" value="a"> A. Cervical</label>
+                        <label><input type="radio" name="q15" value="b"> B. Brachial</label>
+                        <label><input type="radio" name="q15" value="c"> C. Thoracic</label>
+                        <label><input type="radio" name="q15" value="d"> D. Lumbar</label>
+                        <label><input type="radio" name="q15" value="e"> E. Sacral</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q15"></div>
+                </div>
+
+                <!-- Q16 -->
+                <div class="question">
+                    <p><span class="q-badge">16</span> How many pairs of cranial nerves are present in humans?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q16" value="a"> A. 8</label>
+                        <label><input type="radio" name="q16" value="b"> B. 10</label>
+                        <label><input type="radio" name="q16" value="c"> C. 12</label>
+                        <label><input type="radio" name="q16" value="d"> D. 31</label>
+                        <label><input type="radio" name="q16" value="e"> E. 14</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q16"></div>
+                </div>
+
+                <!-- Q17 -->
+                <div class="question">
+                    <p><span class="q-badge">17</span> Which cranial nerve extends beyond the head and neck into the thoracic and abdominal cavities?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q17" value="a"> A. CN II (Optic)</label>
+                        <label><input type="radio" name="q17" value="b"> B. CN V (Trigeminal)</label>
+                        <label><input type="radio" name="q17" value="c"> C. CN VII (Facial)</label>
+                        <label><input type="radio" name="q17" value="d"> D. CN X (Vagus)</label>
+                        <label><input type="radio" name="q17" value="e"> E. CN XII (Hypoglossal)</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q17"></div>
+                </div>
+
+                <!-- Q18 -->
+                <div class="question">
+                    <p><span class="q-badge">18</span> Which of the following cranial nerves is purely sensory?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q18" value="a"> A. Oculomotor (CN III)</label>
+                        <label><input type="radio" name="q18" value="b"> B. Trochlear (CN IV)</label>
+                        <label><input type="radio" name="q18" value="c"> C. Vestibulocochlear (CN VIII)</label>
+                        <label><input type="radio" name="q18" value="d"> D. Facial (CN VII)</label>
+                        <label><input type="radio" name="q18" value="e"> E. Glossopharyngeal (CN IX)</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q18"></div>
+                </div>
+
+                <!-- Q19 -->
+                <div class="question">
+                    <p><span class="q-badge">19</span> Through which foramen does CN I (Olfactory nerve) pass?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q19" value="a"> A. Optic canal</label>
+                        <label><input type="radio" name="q19" value="b"> B. Cribriform plate</label>
+                        <label><input type="radio" name="q19" value="c"> C. Superior orbital fissure</label>
+                        <label><input type="radio" name="q19" value="d"> D. Foramen rotundum</label>
+                        <label><input type="radio" name="q19" value="e"> E. Jugular foramen</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q19"></div>
+                </div>
+
+                <!-- Q20 -->
+                <div class="question">
+                    <p><span class="q-badge">20</span> Which cranial nerve passes through the optic canal?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q20" value="a"> A. CN I</label>
+                        <label><input type="radio" name="q20" value="b"> B. CN II</label>
+                        <label><input type="radio" name="q20" value="c"> C. CN III</label>
+                        <label><input type="radio" name="q20" value="d"> D. CN IV</label>
+                        <label><input type="radio" name="q20" value="e"> E. CN VI</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q20"></div>
+                </div>
+
+                <!-- Q21 -->
+                <div class="question">
+                    <p><span class="q-badge">21</span> Which division of the trigeminal nerve (CN V) passes through the foramen ovale?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q21" value="a"> A. V1 (Ophthalmic)</label>
+                        <label><input type="radio" name="q21" value="b"> B. V2 (Maxillary)</label>
+                        <label><input type="radio" name="q21" value="c"> C. V3 (Mandibular)</label>
+                        <label><input type="radio" name="q21" value="d"> D. Frontal branch</label>
+                        <label><input type="radio" name="q21" value="e"> E. Nasociliary branch</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q21"></div>
+                </div>
+
+                <!-- Q22 -->
+                <div class="question">
+                    <p><span class="q-badge">22</span> CN VI (Abducens) supplies motor innervation to which muscle?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q22" value="a"> A. Superior oblique</label>
+                        <label><input type="radio" name="q22" value="b"> B. Lateral rectus</label>
+                        <label><input type="radio" name="q22" value="c"> C. Inferior rectus</label>
+                        <label><input type="radio" name="q22" value="d"> D. Superior rectus</label>
+                        <label><input type="radio" name="q22" value="e"> E. Medial rectus</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q22"></div>
+                </div>
+
+                <!-- Q23 -->
+                <div class="question">
+                    <p><span class="q-badge">23</span> Which cranial nerves pass through the jugular foramen?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q23" value="a"> A. CN III, IV, VI</label>
+                        <label><input type="radio" name="q23" value="b"> B. CN VII, VIII</label>
+                        <label><input type="radio" name="q23" value="c"> C. CN IX, X, XI</label>
+                        <label><input type="radio" name="q23" value="d"> D. CN V1, V2, V3</label>
+                        <label><input type="radio" name="q23" value="e"> E. CN I, II, III</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q23"></div>
+                </div>
+
+                <!-- Q24 -->
+                <div class="question">
+                    <p><span class="q-badge">24</span> The sympathetic division of the ANS is also known as the:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q24" value="a"> A. Craniosacral division</label>
+                        <label><input type="radio" name="q24" value="b"> B. Thoracolumbar division</label>
+                        <label><input type="radio" name="q24" value="c"> C. Cervicosacral division</label>
+                        <label><input type="radio" name="q24" value="d"> D. Craniolumbar division</label>
+                        <label><input type="radio" name="q24" value="e"> E. Thoracosacral division</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q24"></div>
+                </div>
+
+                <!-- Q25 -->
+                <div class="question">
+                    <p><span class="q-badge">25</span> Preganglionic cell bodies of the sympathetic division are located in:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q25" value="a"> A. Brainstem nuclei</label>
+                        <label><input type="radio" name="q25" value="b"> B. Thoracic and first 2 lumbar segments of spinal cord</label>
+                        <label><input type="radio" name="q25" value="c"> C. S2 to S4 spinal cord</label>
+                        <label><input type="radio" name="q25" value="d"> D. Terminal ganglia</label>
+                        <label><input type="radio" name="q25" value="e"> E. Dorsal root ganglia</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q25"></div>
+                </div>
+
+                <!-- Q26 -->
+                <div class="question">
+                    <p><span class="q-badge">26</span> Parasympathetic ganglia located within or very near the wall of the target organ are called:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q26" value="a"> A. Trunk ganglia</label>
+                        <label><input type="radio" name="q26" value="b"> B. Chain ganglia</label>
+                        <label><input type="radio" name="q26" value="c"> C. Prevertebral ganglia</label>
+                        <label><input type="radio" name="q26" value="d"> D. Terminal ganglia</label>
+                        <label><input type="radio" name="q26" value="e"> E. Collateral ganglia</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q26"></div>
+                </div>
+
+                <!-- Q27 -->
+                <div class="question">
+                    <p><span class="q-badge">27</span> The adrenal gland acts as a modified cluster of postganglionic cell bodies that releases:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q27" value="a"> A. Acetylcholine into synaptic clefts</label>
+                        <label><input type="radio" name="q27" value="b"> B. Epinephrine & norepinephrine into blood</label>
+                        <label><input type="radio" name="q27" value="c"> C. Dopamine into spinal fluid</label>
+                        <label><input type="radio" name="q27" value="d"> D. Serotonin into blood</label>
+                        <label><input type="radio" name="q27" value="e"> E. Acetylcholine into blood</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q27"></div>
+                </div>
+
+                <!-- Q28 -->
+                <div class="question">
+                    <p><span class="q-badge">28</span> Which four cranial nerves contain preganglionic parasympathetic fibers?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q28" value="a"> A. CN I, II, III, IV</label>
+                        <label><input type="radio" name="q28" value="b"> B. CN III, VII, IX, X</label>
+                        <label><input type="radio" name="q28" value="c"> C. CN V, VII, IX, XII</label>
+                        <label><input type="radio" name="q28" value="d"> D. CN II, V, VIII, X</label>
+                        <label><input type="radio" name="q28" value="e"> E. CN III, V, VII, IX</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q28"></div>
+                </div>
+
+                <!-- Q29 -->
+                <div class="question">
+                    <p><span class="q-badge">29</span> Parasympathetic sacral nerve fibers exit from spinal cord levels:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q29" value="a"> A. T1 to L2</label>
+                        <label><input type="radio" name="q29" value="b"> B. C1 to C8</label>
+                        <label><input type="radio" name="q29" value="c"> C. S2 to S4</label>
+                        <label><input type="radio" name="q29" value="d"> D. S1 to S5</label>
+                        <label><input type="radio" name="q29" value="e"> E. L1 to L5</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q29"></div>
+                </div>
+
+                <!-- Q30 -->
+                <div class="question">
+                    <p><span class="q-badge">30</span> All preganglionic neurons of the ANS release which neurotransmitter?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q30" value="a"> A. Norepinephrine (NE)</label>
+                        <label><input type="radio" name="q30" value="b"> B. Acetylcholine (ACh)</label>
+                        <label><input type="radio" name="q30" value="c"> C. Epinephrine</label>
+                        <label><input type="radio" name="q30" value="d"> D. Dopamine</label>
+                        <label><input type="radio" name="q30" value="e"> E. Muscarine</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q30"></div>
+                </div>
+
+                <div class="submit-wrap">
+                    <button type="button" class="btn" onclick="submitMCQ()">
+                        <i class="fas fa-check-circle"></i> Submit All MCQs
+                    </button>
+                </div>
+
+            </form>
+
+            <div class="result" id="resultBox">
+                <h3><i class="fas fa-chart-simple"></i> Your Score</h3>
+                <div class="score" id="score">0%</div>
+                <p class="text-muted" style="font-size:0.9rem;">Review the feedback below each question.</p>
+            </div>
+        </section>
+
+        <!-- ──── SECTION 2: TRUE / FALSE ──── -->
+        <section class="container section-panel hidden" id="section-tf">
+            <div class="section-title scroll-target" id="tf-top">
+                <i class="fas fa-check-double"></i> True / False Questions
+                <span class="count">6 sets</span>
+            </div>
+            <p class="section-subtitle">For each statement, select <strong>True</strong> or <strong>False</strong>. Click <strong>Submit T/F</strong> to check your answers.</p>
+
+            <form id="tfForm">
+
+                <!-- ─── TF GROUP 1 ─── -->
+                <div class="tf-group">
+                    <h3><span class="tf-badge">Set 1</span> Concerning Spinal Nerves and Roots</h3>
+
+                    <div class="tf-statement" id="tf1a">
+                        <span class="tf-label">(a)</span>
+                        <span class="tf-text">Spinal nerves emerge through intervertebral foramina.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf1a" value="true"> True</label>
+                            <label><input type="radio" name="tf1a" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf1a"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf1b">
+                        <span class="tf-label">(b)</span>
+                        <span class="tf-text">There are 12 pairs of cervical spinal nerves.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf1b" value="true"> True</label>
+                            <label><input type="radio" name="tf1b" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf1b"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf1c">
+                        <span class="tf-label">(c)</span>
+                        <span class="tf-text">Sensory fibers arise from cell bodies located in the dorsal root ganglia.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf1c" value="true"> True</label>
+                            <label><input type="radio" name="tf1c" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf1c"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf1d">
+                        <span class="tf-label">(d)</span>
+                        <span class="tf-text">Ventral roots contain motor fibers arising from the anterior gray column of the spinal cord.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf1d" value="true"> True</label>
+                            <label><input type="radio" name="tf1d" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf1d"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf1e">
+                        <span class="tf-label">(e)</span>
+                        <span class="tf-text">All spinal nerves exit below their respective vertebrae.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf1e" value="true"> True</label>
+                            <label><input type="radio" name="tf1e" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf1e"></div>
+                    </div>
+                </div>
+
+                <!-- ─── TF GROUP 2 ─── -->
+                <div class="tf-group">
+                    <h3><span class="tf-badge">Set 2</span> Regarding Spinal Nerve Exit and Rami</h3>
+
+                    <div class="tf-statement" id="tf2a">
+                        <span class="tf-label">(a)</span>
+                        <span class="tf-text">Spinal nerve root 1 exits from above the C1 vertebra.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf2a" value="true"> True</label>
+                            <label><input type="radio" name="tf2a" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf2a"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf2b">
+                        <span class="tf-label">(b)</span>
+                        <span class="tf-text">C6-C7 disc impingement typically impings on root 7.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf2b" value="true"> True</label>
+                            <label><input type="radio" name="tf2b" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf2b"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf2c">
+                        <span class="tf-label">(c)</span>
+                        <span class="tf-text">Outside the intervertebral foramen, spinal nerves re-branch into rami.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf2c" value="true"> True</label>
+                            <label><input type="radio" name="tf2c" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf2c"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf2d">
+                        <span class="tf-label">(d)</span>
+                        <span class="tf-text">Dorsal rami are somatic, whereas rami communicantes are visceral.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf2d" value="true"> True</label>
+                            <label><input type="radio" name="tf2d" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf2d"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf2e">
+                        <span class="tf-label">(e)</span>
+                        <span class="tf-text">Ventral rami serve the muscles and skin of the back in a neatly segmented pattern.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf2e" value="true"> True</label>
+                            <label><input type="radio" name="tf2e" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf2e"></div>
+                    </div>
+                </div>
+
+                <!-- ─── TF GROUP 3 ─── -->
+                <div class="tf-group">
+                    <h3><span class="tf-badge">Set 3</span> Concerning Nerve Plexuses and Innervation</h3>
+
+                    <div class="tf-statement" id="tf3a">
+                        <span class="tf-label">(a)</span>
+                        <span class="tf-text">Dorsal rami form the major limb plexuses.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf3a" value="true"> True</label>
+                            <label><input type="radio" name="tf3a" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf3a"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf3b">
+                        <span class="tf-label">(b)</span>
+                        <span class="tf-text">Thoracic ventral rami do not form nerve plexuses.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf3b" value="true"> True</label>
+                            <label><input type="radio" name="tf3b" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf3b"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf3c">
+                        <span class="tf-label">(c)</span>
+                        <span class="tf-text">The four main nerve plexuses are Cervical, Brachial, Lumbar, and Sacral.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf3c" value="true"> True</label>
+                            <label><input type="radio" name="tf3c" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf3c"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf3d">
+                        <span class="tf-label">(d)</span>
+                        <span class="tf-text">Networks of ventral rami exchange fibers to innervate mainly the limbs.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf3d" value="true"> True</label>
+                            <label><input type="radio" name="tf3d" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf3d"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf3e">
+                        <span class="tf-label">(e)</span>
+                        <span class="tf-text">In the thorax, ventral rami continue as intercostal nerves.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf3e" value="true"> True</label>
+                            <label><input type="radio" name="tf3e" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf3e"></div>
+                    </div>
+                </div>
+
+                <!-- ─── TF GROUP 4 ─── -->
+                <div class="tf-group">
+                    <h3><span class="tf-badge">Set 4</span> Regarding Cranial Nerves and Foramina</h3>
+
+                    <div class="tf-statement" id="tf4a">
+                        <span class="tf-label">(a)</span>
+                        <span class="tf-text">All 12 pairs of cranial nerves arise directly from the brainstem.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf4a" value="true"> True</label>
+                            <label><input type="radio" name="tf4a" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf4a"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf4b">
+                        <span class="tf-label">(b)</span>
+                        <span class="tf-text">The optic, olfactory, and vestibulocochlear nerves are purely sensory.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf4b" value="true"> True</label>
+                            <label><input type="radio" name="tf4b" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf4b"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf4c">
+                        <span class="tf-label">(c)</span>
+                        <span class="tf-text">CN III, IV, V1, and VI all pass through the superior orbital fissure.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf4c" value="true"> True</label>
+                            <label><input type="radio" name="tf4c" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf4c"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf4d">
+                        <span class="tf-label">(d)</span>
+                        <span class="tf-text">The facial nerve (CN VII) passes through the internal auditory canal.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf4d" value="true"> True</label>
+                            <label><input type="radio" name="tf4d" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf4d"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf4e">
+                        <span class="tf-label">(e)</span>
+                        <span class="tf-text">CN XII (Hypoglossal) passes through the jugular foramen.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf4e" value="true"> True</label>
+                            <label><input type="radio" name="tf4e" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf4e"></div>
+                    </div>
+                </div>
+
+                <!-- ─── TF GROUP 5 ─── -->
+                <div class="tf-group">
+                    <h3><span class="tf-badge">Set 5</span> Concerning Clinical Testing of Cranial Nerves</h3>
+
+                    <div class="tf-statement" id="tf5a">
+                        <span class="tf-label">(a)</span>
+                        <span class="tf-text">Testing CN I usually involves sniffing odorous substances like coffee grounds or vanilla.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf5a" value="true"> True</label>
+                            <label><input type="radio" name="tf5a" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf5a"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf5b">
+                        <span class="tf-label">(b)</span>
+                        <span class="tf-text">CN IV motor function to the superior oblique is problem-free if the eye cannot go down and out.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf5b" value="true"> True</label>
+                            <label><input type="radio" name="tf5b" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf5b"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf5c">
+                        <span class="tf-label">(c)</span>
+                        <span class="tf-text">Motor testing of CN V3 includes clenching teeth and moving the jaw side to side.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf5c" value="true"> True</label>
+                            <label><input type="radio" name="tf5c" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf5c"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf5d">
+                        <span class="tf-label">(d)</span>
+                        <span class="tf-text">CN VII testing involves checking facial symmetry, wrinkling the forehead, and taste on the anterior 2/3 of the tongue.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf5d" value="true"> True</label>
+                            <label><input type="radio" name="tf5d" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf5d"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf5e">
+                        <span class="tf-label">(e)</span>
+                        <span class="tf-text">CN XI is tested by having the patient stick their tongue out straight.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf5e" value="true"> True</label>
+                            <label><input type="radio" name="tf5e" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf5e"></div>
+                    </div>
+                </div>
+
+                <!-- ─── TF GROUP 6 ─── -->
+                <div class="tf-group">
+                    <h3><span class="tf-badge">Set 6</span> Regarding the Autonomic Nervous System Structure and Neurotransmitters</h3>
+
+                    <div class="tf-statement" id="tf6a">
+                        <span class="tf-label">(a)</span>
+                        <span class="tf-text">Sympathetic NS increases heart rate, while parasympathetic NS decreases heart rate.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf6a" value="true"> True</label>
+                            <label><input type="radio" name="tf6a" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf6a"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf6b">
+                        <span class="tf-label">(b)</span>
+                        <span class="tf-text">Parasympathetic preganglionic cell bodies are located in T1 to L2 spinal segments.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf6b" value="true"> True</label>
+                            <label><input type="radio" name="tf6b" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf6b"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf6c">
+                        <span class="tf-label">(c)</span>
+                        <span class="tf-text">Prevertebral ganglia include celiac, superior mesenteric, and inferior mesenteric ganglia.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf6c" value="true"> True</label>
+                            <label><input type="radio" name="tf6c" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf6c"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf6d">
+                        <span class="tf-label">(d)</span>
+                        <span class="tf-text">Adrenergic neurons release norepinephrine (NE) from postganglionic sympathetic neurons.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf6d" value="true"> True</label>
+                            <label><input type="radio" name="tf6d" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf6d"></div>
+                    </div>
+
+                    <div class="tf-statement" id="tf6e">
+                        <span class="tf-label">(e)</span>
+                        <span class="tf-text">Nicotinic receptors are found on plasma membranes of all parasympathetic effectors.</span>
+                        <span class="tf-options">
+                            <label><input type="radio" name="tf6e" value="true"> True</label>
+                            <label><input type="radio" name="tf6e" value="false"> False</label>
+                        </span>
+                        <div class="tf-feedback" id="feedback-tf6e"></div>
+                    </div>
+                </div>
+
+                <div class="tf-submit-wrap">
+                    <button type="button" class="btn" onclick="submitTF()">
+                        <i class="fas fa-check-circle"></i> Submit T/F
+                    </button>
+                </div>
+
+            </form>
+
+            <div class="tf-result" id="tfResultBox">
+                <h3><i class="fas fa-chart-simple"></i> T/F Score</h3>
+                <div class="score" id="tfScore">0%</div>
+                <p class="text-muted" style="font-size:0.9rem;">Review the feedback below each statement.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ═══════ JAVASCRIPT ═══════ -->
+    <script>
+        // ─── TAB NAVIGATION ───
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const section = this.dataset.section;
+                document.querySelectorAll('.section-panel').forEach(p => p.classList.add('hidden'));
+                document.getElementById('section-' + section).classList.remove('hidden');
+                const topEl = document.getElementById(section + '-top');
+                if (topEl) topEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // ─── MCQ DATA ───
+        const correctMCQ = {
+            q1: "b", q2: "c", q3: "c", q4: "d", q5: "b",
+            q6: "b", q7: "c", q8: "b", q9: "b", q10: "b",
+            q11: "c", q12: "b", q13: "b", q14: "c", q15: "c",
+            q16: "c", q17: "d", q18: "c", q19: "b", q20: "b",
+            q21: "c", q22: "b", q23: "c", q24: "b", q25: "b",
+            q26: "d", q27: "b", q28: "b", q29: "c", q30: "b"
+        };
+
+        const mcqExplanations = {
+            q1: "Spinal nerves are part of the peripheral nervous system (PNS). The PNS includes all nerves and ganglia outside the brain and spinal cord. The CNS consists of the brain and spinal cord only. The ANS is a subdivision of the PNS, but spinal nerves contain both somatic and autonomic fibers.",
+            q2: "There are 31 pairs of spinal nerves: 8 cervical, 12 thoracic, 5 lumbar, 5 sacral, and 1 coccygeal. This is a fundamental anatomical fact. The number 31 is critical for understanding segmental innervation of the body.",
+            q3: "Spinal nerves exit the vertebral canal through intervertebral foramina. These are openings between adjacent vertebrae. The foramen magnum is for the brainstem; vertebral foramina house the spinal cord; transverse foramina are for vertebral arteries.",
+            q4: "All spinal nerves are mixed nerves, meaning they contain both sensory (afferent) and motor (efferent) fibers. They also carry autonomic fibers. No spinal nerve is purely motor or purely sensory. This mixed nature is essential for their function.",
+            q5: "There are 8 pairs of cervical spinal nerves (C1-C8). This is one more than the number of cervical vertebrae (7). The discrepancy exists because C1 exits above C1, and C8 exits below C7. This is a classic anatomical point.",
+            q6: "Dorsal roots contain sensory (afferent) fibers. These fibers carry signals from peripheral receptors to the spinal cord. The cell bodies of these sensory neurons are located in the dorsal root ganglia, outside the spinal cord.",
+            q7: "The cell bodies of sensory fibers in the dorsal root are located in the dorsal root ganglia (DRG). These ganglia contain the pseudounipolar neurons that transmit sensory information from the periphery to the spinal cord. The DRG is a swelling on the dorsal root.",
+            q8: "Ventral roots contain motor fibers arising from the anterior gray column (ventral horn) of the spinal cord. These are the cell bodies of alpha motor neurons that innervate skeletal muscle. The anterior gray column is the site of somatic motor neuron cell bodies.",
+            q9: "Cervical spinal nerve 1 (C1) exits from above the C1 vertebra (between the occipital bone and the atlas). This is because there are 8 cervical nerves but only 7 cervical vertebrae. All other cervical nerves exit below their respective vertebrae.",
+            q10: "Outside the intervertebral foramen, spinal nerves re-branch into rami. The two main rami are the dorsal ramus (posterior) and ventral ramus (anterior). These are the primary branches that distribute to the body. The roots are proximal structures.",
+            q11: "Visceral branches re-branching outside the intervertebral foramen are known as rami communicantes. These connect the spinal nerve to the sympathetic trunk. They contain preganglionic and postganglionic sympathetic fibers. Dorsal and ventral rami are somatic.",
+            q12: "The muscles and skin of the posterior trunk (back) are innervated by the dorsal rami. These rami supply the intrinsic back muscles and the overlying skin. Ventral rami innervate the anterior and lateral aspects of the trunk and the limbs.",
+            q13: "In the thorax, ventral rami continue directly as intercostal nerves. These nerves run along the inferior edge of each rib and supply the intercostal muscles and overlying skin. They do not form plexuses, unlike cervical, lumbar, or sacral ventral rami.",
+            q14: "Nerve plexuses are formed by networks of exchange fibers from ventral rami. These networks allow fibers from multiple spinal segments to be redistributed to target muscles and skin. Dorsal rami do not form plexuses; they are segmental.",
+            q15: "Thoracic ventral rami (T2-T11) do not form nerve plexuses; instead, they continue as intercostal nerves. Cervical, brachial, lumbar, and sacral ventral rami all participate in plexuses. T12 contributes to the lumbar plexus but is often considered separately.",
+            q16: "There are 12 pairs of cranial nerves in humans, numbered I to XII. They arise from the brain and brainstem. The spinal nerves number 31 pairs, but cranial nerves are a distinct set. This is a standard anatomical fact.",
+            q17: "The vagus nerve (CN X) extends beyond the head and neck into the thoracic and abdominal cavities, providing parasympathetic innervation to the heart, lungs, and abdominal viscera. No other cranial nerve extends this far. It is the longest cranial nerve.",
+            q18: "The vestibulocochlear nerve (CN VIII) is purely sensory, responsible for hearing and balance. The oculomotor (III) and trochlear (IV) are purely motor; facial (VII) and glossopharyngeal (IX) are mixed (motor and sensory).",
+            q19: "CN I (Olfactory) passes through the cribriform plate of the ethmoid bone. This is a key anatomical point for the sense of smell. The olfactory nerve fibers pass through multiple small foramina in the cribriform plate to reach the olfactory bulb.",
+            q20: "CN II (Optic nerve) passes through the optic canal along with the ophthalmic artery. The optic canal is in the lesser wing of the sphenoid bone. CN I passes through the cribriform plate; CN III, IV, and VI pass through the superior orbital fissure.",
+            q21: "The mandibular division of the trigeminal nerve (V3) passes through the foramen ovale. V1 (ophthalmic) passes through the superior orbital fissure; V2 (maxillary) passes through the foramen rotundum. The foramen ovale is in the sphenoid bone.",
+            q22: "CN VI (Abducens) innervates the lateral rectus muscle of the eye. This muscle abducts the eye (moves it laterally). The superior oblique is innervated by CN IV; the other recti (superior, inferior, medial) and the inferior oblique are innervated by CN III.",
+            q23: "The jugular foramen transmits cranial nerves IX (glossopharyngeal), X (vagus), and XI (accessory). It is located between the temporal and occipital bones. CN VII and VIII pass through the internal acoustic meatus; CN III, IV, and VI through the superior orbital fissure.",
+            q24: "The sympathetic division of the ANS is also known as the thoracolumbar division because its preganglionic cell bodies are located in the thoracic and first 2 lumbar (L1-L2) segments of the spinal cord. The parasympathetic division is craniosacral (brainstem and S2-S4).",
+            q25: "Preganglionic cell bodies of the sympathetic division are located in the thoracic and first 2 lumbar segments (T1-L2) of the spinal cord. This is the defining feature of the thoracolumbar division. They are in the intermediolateral cell column of the gray matter.",
+            q26: "Parasympathetic ganglia located within or very near the wall of the target organ are called terminal ganglia. These are also known as intramural ganglia. Examples include the submucosal and myenteric plexuses of the gut. Prevertebral ganglia are sympathetic.",
+            q27: "The adrenal medulla acts as a modified cluster of postganglionic sympathetic cell bodies that releases epinephrine and norepinephrine into the blood. It is essentially a specialized sympathetic ganglion without axons. This is a key endocrine/neural interaction.",
+            q28: "The four cranial nerves that contain preganglionic parasympathetic fibers are CN III (oculomotor), VII (facial), IX (glossopharyngeal), and X (vagus). These fibers synapse in terminal ganglia near or within the target organs. Other cranial nerves do not carry parasympathetic fibers.",
+            q29: "Parasympathetic sacral nerve fibers exit from spinal cord levels S2 to S4. These form the pelvic splanchnic nerves and innervate the pelvic viscera. The sympathetic division exits from T1-L2; the somatic nerves exit from all spinal segments.",
+            q30: "All preganglionic neurons of the ANS (both sympathetic and parasympathetic) release acetylcholine (ACh). This is a fundamental rule of autonomic pharmacology. Postganglionic sympathetic neurons release norepinephrine (except at sweat glands); postganglionic parasympathetic neurons release ACh."
+        };
+
+        // ─── MCQ SUBMIT ───
+        function submitMCQ() {
+            let score = 0;
+            const total = Object.keys(correctMCQ).length;
+
+            document.querySelectorAll('.question-feedback').forEach(el => el.innerHTML = '');
+
+            for (let key in correctMCQ) {
+                const radios = Array.from(document.querySelectorAll(`input[name="${key}"]`));
+                const selected = radios.find(r => r.checked);
+                const correct = correctMCQ[key];
+
+                if (selected && selected.value === correct) score++;
+
+                const feedbackEl = document.getElementById(`feedback-${key}`);
+                if (!feedbackEl) continue;
+
+                let html = `<div class="answer-block"><strong>Q${key.replace(/^q/, '')}</strong><div class="answer-list">`;
+
+                radios.forEach(r => {
+                    const label = r.parentElement;
+                    const text = label ? label.textContent.trim() : r.value;
+                    const classes = ['answer-item'];
+                    if (r.value === correct) classes.push('answer-correct');
+                    if (r.checked && r.value !== correct) classes.push('answer-wrong', 'user-choice');
+                    if (r.checked && r.value === correct) classes.push('user-choice');
+                    html += `<div class="${classes.join(' ')}">${text}${r.checked ? ' ◀' : ''}</div>`;
+                });
+
+                html += `</div>`;
+
+                const correctRadio = radios.find(rr => rr.value === correct);
+                const correctText = correctRadio && correctRadio.parentElement ? correctRadio.parentElement.textContent.trim() : correct;
+                const explanationText = mcqExplanations[key] || '';
+
+                if (selected) {
+                    if (selected.value === correct) {
+                        html += `<div class="explanation">✅ Correct — ${explanationText}</div>`;
+                    } else {
+                        html += `<div class="explanation wrong">❌ Incorrect. Correct answer: <strong>${correctText}</strong>. ${explanationText}</div>`;
+                    }
+                } else {
+                    html += `<div class="explanation wrong">No answer selected. Correct answer: <strong>${correctText}</strong>. ${explanationText}</div>`;
+                }
+
+                html += `</div>`;
+                feedbackEl.innerHTML = html;
+            }
+
+            const percentage = Math.round((score / total) * 100);
+            const resultBox = document.getElementById('resultBox');
+            resultBox.style.display = 'block';
+
+            let start = 0;
+            const timer = setInterval(() => {
+                if (start >= percentage) clearInterval(timer);
+                document.getElementById('score').innerText = start + '%';
+                start++;
+            }, 20);
+
+            document.querySelectorAll('#quizForm input[type="radio"]').forEach(i => i.disabled = true);
+        }
+
+        // ─── T/F DATA ───
+        const correctTF = {
+            tf1a: true, tf1b: false, tf1c: true, tf1d: true, tf1e: false,
+            tf2a: true, tf2b: true, tf2c: true, tf2d: true, tf2e: false,
+            tf3a: false, tf3b: true, tf3c: true, tf3d: true, tf3e: true,
+            tf4a: false, tf4b: true, tf4c: true, tf4d: true, tf4e: false,
+            tf5a: true, tf5b: false, tf5c: true, tf5d: true, tf5e: false,
+            tf6a: true, tf6b: false, tf6c: true, tf6d: true, tf6e: false
+        };
+
+        const tfExplanations = {
+            tf1a: "Spinal nerves emerge through intervertebral foramina. This is correct. The foramen magnum is for the brainstem; vertebral foramina house the spinal cord; transverse foramina are for the vertebral artery.",
+            tf1b: "There are 8 pairs of cervical spinal nerves, not 12. 12 pairs are the thoracic spinal nerves. The cervical nerves are C1 to C8, which is one more than the number of cervical vertebrae.",
+            tf1c: "Sensory fibers arise from cell bodies located in the dorsal root ganglia. This is correct. The DRG is a swelling on the dorsal root and contains the pseudounipolar neurons of sensory fibers.",
+            tf1d: "Ventral roots contain motor fibers arising from the anterior gray column (ventral horn) of the spinal cord. This is correct. The anterior gray column contains the cell bodies of somatic motor neurons.",
+            tf1e: "Not all spinal nerves exit below their respective vertebrae. Cervical nerves 1 to 7 exit above their respective vertebrae. C8 exits below C7. This is a classic exception.",
+            tf2a: "Spinal nerve root 1 exits from above the C1 vertebra. This is correct. C1 exits between the occipital bone and the atlas (C1).",
+            tf2b: "C6-C7 disc impingement typically impings on root 7. This is correct. Because the C7 nerve root exits below C7, a disc herniation at C6-C7 compresses the C7 root.",
+            tf2c: "Outside the intervertebral foramen, spinal nerves re-branch into rami. This is correct. The rami are the primary branches that distribute to the body's somatic structures.",
+            tf2d: "Dorsal rami are somatic, whereas rami communicantes are visceral. This is correct. Dorsal rami supply the back muscles and skin; rami communicantes carry autonomic fibers to and from the sympathetic trunk.",
+            tf2e: "Ventral rami serve the muscles and skin of the back in a neatly segmented pattern. This is false. Dorsal rami serve the back in a segmental pattern. Ventral rami serve the anterior and lateral trunk and limbs, and form plexuses.",
+            tf3a: "Dorsal rami form the major limb plexuses. This is false. Ventral rami form the major nerve plexuses (cervical, brachial, lumbar, sacral). Dorsal rami are segmental and do not form plexuses.",
+            tf3b: "Thoracic ventral rami do not form nerve plexuses. This is correct. They continue as intercostal nerves. This is a key difference from cervical, lumbar, and sacral ventral rami.",
+            tf3c: "The four main nerve plexuses are Cervical, Brachial, Lumbar, and Sacral. This is correct. These plexuses arise from ventral rami and innervate the limbs and parts of the trunk.",
+            tf3d: "Networks of ventral rami exchange fibers to innervate mainly the limbs. This is correct. Plexuses allow for the redistribution of fibers from multiple spinal segments to the limbs.",
+            tf3e: "In the thorax, ventral rami continue as intercostal nerves. This is correct. They run along the inferior edge of the ribs and supply the intercostal muscles and skin.",
+            tf4a: "All 12 pairs of cranial nerves arise directly from the brainstem. This is false. CN I (olfactory) and CN II (optic) arise from the cerebrum (forebrain), not the brainstem. The other 10 arise from the brainstem.",
+            tf4b: "The optic, olfactory, and vestibulocochlear nerves are purely sensory. This is correct. CN I is sensory for smell; CN II is sensory for vision; CN VIII is sensory for hearing and balance.",
+            tf4c: "CN III, IV, V1, and VI all pass through the superior orbital fissure. This is correct. These are the nerves that enter the orbit through the superior orbital fissure: III (oculomotor), IV (trochlear), V1 (ophthalmic division of trigeminal), and VI (abducent).",
+            tf4d: "The facial nerve (CN VII) passes through the internal auditory canal. This is correct. CN VII and CN VIII (vestibulocochlear) pass through the internal acoustic meatus (internal auditory canal) to reach the inner ear and facial canal.",
+            tf4e: "CN XII (Hypoglossal) passes through the jugular foramen. This is false. CN XII passes through the hypoglossal canal, which is a separate foramen in the occipital bone. The jugular foramen transmits CN IX, X, and XI.",
+            tf5a: "Testing CN I usually involves sniffing odorous substances like coffee grounds or vanilla. This is correct. The olfactory nerve is tested by having the patient identify common, non-irritating odors.",
+            tf5b: "CN IV motor function to the superior oblique is problem-free if the eye cannot go down and out. This is false. A problem with the superior oblique (CN IV) would result in the eye being unable to move downward and outward (intorsion and depression).",
+            tf5c: "Motor testing of CN V3 includes clenching teeth and moving the jaw side to side. This is correct. The mandibular division (V3) innervates the muscles of mastication, including the masseter, temporalis, and pterygoids.",
+            tf5d: "CN VII testing involves checking facial symmetry, wrinkling the forehead, and taste on the anterior 2/3 of the tongue. This is correct. The facial nerve innervates the muscles of facial expression and carries taste from the anterior two-thirds of the tongue.",
+            tf5e: "CN XI is tested by having the patient stick their tongue out straight. This is false. CN XI (accessory) is tested by asking the patient to shrug their shoulders (trapezius) and rotate their head (sternocleidomastoid). CN XII (hypoglossal) is tested by sticking out the tongue.",
+            tf6a: "Sympathetic NS increases heart rate, while parasympathetic NS decreases heart rate. This is correct. These are classic opposing actions of the two ANS divisions on the heart. Sympathetic increases rate and force; parasympathetic decreases rate.",
+            tf6b: "Parasympathetic preganglionic cell bodies are located in T1 to L2 spinal segments. This is false. This describes the sympathetic division (thoracolumbar). Parasympathetic preganglionic cell bodies are located in the brainstem (craniosacral) and S2-S4 spinal cord.",
+            tf6c: "Prevertebral ganglia include celiac, superior mesenteric, and inferior mesenteric ganglia. This is correct. These are sympathetic ganglia located anterior to the abdominal aorta. They are also called collateral ganglia.",
+            tf6d: "Adrenergic neurons release norepinephrine (NE) from postganglionic sympathetic neurons. This is correct. Most postganglionic sympathetic neurons are adrenergic and release norepinephrine. A few (e.g., sweat glands) are cholinergic.",
+            tf6e: "Nicotinic receptors are found on plasma membranes of all parasympathetic effectors. This is false. Nicotinic receptors are found on autonomic ganglia (both sympathetic and parasympathetic) and at the neuromuscular junction. Parasympathetic effectors have muscarinic receptors."
+        };
+
+        // ─── T/F SUBMIT ───
+        function submitTF() {
+            let correctCount = 0;
+            const total = Object.keys(correctTF).length;
+
+            document.querySelectorAll('.tf-feedback').forEach(el => el.innerHTML = '');
+
+            for (let key in correctTF) {
+                const radios = Array.from(document.querySelectorAll(`input[name="${key}"]`));
+                const selected = radios.find(r => r.checked);
+                const correct = correctTF[key];
+
+                if (selected && selected.value === (correct ? 'true' : 'false')) correctCount++;
+
+                const feedbackEl = document.getElementById(`feedback-${key}`);
+                if (!feedbackEl) continue;
+
+                const statementEl = document.getElementById(key);
+                const textEl = statementEl ? statementEl.querySelector('.tf-text') : null;
+                const statementText = textEl ? textEl.textContent.trim() : key;
+
+                const correctStr = correct ? 'True' : 'False';
+                const explanation = tfExplanations[key] || '';
+
+                let html = '';
+
+                if (selected) {
+                    const isCorrect = selected.value === (correct ? 'true' : 'false');
+                    const icon = isCorrect ? '✅' : '❌';
+                    const cls = isCorrect ? '' : ' wrong';
+                    html += `<div class="tf-explain${cls}">
+                                <span class="tf-result-label">${icon} ${isCorrect ? 'Correct' : 'Incorrect'}</span>
+                                — Correct answer: <strong>${correctStr}</strong>.
+                                ${explanation}
+                             </div>`;
+                } else {
+                    html += `<div class="tf-explain wrong">
+                                <span class="tf-result-label">⚠️ No answer selected</span>
+                                — Correct answer: <strong>${correctStr}</strong>.
+                                ${explanation}
+                             </div>`;
+                }
+
+                feedbackEl.innerHTML = html;
+            }
+
+            const percentage = Math.round((correctCount / total) * 100);
+            const resultBox = document.getElementById('tfResultBox');
+            resultBox.style.display = 'block';
+
+            let start = 0;
+            const timer = setInterval(() => {
+                if (start >= percentage) clearInterval(timer);
+                document.getElementById('tfScore').innerText = start + '%';
+                start++;
+            }, 20);
+
+            document.querySelectorAll('#tfForm input[type="radio"]').forEach(i => i.disabled = true);
+        }
+    </script>
+
+</body>
+</html>
