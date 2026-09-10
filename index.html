@@ -2711,9 +2711,9 @@
                             '2018 Test 3 biochem 3rd Year ✅',
                             '2019 Test 3 biochem 3rd Year ✅',
                             '2021 Test 3 biochem 3rd Year ✅',
-                            '2022 Test 3 biochem 3rd Year',
+                            '2022 Test 3 biochem 3rd Year ✅',
                             '2023 Test 3 biochem 3rd Year ✅',
-                            '2025 Test 3 biochem 3rd Year',
+                            '2025 Test 3 biochem 3rd Year ✅',
                             'Biochem term 3 Written section year 3.pdf',
                             '## Sessional Exams',
                             '20something Sessional biochem 3rd Year',
@@ -2995,8 +2995,9 @@
                     { name: 'Anatomy Past Papers',
                     topics: [
                         '## Test 3', 
-                        '2019 Test 3 Anatomy', 
-                        '2021 Test 3 Anatomy', 
+                        '2019 Test 3 natomy', 
+                        '2021 Test 3 Anatomy',
+                        '2022 Test 3 Anatomy', 
                         '2023 Test 3 Anatomy', 
                         'Anatomy Test 3', 
                         '## Sessional Papers', 
@@ -3172,7 +3173,7 @@
         // ---- USER DATA with year access ----
         const users = {
                         '2': { name: 'Doc Toto', password: 'p2', year: 2 },
-            'Ruth': { name: 'Dr. Ndabala', password: '6778', year: 2 },
+            'Ruth': { name: 'Dr. Ndabala', password: '6778', year: 2, courses: ['biochemistry'] },
             'c2': { name: 'Christopher', password: 'pass2', year: 2 },
 
             // 3rd year 
@@ -3188,15 +3189,18 @@
             'Chewe': { name: 'Dr. Coco 🦋', password: '9001', year: 3 },
             'Jeff': { name: 'Dr. Mweemba', password: '0060', year: 3 },
             'Kabubi': { name: 'Dr. Kabubi', password: '0101', year: 3 },
-            'Aggie': { name: 'Dr. Kaponda', password: '3664', year: 3 },
-            'Felistus': { name: 'Dr. Phiri', password: '3773', year: 3 },
-            'Lisa': { name: 'Dr. Lisa V.M', password: '1090', year: 3 },
-            'John': { name: 'Dr Jay~Jay 🩺⚕️', password: '3212', year: 3 },
-            'FB': { name: 'Dr. Faith Bwanga', password: '58', year: 3 },
-            'Pride': { name: 'Dr. Pride', password: '9999', year: 3 },
-            'Nancy': { name: 'Dr. Nancy', password: '1111', year: 3 },
-            'Amina': { name: 'Dr. AJ 🤾‍♀️', password: '0070', year: 3 },
-            'Lilly': { name: 'Dr. Sikasiye', password: '0010', year: 3 },
+            'Aggie': { name: 'Dr. Kaponda', password: '3664', year: 3, courses: ['pathology3', 'therap3', 'biochemistry_3', 'physiology_3', 'anatomy3'] },
+            'Felistus': { name: 'Dr. Phiri', password: '3773', year: 3, courses: ['pathology3', 'therap3', 'biochemistry_3', 'physiology_3', 'anatomy3'] },
+            'Lisa': { name: 'Dr. Lisa V.M', password: '1090', year: 3, courses: ['pathology3', 'therap3', 'biochemistry_3', 'physiology_3', 'anatomy3'] },
+            'John': { name: 'Dr Jay~Jay 🩺⚕️', password: '3212', year: 3, courses: ['pathology3', 'therap3', 'biochemistry_3', 'physiology_3', 'anatomy3'] },
+            'FB': { name: 'Dr. Faith Bwanga', password: '58', year: 3, courses: ['pathology3', 'therap3', 'biochemistry_3', 'physiology_3', 'anatomy3'] },
+            'Pride': { name: 'Dr. Pride', password: '9999', year: 3, courses: ['pathology3', 'therap3', 'biochemistry_3', 'physiology_3', 'anatomy3'] },
+            'Nancy': { name: 'Dr. Nancy', password: '1111', year: 3, courses: ['pathology3', 'therap3', 'biochemistry_3', 'physiology_3', 'anatomy3'] },
+            'Amina': { name: 'Dr. AJ 🤾‍♀️', password: '0070', year: 3, courses: ['pathology3', 'therap3', 'biochemistry_3', 'physiology_3', 'anatomy3'] },
+            'Lilly': { name: 'Dr. Sikasiye', password: '0010', year: 3, courses: ['pathology3', 'therap3', 'biochemistry_3', 'physiology_3', 'anatomy3'] },
+            '3': { name: 'Dr. Khalessi', password: '003', year: 3, courses: ['pathology3', 'therap3', 'biochemistry_3', 'lab_science'] },
+            '3': { name: 'Dr. Mwangala', password: '001', year: 3, courses: ['pathology3', 'therap3', 'biochemistry_3', 'physiology_3', 'anatomy3'] },
+            'Kondwa': { name: 'Dr. Hamweemba', password: '01', year: 3, courses: ['physiology_3', 'anatomy3'] },
 
             // 4th year
             '4': { name: 'Doc Toto', password: 'p4', year: 4 },
@@ -3207,7 +3211,7 @@
             'Prince': { name: 'Dr. Fwalanga', password: 'Zm', year: 4 },
             'Luyando': { name: 'Dr. Siamitaba', password: 'luton', year: 4 },
             'Vusumzi': { name: 'Dr. Lihusha', password: '44', year: 4 },
-            'Ruth': { name: 'Dr. Siakuba', password: '55', year: 4 },
+            'Dr Ruth': { name: 'Dr. Siakuba', password: '55', year: 4 },
             'Bokang': { name: 'Dr. Bokang 🩺', password: '66', year: 4 },
             'Danny': { name: 'Super Doc 🚀', password: '77', year: 4 },
             'Faith': { name: 'Dr. Mwila', password: '88', year: 4 },
@@ -3866,7 +3870,10 @@
             '2021 Test 3 biochem 3rd Year ✅': 'biochem-3rd-year/Past-papers/test3-2021.html',
             '2019 Test 3 biochem 3rd Year ✅': 'biochem-3rd-year/Past-papers/test3-2019.html',
             '2018 Test 3 biochem 3rd Year ✅': 'biochem-3rd-year/Past-papers/test3-2018.html',
+            '2025 Test 3 biochem 3rd Year ✅': 'biochem-3rd-year/Past-papers/test3-2025.html',
+            '2022 Test 3 biochem 3rd Year ✅': 'biochem-3rd-year/Past-papers/test3-2022.html',
             '2023 Sessional biochem 3rd Year ✅': 'biochem-3rd-year/Past-papers/sessional-2023.html',
+            '2022 Sessional biochem 3rd Year ✅': 'biochem-3rd-year/Past-papers/sessional-2022.html',
             '2022 Sessional biochem 3rd Year ✅': 'biochem-3rd-year/Past-papers/sessional-2022.html',
 
             // 3rd year therap
@@ -4155,8 +4162,8 @@
             '2019 Test 3 biochem 3rd Year ✅': 'https://drive.google.com/file/d/1vD7YELBTEDi33bmS8RYuRGZtnsgvjlLJ/view?usp=drive_link',
             '2021 Test 3 biochem 3rd Year ✅': 'https://drive.google.com/file/d/1GjdcoFtpfMHisP7KzxS9eo8Nun8ZnBdw/view?usp=drive_link',
             '2023 Test 3 biochem 3rd Year ✅': 'https://drive.google.com/file/d/1mBaVY9YmCGOTZbG8jfar66swoaeBE9tz/view?usp=drive_link',
-            '2025 Test 3 biochem 3rd Year': 'https://drive.google.com/file/d/12k6Hy0ilWuCeapwZVCGyqDUObTCqCuZF/view?usp=drive_link',
-            '2022 Test 3 biochem 3rd Year': 'https://drive.google.com/file/d/1pL20tHRoHo7VJAAX2mEHLHt7LwZhRn2i/view?usp=drive_link',
+            '2025 Test 3 biochem 3rd Year ✅': 'https://drive.google.com/file/d/12k6Hy0ilWuCeapwZVCGyqDUObTCqCuZF/view?usp=drive_link',
+            '2022 Test 3 biochem 3rd Year ✅': 'https://drive.google.com/file/d/1pL20tHRoHo7VJAAX2mEHLHt7LwZhRn2i/view?usp=drive_link',
             'Biochem term 3 Written section year 3.pdf': 'https://drive.google.com/file/d/1TquQ2IW09mRMHuKJQaE9WGeqPs5f8OrH/view?usp=drive_link',
 
             // Sessionals
@@ -4512,24 +4519,24 @@
                 { title: 'Overnutrition', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
             ],
             'Fat Soluble Vitamins': [
-                { title: 'Part 1 Vit A', url: 'https://drive.google.com/file/d/12_69ptfpzBJL7AlxAbwW2lvS4ggKLoDw/view?usp=drivesdk' },
-                { title: 'Part 2 Vit A', url: 'https://drive.google.com/file/d/1h7Wsnwg1N3dRCkf6WynkhXk3H5A8Wm6w/view?usp=drivesdk' },
-                { title: 'Part 3 Vit A', url: 'https://drive.google.com/file/d/1_UTXzu5tw_7IWXhXz96Jc5FS8nHMvaKA/view?usp=drivesdk' },
-                { title: 'Part 4 Vit A', url: 'https://drive.google.com/file/d/1NDLX6dB5IxPLGeZfk5SiaJnJxaypwOpO/view?usp=drivesdk' },
-                { title: 'Vitamin D', url: 'https://drive.google.com/file/d/1tie9Osx-N-SrKGh_c4K2X0FkG2aV8gsj/view?usp=drivesdk' },
-                { title: 'Vitamin E', url: 'https://drive.google.com/file/d/1FFxSUFYawAo80Msq2_x0FMtDX75Mhi_O/view?usp=drivesdk' },
-                { title: 'Vitamin K', url: 'https://drive.google.com/file/d/1aZf5huRpD2V7O8gZC03EkOyX_oVOwIhO/view?usp=drivesdk' },
+                { title: 'Vitamin A Part 1', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
+                { title: 'Vitamin A Part 2', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
+                { title: 'Vitamin A Part 3', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
+                { title: 'Vitamin A Part 4', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
+                { title: 'Vitamin D', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
+                { title: 'Vitamin E', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
+                { title: 'Vitamin K', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
             ],
             'Micronutrients and Vitamins': [
-                { title: 'Vitamin B1', url: 'https://drive.google.com/file/d/1PFtzoncGE1BnkikWjh1E51IjwFpn72SY/view?usp=drivesdk' },
-                { title: 'Vitamin B2', url: 'https://drive.google.com/file/d/11z9Q6t1crfrryHDlVS0rshQX9Hp5psFw/view?usp=drivesdk' },
-                { title: 'Vitamin B3', url: 'https://drive.google.com/file/d/14lSt9fJJJNvLdfS4zKaHTqs7jaQTeS3w/view?usp=drivesdk' },
-                { title: 'Vitamin B5', url: 'https://drive.google.com/file/d/1D0bkWLMw8YURJbvM0JDk5CxcwmNEkKYQ/view?usp=drivesdk' },
-                { title: 'Vitamin B6', url: 'https://drive.google.com/file/d/1Z1XrD72LUbVGFGbGOWVM2TY9HvE7qFrm/view?usp=drivesdk' },
-                { title: 'Vitamin B7', url: 'https://drive.google.com/file/d/1OwaMjOZ_mMY-1yYdxOtJqyDbwAk0JLgL/view?usp=drivesdk' },
-                { title: 'Vitamin B9', url: 'https://drive.google.com/file/d/1gCJfdNiRqEMQ_8VIMk3MDxb56qFL9ttC/view?usp=drivesdk' },
-                { title: 'Vitamin B12', url: 'https://drive.google.com/file/d/1EWc645QKgvARhiZN6NRQGEwRs4T-P-ci/view?usp=drivesdk' },
-                { title: 'Vitamin C', url: 'https://drive.google.com/file/d/1HVJbkiAfp4oFBZhQNMFKt38pwkNtqYBF/view?usp=drivesdk' },
+                { title: 'Vitamin B1', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
+                { title: 'Vitamin B2', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
+                { title: 'Vitamin B3', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
+                { title: 'Vitamin B5', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
+                { title: 'Vitamin B6', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
+                { title: 'Vitamin B7', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
+                { title: 'Vitamin B9', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
+                { title: 'Vitamin B12', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
+                { title: 'Vitamin C', url: 'https://youtu.be/bOA3Tf9ai3Y?si=BfGhZGf9i7Tbuu7-' },
             ],
 
             // ========== 3rd Year Biochemistry ==========
@@ -6755,6 +6762,7 @@
         let currentUserYear = null;
         let currentSite = null;
         let currentCourseId = null;
+        let currentUserCourses = null;
         let currentTermIndex = null;
         let currentTopicIndex = null;
         let activeCourseData = [];
@@ -6820,7 +6828,10 @@
 
             document.querySelectorAll('.card').forEach((card, index) => {
                 const course = courseData[index];
-                if (course && course.year === userYear) {
+                const yearMatch = course && course.year === userYear;
+                // If user has a restricted list, they only see those course IDs
+                const courseAllowed = !currentUserCourses || currentUserCourses.includes(course.id);
+                if (yearMatch && courseAllowed) {
                     card.classList.add('active');
                     card.style.display = 'flex';
                 } else {
@@ -6832,7 +6843,10 @@
             if ((userYear === 4 || userYear === 6) && site) {
                 activeCourseData = siteCourses[site]?.[userYear] || {};
             } else {
-                activeCourseData = courseData.filter(c => c.year === userYear);
+                activeCourseData = courseData.filter(c =>
+                    c.year === userYear &&
+                    (!currentUserCourses || currentUserCourses.includes(c.id))
+                );
             }
 
             document.getElementById('signupNavBtn').innerHTML =
@@ -6860,6 +6874,7 @@
                 errorMsg.textContent = '';
                 currentUser = user.name;
                 currentUserYear = user.year;
+                currentUserCourses = user.courses || null;
 
                 document.getElementById('signupOverlay').classList.add('hidden');
 
@@ -7109,9 +7124,15 @@
             if (e.key === 'Escape' && documentOverlay.classList.contains('active')) closeDocumentPopup();
         });
 
+
         // ---------- DRILL-DOWN FUNCTIONS ----------
         function renderDrill(courseId, termIdx = null, topicIdx = null) {
             let course;
+
+            if (currentUserCourses && !currentUserCourses.includes(courseId)) {
+                alert(`You don't have access to this course.`);
+                return;
+            }            
 
             if ((currentUserYear === 4 || currentUserYear === 6) && currentSite) {
                 const siteData = siteCourses[currentSite]?.[currentUserYear];
@@ -7256,6 +7277,12 @@
         document.addEventListener('click', function(e) {
             if (e.target.classList.contains('course-btn') && currentUser) {
                 const courseId = e.target.dataset.courseId;
+                
+                if (currentUserCourses && !currentUserCourses.includes(courseId)) {
+                    alert("You don't have access to this course.");
+                    return;
+                }
+                
                 const course = courseData.find(c => c.id === courseId);
                 if (course && course.year === currentUserYear) {
                     renderDrill(courseId, null, null);
