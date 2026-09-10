@@ -1,0 +1,1946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2025 Biochemistry Test 3 – Interactive</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        :root {
+            --primary: #1a6b6b;
+            --accent: #2ea8a0;
+            --dark: #0f2a2a;
+            --light: #f4f8f7;
+            --radius: 12px;
+            --shadow: 0 4px 14px rgba(0, 30, 30, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+            background: #edf3f2;
+            color: var(--dark);
+            min-height: 100vh;
+            padding-top: 72px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: linear-gradient(145deg, var(--primary), var(--dark));
+            color: #fff;
+            padding: 0.6rem 0;
+            box-shadow: 0 4px 18px rgba(0, 20, 20, 0.25);
+        }
+
+        .header-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .logo i {
+            font-size: 1.5rem;
+            color: #8dd9d4;
+        }
+
+        .logo h1 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #b3e6e0;
+            letter-spacing: 0.5px;
+        }
+
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 0 1.2rem 2.5rem;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1.6rem 0 0.8rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 3px solid rgba(26, 107, 107, 0.18);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .section-title .count {
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            line-height: 1.7;
+        }
+
+        .section-subtitle {
+            color: #4f6e6e;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .question {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.1rem 1.2rem 0.2rem 1.2rem;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(26, 107, 107, 0.05);
+            transition: box-shadow 0.2s;
+        }
+
+        .question:hover {
+            box-shadow: 0 6px 20px rgba(0, 30, 30, 0.07);
+        }
+
+        .question .q-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.65rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            line-height: 1.6;
+            margin-right: 0.4rem;
+        }
+
+        .question p {
+            font-weight: 600;
+            font-size: 0.97rem;
+            margin-bottom: 0.4rem;
+            color: var(--dark);
+        }
+
+        .options label {
+            display: block;
+            background: #fafcfc;
+            border: 1px solid #dde8e8;
+            border-radius: 7px;
+            padding: 0.4rem 0.85rem;
+            margin-top: 0.4rem;
+            cursor: pointer;
+            transition: all 0.15s;
+            font-weight: 450;
+            font-size: 0.92rem;
+        }
+
+        .options label:hover {
+            background: #e8f5f4;
+            border-color: var(--accent);
+        }
+
+        .options input[type="radio"] {
+            margin-right: 0.5rem;
+            accent-color: var(--primary);
+            transform: scale(1.04);
+        }
+
+        .question-feedback {
+            margin-top: 0.8rem;
+            padding: 0.4rem 0 0.1rem 0;
+            border-top: 1px dashed #dce6e6;
+        }
+
+        .answer-block strong {
+            display: block;
+            margin-bottom: 3px;
+            color: var(--primary);
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .answer-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .answer-item {
+            padding: 4px 10px;
+            border-radius: 5px;
+            border: 1px solid #e4edec;
+            background: #ffffff;
+            font-weight: 500;
+            font-size: 0.88rem;
+        }
+
+        .answer-correct {
+            background: #e8f7ef;
+            border-color: #a8d8c0;
+            color: #0a4f3a;
+        }
+
+        .answer-wrong {
+            background: #fde9ea;
+            border-color: #f5b8b8;
+            color: #8a1f2b;
+        }
+
+        .user-choice {
+            outline: 2px dashed rgba(0, 0, 0, 0.06);
+        }
+
+        .explanation {
+            margin-top: 5px;
+            padding: 8px 13px;
+            border-radius: 7px;
+            background: #f0f8f6;
+            color: #065f4a;
+            font-size: 0.88rem;
+            line-height: 1.5;
+            border-left: 4px solid var(--accent);
+        }
+
+        .explanation.wrong {
+            background: #fdf1f1;
+            color: #7a1f1f;
+            border-left-color: #e68080;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            color: #fff;
+            border: none;
+            padding: 0.55rem 1.8rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 14px rgba(26, 107, 107, 0.25);
+        }
+
+        .btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 24px rgba(26, 107, 107, 0.32);
+        }
+
+        .btn:active {
+            transform: scale(0.96);
+        }
+
+        .submit-wrap {
+            text-align: center;
+            margin: 1.5rem 0 1.8rem;
+        }
+
+        .result {
+            margin-top: 1.5rem;
+            padding: 1.5rem 1.5rem 0.8rem;
+            background: #eaf6f4;
+            border-radius: var(--radius);
+            text-align: center;
+            display: none;
+            border: 1px solid #b8dbd6;
+        }
+
+        .result h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .score {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0.1rem 0 0.2rem;
+        }
+
+        .text-muted {
+            color: #4f6e6e;
+            font-size: 0.9rem;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .scroll-target {
+            scroll-margin-top: 80px;
+        }
+
+        @media (max-width: 700px) {
+            body {
+                padding-top: 68px;
+            }
+            .logo h1 {
+                font-size: 0.95rem;
+            }
+            .header-inner {
+                padding: 0 1rem;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.2rem;
+            }
+            .badge {
+                align-self: flex-start;
+            }
+            .question {
+                padding: 0.9rem 0.9rem 0.1rem 0.9rem;
+            }
+            .section-title {
+                font-size: 1.05rem;
+            }
+            .score {
+                font-size: 2.2rem;
+            }
+            .btn {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .logo h1 {
+                font-size: 0.8rem;
+            }
+            .options label {
+                font-size: 0.85rem;
+                padding: 0.35rem 0.65rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <i class="fas fa-dna"></i>
+                <h1>2025 Biochemistry Test 3</h1>
+            </div>
+            <span class="badge"><i class="fas fa-pencil-alt"></i> &nbsp;100 MCQs</span>
+        </div>
+    </header>
+
+    <main>
+        <section class="container">
+            <div class="section-title scroll-target" id="mcq-top">
+                <i class="fas fa-list-ul"></i> Multiple Choice Questions
+                <span class="count">100</span>
+            </div>
+            <p class="section-subtitle">Select the best answer for each question, then click <strong>Submit All MCQs</strong> below.</p>
+
+            <form id="quizForm">
+
+                <!-- ====== Q1 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">1</span> A researcher is studying DNA replication in a eukaryotic cell. He notices the replication fork moves at 100 nucleotides per second — slower than in prokaryotes. What is the most likely reason?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="a"> A. The presence of histones</label>
+                        <label><input type="radio" name="q1" value="b"> B. The presence of telomeres</label>
+                        <label><input type="radio" name="q1" value="c"> C. The presence of centromeres</label>
+                        <label><input type="radio" name="q1" value="d"> D. The presence of DNA repair enzymes</label>
+                        <label><input type="radio" name="q1" value="e"> E. The presence of RNA polymerase</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q1"></div>
+                </div>
+
+                <!-- ====== Q2 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">2</span> A single DNA molecule (one double-helix) undergoes three rounds of replication. After the final replication, how many DNA molecules contain no part of the original template?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="a"> A. Zero</label>
+                        <label><input type="radio" name="q2" value="b"> B. Two</label>
+                        <label><input type="radio" name="q2" value="c"> C. Eight</label>
+                        <label><input type="radio" name="q2" value="d"> D. Four</label>
+                        <label><input type="radio" name="q2" value="e"> E. Six</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q2"></div>
+                </div>
+
+                <!-- ====== Q3 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">3</span> In which organelle does the initial linkage of a sugar for N-linked glycosylation most commonly occur?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="a"> A. Mitochondria</label>
+                        <label><input type="radio" name="q3" value="b"> B. Nucleus</label>
+                        <label><input type="radio" name="q3" value="c"> C. Endoplasmic reticulum</label>
+                        <label><input type="radio" name="q3" value="d"> D. Golgi apparatus</label>
+                        <label><input type="radio" name="q3" value="e"> E. Lysosomes</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q3"></div>
+                </div>
+
+                <!-- ====== Q4 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">4</span> Mutations far from a structural gene can lead to over/underexpression. Which eukaryotic control sequence does NOT need a fixed location and is most responsible for high transcription rates?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="a"> A. Promoter</label>
+                        <label><input type="radio" name="q4" value="b"> B. Promoter-proximal element</label>
+                        <label><input type="radio" name="q4" value="c"> C. Enhancer</label>
+                        <label><input type="radio" name="q4" value="d"> D. Operator</label>
+                        <label><input type="radio" name="q4" value="e"> E. Splice donor site</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q4"></div>
+                </div>
+
+                <!-- ====== Q5 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">5</span> You suspect a patient has Huntington disease, and the hospital is equipped for RFLP analyses. Which technique is required for RFLP analysis?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="a"> A. Western blot</label>
+                        <label><input type="radio" name="q5" value="b"> B. Northern blot</label>
+                        <label><input type="radio" name="q5" value="c"> C. Southern blot</label>
+                        <label><input type="radio" name="q5" value="d"> D. X-ray crystallography</label>
+                        <label><input type="radio" name="q5" value="e"> E. Mass spectrometry</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q5"></div>
+                </div>
+
+                <!-- ====== Q6 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">6</span> A scientist wants to study the initiation of DNA replication by synthesizing a short RNA primer. Which enzyme should she use?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="a"> A. DNA polymerase</label>
+                        <label><input type="radio" name="q6" value="b"> B. RNA polymerase</label>
+                        <label><input type="radio" name="q6" value="c"> C. Primase</label>
+                        <label><input type="radio" name="q6" value="d"> D. DNA helicase</label>
+                        <label><input type="radio" name="q6" value="e"> E. Topoisomerase</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q6"></div>
+                </div>
+
+                <!-- ====== Q7 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">7</span> What provides a free 3′ hydroxyl group to enable DNA synthesis initiation in PCR?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="a"> A. Single-strand binding protein</label>
+                        <label><input type="radio" name="q7" value="b"> B. DNA polymerase II</label>
+                        <label><input type="radio" name="q7" value="c"> C. DNA primer</label>
+                        <label><input type="radio" name="q7" value="d"> D. Replication fork</label>
+                        <label><input type="radio" name="q7" value="e"> E. RNA primer</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q7"></div>
+                </div>
+
+                <!-- ====== Q8 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">8</span> Which statement accurately describes mRNA production from a eukaryotic gene?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="a"> A. The sense strand is used by RNA polymerase during transcription.</label>
+                        <label><input type="radio" name="q8" value="b"> B. The antisense strand is identical to the RNA transcript except T→U.</label>
+                        <label><input type="radio" name="q8" value="c"> C. The first RNA form contains both intron and exon sequences.</label>
+                        <label><input type="radio" name="q8" value="d"> D. Mature mRNA contains a 5′ cap, poly(A) tail, introns, and exons.</label>
+                        <label><input type="radio" name="q8" value="e"> E. Introns and exons are shuffled during processing.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q8"></div>
+                </div>
+
+                <!-- ====== Q9 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">9</span> In E. coli under high-lactose, high-glucose conditions, which could lead to maximal lac operon transcription?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="a"> A. Mutation in lacI (repressor gene)</label>
+                        <label><input type="radio" name="q9" value="b"> B. Mutation in CRP-binding site enhancing binding</label>
+                        <label><input type="radio" name="q9" value="c"> C. Mutation in the operator sequence</label>
+                        <label><input type="radio" name="q9" value="d"> D. Mutation leading to enhanced cAMP levels</label>
+                        <label><input type="radio" name="q9" value="e"> E. Mutation leading to lower repressor binding</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q9"></div>
+                </div>
+
+                <!-- ====== Q10 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">10</span> A patient presents with a suspected genetic disorder. Which technique is most likely used to identify mutations in their DNA?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="a"> A. Gene Cloning</label>
+                        <label><input type="radio" name="q10" value="b"> B. PCR</label>
+                        <label><input type="radio" name="q10" value="c"> C. Gel Electrophoresis</label>
+                        <label><input type="radio" name="q10" value="d"> D. DNA Sequencing</label>
+                        <label><input type="radio" name="q10" value="e"> E. FISH</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q10"></div>
+                </div>
+
+                <!-- ====== Q11 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">11</span> Non-defective genes introduced into cells cultured in vitro and reimplanted into the patient is called:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q11" value="a"> A. Germ line gene therapy</label>
+                        <label><input type="radio" name="q11" value="b"> B. Somatic gene therapy</label>
+                        <label><input type="radio" name="q11" value="c"> C. ex vivo gene therapy</label>
+                        <label><input type="radio" name="q11" value="d"> D. in vitro gene therapy</label>
+                        <label><input type="radio" name="q11" value="e"> E. in vivo gene therapy</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q11"></div>
+                </div>
+
+                <!-- ====== Q12 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">12</span> Goats genetically modified with a human anticlotting factor gene produce the factor in their milk. How were these goats most likely produced?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q12" value="a"> A. Injected the factor into milk-producing glands</label>
+                        <label><input type="radio" name="q12" value="b"> B. Added modified DNA into the milk</label>
+                        <label><input type="radio" name="q12" value="c"> C. Inserted the human gene into egg cells</label>
+                        <label><input type="radio" name="q12" value="d"> D. Altered nutritional requirements of newborns</label>
+                        <label><input type="radio" name="q12" value="e"> E. Injected the factor parentally</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q12"></div>
+                </div>
+
+                <!-- ====== Q13 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">13</span> Generation of recombinants by randomly cloning fragments of total DNA from an organism is called:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q13" value="a"> A. genomic library</label>
+                        <label><input type="radio" name="q13" value="b"> B. cDNA library</label>
+                        <label><input type="radio" name="q13" value="c"> C. screening</label>
+                        <label><input type="radio" name="q13" value="d"> D. recombination</label>
+                        <label><input type="radio" name="q13" value="e"> E. shotgun cloning</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q13"></div>
+                </div>
+
+                <!-- ====== Q14 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">14</span> A paternity test uses DNA from mother, child, and alleged father. Which technique is most commonly used?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q14" value="a"> A. PCR</label>
+                        <label><input type="radio" name="q14" value="b"> B. RFLP</label>
+                        <label><input type="radio" name="q14" value="c"> C. STR analysis</label>
+                        <label><input type="radio" name="q14" value="d"> D. Mitochondrial DNA sequencing</label>
+                        <label><input type="radio" name="q14" value="e"> E. Y-chromosome haplotyping</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q14"></div>
+                </div>
+
+                <!-- ====== Q15 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">15</span> Which is NOT a precursor for de novo purine biosynthesis?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q15" value="a"> A. Aspartic Acid</label>
+                        <label><input type="radio" name="q15" value="b"> B. Glycine</label>
+                        <label><input type="radio" name="q15" value="c"> C. Glutamine</label>
+                        <label><input type="radio" name="q15" value="d"> D. Arginine</label>
+                        <label><input type="radio" name="q15" value="e"> E. Formate</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q15"></div>
+                </div>
+
+                <!-- ====== Q16 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">16</span> What activates PRPP amidotransferase, the committed step of de novo purine biosynthesis?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q16" value="a"> A. AMP</label>
+                        <label><input type="radio" name="q16" value="b"> B. GMP</label>
+                        <label><input type="radio" name="q16" value="c"> C. IMP</label>
+                        <label><input type="radio" name="q16" value="d"> D. PRPP</label>
+                        <label><input type="radio" name="q16" value="e"> E. Ribose-5-phosphate</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q16"></div>
+                </div>
+
+                <!-- ====== Q17 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">17</span> Nucleoside analog drugs inhibit DNA synthesis because they lack which property required for normal DNA polymerization?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q17" value="a"> A. A 5′-phosphate</label>
+                        <label><input type="radio" name="q17" value="b"> B. A 3′-hydroxyl</label>
+                        <label><input type="radio" name="q17" value="c"> C. A 7-methyl G modification</label>
+                        <label><input type="radio" name="q17" value="d"> D. A poly(A) tail</label>
+                        <label><input type="radio" name="q17" value="e"> E. A consensus sequence</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q17"></div>
+                </div>
+
+                <!-- ====== Q18 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">18</span> Which cofactor/coenzyme is NOT utilized in the conversion of ribose to deoxyribose?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q18" value="a"> A. NADPH</label>
+                        <label><input type="radio" name="q18" value="b"> B. FADH₂</label>
+                        <label><input type="radio" name="q18" value="c"> C. UMP</label>
+                        <label><input type="radio" name="q18" value="d"> D. Thioredoxin</label>
+                        <label><input type="radio" name="q18" value="e"> E. Glutaredoxin</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q18"></div>
+                </div>
+
+                <!-- ====== Q19 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">19</span> Which is a degradation product of pyrimidines?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q19" value="a"> A. β-alanine</label>
+                        <label><input type="radio" name="q19" value="b"> B. Uric acid</label>
+                        <label><input type="radio" name="q19" value="c"> C. Allantoin</label>
+                        <label><input type="radio" name="q19" value="d"> D. Glycine</label>
+                        <label><input type="radio" name="q19" value="e"> E. Urea</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q19"></div>
+                </div>
+
+                <!-- ====== Q20 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">20</span> Which enzymatic mutation is responsible for the immortality of cancer cells?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q20" value="a"> A. DNA reverse transcriptase</label>
+                        <label><input type="radio" name="q20" value="b"> B. RNA polymerase</label>
+                        <label><input type="radio" name="q20" value="c"> C. Telomerase</label>
+                        <label><input type="radio" name="q20" value="d"> D. DNA polymerase</label>
+                        <label><input type="radio" name="q20" value="e"> E. DNA topoisomerase</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q20"></div>
+                </div>
+
+                <!-- ====== Q21 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">21</span> Excessive UV radiation damages biological systems primarily by:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q21" value="a"> A. Inhibition of DNA synthesis</label>
+                        <label><input type="radio" name="q21" value="b"> B. Formation of thymidine dimers</label>
+                        <label><input type="radio" name="q21" value="c"> C. Ionization</label>
+                        <label><input type="radio" name="q21" value="d"> D. DNA fragmentation</label>
+                        <label><input type="radio" name="q21" value="e"> E. Base deamination</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q21"></div>
+                </div>
+
+                <!-- ====== Q22 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">22</span> A frameshift mutation will have minimum effect when it leads to:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q22" value="a"> A. Insertion of 2 bases</label>
+                        <label><input type="radio" name="q22" value="b"> B. Deletion of 1 base</label>
+                        <label><input type="radio" name="q22" value="c"> C. Insertion of 3 bases</label>
+                        <label><input type="radio" name="q22" value="d"> D. Deletion of 2 bases</label>
+                        <label><input type="radio" name="q22" value="e"> E. Deletion of 2 bases and insertion of 1</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q22"></div>
+                </div>
+
+                <!-- ====== Q23 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">23</span> Nascent Okazaki fragments contain uracil due to:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q23" value="a"> A. Deamination of cytosine</label>
+                        <label><input type="radio" name="q23" value="b"> B. Chemical modification of thymine</label>
+                        <label><input type="radio" name="q23" value="c"> C. An error in DNA polymerase</label>
+                        <label><input type="radio" name="q23" value="d"> D. Failure of mismatch repair</label>
+                        <label><input type="radio" name="q23" value="e"> E. The need for a primer</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q23"></div>
+                </div>
+
+                <!-- ====== Q24 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">24</span> Why can several different proteins be synthesized from a typical prokaryotic mRNA?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q24" value="a"> A. Any of the three reading frames can be used.</label>
+                        <label><input type="radio" name="q24" value="b"> B. Redundancy in codon/tRNA interactions.</label>
+                        <label><input type="radio" name="q24" value="c"> C. Several operator sequences initiate translation.</label>
+                        <label><input type="radio" name="q24" value="d"> D. Alternative splicing events are common.</label>
+                        <label><input type="radio" name="q24" value="e"> E. Many RNAs are organized in consecutive translational cistrons.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q24"></div>
+                </div>
+
+                <!-- ====== Q25 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">25</span> Which statement is true regarding prokaryotic and eukaryotic genomes?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q25" value="a"> A. They are both diploid.</label>
+                        <label><input type="radio" name="q25" value="b"> B. They both compact DNA with histones.</label>
+                        <label><input type="radio" name="q25" value="c"> C. They both have short repetitive DNA sequences.</label>
+                        <label><input type="radio" name="q25" value="d"> D. They both organize genes into operons.</label>
+                        <label><input type="radio" name="q25" value="e"> E. They both use the same genetic code.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q25"></div>
+                </div>
+
+                <!-- ====== Q26 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">26</span> Which pair of proteins unwinds DNA and maintains strand separation?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q26" value="a"> A. DNA polymerase &amp; helicase</label>
+                        <label><input type="radio" name="q26" value="b"> B. DNA polymerase &amp; ligase</label>
+                        <label><input type="radio" name="q26" value="c"> C. DNA ligase &amp; helicase</label>
+                        <label><input type="radio" name="q26" value="d"> D. Helicase &amp; SSB protein</label>
+                        <label><input type="radio" name="q26" value="e"> E. SSB protein &amp; helicase</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q26"></div>
+                </div>
+
+                <!-- ====== Q27 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">27</span> A 10-year-old with rashes, self-mutilation, and positive family history. Which investigation is valuable for diagnosis?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q27" value="a"> A. Lead</label>
+                        <label><input type="radio" name="q27" value="b"> B. Alkaline phosphatase</label>
+                        <label><input type="radio" name="q27" value="c"> C. LDH</label>
+                        <label><input type="radio" name="q27" value="d"> D. Uric acid</label>
+                        <label><input type="radio" name="q27" value="e"> E. Urea</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q27"></div>
+                </div>
+
+                <!-- ====== Q28 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">28</span> Reduction of the 2′-hydroxyl of ribonucleotides is catalysed by:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q28" value="a"> A. Thioredoxin reductase</label>
+                        <label><input type="radio" name="q28" value="b"> B. Ribonucleotide reductase</label>
+                        <label><input type="radio" name="q28" value="c"> C. Dihydrofolate reductase</label>
+                        <label><input type="radio" name="q28" value="d"> D. Oxidoreductase</label>
+                        <label><input type="radio" name="q28" value="e"> E. 2′-hydroxy reductase</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q28"></div>
+                </div>
+
+                <!-- ====== Q29 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">29</span> Reverse transcriptase differs from DNA Pol δ specifically by:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q29" value="a"> A. Synthesizing DNA 5′→3′</label>
+                        <label><input type="radio" name="q29" value="b"> B. Expressing 3′→5′ exonuclease activity</label>
+                        <label><input type="radio" name="q29" value="c"> C. Using Watson–Crick base-pair rules</label>
+                        <label><input type="radio" name="q29" value="d"> D. Synthesizing DNA 3′→5′</label>
+                        <label><input type="radio" name="q29" value="e"> E. Inserting ions into a growing chain</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q29"></div>
+                </div>
+
+                <!-- ====== Q30 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">30</span> Degeneracy of the genetic code denotes:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q30" value="a"> A. Base triplets that do not code for any amino acid</label>
+                        <label><input type="radio" name="q30" value="b"> B. Codons consisting of only two bases</label>
+                        <label><input type="radio" name="q30" value="c"> C. Codons with unusual bases</label>
+                        <label><input type="radio" name="q30" value="d"> D. Different systems where a triplet codes for different amino acids</label>
+                        <label><input type="radio" name="q30" value="e"> E. Multiple codons for a single amino acid</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q30"></div>
+                </div>
+
+                <!-- ====== Q31 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">31</span> Which enzyme catalyses the formation of phosphodiester bonds in DNA repair?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q31" value="a"> A. DNA glycosylases</label>
+                        <label><input type="radio" name="q31" value="b"> B. DNA helicases</label>
+                        <label><input type="radio" name="q31" value="c"> C. DNA ligases</label>
+                        <label><input type="radio" name="q31" value="d"> D. DNA phosphodiesterases</label>
+                        <label><input type="radio" name="q31" value="e"> E. DNA polymerases</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q31"></div>
+                </div>
+
+                <!-- ====== Q32 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">32</span> The human brain has a low level of which enzyme?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q32" value="a"> A. PRPP synthetase</label>
+                        <label><input type="radio" name="q32" value="b"> B. Amidotransferase</label>
+                        <label><input type="radio" name="q32" value="c"> C. HGPRT</label>
+                        <label><input type="radio" name="q32" value="d"> D. Adenosine deaminase</label>
+                        <label><input type="radio" name="q32" value="e"> E. Xanthine oxidase</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q32"></div>
+                </div>
+
+                <!-- ====== Q33 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">33</span> Primase is not required during DNA repair because:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q33" value="a"> A. All primase is associated with replication origins.</label>
+                        <label><input type="radio" name="q33" value="b"> B. RNA would be mutagenic at a repair site.</label>
+                        <label><input type="radio" name="q33" value="c"> C. Repair DNA polymerases do not require a primer.</label>
+                        <label><input type="radio" name="q33" value="d"> D. Replicative DNA polymerases do not require a primer.</label>
+                        <label><input type="radio" name="q33" value="e"> E. DNA polymerases can use any 3′-OH for elongation.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q33"></div>
+                </div>
+
+                <!-- ====== Q34 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">34</span> In prokaryotes, what site on mRNA does the ribosome bind to initiate translation?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q34" value="a"> A. Shine–Dalgarno sequence</label>
+                        <label><input type="radio" name="q34" value="b"> B. Operator</label>
+                        <label><input type="radio" name="q34" value="c"> C. 3′ untranslated region</label>
+                        <label><input type="radio" name="q34" value="d"> D. Promoter</label>
+                        <label><input type="radio" name="q34" value="e"> E. Poly(A) tail</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q34"></div>
+                </div>
+
+                <!-- ====== Q35 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">35</span> DNA replication in animal cells occurs during which phase?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q35" value="a"> A. G1 phase</label>
+                        <label><input type="radio" name="q35" value="b"> B. G2 phase</label>
+                        <label><input type="radio" name="q35" value="c"> C. M phase</label>
+                        <label><input type="radio" name="q35" value="d"> D. S phase</label>
+                        <label><input type="radio" name="q35" value="e"> E. C phase</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q35"></div>
+                </div>
+
+                <!-- ====== Q36 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">36</span> Diphtheria toxin inhibits protein synthesis by:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q36" value="a"> A. Inactivating initiation factor</label>
+                        <label><input type="radio" name="q36" value="b"> B. Inactivating elongation factor</label>
+                        <label><input type="radio" name="q36" value="c"> C. Preventing peptide bond formation</label>
+                        <label><input type="radio" name="q36" value="d"> D. Combining with ribosomes</label>
+                        <label><input type="radio" name="q36" value="e"> E. Preventing formation of initiation complex</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q36"></div>
+                </div>
+
+                <!-- ====== Q37 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">37</span> To amplify a small DNA sample from a crime scene, which technique should be used?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q37" value="a"> A. DNA Sequencing</label>
+                        <label><input type="radio" name="q37" value="b"> B. PCR</label>
+                        <label><input type="radio" name="q37" value="c"> C. STR Analysis</label>
+                        <label><input type="radio" name="q37" value="d"> D. FISH</label>
+                        <label><input type="radio" name="q37" value="e"> E. Gene Cloning</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q37"></div>
+                </div>
+
+                <!-- ====== Q38 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">38</span> Norfloxacin inhibits bacterial chromosome duplication by directly inhibiting which enzyme?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q38" value="a"> A. DNA polymerase I</label>
+                        <label><input type="radio" name="q38" value="b"> B. DNA polymerase II</label>
+                        <label><input type="radio" name="q38" value="c"> C. Topoisomerase I</label>
+                        <label><input type="radio" name="q38" value="d"> D. Topoisomerase II</label>
+                        <label><input type="radio" name="q38" value="e"> E. DNA ligase</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q38"></div>
+                </div>
+
+                <!-- ====== Q39 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">39</span> Dyskeratosis congenita (DKC) impairs stem cell proliferation due to deficiency in which step of DNA replication?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q39" value="a"> A. Synthesis of gaps in DNA</label>
+                        <label><input type="radio" name="q39" value="b"> B. Synthesis of Okazaki fragments</label>
+                        <label><input type="radio" name="q39" value="c"> C. Synthesis of RNA primers</label>
+                        <label><input type="radio" name="q39" value="d"> D. Synthesis of telomeres</label>
+                        <label><input type="radio" name="q39" value="e"> E. Removal of RNA primers</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q39"></div>
+                </div>
+
+                <!-- ====== Q40 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">40</span> BRCA1/2 mutations increase breast/ovarian cancer risk due to defects in which DNA repair process?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q40" value="a"> A. Base Excision Repair</label>
+                        <label><input type="radio" name="q40" value="b"> B. Mismatch Repair</label>
+                        <label><input type="radio" name="q40" value="c"> C. Nucleotide Excision Repair</label>
+                        <label><input type="radio" name="q40" value="d"> D. Homologous Recombination Repair</label>
+                        <label><input type="radio" name="q40" value="e"> E. Non-Homologous End Joining</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q40"></div>
+                </div>
+
+                <!-- ====== Q41 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">41</span> Which method is most commonly used to compare crime scene DNA to a suspect's DNA?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q41" value="a"> A. RNA-Seq</label>
+                        <label><input type="radio" name="q41" value="b"> B. Gel Electrophoresis</label>
+                        <label><input type="radio" name="q41" value="c"> C. VNTR Analysis</label>
+                        <label><input type="radio" name="q41" value="d"> D. Microarray Analysis</label>
+                        <label><input type="radio" name="q41" value="e"> E. Gene Therapy</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q41"></div>
+                </div>
+
+                <!-- ====== Q42 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">42</span> A 10-year-old with aggressive behavior, joint pain, reduced urinary output, and self-mutilation. Which enzyme is likely deficient?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q42" value="a"> A. HGPRTase</label>
+                        <label><input type="radio" name="q42" value="b"> B. Adenosine deaminase</label>
+                        <label><input type="radio" name="q42" value="c"> C. APRTase</label>
+                        <label><input type="radio" name="q42" value="d"> D. Acid maltase</label>
+                        <label><input type="radio" name="q42" value="e"> E. Xanthine oxidase</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q42"></div>
+                </div>
+
+                <!-- ====== Q43 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">43</span> What would happen if the trp operator mutation prevented repressor binding?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q43" value="a"> A. In the absence of tryptophan, trpA-E will not be transcribed.</label>
+                        <label><input type="radio" name="q43" value="b"> B. In the absence of tryptophan, only trpE and D will be transcribed.</label>
+                        <label><input type="radio" name="q43" value="c"> C. In the presence of tryptophan, trpA-E will be transcribed.</label>
+                        <label><input type="radio" name="q43" value="d"> D. In the presence of tryptophan, trpE will not be transcribed.</label>
+                        <label><input type="radio" name="q43" value="e"> E. In the presence of tryptophan, leader peptide gene will not be transcribed.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q43"></div>
+                </div>
+
+                <!-- ====== Q44 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">44</span> Regions spliced out of mRNA and not included in the final protein are called:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q44" value="a"> A. Micro RNAs</label>
+                        <label><input type="radio" name="q44" value="b"> B. Introns</label>
+                        <label><input type="radio" name="q44" value="c"> C. Intergenic regions</label>
+                        <label><input type="radio" name="q44" value="d"> D. Exons</label>
+                        <label><input type="radio" name="q44" value="e"> E. Internal transcribed spacers</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q44"></div>
+                </div>
+
+                <!-- ====== Q45 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">45</span> An infant with pertussis is treated with an antibiotic that inhibits 70S ribosome translocation on mRNA. Which drug was most likely used?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q45" value="a"> A. Erythromycin</label>
+                        <label><input type="radio" name="q45" value="b"> B. Tetracycline</label>
+                        <label><input type="radio" name="q45" value="c"> C. Chloramphenicol</label>
+                        <label><input type="radio" name="q45" value="d"> D. Rifamycin</label>
+                        <label><input type="radio" name="q45" value="e"> E. Levofloxacin</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q45"></div>
+                </div>
+
+                <!-- ====== Q46 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">46</span> Which antibiotic inhibits binding of prokaryotic RNA polymerase to promoters?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q46" value="a"> A. Streptomycin</label>
+                        <label><input type="radio" name="q46" value="b"> B. Rifampicin</label>
+                        <label><input type="radio" name="q46" value="c"> C. Aureomycin</label>
+                        <label><input type="radio" name="q46" value="d"> D. Terramycin</label>
+                        <label><input type="radio" name="q46" value="e"> E. Puromycin</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q46"></div>
+                </div>
+
+                <!-- ====== Q47 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">47</span> Derepression of the lac operon in the presence of lactose is an example of:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q47" value="a"> A. Positive regulation</label>
+                        <label><input type="radio" name="q47" value="b"> B. Negative regulation</label>
+                        <label><input type="radio" name="q47" value="c"> C. Double negative regulation</label>
+                        <label><input type="radio" name="q47" value="d"> D. Double positive regulation</label>
+                        <label><input type="radio" name="q47" value="e"> E. Deregulation of genes</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q47"></div>
+                </div>
+
+                <!-- ====== Q48 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">48</span> Regulatory proteins turn transcription off by binding to a site near or overlapping the promoter. This site is the:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q48" value="a"> A. regulatory site</label>
+                        <label><input type="radio" name="q48" value="b"> B. operator site</label>
+                        <label><input type="radio" name="q48" value="c"> C. suppressor site</label>
+                        <label><input type="radio" name="q48" value="d"> D. transcriptional control site</label>
+                        <label><input type="radio" name="q48" value="e"> E. enhancer site</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q48"></div>
+                </div>
+
+                <!-- ====== Q49 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">49</span> To visualize specific chromosomes in a developing fetus for prenatal diagnosis, which technique is most appropriate?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q49" value="a"> A. Gel Electrophoresis</label>
+                        <label><input type="radio" name="q49" value="b"> B. RNA-Seq</label>
+                        <label><input type="radio" name="q49" value="c"> C. FISH</label>
+                        <label><input type="radio" name="q49" value="d"> D. CRISPR-Cas9</label>
+                        <label><input type="radio" name="q49" value="e"> E. Microarray Analysis</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q49"></div>
+                </div>
+
+                <!-- ====== Q50 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">50</span> Which method would be used to knock down expression of a target gene?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q50" value="a"> A. Western Blotting</label>
+                        <label><input type="radio" name="q50" value="b"> B. RNA Interference (RNAi)</label>
+                        <label><input type="radio" name="q50" value="c"> C. Southern Blotting</label>
+                        <label><input type="radio" name="q50" value="d"> D. CRISPR-Cas9</label>
+                        <label><input type="radio" name="q50" value="e"> E. Gel Electrophoresis</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q50"></div>
+                </div>
+
+                <!-- ====== Q51 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">51</span> What is the main difference between a genomic library and a cDNA library?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q51" value="a"> A. Genomic library contains RNA; cDNA contains DNA</label>
+                        <label><input type="radio" name="q51" value="b"> B. Genomic contains whole genomes; cDNA contains expressed genes</label>
+                        <label><input type="radio" name="q51" value="c"> C. Genomic contains proteins; cDNA contains lipids</label>
+                        <label><input type="radio" name="q51" value="d"> D. Genomic contains introns and exons; cDNA contains only exons</label>
+                        <label><input type="radio" name="q51" value="e"> E. Genomic contains mtDNA; cDNA contains chloroplast DNA</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q51"></div>
+                </div>
+
+                <!-- ====== Q52 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">52</span> Which pathway is most involved in protein degradation?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q52" value="a"> A. Proteolytic pathway</label>
+                        <label><input type="radio" name="q52" value="b"> B. Lysosomal pathway</label>
+                        <label><input type="radio" name="q52" value="c"> C. Autophagy pathway</label>
+                        <label><input type="radio" name="q52" value="d"> D. Ubiquitin-proteasome pathway</label>
+                        <label><input type="radio" name="q52" value="e"> E. Mitochondrial outer membrane permeabilization</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q52"></div>
+                </div>
+
+                <!-- ====== Q53 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">53</span> What is special about chloroplast and mitochondrial DNA replication regulation?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q53" value="a"> A. No well-defined cycle; replicates continuously</label>
+                        <label><input type="radio" name="q53" value="b"> B. Checkpoints limited only by available fuel</label>
+                        <label><input type="radio" name="q53" value="c"> C. No regulatory checkpoints</label>
+                        <label><input type="radio" name="q53" value="d"> D. Cyclins and CDKs are strengthened</label>
+                        <label><input type="radio" name="q53" value="e"> E. Replication occurs independently of the cell cycle</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q53"></div>
+                </div>
+
+                <!-- ====== Q54 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">54</span> Which substance directly donates atoms to both purine and pyrimidine rings?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q54" value="a"> A. CO₂</label>
+                        <label><input type="radio" name="q54" value="b"> B. Glycine</label>
+                        <label><input type="radio" name="q54" value="c"> C. Carbamoyl phosphate</label>
+                        <label><input type="radio" name="q54" value="d"> D. Aspartate</label>
+                        <label><input type="radio" name="q54" value="e"> E. Fumarate</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q54"></div>
+                </div>
+
+                <!-- ====== Q55 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">55</span> Which statement is correct about purine and pyrimidine metabolism?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q55" value="a"> A. Pyrimidines yield uric acid when degraded.</label>
+                        <label><input type="radio" name="q55" value="b"> B. Excess pyrimidine degradation can cause gout.</label>
+                        <label><input type="radio" name="q55" value="c"> C. Purines cannot be degraded to generate energy.</label>
+                        <label><input type="radio" name="q55" value="d"> D. Purines degrade to CO₂ and water.</label>
+                        <label><input type="radio" name="q55" value="e"> E. Purines and pyrimidines cannot be degraded.</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q55"></div>
+                </div>
+
+                <!-- ====== Q56 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">56</span> Why is DNA synthesized in the 5′→3′ direction?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q56" value="a"> A. Polarity allows DNA Pol III to add only to the 5′ end</label>
+                        <label><input type="radio" name="q56" value="b"> B. Hydrogen bonds prevent addition to the strand</label>
+                        <label><input type="radio" name="q56" value="c"> C. Polarity allows DNA Pol III to add only to the 3′ end</label>
+                        <label><input type="radio" name="q56" value="d"> D. DNA Pol III can add anywhere regardless of polarity</label>
+                        <label><input type="radio" name="q56" value="e"> E. None of the above</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q56"></div>
+                </div>
+
+                <!-- ====== Q57 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">57</span> Which protein removes the RNA primer from the 5′ end of a lagging strand and replaces it with DNA?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q57" value="a"> A. Topoisomerase</label>
+                        <label><input type="radio" name="q57" value="b"> B. DNA Polymerase I</label>
+                        <label><input type="radio" name="q57" value="c"> C. Primase</label>
+                        <label><input type="radio" name="q57" value="d"> D. DNA Polymerase III</label>
+                        <label><input type="radio" name="q57" value="e"> E. None of the above</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q57"></div>
+                </div>
+
+                <!-- ====== Q58 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">58</span> Which protein links Okazaki fragments on the lagging strand?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q58" value="a"> A. Helicase</label>
+                        <label><input type="radio" name="q58" value="b"> B. DNA polymerase III</label>
+                        <label><input type="radio" name="q58" value="c"> C. DNA ligase</label>
+                        <label><input type="radio" name="q58" value="d"> D. SSB proteins</label>
+                        <label><input type="radio" name="q58" value="e"> E. DNA polymerase I</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q58"></div>
+                </div>
+
+                <!-- ====== Q59 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">59</span> Which RNA carries the code that is read at the ribosome to create a protein?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q59" value="a"> A. snRNA</label>
+                        <label><input type="radio" name="q59" value="b"> B. tRNA</label>
+                        <label><input type="radio" name="q59" value="c"> C. rRNA</label>
+                        <label><input type="radio" name="q59" value="d"> D. mRNA</label>
+                        <label><input type="radio" name="q59" value="e"> E. hnRNA</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q59"></div>
+                </div>
+
+                <!-- ====== Q60 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">60</span> Which enzyme deficiency causes increased hypoxanthine and xanthine in blood with hypouricemia?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q60" value="a"> A. HGPRTase</label>
+                        <label><input type="radio" name="q60" value="b"> B. Xanthine oxidase</label>
+                        <label><input type="radio" name="q60" value="c"> C. Adenosine deaminase</label>
+                        <label><input type="radio" name="q60" value="d"> D. APRTase</label>
+                        <label><input type="radio" name="q60" value="e"> E. Glucose-6-phosphatase</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q60"></div>
+                </div>
+
+                <!-- ====== Q61 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">61</span> What is involved in the formation of dTMP from dUMP?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q61" value="a"> A. N⁵,N¹⁰-methylene tetrahydrofolate</label>
+                        <label><input type="radio" name="q61" value="b"> B. Iminofolate</label>
+                        <label><input type="radio" name="q61" value="c"> C. N⁵-formylfolate</label>
+                        <label><input type="radio" name="q61" value="d"> D. Dihydrofolate</label>
+                        <label><input type="radio" name="q61" value="e"> E. Glutamine</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q61"></div>
+                </div>
+
+                <!-- ====== Q62 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">62</span> Chloramphenicol prevents protein translation by:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q62" value="a"> A. Blocking translocation on ribosomes</label>
+                        <label><input type="radio" name="q62" value="b"> B. Blocking peptidyl transferase on ribosomes</label>
+                        <label><input type="radio" name="q62" value="c"> C. Blocking initiation by binding RNA polymerase</label>
+                        <label><input type="radio" name="q62" value="d"> D. Blocking aminoacyl-tRNA binding to the A site</label>
+                        <label><input type="radio" name="q62" value="e"> E. Blocking IF1 binding to the A site</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q62"></div>
+                </div>
+
+                <!-- ====== Q63 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">63</span> What is the role of the promoter region in gene expression?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q63" value="a"> A. Recruit RNA polymerase and transcription factors</label>
+                        <label><input type="radio" name="q63" value="b"> B. Bind negative regulators to inhibit expression</label>
+                        <label><input type="radio" name="q63" value="c"> C. Alter expression by binding transcription factors</label>
+                        <label><input type="radio" name="q63" value="d"> D. Allow alternative splicing and recombination</label>
+                        <label><input type="radio" name="q63" value="e"> E. Promote gene stability</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q63"></div>
+                </div>
+
+                <!-- ====== Q64 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">64</span> Which best describes distant regulatory sequences that influence gene expression?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q64" value="a"> A. Promoters</label>
+                        <label><input type="radio" name="q64" value="b"> B. Transcriptional start sites</label>
+                        <label><input type="radio" name="q64" value="c"> C. Exons</label>
+                        <label><input type="radio" name="q64" value="d"> D. Enhancers</label>
+                        <label><input type="radio" name="q64" value="e"> E. Introns</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q64"></div>
+                </div>
+
+                <!-- ====== Q65 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">65</span> DNA helicase "unzips" double-stranded DNA by:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q65" value="a"> A. Breaking hydrogen bonds between purines and pyrimidines</label>
+                        <label><input type="radio" name="q65" value="b"> B. Breaking hydrogen bonds between purines and purines</label>
+                        <label><input type="radio" name="q65" value="c"> C. Breaking covalent bonds between pyrimidines</label>
+                        <label><input type="radio" name="q65" value="d"> D. Breaking covalent bonds between purines and pyrimidines</label>
+                        <label><input type="radio" name="q65" value="e"> E. Breaking hydrogen bonds between pyrimidines</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q65"></div>
+                </div>
+
+                <!-- ====== Q66 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">66</span> Xeroderma pigmentosum patients are sensitive to UV due to deficiency in which function?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q66" value="a"> A. Removal of introns</label>
+                        <label><input type="radio" name="q66" value="b"> B. Removal of pyrimidine dimers</label>
+                        <label><input type="radio" name="q66" value="c"> C. Protection against DNA viruses</label>
+                        <label><input type="radio" name="q66" value="d"> D. Repair of mismatched bases during replication</label>
+                        <label><input type="radio" name="q66" value="e"> E. Repair of mismatched bases during transcription</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q66"></div>
+                </div>
+
+                <!-- ====== Q67 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">67</span> How many ribosomal binding sites are there and what are their functions?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q67" value="a"> A. Two sites: A binds free tRNA before exit, P binds aminoacyl-tRNA</label>
+                        <label><input type="radio" name="q67" value="b"> B. Two sites: A binds free tRNA, P binds peptidyl-tRNA</label>
+                        <label><input type="radio" name="q67" value="c"> C. Three sites: A binds peptidyl-tRNA, P binds aminoacyl-tRNA, E binds free tRNA</label>
+                        <label><input type="radio" name="q67" value="d"> D. Three sites: A binds aminoacyl-tRNA, P binds peptidyl-tRNA, E binds free tRNA</label>
+                        <label><input type="radio" name="q67" value="e"> E. Three sites: A binds free tRNA, P binds aminoacyl-tRNA, E binds peptidyl-tRNA</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q67"></div>
+                </div>
+
+                <!-- ====== Q68 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">68</span> Which proteins are likely to contain leucine zipper domains?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q68" value="a"> A. Lipases</label>
+                        <label><input type="radio" name="q68" value="b"> B. Proteases</label>
+                        <label><input type="radio" name="q68" value="c"> C. Transcription factors</label>
+                        <label><input type="radio" name="q68" value="d"> D. Transmembrane proteins</label>
+                        <label><input type="radio" name="q68" value="e"> E. Helicases</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q68"></div>
+                </div>
+
+                <!-- ====== Q69 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">69</span> What is the functional outcome of heterochromatin being more condensed than euchromatin?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q69" value="a"> A. Heterochromatin is transcribed at high frequency</label>
+                        <label><input type="radio" name="q69" value="b"> B. Heterochromatin unpacking requires many ATP</label>
+                        <label><input type="radio" name="q69" value="c"> C. Heterochromatin contains no genes</label>
+                        <label><input type="radio" name="q69" value="d"> D. Heterochromatin is not transcribed because euchromatin saturates polymerase</label>
+                        <label><input type="radio" name="q69" value="e"> E. Heterochromatin is typically not transcribed/transcribed at lower rate</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q69"></div>
+                </div>
+
+                <!-- ====== Q70 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">70</span> Inducible operons are turned off by a repressor. How are they turned on?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q70" value="a"> A. An activator displaces the repressor</label>
+                        <label><input type="radio" name="q70" value="b"> B. An inducer binds and inactivates the repressor</label>
+                        <label><input type="radio" name="q70" value="c"> C. Transcription of the repressor is inactivated</label>
+                        <label><input type="radio" name="q70" value="d"> D. An inducer competes with repressor for operator binding</label>
+                        <label><input type="radio" name="q70" value="e"> E. A second repressor represses the first repressor</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q70"></div>
+                </div>
+
+                <!-- ====== Q71 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">71</span> What is a key function of molecular chaperones?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q71" value="a"> A. Synthesize proteins</label>
+                        <label><input type="radio" name="q71" value="b"> B. Degrade misfolded proteins</label>
+                        <label><input type="radio" name="q71" value="c"> C. Assist in protein folding</label>
+                        <label><input type="radio" name="q71" value="d"> D. Target proteins to organelles</label>
+                        <label><input type="radio" name="q71" value="e"> E. Regulate protein synthesis</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q71"></div>
+                </div>
+
+                <!-- ====== Q72 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">72</span> A cancer patient on 6-mercaptopurine develops hyperuricemia and is given allopurinol. What effect will allopurinol have on 6-mercaptopurine?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q72" value="a"> A. Enhanced deactivation</label>
+                        <label><input type="radio" name="q72" value="b"> B. Enhanced elimination as uric acid</label>
+                        <label><input type="radio" name="q72" value="c"> C. Enhanced retention and potentiation</label>
+                        <label><input type="radio" name="q72" value="d"> D. Decreased inhibition of PRPP amidotransferase</label>
+                        <label><input type="radio" name="q72" value="e"> E. Competitively inhibits 6-mercaptopurine</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q72"></div>
+                </div>
+
+                <!-- ====== Q73 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">73</span> In Sanger sequencing, what is the purpose of ddNTPs?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q73" value="a"> A. To synthesize new DNA strands</label>
+                        <label><input type="radio" name="q73" value="b"> B. To degrade template DNA</label>
+                        <label><input type="radio" name="q73" value="c"> C. To label DNA fragments with fluorescent tags</label>
+                        <label><input type="radio" name="q73" value="d"> D. To terminate DNA synthesis at specific nucleotides</label>
+                        <label><input type="radio" name="q73" value="e"> E. To amplify the DNA template</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q73"></div>
+                </div>
+
+                <!-- ====== Q74 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">74</span> Trimethoprim selectively inhibits bacterial:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q74" value="a"> A. Formyl transferase</label>
+                        <label><input type="radio" name="q74" value="b"> B. PRPP synthetase</label>
+                        <label><input type="radio" name="q74" value="c"> C. Dihydrofolate reductase</label>
+                        <label><input type="radio" name="q74" value="d"> D. Glutamine:PRPP amidotransferase</label>
+                        <label><input type="radio" name="q74" value="e"> E. None of the above</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q74"></div>
+                </div>
+
+                <!-- ====== Q75 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">75</span> To produce insulin in bacteria using transgenic technology, what is the starting material?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q75" value="a"> A. Genomic DNA of lymphocytes</label>
+                        <label><input type="radio" name="q75" value="b"> B. mRNA of lymphocytes</label>
+                        <label><input type="radio" name="q75" value="c"> C. Genomic DNA of beta cells of pancreas</label>
+                        <label><input type="radio" name="q75" value="d"> D. mRNA of beta cells of pancreas</label>
+                        <label><input type="radio" name="q75" value="e"> E. Insulin gene from any human cell DNA</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q75"></div>
+                </div>
+
+                <!-- ====== Q76 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">76</span> A key advantage of FISH over traditional cytogenetic techniques is:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q76" value="a"> A. Ability to detect small DNA sequences</label>
+                        <label><input type="radio" name="q76" value="b"> B. Ability to visualize DNA during metaphase</label>
+                        <label><input type="radio" name="q76" value="c"> C. Ability to detect gene expression levels</label>
+                        <label><input type="radio" name="q76" value="d"> D. Ability to sequence entire genomes</label>
+                        <label><input type="radio" name="q76" value="e"> E. Ability to identify specific proteins</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q76"></div>
+                </div>
+
+                <!-- ====== Q77 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">77</span> Which type of DNA damage is caused by replication errors resulting in mismatched bases?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q77" value="a"> A. Point mutations</label>
+                        <label><input type="radio" name="q77" value="b"> B. Frameshift mutations</label>
+                        <label><input type="radio" name="q77" value="c"> C. Oxidative damage</label>
+                        <label><input type="radio" name="q77" value="d"> D. Alkylation damage</label>
+                        <label><input type="radio" name="q77" value="e"> E. Totemized bases</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q77"></div>
+                </div>
+
+                <!-- ====== Q78 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">78</span> A DNA probe designed to detect a specific mutation is complementary to the mutated sequence but not the normal sequence. This is a:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q78" value="a"> A. Random primer probe</label>
+                        <label><input type="radio" name="q78" value="b"> B. Allele-specific oligonucleotide probe</label>
+                        <label><input type="radio" name="q78" value="c"> C. Degenerate probe</label>
+                        <label><input type="radio" name="q78" value="d"> D. Universal probe</label>
+                        <label><input type="radio" name="q78" value="e"> E. Linker probe</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q78"></div>
+                </div>
+
+                <!-- ====== Q79 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">79</span> UV radiation forms cyclobutane pyrimidine dimers (CPDs). Which repair mechanism corrects this damage?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q79" value="a"> A. Base excision repair (BER)</label>
+                        <label><input type="radio" name="q79" value="b"> B. Nucleotide excision repair (NER)</label>
+                        <label><input type="radio" name="q79" value="c"> C. Mismatch repair (MMR)</label>
+                        <label><input type="radio" name="q79" value="d"> D. Homologous recombination (HR)</label>
+                        <label><input type="radio" name="q79" value="e"> E. Non-homologous end joining (NHEJ)</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q79"></div>
+                </div>
+
+                <!-- ====== Q80 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">80</span> A point mutation creates a new HindIII restriction site. How would the RFLP pattern of an affected individual differ from an unaffected one?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q80" value="a"> A. Larger fragment</label>
+                        <label><input type="radio" name="q80" value="b"> B. Smaller fragment</label>
+                        <label><input type="radio" name="q80" value="c"> C. Two additional fragments</label>
+                        <label><input type="radio" name="q80" value="d"> D. Same fragment pattern</label>
+                        <label><input type="radio" name="q80" value="e"> E. No fragments</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q80"></div>
+                </div>
+
+                <!-- ====== Q81 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">81</span> A transcription factor with a leucine zipper motif regulates gene expression most likely by:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q81" value="a"> A. Binding to the minor groove of DNA</label>
+                        <label><input type="radio" name="q81" value="b"> B. Forming a heterodimer with another transcription factor</label>
+                        <label><input type="radio" name="q81" value="c"> C. Recruiting RNA polymerase to the promoter</label>
+                        <label><input type="radio" name="q81" value="d"> D. Compacting chromatin structure</label>
+                        <label><input type="radio" name="q81" value="e"> E. Interacting with basal transcription machinery</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q81"></div>
+                </div>
+
+                <!-- ====== Q82 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">82</span> To quantify gene expression levels in different tissues, which PCR technique is most suitable?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q82" value="a"> A. Conventional PCR</label>
+                        <label><input type="radio" name="q82" value="b"> B. Real-time PCR</label>
+                        <label><input type="radio" name="q82" value="c"> C. Multiplex PCR</label>
+                        <label><input type="radio" name="q82" value="d"> D. Nested PCR</label>
+                        <label><input type="radio" name="q82" value="e"> E. Reverse transcriptase PCR (RT-PCR)</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q82"></div>
+                </div>
+
+                <!-- ====== Q83 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">83</span> To analyze protein expression levels in different tissues, which blotting technique is most suitable?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q83" value="a"> A. Southern blot</label>
+                        <label><input type="radio" name="q83" value="b"> B. Northern blot</label>
+                        <label><input type="radio" name="q83" value="c"> C. Western blot</label>
+                        <label><input type="radio" name="q83" value="d"> D. Dot blot</label>
+                        <label><input type="radio" name="q83" value="e"> E. Southwestern blot</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q83"></div>
+                </div>
+
+                <!-- ====== Q84 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">84</span> Two restriction enzymes recognize different sequences but generate the same sticky ends. These are called:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q84" value="a"> A. Isoschizomers</label>
+                        <label><input type="radio" name="q84" value="b"> B. Neoschizomers</label>
+                        <label><input type="radio" name="q84" value="c"> C. Isocaudomers</label>
+                        <label><input type="radio" name="q84" value="d"> D. Homoschizomers</label>
+                        <label><input type="radio" name="q84" value="e"> E. Type II restriction enzymes</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q84"></div>
+                </div>
+
+                <!-- ====== Q85 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">85</span> Which is NOT a post-translational modification?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q85" value="a"> A. Proteasomal degradation</label>
+                        <label><input type="radio" name="q85" value="b"> B. 5′ capping</label>
+                        <label><input type="radio" name="q85" value="c"> C. Trimming</label>
+                        <label><input type="radio" name="q85" value="d"> D. Phosphorylation</label>
+                        <label><input type="radio" name="q85" value="e"> E. Ubiquitination</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q85"></div>
+                </div>
+
+                <!-- ====== Q86 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">86</span> A key advantage of using genetically engineered bacteria to produce human insulin is:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q86" value="a"> A. Increased risk of viral contamination</label>
+                        <label><input type="radio" name="q86" value="b"> B. Higher production costs</label>
+                        <label><input type="radio" name="q86" value="c"> C. Ability to produce large quantities with high purity</label>
+                        <label><input type="radio" name="q86" value="d"> D. Limited scalability</label>
+                        <label><input type="radio" name="q86" value="e"> E. Increased risk of immune reactions</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q86"></div>
+                </div>
+
+                <!-- ====== Q87 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">87</span> Fluorouracil irreversibly inhibits which enzyme?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q87" value="a"> A. Ribonucleotide reductase</label>
+                        <label><input type="radio" name="q87" value="b"> B. Thymidylate synthase</label>
+                        <label><input type="radio" name="q87" value="c"> C. Dihydrofolate reductase</label>
+                        <label><input type="radio" name="q87" value="d"> D. PRPP-amido transferase</label>
+                        <label><input type="radio" name="q87" value="e"> E. PRPP synthase</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q87"></div>
+                </div>
+
+                <!-- ====== Q88 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">88</span> siRNA targeting an mRNA transcript leads to no gene expression. What is the most likely mechanism?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q88" value="a"> A. Transcriptional activation</label>
+                        <label><input type="radio" name="q88" value="b"> B. Transcriptional repression</label>
+                        <label><input type="radio" name="q88" value="c"> C. More efficient translation</label>
+                        <label><input type="radio" name="q88" value="d"> D. Protein product degradation</label>
+                        <label><input type="radio" name="q88" value="e"> E. mRNA transcript degradation</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q88"></div>
+                </div>
+
+                <!-- ====== Q89 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">89</span> The ε-globin gene is expressed in embryos, while β-globin is expressed in adults. This developmental control is most likely due to:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q89" value="a"> A. DNA methylation</label>
+                        <label><input type="radio" name="q89" value="b"> B. Histone modification</label>
+                        <label><input type="radio" name="q89" value="c"> C. Gene switching mediated by transcription factors</label>
+                        <label><input type="radio" name="q89" value="d"> D. Chromatin looping</label>
+                        <label><input type="radio" name="q89" value="e"> E. Post-transcriptional regulation</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q89"></div>
+                </div>
+
+                <!-- ====== Q90 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">90</span> Inhibiting topoisomerase during DNA replication would cause:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q90" value="a"> A. Complete halt of replication</label>
+                        <label><input type="radio" name="q90" value="b"> B. Slowdown but not complete stop</label>
+                        <label><input type="radio" name="q90" value="c"> C. Knotted and tangled replication fork</label>
+                        <label><input type="radio" name="q90" value="d"> D. Leading strand synthesis only</label>
+                        <label><input type="radio" name="q90" value="e"> E. No effect</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q90"></div>
+                </div>
+
+                <!-- ====== Q91 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">91</span> A protein destined for secretion is translated:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q91" value="a"> A. On a free ribosome in the cytoplasm</label>
+                        <label><input type="radio" name="q91" value="b"> B. On a ribosome attached to the ER</label>
+                        <label><input type="radio" name="q91" value="c"> C. In the nucleus</label>
+                        <label><input type="radio" name="q91" value="d"> D. Without a signal sequence</label>
+                        <label><input type="radio" name="q91" value="e"> E. Post-transcriptionally</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q91"></div>
+                </div>
+
+                <!-- ====== Q92 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">92</span> When tryptophan levels are high, what happens to trp operon transcription due to attenuation?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q92" value="a"> A. Premature termination due to terminator structure</label>
+                        <label><input type="radio" name="q92" value="b"> B. More frequent initiation due to activator binding</label>
+                        <label><input type="radio" name="q92" value="c"> C. Slowed due to repressor binding</label>
+                        <label><input type="radio" name="q92" value="d"> D. Unaffected, constitutive expression</label>
+                        <label><input type="radio" name="q92" value="e"> E. Enhanced due to antiterminator formation</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q92"></div>
+                </div>
+
+                <!-- ====== Q93 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">93</span> In the presence of lactose and absence of glucose, the lac operon is fully induced. What is the role of cAMP?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q93" value="a"> A. cAMP binds to repressor and prevents operator binding</label>
+                        <label><input type="radio" name="q93" value="b"> B. cAMP binds to CAP, which binds the promoter and enhances RNA polymerase recruitment</label>
+                        <label><input type="radio" name="q93" value="c"> C. cAMP inhibits β-galactosidase</label>
+                        <label><input type="radio" name="q93" value="d"> D. cAMP induces repressor degradation</label>
+                        <label><input type="radio" name="q93" value="e"> E. cAMP has no role</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q93"></div>
+                </div>
+
+                <!-- ====== Q94 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">94</span> A 3-year-old with severe immunodeficiency and dATP accumulation in lymphocytes most likely has:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q94" value="a"> A. Adenosine deaminase (ADA) deficiency</label>
+                        <label><input type="radio" name="q94" value="b"> B. HGPRT deficiency</label>
+                        <label><input type="radio" name="q94" value="c"> C. Purine nucleoside phosphorylase (PNP) deficiency</label>
+                        <label><input type="radio" name="q94" value="d"> D. APRT deficiency</label>
+                        <label><input type="radio" name="q94" value="e"> E. Xanthine oxidase deficiency</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q94"></div>
+                </div>
+
+                <!-- ====== Q95 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">95</span> A mutation reduces translation rate of the trp leader peptide. What is the expected outcome?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q95" value="a"> A. Constitutive expression</label>
+                        <label><input type="radio" name="q95" value="b"> B. Repression even in absence of tryptophan</label>
+                        <label><input type="radio" name="q95" value="c"> C. More sensitive to tryptophan levels</label>
+                        <label><input type="radio" name="q95" value="d"> D. Less sensitive to tryptophan levels</label>
+                        <label><input type="radio" name="q95" value="e"> E. Unaffected</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q95"></div>
+                </div>
+
+                <!-- ====== Q96 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">96</span> A high error rate in DNA polymerase during replication would most likely cause:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q96" value="a"> A. Higher mutation rate</label>
+                        <label><input type="radio" name="q96" value="b"> B. Lower mutation rate</label>
+                        <label><input type="radio" name="q96" value="c"> C. Slower replication</label>
+                        <label><input type="radio" name="q96" value="d"> D. More accurate replication</label>
+                        <label><input type="radio" name="q96" value="e"> E. More resistance to DNA damage</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q96"></div>
+                </div>
+
+                <!-- ====== Q97 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">97</span> Which RNA polymerase transcribes protein-coding genes in eukaryotes?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q97" value="a"> A. RNA Polymerase I</label>
+                        <label><input type="radio" name="q97" value="b"> B. RNA Polymerase II</label>
+                        <label><input type="radio" name="q97" value="c"> C. RNA Polymerase III</label>
+                        <label><input type="radio" name="q97" value="d"> D. RNA Polymerase IV</label>
+                        <label><input type="radio" name="q97" value="e"> E. RNA Polymerase V</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q97"></div>
+                </div>
+
+                <!-- ====== Q98 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">98</span> To make the lac operon always turned on (even without lactose), which mutation would achieve this?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q98" value="a"> A. Mutation in lac repressor preventing operator binding</label>
+                        <label><input type="radio" name="q98" value="b"> B. Mutation in promoter increasing RNA polymerase affinity</label>
+                        <label><input type="radio" name="q98" value="c"> C. Mutation in CAP preventing promoter binding</label>
+                        <label><input type="radio" name="q98" value="d"> D. Mutation in lacZ inactivating β-galactosidase</label>
+                        <label><input type="radio" name="q98" value="e"> E. Mutation in lacY inactivating lactose permease</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q98"></div>
+                </div>
+
+                <!-- ====== Q99 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">99</span> A protein with a mutation affecting its folding is most likely to:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q99" value="a"> A. Be degraded by the proteasome</label>
+                        <label><input type="radio" name="q99" value="b"> B. Be secreted from the cell</label>
+                        <label><input type="radio" name="q99" value="c"> C. Be targeted to the mitochondria</label>
+                        <label><input type="radio" name="q99" value="d"> D. Fold correctly with chaperones</label>
+                        <label><input type="radio" name="q99" value="e"> E. Aggregate and form inclusion bodies</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q99"></div>
+                </div>
+
+                <!-- ====== Q100 ====== -->
+                <div class="question">
+                    <p><span class="q-badge">100</span> Alternative splicing of a pre-mRNA can result in:</p>
+                    <div class="options">
+                        <label><input type="radio" name="q100" value="a"> A. Production of multiple proteins from a single gene</label>
+                        <label><input type="radio" name="q100" value="b"> B. Production of a single protein from multiple genes</label>
+                        <label><input type="radio" name="q100" value="c"> C. Inhibition of translation initiation</label>
+                        <label><input type="radio" name="q100" value="d"> D. Enhancement of translation elongation</label>
+                        <label><input type="radio" name="q100" value="e"> E. Degradation of the mRNA molecule</label>
+                    </div>
+                    <div class="question-feedback" id="feedback-q100"></div>
+                </div>
+
+                <div class="submit-wrap">
+                    <button type="button" class="btn" onclick="submitQuiz()">
+                        <i class="fas fa-check-circle"></i> Submit All MCQs
+                    </button>
+                </div>
+
+            </form>
+
+            <div class="result" id="resultBox">
+                <h3><i class="fas fa-chart-simple"></i> Your Score</h3>
+                <div class="score" id="score">0%</div>
+                <p class="text-muted">Review the feedback below each question.</p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const correctAnswers = {
+            q1: "a",
+            q2: "e",
+            q3: "c",
+            q4: "c",
+            q5: "c",
+            q6: "c",
+            q7: "c",
+            q8: "c",
+            q9: "d",
+            q10: "d",
+            q11: "c",
+            q12: "c",
+            q13: "e",
+            q14: "c",
+            q15: "d",
+            q16: "d",
+            q17: "b",
+            q18: "b",
+            q19: "a",
+            q20: "c",
+            q21: "b",
+            q22: "c",
+            q23: "e",
+            q24: "e",
+            q25: "e",
+            q26: "d",
+            q27: "d",
+            q28: "b",
+            q29: "e",
+            q30: "e",
+            q31: "c",
+            q32: "c",
+            q33: "e",
+            q34: "a",
+            q35: "d",
+            q36: "b",
+            q37: "b",
+            q38: "d",
+            q39: "d",
+            q40: "d",
+            q41: "c",
+            q42: "a",
+            q43: "c",
+            q44: "b",
+            q45: "a",
+            q46: "b",
+            q47: "b",
+            q48: "b",
+            q49: "c",
+            q50: "b",
+            q51: "d",
+            q52: "d",
+            q53: "e",
+            q54: "d",
+            q55: "c",
+            q56: "c",
+            q57: "b",
+            q58: "c",
+            q59: "d",
+            q60: "b",
+            q61: "a",
+            q62: "b",
+            q63: "a",
+            q64: "d",
+            q65: "a",
+            q66: "b",
+            q67: "d",
+            q68: "c",
+            q69: "e",
+            q70: "b",
+            q71: "c",
+            q72: "c",
+            q73: "d",
+            q74: "c",
+            q75: "d",
+            q76: "a",
+            q77: "a",
+            q78: "b",
+            q79: "b",
+            q80: "c",
+            q81: "b",
+            q82: "b",
+            q83: "c",
+            q84: "c",
+            q85: "b",
+            q86: "c",
+            q87: "b",
+            q88: "e",
+            q89: "c",
+            q90: "c",
+            q91: "b",
+            q92: "a",
+            q93: "b",
+            q94: "a",
+            q95: "d",
+            q96: "a",
+            q97: "b",
+            q98: "a",
+            q99: "a",
+            q100: "a"
+        };
+
+        const answerExplanations = {
+            q1: "Eukaryotic DNA is wrapped around histones, forming nucleosomes that physically impede the replication fork, slowing it to ~100 nt/s compared to ~1000 nt/s in prokaryotes.",
+            q2: "After 3 rounds (2³ = 8 molecules), semi-conservative replication means only 2 molecules retain one original strand each, leaving 6 molecules with no original template.",
+            q3: "N-linked glycosylation begins in the ER with the transfer of a preformed oligosaccharide from dolichol phosphate to an asparagine residue of the nascent protein.",
+            q4: "Enhancers can act over long distances (up to 100 kb) and in any orientation, dramatically increasing transcription from their target promoters.",
+            q5: "RFLP detects restriction fragment length polymorphisms. Southern blot is used to visualize DNA fragments after restriction digestion and gel electrophoresis.",
+            q6: "Primase is a specialized RNA polymerase that synthesizes short RNA primers complementary to the DNA template, providing the 3′-OH needed for DNA polymerase.",
+            q7: "In PCR, DNA primers (oligonucleotides) anneal to the template and provide a free 3′-OH group for Taq polymerase to extend the new strand.",
+            q8: "The primary transcript (pre-mRNA) includes both introns (non-coding) and exons (coding); introns are later removed by splicing to produce mature mRNA.",
+            q9: "High glucose lowers cAMP levels, reducing CAP activation. Elevated cAMP overcomes this, allowing CAP to bind the CRP site and stimulate transcription even with glucose.",
+            q10: "DNA sequencing (e.g., Sanger or NGS) directly identifies nucleotide changes, making it the gold standard for mutation detection in genetic disorders.",
+            q11: "Ex vivo gene therapy involves removing cells from the patient, genetically modifying them in culture, and then reimplanting them — the cells are 'outside the body'.",
+            q12: "To create transgenic animals, the human gene is inserted into the egg cell (or embryo) so that every cell of the resulting animal contains the transgene.",
+            q13: "Shotgun cloning randomly fragments total genomic DNA and inserts the fragments into vectors, creating a genomic library without prior selection of specific genes.",
+            q14: "STR analysis is the standard for paternity and forensic DNA testing because it is highly polymorphic, reproducible, and amenable to PCR amplification.",
+            q15: "Purine biosynthesis uses glycine, glutamine, aspartate, formate, and CO₂. Arginine is not a precursor; it is involved in the urea cycle.",
+            q16: "PRPP (phosphoribosyl pyrophosphate) is both the substrate and a positive effector of PRPP amidotransferase, the enzyme that commits to purine synthesis.",
+            q17: "Nucleoside analogs like acyclovir lack a 3′-hydroxyl group; when incorporated, they cannot form the next phosphodiester bond, causing chain termination.",
+            q18: "Ribonucleotide reductase uses NADPH, thioredoxin, and glutaredoxin as reducing agents. FADH₂ is not involved in this reduction step.",
+            q19: "Pyrimidines degrade to β-alanine (from cytosine and uracil) or β-aminoisobutyrate (from thymine), which are excreted or further metabolized.",
+            q20: "Telomerase extends chromosome ends (telomeres). Cancer cells reactivate telomerase, allowing unlimited replication — a hallmark of cellular immortality.",
+            q21: "UV radiation causes adjacent thymines to form covalent cyclobutane dimers, distorting the DNA helix and blocking replication/transcription.",
+            q22: "Insertion of 3 bases adds an extra amino acid without changing the reading frame downstream, so the rest of the protein remains intact (minimal effect).",
+            q23: "Okazaki fragments begin with RNA primers (which contain uracil). The presence of uracil reflects the primer, not DNA polymerase error or damage.",
+            q24: "Prokaryotic mRNA is often polycistronic — multiple genes (cistrons) arranged sequentially, each with its own ribosome binding site for independent translation.",
+            q25: "Both prokaryotes and eukaryotes use the nearly universal genetic code where codons specify the same amino acids (with minor exceptions in mitochondria).",
+            q26: "Helicase unwinds the DNA helix by breaking H-bonds, while SSB proteins coat single-stranded DNA to prevent re-annealing and protect it from nucleases.",
+            q27: "Lesch–Nyhan syndrome (HGPRT deficiency) presents with self-mutilation, gout, and neurological symptoms. Elevated uric acid is a key diagnostic marker.",
+            q28: "Ribonucleotide reductase (RNR) catalyzes the conversion of ribonucleotides to deoxyribonucleotides by reducing the 2′-OH group to a hydrogen.",
+            q29: "Reverse transcriptase lacks 3′→5′ exonuclease proofreading activity, making it error-prone. DNA Pol δ has proofreading, ensuring high fidelity.",
+            q30: "The genetic code is degenerate because most amino acids are encoded by more than one codon (e.g., leucine has six codons), reducing the impact of mutations.",
+            q31: "DNA ligase seals nicks by catalyzing phosphodiester bond formation between adjacent nucleotides, essential for joining Okazaki fragments and repairing breaks.",
+            q32: "HGPRT (hypoxanthine-guanine phosphoribosyltransferase) is present at low levels in the brain; its deficiency causes Lesch–Nyhan syndrome.",
+            q33: "DNA repair polymerases can extend from any available 3′-OH (often created by strand displacement or nicking), so an RNA primer is not required.",
+            q34: "The Shine–Dalgarno sequence (AGGAGG) is complementary to the 16S rRNA and positions the ribosome at the start codon for translation initiation.",
+            q35: "DNA replication occurs exclusively during the S (synthesis) phase of the cell cycle, when the genome is duplicated prior to cell division.",
+            q36: "Diphtheria toxin ADP-ribosylates elongation factor eEF2, inactivating it and halting protein synthesis at the translocation step.",
+            q37: "PCR exponentially amplifies minute amounts of DNA, making it the standard method for generating sufficient DNA from crime scene samples for analysis.",
+            q38: "Norfloxacin (a fluoroquinolone) inhibits bacterial topoisomerase II (DNA gyrase), which relieves supercoiling ahead of the replication fork.",
+            q39: "DKC is caused by mutations in dyskerin, a component of telomerase. Telomerase synthesizes telomeres, and its deficiency impairs stem cell proliferation.",
+            q40: "BRCA1 and BRCA2 are essential for homologous recombination repair of double-strand breaks; their loss leads to genomic instability and cancer.",
+            q41: "VNTR (variable number tandem repeat) analysis, using RFLP or PCR, is a classic DNA fingerprinting method for comparing crime scene and suspect DNA.",
+            q42: "Lesch–Nyhan syndrome is caused by HGPRTase deficiency, leading to uric acid overproduction, neurological symptoms, and characteristic self-mutilation.",
+            q43: "If the operator cannot bind the repressor, the trp operon is constitutively expressed — the genes are transcribed regardless of tryptophan levels.",
+            q44: "Introns are non-coding regions that are transcribed but spliced out of pre-mRNA before translation, so they are not present in the mature mRNA.",
+            q45: "Erythromycin binds the 50S ribosomal subunit and blocks translocation, inhibiting protein synthesis; it is used for Bordetella pertussis (whooping cough).",
+            q46: "Rifampicin binds the β-subunit of bacterial RNA polymerase, blocking promoter binding and transcription initiation — used in tuberculosis treatment.",
+            q47: "The lac operon is negatively regulated because the repressor protein binds the operator to block transcription; derepression removes this block.",
+            q48: "The operator is the DNA sequence where repressor proteins bind, blocking RNA polymerase access to the promoter and turning transcription off.",
+            q49: "FISH uses fluorescent probes to bind specific chromosome regions, allowing visualization of chromosomal abnormalities in interphase or metaphase cells.",
+            q50: "RNAi uses small interfering RNAs (siRNAs) to guide the RISC complex to degrade target mRNA, knocking down gene expression post-transcriptionally.",
+            q51: "Genomic libraries contain all DNA (including introns, exons, promoters). cDNA libraries contain only exons (coding sequences) from expressed genes.",
+            q52: "The ubiquitin-proteasome pathway tags proteins with ubiquitin and degrades them in the proteasome — the main pathway for selective protein turnover.",
+            q53: "Mitochondrial and chloroplast DNA replicate throughout the cell cycle, independent of nuclear S-phase regulation, reflecting their bacterial origin.",
+            q54: "Aspartate donits nitrogen atoms to both purines (N1) and pyrimidines (N3, N1) — the only common precursor for both ring systems.",
+            q55: "Purines are not catabolized for energy; they are excreted as uric acid (in humans) or allantoin. Pyrimidines yield β-alanine/β-aminoisobutyrate.",
+            q56: "DNA polymerase III catalyzes nucleophilic attack of the 3′-OH on the incoming dNTP, so synthesis always proceeds 5′→3′ due to chemical polarity.",
+            q57: "DNA Polymerase I has 5′→3′ exonuclease activity that removes RNA primers and 5′→3′ polymerase activity that fills the gap with DNA.",
+            q58: "DNA ligase seals nicks between Okazaki fragments by forming a phosphodiester bond, creating a continuous lagging strand.",
+            q59: "mRNA (messenger RNA) carries the codons that specify the amino acid sequence, which is decoded by the ribosome during translation.",
+            q60: "Xanthine oxidase deficiency prevents conversion of hypoxanthine→xanthine→uric acid, leading to low uric acid and accumulation of hypoxanthine/xanthine.",
+            q61: "Thymidylate synthase uses N⁵,N¹⁰-methylene tetrahydrofolate as a methyl donor to convert dUMP to dTMP (the only de novo source of thymine).",
+            q62: "Chloramphenicol binds the 50S ribosomal subunit and inhibits peptidyl transferase, preventing peptide bond formation and chain elongation.",
+            q63: "The promoter is a DNA sequence that recruits RNA polymerase and general transcription factors, positioning them to initiate transcription at the start site.",
+            q64: "Enhancers are distal regulatory elements that bind transcription factors and loop to the promoter to activate transcription from long range.",
+            q65: "Helicase hydrolyzes ATP to break the hydrogen bonds between complementary base pairs (A–T and G–C), separating the two strands.",
+            q66: "Xeroderma pigmentosum patients have defects in nucleotide excision repair, specifically unable to remove UV-induced pyrimidine (thymine) dimers.",
+            q67: "Ribosomes have three sites: A (aminoacyl-tRNA enters), P (peptidyl-tRNA carries the growing chain), and E (exit for deacylated tRNA).",
+            q68: "Leucine zipper domains mediate dimerization of transcription factors, allowing them to bind DNA as homo- or heterodimers (e.g., c-Fos/c-Jun).",
+            q69: "Heterochromatin is highly condensed, limiting access of transcription factors and RNA polymerase, so genes within it are typically silenced.",
+            q70: "Inducers bind to the repressor protein, causing a conformational change that prevents repressor–operator binding, allowing transcription.",
+            q71: "Molecular chaperones (e.g., Hsp70, chaperonins) assist in protein folding, preventing aggregation and helping misfolded proteins refold.",
+            q72: "Allopurinol inhibits xanthine oxidase, reducing uric acid production. This also slows 6-mercaptopurine degradation, potentiating its activity.",
+            q73: "Dideoxynucleotides (ddNTPs) lack a 3′-OH, so when incorporated, they terminate chain elongation, producing a series of labeled fragments for sequencing.",
+            q74: "Trimethoprim is a competitive inhibitor of bacterial dihydrofolate reductase (DHFR), blocking tetrahydrofolate synthesis and DNA replication.",
+            q75: "Insulin is produced only in pancreatic beta cells, so mRNA from beta cells contains the correct spliced coding sequence without introns.",
+            q76: "FISH can detect small deletions, translocations, and gene amplifications using specific probes, even in interphase nuclei (not just metaphase).",
+            q77: "Replication errors that escape proofreading cause mismatched base pairs, leading to point mutations (transitions or transversions).",
+            q78: "Allele-specific oligonucleotides (ASOs) are designed to discriminate between wild-type and mutant sequences by a single base mismatch.",
+            q79: "NER removes bulky helix-distorting lesions like CPDs and 6-4 photoproducts by excising a ~30-nt fragment and resynthesizing DNA.",
+            q80: "A new restriction site cleaves the DNA into two fragments, so the affected individual will show two additional bands (3 fragments total vs 1).",
+            q81: "Leucine zipper proteins form coiled-coil dimers. The dimer binds DNA cooperatively, often as a heterodimer with other bZIP factors.",
+            q82: "Real-time PCR (qPCR) measures amplification in real time using fluorescent dyes, allowing accurate quantification of gene expression across samples.",
+            q83: "Western blot uses antibodies to detect specific proteins after SDS-PAGE, providing information on protein size, abundance, and modification.",
+            q84: "Isocaudomers are restriction enzymes that recognize different sequences but produce the same cohesive ends, enabling compatible ligation.",
+            q85: "5′ capping occurs co-transcriptionally in the nucleus, before translation, so it is a pre-mRNA processing step, not a post-translational modification.",
+            q86: "Recombinant bacteria can produce unlimited quantities of human insulin with high purity, low cost, and no risk of viral contamination.",
+            q87: "5-FU is a suicide inhibitor of thymidylate synthase, forming a covalent complex that depletes dTMP and halts DNA synthesis.",
+            q88: "siRNA guides the RISC complex to complementary mRNA, which is then cleaved and degraded, preventing translation.",
+            q89: "Developmental globin switching is controlled by transcription factors (e.g., KLF1, GATA-1) that bind enhancers and promote stage-specific expression.",
+            q90: "Topoisomerases relieve torsional stress ahead of the fork. Inhibition leads to supercoiling and tangling, stalling fork progression.",
+            q91: "Secretory proteins have an N-terminal signal peptide that directs the ribosome to the ER for co-translational translocation into the ER lumen.",
+            q92: "High tryptophan allows the ribosome to translate the leader peptide, forming the 3-4 terminator hairpin that terminates transcription prematurely.",
+            q93: "cAMP binds CAP (catabolite activator protein), which then binds the CAP site near the lac promoter, recruiting RNA polymerase for full induction.",
+            q94: "ADA deficiency causes accumulation of dATP, which is toxic to lymphocytes, leading to severe combined immunodeficiency (SCID).",
+            q95: "A slower leader peptide translation alters the timing of ribosome stalling, making attenuation less responsive to tryptophan levels.",
+            q96: "A high error rate during replication (e.g., loss of proofreading) directly increases the mutation frequency, driving genetic diversity or disease.",
+            q97: "RNA Pol II transcribes all protein-coding genes (mRNAs) and some non-coding RNAs (snRNAs, miRNAs) in eukaryotes.",
+            q98: "A mutated repressor that cannot bind the operator means the operon is always transcribed regardless of lactose — constitutive expression.",
+            q99: "Misfolded proteins are recognized by the quality control system, ubiquitinated, and degraded by the proteasome to prevent toxic aggregation.",
+            q100: "Alternative splicing combines different exons from the same gene, producing multiple mRNA isoforms and thus multiple protein variants from one gene."
+        };
+
+        function submitQuiz() {
+            let score = 0;
+            const total = Object.keys(correctAnswers).length;
+
+            document.querySelectorAll('.question-feedback').forEach(el => el.innerHTML = '');
+
+            for (const key in correctAnswers) {
+                const radios = Array.from(document.querySelectorAll(`input[name="${key}"]`));
+                const selected = radios.find(r => r.checked);
+                const correct = correctAnswers[key];
+                const feedbackEl = document.getElementById(`feedback-${key}`);
+                if (!feedbackEl) continue;
+
+                if (selected && selected.value === correct) score++;
+
+                let html = `<div class="answer-block"><strong>Q${key.replace(/^q/, '')}</strong><div class="answer-list">`;
+                radios.forEach(r => {
+                    const label = r.parentElement;
+                    const text = label ? label.textContent.trim() : r.value;
+                    let cls = 'answer-item';
+                    if (r.value === correct) cls += ' answer-correct';
+                    if (r.checked && r.value !== correct) cls += ' answer-wrong user-choice';
+                    if (r.checked && r.value === correct) cls += ' user-choice';
+                    html += `<div class="${cls}">${text}${r.checked ? ' ◀' : ''}</div>`;
+                });
+                html += `</div>`;
+
+                const correctRadio = radios.find(r => r.value === correct);
+                const correctText = correctRadio && correctRadio.parentElement ? correctRadio.parentElement.textContent.trim() : correct;
+                const explanation = answerExplanations[key] || '';
+
+                if (selected) {
+                    if (selected.value === correct) {
+                        html += `<div class="explanation">✅ Correct — ${explanation}</div>`;
+                    } else {
+                        html += `<div class="explanation wrong">❌ Incorrect. Correct answer: <strong>${correctText}</strong>. ${explanation}</div>`;
+                    }
+                } else {
+                    html += `<div class="explanation wrong">No answer selected. Correct: <strong>${correctText}</strong>. ${explanation}</div>`;
+                }
+
+                html += `</div>`;
+                feedbackEl.innerHTML = html;
+            }
+
+            const pct = Math.round((score / total) * 100);
+            const resultBox = document.getElementById('resultBox');
+            resultBox.style.display = 'block';
+            document.getElementById('score').innerText = pct + '%';
+
+            document.querySelectorAll('#quizForm input[type="radio"]').forEach(i => i.disabled = true);
+        }
+    </script>
+
+</body>
+</html>

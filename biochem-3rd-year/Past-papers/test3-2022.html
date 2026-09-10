@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2022 Biochemistry Test 3 – Full</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        :root {
+            --primary: #1a6b6b;
+            --accent: #2ea8a0;
+            --dark: #0f2a2a;
+            --light: #f4f8f7;
+            --radius: 12px;
+            --shadow: 0 4px 14px rgba(0, 30, 30, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+            background: #edf3f2;
+            color: var(--dark);
+            min-height: 100vh;
+            padding-top: 72px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: linear-gradient(145deg, var(--primary), var(--dark));
+            color: #fff;
+            padding: 0.6rem 0;
+            box-shadow: 0 4px 18px rgba(0, 20, 20, 0.25);
+        }
+
+        .header-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .logo i {
+            font-size: 1.5rem;
+            color: #8dd9d4;
+        }
+
+        .logo h1 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #b3e6e0;
+            letter-spacing: 0.5px;
+        }
+
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 0 1.2rem 2.5rem;
+        }
+
+        /* ─── TAB BAR ─── */
+        .tab-bar {
+            display: flex;
+            gap: 0.5rem;
+            margin: 0.5rem 0 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: #dce8e8;
+            border: none;
+            padding: 0.5rem 1.8rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--dark);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .tab-btn:hover {
+            background: #c0d6d6;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 2px 10px rgba(26, 107, 107, 0.25);
+        }
+
+        .tab-panel {
+            display: block;
+        }
+
+        .tab-panel.hidden {
+            display: none;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0 0 0.8rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 3px solid rgba(26, 107, 107, 0.18);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .section-title .count {
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.7rem;
+            line-height: 1.7;
+        }
+
+        .section-subtitle {
+            color: #4f6e6e;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .question {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.1rem 1.2rem 0.2rem 1.2rem;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(26, 107, 107, 0.05);
+            transition: box-shadow 0.2s;
+        }
+
+        .question:hover {
+            box-shadow: 0 6px 20px rgba(0, 30, 30, 0.07);
+        }
+
+        .question .q-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 40px;
+            padding: 0 0.65rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            line-height: 1.6;
+            margin-right: 0.4rem;
+        }
+
+        .question p {
+            font-weight: 600;
+            font-size: 0.97rem;
+            margin-bottom: 0.4rem;
+            color: var(--dark);
+        }
+
+        .options label {
+            display: block;
+            background: #fafcfc;
+            border: 1px solid #dde8e8;
+            border-radius: 7px;
+            padding: 0.4rem 0.85rem;
+            margin-top: 0.4rem;
+            cursor: pointer;
+            transition: all 0.15s;
+            font-weight: 450;
+            font-size: 0.92rem;
+        }
+
+        .options label:hover {
+            background: #e8f5f4;
+            border-color: var(--accent);
+        }
+
+        .options input[type="radio"] {
+            margin-right: 0.5rem;
+            accent-color: var(--primary);
+            transform: scale(1.04);
+        }
+
+        .question-feedback {
+            margin-top: 0.8rem;
+            padding: 0.4rem 0 0.1rem 0;
+            border-top: 1px dashed #dce6e6;
+        }
+
+        .answer-block strong {
+            display: block;
+            margin-bottom: 3px;
+            color: var(--primary);
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .answer-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .answer-item {
+            padding: 4px 10px;
+            border-radius: 5px;
+            border: 1px solid #e4edec;
+            background: #ffffff;
+            font-weight: 500;
+            font-size: 0.88rem;
+        }
+
+        .answer-correct {
+            background: #e8f7ef;
+            border-color: #a8d8c0;
+            color: #0a4f3a;
+        }
+
+        .answer-wrong {
+            background: #fde9ea;
+            border-color: #f5b8b8;
+            color: #8a1f2b;
+        }
+
+        .user-choice {
+            outline: 2px dashed rgba(0, 0, 0, 0.06);
+        }
+
+        .explanation {
+            margin-top: 5px;
+            padding: 8px 13px;
+            border-radius: 7px;
+            background: #f0f8f6;
+            color: #065f4a;
+            font-size: 0.88rem;
+            line-height: 1.5;
+            border-left: 4px solid var(--accent);
+        }
+
+        .explanation.wrong {
+            background: #fdf1f1;
+            color: #7a1f1f;
+            border-left-color: #e68080;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            color: #fff;
+            border: none;
+            padding: 0.55rem 1.8rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 14px rgba(26, 107, 107, 0.25);
+        }
+
+        .btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 24px rgba(26, 107, 107, 0.32);
+        }
+
+        .btn:active {
+            transform: scale(0.96);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .btn-sm {
+            padding: 0.3rem 1rem;
+            font-size: 0.8rem;
+        }
+
+        .submit-wrap {
+            text-align: center;
+            margin: 1.5rem 0 1.8rem;
+        }
+
+        .result {
+            margin-top: 1.5rem;
+            padding: 1.5rem 1.5rem 0.8rem;
+            background: #eaf6f4;
+            border-radius: var(--radius);
+            text-align: center;
+            display: none;
+            border: 1px solid #b8dbd6;
+        }
+
+        .result h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .score {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0.1rem 0 0.2rem;
+        }
+
+        .text-muted {
+            color: #4f6e6e;
+            font-size: 0.9rem;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .scroll-target {
+            scroll-margin-top: 80px;
+        }
+
+        /* ----- Section B ----- */
+        .section-b-question {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 1.2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(26, 107, 107, 0.05);
+        }
+
+        .section-b-question .q-label {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-b-question .q-text {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            background: #f5f8f8;
+            padding: 0.6rem 1rem;
+            border-radius: 7px;
+        }
+
+        .subquestion {
+            margin-top: 0.8rem;
+            border-top: 1px solid #e0ecec;
+            padding-top: 0.8rem;
+        }
+
+        .subquestion .sub-label {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .subquestion textarea {
+            width: 100%;
+            min-height: 55px;
+            padding: 0.6rem;
+            border: 1px solid #cbdcdc;
+            border-radius: 7px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            resize: vertical;
+            margin-top: 0.3rem;
+            background: #fafcfc;
+        }
+
+        .subquestion textarea:focus {
+            outline: 2px solid var(--accent);
+            border-color: transparent;
+        }
+
+        .show-answer-btn {
+            margin-top: 0.4rem;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 0.2rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+
+        .show-answer-btn:hover {
+            background: var(--accent);
+        }
+
+        .model-answer {
+            margin-top: 0.5rem;
+            padding: 0.6rem 1rem;
+            background: #f0f8f6;
+            border-left: 4px solid var(--accent);
+            border-radius: 5px;
+            font-size: 0.9rem;
+            color: #065f4a;
+            display: none;
+            white-space: pre-wrap;
+        }
+
+        .model-answer.visible {
+            display: block;
+        }
+
+        .mono-box {
+            background: #f5f8f8;
+            padding: 0.6rem 1rem;
+            border-radius: 7px;
+            font-family: monospace;
+            font-size: 0.95rem;
+            margin: 0.5rem 0;
+        }
+
+        @media (max-width: 700px) {
+            body {
+                padding-top: 68px;
+            }
+            .logo h1 {
+                font-size: 0.95rem;
+            }
+            .header-inner {
+                padding: 0 1rem;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.2rem;
+            }
+            .badge {
+                align-self: flex-start;
+            }
+            .question {
+                padding: 0.9rem 0.9rem 0.1rem 0.9rem;
+            }
+            .section-title {
+                font-size: 1.05rem;
+            }
+            .score {
+                font-size: 2.2rem;
+            }
+            .btn {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.85rem;
+            }
+            .section-b-question {
+                padding: 0.9rem;
+            }
+            .tab-btn {
+                padding: 0.4rem 1.2rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .logo h1 {
+                font-size: 0.8rem;
+            }
+            .options label {
+                font-size: 0.85rem;
+                padding: 0.35rem 0.65rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <i class="fas fa-dna"></i>
+                <h1>2022 Biochemistry Test 3</h1>
+            </div>
+            <span class="badge"><i class="fas fa-pencil-alt"></i> &nbsp;40 MCQs + Section B</span>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+
+            <!-- ===== TAB BAR ===== -->
+            <div class="tab-bar">
+                <button class="tab-btn active" data-target="section-mcq">📝 MCQs</button>
+                <button class="tab-btn" data-target="section-sectionB">✍️ Section B</button>
+            </div>
+
+            <!-- ========== MCQ SECTION ========== -->
+            <div id="section-mcq" class="tab-panel">
+                <div class="section-title scroll-target" id="mcq-top">
+                    <i class="fas fa-list-ul"></i> Multiple Choice Questions
+                    <span class="count">40</span>
+                </div>
+                <p class="section-subtitle">Select the best answer for each question, then click <strong>Submit All MCQs</strong> below.</p>
+
+                <form id="quizForm">
+                    <div id="mcq-container"></div>
+                    <div class="submit-wrap">
+                        <button type="button" class="btn" onclick="submitQuiz()">
+                            <i class="fas fa-check-circle"></i> Submit All MCQs
+                        </button>
+                    </div>
+                </form>
+
+                <div class="result" id="resultBox">
+                    <h3><i class="fas fa-chart-simple"></i> Your Score</h3>
+                    <div class="score" id="score">0%</div>
+                    <p class="text-muted">Review the feedback below each question.</p>
+                </div>
+            </div>
+
+            <!-- ========== SECTION B (WRITTEN) – FULLY UPDATED ========== -->
+            <div id="section-sectionB" class="tab-panel hidden">
+                <div class="section-title">
+                    <i class="fas fa-pencil-square"></i> Section B – Descriptive Questions
+                    <span class="count">Answer any 4 of 5</span>
+                </div>
+                <p class="section-subtitle">Type your answers in the boxes below. Click <strong>Show Answer</strong> to reveal a model answer.</p>
+
+                <!-- ─── Q1: Xeroderma Pigmentosum ─── -->
+                <div class="section-b-question">
+                    <div class="q-label">Question 1</div>
+                    <div class="q-text">An 8‑month‑old child is brought to the pediatrician’s office due to excessive sensitivity to the sun. Skin areas exposed to the sun for only a brief period of time were reddened with scaling. Irregular dark spots have also appeared. The pediatrician suspects a genetic disorder, which is related to DNA repair mechanism.</div>
+
+                    <div class="subquestion">
+                        <div class="sub-label">a) What is the most likely DNA damage in this case? (1 mark)</div>
+                        <textarea placeholder="Write your answer here..."></textarea>
+                        <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        <div class="model-answer"><strong>Formation of thymine dimers (cyclobutane pyrimidine dimers)</strong> caused by UV radiation.</div>
+                    </div>
+
+                    <div class="subquestion">
+                        <div class="sub-label">b) List the major types of DNA damages along with causes for each type of damage. (3 marks)</div>
+                        <textarea placeholder="Write your answer here..."></textarea>
+                        <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        <div class="model-answer"><strong>(i)</strong> Thymine dimers – caused by UV light.<br>
+                        <strong>(ii)</strong> Base excision (oxidative damage, deamination, alkylation) – caused by reactive oxygen species, chemicals.<br>
+                        <strong>(iii)</strong> Single‑strand breaks – caused by ionizing radiation and chemical toxins.<br>
+                        <strong>(iv)</strong> Double‑strand breaks – caused by ionizing radiation, chemical toxins.<br>
+                        <strong>(v)</strong> Mismatched bases – caused by replication errors.</div>
+                    </div>
+
+                    <div class="subquestion">
+                        <div class="sub-label">c) List the major DNA repair mechanisms in line with these major types of DNA damages. (3 marks)</div>
+                        <textarea placeholder="Write your answer here..."></textarea>
+                        <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        <div class="model-answer"><strong>(i)</strong> Nucleotide excision repair – for thymine dimers and bulky lesions.<br>
+                        <strong>(ii)</strong> Base excision repair – for oxidative damage, deamination, alkylation.<br>
+                        <strong>(iii)</strong> Mismatch repair – for replication errors.<br>
+                        <strong>(iv)</strong> Homologous recombination and Non‑homologous end joining – for double‑strand breaks.</div>
+                    </div>
+
+                    <div class="subquestion">
+                        <div class="sub-label">d) Which of these DNA repair mechanisms is most likely be defective in this case? (1 mark)</div>
+                        <textarea placeholder="Write your answer here..."></textarea>
+                        <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        <div class="model-answer"><strong>Nucleotide excision repair (NER)</strong> – the mechanism that removes UV‑induced pyrimidine dimers.</div>
+                    </div>
+
+                    <div class="subquestion">
+                        <div class="sub-label">e) Name the genetic disorder that might be the suspect of the pediatrician. (2 marks)</div>
+                        <textarea placeholder="Write your answer here..."></textarea>
+                        <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        <div class="model-answer"><strong>Xeroderma pigmentosum (XP)</strong> – an autosomal recessive disorder with defective nucleotide excision repair.</div>
+                    </div>
+                </div>
+
+                <!-- ─── Q2: Mushroom Poisoning ─── -->
+                <div class="section-b-question">
+                    <div class="q-label">Question 2</div>
+                    <div class="q-text">A patient suffering from chills, vomiting, and cramping was rushed to the emergency department. The physician noted that the patient had eaten wild mushrooms for dinner that he had picked earlier in the day.</div>
+
+                    <div class="subquestion">
+                        <div class="sub-label">a) Identify and name the compound in the wild mushroom that is responsible for the condition of the patient. (1 mark)</div>
+                        <textarea placeholder="Write your answer here..."></textarea>
+                        <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        <div class="model-answer"><strong>α‑Amanitin</strong> (found in <em>Amanita phalloides</em>, the death cap mushroom).</div>
+                    </div>
+
+                    <div class="subquestion">
+                        <div class="sub-label">b) Which enzyme does this compound inhibit? (1 mark)</div>
+                        <textarea placeholder="Write your answer here..."></textarea>
+                        <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        <div class="model-answer"><strong>RNA polymerase II</strong> (and also RNA polymerase III at higher concentrations).</div>
+                    </div>
+
+                    <div class="subquestion">
+                        <div class="sub-label">c) How does this compound inhibit (mechanism) the above enzyme? (2 marks)</div>
+                        <textarea placeholder="Write your answer here..."></textarea>
+                        <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        <div class="model-answer">α‑Amanitin binds to the <strong>bridge helix</strong> of RNA polymerase II, blocking the translocation step and preventing the addition of nucleotides to the growing RNA chain. This effectively halts transcription.</div>
+                    </div>
+
+                    <div class="subquestion">
+                        <div class="sub-label">d) Which major process would have been affected by this enzyme inhibition? (1 mark)</div>
+                        <textarea placeholder="Write your answer here..."></textarea>
+                        <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        <div class="model-answer"><strong>Transcription</strong> – the synthesis of mRNA from DNA.</div>
+                    </div>
+
+                    <div class="subquestion">
+                        <div class="sub-label">e) What are the three major steps in this process? With a diagram, illustrate each one. (5 marks)</div>
+                        <textarea placeholder="Write your answer here... (describe the steps)"></textarea>
+                        <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        <div class="model-answer"><strong>1. Initiation:</strong> RNA polymerase binds to the promoter, unwinds DNA, and begins RNA synthesis.<br>
+                        <strong>2. Elongation:</strong> RNA polymerase moves along the template, adding nucleotides to the 3′ end of the growing RNA chain.<br>
+                        <strong>3. Termination:</strong> RNA polymerase reaches a termination signal, releases the RNA transcript, and dissociates from DNA.<br>
+                        <em>(Diagram: show promoter, RNA polymerase, template strand, growing RNA, and termination signal.)</em></div>
+                    </div>
+                </div>
+
+                <!-- ─── Q3: Gout ─── -->
+                <div class="section-b-question">
+                    <div class="q-label">Question 3</div>
+                    <div class="q-text">Your 56‑year‑old male patient presents with intense redness, heat, and pain over his right great toe at the metatarsophalangeal joint. Fluid from this joint shows birefringent crystals.</div>
+
+                    <div class="subquestion">
+                        <div class="sub-label">a) What is the most likely disease in this case? (1 mark)</div>
+                        <textarea placeholder="Write your answer here..."></textarea>
+                        <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        <div class="model-answer"><strong>Gout</strong> (acute gouty arthritis).</div>
+                    </div>
+
+                    <div class="subquestion">
+                        <div class="sub-label">b) This disease is caused by the degradation of an excessive amount of which of the metabolites? (1 mark)</div>
+                        <textarea placeholder="Write your answer here..."></textarea>
+                        <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        <div class="model-answer"><strong>Purines</strong> (adenine and guanine) leading to overproduction of uric acid.</div>
+                    </div>
+
+                    <div class="subquestion">
+                        <div class="sub-label">c) Identify the metabolite in the fluid collected from the affected joint that shows as birefringent crystals. (1 mark)</div>
+                        <textarea placeholder="Write your answer here..."></textarea>
+                        <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        <div class="model-answer"><strong>Uric acid</strong> (monosodium urate crystals).</div>
+                    </div>
+
+                    <div class="subquestion">
+                        <div class="sub-label">d) What is the normal range of this metabolite in the serum? (1 mark)</div>
+                        <textarea placeholder="Write your answer here..."></textarea>
+                        <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        <div class="model-answer">Normal serum uric acid: <strong>3.4–7.0 mg/dL</strong> (men) or <strong>2.4–6.0 mg/dL</strong> (women); approximately <strong>200–420 μmol/L</strong>.</div>
+                    </div>
+
+                    <div class="subquestion">
+                        <div class="sub-label">e) What are the enzyme defects that would cause this condition? (2 marks)</div>
+                        <textarea placeholder="Write your answer here..."></textarea>
+                        <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        <div class="model-answer"><strong>HGPRT deficiency</strong> (Lesch‑Nyhan syndrome) – leads to uric acid overproduction.<br>
+                        <strong>Overactivity of PRPP synthetase</strong> – increases purine synthesis.<br>
+                        <strong>Glucose‑6‑phosphatase deficiency</strong> (von Gierke's disease) – causes secondary gout.</div>
+                    </div>
+
+                    <div class="subquestion">
+                        <div class="sub-label">f) Eating of sugary food items considered to be worsening this condition. Explain it biochemically. (3 marks)</div>
+                        <textarea placeholder="Write your explanation here..." style="min-height:80px;"></textarea>
+                        <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        <div class="model-answer"><strong>Fructose</strong> (from sucrose or high‑fructose corn syrup) is metabolised rapidly, consuming ATP and generating <strong>AMP</strong>. AMP is degraded to <strong>inosine</strong> and then to <strong>hypoxanthine</strong>, which is converted to <strong>uric acid</strong>. Fructose also stimulates purine nucleotide turnover, leading to increased uric acid production, worsening gout.</div>
+                    </div>
+
+                    <div class="subquestion">
+                        <div class="sub-label">g) List two other factors that promote this condition. (1 mark)</div>
+                        <textarea placeholder="Write your answer here..."></textarea>
+                        <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        <div class="model-answer"><strong>Alcohol consumption</strong> (especially beer) – increases uric acid production and decreases excretion.<br>
+                        <strong>Dehydration</strong> – reduces uric acid excretion, increasing serum levels.</div>
+                    </div>
+                </div>
+
+                <!-- ─── Q4: lac operon ─── -->
+                <div class="section-b-question">
+                    <div class="q-label">Question 4</div>
+                    <div class="q-text">The lac operon is a portion of the bacterial chromosome that controls the synthesis of three enzymes involved in the metabolism of the sugar lactose.</div>
+                    <div class="mono-box">
+                        <strong>Regulatory gene</strong> &nbsp;|&nbsp; <strong>Promoter</strong> &nbsp;|&nbsp; <strong>Operator</strong> &nbsp;|&nbsp; <strong>Z</strong> &nbsp;|&nbsp; <strong>Y</strong> &nbsp;|&nbsp; <strong>A</strong>
+                    </div>
+
+                    <div class="subquestion">
+                        <div class="sub-label">a) Describe the mechanism of repression in lac operon. (2 marks)</div>
+                        <textarea placeholder="Write your answer here..."></textarea>
+                        <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        <div class="model-answer">In the absence of lactose, the <strong>lac repressor</strong> (encoded by the <em>lacI</em> gene) binds to the <strong>operator</strong> sequence. This physically blocks RNA polymerase from transcribing the structural genes (<em>Z</em>, <em>Y</em>, <em>A</em>), so no enzymes for lactose metabolism are produced.</div>
+                    </div>
+
+                    <div class="subquestion">
+                        <div class="sub-label">b) Describe the mechanism of derepression in lac operon. (2 marks)</div>
+                        <textarea placeholder="Write your answer here..."></textarea>
+                        <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        <div class="model-answer">When lactose is present, it is converted to <strong>allolactose</strong>, which binds to the repressor protein. This causes a conformational change that releases the repressor from the operator. RNA polymerase can then bind the promoter and transcribe the structural genes.</div>
+                    </div>
+
+                    <div class="subquestion">
+                        <div class="sub-label">c) Explain the effect of presence of high glucose on the functioning of lac operon. (2 marks)</div>
+                        <textarea placeholder="Write your answer here..."></textarea>
+                        <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        <div class="model-answer">High glucose <strong>decreases cAMP</strong> levels (since glucose inhibits adenylate cyclase). cAMP is required to activate <strong>CAP</strong> (catabolite activator protein). Without the cAMP‑CAP complex binding to the CAP site near the promoter, RNA polymerase binds poorly, so transcription is low even if lactose is present (catabolite repression).</div>
+                    </div>
+
+                    <div class="subquestion">
+                        <div class="sub-label">d) Consider E. coli cells, each having one of the following mutations (i to iv). What effect would each mutation have on the function of the lac operon (assuming no glucose is present)?</div>
+                        <div style="margin-top:0.5rem;">
+                            <div class="sub-label" style="font-weight:500;">i. a mutant lac operator that cannot bind repressor: (1 mark)</div>
+                            <textarea placeholder="Write your answer here..."></textarea>
+                            <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                            <div class="model-answer"><strong>Constitutive expression</strong> – the operon is always transcribed because the repressor cannot bind the operator.</div>
+                        </div>
+                        <div style="margin-top:0.8rem;">
+                            <div class="sub-label" style="font-weight:500;">ii. a mutant lac repressor that cannot bind to the lac operator: (1 mark)</div>
+                            <textarea placeholder="Write your answer here..."></textarea>
+                            <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                            <div class="model-answer"><strong>Constitutive expression</strong> – the repressor cannot bind the operator, so transcription is always on.</div>
+                        </div>
+                        <div style="margin-top:0.8rem;">
+                            <div class="sub-label" style="font-weight:500;">iii. a mutant lac repressor that cannot bind to allolactose: (1 mark)</div>
+                            <textarea placeholder="Write your answer here..."></textarea>
+                            <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                            <div class="model-answer"><strong>Cannot be induced</strong> – the repressor stays bound to the operator even in the presence of lactose, so transcription remains off.</div>
+                        </div>
+                        <div style="margin-top:0.8rem;">
+                            <div class="sub-label" style="font-weight:500;">iv. a mutant lac promoter region that cannot bind CAP plus cAMP: (1 mark)</div>
+                            <textarea placeholder="Write your answer here..."></textarea>
+                            <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                            <div class="model-answer"><strong>Low transcription</strong> – CAP‑cAMP cannot bind to enhance RNA polymerase recruitment, so transcription is reduced even when lactose is present.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ─── Q5: DNA Transcription ─── -->
+                <div class="section-b-question">
+                    <div class="q-label">Question 5</div>
+                    <div class="q-text">The following is the sequence of a portion of a bacterial gene (The template strand is on the bottom):</div>
+                    <div class="mono-box">
+                        5' GTATCGTTAGCATGCATCGTGAC 3'<br>
+                        3' CATAGCACTAGTACGTCGACTG 5'
+                    </div>
+                    <p style="font-size:0.9rem;color:#4f6e6e;">Hint: You do not need to know the genetic code and amino acid for respective codon to answer these questions; you just need to know the nature of initiation and termination codons.</p>
+
+                    <div class="subquestion">
+                        <div class="sub-label">a) Assuming that transcription starts with the first T in the template strand, and continues to the end, what would be the sequence of the mRNA derived from this fragment? (2 marks)</div>
+                        <textarea placeholder="Write your mRNA sequence here..."></textarea>
+                        <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        <div class="model-answer">5' – <strong>AUCGUAUGCACGUACGUAGACUG</strong> – 3'<br><small>(complement of the template from the first T onward, with U instead of T; antiparallel)</small></div>
+                    </div>
+
+                    <div class="subquestion">
+                        <div class="sub-label">b) Locate and mark the initiation codon and stop codon in this mRNA. (2 marks)</div>
+                        <textarea placeholder="Indicate the initiation and stop codons..."></textarea>
+                        <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        <div class="model-answer">In the mRNA above, the initiation codon is <strong>AUG</strong> (the first AUG encountered) and the stop codon is <strong>UGA</strong> (or UAA/UAG) at the end. Mark them clearly in the sequence.</div>
+                    </div>
+
+                    <div class="subquestion">
+                        <div class="sub-label">c) Would there be an effect on translation of changing the first G in the template strand to a C? If so, what would be the effect? (2 marks)</div>
+                        <textarea placeholder="Write your answer..."></textarea>
+                        <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        <div class="model-answer">Yes. The first G in the template (which pairs with a C in the coding strand) would change the corresponding codon in the mRNA. If this change creates a <strong>stop codon</strong> or alters the <strong>start codon</strong>, translation would be prematurely terminated or not initiated. Otherwise it would cause a missense mutation.</div>
+                    </div>
+
+                    <div class="subquestion">
+                        <div class="sub-label">d) Would there be an effect on translation of changing the second T in the template strand to a G? If so, what would be the effect? (2 marks)</div>
+                        <textarea placeholder="Write your answer..."></textarea>
+                        <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        <div class="model-answer">Yes. The second T in the template would change the complementary base in the mRNA. This could alter a codon, possibly changing the amino acid (missense) or creating a stop codon (nonsense), or if it affects the reading frame (if not a multiple of 3) it could cause a frameshift.</div>
+                    </div>
+
+                    <div class="subquestion">
+                        <div class="sub-label">e) Would there be an effect on translation of changing the last T in the template strand to a C? If so, what would be the effect? (2 marks)</div>
+                        <textarea placeholder="Write your answer..."></textarea>
+                        <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        <div class="model-answer">Yes. Changing the last T in the template would alter the corresponding codon in the mRNA. If this codon is the <strong>stop codon</strong>, it could be changed to a sense codon, causing <strong>read‑through</strong> and a longer protein. If it is a sense codon, it could cause a missense or nonsense mutation.</div>
+                    </div>
+                </div>
+
+            </div><!-- /section-sectionB -->
+
+        </div>
+    </main>
+
+    <script>
+        // ─── MCQ DATA (40 questions) ──────────────────────────────
+        const questions = [
+            { q: "A patient with von Gierke's disease displays the symptoms of gout. This most likely occurs owing to the overproduction of which one of the following molecules?",
+                options: ["NADPH", "UDP-glucose", "PRPP", "Aspartate", "Glucose"],
+                correct: "c",
+                explanation: "von Gierke's disease (glucose-6-phosphatase deficiency) increases glucose-6-phosphate, driving the pentose phosphate pathway and increasing PRPP, leading to purine overproduction and gout." },
+            { q: "A 2-year-old boy is exhibiting developmental delay and has started to bite his lips and fingers. Orange-colored 'sand' is found in his diapers. This child has an inability to metabolize which one of the following molecules?",
+                options: ["Uracil", "Hypoxanthine", "Uric acid", "Thymine", "Adenine"],
+                correct: "b",
+                explanation: "Lesch-Nyhan syndrome (HGPRT deficiency) leads to inability to salvage hypoxanthine and guanine, resulting in overproduction of uric acid (orange sand)." },
+            { q: "Deficiency of which of the following enzyme of purine metabolism results in immunodeficiency disease?",
+                options: ["HGPRTase", "Carbamoyl phosphate synthase II", "Adenosine deaminase", "Xanthine oxidase", "PRPP synthetase"],
+                correct: "c",
+                explanation: "Adenosine deaminase (ADA) deficiency causes SCID due to accumulation of dATP, which is toxic to lymphocytes." },
+            { q: "The key mechanistic failure in patients with Xeroderma Pigmentosum involves which one of the following?",
+                options: ["Inability to synthesize DNA across the damaged region", "Loss of proofreading capacity", "Mutation in the primase gene",
+                    "Inability to excise a section of the UV-damaged DNA", "Mutation of one of the mismatch repair components"
+                ],
+                correct: "d",
+                explanation: "Xeroderma pigmentosum is caused by defects in nucleotide excision repair, specifically the inability to excise UV-induced pyrimidine dimers." },
+            { q: "In E. coli, under high-lactose, high-glucose conditions, which one of the following could lead to maximal transcription activation of the lac operon?",
+                options: ["A mutation leading to enhanced cAMP levels", "A mutation leading to lower binding of repressor", "A mutation in the lac I gene (which encodes the repressor)",
+                    "A mutation in the CRP-binding site leading to enhanced binding", "A mutation in the operator sequence"
+                ],
+                correct: "a",
+                explanation: "High glucose lowers cAMP; a mutation that raises cAMP levels allows CAP to bind and stimulate transcription even with glucose present." },
+            { q: "Altered eukaryotic DNA can lead to mutations; however, the alteration in DNA does not necessarily have to be within an exon. Which one of the following best represents an epigenetic alteration in DNA, which could lead to altered gene regulation?",
+                options: ["Substitution of an A for a G in DNA", "A simple base deletion in the DNA", "Deamination of C to U in DNA",
+                    "Deamination of A to I in DNA", "Methylation of C residues in DNA"
+                ],
+                correct: "e",
+                explanation: "DNA methylation (e.g., CpG islands) is an epigenetic modification that can silence genes without changing the DNA sequence." },
+            { q: "Transcription factors can be activated in several ways as well as inhibited under certain conditions. Which one of the following describes a common theme in the structure of DNA-binding proteins?",
+                options: ["The presence of zinc", "The ability to form dimers with disulfide linkages", "The presence of a specific tetrix that lies across the major or minor groove of DNA",
+                    "The ability to recognize RNA molecules with the same sequence", "The ability to form multiple hydrogen bonds between the protein peptide backbone and the DNA phosphodiester backbone"
+                ],
+                correct: "a",
+                explanation: "Zinc finger, leucine zipper, and helix-turn-helix are common DNA-binding motifs. Zinc fingers contain zinc ions." },
+            { q: "A new patient, recently admitted to the hospital, has contracted diphtheria. A family history indicates that the patient had never been vaccinated against this pathogen. Protein synthesis in the patient's cells is inhibited owing to which one of the following?",
+                options: ["An inhibition of the translocation step of protein synthesis", "An inhibition of the termination of protein synthesis",
+                    "An inhibition of RNA polymerase II activity", "An inhibition of peptidyltransferase activity", "An inhibition of the assembly of the translation-initiation complex"
+                ],
+                correct: "a",
+                explanation: "Diphtheria toxin ADP-ribosylates eEF-2, blocking translocation of the ribosome during protein synthesis." },
+            { q: "Mutations in DNA large distances from a structural gene can lead to over or underexpression of that gene. Which one of the following eukaryotic DNA control sequences does not need to be in a fixed location and is most responsible for high rates of transcription of particular genes?",
+                options: ["Operator", "Splice donor site", "Promoter", "Promoter-proximal element", "Enhancer"],
+                correct: "e",
+                explanation: "Enhancers can act over long distances and in any orientation to dramatically increase transcription." },
+            { q: "A drug that inhibits DNA replication, but is inactivated by chromosomes containing telomeres, would prove to be a very useful antibiotic. Telomeres can be best described by which one of the following?",
+                options: ["In human DNA, telomeres consist of repeating sequences of TTAGGT.", "Somatic eukaryotic cells do not contain telomeres.",
+                    "Telomeres are only present in circular chromosomes.", "Before telomerase action, and after DNA replication, there is a 3' overhang of the newly synthesized strand.",
+                    "Before telomerase action, and after DNA replication, there is a 5' overhang of the strand being replicated."
+                ],
+                correct: "d",
+                explanation: "After DNA replication, the lagging strand synthesis leaves a 3' overhang on the parental strand (the G-rich strand). Telomerase extends this overhang." },
+            { q: "A variety of drugs can alter DNA replication in eukaryotic cells. Which one of the following steps could be a target for such a drug?",
+                options: ["The finding that both strands of newly synthesized DNA always grow continuously", "The enzyme DNA ligase, which joins Okazaki fragments",
+                    "The enzyme family of DNA polymerases, which unwinds parental strands", "The enzyme family of topoisomerases, which copy each parental strand in the 3'- to- 5' direction",
+                    "The enzyme family of helicases, which copy each parental strand in the 5'- to- 3' direction"
+                ],
+                correct: "b",
+                explanation: "DNA ligase is essential for joining Okazaki fragments; inhibiting it would block lagging strand synthesis." },
+            { q: "Allopurinol is used to treat gout. The drug is a suicide inhibitor that leads to a reduction in the amount of uric acid produced. Instead of accumulating uric acid, which other compound would accumulate in the presence of allopurinol?",
+                options: ["Guanine", "Adenine", "Hypoxanthine", "Ribose-phosphate", "IMP"],
+                correct: "c",
+                explanation: "Allopurinol inhibits xanthine oxidase, so hypoxanthine and xanthine accumulate (hypoxanthine is the immediate precursor)." },
+            { q: "The production of mRNA in eukaryotic cells requires a large number of steps, and drugs targeted to any of these steps could block mRNA production. Which one of the following accurately describes a part of the process of producing mRNA from a eukaryotic gene?",
+                options: ["Mature mRNA contains a cap at the 5'- end, a poly(A) tail at the 3' end, introns, and exons.",
+                    "During processing in the nucleus of a precursor mRNA, introns and exons are shuffled in sequence to produce the mature mRNA.",
+                    "The sense strand of DNA is the strand used by RNA polymerase during transcription.",
+                    "The antisense DNA strand is identical to the RNA transcript except that the DNA strand contains thymine and the RNA strand contains uracil.",
+                    "The first RNA form produced contains both intron and exon sequences."
+                ],
+                correct: "e",
+                explanation: "The primary transcript (pre-mRNA) includes both introns and exons; introns are removed during splicing." },
+            { q: "Viruses cause many human infections such as hepatitis, encephalitis, and the 'common cold.' Which one of the following is a common trait of all these viruses?",
+                options: ["In order to reproduce, they must use the infected cell's DNA, RNA, and protein-synthesizing machinery.",
+                    "Upon becoming infectious, they are called plasmids.", "They are small, circular DNA molecules that enter bacteria and replicate outside the host genome.",
+                    "Upon infecting eukaryotic cells, they are called phages.", "All the common cold viruses contain both DNA and RNA genomes."
+                ],
+                correct: "a",
+                explanation: "All viruses are obligate intracellular parasites that rely on the host cell's machinery for replication and protein synthesis." },
+            { q: "A physician suspects an atypical pneumonia from Mycoplasma pneumoniae based on the symptoms of 3- to 4-week history of a nonproductive cough and a low-grade fever and decides to treat the patient with erythromycin. Which of the following best describes the mechanism of action of erythromycin?",
+                options: ["Binds to and inhibits initiation factor IF-1 from binding to the initiation complex", "Binds to the 50S ribosomal subunit and blocks translocation during translation",
+                    "Binds to the 5' cap of mRNA and prevents translation", "Binds to the 30S ribosomal subunit and blocks peptidyl transferase activity",
+                    "Binds to the Shine-Dalgarno sequence of mRNA and prevents translation"
+                ],
+                correct: "b",
+                explanation: "Erythromycin binds the 50S ribosomal subunit and inhibits translocation, blocking protein synthesis." },
+            { q: "Dideoxynucleotides are effective agents against DNA synthesis, but appear to have little, or no, effect on RNA synthesis. This is most likely due to which of the following?",
+                options: ["Presence of an N-glycosidic bond at carbon 1", "Factor TFIID does not recognize deoxyribonucleotides", "Lack of a 3'-OH group",
+                    "Lack of a 2'-OH group", "Presence of a 5'-phosphodiester bond"
+                ],
+                correct: "c",
+                explanation: "Dideoxynucleotides lack a 3'-OH, which is required for chain elongation. RNA polymerases use ribonucleotides, not deoxyribonucleotides." },
+            { q: "A 2-year-old has been diagnosed with a rhabdomyosarcoma and is placed on chemotherapy, including the drug dactinomycin. Dactinomycin exerts its effects by which of the following mechanisms?",
+                options: ["Binding of the drug to RNA polymerase II, thereby blocking RNA synthesis", "Binding of the drug to DNA, thereby blocking DNA synthesis",
+                    "Binding of the drug to DNA, thereby blocking RNA synthesis", "Binding of the drug to ribosomes, thereby blocking translation",
+                    "Binding of the drug to transcription factors, thereby blocking RNA synthesis"
+                ],
+                correct: "c",
+                explanation: "Dactinomycin intercalates into DNA, blocking RNA polymerase and inhibiting transcription." },
+            { q: "Which proofreading activity is critical in determining the accuracy of nuclear DNA replication and thus the base substitution mutation rate in human chromosomes?",
+                options: ["5' to 3' polymerase activity of DNA polymerase III", "3' to 5' exonuclease activity of DNA polymerase β",
+                    "3' to 5' polymerase activity of DNA polymerase δ", "3' to 5' exonuclease activity of DNA polymerase γ",
+                    "Primase activity of DNA polymerase α"
+                ],
+                correct: "d",
+                explanation: "The 3'→5' exonuclease activity of DNA polymerase δ (and ε) provides proofreading. (Option d lists γ, but the principle is the exonuclease activity of the replicative polymerase.)" },
+            { q: "Which of the following explains why several different proteins can be synthesized from a typical prokaryotic mRNA?",
+                options: ["Alternative splicing events are commonly found.", "Many RNAs are organized in a series of consecutive translational cistrons.",
+                    "Any of the three reading frames can be used.", "There is redundancy in the choice of codon/tRNA interactions.",
+                    "The gene contains several operator sequences from which to initiate translation."
+                ],
+                correct: "b",
+                explanation: "Prokaryotic mRNA is often polycistronic, containing multiple genes (cistrons) each with its own ribosome binding site." },
+            { q: "A 23-year-old man presents to his family physician with a painless swelling of his testicles. An ultrasound is suspicious for a neoplasm, and a biopsy confirms the presence of cancer. He is referred to an oncologist, who begins treatment with the topoisomerase inhibitor etoposide. The normal function of this enzyme is to do which of the following?",
+                options: ["Prevent the single strands of DNA from reannealing during replication", "Synthesize RNA primers for DNA polymerase",
+                    "Repair nuclear DNA in the event of DNA damage", "Unwind the DNA helix during replication",
+                    "Break and rejoin the DNA helix during replication"
+                ],
+                correct: "e",
+                explanation: "Topoisomerases relieve torsional stress by breaking and rejoining DNA strands during replication and transcription." },
+            { q: "A medical student working in a molecular biology laboratory is asked by her mentor to determine the base composition of an unlabeled nucleic acid sample left behind by a former research technologist. The results of her analysis show 10% adenine, 40% cytosine, 30% thymine and 20% guanine. What is the most likely source of the nucleic acid in this sample?",
+                options: ["Nuclear chromosome", "Viral genome", "Bacterial chromosome", "Bacterial plasmid", "Mitochondrial chromosome"],
+                correct: "b",
+                explanation: "A≠T and C≠G, so it is single-stranded DNA. Many viruses have single-stranded DNA genomes." },
+            { q: "Which of these systems give the best mode for turning trp operon off?",
+                options: ["Repressor with a downstream poly A tail", "Repressor with an attenuator", "Repressor", "Attenuator", "None of the above"],
+                correct: "b",
+                explanation: "The trp operon uses both repression and attenuation; the combination of repressor and attenuator provides tight regulation." },
+            { q: "A mutation to this sequence in eukaryotic mRNA will affect the process by which the 3'- end poly-A tail is added to the mRNA.",
+                options: ["AAUAAA", "TATAAA", "CAAT", "CCA", "GGGGCG"],
+                correct: "a",
+                explanation: "The AAUAAA sequence is the polyadenylation signal required for cleavage and poly(A) addition." },
+            { q: "When an antibiotic 'X' is added to an in vitro protein synthesis system that is translating the mRNA sequence 5'-AUGUUUUUUAAACCCCGUGAG-3', the only product formed is the dipeptide fMet-Phe. What step in protein synthesis is most likely inhibited by the antibiotic 'X'?",
+                options: ["Ribosomal translocation", "Termination", "Initiation", "Binding of charged tRNA to the ribosomal 'A' site",
+                    "Peptidyltransferase activity"
+                ],
+                correct: "a",
+                explanation: "The dipeptide indicates that initiation and the first peptide bond occurred, but translocation to the next codon is blocked, preventing elongation." },
+            { q: "A 25-year-old anemic man is found to have an abnormal form of β-globin that is 192 amino acids long, rather than the 141 found in the normal protein. Which of the following point mutations is consistent with this abnormality?",
+                options: ["GAU → GAC", "GCA → GAA", "UAA → CAA", "UAA → UAG", "CGA → UGA"],
+                correct: "c",
+                explanation: "A stop codon (UAA) changed to a sense codon (CAA) would allow read-through, producing a longer protein." },
+            { q: "The retroviruses, including HIV, use an RNA genome. In order to generate DNA from the genomic RNA, the enzyme reverse transcriptase is required. Reverse transcriptase differs specifically from DNA Pol δ by which one of the following?",
+                options: ["Synthesizing DNA in the 3'-to-5' direction", "Inserting inosine into a growing DNA chain",
+                    "Synthesizing DNA in the 5'-to-3' direction", "Expressing 3'-to-5' exonuclease activity",
+                    "Using Watson-Crick base-pair rules during DNA synthesis"
+                ],
+                correct: "d",
+                explanation: "Reverse transcriptase lacks 3'→5' exonuclease proofreading activity, unlike DNA Pol δ." },
+            { q: "Certain nucleoside analog drugs used to treat infectious diseases inhibit DNA synthesis because they lack which of the following properties required for normal DNA polymerization?",
+                options: ["A poly(A) tail", "A consensus sequence", "A 5'-phosphate", "A 3'-hydroxyl", "A 7-methyl G modification"],
+                correct: "d",
+                explanation: "Nucleoside analogs lack a 3'-OH, preventing formation of the next phosphodiester bond and causing chain termination." },
+            { q: "A patient is diagnosed with diphtheria, which has reactivated because of waning immunity. One way in which diphtheria toxin leads to cell death is through the inhibition of eEF-2. Which statement best explains the function of eEF-2?",
+                options: ["It functions as a peptidyl-transferase.", "It is analogous to the prokaryotic factor eIF-1.",
+                    "It is required for the translocation of peptidyl-tRNA during translation.", "It is required for the initiation of protein synthesis.",
+                    "It is the agent that binds to, and is inactivated by, chloramphenicol."
+                ],
+                correct: "c",
+                explanation: "eEF-2 (eukaryotic elongation factor 2) is required for translocation of the ribosome during translation elongation." },
+            { q: "Generation of recombinants by randomly cloning fragments of total DNA from an organism is called",
+                options: ["recombination", "shotgun cloning", "genomic library", "cDNA library", "screening"],
+                correct: "b",
+                explanation: "Shotgun cloning randomly fragments genomic DNA and inserts fragments into vectors to create a library." },
+            { q: "Pyrimethamine, an antimalarial drug is an inhibitor of the enzyme dihydrofolate reductase in the synthesis of pyrimidines. Administration of pyrimethamine would inhibit which of the following?",
+                options: ["conversion of dCTP to dUTP", "de novo synthesis of dTMP", "de novo synthesis of dUMP",
+                    "Conversion of dUMP to dTMP", "de novo synthesis of dATP"
+                ],
+                correct: "d",
+                explanation: "DHFR provides tetrahydrofolate, which is needed as a methyl donor for thymidylate synthase to convert dUMP to dTMP." },
+            { q: "A woman visits her physician due to fever and pain upon urination. Urinary analysis shows bacteria, leukocytes, and leukocyte esterase in the urine, and the physician places the woman on a quinolone antibiotic (ciprofloxacin). The mammalian counterpart to the bacterial enzyme inhibited by this drug is which of the following?",
+                options: ["Primase", "Helicase", "DNA polymerase α", "Topoisomerase", "Ligase"],
+                correct: "d",
+                explanation: "Quinolones inhibit bacterial DNA gyrase (topoisomerase II). The mammalian counterpart is topoisomerase." },
+            { q: "The term used to refer to the process of introducing a vector with a DNA fragment of interest in bacteria is.",
+                options: ["Electroporation", "Microinjection", "Transfection", "Transformation", "Transduction"],
+                correct: "d",
+                explanation: "Transformation is the uptake of naked DNA (or vector) by bacteria." },
+            { q: "Gene therapy is defined as.",
+                options: ["method to replace a defective gene", "method provide corrective version of a defective gene",
+                    "method to cure genetic disorders", "method that requires in vitro fertilization", "A, B and C"
+                ],
+                correct: "e",
+                explanation: "Gene therapy encompasses replacing, correcting, or curing genetic disorders; all three statements are correct." },
+            { q: "Gene therapy targeting germ line is.",
+                options: ["Not heritable", "Not possible", "Heritable", "heritable at times", "Not related to heredity"],
+                correct: "c",
+                explanation: "Germline gene therapy modifies reproductive cells, so the change is heritable." },
+            { q: "For the following DNA sequence, determine the sequence and direction of the complementary strand: 5'-ATCGATCGATCGATCG-3'",
+                options: ["5'-CGATCGATCGATCGAT-3'", "3'-CGATCGATCGATCGAT-5'", "5'-ATCTATCGATCGATCG-3'",
+                    "3'-ATCGATCGATCGATCG-5'", "5'-CGAUCGAUCAUCGAU-3'"
+                ],
+                correct: "a",
+                explanation: "The complementary strand is antiparallel; the reverse complement of the given sequence is 5'-CGATCGATCGATCGAT-3'." },
+            { q: "Excessive ultraviolet (UV) radiation is harmful to life. The damage caused to the biological system by ultraviolet radiation is:",
+                options: ["DNA fragmentation", "Base deamination", "Inhibition of DNA synthesis", "Formation of thymidine dimers",
+                    "Ionization"
+                ],
+                correct: "d",
+                explanation: "UV radiation causes formation of cyclobutane pyrimidine dimers, mainly thymine dimers." },
+            { q: "Which enzymatic mutation is responsible for immortality of cancer cells?",
+                options: ["DNA polymerase", "DNA topoisomerase", "DNA reverse transcriptase", "RNA polymerase", "Telomerase"],
+                correct: "e",
+                explanation: "Telomerase activation allows cancer cells to maintain telomere length and divide indefinitely." },
+            { q: "A nucleic acid was analyzed and found to contain 32% adenine, 18% guanine, 17% cytosine and 33% thymine. The nucleic acid must be:",
+                options: ["Double-stranded DNA", "DNA-RNA hybrid", "Single-stranded RNA", "Single-stranded DNA",
+                    "Double-stranded RNA"
+                ],
+                correct: "d",
+                explanation: "A≠T and C≠G, so it is single-stranded; presence of thymine indicates DNA." },
+            { q: "An intravenous (IV) drug user is tested, and found positive, for infection by HIV. If the patient is only placed on one antiviral medication, viral loads will initially be reduced, but will then rapidly increase. The resistance to the drug occurs due to which of the following?",
+                options: ["Incorporation of uracil in the RNA genome of HIV", "Incorporation of thymine in the RNA genome of HIV",
+                    "Lack of error checking in DNA polymerase", "Lack of error checking in RNA polymerase",
+                    "Lack of DNA repair enzyme systems in HIV-infected cells"
+                ],
+                correct: "d",
+                explanation: "HIV reverse transcriptase lacks proofreading (3′→5′ exonuclease activity), leading to high mutation rates and rapid drug resistance." },
+            { q: "Some goats have been genetically modified with a human gene that codes for a blood anti-clotting factor. The anticlotting factor can then be extracted from the goat milk and used during surgery. To produce these genetically modified goats, scientists most likely:",
+                options: ["Altered the nutritional requirements of newborn goats", "Injected the anticlotting factor parentally to the animals",
+                    "Injected the anticlotting factor into the milk-producing glands of the animals", "Added modified DNA into the milk of the animals",
+                    "Inserted the human gene into the egg cells of goats"
+                ],
+                correct: "e",
+                explanation: "To create transgenic animals, the human gene is inserted into the egg cell (or embryo) so that every cell of the resulting animal contains the transgene." }
+        ];
+
+        // ─── RENDER MCQ ─────────────────────────────────────────────
+        function renderMCQs() {
+            const container = document.getElementById('mcq-container');
+            let html = '';
+            questions.forEach((q, index) => {
+                const num = index + 1;
+                html += `<div class="question">`;
+                html += `<p><span class="q-badge">${num}</span> ${q.q}</p>`;
+                html += `<div class="options">`;
+                const letters = ['a', 'b', 'c', 'd', 'e'];
+                q.options.forEach((opt, i) => {
+                    const val = letters[i];
+                    html += `<label><input type="radio" name="q${num}" value="${val}"> ${opt}</label>`;
+                });
+                html += `</div>`;
+                html += `<div class="question-feedback" id="feedback-q${num}"></div>`;
+                html += `</div>`;
+            });
+            container.innerHTML = html;
+        }
+        renderMCQs();
+
+        // ─── MCQ CORRECT ANSWERS & EXPLANATIONS ──────────────────
+        const correctMap = {};
+        const explMap = {};
+        questions.forEach((q, i) => {
+            const key = 'q' + (i + 1);
+            correctMap[key] = q.correct;
+            explMap[key] = q.explanation;
+        });
+
+        // ─── SUBMIT MCQ ─────────────────────────────────────────────
+        function submitQuiz() {
+            let score = 0;
+            const total = questions.length;
+            for (let i = 0; i < total; i++) {
+                const key = 'q' + (i + 1);
+                const radios = document.querySelectorAll(`input[name="${key}"]`);
+                const selected = Array.from(radios).find(r => r.checked);
+                const correct = correctMap[key];
+                const feedbackEl = document.getElementById(`feedback-${key}`);
+                if (!feedbackEl) continue;
+
+                if (selected && selected.value === correct) score++;
+
+                let html = `<div class="answer-block"><strong>Q${i+1}</strong><div class="answer-list">`;
+                const letters = ['a', 'b', 'c', 'd', 'e'];
+                const opts = questions[i].options;
+                opts.forEach((opt, idx) => {
+                    const val = letters[idx];
+                    let cls = 'answer-item';
+                    if (val === correct) cls += ' answer-correct';
+                    if (selected && selected.value === val && selected.value !== correct) cls += ' answer-wrong user-choice';
+                    if (selected && selected.value === val && selected.value === correct) cls += ' user-choice';
+                    html += `<div class="${cls}">${opt}${selected && selected.value === val ? ' ◀' : ''}</div>`;
+                });
+                html += `</div>`;
+
+                const correctText = opts[letters.indexOf(correct)];
+                const explanation = explMap[key] || '';
+                if (selected) {
+                    if (selected.value === correct) {
+                        html += `<div class="explanation">✅ Correct — ${explanation}</div>`;
+                    } else {
+                        html += `<div class="explanation wrong">❌ Incorrect. Correct answer: <strong>${correctText}</strong>. ${explanation}</div>`;
+                    }
+                } else {
+                    html += `<div class="explanation wrong">No answer selected. Correct: <strong>${correctText}</strong>. ${explanation}</div>`;
+                }
+                html += `</div>`;
+                feedbackEl.innerHTML = html;
+            }
+
+            const pct = Math.round((score / total) * 100);
+            const resultBox = document.getElementById('resultBox');
+            resultBox.style.display = 'block';
+            document.getElementById('score').innerText = pct + '%';
+
+            document.querySelectorAll('#quizForm input[type="radio"]').forEach(i => i.disabled = true);
+        }
+
+        // ─── SECTION B: TOGGLE MODEL ANSWER ──────────────────────
+        function toggleAnswer(btn) {
+            const answerDiv = btn.nextElementSibling;
+            if (answerDiv && answerDiv.classList.contains('model-answer')) {
+                answerDiv.classList.toggle('visible');
+                btn.textContent = answerDiv.classList.contains('visible') ? 'Hide Answer' : 'Show Answer';
+            }
+        }
+
+        // ─── TAB SWITCHING ──────────────────────────────────────────
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                const target = this.dataset.target;
+                document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
+                document.getElementById(target).classList.remove('hidden');
+            });
+        });
+    </script>
+
+</body>
+</html>
